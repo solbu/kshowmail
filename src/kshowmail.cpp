@@ -4,26 +4,12 @@
  * Copyright (C) 2008 %{AUTHOR} <%{EMAIL}>
  */
 #include "kshowmail.h"
-#include "kshowmailview.h"
-#include "settings.h"
 
-#include <QtGui/QDropEvent>
-#include <QtGui/QPainter>
-#include <QtGui/QPrinter>
-
-#include <kconfigdialog.h>
 #include <kstatusbar.h>
-
-#include <kaction.h>
-#include <kactioncollection.h>
-#include <kstandardaction.h>
 
 #include <KDE/KLocale>
 
-kshowmail::kshowmail()
-    : KXmlGuiWindow(),
-      m_view(new kshowmailView(this)),
-      m_printer(0)
+kshowmail::kshowmail() : KXmlGuiWindow()
 {
 
     // add a status bar
@@ -41,9 +27,6 @@ kshowmail::~kshowmail()
 {
 }
 
-void kshowmail::setupActions()
-{
-}
 
 
 

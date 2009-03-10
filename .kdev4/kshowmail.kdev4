@@ -1,5 +1,10 @@
 [Buildset]
-Number of Builditems=0
+Number of Builditems=1
+
+[Buildset][Builditem0]
+Itemname=kshowmail
+Itempath=./
+Projectname=kshowmail
 
 [CMake]
 BuildDirs=/home/kuddel/Daten/Documents/programmieren/kshowmail//build
