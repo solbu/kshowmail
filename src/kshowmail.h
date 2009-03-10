@@ -9,9 +9,7 @@
 
 #include <kxmlguiwindow.h>
 
-#include "ui_prefs_base.h"
 
-class kshowmailView;
 class QPrinter;
 class KToggleAction;
 class KUrl;
@@ -38,20 +36,8 @@ public:
      */
     virtual ~kshowmail();
 
-private slots:
-    void fileNew();
-    void optionsPreferences();
 
-private:
-    void setupActions();
 
-private:
-    Ui::prefs_base ui_prefs_base ;
-    kshowmailView *m_view;
-
-    QPrinter   *m_printer;
-    KToggleAction *m_toolbarAction;
-    KToggleAction *m_statusbarAction;
 };
 
 #endif // _KSHOWMAIL_H_

@@ -8,3 +8,6 @@ Current CMake binary=file:///usr/bin/cmake
 CurrentBuildDir=file:///home/kuddel/Daten/Documents/programmieren/kshowmail//build
 CurrentInstallDir=
 ProjectRootRelative=./
+
+[Project]
+VersionControlSupport=kdevsubversion
