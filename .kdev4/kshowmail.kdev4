@@ -9,10 +9,17 @@ Projectname=kshowmail
 [CMake]
 BuildDirs=/home/kuddel/Daten/Documents/programmieren/kshowmail//build
 CMakeDir=/usr/share/cmake/Modules
+Current CMake Binary=file:///usr/bin/cmake
 Current CMake binary=file:///usr/bin/cmake
 CurrentBuildDir=file:///home/kuddel/Daten/Documents/programmieren/kshowmail//build
-CurrentInstallDir=
+CurrentInstallDir=file:///usr
 ProjectRootRelative=./
 
 [Project]
 VersionControlSupport=kdevsubversion
+
+[Release-Run Options]
+Executable=file:///home/kuddel/Daten/Documents/programmieren/kshowmail/build/src/kshowmail
+
+[Run Options]
+Run Targets=Release

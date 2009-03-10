@@ -3,10 +3,6 @@ set(kshowmail_SRCS
    main.cpp
  )
 
-#kde4_add_ui_files(kshowmail_SRCS kshowmailview_base.ui prefs_base.ui)
-
-#kde4_add_kcfg_files(kshowmail_SRCS settings.kcfgc )
-
 kde4_add_executable(kshowmail ${kshowmail_SRCS})
 
 target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} )

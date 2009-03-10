@@ -4,16 +4,25 @@
 #include <kcmdlineargs.h>
 #include <KDE/KLocale>
 
-static const char description[] =
-    I18N_NOOP("A KDE 4 Application");
+static const char description[] = I18N_NOOP("A powerful pop3 mail checker");
 
-static const char version[] = "%{VERSION}";
+static const char version[] = "4.0";
 
 int main(int argc, char **argv)
 {
-    KAboutData about("kshowmail", 0, ki18n("kshowmail"), version, ki18n(description),
-                     KAboutData::License_GPL, ki18n("(C) 2007 %{AUTHOR}"), KLocalizedString(), 0, "%{EMAIL}");
-    about.addAuthor( ki18n("%{AUTHOR}"), KLocalizedString(), "%{EMAIL}" );
+    //some things about KShowmail
+    KAboutData about( "kshowmail", 0, ki18n( "KShowmail" ), version, ki18n( description ),
+                      KAboutData::License_GPL, ki18n("(C) 2000 - 2005 Eggert Ehmke\n(C) 2006 - 2009 Ulrich Weigelt"), KLocalizedString(),
+                      "http://kshowmail.sourceforge.net", "ulrich.weigelt@gmx.de");
+
+    about.addAuthor( ki18n( "Eggert Ehmke" ), ki18n( "Initiator and first developer" ), "eggert.ehmke@berlin.de", "http://kshowmail.sourceforge.net" );
+    about.addAuthor( ki18n( "Ulrich Weigelt" ), ki18n( "current developer" ), "ulrich.weigelt@gmx.de" );
+    about.addAuthor( ki18n( "Allistar Melville" ), KLocalizedString(), "allistar@silvermoon.co.nz" );
+    about.addAuthor( ki18n( "Oleg Ivanov" ), KLocalizedString(), "saruman@unigsm.com" );
+    
+    about.setTranslator( ki18nc( "NAME OF TRANSLATORS", "Your names" ), ki18nc( "EMAIL OF TRANSLATORS", "Your emails" ) );
+
+
     KCmdLineArgs::init(argc, argv, &about);
 
     KCmdLineOptions options;
