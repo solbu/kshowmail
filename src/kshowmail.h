@@ -7,36 +7,33 @@
 #define KSHOWMAIL_H
 
 
+//KDE headers
+#include <kstatusbar.h>
+#include <KDE/KLocale>
 #include <kxmlguiwindow.h>
 
-
-class QPrinter;
-class KToggleAction;
-class KUrl;
-
 /**
- * This class serves as the main window for kshowmail.  It handles the
- * menus, toolbars, and status bars.
+ * This class serves as the main window for kshowmail.
  *
- * @short Main window class
- * @author %{AUTHOR} <%{EMAIL}>
- * @version %{VERSION}
+ * @short main class
+ * @author Eggert Ehmke
+ * @author Ulrich Weigelt
  */
-class kshowmail : public KXmlGuiWindow
+class KShowmail : public KXmlGuiWindow
 {
     Q_OBJECT
-public:
+
+  public:
+
     /**
      * Default Constructor
      */
-    kshowmail();
+    KShowmail();
 
     /**
      * Default Destructor
      */
-    virtual ~kshowmail();
-
-
+    virtual ~KShowmail();
 
 };
 

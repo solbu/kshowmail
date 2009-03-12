@@ -3,17 +3,14 @@
  *
  * Copyright (C) 2008 %{AUTHOR} <%{EMAIL}>
  */
+
 #include "kshowmail.h"
 
-#include <kstatusbar.h>
-
-#include <KDE/KLocale>
-
-kshowmail::kshowmail() : KXmlGuiWindow()
+KShowmail::KShowmail() : KXmlGuiWindow()
 {
 
     // add a status bar
-    statusBar()->show();
+    //statusBar()->show();
 
     // a call to KXmlGuiWindow::setupGUI() populates the GUI
     // with actions, using KXMLGUI.
@@ -23,11 +20,8 @@ kshowmail::kshowmail() : KXmlGuiWindow()
     setupGUI();
 }
 
-kshowmail::~kshowmail()
+KShowmail::~KShowmail()
 {
 }
-
-
-
 
 #include "kshowmail.moc"

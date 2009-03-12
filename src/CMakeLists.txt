@@ -1,6 +1,7 @@
 set(kshowmail_SRCS
    kshowmail.cpp
    main.cpp
+   uniqueapp.cpp
  )
 
 kde4_add_executable(kshowmail ${kshowmail_SRCS})
