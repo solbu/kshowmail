@@ -56,8 +56,8 @@ int main(int argc, char **argv)
   else
   {
     //kshowmail is already running
-    kdWarning() << I18N_NOOP( "Kshowmail is already running!" ) << endl;
+    kWarning() << I18N_NOOP( "KShowmail is already running!" ) << endl;
   }
 
-  return 0;
+  return EXIT_SUCCESS;
 }

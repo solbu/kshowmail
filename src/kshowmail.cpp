@@ -10,7 +10,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 {
 
     // add a status bar
-    //statusBar()->show();
+    statusBar()->show();
 
     // a call to KXmlGuiWindow::setupGUI() populates the GUI
     // with actions, using KXMLGUI.

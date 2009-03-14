@@ -36,9 +36,6 @@ int UniqueApp::newInstance ()
   }
 
   m_pApp->show();
-
-  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-  args->clear();
-
+  
   return 0;
 }
