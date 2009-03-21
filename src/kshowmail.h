@@ -12,6 +12,9 @@
 #include <KDE/KLocale>
 #include <kxmlguiwindow.h>
 
+//KShowmail headers
+#include "kshowmailview.h"
+
 /**
  * This class serves as the main window for kshowmail.
  *
@@ -34,6 +37,13 @@ class KShowmail : public KXmlGuiWindow
      * Default Destructor
      */
     virtual ~KShowmail();
+		
+	private:
+		
+		/**
+		 * This view is the central widget of KShowmail
+		 */
+		KShowmailView* view;
 
 };
 

@@ -8,6 +8,9 @@
 
 KShowmail::KShowmail() : KXmlGuiWindow()
 {
+	//set central widget
+	view = new KShowmailView( this );
+	setCentralWidget( view );
 
     // add a status bar
     statusBar()->show();

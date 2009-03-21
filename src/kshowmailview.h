@@ -17,9 +17,40 @@
 #ifndef KSHOWMAILVIEW_H
 #define KSHOWMAILVIEW_H
 
+//Qt headers
+#include <qsplitter.h>
+
+//KDE headers
+#include <qlistview.h>
+
 class KShowmailView : public QSplitter
 {
-public:
+	Q_OBJECT
+	
+	public:
+		
+		/**
+		 * Constructor
+		 * @param parent pointer to parent widget
+		 */
+		KShowmailView( QWidget* parent = 0 );
+		
+		/**
+		 * Destructor
+		 */
+		~KShowmailView();
+		
+	private:
+		
+		/**
+		 * account list view
+		 */
+		QListView* viewAccounts;
+		
+		/**
+		 * mail list view
+		 */
+		QListView* viewMails;
 };
 
 #endif // KSHOWMAILVIEW_H

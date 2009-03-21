@@ -1,5 +1,6 @@
 set(kshowmail_SRCS
    kshowmail.cpp
+	 kshowmailview.cpp
    main.cpp
    uniqueapp.cpp
  )
