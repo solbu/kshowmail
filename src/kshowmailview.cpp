@@ -21,20 +21,20 @@
 KShowmailView::KShowmailView( QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
 	//create account list
-	viewAccounts = new QListView( this );
+	viewAccounts = new QTableView( this );
 	viewAccounts->setSelectionMode( QAbstractItemView::ExtendedSelection );
-  viewAccounts->setSorting( 1 ); // sort account column
-  viewAccounts->setShowSortIndicator( true );
-  viewAccounts->addColumn( i18n( "Active" ), DEFAULT_WIDTH_ACCOUNT_ACTIVE );
-  viewAccounts->addColumn( i18n( "Account" ), DEFAULT_WIDTH_ACCOUNT_ACCOUNT );
-  viewAccounts->addColumn( i18n( "Server" ), DEFAULT_WIDTH_ACCOUNT_SERVER );
-  viewAccounts->addColumn( i18n( "User" ), DEFAULT_WIDTH_ACCOUNT_USER );
-  viewAccounts->addColumn( i18n( "Messages" ), DEFAULT_WIDTH_ACCOUNT_MESSAGES );
-  viewAccounts->addColumn( i18n( "Size" ), DEFAULT_WIDTH_ACCOUNT_SIZE );
-  viewAccounts->setAllColumnsShowFocus( true );
+//   viewAccounts->setSorting( 1 ); // sort account column
+//   viewAccounts->setShowSortIndicator( true );
+//   viewAccounts->addColumn( i18n( "Active" ), DEFAULT_WIDTH_ACCOUNT_ACTIVE );
+//   viewAccounts->addColumn( i18n( "Account" ), DEFAULT_WIDTH_ACCOUNT_ACCOUNT );
+//   viewAccounts->addColumn( i18n( "Server" ), DEFAULT_WIDTH_ACCOUNT_SERVER );
+//   viewAccounts->addColumn( i18n( "User" ), DEFAULT_WIDTH_ACCOUNT_USER );
+//   viewAccounts->addColumn( i18n( "Messages" ), DEFAULT_WIDTH_ACCOUNT_MESSAGES );
+//   viewAccounts->addColumn( i18n( "Size" ), DEFAULT_WIDTH_ACCOUNT_SIZE );
+//   viewAccounts->setAllColumnsShowFocus( true );
 
 	//create mail list
-	viewMails = new QListView( this );
+	viewMails = new QTableView( this );
 }
 
 KShowmailView::~KShowmailView(){}
