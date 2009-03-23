@@ -21,7 +21,7 @@
 KShowmailView::KShowmailView( QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
 	//create account list
-	viewAccounts = new QTableView( this );
+	viewAccounts = new QTableWidget( this );
 	viewAccounts->setSelectionMode( QAbstractItemView::ExtendedSelection );
 //   viewAccounts->setSorting( 1 ); // sort account column
 //   viewAccounts->setShowSortIndicator( true );

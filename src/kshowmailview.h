@@ -21,7 +21,7 @@
 #include <qsplitter.h>
 
 //KDE headers
-#include <QTableView>
+#include <QTableWidget>
 
 class KShowmailView : public QSplitter
 {
@@ -45,12 +45,12 @@ class KShowmailView : public QSplitter
 		/**
 		 * account list
 		 */
-		QTableView* viewAccounts;
+		QTableWidget* viewAccounts;
 		
 		/**
 		 * mail list
 		 */
-		QTableView* viewMails;
+		QTableWidget* viewMails;
 };
 
 #endif // KSHOWMAILVIEW_H
