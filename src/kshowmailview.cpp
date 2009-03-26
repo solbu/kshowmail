@@ -21,8 +21,8 @@
 KShowmailView::KShowmailView( QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
 	//create account list
-	viewAccounts = new QTableWidget( this );
-	viewAccounts->setSelectionMode( QAbstractItemView::ExtendedSelection );
+//	viewAccounts = new QTableWidget( this );
+//	viewAccounts->setSelectionMode( QAbstractItemView::ExtendedSelection );
 //   viewAccounts->setSorting( 1 ); // sort account column
 //   viewAccounts->setShowSortIndicator( true );
 //   viewAccounts->addColumn( i18n( "Active" ), DEFAULT_WIDTH_ACCOUNT_ACTIVE );
@@ -34,7 +34,7 @@ KShowmailView::KShowmailView( QWidget* parent ) : QSplitter( Qt::Vertical, paren
 //   viewAccounts->setAllColumnsShowFocus( true );
 
 	//create mail list
-	viewMails = new QTableView( this );
+//	viewMails = new QTableView( this );
 }
 
 KShowmailView::~KShowmailView(){}

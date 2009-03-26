@@ -1,5 +1,32 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="kshowmail" version="1">
-<MenuBar>
-</MenuBar>
+<kpartgui name="kshowmail" version="3">
+
+  <MenuBar>
+    <Menu name="actions"><text>Actions</text>
+      <Action name="refresh"/>
+      <Action name="stop"/>
+      <Separator/>
+      <Action name="show_header"/>
+      <Action name="show_complete"/>
+      <Action name="delete"/>
+      <Separator/>
+      <Action name="addWhitelist"/>
+      <Action name="addBlacklist"/>
+      <Separator/>
+     <Action name="show_filterlog"/>
+    </Menu>
+
+  <Menu name="help"><text>&amp;Help</text>
+      <Action name="sendFeedback"/>
+    </Menu>
+  </MenuBar>
+
+  <ToolBar name="mainToolBar"><text>Main Toolbar</text>
+    <Action name="refresh"/>
+    <Action name="delete"/>
+    <Action name="options_configure"/>
+    <Action name="file_quit" />
+
+  </ToolBar>
+
 </kpartgui>
