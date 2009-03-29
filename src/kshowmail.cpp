@@ -8,8 +8,15 @@
 
 KShowmail::KShowmail() : KXmlGuiWindow()
 {
+	//create the account list
+	accounts = new AccountList( this );
+	
+	//create the models for the account view and mail view
+	AccountViewModel* accountModel = new AccountViewModel( accounts, this );
+	MailViewModel* mailModel = new MailViewModel( accounts, this );
+	
 	//set central widget
-	view = new KShowmailView( this );
+	view = new KShowmailView( accountModel, mailModel, this );
 	setCentralWidget( view );
 
     // add a status bar

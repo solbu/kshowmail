@@ -19,6 +19,9 @@
 
 //KShowmail headers
 #include "kshowmailview.h"
+#include "accountlist.h"
+#include "accountviewmodel.h"
+#include "mailviewmodel.h"
 
 /**
  * This class serves as the main window for kshowmail.
@@ -128,7 +131,10 @@ class KShowmail : public KXmlGuiWindow
      */
     KAction* actionRefresh;
 
-
+		/**
+		 * account list
+		 */
+		AccountList* accounts;
 
 };
 

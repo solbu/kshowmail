@@ -14,20 +14,16 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef KSHOWMAILVIEW_H
-#define KSHOWMAILVIEW_H
+#ifndef ACCOUNTVIEWMODEL_H
+#define ACCOUNTVIEWMODEL_H
 
 //Qt headers
-#include <qsplitter.h>
-
-//KDE headers
-#include <QTableWidget>
+#include <QAbstractItemModel>
 
 //KShowmail headers
-#include "accountviewmodel.h"
-#include "mailviewmodel.h"
+#include "accountlist.h"
 
-class KShowmailView : public QSplitter
+class AccountViewModel : public QAbstractItemModel
 {
 	Q_OBJECT
 	
@@ -35,28 +31,17 @@ class KShowmailView : public QSplitter
 		
 		/**
 		 * Constructor
-		 * @param accountModel model for the account view
-		 * @param mailModel model for the mail view
-		 * @param parent pointer to parent widget
+		 * @param accounts pointer to the account list
+		 * @param parent parent object
 		 */
-		KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QWidget* parent = 0 );
+		AccountViewModel( AccountList* accounts, QObject* parent );
 		
 		/**
 		 * Destructor
 		 */
-		~KShowmailView();
+		~AccountViewModel();
 		
-	private:
 		
-		/**
-		 * account list
-		 */
-		QTableWidget* viewAccounts;
-		
-		/**
-		 * mail list
-		 */
-		QTableWidget* viewMails;
 };
 
-#endif // KSHOWMAILVIEW_H
+#endif // ACCOUNTVIEWMODEL_H
