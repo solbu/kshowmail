@@ -21,7 +21,7 @@
 #include <qsplitter.h>
 
 //KDE headers
-#include <QTableWidget>
+#include <QTreeView>
 
 //KShowmail headers
 #include "accountviewmodel.h"
@@ -51,12 +51,12 @@ class KShowmailView : public QSplitter
 		/**
 		 * account list
 		 */
-		QTableWidget* viewAccounts;
+		QTreeView* viewAccounts;
 		
 		/**
 		 * mail list
 		 */
-		QTableWidget* viewMails;
+		QTreeView* viewMails;
 };
 
 #endif // KSHOWMAILVIEW_H

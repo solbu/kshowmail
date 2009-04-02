@@ -18,23 +18,19 @@
 
 
 
-KShowmailView::KShowmailView( QWidget* parent ) : QSplitter( Qt::Vertical, parent )
+KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
-	//create account list
-//	viewAccounts = new QTableWidget( this );
-//	viewAccounts->setSelectionMode( QAbstractItemView::ExtendedSelection );
-//   viewAccounts->setSorting( 1 ); // sort account column
-//   viewAccounts->setShowSortIndicator( true );
-//   viewAccounts->addColumn( i18n( "Active" ), DEFAULT_WIDTH_ACCOUNT_ACTIVE );
-//   viewAccounts->addColumn( i18n( "Account" ), DEFAULT_WIDTH_ACCOUNT_ACCOUNT );
-//   viewAccounts->addColumn( i18n( "Server" ), DEFAULT_WIDTH_ACCOUNT_SERVER );
-//   viewAccounts->addColumn( i18n( "User" ), DEFAULT_WIDTH_ACCOUNT_USER );
-//   viewAccounts->addColumn( i18n( "Messages" ), DEFAULT_WIDTH_ACCOUNT_MESSAGES );
-//   viewAccounts->addColumn( i18n( "Size" ), DEFAULT_WIDTH_ACCOUNT_SIZE );
-//   viewAccounts->setAllColumnsShowFocus( true );
+	
+	//Split the view into two parts
+	QSplitter* splitter = new QSplitter( this );
 
-	//create mail list
-//	viewMails = new QTableView( this );
+	//create account view
+	viewAccounts = new QTreeView( splitter );
+	viewAccounts->setModel( accountModel );
+	
+	//create mail view
+	viewMails = new QTreeView( splitter );
+	viewMails->setModel( mailModel );
 }
 
 KShowmailView::~KShowmailView(){}
