@@ -20,6 +20,9 @@
 //Qt headers
 #include <QAbstractItemModel>
 
+//KDE headers
+#include <KDebug>
+
 //KShowmail headers
 #include "accountlist.h"
 
@@ -85,7 +88,9 @@ class AccountViewModel : public QAbstractItemModel
 		
 		/**
 		 * Overloaded from QAbstractItemModel
-		 * Because this model doesn't provides tree structured data, this methode always returns false
+		 * It returns true if the given index is invalid because a invalid index is the root index.
+     * All content is a child of the root index.
+     * If the index is valid it always returns false because no data has a child.
 		 */
 		virtual bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
 		

@@ -24,17 +24,20 @@ AccountViewModel::~AccountViewModel(){}
 
 QModelIndex AccountViewModel::index( int row, int column, const QModelIndex& parent ) const
 {
+  kDebug() << row << " " << column << endl;
+  
 	//returns a invalid index if the parent index is valid
 	//because no index has a child
 	if( parent.isValid() ) return QModelIndex();
 	
-	if( row > 5 || column > 5 ) return QModelIndex();
+	if( row > 4 || column > 4 ) return QModelIndex();
 	
 	return createIndex( row, column );
 }
 
 QModelIndex AccountViewModel::parent( const QModelIndex& index ) const
 {
+  kDebug() << endl;
 	return QModelIndex();
 }
 
@@ -53,20 +56,30 @@ int AccountViewModel::columnCount ( const QModelIndex & parent ) const
 
 QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 {
+  kDebug() << index.row() << " " << index.column() << " " << index.isValid() << endl;
+  
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
 	
-	if( index.row() > 5 || index.column() > 5 ) return QVariant();
-	
-	return "Data" + QString( index.row() ) + QString( index.column() );
+	if( index.row() > 4 || index.column() > 4 ) return QVariant();
+
+  if( role != Qt::DisplayRole ) return QVariant();
+  
+	return QVariant( "Data");
 }
 
 bool AccountViewModel::hasChildren ( const QModelIndex & parent ) const
 {
+  //it is the root index
+  if( !parent.isValid() ) return true;
+
+  //it isn't the root index
 	return false;
 }
 
 Qt::ItemFlags AccountViewModel::flags ( const QModelIndex & index ) const
 {
+  if( !index.isValid() ) return 0;
+  
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }

@@ -17,7 +17,6 @@
 #include "./kshowmailview.h"
 
 
-
 KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
 	
@@ -27,10 +26,11 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 	//create account view
 	viewAccounts = new QTreeView( splitter );
 	viewAccounts->setModel( accountModel );
-	
+
 	//create mail view
 	viewMails = new QTreeView( splitter );
 	viewMails->setModel( mailModel );
+
 }
 
 KShowmailView::~KShowmailView(){}
