@@ -22,6 +22,7 @@
 #include "accountlist.h"
 #include "accountviewmodel.h"
 #include "mailviewmodel.h"
+#include "mail.h"
 
 /**
  * This class serves as the main window for kshowmail.

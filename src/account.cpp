@@ -14,35 +14,25 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef ACCOUNTLIST_H
-#define ACCOUNTLIST_H
+#include "./account.h"
 
-//Qt headers
-#include <QObject>
-
-class AccountList : public QObject
+Account::Account( QString name, QObject* parent ) 
+	: QObject( parent )
 {
-	Q_OBJECT
-	
-	public:
-		
-		/**
-		 * Constructor
-		 * @param parent parent object
-		 */
-		AccountList( QObject* parent );
-		
-		/**
-		 * Destructor
-		 */
-		~AccountList();
-		
-	private:
-		
-		/**
-		 * this list contains the account objects
-		 */
-		
-};
+	this->name = name;
+}
 
-#endif // ACCOUNTLIST_H
+Account::~Account()
+{
+}
+
+QString Account::getName() const
+{
+	return name;
+}
+
+void Account::print() const
+{
+	cout << getName().toStdString() << endl;
+	cout << "-------------" << endl;
+}

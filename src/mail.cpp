@@ -14,35 +14,52 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef ACCOUNTLIST_H
-#define ACCOUNTLIST_H
+#include "./mail.h"
 
-//Qt headers
-#include <QObject>
-
-class AccountList : public QObject
+Mail::Mail( QString unid, QObject* parent )
+	: QObject( parent )
 {
-	Q_OBJECT
-	
-	public:
-		
-		/**
-		 * Constructor
-		 * @param parent parent object
-		 */
-		AccountList( QObject* parent );
-		
-		/**
-		 * Destructor
-		 */
-		~AccountList();
-		
-	private:
-		
-		/**
-		 * this list contains the account objects
-		 */
-		
-};
+	this->unid = unid;
+}
 
-#endif // ACCOUNTLIST_H
+Mail::~Mail()
+{
+}
+
+void Mail::setSize( long size )
+{
+	this->size = size;
+}
+
+void Mail::print() const
+{
+	cout << "Subject: " << getSubject().toStdString() << endl;
+	cout << "UNID:    " << getUNID().toStdString() << endl;
+	cout << "Number:  " << getNumber() << endl;
+	cout << "Size:    " << getSize() << " Bytes" << endl;
+}
+
+QString Mail::getSubject() const
+{
+	return subject;
+}
+
+QString Mail::getUNID() const
+{
+	return unid;
+}
+
+long Mail::getSize() const
+{
+	return size;
+}
+
+int Mail::getNumber() const
+{
+	return number;
+}
+
+void Mail::setNumber( int number )
+{
+	this->number = number;
+}
