@@ -16,10 +16,12 @@
 
 #include "./mail.h"
 
-Mail::Mail( QString unid, QObject* parent )
+Mail::Mail( const QString& unid, QObject* parent )
 	: QObject( parent )
 {
 	this->unid = unid;
+	
+	init();
 }
 
 Mail::~Mail()
@@ -62,4 +64,10 @@ int Mail::getNumber() const
 void Mail::setNumber( int number )
 {
 	this->number = number;
+}
+
+void Mail::init()
+{
+	number = 0;
+	size = 0;
 }

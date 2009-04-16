@@ -22,6 +22,10 @@
 
 //Qt header
 #include <QObject>
+#include <QList>
+
+//KShowmail headers
+#include "mail.h"
 
 using namespace std;
 
@@ -58,6 +62,12 @@ class Account : public QObject
 		 */
 		QString getName() const;
 		
+		/**
+		 * Creates a mail object and adds it to the list
+		 * @param unid UNID of the mail
+		 */
+		void addMail( const QString& unid );
+		
 	private:
 		
 		/**
@@ -65,7 +75,10 @@ class Account : public QObject
 		 */
 		QString name;
 		
-		
+		/**
+		 * List of mails
+		 */
+		QList<Mail*> mails;
 		
 };
 

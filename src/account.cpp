@@ -20,6 +20,11 @@ Account::Account( QString name, QObject* parent )
 	: QObject( parent )
 {
 	this->name = name;
+	
+	addMail( QString( "1234" ) );
+	addMail( QString( "fefe" ) );
+	addMail( QString( "23fw" ) );
+	addMail( QString( "2rwe" ) );
 }
 
 Account::~Account()
@@ -33,6 +38,25 @@ QString Account::getName() const
 
 void Account::print() const
 {
+	//print the account data
 	cout << getName().toStdString() << endl;
-	cout << "-------------" << endl;
+	cout << "====================" << endl;
+	
+	//print the mails
+	QListIterator<Mail*> iter( mails );
+	while( iter.hasNext() )
+	{
+		Mail* mail = iter.next();
+		mail->print();
+		cout << "------------------" << endl;
+	}
+}
+
+void Account::addMail( const QString& unid )
+{
+	//create the mail object
+	Mail* mail = new Mail( unid, this );
+	
+	//append it to the list
+	mails.append( mail );
 }

@@ -19,6 +19,10 @@
 
 //Qt headers
 #include <QObject>
+#include <QList>
+
+//KShowmail headers
+#include "account.h"
 
 class AccountList : public QObject
 {
@@ -37,12 +41,23 @@ class AccountList : public QObject
 		 */
 		~AccountList();
 		
+		/**
+		 * Creates an account and append it to the list
+		 * @param name account name
+		 */
+		void addAccount( const QString& name );
+		
+		/**
+		 * Prints the accounts to stdout
+		 */
+		void print() const;
+		
 	private:
 		
 		/**
 		 * this list contains the account objects
 		 */
-		
+		QList<Account*> accounts;
 };
 
 #endif // ACCOUNTLIST_H

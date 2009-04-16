@@ -32,11 +32,6 @@ KShowmail::KShowmail() : KXmlGuiWindow()
     // toolbar position, icon size, etc.
     setupGUI();
 		
-		Mail m( "ABCD", this );
-		m.setSize( 1223 );
-		m.setNumber( 5 );
-		m.print();
-		
 }
 
 KShowmail::~KShowmail()

@@ -41,7 +41,7 @@ class Mail : public QObject
 		 * @param unid UNID
 		 * @param parent parent object
 		 */
-		Mail( QString unid, QObject* parent );
+		Mail( const QString& unid, QObject* parent );
 		
 		/**
 		 * Destructor
@@ -115,6 +115,13 @@ class Mail : public QObject
 		 * Number of this mail on the server
 		 */
 		long number;
+		
+	protected:
+		
+		/**
+		 * Initiates the object
+		 */
+		void init();
 		
 };
 
