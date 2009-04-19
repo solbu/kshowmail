@@ -18,6 +18,7 @@
 
 AccountViewModel::AccountViewModel( AccountList* accounts, QObject* parent ) : QAbstractItemModel( parent )
 {
+	this->accounts = accounts;
 }
 
 AccountViewModel::~AccountViewModel(){}
@@ -46,12 +47,12 @@ int AccountViewModel::rowCount ( const QModelIndex & parent ) const
 	//return 0, if the parent is valid
 	if( parent.isValid() ) return 0;
 	
-	return 5;
+	return accounts->numberAccounts();
 }
 
 int AccountViewModel::columnCount ( const QModelIndex & parent ) const
 {
-	return 5;
+	return 6;
 }
 
 QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
@@ -82,4 +83,22 @@ Qt::ItemFlags AccountViewModel::flags ( const QModelIndex & index ) const
   if( !index.isValid() ) return 0;
   
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+}
+
+QVariant AccountViewModel::headerData( int section, Qt::Orientation orientation, int role ) const
+{
+	//we just returns a header text for the display role and a horizontal orientation
+	if( role != Qt::DisplayRole || orientation != Qt::Horizontal )
+         return QVariant();
+
+	switch( section )
+	{
+		case 0	:	return QVariant( i18n( "Active" ) ); break;
+		case 1	:	return QVariant( i18n( "Account" ) ); break;
+		case 2	:	return QVariant( i18n( "Server" ) ); break;
+		case 3	:	return QVariant( i18n( "User" ) ); break;
+		case 4	:	return QVariant( i18n( "Messages" ) ); break;
+		case 5	:	return QVariant( i18n( "Size" ) ); break;
+		default : return QVariant();
+	}
 }

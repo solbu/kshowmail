@@ -22,6 +22,7 @@
 
 //KDE headers
 #include <KDebug>
+#include <KDE/KLocale>
 
 //KShowmail headers
 #include "accountlist.h"
@@ -73,7 +74,8 @@ class AccountViewModel : public QAbstractItemModel
 		/**
 		 * Overloaded from QAbstractItemModel
 		 * Doesn't give a parent item, because the model doesn't provide tree structured data.
-		 * The column count is equal to the number of showed account data
+		 * The column count is equal to the number of showed account data.
+		 * Always returns 6.
 		 * @param parent parent index
 		 */
 		virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
@@ -94,7 +96,27 @@ class AccountViewModel : public QAbstractItemModel
 		 */
 		virtual bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
 		
+		/**
+		 * Returns the flags of the given index
+		 * @param index index
+		 */
 		virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
+		
+		/**
+		 * Returns the header text of the given section
+		 * @param section header section
+		 * @param orientation orientation of the header; just returns the horizontal orientation
+		 * @param role display role
+		 */
+		QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
+
+		
+	private:
+		
+		/**
+		 * Pointer to the account list
+		 */
+		AccountList* accounts;
 		
 };
 

@@ -20,6 +20,9 @@
 //Qt Headers
 #include <QAbstractItemModel>
 
+//KDE headers
+#include <KDE/KLocale>
+
 //KShowmail headers
 #include "accountlist.h"
 
@@ -89,6 +92,14 @@ class MailViewModel : public QAbstractItemModel
 		 */
 		bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
 		
+		/**
+		 * Returns the header text of the given section
+		 * @param section header section
+		 * @param orientation orientation of the header; just returns the horizontal orientation
+		 * @param role display role
+		 */
+		QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
+
 
 
 };

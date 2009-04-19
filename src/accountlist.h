@@ -52,6 +52,12 @@ class AccountList : public QObject
 		 */
 		void print() const;
 		
+		/**
+		 * Returns the number of accounts
+		 * @return number of accounts
+		 */
+		int numberAccounts() const;
+		
 	private:
 		
 		/**

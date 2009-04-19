@@ -63,3 +63,24 @@ bool MailViewModel::hasChildren ( const QModelIndex & parent ) const
 {
 	return false;
 }
+
+QVariant MailViewModel::headerData( int section, Qt::Orientation orientation, int role ) const
+{
+	//we just returns a header text for the display role and a horizontal orientation
+	if( role != Qt::DisplayRole || orientation != Qt::Horizontal )
+         return QVariant();
+
+	switch( section )
+	{
+		case 0	:	return QVariant( i18n( "Number" ) ); break;
+		case 1	:	return QVariant( i18n( "Account" ) ); break;
+		case 2	:	return QVariant( i18n( "From" ) ); break;
+		case 3	:	return QVariant( i18n( "To" ) ); break;
+		case 4	:	return QVariant( i18n( "Subject" ) ); break;
+		case 5	:	return QVariant( i18n( "Date" ) ); break;
+		case 6	:	return QVariant( i18n( "Size" ) ); break;
+		case 7	:	return QVariant( i18n( "Content" ) ); break;
+		case 8	:	return QVariant( i18n( "State" ) ); break;
+		default : return QVariant();
+	}
+}

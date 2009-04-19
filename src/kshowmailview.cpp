@@ -21,7 +21,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 {
 	
 	//Split the view into two parts
-	QSplitter* splitter = new QSplitter( this );
+	QSplitter* splitter = new QSplitter( Qt::Vertical, this );
 
 	//create account view
 	viewAccounts = new QTreeView( splitter );

@@ -48,3 +48,8 @@ void AccountList::print() const
 		cout << "**********************" << endl;
 	}
 }
+
+int AccountList::numberAccounts() const
+{
+	return accounts.size();
+}
