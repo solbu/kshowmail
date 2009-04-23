@@ -25,8 +25,6 @@ AccountViewModel::~AccountViewModel(){}
 
 QModelIndex AccountViewModel::index( int row, int column, const QModelIndex& parent ) const
 {
-  kDebug() << row << " " << column << endl;
-  
 	//returns a invalid index if the parent index is valid
 	//because no index has a child
 	if( parent.isValid() ) return QModelIndex();
@@ -38,7 +36,6 @@ QModelIndex AccountViewModel::index( int row, int column, const QModelIndex& par
 
 QModelIndex AccountViewModel::parent( const QModelIndex& index ) const
 {
-  kDebug() << endl;
 	return QModelIndex();
 }
 
@@ -56,17 +53,30 @@ int AccountViewModel::columnCount ( const QModelIndex & parent ) const
 }
 
 QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
-{
-  kDebug() << index.row() << " " << index.column() << " " << index.isValid() << endl;
-  
+{  
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
 	
-	if( index.row() > 4 || index.column() > 4 ) return QVariant();
+	if( index.row() > rowCount() || index.column() > 6 ) return QVariant();
 
   if( role != Qt::DisplayRole ) return QVariant();
+
+  //get the account object
+  Account* acc = accounts->getAccount( index.row() );
+
+  //return a empty data if the pointer to the account is NULL
+  if( acc == NULL ) return QVariant();
+
+  //return the requested data of the account
+  switch( index.column() )
+  {
+    case 0  : return QVariant(); break;
+    case 1  : return QVariant( acc->getName() ); break;
+    case 2  : return QVariant( acc->getServer() ); break;
+    default : return QVariant(); break;
+  }
   
-	return QVariant( "Data");
+	return QVariant();
 }
 
 bool AccountViewModel::hasChildren ( const QModelIndex & parent ) const

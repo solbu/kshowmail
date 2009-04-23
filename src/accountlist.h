@@ -44,8 +44,9 @@ class AccountList : public QObject
 		/**
 		 * Creates an account and append it to the list
 		 * @param name account name
+     * @return pointer to the added account
 		 */
-		void addAccount( const QString& name );
+		Account* addAccount( const QString& name );
 		
 		/**
 		 * Prints the accounts to stdout
@@ -57,6 +58,13 @@ class AccountList : public QObject
 		 * @return number of accounts
 		 */
 		int numberAccounts() const;
+
+    /**
+     * Returns a pointer to the account object at the given index position
+     * @param index the index
+     * @return pointer to the requested account
+     */
+    Account* getAccount( int index ) const;
 		
 	private:
 		

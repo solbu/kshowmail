@@ -18,23 +18,29 @@
 
 AccountList::AccountList( QObject* parent ) : QObject( parent )
 {
-	addAccount( "Acc1" );
-	addAccount( "Acc2" );
-	addAccount( "Acc3" );
-	addAccount( "Acc4" );
+	Account* acc = addAccount( "GMX" );
+  acc->setServer( "pop3.gmx.de" );
+	acc = addAccount( "Freenet" );
+  acc->setServer( "pop3.freenet.de" );
+	acc = addAccount( "Arcor" );
+  acc->setServer( "pop.arcor.de" );
+	acc = addAccount( "Versatel" );
+  acc->setServer( "pop3.versatel.de" );
 	
 	print();
 }
 
 AccountList::~AccountList(){}
 
-void AccountList::addAccount( const QString& name )
+Account* AccountList::addAccount( const QString& name )
 {
 	//create account object
 	Account* acc = new Account( name, this );
 	
 	//append it to the list
 	accounts.append( acc );
+
+  return acc;
 }
 
 void AccountList::print() const
@@ -52,4 +58,13 @@ void AccountList::print() const
 int AccountList::numberAccounts() const
 {
 	return accounts.size();
+}
+
+Account* AccountList::getAccount( int index ) const
+{
+  //check the index
+  if( index > accounts.size() ) return NULL;
+
+  //return the account if the index is valid
+  return accounts.at( index );
 }

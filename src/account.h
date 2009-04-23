@@ -67,6 +67,19 @@ class Account : public QObject
 		 * @param unid UNID of the mail
 		 */
 		void addMail( const QString& unid );
+
+    /**
+     * Sets the server
+     * @param server Server host name
+     */
+    void setServer( const QString& server );
+
+    /**
+     * Returns the server name
+     * @return server name
+     */
+    QString getServer() const;
+     
 		
 	private:
 		
@@ -79,6 +92,11 @@ class Account : public QObject
 		 * List of mails
 		 */
 		QList<Mail*> mails;
+
+    /**
+     * The Server name
+     */
+    QString server;
 		
 };
 

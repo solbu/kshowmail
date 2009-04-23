@@ -60,3 +60,13 @@ void Account::addMail( const QString& unid )
 	//append it to the list
 	mails.append( mail );
 }
+
+void Account::setServer( const QString& server )
+{
+  this->server = server;
+}
+
+QString Account::getServer() const
+{
+  return server;
+}
