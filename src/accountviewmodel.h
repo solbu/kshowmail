@@ -125,6 +125,14 @@ class AccountViewModel : public QAbstractItemModel
      * Set by the constructor
      */
     KIcon picActive;
+
+    /**
+     * Picture for a inactive account
+     * Set by the constructor
+     */
+    KIcon picNotActive;
+
+
 		
 };
 
