@@ -20,6 +20,8 @@ Account::Account( QString name, QObject* parent )
 	: QObject( parent )
 {
 	this->name = name;
+
+  init();
 	
 	addMail( QString( "1234" ) );
 	addMail( QString( "fefe" ) );
@@ -70,3 +72,14 @@ QString Account::getServer() const
 {
   return server;
 }
+
+void Account::init()
+{
+  active = false;
+}
+
+bool Account::isActive( ) const
+{
+  return active;
+}
+

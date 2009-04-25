@@ -27,7 +27,6 @@ AccountList::AccountList( QObject* parent ) : QObject( parent )
 	acc = addAccount( "Versatel" );
   acc->setServer( "pop3.versatel.de" );
 	
-	print();
 }
 
 AccountList::~AccountList(){}

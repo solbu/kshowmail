@@ -23,6 +23,7 @@
 //KDE headers
 #include <KDebug>
 #include <KDE/KLocale>
+#include <KIcon>
 
 //KShowmail headers
 #include "accountlist.h"

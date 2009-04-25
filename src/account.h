@@ -79,6 +79,25 @@ class Account : public QObject
      * @return server name
      */
     QString getServer() const;
+
+    /**
+     * Returns whether the account is active.
+     * @return TRUE - account is active; FALSE - account is not active
+     */
+    bool isActive() const;
+
+    /**
+     * Sets the account active.
+     * @param active TRUE - active account; FALSE - deactivate account
+     */
+    void setActive( bool active );
+
+  protected:
+
+    /**
+     * Initiate the account
+     */
+    void init();
      
 		
 	private:
@@ -97,6 +116,13 @@ class Account : public QObject
      * The Server name
      */
     QString server;
+
+    /**
+     * TRUE - account is active; FALSE - account is not active
+     */
+    bool active;
+
+
 		
 };
 

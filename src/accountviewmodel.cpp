@@ -57,9 +57,7 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
 	
-	if( index.row() > rowCount() || index.column() > 6 ) return QVariant();
-
-  if( role != Qt::DisplayRole ) return QVariant();
+	if( index.row() > rowCount() || index.column() > 4 ) return QVariant();
 
   //get the account object
   Account* acc = accounts->getAccount( index.row() );
@@ -67,13 +65,37 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
   //return a empty data if the pointer to the account is NULL
   if( acc == NULL ) return QVariant();
 
-  //return the requested data of the account
-  switch( index.column() )
+  //the kind of data we return is dependent on the given role
+  switch( role )
   {
-    case 0  : return QVariant(); break;
-    case 1  : return QVariant( acc->getName() ); break;
-    case 2  : return QVariant( acc->getServer() ); break;
-    default : return QVariant(); break;
+    case( Qt::DisplayRole ) :
+
+      switch( index.column() )
+      {
+        case 0  : return QVariant( acc->getName() ); break;
+        case 1  : return QVariant( acc->getServer() ); break;
+        default : return QVariant(); break;
+      }
+      break;
+
+    case( Qt::DecorationRole ):
+
+      switch( index.column() )
+      {
+        case 0  :
+          if( acc->isActive() )
+          {
+            return QVariant( KIcon( "dialog-ok" ) );
+          }
+          else
+          {
+            return QVariant();
+          }
+          break;
+
+        default : return QVariant();
+      }
+    
   }
   
 	return QVariant();
@@ -103,12 +125,11 @@ QVariant AccountViewModel::headerData( int section, Qt::Orientation orientation,
 
 	switch( section )
 	{
-		case 0	:	return QVariant( i18n( "Active" ) ); break;
-		case 1	:	return QVariant( i18n( "Account" ) ); break;
-		case 2	:	return QVariant( i18n( "Server" ) ); break;
-		case 3	:	return QVariant( i18n( "User" ) ); break;
-		case 4	:	return QVariant( i18n( "Messages" ) ); break;
-		case 5	:	return QVariant( i18n( "Size" ) ); break;
+		case 0	:	return QVariant( i18n( "Account" ) ); break;
+		case 1	:	return QVariant( i18n( "Server" ) ); break;
+		case 2	:	return QVariant( i18n( "User" ) ); break;
+		case 3	:	return QVariant( i18n( "Messages" ) ); break;
+		case 4	:	return QVariant( i18n( "Size" ) ); break;
 		default : return QVariant();
 	}
 }

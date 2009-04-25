@@ -22,6 +22,9 @@ Mail::Mail( const QString& unid, QObject* parent )
 	this->unid = unid;
 	
 	init();
+
+  //just for test
+  setSize( 1234 );
 }
 
 Mail::~Mail()
