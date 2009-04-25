@@ -75,7 +75,7 @@ QString Account::getServer() const
 
 void Account::init()
 {
-  active = false;
+  active = true;
 }
 
 bool Account::isActive( ) const

@@ -24,6 +24,7 @@
 #include <KDebug>
 #include <KDE/KLocale>
 #include <KIcon>
+#include <KStandardDirs>
 
 //KShowmail headers
 #include "accountlist.h"
@@ -118,6 +119,12 @@ class AccountViewModel : public QAbstractItemModel
 		 * Pointer to the account list
 		 */
 		AccountList* accounts;
+
+    /**
+     * Picture for a active account
+     * Set by the constructor
+     */
+    KIcon picActive;
 		
 };
 

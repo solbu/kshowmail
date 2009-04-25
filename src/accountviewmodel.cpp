@@ -19,6 +19,10 @@
 AccountViewModel::AccountViewModel( AccountList* accounts, QObject* parent ) : QAbstractItemModel( parent )
 {
 	this->accounts = accounts;
+
+  //load picture for a active account
+  picActive = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/ok.png" ) );
+
 }
 
 AccountViewModel::~AccountViewModel(){}
@@ -85,7 +89,8 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
         case 0  :
           if( acc->isActive() )
           {
-            return QVariant( KIcon( "dialog-ok" ) );
+            //return QVariant( KIcon( "dialog-ok" ) );
+            return QVariant( picActive );
           }
           else
           {
