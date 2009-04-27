@@ -26,6 +26,7 @@
 //KShowmail headers
 #include "accountviewmodel.h"
 #include "mailviewmodel.h"
+#include "accountviewdelegate.h"
 
 class KShowmailView : public QSplitter
 {

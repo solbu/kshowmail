@@ -14,27 +14,25 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "./kshowmailview.h"
+#include "./accountviewdelegate.h"
 
-
-KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
+AccountViewDelegate::AccountViewDelegate( QObject* parent ) 
+	: QItemDelegate( parent )
 {
-	
-	//Split the view into two parts
-	QSplitter* splitter = new QSplitter( Qt::Vertical, this );
-
-	//create account view
-	viewAccounts = new QTreeView( splitter );
-	viewAccounts->setModel( accountModel );
-  viewAccounts->setIndentation( 0 );
-  viewAccounts->setContextMenuPolicy( Qt::ActionsContextMenu );
-	AccountViewDelegate delegateAccounts( this );
-	viewAccounts->setItemDelegate( &delegateAccounts );
-  
-	//create mail view
-	viewMails = new QTreeView( splitter );
-	viewMails->setModel( mailModel );
-
 }
 
-KShowmailView::~KShowmailView(){}
+QWidget* AccountViewDelegate::createEditor( QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index ) const
+{
+}
+
+void AccountViewDelegate::setEditorData( QWidget *editor, const QModelIndex &index ) const
+{
+}
+
+void AccountViewDelegate::setModelData( QWidget *editor, QAbstractItemModel *model, const QModelIndex &index ) const
+{
+}
+
+void AccountViewDelegate::updateEditorGeometry( QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index ) const
+{
+}

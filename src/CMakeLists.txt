@@ -8,6 +8,7 @@ set(kshowmail_SRCS
 	 mailviewmodel.cpp
 	 mail.cpp
 	 account.cpp
+	 accountviewdelegate.cpp
  )
 
 kde4_add_executable(kshowmail ${kshowmail_SRCS})

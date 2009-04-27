@@ -34,8 +34,6 @@ QModelIndex AccountViewModel::index( int row, int column, const QModelIndex& par
 	//because no index has a child
 	if( parent.isValid() ) return QModelIndex();
 	
-	if( row > 4 || column > 4 ) return QModelIndex();
-	
 	return createIndex( row, column );
 }
 
@@ -62,7 +60,7 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
 	
-	if( index.row() > rowCount() || index.column() > 4 ) return QVariant();
+	if( index.row() > rowCount() || index.column() > 5 ) return QVariant();
 
   //get the account object
   Account* acc = accounts->getAccount( index.row() );
@@ -77,8 +75,9 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 
       switch( index.column() )
       {
-        case 0  : return QVariant( acc->getName() ); break;
-        case 1  : return QVariant( acc->getServer() ); break;
+				case 0  : return QVariant(); break;
+        case 1  : return QVariant( acc->getName() ); break;
+        case 2  : return QVariant( acc->getServer() ); break;
         default : return QVariant(); break;
       }
       break;
@@ -130,11 +129,12 @@ QVariant AccountViewModel::headerData( int section, Qt::Orientation orientation,
 
 	switch( section )
 	{
-		case 0	:	return QVariant( i18n( "Account" ) ); break;
-		case 1	:	return QVariant( i18n( "Server" ) ); break;
-		case 2	:	return QVariant( i18n( "User" ) ); break;
-		case 3	:	return QVariant( i18n( "Messages" ) ); break;
-		case 4	:	return QVariant( i18n( "Size" ) ); break;
+		case 0	:	return QVariant( i18n( "Active" ) ); break;
+		case 1	:	return QVariant( i18n( "Account" ) ); break;
+		case 2	:	return QVariant( i18n( "Server" ) ); break;
+		case 3	:	return QVariant( i18n( "User" ) ); break;
+		case 4	:	return QVariant( i18n( "Messages" ) ); break;
+		case 5	:	return QVariant( i18n( "Size" ) ); break;
 		default : return QVariant();
 	}
 }
