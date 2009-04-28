@@ -25,6 +25,7 @@
 #include <KDE/KLocale>
 #include <KIcon>
 #include <KStandardDirs>
+#include <KDebug>
 
 //KShowmail headers
 #include "accountlist.h"

@@ -20,6 +20,13 @@
 //qt headers
 #include <QItemDelegate>
 
+//KDE headers
+#include <KComboBox>
+#include <KDE/KLocale>
+#include <KIcon>
+#include <KStandardDirs>
+#include <KDebug>
+
 /**
  * @brief To edit some datas in the account view.
  */
@@ -68,6 +75,20 @@ class AccountViewDelegate : public QItemDelegate
 			* @param index data index
 			*/
      void updateEditorGeometry( QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
+		 
+    /**
+     * Picture for a active account used by the combo box to switch the account state
+     * Set by the constructor
+     */
+    KIcon picActive;
+
+    /**
+     * Picture for a inactive account used by the combo box to switch the account state
+     * Set by the constructor
+     */
+    KIcon picNotActive;
+
+
 
 };
 

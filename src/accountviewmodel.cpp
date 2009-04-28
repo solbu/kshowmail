@@ -99,6 +99,25 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 
         default : return QVariant();
       }
+			break;
+			
+		case( Qt::EditRole ):
+		
+			switch( index.column() )
+			{
+				case 0 :
+					if( acc->isActive() )
+						return QVariant( true );
+					else
+						return QVariant( false );
+					
+					break;
+					
+				default :
+					return QVariant();
+					break;
+			}
+			break;
     
   }
   
@@ -118,6 +137,12 @@ Qt::ItemFlags AccountViewModel::flags ( const QModelIndex & index ) const
 {
   if( !index.isValid() ) return 0;
   
+	//the first column is editable, the others are just readable
+	if( index.column() == 0 )
+	{
+		return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+	}
+	
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
 
