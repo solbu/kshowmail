@@ -113,6 +113,13 @@ class AccountViewModel : public QAbstractItemModel
 		 */
 		QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
 
+		/**
+		 * Assign the given value to the account property described by the given index
+		 * @param index index
+		 * @param value value
+		 * @param role role
+		 */
+		bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 		
 	private:
 		

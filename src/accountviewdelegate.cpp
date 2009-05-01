@@ -43,8 +43,6 @@ QWidget* AccountViewDelegate::createEditor( QWidget *parent, const QStyleOptionV
 
 void AccountViewDelegate::setEditorData( QWidget *editor, const QModelIndex &index ) const
 {
-	kDebug() << "Hallo" << endl;
-	
 	//do nothing if the index is not the first column
 	if( !index.isValid() ) return;
 	if( index.column() != 0 ) return;
@@ -66,6 +64,17 @@ void AccountViewDelegate::setEditorData( QWidget *editor, const QModelIndex &ind
 
 void AccountViewDelegate::setModelData( QWidget *editor, QAbstractItemModel *model, const QModelIndex &index ) const
 {
+	//just the first column can be edited
+	if( index.column() != 0 ) return;
+	
+	//get the value from the editor and give it to account model
+	KComboBox* box = static_cast<KComboBox*>( editor );
+	switch( box->currentIndex() )
+	{
+		case 0 : model->setData( index, QVariant( true ) ); break;
+		case 1 : model->setData( index, QVariant( false ) ); break;
+		default : return;
+	}
 }
 
 void AccountViewDelegate::updateEditorGeometry( QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index ) const

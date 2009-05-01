@@ -163,3 +163,26 @@ QVariant AccountViewModel::headerData( int section, Qt::Orientation orientation,
 		default : return QVariant();
 	}
 }
+
+bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & value, int role )
+{
+	if( role != Qt::EditRole ) return false;
+	if( !index.isValid() ) return false;
+	if( index.column() != 0 ) return false;
+	if( index.row() > rowCount( ) ) return false;
+	
+	//get account
+  Account* acc = accounts->getAccount( index.row() );
+  if( acc == NULL ) return false;
+	
+	//set active state of the account
+	acc->setActive( value.toBool() );
+	
+	//emit signal of changed data
+	emit dataChanged( index, index );
+	
+	//successful return
+	return true;
+
+
+}

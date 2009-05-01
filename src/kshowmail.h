@@ -16,6 +16,7 @@
 #include <KActionCollection>
 #include <KDebug>
 #include <KApplication>
+#include <KConfigDialog>
 
 //KShowmail headers
 #include "kshowmailview.h"

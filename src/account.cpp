@@ -43,6 +43,7 @@ void Account::print() const
 	//print the account data
 	cout << getName().toStdString() << endl;
 	cout << "====================" << endl;
+	cout << "Active: " << isActive() << endl;
 	
 	//print the mails
 	QListIterator<Mail*> iter( mails );
@@ -83,3 +84,7 @@ bool Account::isActive( ) const
   return active;
 }
 
+void Account::setActive(bool active) {
+	this->active = active;
+	print();
+}

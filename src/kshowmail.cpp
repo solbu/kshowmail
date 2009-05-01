@@ -134,7 +134,18 @@ void KShowmail::slotAddToWhitelist() {
 }
 
 void KShowmail::slotSetup() {
-  kDebug() << "slotSetup" << endl;
+	
+	//return if the dialog is seen right now
+/* if( KConfigDialog::showDialog("settings") )
+     return;
+ 
+   KConfigDialog *dialog = new KConfigDialog( this, "settings", MySettings::self() );
+   dialog->setFaceType(KPageDialog::List);
+   dialog->addPage(new General(0, "General"), i18n("General") );
+   dialog->addPage(new Appearance(0, "Style"), i18n("Appearance") );
+   connect(dialog, SIGNAL(settingsChanged(const QString&)), mainWidget, SLOT(loadSettings()));
+   connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
+   dialog->show();*/
 }
 
 void KShowmail::slotSendFeedbackMail() {
