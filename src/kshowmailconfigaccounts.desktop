@@ -7,7 +7,7 @@ Name[es]=Cuentas
 Comment=Accounts
 Comment[de]=Konten
 Comment[es]=Cuentas
-Icon=network
+Icon=network-workgroup
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library

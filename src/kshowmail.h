@@ -16,7 +16,7 @@
 #include <KActionCollection>
 #include <KDebug>
 #include <KApplication>
-#include <KConfigDialog>
+#include <KCMultiDialog>
 
 //KShowmail headers
 #include "kshowmailview.h"
@@ -137,6 +137,13 @@ class KShowmail : public KXmlGuiWindow
 		 * account list
 		 */
 		AccountList* accounts;
+		
+    /**
+     * The setup dialog. Created and used by slotSetup().
+     */
+    KCMultiDialog* setupDialog;
+
+
 
 };
 

@@ -134,18 +134,28 @@ void KShowmail::slotAddToWhitelist() {
 }
 
 void KShowmail::slotSetup() {
+
+//    setupDialog->addModule( "kshowmailconfigdisplay.desktop" );
+//    setupDialog->addModule( "kshowmailconfigactions.desktop" );
+//    setupDialog->addModule( "kshowmailconfigfilter.desktop" );
+//    setupDialog->addModule( "kshowmailconfigspamcheck.desktop" );
+//    setupDialog->addModule( "kshowmailconfiglog.desktop" );
+
+    //If the configuration was changed, it will call slotConfChanged
+//    connect( setupDialog, SIGNAL( configCommitted() ), this, SLOT( slotConfChanged() ) );
+
+	//create the dialog and add the pages
+	setupDialog = new KCMultiDialog( this );
+  setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
+  setupDialog->addModule( "kshowmailconfigaccounts.desktop" );
 	
-	//return if the dialog is seen right now
-/* if( KConfigDialog::showDialog("settings") )
-     return;
- 
-   KConfigDialog *dialog = new KConfigDialog( this, "settings", MySettings::self() );
-   dialog->setFaceType(KPageDialog::List);
-   dialog->addPage(new General(0, "General"), i18n("General") );
-   dialog->addPage(new Appearance(0, "Style"), i18n("Appearance") );
-   connect(dialog, SIGNAL(settingsChanged(const QString&)), mainWidget, SLOT(loadSettings()));
-   connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
-   dialog->show();*/
+  //execute preferences dialog
+  setupDialog->exec();
+	
+	//clear memory
+	delete setupDialog;
+	
+	
 }
 
 void KShowmail::slotSendFeedbackMail() {

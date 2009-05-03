@@ -13,7 +13,7 @@ set(kshowmail_SRCS
 
 kde4_add_executable(kshowmail ${kshowmail_SRCS})
 
-target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} )
+target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} )
 
 install(TARGETS kshowmail ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
@@ -21,5 +21,14 @@ install(TARGETS kshowmail ${INSTALL_TARGETS_DEFAULT_ARGS} )
 ########### install files ###############
 
 install( FILES kshowmail.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR} )
-install( FILES kshowmail.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 install( FILES kshowmailui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kshowmail )
+install(FILES
+  kshowmailconfigaccounts.desktop
+  kshowmailconfigactions.desktop
+  kshowmailconfigdisplay.desktop
+  kshowmailconfiggeneral.desktop
+  kshowmailconfigfilter.desktop
+  kshowmailconfiglog.desktop
+	kshowmailconfigspamcheck.desktop
+  DESTINATION ${SERVICES_INSTALL_DIR}
+)
