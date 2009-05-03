@@ -1,0 +1,20 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Actions
+Name[de]=Aktionen
+Name[es]=Acciones
+Comment=actions
+Comment[de]=Aktionen
+Comment[es]=Acciones
+Icon=launch
+ServiceTypes=KCModule
+
+X-KDE-ModuleType=Library
+X-KDE-Library=kshowmailconfigactions
+X-KDE-CfgDlgHierarchy=
+X-KDE-FactoryName=kshowmailconfigactions
+X-KDE-IsHiddenByDefault=
+X-KDE-RootOnly=
+X-KDE-Weight=2
+X-KDE-ParentApp=kshowmail

@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Service
+Name=Spam Checking
+Name[de]=Spam-Prüfung
+Name[es]=Análisis de spam
+Comment=Checking for Spam
+Comment[de]=Prüfung auf Spam
+Comment[es]=Analizar el spam
+Icon=kfind
+ServiceTypes=KCModule
+
+X-KDE-ModuleType=Library
+X-KDE-Library=kshowmailconfigspamcheck
+X-KDE-CfgDlgHierarchy=
+X-KDE-FactoryName=kshowmailconfigspamcheck
+X-KDE-IsHiddenByDefault=
+X-KDE-RootOnly=
+X-KDE-Weight=6
+X-KDE-ParentApp=kshowmail
+

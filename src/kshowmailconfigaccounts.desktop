@@ -1,0 +1,20 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Accounts
+Name[de]=Konten
+Name[es]=Cuentas
+Comment=Accounts
+Comment[de]=Konten
+Comment[es]=Cuentas
+Icon=network
+ServiceTypes=KCModule
+
+X-KDE-ModuleType=Library
+X-KDE-Library=kshowmailconfigaccounts
+X-KDE-CfgDlgHierarchy=
+X-KDE-FactoryName=kshowmailconfigaccounts
+X-KDE-IsHiddenByDefault=
+X-KDE-RootOnly=
+X-KDE-Weight=5
+X-KDE-ParentApp=kshowmail

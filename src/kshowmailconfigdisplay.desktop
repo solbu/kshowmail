@@ -1,0 +1,19 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Display
+Name[de]=Erscheinungsbild
+Name[es]=Visualización
+Comment=Display Options
+Comment[de]=Erscheinungsbild
+Comment[es]=Opciones de visualización
+Icon=looknfeel
+ServiceTypes=KCModule
+X-KDE-ModuleType=Library
+X-KDE-Library=kshowmailconfigdisplay
+X-KDE-CfgDlgHierarchy=
+X-KDE-FactoryName=kshowmailconfigdisplay
+X-KDE-IsHiddenByDefault=
+X-KDE-RootOnly=
+X-KDE-Weight=3
+X-KDE-ParentApp=kshowmail

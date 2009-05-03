@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Service
+Name=Filter
+Name[de]=Filter
+Name[es]=Filtro
+Comment=Filter
+Comment[de]=Filter
+Comment[es]=Filtro
+Icon=filter
+ServiceTypes=KCModule
+
+X-KDE-ModuleType=Library
+X-KDE-Library=kshowmailconfigfilter
+X-KDE-CfgDlgHierarchy=
+X-KDE-FactoryName=kshowmailconfigfilter
+X-KDE-IsHiddenByDefault=
+X-KDE-RootOnly=
+X-KDE-Weight=6
+X-KDE-ParentApp=kshowmail

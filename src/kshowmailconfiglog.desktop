@@ -1,0 +1,16 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Log
+Name[de]=Log
+Name[es]=Registro
+Comment=Log
+Comment[de]=Log
+Comment[es]=Registro
+Icon=kedit
+ServiceTypes=KCModule
+X-KDE-ModuleType=Library
+X-KDE-Library=kshowmailconfiglog
+X-KDE-FactoryName=kshowmailconfiglog
+X-KDE-Weight=7
+X-KDE-ParentApp=kshowmail

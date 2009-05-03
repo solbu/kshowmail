@@ -1,0 +1,19 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=General
+Name[de]=Allgemeines
+Name[es]=General
+Comment=General Options
+Comment[de]=Allgemeine Einstellungen
+Comment[es]=Opciones generales
+Icon=exec
+ServiceTypes=KCModule
+X-KDE-ModuleType=Library
+X-KDE-Library=kshowmailconfiggeneral
+X-KDE-CfgDlgHierarchy=
+X-KDE-FactoryName=kshowmailconfiggeneral
+X-KDE-IsHiddenByDefault=
+X-KDE-RootOnly=
+X-KDE-Weight=4
+X-KDE-ParentApp=kshowmail
