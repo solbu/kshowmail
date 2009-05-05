@@ -13,13 +13,13 @@
 #define ACCOUNTSETUPITEM_H
 
 //KDE headers
-#include <klistview.h>
+#include <KListWidget>
 #include <kconfig.h>
 #include <kurl.h>
 #include <kapplication.h>
 
 //KShowmail headers
-#include "../constants.h"
+#include "constants.h"
 #include "encryption.h"
 #include "kwalletaccess.h"
 
@@ -29,7 +29,7 @@ using namespace Encryption;
  * @brief This class is used in ConfigAccounts to show the available accounts in the list view and to store an account setup.
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-class AccountSetupItem : public KListViewItem
+class AccountSetupItem : public QListWidgetItem
 {
   public:
 

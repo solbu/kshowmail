@@ -23,18 +23,18 @@
 #include <qcheckbox.h>
 
 //KDE headers
-#include <kdialogbase.h>
+#include <KDialog>
 #include <klocale.h>
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
-#include <kpassdlg.h>
+#include <KPasswordDialog>
 #include <ktabwidget.h>
 
 //KShowmail headers
 #include "accountsetupitem.h"
-#include "../constants.h"
+#include "constants.h"
 
 //radio button IDs
 #define ID_BUTTON_PASSWORD_DONT_SAVE 1

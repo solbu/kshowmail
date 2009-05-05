@@ -30,7 +30,7 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const char * name, const QStri
   QHBoxLayout* layMain = new QHBoxLayout( this, 0, 10 );
 
   //account list view
-  AccountListView = new KListView( this, "AccountListView" );
+  AccountListView = new KListWidget( this, "AccountListView" );
   AccountListView->addColumn( i18n( "Name" ) );
   AccountListView->setColumnWidthMode( 0, QListView::Maximum );
   AccountListView->setResizeMode( QListView::LastColumn );

@@ -20,13 +20,13 @@
 #include <kgenericfactory.h>
 #include <kapplication.h>
 #include <kconfig.h>
-#include <klistview.h>
+#include <KListWidget>
 #include <kpushbutton.h>
 #include <kstdguiitem.h>
 #include <kmessagebox.h>
 
 //kshowmail headers
-#include "../constants.h"
+#include "constants.h"
 #include "accountsetupdialog.h"
 #include "accountsetupitem.h"
 
@@ -82,7 +82,7 @@ Q_OBJECT
     /**
      * Account List View
      */
-    KListView* AccountListView;
+    KListWidget* AccountListView;
 
     /**
      * Button to add a new account
