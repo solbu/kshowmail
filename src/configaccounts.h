@@ -14,6 +14,7 @@
 
 //Qt headers
 #include <qlayout.h>
+#include <QTableWidget>
 
 //KDE headers
 #include <kcmodule.h>
@@ -81,7 +82,7 @@ Q_OBJECT
     /**
      * Account List View
      */
-    KListWidget* AccountListView;
+    QTableWidget* AccountListView;
 
     /**
      * Button to add a new account

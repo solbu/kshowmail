@@ -25,41 +25,41 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const char * name, const QVari
   //main layout
   QHBoxLayout* layMain = new QHBoxLayout( this );
 
-  //account list view
-  AccountListView = new KListWidget( this );
-  AccountListView->addColumn( i18n( "Name" ) );
-  AccountListView->setColumnWidthMode( 0, QListView::Maximum );
-  AccountListView->setResizeMode( QListView::LastColumn );
-
-  layMain->addWidget( AccountListView );
-
-  //button layout
-  QVBoxLayout* layButtons = new QVBoxLayout( layMain );
-
-  //Buttons
-  btnAdd = new KPushButton( KStdGuiItem::add(), this, "btnAdd" );
-  layButtons->addWidget( btnAdd );
-  btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-  connect( btnAdd, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
-
-  btnEdit = new KPushButton( KStdGuiItem::configure(), this, "btnEdit" );
-  layButtons->addWidget( btnEdit );
-  btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-  connect( btnEdit, SIGNAL( clicked() ), this, SLOT( slotEdit() ) );
-
-  btnRemove = new KPushButton( KStdGuiItem::remove(), this, "btnRemove" );
-  layButtons->addWidget( btnRemove );
-  btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-  connect( btnRemove, SIGNAL( clicked() ), this, SLOT( slotRemove() ) );
-
-  layButtons->addItem( new QSpacerItem( 1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
-
-
-  //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
-
-  //load configured values
-  load();
+//   //account list view
+//   AccountListView = new QTableWidget( this );
+//   AccountListView->addColumn( i18n( "Name" ) );
+//   AccountListView->setColumnWidthMode( 0, QListView::Maximum );
+//   AccountListView->setResizeMode( QListView::LastColumn );
+// 
+//   layMain->addWidget( AccountListView );
+// 
+//   //button layout
+//   QVBoxLayout* layButtons = new QVBoxLayout( layMain );
+// 
+//   //Buttons
+//   btnAdd = new KPushButton( KStdGuiItem::add(), this, "btnAdd" );
+//   layButtons->addWidget( btnAdd );
+//   btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+//   connect( btnAdd, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
+// 
+//   btnEdit = new KPushButton( KStdGuiItem::configure(), this, "btnEdit" );
+//   layButtons->addWidget( btnEdit );
+//   btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+//   connect( btnEdit, SIGNAL( clicked() ), this, SLOT( slotEdit() ) );
+// 
+//   btnRemove = new KPushButton( KStdGuiItem::remove(), this, "btnRemove" );
+//   layButtons->addWidget( btnRemove );
+//   btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+//   connect( btnRemove, SIGNAL( clicked() ), this, SLOT( slotRemove() ) );
+// 
+//   layButtons->addItem( new QSpacerItem( 1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
+// 
+// 
+//   //get application config object (kshowmailrc)
+//   config = KApplication::kApplication()->config();
+// 
+//   //load configured values
+//   load();
 
 }
 
@@ -69,7 +69,7 @@ ConfigAccounts::~ConfigAccounts()
 
 void ConfigAccounts::load()
 {
-  //get list of account names
+/*  //get list of account names
   config->setGroup( CONFIG_GROUP_ACCOUNTS );
   QStringList accounts = config->readListEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
 
@@ -82,12 +82,12 @@ void ConfigAccounts::load()
     //load item config
     item->load();
 
-  }
+  }*/
 }
 
 void ConfigAccounts::save()
 {
-  config->setGroup( CONFIG_GROUP_ACCOUNTS );
+/*  config->setGroup( CONFIG_GROUP_ACCOUNTS );
 
   //get old account list from config file to remove old account entries
   QStringList oldList = config->readListEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
@@ -130,7 +130,7 @@ void ConfigAccounts::save()
   } while( item != NULL );
 
   //write configuration to disk
-  config->sync();
+  config->sync();*/
 }
 
 void ConfigAccounts::defaults()
@@ -139,12 +139,12 @@ void ConfigAccounts::defaults()
 
 void ConfigAccounts::slotChanged( )
 {
-  KCModule::changed();
+//   KCModule::changed();
 }
 
 void ConfigAccounts::slotAdd( )
 {
-  //open setup dialog
+/*  //open setup dialog
   AccountSetupDialog* dlg = new AccountSetupDialog( this, AccountListView, NULL );
   int res = dlg->exec();
 
@@ -153,12 +153,12 @@ void ConfigAccounts::slotAdd( )
     slotChanged();
 
   //delete dialog
-  delete dlg;
+  delete dlg;*/
 }
 
 void ConfigAccounts::slotEdit( )
 {
-  //get selected item
+/*  //get selected item
   AccountSetupItem* account = (AccountSetupItem*)( AccountListView->selectedItem() );
 
   //test item
@@ -174,12 +174,12 @@ void ConfigAccounts::slotEdit( )
     slotChanged();
 
   //delete dialog
-  delete dlg;
+  delete dlg;*/
 }
 
 void ConfigAccounts::slotRemove( )
 {
-  //get selected item
+/*  //get selected item
   AccountSetupItem* account = (AccountSetupItem*)( AccountListView->selectedItem() );
 
   //test item
@@ -192,8 +192,7 @@ void ConfigAccounts::slotRemove( )
   {
     delete account;
     slotChanged();
-  }
+  }*/
 }
 
 
-#include "configaccounts.moc"
