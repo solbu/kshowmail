@@ -37,14 +37,14 @@ class AccountSetupItem : public QListWidgetItem
      * General Constructor
      * @param parent the list view
      */
-    AccountSetupItem( KListView* parent );
+    AccountSetupItem( KListWidget* parent );
 
     /**
      * Constructor
      * @param parent the list view
      * @param name account name
      */
-    AccountSetupItem( KListView* parent, QString& name );
+    AccountSetupItem( KListWidget* parent, QString& name );
 
     /**
      * Destructor

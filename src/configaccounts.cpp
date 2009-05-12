@@ -16,21 +16,17 @@ typedef KGenericFactory<ConfigAccounts, QWidget> ConfigAccountsFactory;
 K_EXPORT_COMPONENT_FACTORY( kcm_kshowmailconfigaccounts, ConfigAccountsFactory(
     "kcm_kshowmailconfigaccounts" ) );
 
-ConfigAccounts::ConfigAccounts( QWidget * parent, const char * name, const QStringList & args )
-  : KCModule( ConfigAccountsFactory::instance(), parent, args )
+ConfigAccounts::ConfigAccounts( QWidget * parent, const char * name, const QVariantList & args )
+  : KCModule( ConfigAccountsFactory::componentData(), parent, args )
 {
-  //set the module name
-  if ( !name )
-    setName( "configaccounts" );
-
   //build GUI
   //---------
 
   //main layout
-  QHBoxLayout* layMain = new QHBoxLayout( this, 0, 10 );
+  QHBoxLayout* layMain = new QHBoxLayout( this );
 
   //account list view
-  AccountListView = new KListWidget( this, "AccountListView" );
+  AccountListView = new KListWidget( this );
   AccountListView->addColumn( i18n( "Name" ) );
   AccountListView->setColumnWidthMode( 0, QListView::Maximum );
   AccountListView->setResizeMode( QListView::LastColumn );

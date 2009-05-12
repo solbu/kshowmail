@@ -52,7 +52,7 @@
  *
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-class AccountSetupDialog : public KDialogBase
+class AccountSetupDialog : public KDialog
 {
 Q_OBJECT
 
@@ -64,7 +64,7 @@ Q_OBJECT
      * @param view view which shows the items
      * @param item account to setup; if NULL, a new item will be created
      */
-    AccountSetupDialog( QWidget* parent, KListView* view, AccountSetupItem* item = NULL );
+    AccountSetupDialog( QWidget* parent, KListWidget* view, AccountSetupItem* item = NULL );
 
     /**
      * Destructor
@@ -81,7 +81,7 @@ Q_OBJECT
     /**
      * View which shows the account items.
      */
-    KListView* ListView;
+    KListWidget* ListView;
 
     /**
      * Edit line which contains the unique account name.
@@ -111,7 +111,7 @@ Q_OBJECT
     /**
      * Edit line which contains the password.
      */
-    KPasswordEdit* txtPassword;
+    KLineEdit* txtPassword;
 
     /**
      * Check box to select whether the account is active or not.

@@ -18,7 +18,11 @@ target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} )
 install(TARGETS kshowmail ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########## kcm libraries ################
-kde4_add_plugin(kcm_kshowmailconfigaccounts configaccounts.cpp)
+set( CONFIGACCOUNTS_SRCS
+     configaccounts.cpp
+		 accountsetupdialog.cpp )
+		 
+kde4_add_plugin(kcm_kshowmailconfigaccounts ${CONFIGACCOUNTS_SRCS} )
 target_link_libraries(kcm_kshowmailconfigaccounts  ${KDE4_KDEUI_LIBS})
 
 

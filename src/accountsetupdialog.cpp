@@ -11,8 +11,8 @@
 //
 #include "accountsetupdialog.h"
 
-AccountSetupDialog::AccountSetupDialog( QWidget* parent, KListView* view, AccountSetupItem* item )
-  : KDialogBase( parent, "AccountSetupDialog", true, QString::null, Ok|Cancel, Ok, true )
+AccountSetupDialog::AccountSetupDialog( QWidget* parent, KListWidget* view, AccountSetupItem* item )
+  : KDialog( parent, "AccountSetupDialog", true, QString::null, Ok|Cancel, Ok, true )
 {
   //save pointer to account and view
   account = item;
@@ -100,7 +100,8 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, KListView* view, Accoun
   layPasswordStorage->addWidget( btnPasswordSaveKWallet, 1, 0 );
 
   //password edit line
-  txtPassword = new KPasswordEdit( gboxPassword, "txtUser" );
+  txtPassword = new KLineEdit( gboxPassword, "txtUser" );
+	txtPassword->setPasswordMode( true );
   layPassword->addWidget( txtPassword );
 
   //set password defaults

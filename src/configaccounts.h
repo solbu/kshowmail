@@ -20,7 +20,6 @@
 #include <kgenericfactory.h>
 #include <kapplication.h>
 #include <kconfig.h>
-#include <KListWidget>
 #include <kpushbutton.h>
 #include <kstdguiitem.h>
 #include <kmessagebox.h>
@@ -43,7 +42,7 @@ Q_OBJECT
     /**
      * Generic Constructor
      */
-    ConfigAccounts( QWidget *parent = 0, const char *name = 0, const QStringList &args = QStringList() );
+    ConfigAccounts( QWidget *parent = 0, const char *name = 0, const QVariantList &args = QVariantList() );
 
     /**
      * Destructor
