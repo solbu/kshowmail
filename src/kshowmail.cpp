@@ -146,7 +146,7 @@ void KShowmail::slotSetup() {
 
 	//create the dialog and add the pages
 	setupDialog = new KCMultiDialog( this );
-  setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
+  //setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
   setupDialog->addModule( "kshowmailconfigaccounts.desktop" );
 	
   //execute preferences dialog

@@ -11,9 +11,9 @@ Icon=network-workgroup
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library
-X-KDE-Library=kshowmailconfigaccounts
+X-KDE-Library=kcm_kshowmailconfigaccounts
 X-KDE-CfgDlgHierarchy=
-X-KDE-FactoryName=kshowmailconfigaccounts
+X-KDE-FactoryName=kcm_kshowmailconfigaccounts
 X-KDE-IsHiddenByDefault=
 X-KDE-RootOnly=
 X-KDE-Weight=5

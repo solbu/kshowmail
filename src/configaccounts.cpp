@@ -11,12 +11,10 @@
 //
 #include "configaccounts.h"
 
-typedef KGenericFactory<ConfigAccounts, QWidget> ConfigAccountsFactory;
-
-K_EXPORT_COMPONENT_FACTORY( kcm_kshowmailconfigaccounts, ConfigAccountsFactory(
-    "kcm_kshowmailconfigaccounts" ) );
-
-ConfigAccounts::ConfigAccounts( QWidget * parent, const char * name, const QVariantList & args )
+K_PLUGIN_FACTORY( ConfigAccountsFactory, registerPlugin<ConfigAccounts>(); )
+K_EXPORT_PLUGIN( ConfigAccountsFactory( "kcm_kshowmailconfigaccounts" ) )
+ 
+ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
   : KCModule( ConfigAccountsFactory::componentData(), parent, args )
 {
   //build GUI
@@ -25,41 +23,43 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const char * name, const QVari
   //main layout
   QHBoxLayout* layMain = new QHBoxLayout( this );
 
-//   //account list view
-//   AccountListView = new QTableWidget( this );
-//   AccountListView->addColumn( i18n( "Name" ) );
-//   AccountListView->setColumnWidthMode( 0, QListView::Maximum );
-//   AccountListView->setResizeMode( QListView::LastColumn );
-// 
-//   layMain->addWidget( AccountListView );
-// 
-//   //button layout
-//   QVBoxLayout* layButtons = new QVBoxLayout( layMain );
-// 
-//   //Buttons
-//   btnAdd = new KPushButton( KStdGuiItem::add(), this, "btnAdd" );
-//   layButtons->addWidget( btnAdd );
-//   btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   connect( btnAdd, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
-// 
-//   btnEdit = new KPushButton( KStdGuiItem::configure(), this, "btnEdit" );
-//   layButtons->addWidget( btnEdit );
-//   btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   connect( btnEdit, SIGNAL( clicked() ), this, SLOT( slotEdit() ) );
-// 
-//   btnRemove = new KPushButton( KStdGuiItem::remove(), this, "btnRemove" );
-//   layButtons->addWidget( btnRemove );
-//   btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   connect( btnRemove, SIGNAL( clicked() ), this, SLOT( slotRemove() ) );
-// 
-//   layButtons->addItem( new QSpacerItem( 1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
-// 
-// 
-//   //get application config object (kshowmailrc)
-//   config = KApplication::kApplication()->config();
-// 
-//   //load configured values
-//   load();
+  //account list view
+  accountListView = new QTableWidget( this );
+	accountListView->setColumnCount( 1 );
+	accountListView->setHorizontalHeaderLabels( QStringList( i18n( "Name" ) ) );
+	//accountListView->setRowCount(1);
+	//accountListView->setItem(0, 0, )
+	
+  layMain->addWidget( accountListView );
+
+  //button layout
+  QVBoxLayout* layButtons = new QVBoxLayout();
+	layMain->addLayout( layButtons );
+
+  //Buttons
+  btnAdd = new KPushButton( KStandardGuiItem::add(), this );
+  layButtons->addWidget( btnAdd );
+  btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  connect( btnAdd, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
+
+  btnEdit = new KPushButton( KStandardGuiItem::configure(), this );
+  layButtons->addWidget( btnEdit );
+  btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  connect( btnEdit, SIGNAL( clicked() ), this, SLOT( slotEdit() ) );
+
+  btnRemove = new KPushButton( KStandardGuiItem::remove(), this );
+  layButtons->addWidget( btnRemove );
+  btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  connect( btnRemove, SIGNAL( clicked() ), this, SLOT( slotRemove() ) );
+
+  layButtons->addItem( new QSpacerItem( 1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
+
+
+  //get application config object (kshowmailrc)
+  config = KApplication::kApplication()->sessionConfig();
+
+  //load configured values
+  load();
 
 }
 

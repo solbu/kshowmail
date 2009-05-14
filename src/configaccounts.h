@@ -18,12 +18,12 @@
 
 //KDE headers
 #include <kcmodule.h>
-#include <kgenericfactory.h>
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kpushbutton.h>
-#include <kstdguiitem.h>
+#include <KStandardGuiItem>
 #include <kmessagebox.h>
+#include <KPluginFactory>
 
 //kshowmail headers
 #include "constants.h"
@@ -43,7 +43,7 @@ Q_OBJECT
     /**
      * Generic Constructor
      */
-    ConfigAccounts( QWidget *parent = 0, const char *name = 0, const QVariantList &args = QVariantList() );
+    ConfigAccounts( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor
@@ -82,7 +82,7 @@ Q_OBJECT
     /**
      * Account List View
      */
-    QTableWidget* AccountListView;
+    QTableWidget* accountListView;
 
     /**
      * Button to add a new account
