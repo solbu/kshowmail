@@ -20,6 +20,9 @@ install(TARGETS kshowmail ${INSTALL_TARGETS_DEFAULT_ARGS} )
 ########## kcm libraries ################
 set( CONFIGACCOUNTS_SRCS
      configaccounts.cpp
+     accountsetupitem.cpp
+     encryption.cpp
+     kwalletaccess.cpp
 		  )
 		 
 kde4_add_plugin(kcm_kshowmailconfigaccounts ${CONFIGACCOUNTS_SRCS} )

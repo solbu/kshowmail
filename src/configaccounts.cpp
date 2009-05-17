@@ -24,11 +24,13 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
   QHBoxLayout* layMain = new QHBoxLayout( this );
 
   //account list view
-  accountListView = new QTableWidget( this );
+  accountListView = new QTreeWidget( this );
 	accountListView->setColumnCount( 1 );
-	accountListView->setHorizontalHeaderLabels( QStringList( i18n( "Name" ) ) );
-	//accountListView->setRowCount(1);
-	//accountListView->setItem(0, 0, )
+	accountListView->setHeaderLabels( QStringList( i18n( "Name" ) ) );
+  accountListView->setIndentation( 0 );
+
+  //Test
+  AccountSetupItem* accItem = new AccountSetupItem( accountListView, "GMX" );
 	
   layMain->addWidget( accountListView );
 
@@ -56,7 +58,8 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
 
 
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->sessionConfig();
+  //config = KApplication::kApplication()->sessionConfig();
+  config = KGlobal::config();
 
   //load configured values
   load();

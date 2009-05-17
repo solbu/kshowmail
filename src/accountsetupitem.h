@@ -12,11 +12,15 @@
 #ifndef ACCOUNTSETUPITEM_H
 #define ACCOUNTSETUPITEM_H
 
+//Qt headers
+#include <QTreeWidgetItem>
+
 //KDE headers
 #include <KListWidget>
+#include <KStandardDirs>
 #include <kconfig.h>
 #include <kurl.h>
-#include <kapplication.h>
+#include <KConfigGroup>
 
 //KShowmail headers
 #include "constants.h"
@@ -29,22 +33,16 @@ using namespace Encryption;
  * @brief This class is used in ConfigAccounts to show the available accounts in the list view and to store an account setup.
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-class AccountSetupItem : public QListWidgetItem
+class AccountSetupItem : public QTreeWidgetItem
 {
   public:
-
-    /**
-     * General Constructor
-     * @param parent the list view
-     */
-    AccountSetupItem( KListWidget* parent );
 
     /**
      * Constructor
      * @param parent the list view
      * @param name account name
      */
-    AccountSetupItem( KListWidget* parent, QString& name );
+    AccountSetupItem( QTreeWidget* parent, const QString& name );
 
     /**
      * Destructor
@@ -181,7 +179,7 @@ class AccountSetupItem : public QListWidgetItem
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Account name

@@ -14,7 +14,7 @@
 
 //Qt headers
 #include <qlayout.h>
-#include <QTableWidget>
+#include <QTreeWidget>
 
 //KDE headers
 #include <kcmodule.h>
@@ -77,12 +77,12 @@ Q_OBJECT
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Account List View
      */
-    QTableWidget* accountListView;
+    QTreeWidget* accountListView;
 
     /**
      * Button to add a new account

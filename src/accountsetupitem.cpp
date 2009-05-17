@@ -11,15 +11,8 @@
 //
 #include "accountsetupitem.h"
 
-AccountSetupItem::AccountSetupItem( KListView* parent )
- : KListViewItem( parent )
-{
-  init();
-
-}
-
-AccountSetupItem::AccountSetupItem( KListView * parent, QString & name )
-  : KListViewItem( parent )
+AccountSetupItem::AccountSetupItem( QTreeWidget* parent, const QString & name )
+  : QTreeWidgetItem( parent )
 {
   init();
 
@@ -27,7 +20,8 @@ AccountSetupItem::AccountSetupItem( KListView * parent, QString & name )
   _account = name;
 
   //set column text
-  setText( 0, getAccountName() );
+  setText( 0, name );
+
 }
 
 AccountSetupItem::~AccountSetupItem()
@@ -48,7 +42,11 @@ void AccountSetupItem::init( )
   _transferSecurity = DEFAULT_ACCOUNT_SECTRANSFER;
 
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
+
+  //set Icon
+  KIcon picIcon = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/account.svgz" ) );
+  setIcon( 0, picIcon );
 }
 
 void AccountSetupItem::setAccountName( const QString & name )
@@ -139,38 +137,38 @@ bool AccountSetupItem::getActive( ) const
 
 void AccountSetupItem::save() const
 {
-  config->setGroup( getAccountName() );
+  KConfigGroup* accountConfig = new KConfigGroup( config, getAccountName() );
 
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_NAME, getAccountName() );
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_SERVER, getServer() );
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_PROTOCOL, getProtocol().upper() );
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_PORT, getPort() );
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_USER, getUser() );
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD_STORAGE, getPasswordStorageType() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_NAME, getAccountName() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_SERVER, getServer() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_PROTOCOL, getProtocol().toUpper() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_PORT, getPort() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_USER, getUser() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD_STORAGE, getPasswordStorageType() );
 
   //save crypted password
-  KURL url;
+  KUrl url;
   url.setUser( getUser() );
   url.setHost( getServer() );
   url.setPass( getPassword() );
 
   if( getPasswordStorageType() == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE )
-    config->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, crypt( url ) );
+    accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, crypt( url ) );
   else
-    config->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, QString::null );
+    accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, QVariant() );
 
   //save password in KWallet if desired
   if( getPasswordStorageType() == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
     KWalletAccess::savePassword( getAccountName(), getPassword() );
 
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, getActive() );
-  config->writeEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, getTransferSecurity() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, getActive() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, getTransferSecurity() );
 
 }
 
 void AccountSetupItem::load( )
 {
-  config->setGroup( getAccountName() );
+/*  config->setGroup( getAccountName() );
 
   _server = config->readEntry( CONFIG_ENTRY_ACCOUNT_SERVER, DEFAULT_ACCOUNT_SERVER );
   _protocol = config->readEntry( CONFIG_ENTRY_ACCOUNT_PROTOCOL, DEFAULT_ACCOUNT_PROTOCOL );
@@ -186,7 +184,7 @@ void AccountSetupItem::load( )
     _password = QString::null;
 
   _active = config->readBoolEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
-  _transferSecurity = config->readNumEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, DEFAULT_ACCOUNT_SECTRANSFER );
+  _transferSecurity = config->readNumEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, DEFAULT_ACCOUNT_SECTRANSFER );*/
 }
 
 void AccountSetupItem::setTransferSecurity( int type )

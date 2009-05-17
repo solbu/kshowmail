@@ -23,7 +23,7 @@ int Encryption::hexbyt( const char c )
     return c - 'A' + 10;
 }
 
-const QString Encryption::crypt( const KURL& url )
+const QString Encryption::crypt( const KUrl& url )
 {
   char result[50];
   char scramble2[50];
@@ -36,29 +36,29 @@ const QString Encryption::crypt( const KURL& url )
 
   if( url.user().length() <= free )
   {
-    strcpy( &scramble2[pos], url.user() );
+    strcpy( &scramble2[pos], url.user().toLatin1() );
     pos += url.user().length();
     free -= url.user().length();
   }
   else
   {
-    memcpy( &scramble2[pos], url.user().latin1(), free );
+    memcpy( &scramble2[pos], url.user().toLatin1(), free );
     free = 0;
   }
 
   if( url.host().length() <= free )
   {
-    strcpy( &scramble2[pos], url.host() );
+    strcpy( &scramble2[pos], url.host().toLatin1() );
     pos += url.host().length();
     free -= url.host().length();
   }
   else
   {
-    memcpy( &scramble2[pos], url.host().latin1(), free );
+    memcpy( &scramble2[pos], url.host().toLatin1(), free );
     free = 0;
   }
 
-  memcpy( result, url.pass().latin1(), url.pass().length() );
+  memcpy( result, url.pass().toLatin1(), url.pass().length() );
   for (int i = 0; i <= 31; i++)
   {
     result[i] = (char)( result[i] ^ ( scramble1[i] ^ scramble2[i] ) );
@@ -77,7 +77,7 @@ const QString Encryption::decrypt( const QString& pass )
   int i;
   for( i = 0; i <= 31; i++ )
   {
-    result[i] = (char)hexbyt( pass[ i * 2 ] ) * 16 + hexbyt( pass[ i * 2 + 1 ] );
+    result[i] = (char)hexbyt( pass[ i * 2 ].toLatin1() ) * 16 + hexbyt( pass[ i * 2 + 1 ].toLatin1() );
     result[i] = (char)( result[i] ^ scramble1[i] );
   }
 

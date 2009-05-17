@@ -19,18 +19,21 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	view = new KShowmailView( accountModel, mailModel, this );
 	setCentralWidget( view );
 
-    // add a status bar
-    statusBar()->show();
+  // add a status bar
+  statusBar()->show();
 
-    //initialize the actions
-    initActions();
+  //initialize the actions
+  initActions();
 
-    // a call to KXmlGuiWindow::setupGUI() populates the GUI
-    // with actions, using KXMLGUI.
-    // It also applies the saved mainwindow settings, if any, and ask the
-    // mainwindow to automatically save settings if changed: window size,
-    // toolbar position, icon size, etc.
-    setupGUI();
+  // a call to KXmlGuiWindow::setupGUI() populates the GUI
+  // with actions, using KXMLGUI.
+  // It also applies the saved mainwindow settings, if any, and ask the
+  // mainwindow to automatically save settings if changed: window size,
+  // toolbar position, icon size, etc.
+  setupGUI();
+
+  //get the application config object
+  config = KGlobal::config();
 		
 }
 
