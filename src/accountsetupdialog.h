@@ -21,6 +21,7 @@
 #include <qbuttongroup.h>
 #include <qradiobutton.h>
 #include <qcheckbox.h>
+#include <QTreeWidget>
 
 //KDE headers
 #include <KDialog>
@@ -64,7 +65,7 @@ Q_OBJECT
      * @param view view which shows the items
      * @param item account to setup; if NULL, a new item will be created
      */
-    AccountSetupDialog( QWidget* parent, KListWidget* view, AccountSetupItem* item = NULL );
+    AccountSetupDialog( QWidget* parent, QTreeWidget* view, AccountSetupItem* item = NULL );
 
     /**
      * Destructor
@@ -81,7 +82,7 @@ Q_OBJECT
     /**
      * View which shows the account items.
      */
-    KListWidget* ListView;
+    QTreeWidget* listView;
 
     /**
      * Edit line which contains the unique account name.

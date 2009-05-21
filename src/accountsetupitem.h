@@ -21,6 +21,7 @@
 #include <kconfig.h>
 #include <kurl.h>
 #include <KConfigGroup>
+#include <KDebug>
 
 //KShowmail headers
 #include "constants.h"
@@ -36,6 +37,12 @@ using namespace Encryption;
 class AccountSetupItem : public QTreeWidgetItem
 {
   public:
+
+    /**
+     * Constructor
+     * @param parent the list view
+     */
+    AccountSetupItem( QTreeWidget* parent );
 
     /**
      * Constructor
@@ -172,6 +179,11 @@ class AccountSetupItem : public QTreeWidgetItem
      * Loads the options of this account from the application config.
      */
     void load();
+
+    /**
+     * Prints the account settings to stdout
+     */
+    void print();
 
 
   private:

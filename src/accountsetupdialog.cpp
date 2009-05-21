@@ -11,69 +11,70 @@
 //
 #include "accountsetupdialog.h"
 
-AccountSetupDialog::AccountSetupDialog( QWidget* parent, KListWidget* view, AccountSetupItem* item )
-  : KDialog( parent, "AccountSetupDialog", true, QString::null, Ok|Cancel, Ok, true )
+AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, AccountSetupItem* item )
+  : KDialog( parent )
 {
-//   //save pointer to account and view
-//   account = item;
-//   ListView = view;
-// 
-//   //tab widget
-//   KTabWidget* tabs = new KTabWidget( this, "tabs" );
-//   tabs->setMargin( 10 );
-// 
-//   //pages
-//   QWidget* pgGeneral = new QWidget( this );
-//   QWidget* pgSecurity = new QWidget( this );
-//   setMainWidget( tabs );
-// 
-//   //layouts of general page
-//   QVBoxLayout* layGeneral = new QVBoxLayout( pgGeneral, 0, spacingHint() );
-//   QGridLayout* layTop = new QGridLayout( layGeneral, 5, 2 );
-// 
-//   //layouts of security page
-//   QVBoxLayout* laySecurity = new QVBoxLayout( pgSecurity, 0, spacingHint() );
-//   laySecurity->setAlignment( Qt::AlignTop );
-// 
-//   //upper items
-//   QLabel* lblAccount = new QLabel( i18n( "Account:" ), pgGeneral, "lblAccount" );
-//   txtAccount = new KLineEdit( pgGeneral, "txtAccount" );
-//   txtAccount->setFocus();
-//   QToolTip::add( lblAccount, i18n( "Unique Account Name" ) );
-//   QToolTip::add( txtAccount, i18n( "Unique Account Name" ) );
-//   layTop->addWidget( lblAccount, 0, 0 );
-//   layTop->addWidget( txtAccount, 0, 1 );
-// 
-//   QLabel* lblServer = new QLabel( i18n( "Server:" ), pgGeneral, "lblServer" );
-//   txtServer = new KLineEdit( pgGeneral, "txtServer" );
-//   QToolTip::add( lblServer, i18n( "Server Name" ) );
-//   QToolTip::add( txtServer, i18n( "Server Name" ) );
-//   layTop->addWidget( lblServer, 1, 0 );
-//   layTop->addWidget( txtServer, 1, 1 );
-// 
-//   QLabel* lblProtocol = new QLabel( i18n( "Protocol:" ), pgGeneral, "lblProtocol" );
-//   cboProtocol = new KComboBox( pgGeneral, "cboProtocol" );
-//   cboProtocol->insertItem( "POP3" );  //currently KShowmail just supports POP3
-//   QToolTip::add( lblProtocol, i18n( "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
-//   QToolTip::add( cboProtocol, i18n( "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
-//   layTop->addWidget( lblProtocol, 2, 0 );
-//   layTop->addWidget( cboProtocol, 2, 1 );
-// 
-//   QLabel* lblPort = new QLabel( i18n( "Port:" ), pgGeneral, "lblPort" );
-//   spbPort = new QSpinBox( 0, 65535, 1, pgGeneral, "spbPort" );
-//   spbPort->setValue( DEFAULT_ACCOUNT_PORT_POP3 );
-//   QToolTip::add( lblPort, i18n( "Port Number. Normally POP3 uses port 110." ) );
-//   QToolTip::add( spbPort, i18n( "Port Number. Normally POP3 uses port 110." ) );
-//   layTop->addWidget( lblPort, 3, 0 );
-//   layTop->addWidget( spbPort, 3, 1 );
-// 
-//   QLabel* lblUser = new QLabel( i18n( "User:" ), pgGeneral, "lblUser" );
-//   txtUser = new KLineEdit( pgGeneral, "txtUser" );
-//   QToolTip::add( lblUser, i18n( "To authenticate to the mail server you need an user name." ) );
-//   QToolTip::add( txtUser, i18n( "To authenticate to the mail server you need an user name." ) );
-//   layTop->addWidget( lblUser, 4, 0 );
-//   layTop->addWidget( txtUser, 4, 1 );
-// 
+   //save pointer to account and view
+   account = item;
+   listView = view;
+ 
+   //tab widget
+   KTabWidget* tabs = new KTabWidget( this );
+ 
+   //pages
+   QWidget* pgGeneral = new QWidget( this );
+   QWidget* pgSecurity = new QWidget( this );
+   setMainWidget( tabs );
+ 
+   //layouts of general page
+   QVBoxLayout* layGeneral = new QVBoxLayout( pgGeneral );
+   QGridLayout* layTop = new QGridLayout();
+   layGeneral->addLayout( layTop );
+ 
+   //layouts of security page
+   QVBoxLayout* laySecurity = new QVBoxLayout( pgSecurity );
+   laySecurity->setAlignment( Qt::AlignTop );
+ 
+   //upper items
+   QLabel* lblAccount = new QLabel( i18n( "Account:" ), pgGeneral );
+   txtAccount = new KLineEdit( pgGeneral );
+   txtAccount->setFocus();
+   lblAccount->setToolTip( i18n( "Unique Account Name" ) );
+   txtAccount->setToolTip( i18n( "Unique Account Name" ) );
+   layTop->addWidget( lblAccount, 0, 0 );
+   layTop->addWidget( txtAccount, 0, 1 );
+ 
+   QLabel* lblServer = new QLabel( i18n( "Server:" ), pgGeneral );
+   txtServer = new KLineEdit( pgGeneral );
+   lblServer->setToolTip( i18n( "Server Name" ) );
+   txtServer->setToolTip( i18n( "Server Name" ) );
+   layTop->addWidget( lblServer, 1, 0 );
+   layTop->addWidget( txtServer, 1, 1 );
+ 
+   QLabel* lblProtocol = new QLabel( i18n( "Protocol:" ), pgGeneral );
+   cboProtocol = new KComboBox( pgGeneral );
+   cboProtocol->insertItem( 0, "POP3" );  //currently KShowmail just supports POP3
+   lblProtocol->setToolTip( i18n( "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
+   cboProtocol->setToolTip( i18n( "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
+   layTop->addWidget( lblProtocol, 2, 0 );
+   layTop->addWidget( cboProtocol, 2, 1 );
+ 
+   QLabel* lblPort = new QLabel( i18n( "Port:" ), pgGeneral );
+   spbPort = new QSpinBox( pgGeneral );
+   spbPort->setRange( 0, 65535 );
+   spbPort->setValue( DEFAULT_ACCOUNT_PORT_POP3 );
+   lblPort->setToolTip( i18n( "Port Number. Normally POP3 uses port 110." ) );
+   spbPort->setToolTip( i18n( "Port Number. Normally POP3 uses port 110." ) );
+   layTop->addWidget( lblPort, 3, 0 );
+   layTop->addWidget( spbPort, 3, 1 );
+ 
+   QLabel* lblUser = new QLabel( i18n( "User:" ), pgGeneral );
+   txtUser = new KLineEdit( pgGeneral );
+   lblUser->setToolTip( i18n( "To authenticate to the mail server you need an user name." ) );
+   txtUser->setToolTip( i18n( "To authenticate to the mail server you need an user name." ) );
+   layTop->addWidget( lblUser, 4, 0 );
+   layTop->addWidget( txtUser, 4, 1 );
+ 
 //   //password groupbox and layouts
 //   QGroupBox* gboxPassword = new QGroupBox( 0, Qt::Horizontal, i18n( "Password" ), pgGeneral, "gboxPassword" );
 //   layGeneral->addWidget( gboxPassword );
@@ -141,17 +142,17 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, KListWidget* view, Acco
 //   laySecureTransfer->addWidget( btnSecureTransferTLS );
 // 
 //   grpSecureTransfer->setButton( DEFAULT_ACCOUNT_SECTRANSFER );
-// 
-//   //set pages to tab widget
-//   tabs->addTab( pgGeneral, i18n( "General" ) );
-//   tabs->addTab( pgSecurity, i18n( "Security" ) );
-// 
-//   //set caption
-//   if( item == NULL )
-//     setCaption( i18n( "New account" ) );
-//   else
-//     setCaption( i18n( "Edit account" ) );
-// 
+ 
+   //set pages to tab widget
+   tabs->addTab( pgGeneral, i18n( "General" ) );
+   tabs->addTab( pgSecurity, i18n( "Security" ) );
+ 
+   //set caption
+   if( item == NULL )
+     setCaption( i18n( "New account" ) );
+   else
+     setCaption( i18n( "Edit account" ) );
+ 
 //   //write values of the given account into the dialog items
 //   if( account != NULL )
 //     fillDialog();
@@ -209,22 +210,12 @@ void AccountSetupDialog::slotOk( )
   if( test )
   {
     //OK, we want to test
-    AccountSetupItem* item = NULL;
-    int index = 0;
-    bool equality = false;
 
-    do
-    {
-      item = (AccountSetupItem*)( ListView->itemAtIndex( index ) );
-      if( item != NULL )
-      {
-        index++;
-        equality = item->getAccountName() == txtAccount->text();
-      }
-    } while( item != NULL && !equality );
+    //search for a account item in the list which has the same name
+    QList<QTreeWidgetItem*> foundItems = listView->findItems( txtAccount->text(), Qt::MatchExactly, 0 );
 
     //exit method if we have found an account with the same name
-    if( equality )
+    if( !foundItems.isEmpty() )
     {
       KMessageBox::error( this, i18n( "There is already an account named %1. Please choose another name." ).arg( txtAccount->text() ) );
       return;
@@ -235,7 +226,7 @@ void AccountSetupDialog::slotOk( )
 
   //create a new account item if necessary
   if( account == NULL )
-    account = new AccountSetupItem( ListView );
+    account = new AccountSetupItem( listView );
 
   //show a warning if the account name was changend
   if( account->getAccountName() != DEFAULT_ACCOUNT_NAME && account->getAccountName() != txtAccount->text() )
@@ -252,17 +243,9 @@ void AccountSetupDialog::slotOk( )
   account->setUser( txtUser->text() );
 
   //get the password
-  //the class KPasswordEdit doesn't have a method to set the password
-  //therefore we use setText(). But if we use this method, KPasswordEdit::password()
-  //will return an empty string. If the user has typed in a new password, KPasswordEdit::password()
-  //will return the correct password
-  QString pass;
-  if( txtPassword->password() == "" || txtPassword->password() == QString::null )
-    pass = txtPassword->text();
-  else
-    pass = txtPassword->password();
+  QString pass = txtPassword->text();
 
-  switch( grpPasswordStorage->selectedId() )
+  switch( grpPasswordStorage->checkedId() )
   {
     case ID_BUTTON_PASSWORD_DONT_SAVE    : account->setPasswordStorageType( CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE );
                                            account->setPassword( QString::null );
@@ -279,7 +262,7 @@ void AccountSetupDialog::slotOk( )
 
   account->setActive( chkActive->isChecked() );
 
-  switch( grpSecureTransfer->selectedId() )
+  switch( grpSecureTransfer->checkedId() )
   {
     case ID_BUTTON_SECTRANSFER_NONE : account->setTransferSecurity( CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE ); break;
     case ID_BUTTON_SECTRANSFER_SSL  : account->setTransferSecurity( CONFIG_VALUE_ACCOUNT_SECTRANSFER_SSL ); break;
@@ -288,7 +271,7 @@ void AccountSetupDialog::slotOk( )
   }
 
   //call slot of super class to close the dialog
-  KDialogBase::slotOk();
+  KDialog::slotButtonClicked( KDialog::Ok );
 }
 
 void AccountSetupDialog::fillDialog( )
@@ -302,7 +285,8 @@ void AccountSetupDialog::fillDialog( )
 
   txtAccount->setText( account->getAccountName() );
   txtServer->setText( account->getServer() );
-  cboProtocol->setCurrentText( account->getProtocol().upper() );
+  cboProtocol->insertItem( 0, account->getProtocol().toUpper() );
+  cboProtocol->setCurrentIndex( 0 );
 
   if( account->getPort() >= 0 && account->getPort() <= 65535 )
     spbPort->setValue( account->getPort() );
@@ -315,23 +299,25 @@ void AccountSetupDialog::fillDialog( )
   if( type != CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE && type != CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE && type != CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
     type = DEFAULT_ACCOUNT_PASSWORD_STORAGE;
 
+  QRadioButton* btnToCheck;
   switch( type )
   {
-    case CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE    : grpPasswordStorage->setButton( ID_BUTTON_PASSWORD_DONT_SAVE );
+    case CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE    : btnToCheck = static_cast<QRadioButton*>( grpPasswordStorage->button( ID_BUTTON_PASSWORD_DONT_SAVE ) );
                                                       txtPassword->setEnabled( false );
                                                       txtPassword->clear();
                                                       break;
-    case CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE    : grpPasswordStorage->setButton( ID_BUTTON_PASSWORD_SAVE_FILE );
+    case CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE    : btnToCheck = static_cast<QRadioButton*>( grpPasswordStorage->button( ID_BUTTON_PASSWORD_SAVE_FILE ) );
                                                       txtPassword->setEnabled( true );
                                                       txtPassword->setText( account->getPassword() );
                                                       break;
-    case CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET : grpPasswordStorage->setButton( ID_BUTTON_PASSWORD_SAVE_KWALLET );
+    case CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET : btnToCheck = static_cast<QRadioButton*>( grpPasswordStorage->button( ID_BUTTON_PASSWORD_SAVE_KWALLET ) );
                                                       txtPassword->setEnabled( true );
                                                       txtPassword->setText( account->getPassword() );
                                                       break;
-    default                                         : grpPasswordStorage->setButton( 1 );
+    default                                         : btnToCheck = static_cast<QRadioButton*>( grpPasswordStorage->button( 1 ) );
                                                       txtPassword->clear();
   }
+  btnToCheck->setChecked( true );
 
   chkActive->setChecked( account->getActive() );
 
@@ -341,11 +327,13 @@ void AccountSetupDialog::fillDialog( )
 
   switch( transferSecurity )
   {
-    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE : grpSecureTransfer->setButton( ID_BUTTON_SECTRANSFER_NONE ); break;
-    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_SSL  : grpSecureTransfer->setButton( ID_BUTTON_SECTRANSFER_SSL ); break;
-    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_TLS  : grpSecureTransfer->setButton( ID_BUTTON_SECTRANSFER_TLS ); break;
-    default                                    : grpSecureTransfer->setButton( ID_BUTTON_SECTRANSFER_NONE ); break;
+    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE : btnToCheck = static_cast<QRadioButton*>( grpSecureTransfer->button( ID_BUTTON_SECTRANSFER_NONE ) ); break;
+    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_SSL  : btnToCheck = static_cast<QRadioButton*>( grpSecureTransfer->button( ID_BUTTON_SECTRANSFER_SSL ) ); break;
+    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_TLS  : btnToCheck = static_cast<QRadioButton*>( grpSecureTransfer->button( ID_BUTTON_SECTRANSFER_TLS ) ); break;
+    default                                    : btnToCheck = static_cast<QRadioButton*>( grpSecureTransfer->button( ID_BUTTON_SECTRANSFER_NONE ) ); break;
   }
+  btnToCheck->setChecked( true );
+
 }
 
 void AccountSetupDialog::slotSecureTransferChanged( int id )

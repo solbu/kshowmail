@@ -23,6 +23,7 @@ set( CONFIGACCOUNTS_SRCS
      accountsetupitem.cpp
      encryption.cpp
      kwalletaccess.cpp
+     accountsetupdialog.cpp
 		  )
 		 
 kde4_add_plugin(kcm_kshowmailconfigaccounts ${CONFIGACCOUNTS_SRCS} )

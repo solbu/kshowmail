@@ -11,6 +11,13 @@
 //
 #include "accountsetupitem.h"
 
+AccountSetupItem::AccountSetupItem( QTreeWidget* parent )
+ : QTreeWidgetItem( parent )
+{
+  init();
+
+}
+
 AccountSetupItem::AccountSetupItem( QTreeWidget* parent, const QString & name )
   : QTreeWidgetItem( parent )
 {
@@ -168,23 +175,23 @@ void AccountSetupItem::save() const
 
 void AccountSetupItem::load( )
 {
-/*  config->setGroup( getAccountName() );
+  KConfigGroup* accountConfig = new KConfigGroup( config, getAccountName() );
 
-  _server = config->readEntry( CONFIG_ENTRY_ACCOUNT_SERVER, DEFAULT_ACCOUNT_SERVER );
-  _protocol = config->readEntry( CONFIG_ENTRY_ACCOUNT_PROTOCOL, DEFAULT_ACCOUNT_PROTOCOL );
-  _port = config->readNumEntry( CONFIG_ENTRY_ACCOUNT_PORT, DEFAULT_ACCOUNT_PORT_POP3 );
-  _user = config->readEntry( CONFIG_ENTRY_ACCOUNT_USER, DEFAULT_ACCOUNT_USER );
-  _passwordStorage = config->readNumEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD_STORAGE, DEFAULT_ACCOUNT_PASSWORD_STORAGE );
+  _server = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_SERVER, DEFAULT_ACCOUNT_SERVER );
+  _protocol = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PROTOCOL, DEFAULT_ACCOUNT_PROTOCOL );
+  _port = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PORT, DEFAULT_ACCOUNT_PORT_POP3 );
+  _user = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_USER, DEFAULT_ACCOUNT_USER );
+  _passwordStorage = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD_STORAGE, DEFAULT_ACCOUNT_PASSWORD_STORAGE );
 
   if( _passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE )
-    _password = decrypt( config->readEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, DEFAULT_ACCOUNT_PASSWORD ) );
+    _password = decrypt( accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, DEFAULT_ACCOUNT_PASSWORD ) );
   else if( _passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
     _password = KWalletAccess::getPassword( getAccountName() );
   else
     _password = QString::null;
 
-  _active = config->readBoolEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
-  _transferSecurity = config->readNumEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, DEFAULT_ACCOUNT_SECTRANSFER );*/
+  _active = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
+  _transferSecurity = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, DEFAULT_ACCOUNT_SECTRANSFER );
 }
 
 void AccountSetupItem::setTransferSecurity( int type )
@@ -200,6 +207,47 @@ int AccountSetupItem::getTransferSecurity( ) const
   return _transferSecurity;
 }
 
+void AccountSetupItem::print()
+{
+  kDebug() << "Account Name: " << getAccountName() << endl;
+  kDebug() << "Server: " << getServer() << endl;
+  kDebug() << "Port: " << getPort() << endl;
+  kDebug() << "Protocol: " << getProtocol() << endl;
+  kDebug() << "User: " << getUser() << endl;
+  kDebug() << "Password: " << getPassword() << endl;
 
+  switch( getPasswordStorageType() )
+  {
+    case CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE :
+      kDebug() << "Password Storage: Don't Save" << endl; break;
+
+    case CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE :
+      kDebug() << "Password Storage: File" << endl; break;
+
+    case CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET :
+      kDebug() << "Password Storage: KWallet" << endl; break;
+
+    default :
+      kDebug() << "unknown" << endl; break;
+  }
+
+  kDebug() << "Active: " << getActive() << endl;
+
+  switch( getTransferSecurity() )
+  {
+    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE :
+      kDebug() << "Transfer Security: None" << endl; break;
+
+    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_SSL :
+      kDebug() << "Transfer Security: SSL" << endl; break;
+
+    case CONFIG_VALUE_ACCOUNT_SECTRANSFER_TLS :
+      kDebug() << "Transfer Security: TLS" << endl; break;
+
+    default :
+      kDebug() << "Transfer Security: unknwon" << endl; break;
+
+  }
+}
 
 

@@ -28,9 +28,6 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
 	accountListView->setColumnCount( 1 );
 	accountListView->setHeaderLabels( QStringList( i18n( "Name" ) ) );
   accountListView->setIndentation( 0 );
-
-  //Test
-  AccountSetupItem* accItem = new AccountSetupItem( accountListView, "GMX" );
 	
   layMain->addWidget( accountListView );
 
@@ -147,16 +144,16 @@ void ConfigAccounts::slotChanged( )
 
 void ConfigAccounts::slotAdd( )
 {
-/*  //open setup dialog
-  AccountSetupDialog* dlg = new AccountSetupDialog( this, AccountListView, NULL );
+  //open setup dialog
+  AccountSetupDialog* dlg = new AccountSetupDialog( this, accountListView, NULL );
   int res = dlg->exec();
 
   //inform application setup dialog about changes
-  if( res == KDialogBase::Accepted )
+  if( res == KDialog::Accepted )
     slotChanged();
 
   //delete dialog
-  delete dlg;*/
+  delete dlg;
 }
 
 void ConfigAccounts::slotEdit( )

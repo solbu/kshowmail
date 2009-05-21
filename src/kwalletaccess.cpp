@@ -32,12 +32,12 @@ bool KWalletAccess::savePassword( const QString & account, const QString & passw
 
   if( wallet == NULL )
   {
-    wallet = KWallet::Wallet::openWallet( name );
+    wallet = KWallet::Wallet::openWallet( name, 0 );
   }
   else if( !wallet->isOpen() )
   {
     delete wallet;
-    wallet = KWallet::Wallet::openWallet( name );
+    wallet = KWallet::Wallet::openWallet( name, 0 );
   }
 
   if( wallet == NULL )
@@ -101,12 +101,12 @@ QString KWalletAccess::getPassword( const QString & account )
 
   if( wallet == NULL )
   {
-    wallet = KWallet::Wallet::openWallet( name );
+    wallet = KWallet::Wallet::openWallet( name, 0 );
   }
   else if( !wallet->isOpen() )
   {
     delete wallet;
-    wallet = KWallet::Wallet::openWallet( name );
+    wallet = KWallet::Wallet::openWallet( name, 0 );
   }
 
   if( wallet == NULL )
