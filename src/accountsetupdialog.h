@@ -145,14 +145,15 @@ Q_OBJECT
      */
     void slotSecureTransferChanged( int id );
 
+  protected Q_SLOTS:
     /**
-     * Overwritten method of KDialogBase.
-     * Called if OK was clicked.
-     * Stores the entered values into the given account item.
+     * Overwritten method of KDialog.
+     * Called if a button was clicked.
+     * If OK was  clicked it stores the entered values into the given account item.
      * If no item was given it creates a new one.
-     * After then it invokes slotOk() of KDialogBase.
+     * @param button is the type KDialog::ButtonCode
      */
-    void slotOk();
+    virtual void slotButtonClicked( int button );
 
   protected:
 

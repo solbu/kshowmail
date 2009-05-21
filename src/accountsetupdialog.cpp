@@ -75,73 +75,80 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
    layTop->addWidget( lblUser, 4, 0 );
    layTop->addWidget( txtUser, 4, 1 );
  
-//   //password groupbox and layouts
-//   QGroupBox* gboxPassword = new QGroupBox( 0, Qt::Horizontal, i18n( "Password" ), pgGeneral, "gboxPassword" );
-//   layGeneral->addWidget( gboxPassword );
-// 
-//   QVBoxLayout* layPassword = new QVBoxLayout( gboxPassword->layout(), spacingHint() );
-//   QGridLayout* layPasswordStorage = new QGridLayout( layPassword, 2, 2, spacingHint() );
-// 
-// 
-//   //radio buttons to set storage of the password
-//   grpPasswordStorage = new QButtonGroup( NULL, "grpPasswordStorage" );
-//   connect( grpPasswordStorage, SIGNAL( clicked( int ) ), this, SLOT( slotPasswordStorageChanged( int ) ) );
-// 
-//   QRadioButton* btnPasswordDontSave = new QRadioButton( i18n( "Don't save" ), gboxPassword, "btnPasswordDontSave" );
-//   QRadioButton* btnPasswordSaveFile = new QRadioButton( i18n( "Save password"), gboxPassword, "btnPasswordSaveFile" );
-//   QRadioButton* btnPasswordSaveKWallet = new QRadioButton( i18n( "Use KWallet" ), gboxPassword, "btnPasswordSaveKWallet" );
-//   grpPasswordStorage->insert( btnPasswordDontSave, ID_BUTTON_PASSWORD_DONT_SAVE );
-//   grpPasswordStorage->insert( btnPasswordSaveFile, ID_BUTTON_PASSWORD_SAVE_FILE );
-//   grpPasswordStorage->insert( btnPasswordSaveKWallet, ID_BUTTON_PASSWORD_SAVE_KWALLET );
-//   QToolTip::add( btnPasswordDontSave, i18n( "Don't save password. KShowmail will ask you for it at first server connect." ) );
-//   QToolTip::add( btnPasswordSaveFile, i18n( "Save password in the configuration file. Not recommended, because the password is just lightly encrypted" ) );
-//   QToolTip::add( btnPasswordSaveKWallet, i18n( "Use KWallet to save the password. Maybe you have to type in the KWallet master password at first server connect." ) );
-//   layPasswordStorage->addWidget( btnPasswordDontSave, 0, 0 );
-//   layPasswordStorage->addWidget( btnPasswordSaveFile, 0, 1 );
-//   layPasswordStorage->addWidget( btnPasswordSaveKWallet, 1, 0 );
-// 
-//   //password edit line
-//   txtPassword = new KLineEdit( gboxPassword, "txtUser" );
-// 	txtPassword->setPasswordMode( true );
-//   layPassword->addWidget( txtPassword );
-// 
-//   //set password defaults
-//   grpPasswordStorage->setButton( DEFAULT_ACCOUNT_PASSWORD_STORAGE );
-//   slotPasswordStorageChanged( DEFAULT_ACCOUNT_PASSWORD_STORAGE );
-// 
-//   //active check box
-//   QGridLayout* layActive = new QGridLayout( layGeneral, 1, 1 );
-//   layActive->setAlignment( Qt::AlignCenter );
-//   chkActive = new QCheckBox( i18n( "Active"), pgGeneral, "chkActive" );
-//   QToolTip::add( chkActive, i18n( "Select it to activate this account." ) );
-//   layActive->addWidget( chkActive, 0, 0 );
-//   chkActive->setChecked( DEFAULT_ACCOUNT_ACTIVE );
-// 
-//   //secure transfer groupbox and layouts
-//   QGroupBox* gboxSecureTransfer = new QGroupBox( 0, Qt::Horizontal, i18n( "Encryption" ), pgSecurity, "gboxSecureTransfer" );
-//   gboxSecureTransfer->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Maximum ) );
-//   laySecurity->addWidget( gboxSecureTransfer );
-// 
-//   QHBoxLayout* laySecureTransfer = new QHBoxLayout( gboxSecureTransfer->layout(), spacingHint() );
-// 
-//   //radio buttons to set secure transfer
-//   grpSecureTransfer = new QButtonGroup( NULL, "grpSecureTransfer" );
-//   connect( grpSecureTransfer, SIGNAL( clicked( int ) ), this, SLOT( slotSecureTransferChanged ( int ) ) );
-// 
-//   QRadioButton* btnSecureTransferNone = new QRadioButton( i18n( "None" ), gboxSecureTransfer, "btnSecureTransferNone" );
-//   QRadioButton* btnSecureTransferSSL = new QRadioButton( i18n( "SSL"), gboxSecureTransfer, "btnSecureTransferSSL" );
-//   QRadioButton* btnSecureTransferTLS = new QRadioButton( i18n( "TLS" ), gboxSecureTransfer, "btnSecureTransferTLS" );
-//   grpSecureTransfer->insert( btnSecureTransferNone, ID_BUTTON_SECTRANSFER_NONE );
-//   grpSecureTransfer->insert( btnSecureTransferSSL, ID_BUTTON_SECTRANSFER_SSL );
-//   grpSecureTransfer->insert( btnSecureTransferTLS, ID_BUTTON_SECTRANSFER_TLS );
-//   QToolTip::add( btnSecureTransferNone, i18n( "The download of the mail header and body will not be encrypted. Use this, if your provider doesn't make a secure transfer available." ) );
-//   QToolTip::add( btnSecureTransferSSL, i18n( "Secure Sockets Layer (SSL), is a cryptographic protocol that provides secure communications on the Internet." ) );
-//   QToolTip::add( btnSecureTransferTLS, i18n( "Transport Layer Security (TLS) is a cryptographic protocol that provides secure communications on the Internet. It is the successor of SSL." ) );
-//   laySecureTransfer->addWidget( btnSecureTransferNone );
-//   laySecureTransfer->addWidget( btnSecureTransferSSL );
-//   laySecureTransfer->addWidget( btnSecureTransferTLS );
-// 
-//   grpSecureTransfer->setButton( DEFAULT_ACCOUNT_SECTRANSFER );
+   //password groupbox and layouts
+   QGroupBox* gboxPassword = new QGroupBox( i18n( "Password" ), pgGeneral );
+   layGeneral->addWidget( gboxPassword );
+ 
+   QVBoxLayout* layPassword = new QVBoxLayout( );
+   gboxPassword->setLayout( layPassword ); 
+   QGridLayout* layPasswordStorage = new QGridLayout();
+   layPassword->addLayout( layPasswordStorage );
+   
+ 
+   //radio buttons to set storage of the password
+   grpPasswordStorage = new QButtonGroup( NULL );
+   connect( grpPasswordStorage, SIGNAL( buttonClicked( int ) ), this, SLOT( slotPasswordStorageChanged( int ) ) );
+ 
+   QRadioButton* btnPasswordDontSave = new QRadioButton( i18n( "Don't save" ), gboxPassword );
+   QRadioButton* btnPasswordSaveFile = new QRadioButton( i18n( "Save password "), gboxPassword );
+   QRadioButton* btnPasswordSaveKWallet = new QRadioButton( i18n( "Use KWallet" ), gboxPassword );
+   grpPasswordStorage->addButton( btnPasswordDontSave, ID_BUTTON_PASSWORD_DONT_SAVE );
+   grpPasswordStorage->addButton( btnPasswordSaveFile, ID_BUTTON_PASSWORD_SAVE_FILE );
+   grpPasswordStorage->addButton( btnPasswordSaveKWallet, ID_BUTTON_PASSWORD_SAVE_KWALLET );
+   btnPasswordDontSave->setToolTip( i18n( "Don't save password. KShowmail will ask you for it at first server connect." ) );
+   btnPasswordSaveFile->setToolTip( i18n( "Save password in the configuration file. Not recommended, because the password is just lightly encrypted" ) );
+   btnPasswordSaveKWallet->setToolTip( i18n( "Use KWallet to save the password. Maybe you have to type in the KWallet master password at first server connect." ) );
+   layPasswordStorage->addWidget( btnPasswordDontSave, 0, 0 );
+   layPasswordStorage->addWidget( btnPasswordSaveFile, 0, 1 );
+   layPasswordStorage->addWidget( btnPasswordSaveKWallet, 1, 0 );
+
+
+   //password edit line
+   txtPassword = new KLineEdit( gboxPassword );
+ 	 txtPassword->setPasswordMode( true );
+   layPassword->addWidget( txtPassword );
+ 
+   //set password defaults
+   QRadioButton* btnToCheck = static_cast<QRadioButton*>( grpPasswordStorage->button( DEFAULT_ACCOUNT_PASSWORD_STORAGE ) );
+   btnToCheck->setChecked( true );
+   slotPasswordStorageChanged( DEFAULT_ACCOUNT_PASSWORD_STORAGE );
+ 
+   //active check box
+   QGridLayout* layActive = new QGridLayout();
+   layGeneral->addLayout( layActive );
+   layActive->setAlignment( Qt::AlignCenter );
+   chkActive = new QCheckBox( i18n( "Active"), pgGeneral );
+   chkActive->setToolTip( i18n( "Select it to activate this account." ) );
+   layActive->addWidget( chkActive, 0, 0 );
+   chkActive->setChecked( DEFAULT_ACCOUNT_ACTIVE );
+ 
+   //secure transfer groupbox and layouts
+   QGroupBox* gboxSecureTransfer = new QGroupBox( i18n( "Encryption" ), pgSecurity );
+   gboxSecureTransfer->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Maximum ) );
+   laySecurity->addWidget( gboxSecureTransfer );
+ 
+   QHBoxLayout* laySecureTransfer = new QHBoxLayout();
+   gboxSecureTransfer->setLayout( laySecureTransfer );
+ 
+   //radio buttons to set secure transfer
+   grpSecureTransfer = new QButtonGroup( NULL );
+   connect( grpSecureTransfer, SIGNAL( buttonClicked( int ) ), this, SLOT( slotSecureTransferChanged ( int ) ) );
+ 
+   QRadioButton* btnSecureTransferNone = new QRadioButton( i18n( "None" ), gboxSecureTransfer );
+   QRadioButton* btnSecureTransferSSL = new QRadioButton( i18n( "SSL"), gboxSecureTransfer );
+   QRadioButton* btnSecureTransferTLS = new QRadioButton( i18n( "TLS" ), gboxSecureTransfer );
+   grpSecureTransfer->addButton( btnSecureTransferNone, ID_BUTTON_SECTRANSFER_NONE );
+   grpSecureTransfer->addButton( btnSecureTransferSSL, ID_BUTTON_SECTRANSFER_SSL );
+   grpSecureTransfer->addButton( btnSecureTransferTLS, ID_BUTTON_SECTRANSFER_TLS );
+   btnSecureTransferNone->setToolTip( i18n( "The download of the mail header and body will not be encrypted. Use this, if your provider doesn't make a secure transfer available." ) );
+   btnSecureTransferSSL->setToolTip( i18n( "Secure Sockets Layer (SSL), is a cryptographic protocol that provides secure communications on the Internet." ) );
+   btnSecureTransferTLS->setToolTip( i18n( "Transport Layer Security (TLS) is a cryptographic protocol that provides secure communications on the Internet. It is the successor of SSL." ) );
+   laySecureTransfer->addWidget( btnSecureTransferNone );
+   laySecureTransfer->addWidget( btnSecureTransferSSL );
+   laySecureTransfer->addWidget( btnSecureTransferTLS );
+ 
+   btnToCheck = static_cast<QRadioButton*>( grpSecureTransfer->button( DEFAULT_ACCOUNT_SECTRANSFER ) );
+   btnToCheck->setChecked( true );
  
    //set pages to tab widget
    tabs->addTab( pgGeneral, i18n( "General" ) );
@@ -149,15 +156,13 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
  
    //set caption
    if( item == NULL )
-     setCaption( i18n( "New account" ) );
+     setCaption( i18n( "New Account" ) );
    else
-     setCaption( i18n( "Edit account" ) );
+     setCaption( i18n( "Edit Account" ) );
  
-//   //write values of the given account into the dialog items
-//   if( account != NULL )
-//     fillDialog();
-
-
+   //write values of the given account into the dialog items
+   if( account != NULL )
+     fillDialog();
 }
 
 
@@ -176,8 +181,15 @@ void AccountSetupDialog::slotPasswordStorageChanged( int id )
     txtPassword->setEnabled( true );
 }
 
-void AccountSetupDialog::slotOk( )
+void AccountSetupDialog::slotButtonClicked( int button )
 {
+  //call the original slot if the clicked button is not Ok
+  if( button != KDialog::Ok )
+  {
+    KDialog::slotButtonClicked( button );
+    return;
+  }
+
   //check for necessary values
   if( txtAccount->text() == "" )
   {

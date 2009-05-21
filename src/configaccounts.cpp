@@ -55,7 +55,6 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
 
 
   //get application config object (kshowmailrc)
-  //config = KApplication::kApplication()->sessionConfig();
   config = KGlobal::config();
 
   //load configured values
@@ -87,10 +86,10 @@ void ConfigAccounts::load()
 
 void ConfigAccounts::save()
 {
-/*  config->setGroup( CONFIG_GROUP_ACCOUNTS );
+  KConfigGroup grpAccounts =  config->group( CONFIG_GROUP_ACCOUNTS );
 
   //get old account list from config file to remove old account entries
-  QStringList oldList = config->readListEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
+  QStringList oldList = grpAccounts.readEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
 
   //remove all account entries
   for( QStringList::Iterator it = oldList.begin(); it != oldList.end(); ++it )
@@ -106,7 +105,7 @@ void ConfigAccounts::save()
 
   do  //get all account names
   {
-    item = (AccountSetupItem*)( AccountListView->itemAtIndex( index ) );
+    item = (AccountSetupItem*)( accountListView->topLevelItem( index ) );
     if( item != NULL )
     {
       index++;
@@ -114,14 +113,14 @@ void ConfigAccounts::save()
     }
   } while( item != NULL );
 
-  config->writeEntry( CONFIG_ENTRY_ACCOUNTS_LIST, accounts ); //write list of account names
+  grpAccounts.writeEntry( CONFIG_ENTRY_ACCOUNTS_LIST, accounts ); //write list of account names
 
   //order the items to save their configuration
   index = 0;
   item = NULL;
   do
   {
-    item = (AccountSetupItem*)( AccountListView->itemAtIndex( index ) );
+    item = (AccountSetupItem*)( accountListView->topLevelItem( index ) );
     if( item != NULL )
     {
       index++;
@@ -130,7 +129,7 @@ void ConfigAccounts::save()
   } while( item != NULL );
 
   //write configuration to disk
-  config->sync();*/
+  config->sync();
 }
 
 void ConfigAccounts::defaults()
@@ -139,7 +138,7 @@ void ConfigAccounts::defaults()
 
 void ConfigAccounts::slotChanged( )
 {
-//   KCModule::changed();
+   KCModule::changed();
 }
 
 void ConfigAccounts::slotAdd( )
@@ -158,29 +157,29 @@ void ConfigAccounts::slotAdd( )
 
 void ConfigAccounts::slotEdit( )
 {
-/*  //get selected item
-  AccountSetupItem* account = (AccountSetupItem*)( AccountListView->selectedItem() );
+  //get selected item
+  AccountSetupItem* account = (AccountSetupItem*)( accountListView->currentItem() );
 
   //test item
   if( account == NULL )
     return;
 
   //open dialog
-  AccountSetupDialog* dlg = new AccountSetupDialog( this, AccountListView, account );
+  AccountSetupDialog* dlg = new AccountSetupDialog( this, accountListView, account );
   int res = dlg->exec();
 
   //inform application setup dialog about changes
-  if( res == KDialogBase::Accepted )
+  if( res == KDialog::Accepted )
     slotChanged();
 
   //delete dialog
-  delete dlg;*/
+  delete dlg;
 }
 
 void ConfigAccounts::slotRemove( )
 {
-/*  //get selected item
-  AccountSetupItem* account = (AccountSetupItem*)( AccountListView->selectedItem() );
+  //get selected item
+  AccountSetupItem* account = (AccountSetupItem*)( accountListView->currentItem() );
 
   //test item
   if( account == NULL )
@@ -192,7 +191,7 @@ void ConfigAccounts::slotRemove( )
   {
     delete account;
     slotChanged();
-  }*/
+  }
 }
 
 
