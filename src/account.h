@@ -24,6 +24,11 @@
 #include <QObject>
 #include <QList>
 
+//KDE headers
+#include <KConfigGroup>
+#include <KConfig>
+#include <KGlobal>
+
 //KShowmail headers
 #include "mail.h"
 
@@ -91,6 +96,11 @@ class Account : public QObject
      * @param active TRUE - active account; FALSE - deactivate account
      */
     void setActive( bool active );
+
+    /**
+     * Loads the options of this account from the application config.
+     */
+    void load();
 
   protected:
 

@@ -101,6 +101,9 @@ void KShowmail::initActions()
   actionSendFeedback->setText( i18n( "Send Feedback Mail" ) );
   actionSendFeedback->setIcon( KIcon( "mail-flag" ) );
   connect( actionSendFeedback, SIGNAL( triggered() ), this, SLOT( slotSendFeedbackMail() ) );
+
+  //loads the setup
+  accounts->loadSetup();
   
 }
 
@@ -151,7 +154,10 @@ void KShowmail::slotSetup() {
 	setupDialog = new KCMultiDialog( this );
   //setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
   setupDialog->addModule( "kshowmailconfigaccounts.desktop" );
-	
+
+  //If the configuration was changed, it will call slotConfChanged
+  connect( setupDialog, SIGNAL( configCommitted() ), this, SLOT( slotConfChanged() ) );
+
   //execute preferences dialog
   setupDialog->exec();
 	
@@ -172,6 +178,10 @@ void KShowmail::slotFileQuit() {
 bool KShowmail::queryClose() {
   kDebug() << "queryClose" << endl;
   return true;
+}
+
+void KShowmail::slotConfChanged() {
+  accounts->loadSetup();
 }
 
 #include "kshowmail.moc"

@@ -88,3 +88,11 @@ void Account::setActive(bool active) {
 	this->active = active;
 	print();
 }
+
+void Account::load()
+{
+  KConfigGroup* accountConfig = new KConfigGroup( KGlobal::config(), getName() );
+
+
+}
+

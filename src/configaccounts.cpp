@@ -57,9 +57,6 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
   //get application config object (kshowmailrc)
   config = KGlobal::config();
 
-  //load configured values
-  load();
-
 }
 
 ConfigAccounts::~ConfigAccounts()
@@ -68,20 +65,20 @@ ConfigAccounts::~ConfigAccounts()
 
 void ConfigAccounts::load()
 {
-/*  //get list of account names
-  config->setGroup( CONFIG_GROUP_ACCOUNTS );
-  QStringList accounts = config->readListEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
+  //get list of account names
+  KConfigGroup* configAcc = new KConfigGroup( config, CONFIG_GROUP_ACCOUNTS );
+  QStringList accounts = configAcc->readEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
 
   //create list view items and order accounts to load their config
   for( QStringList::Iterator it = accounts.begin(); it != accounts.end(); ++it )
   {
     //create item
-    AccountSetupItem* item = new AccountSetupItem( AccountListView, *it );
+    AccountSetupItem* item = new AccountSetupItem( accountListView, *it );
 
     //load item config
     item->load();
 
-  }*/
+  }
 }
 
 void ConfigAccounts::save()

@@ -121,6 +121,13 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotFileQuit();
 
+    /**
+     * Connected with the setup dialog.
+     * Reloads the configuration, if it was changed from the dialog.
+     */
+    void slotConfChanged();
+
+
 	
 	private:
 		

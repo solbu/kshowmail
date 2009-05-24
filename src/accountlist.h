@@ -21,8 +21,15 @@
 #include <QObject>
 #include <QList>
 
+//KDE headers
+#include <KGlobal>
+#include <KConfigGroup>
+#include <KDebug>
+#include <KConfig>
+
 //KShowmail headers
 #include "account.h"
+#include "constants.h"
 
 class AccountList : public QObject
 {
@@ -65,6 +72,19 @@ class AccountList : public QObject
      * @return pointer to the requested account
      */
     Account* getAccount( int index ) const;
+
+    /**
+     * Returns whether the list contains a account with the given name
+     * @param accoutName name of the wanted account
+     * @return TRUE - the account is in the list
+     * @return FALSE - the account is not in the list
+     */
+    bool hasAccount( QString accountName ) const;
+
+    /**
+     * Loads the setup
+     */
+    void loadSetup();
 		
 	private:
 		
