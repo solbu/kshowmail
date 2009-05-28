@@ -35,6 +35,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //get the application config object
   config = KGlobal::config();
 		
+	//load the setup
+	accounts->loadSetup();
+	
 }
 
 KShowmail::~KShowmail()

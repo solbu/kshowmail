@@ -87,7 +87,6 @@ void AccountList::loadSetup()
   }
 
   //iterate over all entries in the config account list and create a new account if necessary
-  //load the setup of all accounts
   QStringListIterator iterAccountsConfig( accountsConfig );
   while( iterAccountsConfig.hasNext() )
   {
@@ -98,6 +97,18 @@ void AccountList::loadSetup()
       addAccount( accName );
     }
   }
+	
+  //load the setup of all accounts
+  iter = accounts.begin();
+  while( iter != accounts.end() )
+  {
+    Account* acc = *iter;
+		
+		acc->load();
+		
+		iter++;
+  }
+
 }
 
 bool AccountList::hasAccount( QString accountName ) const

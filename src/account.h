@@ -31,8 +31,15 @@
 
 //KShowmail headers
 #include "mail.h"
+#include "types.h"
+#include "constants.h"
+#include "encryption.h"
+#include "kwalletaccess.h"
 
 using namespace std;
+using namespace Types;
+using namespace Encryption;
+using namespace KWalletAccess;
 
 /**
  * This class represents a account
@@ -132,7 +139,30 @@ class Account : public QObject
      */
     bool active;
 
+    /**
+     * Type of the transfer security
+     */
+    TransferSecurity_Type transferSecurity;
 
+		/**
+		 * User name
+		 */
+		QString user;
+		
+		/**
+		 * Password
+		 */
+		QString password;
+		
+		/**
+		 * Port
+		 */
+		int port;
+		
+		/**
+		 * Protocol
+		 */
+		QString protocol;
 		
 };
 

@@ -32,7 +32,7 @@ const QString Encryption::crypt( const KUrl& url )
   memset (result, 0, 50);
   memset (scramble2, 0, 50);
   int pos = url.pass().length () + 1;
-  unsigned int free = 50 - pos;
+  int free = 50 - pos;
 
   if( url.user().length() <= free )
   {
