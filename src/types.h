@@ -37,8 +37,6 @@ namespace Types
                                               * the mail or just the header of the mail is
                                               * being shown*/
 
-                      executing,             /**<a command on the command list is being executed*/
-
                       showing,               /**<it's downloading and showing a mail*/
 
                       refreshing             /**<it's refreshing the mail lists*/

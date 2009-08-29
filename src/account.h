@@ -109,6 +109,16 @@ class Account : public QObject
      */
     void load();
 
+  /**
+   * Refreshes the mail list.
+   * This just starts the refresh and returns after then.
+   * When the refresh is ready, the signal sigRefreshReady
+   * will be emitted.
+   * @see sigRefreshReady
+   */
+  void refreshMailList( );
+
+
   protected:
 
     /**
@@ -163,6 +173,44 @@ class Account : public QObject
 		 * Protocol
 		 */
 		QString protocol;
+
+  signals:
+
+    /**
+     * Will be emitted when all selected mails are deleted.
+     * @param account name of the account, which has emitted this signal
+     */
+    void sigDeleteReady( QString account );
+
+    /**
+     * Will be emitted when the bodies of all selected mails are
+     * downloaded and shown.
+     * @param account name of the account, which has emitted this signal
+     */
+    void sigShowBodiesReady( QString account );
+
+    /**
+     * Will be emitted when the settings have been changed.
+     */
+    void sigConfigChanged();
+
+    /**
+     * Will be emitted, when a window to show a message was opened.
+     */
+    void sigMessageWindowOpened();
+
+    /**
+     * Will be emitted, when a window to show a message was closed.
+     */
+    void sigMessageWindowClosed();
+
+    /**
+     * Will be emitted, when the mail list was refreshed.
+     * @param account name of the account, which has emitted this signal
+     */
+    void sigRefreshReady( QString account );
+
+    
 		
 };
 

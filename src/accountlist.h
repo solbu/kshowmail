@@ -85,6 +85,12 @@ class AccountList : public QObject
      * Loads the setup
      */
     void loadSetup();
+
+    /**
+     * Orders the accounts to refresh the mails.
+     * When the refresh is done, the signal refreshReady will be emitted.
+     */
+    void refreshMailLists();
 		
 	private:
 		
@@ -92,6 +98,42 @@ class AccountList : public QObject
 		 * this list contains the account objects
 		 */
 		QList<Account*> accounts;
+
+    /**
+     * This map is used by the methods to refresh the account mail lists.
+     * refreshMailLists() clears it and after that inserts for every account
+     * an item. The Key ist the account name and the data is TRUE.
+     * When slotCheckRefreshState() is invoked by a signal sent by an account,
+     * this slot will set the appropriate item data to FALSE. If the data of all
+     * items are set to FALSE, the method will know all accounts have refreshed their
+     * mail list and will emit sigRefreshReady.
+     * @see refreshMailLists()
+     * @see slotCheckRefreshState()
+     */
+    AccountTaskMap_Type AccountRefreshMap;
+
+  protected slots:
+
+    /**
+     * Connected with signal sigRefreshReady of all accounts.
+     * When an account has sent this signal its appropriate item
+     * in AccountRefreshMap will set to FALSE.
+     * When all accounts have refreshed their mail list it will emit
+     * signal sigRefreshReady.
+     * @param account name of the account which has emitted the signal
+     * @see AccountRefreshMap
+     */
+    void slotCheckRefreshState( QString account );
+
+
+
+  signals:
+
+    /**
+     * Will be emitted, when all accounts have refreshed their mail list.
+     */
+    void sigRefreshReady();
+
 };
 
 #endif // ACCOUNTLIST_H

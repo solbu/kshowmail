@@ -25,6 +25,9 @@
 #include "accountviewmodel.h"
 #include "mailviewmodel.h"
 #include "mail.h"
+#include "types.h"
+
+using namespace Types;
 
 /**
  * This class serves as the main window for kshowmail.
@@ -56,7 +59,22 @@ class KShowmail : public KXmlGuiWindow
      */
     void initActions();
 
+    /**
+     * Shows a message in the status bar
+     * @param text text which shall be shown
+     */
+    void showStatusMessage( const QString& text );
+
+    /**
+     * Called before the main window is closed.
+     * Reimplemented methode of KMainWindow.
+     */
     virtual bool queryClose();
+
+    /**
+     * Initializes the statusbar
+     */
+    void initStatusBar();
 
   protected slots:
 
@@ -127,6 +145,13 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotConfChanged();
 
+    /**
+     * Connected with signal sigRefreshReady of the account list.
+     * This signal will be emitted when all accounts have refreshed
+     * their mail list.
+     */
+    void slotRefreshReady();
+
 
 	
 	private:
@@ -156,7 +181,10 @@ class KShowmail : public KXmlGuiWindow
      */
     KSharedConfigPtr config;
 
-
+    /**
+     * Working state
+     */
+    State_Type state;
 
 };
 

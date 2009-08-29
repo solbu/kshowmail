@@ -20,7 +20,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	setCentralWidget( view );
 
   // add a status bar
-  statusBar()->show();
+  initStatusBar();
 
   //initialize the actions
   initActions();
@@ -37,6 +37,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 		
 	//load the setup
 	accounts->loadSetup();
+
+  //at beginning the state is "idle"
+  state = idle;
 	
 }
 
@@ -105,13 +108,35 @@ void KShowmail::initActions()
   actionSendFeedback->setIcon( KIcon( "mail-flag" ) );
   connect( actionSendFeedback, SIGNAL( triggered() ), this, SLOT( slotSendFeedbackMail() ) );
 
+  //Connect the signals with the slots
+  connect( accounts, SIGNAL( sigRefreshReady() ), this, SLOT( slotRefreshReady() ) );
+
+
   //loads the setup
   accounts->loadSetup();
   
 }
 
 void KShowmail::slotRefresh() {
-  kDebug() << "slotRefresh" << endl;
+
+  //just do it, if the app doesn't do anything
+  if ( state != idle )
+  {
+    kapp->beep();
+    return;
+  }
+
+  //set new state
+  state = refreshing;
+
+  //show message in the status bar
+  showStatusMessage( i18n( "Refreshing ..." ) );
+
+  //set waiting cursor
+  QApplication::setOverrideCursor( Qt::WaitCursor );
+
+  //order the account list to do the refresh
+  accounts->refreshMailLists();
 }
 
 void KShowmail::slotShowHeader() {
@@ -186,5 +211,46 @@ bool KShowmail::queryClose() {
 void KShowmail::slotConfChanged() {
   accounts->loadSetup();
 }
+
+void KShowmail::showStatusMessage( const QString& text)
+{
+  //get current time
+  // added by Gustavo Zamorano to include time
+  QString sTime = QTime::currentTime().toString ();
+
+  //set given text
+  statusBar()->changeItem( text, STATUSBAR_FIELD_STATE );
+
+  //set current time
+  statusBar()->changeItem( i18n( "Last Refresh: %1" ).arg( sTime ), STATUSBAR_FIELD_LAST_REFRESH );
+}
+
+void KShowmail::initStatusBar()
+{
+  statusBar()->insertItem( i18n( "Ready" ), STATUSBAR_FIELD_STATE );
+  statusBar()->insertItem( "", STATUSBAR_FIELD_FILTER, 1 );
+  statusBar()->setItemAlignment( STATUSBAR_FIELD_FILTER, Qt::AlignLeft | Qt::AlignVCenter );
+  statusBar()->insertItem( "", STATUSBAR_FIELD_NEXT_REFRESH );
+  statusBar()->insertItem( "", STATUSBAR_FIELD_LAST_REFRESH );
+
+  statusBar()->setToolTip( i18n( "Shows the number of deleted, moved or ignored mails by the filter.\nThe positions denotes:\nby last refresh / since application start / listed by the log" ) );
+  statusBar()->show();
+
+}
+
+void KShowmail::slotRefreshReady()
+{
+  //set state to idle
+  state = idle;
+
+  //set normal cursor
+  while( QApplication::overrideCursor() )
+    QApplication::restoreOverrideCursor();
+
+  //show status message
+  showStatusMessage( i18n( "Ready" ) );
+}
+
+
 
 #include "kshowmail.moc"

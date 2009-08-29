@@ -86,7 +86,6 @@ bool Account::isActive( ) const
 
 void Account::setActive(bool active) {
 	this->active = active;
-	print();
 }
 
 void Account::load()
@@ -119,3 +118,15 @@ void Account::load()
 		transferSecurity = TransSecNone;
 }
 
+void Account::refreshMailList()
+{
+  //do nothing, if this account is not active
+  if( !isActive() )
+  {
+    emit sigRefreshReady( getName() );
+    return;
+  } 
+  
+  kdDebug() << "refresh " << getName() << endl;
+  emit sigRefreshReady( getName() );
+}

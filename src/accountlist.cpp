@@ -27,6 +27,9 @@ Account* AccountList::addAccount( const QString& name )
 {
 	//create account object
 	Account* acc = new Account( name, this );
+
+  //conect the signals with the slots of this list
+  connect( acc, SIGNAL( sigRefreshReady( QString ) ), this, SLOT( slotCheckRefreshState( QString ) ) );
 	
 	//append it to the list
 	accounts.append( acc );
@@ -120,4 +123,63 @@ bool AccountList::hasAccount( QString accountName ) const
     if( acc->getName() == accountName ) return true;
   }
   return false;
+}
+
+void AccountList::refreshMailLists()
+{
+  //return, if no accounts available
+  if( accounts.count() == 0 )
+  {
+    emit sigRefreshReady();
+    return;
+  }
+
+  //clear the map, which contains the names of the accounts,
+  //which have gotten an order to show mails
+  AccountRefreshMap.clear();
+
+  //inserts an item for every account which will get an order to refresh
+  //its mail list. The key is the account name and the data is TRUE.
+  //it is important to do this in a seperate iteration because this avoids
+  //race conditions
+  QList<Account*>::const_iterator iter;
+  for( iter = accounts.constBegin(); iter != accounts.constEnd(); iter++ )
+  {
+    Account* account = *iter;
+    
+    //insert item
+    AccountRefreshMap.insert( account->getName(), true );
+  }
+
+  //iterate over all accounts and order them to refresh the mail lists
+  for( iter = accounts.constBegin(); iter != accounts.constEnd(); iter++ )
+  {
+    Account* account = *iter;
+
+    account->refreshMailList();
+  }
+}
+
+void AccountList::slotCheckRefreshState( QString account )
+{
+  bool accountRefreshing = false;    //set to TRUE if an account is still refreshing
+  AccountTaskMap_Type::Iterator it;   //iterator over the account map
+
+  //set the appropriate item in AccountRefreshMap to FALSE
+  AccountRefreshMap[ account ] = false;
+
+  //iterate over the account map to check whether all accounts
+  //are ready
+  for ( it = AccountRefreshMap.begin(); it != AccountRefreshMap.end(); ++it )
+  {
+    if( *it == true )
+      accountRefreshing = true;
+  }
+
+  //emit sigRefreshReady if all accounts are ready
+  if( !accountRefreshing )
+  {
+    emit sigRefreshReady();
+  }
+
 }
