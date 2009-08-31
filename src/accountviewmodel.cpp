@@ -77,7 +77,7 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
       {
 				case 0  : return QVariant(); break;
         case 1  : return QVariant( acc->getName() ); break;
-        case 2  : return QVariant( acc->getServer() ); break;
+        case 2  : return QVariant( acc->getHost() ); break;
         default : return QVariant(); break;
       }
       break;

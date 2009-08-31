@@ -64,16 +64,6 @@ void Account::addMail( const QString& unid )
 	mails.append( mail );
 }
 
-void Account::setServer( const QString& server )
-{
-  this->server = server;
-}
-
-QString Account::getServer() const
-{
-  return server;
-}
-
 void Account::init()
 {
   active = true;
@@ -92,18 +82,18 @@ void Account::load()
 {
   KConfigGroup* accountConfig = new KConfigGroup( KGlobal::config(), getName() );
 
-  server = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_SERVER, DEFAULT_ACCOUNT_SERVER );
-  protocol = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PROTOCOL, DEFAULT_ACCOUNT_PROTOCOL );
-  port = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PORT, DEFAULT_ACCOUNT_PORT_POP3 );
-  user = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_USER, DEFAULT_ACCOUNT_USER );
-  int passwordStorage = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD_STORAGE, DEFAULT_ACCOUNT_PASSWORD_STORAGE );
+  setHost( accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_SERVER, DEFAULT_ACCOUNT_SERVER ) );
+  setProtocol( accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PROTOCOL, DEFAULT_ACCOUNT_PROTOCOL ) );
+  setPort( accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PORT, DEFAULT_ACCOUNT_PORT_POP3 ) );
+  setUser( accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_USER, DEFAULT_ACCOUNT_USER ) );
+  passwordStorage = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD_STORAGE, DEFAULT_ACCOUNT_PASSWORD_STORAGE );
 
   if( passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE )
-    password = decrypt( accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, DEFAULT_ACCOUNT_PASSWORD ) );
+    setPassword( decrypt( accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, DEFAULT_ACCOUNT_PASSWORD ) ) );
   else if( passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
-    password = KWalletAccess::getPassword( getName() );
+    setPassword( KWalletAccess::getPassword( getName() ) );
   else
-    password = QString::null;
+    setPassword( QString::null );
 
   active = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
   
@@ -116,6 +106,8 @@ void Account::load()
 		transferSecurity = TransSecTLS;
 	else
 		transferSecurity = TransSecNone;
+
+  delete accountConfig;
 }
 
 void Account::refreshMailList()
@@ -126,7 +118,154 @@ void Account::refreshMailList()
     emit sigRefreshReady( getName() );
     return;
   } 
-  
+
+  //check whether we have a password for this account
+  //if not, ask for it
+  //return when no password is available
+  if( !assertPassword() )
+  {
+    emit sigRefreshReady( name );
+    kdDebug() << "No Password" << endl;
+    return;
+  }
+
+  kdDebug() << "Password: " << getPassword() << endl;
   kdDebug() << "refresh " << getName() << endl;
   emit sigRefreshReady( getName() );
 }
+
+bool Account::hasPassword( ) const
+{
+  return url.hasPass();
+}
+
+QString Account::getPassword( ) const
+{
+  return url.pass();
+}
+
+void Account::setPassword( const QString& password )
+{
+  url.setPass( password );
+}
+
+void Account::setHost( const QString& host )
+{
+  url.setHost( host );
+}
+
+void Account::setProtocol( const QString& protocol )
+{
+  url.setProtocol( protocol );
+}
+
+void Account::setPort( unsigned short int port )
+{
+  url.setPort( port );
+}
+
+void Account::setUser( const QString & user )
+{
+  url.setUser( user );
+}
+
+QString Account::getUser( ) const
+{
+  return url.user();
+}
+
+QString Account::getHost( ) const
+{
+  return url.host();
+}
+
+QString Account::getProtocol( bool upperCase ) const
+{
+  if( upperCase )
+    return url.protocol().toUpper();
+  else
+    return url.protocol();
+}
+
+unsigned short int Account::getPort( ) const
+{
+  return url.port();
+}
+
+bool Account::assertPassword( bool force )
+{
+  //is a password stored?
+  if ( !hasPassword() || force )
+  {
+    //no password found, we will ask the user!
+    //set normal cursor
+    while( QApplication::overrideCursor() )
+      QApplication::restoreOverrideCursor();
+
+    //show password dialog
+    KPasswordDialog pwdialog( NULL );
+    pwdialog.setPrompt( i18n( "Please type in the password for %1" ).arg( getName() ) );
+    int result = pwdialog.exec();
+
+    //set waiting cursor
+    QApplication::setOverrideCursor( Qt::WaitCursor );
+
+    //let's look, what the user has done :o)
+    if( result == KPasswordDialog::Accepted )
+    {
+      //the user has clicked OK in the password dialog
+      //store the password
+      setPassword( pwdialog.password() );
+
+      //save password in file or KWallet
+      KConfigGroup* accountConfig = new KConfigGroup( KGlobal::config(), getName() );
+
+      if( passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE )
+        accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, crypt( url ) );
+      else
+        accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_PASSWORD, "" );
+
+      if( passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
+      {
+        KWalletAccess::savePassword( getName(), url.pass() );
+      }
+
+      accountConfig->sync();
+
+      delete accountConfig;
+
+      //emit configuration changed signal
+      emit ( sigConfigChanged() );
+
+      //tell we have a password
+      return true;
+    }
+    else
+      //the user has clicked Cancel in the password dialog; we don't have a password
+      return false;
+  }
+  else
+    //we have already a password for this account
+    return true;
+
+}
+
+void Account::setPasswordStorage( int storage )
+{
+  if( storage == CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE ||
+      storage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE ||
+      storage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
+
+    passwordStorage = storage;
+
+  else
+
+    passwordStorage =  DEFAULT_ACCOUNT_PASSWORD_STORAGE;
+}
+
+int Account::getPasswordStorage( ) const
+{
+  return passwordStorage;
+}
+
+

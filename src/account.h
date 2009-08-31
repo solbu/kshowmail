@@ -23,11 +23,13 @@
 //Qt header
 #include <QObject>
 #include <QList>
+#include <QApplication>
 
 //KDE headers
 #include <KConfigGroup>
 #include <KConfig>
 #include <KGlobal>
+#include <KPasswordDialog>
 
 //KShowmail headers
 #include "mail.h"
@@ -81,18 +83,6 @@ class Account : public QObject
 		void addMail( const QString& unid );
 
     /**
-     * Sets the server
-     * @param server Server host name
-     */
-    void setServer( const QString& server );
-
-    /**
-     * Returns the server name
-     * @return server name
-     */
-    QString getServer() const;
-
-    /**
      * Returns whether the account is active.
      * @return TRUE - account is active; FALSE - account is not active
      */
@@ -118,6 +108,80 @@ class Account : public QObject
    */
   void refreshMailList( );
 
+   /**
+    * Gets the account password.
+    * @return password
+    */
+   QString getPassword() const;
+
+   /**
+    * Sets the account password.
+    * @param password new password
+    */
+   void setPassword( const QString& password );
+
+   /**
+    * Sets the host name.
+    * @param host host name
+    */
+   void setHost( const QString& host );
+
+   /**
+    * Returns the hostname.
+    * @return the name of the host or QString::null if no host is set
+    */
+   QString getHost() const;
+
+   /**
+    * Sets the protocol.
+    * @param protocol the protocol
+    */
+   void setProtocol( const QString& protocol );
+
+   /**
+    * Returns the protocol.
+    * @param upperCase TRUE - transforms the protocol string to upper case
+    * @return protocol
+    */
+   QString getProtocol( bool upperCase = false ) const;
+
+   /**
+    * Sets the port.
+    * @param port the port
+    */
+   void setPort( unsigned short int port );
+
+   /**
+    * Returns the port number.
+    * @return port number
+    */
+   unsigned short int getPort() const;
+
+   /**
+    * Sets the user.
+    * @param user username
+    */
+   void setUser( const QString& user );
+
+   /**
+    * Returns the user name.
+    * @return the user name or QString::null if there is no user name
+    */
+   QString getUser() const;
+
+   /**
+    * Sets the password storage type.
+    * The Constants are defined in constants.h
+    * @param storage type of password storage; valid values are: CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE, CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE, CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET
+    */
+   void setPasswordStorage( int storage );
+
+   /**
+    * Returns the password storage type.
+    * The Constants are defined in constants.h.
+    * @return type of password storage; valid values are: CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE, CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE, CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET
+    */
+   int getPasswordStorage() const;
 
   protected:
 
@@ -125,7 +189,24 @@ class Account : public QObject
      * Initiate the account
      */
     void init();
-     
+
+   /**
+    * Returns whether a password is stored.
+    * @return TRUE - there is password stored; FALSE - no password stored
+    */
+   bool hasPassword() const;
+
+  /**
+   * Opens a dialog to ask for a password, stores it temporarily in the account settings and
+   * emits the signal sigConfigChanged.
+   * Does not open a dialog if a password is already stored in the account settings.
+   * @param force ask for a new password even if a password is stored
+   * @return TRUE - a password is available
+   * @return FALSE - no password is available
+   */
+  bool assertPassword( bool force = false );
+
+
 		
 	private:
 		
@@ -140,11 +221,6 @@ class Account : public QObject
 		QList<Mail*> mails;
 
     /**
-     * The Server name
-     */
-    QString server;
-
-    /**
      * TRUE - account is active; FALSE - account is not active
      */
     bool active;
@@ -154,26 +230,20 @@ class Account : public QObject
      */
     TransferSecurity_Type transferSecurity;
 
-		/**
-		 * User name
-		 */
-		QString user;
-		
-		/**
-		 * Password
-		 */
-		QString password;
-		
-		/**
-		 * Port
-		 */
-		int port;
-		
-		/**
-		 * Protocol
-		 */
-		QString protocol;
+    /**
+     * Uniform Resource Locator of the account on the mail server.
+     */
+    KUrl url;
 
+    /**
+     * Type of password storage.
+     * valid values are: CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE, CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE, CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET
+     * The Constants are defined in constants.h
+     * @see getPasswordStorage()
+     * @see setPasswordStorage()
+     */
+    int passwordStorage;
+    
   signals:
 
     /**
