@@ -21,12 +21,15 @@ Account::Account( QString name, QObject* parent )
 {
 	this->name = name;
 
+  //create mail container
+  mails = new MailList( this );
+
   init();
 	
-	addMail( QString( "1234" ) );
-	addMail( QString( "fefe" ) );
-	addMail( QString( "23fw" ) );
-	addMail( QString( "2rwe" ) );
+	mails->addMail( QString( "1234" ) );
+	mails->addMail( QString( "fefe" ) );
+	mails->addMail( QString( "23fw" ) );
+	mails->addMail( QString( "2rwe" ) );
 }
 
 Account::~Account()
@@ -44,28 +47,19 @@ void Account::print() const
 	cout << getName().toStdString() << endl;
 	cout << "====================" << endl;
 	cout << "Active: " << isActive() << endl;
+  cout << "Host: " << url.host().toStdString() << endl;
+  cout << "Port: " << url.port() << endl;
+  cout << "User: " << url.user().toStdString() << endl;
+  cout << "Password: " << url.password().toStdString() << endl;
+  
 	
 	//print the mails
-	QListIterator<Mail*> iter( mails );
-	while( iter.hasNext() )
-	{
-		Mail* mail = iter.next();
-		mail->print();
-		cout << "------------------" << endl;
-	}
-}
-
-void Account::addMail( const QString& unid )
-{
-	//create the mail object
-	Mail* mail = new Mail( unid, this );
-	
-	//append it to the list
-	mails.append( mail );
+  mails->print();
 }
 
 void Account::init()
 {
+  //set active
   active = true;
 }
 

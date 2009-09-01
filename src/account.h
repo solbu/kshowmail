@@ -37,6 +37,7 @@
 #include "constants.h"
 #include "encryption.h"
 #include "kwalletaccess.h"
+#include "maillist.h"
 
 using namespace std;
 using namespace Types;
@@ -76,12 +77,6 @@ class Account : public QObject
 		 */
 		QString getName() const;
 		
-		/**
-		 * Creates a mail object and adds it to the list
-		 * @param unid UNID of the mail
-		 */
-		void addMail( const QString& unid );
-
     /**
      * Returns whether the account is active.
      * @return TRUE - account is active; FALSE - account is not active
@@ -215,11 +210,6 @@ class Account : public QObject
 		 */
 		QString name;
 		
-		/**
-		 * List of mails
-		 */
-		QList<Mail*> mails;
-
     /**
      * TRUE - account is active; FALSE - account is not active
      */
@@ -243,6 +233,11 @@ class Account : public QObject
      * @see setPasswordStorage()
      */
     int passwordStorage;
+
+    /**
+     * The mail container
+     */
+    MailList* mails;
     
   signals:
 
