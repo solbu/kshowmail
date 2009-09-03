@@ -26,7 +26,7 @@ AccountList::~AccountList(){}
 Account* AccountList::addAccount( const QString& name )
 {
 	//create account object
-	Account* acc = new Account( name, this );
+	Account* acc = new Account( name, this, this );
 
   //conect the signals with the slots of this list
   connect( acc, SIGNAL( sigRefreshReady( QString ) ), this, SLOT( slotCheckRefreshState( QString ) ) );

@@ -30,6 +30,11 @@
 //KShowmail headers
 #include "account.h"
 #include "constants.h"
+#include "types.h"
+
+using namespace Types;
+
+class Account;
 
 class AccountList : public QObject
 {

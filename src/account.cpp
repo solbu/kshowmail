@@ -16,13 +16,25 @@
 
 #include "./account.h"
 
-Account::Account( QString name, QObject* parent ) 
+Account::Account( QString name, AccountList* accountList, QObject* parent ) 
 	: QObject( parent )
 {
 	this->name = name;
+  this->accountList = accountList;
 
   //create mail container
   mails = new MailList( this );
+
+  //create TCP-Socket
+  socket = new QTcpSocket( this );
+
+  //connect the socket with the slots
+  connect( socket, SIGNAL( error( QAbstractSocket::SocketError ) ), this, SLOT( slotSocketError( QAbstractSocket::SocketError ) ) );
+  connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
+  connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
+  connect( socket, SIGNAL( connectionClosed() ), this, SLOT( slotConnectionClosedByServer() ) );
+
+  
 
   init();
 	
@@ -123,8 +135,10 @@ void Account::refreshMailList()
     return;
   }
 
-  kdDebug() << "Password: " << getPassword() << endl;
   kdDebug() << "refresh " << getName() << endl;
+
+  doConnect();
+  
   emit sigRefreshReady( getName() );
 }
 
@@ -261,5 +275,87 @@ int Account::getPasswordStorage( ) const
 {
   return passwordStorage;
 }
+
+void Account::doConnect()
+{
+  //break, if there is already a connection
+  if( socket->state() != QTcpSocket::UnconnectedState )
+  {
+    //handleError( "Already connected" );
+    closeConnection();
+    //return;
+  }
+
+  initBeforeConnect();
+
+  //do connect
+  socket->connectToHost( getHost(), getPort() );
+}
+
+void Account::closeConnection()
+{
+  if( socket->state() != QTcpSocket::UnconnectedState && socket->state() != QTcpSocket::ClosingState )
+  {
+    kdDebug() << "Close Connection: " << getName() << endl;
+    socket->close();
+  }
+}
+
+void Account::initBeforeConnect()
+{
+}
+
+void Account::slotConnected()
+{
+  kdDebug() << getName() << ": connected with " << getHost() << endl;
+  closeConnection();
+}
+
+void Account::slotHostFound()
+{
+  kdDebug() << getName() << ": Host " << getHost() << " found." << endl;
+}
+
+void Account::slotSocketError( QAbstractSocket::SocketError ErrorCode)
+{
+  QString message;    //the error message
+  switch( ErrorCode )
+  {
+    case QAbstractSocket::ConnectionRefusedError    : message = i18n( "Connection refused" ); break;
+    case QAbstractSocket::HostNotFoundError         : message = QString( i18n( "Host not found: %1" ).arg( getHost() ) ); break;
+    default                                    : message = i18n( "Unknown connection error" ); break;
+  }
+
+  //show error and handle all other
+  handleError( message );
+
+}
+
+void Account::handleError( QString error )
+{
+  //close connection
+  closeConnection();
+
+  //show error
+
+  emit sigMessageWindowOpened();
+  KMessageBox::error( NULL, i18n( "Account %1: %2" ).arg( getName() ).arg( error ) );
+  emit sigMessageWindowClosed();
+
+  //emit ready signal
+//   switch( state )
+//   {
+//     case AccountDeleting    : emit sigDeleteReady( getAccountName() ); break;
+//     case AccountDownloading : emit sigShowBodiesReady( getAccountName() ); break;
+//     case AccountRefreshing  : emit sigRefreshReady( getAccountName() ); break;
+//     default                 : break;
+//   }
+// 
+//   //set state
+//   state = AccountIdle;
+
+
+}
+
 
 

@@ -24,6 +24,7 @@
 #include <QObject>
 #include <QList>
 #include <QApplication>
+#include <QTcpSocket>
 
 //KDE headers
 #include <KConfigGroup>
@@ -38,11 +39,14 @@
 #include "encryption.h"
 #include "kwalletaccess.h"
 #include "maillist.h"
+#include "accountlist.h"
 
 using namespace std;
 using namespace Types;
 using namespace Encryption;
 using namespace KWalletAccess;
+
+class AccountList;
 
 /**
  * This class represents a account
@@ -57,9 +61,10 @@ class Account : public QObject
 		/**
 		 * Constructor
 		 * @param name name of this account
+     * @param accountList pointer to the parent account list
 		 * @param parent parent object
 		 */
-		Account( QString name, QObject* parent );
+		Account( QString name, AccountList* accountList, QObject* parent );
 		
 		/**
 		 * Destructor
@@ -201,6 +206,51 @@ class Account : public QObject
    */
   bool assertPassword( bool force = false );
 
+  /**
+   * Establishes a connection to the server
+   */
+  void doConnect();
+
+  /**
+   * Closes the connection
+   */
+  void closeConnection();
+
+  /**
+   * Initiates the account to do a connect.
+   */
+  void initBeforeConnect();
+
+    /**
+     * Shows the given error, sets the state to idle and emits a ready signal if neccessary
+     * @param error the error message
+     */
+    void handleError( QString error );
+
+  
+
+  protected slots:
+
+   /**
+    * Connected with signal connected of the socket.
+    * Will be invoked after the socket has connected the host
+    */
+   virtual void slotConnected();
+
+   /**
+    * Connected with signal hostFound of the socket.
+    * Will be invoked after the socket has done the DNS lookup
+    */
+   virtual void slotHostFound();
+
+   /**
+    * Connected with signal error of the socket.
+    * Will be invoked, when an socket error occures.
+    * @param errorNr Error code of the socket
+    */
+   void slotSocketError( QAbstractSocket::SocketError ErrorCode );
+
+
 
 		
 	private:
@@ -238,7 +288,18 @@ class Account : public QObject
      * The mail container
      */
     MailList* mails;
-    
+
+    /**
+     * The socket. Handles all server operations
+     */
+    QTcpSocket* socket;
+
+    /**
+     * Pointer to the account list object
+     */
+    AccountList* accountList;
+
+
   signals:
 
     /**
