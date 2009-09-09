@@ -308,6 +308,9 @@ void Account::initBeforeConnect()
 void Account::slotConnected()
 {
   kdDebug() << getName() << ": connected with " << getHost() << endl;
+
+  readfromSocket();
+  
   closeConnection();
 }
 
@@ -323,7 +326,7 @@ void Account::slotSocketError( QAbstractSocket::SocketError ErrorCode)
   {
     case QAbstractSocket::ConnectionRefusedError    : message = i18n( "Connection refused" ); break;
     case QAbstractSocket::HostNotFoundError         : message = QString( i18n( "Host not found: %1" ).arg( getHost() ) ); break;
-    default                                    : message = i18n( "Unknown connection error" ); break;
+    default                                         : message = i18n( "Unknown connection error" ); break;
   }
 
   //show error and handle all other
@@ -357,5 +360,26 @@ void Account::handleError( QString error )
 
 }
 
+QString Account::readfromSocket()
+{
+  //buffer for the datas
+  QByteArray buffer;
 
+  while( buffer.isEmpty() )
+  {
+    buffer.append( socket->readAll() );
+  }
+  
+  while( !socket->atEnd() )
+  {
+    buffer.append( socket->readAll() );
+      kdDebug() << getName() << ": " << QString( buffer ) << endl;
+  }
+
+  QString readedText( buffer);
+
+  kdDebug() << getName() << " all: " << readedText << endl;
+
+  return readedText;
+}
 

@@ -227,6 +227,12 @@ class Account : public QObject
      */
     void handleError( QString error );
 
+    /**
+     * Reads all data from the socket
+     * @return read text
+     */
+    QString readfromSocket();
+
   
 
   protected slots:
