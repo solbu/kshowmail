@@ -233,6 +233,9 @@ class Account : public QObject
      */
     QStringList readfromSocket();
 
+    /**
+     * Sends a command to the server
+
 
 
   protected slots:
