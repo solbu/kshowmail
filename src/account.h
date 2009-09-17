@@ -231,9 +231,9 @@ class Account : public QObject
      * Reads all data from the socket
      * @return read text
      */
-    QString readfromSocket();
+    QStringList readfromSocket();
 
-  
+
 
   protected slots:
 
@@ -256,6 +256,10 @@ class Account : public QObject
     */
    void slotSocketError( QAbstractSocket::SocketError ErrorCode );
 
+    /**
+     * Reads the first message send by server.
+     */
+    void slotReadFirstServerMessage();
 
 
 		

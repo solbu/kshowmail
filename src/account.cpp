@@ -288,6 +288,10 @@ void Account::doConnect()
 
   initBeforeConnect();
 
+  //the first task is to read the server greeting message
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReadFirstServerMessage() ) );
+  
   //do connect
   socket->connectToHost( getHost(), getPort() );
 }
@@ -308,10 +312,6 @@ void Account::initBeforeConnect()
 void Account::slotConnected()
 {
   kdDebug() << getName() << ": connected with " << getHost() << endl;
-
-  readfromSocket();
-  
-  closeConnection();
 }
 
 void Account::slotHostFound()
@@ -360,26 +360,32 @@ void Account::handleError( QString error )
 
 }
 
-QString Account::readfromSocket()
+QStringList Account::readfromSocket()
 {
   //buffer for the datas
-  QByteArray buffer;
+  char lineBuffer[1024];
 
-  while( buffer.isEmpty() )
+  //return object
+  QStringList text;
+
+  //wait for a whole line
+  while( socket->bytesAvailable() != 0 )
   {
-    buffer.append( socket->readAll() );
-  }
-  
-  while( !socket->atEnd() )
-  {
-    buffer.append( socket->readAll() );
-      kdDebug() << getName() << ": " << QString( buffer ) << endl;
+    while( socket->canReadLine() )
+    {
+      socket->readLine( lineBuffer, sizeof( lineBuffer ) );
+      text.append( QString( lineBuffer ).simplified() );
+    }
   }
 
-  QString readedText( buffer);
-
-  kdDebug() << getName() << " all: " << readedText << endl;
-
-  return readedText;
+  return text;
 }
 
+void Account::slotReadFirstServerMessage()
+{
+  QStringList text = readfromSocket();
+
+  kdDebug() << text.first() << endl;
+
+  closeConnection();
+}
