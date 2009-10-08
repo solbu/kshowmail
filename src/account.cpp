@@ -387,5 +387,74 @@ void Account::slotReadFirstServerMessage()
 
   kdDebug() << text.first() << endl;
 
+  //get the capabilities
+  getCapabilities();
+}
+
+void Account::sendCommand( const QString& command )
+{
+  kdDebug() << "Send " << command << " to " << getName() << endl;
+
+  //call error handler, if the socket is not connected
+  if( socket->state() != QAbstractSocket::ConnectedState )
+  {
+    handleError( i18n( "No connect to %1" ).arg( getHost() ) );
+    return;
+  }
+
+
+  //the write methode of the socket needs a byte array
+  QByteArray data;
+  data.append( command );
+  data.append( "\n" );
+  
+
+  //send it
+  qint64 writtenBytes = socket->write( data );
+
+  //if the return value ist -1 a error is occured
+  if( writtenBytes == -1 )
+  {
+    handleError( i18n( "Could not send the command %1 to %2" ).arg( command ).arg( getName() ) );
+    return;
+  }
+  
+}
+
+void Account::getCapabilities()
+{
+  //when the server answer is comming in, the slot slotReceiveCapabilities will be invoked
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReceiveCapabilities() ) );
+
+  //send the CAPA-Command
+  sendCommand( CAPA_REQUEST );
+}
+
+void Account::slotReceiveCapabilities()
+{
+  QStringList text = readfromSocket();
+
   closeConnection();
+
+}
+
+void Account::printServerMessage( QStringList text ) const
+{
+  for( int i = 0; i < text.size(); ++i )
+  {
+    kdDebug() << text.at( i ) << endl;
+  }
+}
+
+bool Account::isPositiveServerMessage( QStringList message ) const
+{
+  //return false, if the list is empty
+  if( message.isEmpty() ) return false;
+
+  //a positive message starts with a +OK
+  if( message.first().startsWith( RESPONSE_POSITIVE ) ) return true;
+
+  //it is a negative answer
+  return false;
 }

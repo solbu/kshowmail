@@ -41,6 +41,89 @@
 #include "maillist.h"
 #include "accountlist.h"
 
+
+/**
+ * @brief Constants of the POP3 protocol
+ */
+namespace POP3Constants
+{
+  /**
+   * positive server response
+   */
+  static const QString RESPONSE_POSITIVE( "+OK" );
+
+  /**
+   * negative server response
+   */
+  static const QString RESPONSE_NEGATIVE( "-ERR" );
+
+  /**
+   * End of multi-line response
+   */
+  static const QString END_MULTILINE_RESPONSE( "." );
+
+  /**
+   * Capabilities request
+   */
+  static const QString CAPA_REQUEST( "CAPA" );
+
+  /**
+   * Authentification mechanism request
+   */
+  static const QString AUTH_REQUEST( "AUTH" );
+
+  /**
+   * Capabilities response STLS available
+   */
+  static const QString CAPA_RESPONSE_STLS( "STLS" );
+
+  /**
+   * Commit command
+   */
+  static const QString COMMIT( "QUIT" );
+
+  /**
+   * Sends the username for login
+   */
+  static const QString LOGIN_USER( "USER" );
+
+  /**
+   * Sends the password for login
+   */
+  static const QString LOGIN_PASSWD( "PASS" );
+
+  /**
+   * Command for login using APOP
+   */
+  static const QString LOGIN_APOP( "APOP" );
+
+  /**
+   * Command to get the UID list
+   */
+  static const QString UID_LIST( "UIDL" );
+
+  /**
+   * Command to get a list of mail numbers and sizes
+   */
+  static const QString MAIL_LIST( "LIST" );
+
+  /**
+   * This command gets the header of a mail
+   */
+  static const QString GET_HEADER( "TOP" );
+
+  /**
+   * Deletes a mail
+   */
+  static const QString DELETE( "DELE" );
+
+  /**
+   * Get a mail
+   */
+  static const QString GET_MAIL( "RETR" );
+}
+
+using namespace POP3Constants;
 using namespace std;
 using namespace Types;
 using namespace Encryption;
@@ -49,15 +132,15 @@ using namespace KWalletAccess;
 class AccountList;
 
 /**
- * This class represents a account
+ * This class represents an POP3-Account
  */
 class Account : public QObject
 {
 
-	Q_OBJECT
-	
-	public:
-		
+  Q_OBJECT
+
+  public:
+
 		/**
 		 * Constructor
 		 * @param name name of this account
@@ -235,7 +318,29 @@ class Account : public QObject
 
     /**
      * Sends a command to the server
+     * @param command the command to send
+     */
+    void sendCommand( const QString& command );
 
+    /**
+     * Gets the capabilities from the server.
+     * Sends the CAPA-command connect the socket with slot slotReceiveCapabilities()
+     * @see slotReceiveCapabilities()
+     */
+    void getCapabilities();
+    
+    /**
+     * Prints the a text received from the server to stdout
+     * @param text server message
+     */
+    void printServerMessage( QStringList text ) const;
+
+    /**
+     * Returns whether the server answer is positive or negative
+     * @param message server message
+     * @return TRUE - positive answer; FALSE - negative answer
+     */
+    bool isPositiveServerMessage( QStringList message ) const;
 
 
   protected slots:
@@ -263,6 +368,12 @@ class Account : public QObject
      * Reads the first message send by server.
      */
     void slotReadFirstServerMessage();
+
+    /**
+     * Reads the capabilities from the server.
+     * @see getCapabilities()
+     */
+    void slotReceiveCapabilities();
 
 
 		
