@@ -25,6 +25,7 @@
 #include <QList>
 #include <QApplication>
 #include <QTcpSocket>
+#include <QTimer>
 
 //KDE headers
 #include <KConfigGroup>
@@ -325,7 +326,7 @@ class Account : public QObject
     /**
      * Gets the capabilities from the server.
      * Sends the CAPA-command connect the socket with slot slotReceiveCapabilities()
-     * @see slotReceiveCapabilities()
+     * @see slotCapabilitiesResponse
      */
     void getCapabilities();
     
@@ -333,14 +334,50 @@ class Account : public QObject
      * Prints the a text received from the server to stdout
      * @param text server message
      */
-    void printServerMessage( QStringList text ) const;
+    void printServerMessage( QStringList& text ) const;
 
     /**
      * Returns whether the server answer is positive or negative
      * @param message server message
      * @return TRUE - positive answer; FALSE - negative answer
      */
-    bool isPositiveServerMessage( QStringList message ) const;
+    bool isPositiveServerMessage( QStringList& message ) const;
+
+    /**
+     * Removes status indicator and termination char from a server message
+     * @param message server message
+     * @return the cleared server message
+     */
+    void clearMessage( QStringList& message );
+
+    /**
+     * Sends the command to get the authentication mechanism of this server.
+     * Connects the signal readyRead of the socket with the slot
+     * slotAuthMechResponse(). If the socket has got the server
+     * response it will send this signal
+     * @see slotAuthMechResponse()
+     */
+    void getAuthMech();
+
+    /**
+     * Sends the commit command to end the session.
+     * Connects the signal readyRead of the socket with the slot
+     * slotCommitResponse().
+     * @see slotCommitResponse()
+     */
+    virtual void commit();
+
+    /**
+     * Finishes the running task (Refreshing, Deleting, ...)
+     * Emits the proper ready signal and closes the connection
+     * @see closeConnection()
+     * @see sigDeleteReady()
+     * @see sigRefreshReady()
+     * @see sigShowBodiesReady()
+     */
+    void finishTask();
+
+    
 
 
   protected slots:
@@ -373,7 +410,15 @@ class Account : public QObject
      * Reads the capabilities from the server.
      * @see getCapabilities()
      */
-    void slotReceiveCapabilities();
+    void slotCapabilitiesResponse();
+
+    /**
+     * Connected with the signal readyRead of the socket by getAuthMech().
+     * Analyzes the response and sets the authentification mechanism flags
+     * of this account.
+     * @see getAuthMech
+     */
+    void slotAuthMechResponse();
 
 
 		
@@ -422,6 +467,24 @@ class Account : public QObject
      * Pointer to the account list object
      */
     AccountList* accountList;
+
+    /**
+     * TRUE - the QUIT command was sent to the server. Normally set by the commit methode.
+     * Inititates by initBeforeConnect()
+     * @see initBeforeConnect()
+     */
+    bool quitSent;
+
+    /**
+     * This timer kills a running operation after the preset time
+     */
+    QTimer* timeoutTimer;
+
+    /**
+     * State of the account.
+     */
+    Types::AccountState_Type state;
+
 
 
   signals:

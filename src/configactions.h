@@ -18,7 +18,9 @@
 #include <qlayout.h>
 #include <qgroupbox.h>
 #include <qcheckbox.h>
-#include <qtooltip.h>
+#include <Phonon/AudioOutput>
+#include <Phonon/MediaObject>
+
 
 //KDE headers
 #include <kcmodule.h>
@@ -28,16 +30,15 @@
 #include <kdebug.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
-#include <kaudioplayer.h>
 #include <kprocess.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 
 //kshowmail headers
-#include "../constants.h"
+#include "constants.h"
 
 /**
- * @brief Part of the setup dialog (KShowMailApp::SetupDialog) to configure the actions.
+ * @brief Part of the setup dialog to configure the actions.
  *
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
@@ -49,7 +50,7 @@ Q_OBJECT
     /**
     * Generic Constructor
     */
-    ConfigActions( QWidget *parent = 0, const char *name = 0, const QStringList &args = QStringList() );
+    ConfigActions( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
     * Destructor
@@ -83,7 +84,7 @@ Q_OBJECT
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Check box to select whether an alert message will be shown if a new mail is arrived.

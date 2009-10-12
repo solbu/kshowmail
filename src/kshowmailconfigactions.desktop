@@ -7,13 +7,13 @@ Name[es]=Acciones
 Comment=actions
 Comment[de]=Aktionen
 Comment[es]=Acciones
-Icon=launch
+Icon=media_playback_start
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library
-X-KDE-Library=kshowmailconfigactions
+X-KDE-Library=kcm_kshowmailconfigactions
 X-KDE-CfgDlgHierarchy=
-X-KDE-FactoryName=kshowmailconfigactions
+X-KDE-FactoryName=kcm_kshowmailconfigactions
 X-KDE-IsHiddenByDefault=
 X-KDE-RootOnly=
 X-KDE-Weight=2

@@ -73,6 +73,13 @@ void Account::init()
 {
   //set active
   active = true;
+
+  //Timeout timer
+  timeoutTimer = new QTimer( this );
+
+  //at start, we are idle
+  state = AccountIdle;
+
 }
 
 bool Account::isActive( ) const
@@ -139,7 +146,6 @@ void Account::refreshMailList()
 
   doConnect();
   
-  emit sigRefreshReady( getName() );
 }
 
 bool Account::hasPassword( ) const
@@ -307,6 +313,7 @@ void Account::closeConnection()
 
 void Account::initBeforeConnect()
 {
+  quitSent = false;
 }
 
 void Account::slotConnected()
@@ -425,21 +432,33 @@ void Account::getCapabilities()
 {
   //when the server answer is comming in, the slot slotReceiveCapabilities will be invoked
   disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
-  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReceiveCapabilities() ) );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotCapabilitiesResponse() ) );
 
   //send the CAPA-Command
   sendCommand( CAPA_REQUEST );
 }
 
-void Account::slotReceiveCapabilities()
+void Account::slotCapabilitiesResponse()
 {
+  //get server answer
   QStringList text = readfromSocket();
 
-  closeConnection();
+  //have we got capabilities?
+  bool haveCapa = isPositiveServerMessage( text );
+  
+  //set some capabilities flags
+  if( haveCapa )
+  {
+    //remove status indicator and termination char
+    clearMessage( text );
+  }
+
+  //get authentification mechanism
+  getAuthMech();
 
 }
 
-void Account::printServerMessage( QStringList text ) const
+void Account::printServerMessage( QStringList& text ) const
 {
   for( int i = 0; i < text.size(); ++i )
   {
@@ -447,7 +466,7 @@ void Account::printServerMessage( QStringList text ) const
   }
 }
 
-bool Account::isPositiveServerMessage( QStringList message ) const
+bool Account::isPositiveServerMessage( QStringList& message ) const
 {
   //return false, if the list is empty
   if( message.isEmpty() ) return false;
@@ -457,4 +476,121 @@ bool Account::isPositiveServerMessage( QStringList message ) const
 
   //it is a negative answer
   return false;
+}
+
+void Account::clearMessage( QStringList& message )
+{
+
+  //return, if the message is empty
+  if( message.isEmpty() ) return;
+  
+  //get the first line
+  QString firstLine = message.first();
+
+  //remove the status indicator
+  if( firstLine.startsWith( RESPONSE_POSITIVE ) )
+  {
+    firstLine.remove( 0, RESPONSE_POSITIVE.length() );
+    
+  } else if ( firstLine.startsWith( RESPONSE_NEGATIVE ) ){
+
+    firstLine.remove( 0, RESPONSE_NEGATIVE.length() );
+  }
+
+  //remove spaces at start
+  firstLine = firstLine.trimmed();
+
+  //if the firstLine is empty now, we remove it
+  //otherwise we replace it with the processed line
+  if( firstLine.isEmpty() )
+  {
+    message.removeFirst();
+  }
+  else
+  {
+    message.replace( 0, firstLine );
+  }
+
+  //remove termination line
+  if( message.last() == END_MULTILINE_RESPONSE )
+  {
+    message.removeLast();
+  }
+}
+
+void Account::getAuthMech()
+{
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotAuthMechResponse() ) );
+
+  //send the command
+  sendCommand( AUTH_REQUEST );
+}
+
+void Account::slotAuthMechResponse()
+{
+  //get server answer
+  QStringList text = readfromSocket();
+
+  //have we got capabilities?
+  bool haveAuth = isPositiveServerMessage( text );
+
+  //Set some authentification flags
+  if( haveAuth )
+  {
+    //remove status indicator and termination char
+    clearMessage( text );
+  }
+
+
+  commit();
+
+}
+
+void Account::commit()
+{
+  if( socket->state() == QAbstractSocket::ConnectedState )
+  {
+    //connect the signal readyRead of the socket with the response handle methode
+    disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+    connect( socket, SIGNAL( readyRead() ), this, SLOT( slotCommitResponse() ) );
+
+    //set the this flag to avoid an error message, if the server close the connection
+    //immediately
+    quitSent = true;
+
+    //send the command
+    sendCommand( COMMIT );
+  }
+  else
+  {
+    finishTask();
+  }
+}
+
+void Account::finishTask()
+{
+  kdDebug() << "finishTask " << getName() << endl;
+
+  //stop the timeout timer
+  timeoutTimer->stop();
+
+  //close connection
+  closeConnection();
+
+  //set state but save the old state
+  Types::AccountState_Type oldState = state;
+  state = AccountIdle;
+
+  //emit ready signal
+  switch( oldState )
+  {
+    case AccountDeleting    : emit sigDeleteReady( getName() ); break;
+    case AccountDownloading : emit sigShowBodiesReady( getName() ); break;
+    case AccountRefreshing  : emit sigRefreshReady( getName() ); break;
+    default                 : break;
+  }
+
+
 }

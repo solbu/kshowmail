@@ -11,81 +11,78 @@
 //
 #include "configactions.h"
 
-typedef KGenericFactory<ConfigActions, QWidget> ConfigActionsFactory;
+K_PLUGIN_FACTORY( ConfigActionsFactory, registerPlugin<ConfigActions>(); )
+K_EXPORT_PLUGIN( ConfigActionsFactory( "kcm_kshowmailconfigactions" ) )
 
-K_EXPORT_COMPONENT_FACTORY( kcm_kshowmailconfigactions, ConfigActionsFactory(
-    "kcm_kshowmailconfigactions" ) );
-
-ConfigActions::ConfigActions( QWidget * parent, const char * name, const QStringList & args )
-  : KCModule( ConfigActionsFactory::instance(), parent, args )
+ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
+  : KCModule( ConfigActionsFactory::componentData(), parent, args )
 {
-  //set the module name
-  if ( !name )
-    setName( "configactions" );
-
   //build GUI
   //---------
 
   //main layout
-  QVBoxLayout* layMain = new QVBoxLayout( this, 0, 10 );
+  QVBoxLayout* layMain = new QVBoxLayout( this );
 
   //two boxes to seperate the action if new mail or if no new mail
-  QGroupBox* gboxNewMails = new QGroupBox( 0, Qt::Horizontal, i18n( "Action if new &mail" ), this, "gboxNewMails" );
-  QGroupBox* gboxNoNewMails = new QGroupBox( 2, Qt::Vertical, i18n( "Action if &no mail" ), this, "gboxNoNewMails" );
-  gboxNoNewMails->layout()->setSpacing( 20 );
+  QGroupBox* gboxNewMails = new QGroupBox( i18n( "Action if new &mail" ), this );
+  QGroupBox* gboxNoNewMails = new QGroupBox( i18n( "Action if &no mail" ), this );
   layMain->addWidget( gboxNewMails );
   layMain->addWidget( gboxNoNewMails );
 
   //layouts for the upper group box
-  QVBoxLayout* layMainNewMails = new QVBoxLayout( gboxNewMails->layout(), 10 );
-  QGridLayout* layMainNewMailsTop = new QGridLayout( layMainNewMails, 2, 2, 10 );
-  QGridLayout* layMainNewMailsDown = new QGridLayout( layMainNewMails, 2, 4, 10 );
+  QVBoxLayout* layMainNewMails = new QVBoxLayout();
+  QGridLayout* layMainNewMailsTop = new QGridLayout();
+  QGridLayout* layMainNewMailsDown = new QGridLayout();
+  layMainNewMails->addLayout( layMainNewMailsTop );
+  layMainNewMails->addLayout( layMainNewMailsDown );
+  gboxNewMails->setLayout( layMainNewMails );
+
 
   //items for the upper group box
-  chkNewMailsAlertWindow = new QCheckBox( i18n( "Show message box" ), gboxNewMails, "chkNewMailsAlertWindow" );
-  QToolTip::add( chkNewMailsAlertWindow, i18n( "Show message if new mail arrives" ) );
+  chkNewMailsAlertWindow = new QCheckBox( i18n( "Show message box" ), gboxNewMails );
+  chkNewMailsAlertWindow->setToolTip( i18n( "Show message if new mail arrives" ) );
   layMainNewMailsTop->addWidget( chkNewMailsAlertWindow, 0, 0 );
 
-  chkNewMailsMainWindow = new QCheckBox( i18n( "Show main window" ), gboxNewMails, "chkNewMailsMainWindow" );
-  QToolTip::add( chkNewMailsMainWindow, i18n( "Show main window if new mail arrives" ) );
+  chkNewMailsMainWindow = new QCheckBox( i18n( "Show main window" ), gboxNewMails );
+  chkNewMailsMainWindow->setToolTip( i18n( "Show main window if new mail arrives" ) );
   layMainNewMailsTop->addWidget( chkNewMailsMainWindow, 0, 1 );
 
-  chkNewMailsBeep = new QCheckBox( i18n( "&Beep" ), gboxNewMails, "chkNewMailsBeep" );
-  QToolTip::add( chkNewMailsBeep, i18n( "Beeps the internal speaker if new mail" ) );
+  chkNewMailsBeep = new QCheckBox( i18n( "&Beep" ), gboxNewMails );
+  chkNewMailsBeep->setToolTip( i18n( "Beeps the internal speaker if new mail" ) );
   layMainNewMailsTop->addWidget( chkNewMailsBeep, 1, 0 );
 
-  chkNewMailsSound = new QCheckBox( i18n( "Sound:" ), gboxNewMails, "chkNewMailsSound" );
-  QToolTip::add( chkNewMailsSound, i18n( "Plays sound if new mail" ) );
+  chkNewMailsSound = new QCheckBox( i18n( "Sound:" ), gboxNewMails );
+  chkNewMailsSound->setToolTip( i18n( "Plays sound if new mail" ) );
   layMainNewMailsDown->addWidget( chkNewMailsSound, 0, 0 );
 
-  btnNewMailsPlaySound = new KPushButton( KGuiItem( QString(), QString( "player_play" ), i18n( "Play the selected sound file" ), i18n( "Play the selected sound file" ) ), gboxNewMails, "btnNewMailsPlaySound" );
+  btnNewMailsPlaySound = new KPushButton( KGuiItem( QString(), QString( "player_play" ), i18n( "Play the selected sound file" ), i18n( "Play the selected sound file" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsPlaySound, 0, 1 );
 
-  txtNewMailsSound = new KLineEdit( gboxNewMails, "txtNewMailsSound" );
+  txtNewMailsSound = new KLineEdit( gboxNewMails );
   layMainNewMailsDown->addWidget( txtNewMailsSound, 0, 2 );
 
-  btnNewMailsChooseSound = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Press to select sound file" ), i18n( "Press to select sound file" ) ), gboxNewMails, "btnNewMailsChooseSound" );
+  btnNewMailsChooseSound = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Press to select sound file" ), i18n( "Press to select sound file" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsChooseSound, 0, 3 );
 
-  chkNewMailsCommand = new QCheckBox( i18n( "Command:" ), gboxNewMails, "chkNewMailsCommand" );
-  QToolTip::add( chkNewMailsCommand, i18n( "Starts external program if new mail" ) );
+  chkNewMailsCommand = new QCheckBox( i18n( "Command:" ), gboxNewMails );
+  chkNewMailsCommand->setToolTip( i18n( "Starts external program if new mail" ) );
   layMainNewMailsDown->addWidget( chkNewMailsCommand, 1, 0 );
 
-  btnNewMailsExecCommand = new KPushButton( KGuiItem( QString(), QString( "exec" ), i18n( "Start the selected program" ), i18n( "Start the selected program" ) ), gboxNewMails, "btnNewMailsExecCommand" );
+  btnNewMailsExecCommand = new KPushButton( KGuiItem( QString(), QString( "exec" ), i18n( "Start the selected program" ), i18n( "Start the selected program" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsExecCommand, 1, 1 );
 
-  txtNewMailsCommand = new KLineEdit( gboxNewMails, "txtNewMailsCommand" );
+  txtNewMailsCommand = new KLineEdit( gboxNewMails );
   layMainNewMailsDown->addWidget( txtNewMailsCommand, 1, 2 );
 
-  btnNewMailsChooseCommand = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Select external command" ), i18n( "Select external command" ) ), gboxNewMails, "btnNewMailsChooseCommand" );
+  btnNewMailsChooseCommand = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Select external command" ), i18n( "Select external command" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsChooseCommand, 1, 3 );
 
   //items for the lower group box
-  chkNoNewMailsMinimize = new QCheckBox( i18n( "Minimi&ze" ), gboxNoNewMails, "chkNoNewMailsMinimize" );
-  QToolTip::add( chkNoNewMailsMinimize, i18n( "Minimize window if no new mail" ) );
+  chkNoNewMailsMinimize = new QCheckBox( i18n( "Minimi&ze" ), gboxNoNewMails );
+  chkNoNewMailsMinimize->setToolTip( i18n( "Minimize window if no new mail" ) );
 
-  chkNoNewMailsTerminate = new QCheckBox( i18n( "Terminate" ), gboxNoNewMails, "chkNoNewMailsTerminate" );
-  QToolTip::add( chkNoNewMailsTerminate, i18n( "Terminate kshowmail if no new mail" ) );
+  chkNoNewMailsTerminate = new QCheckBox( i18n( "Terminate" ), gboxNoNewMails );
+  chkNoNewMailsTerminate->setToolTip( i18n( "Terminate kshowmail if no new mail" ) );
 
   //connect file choose buttons
   connect( btnNewMailsChooseSound, SIGNAL( clicked() ), this, SLOT( slotChooseSound() ) );
@@ -113,7 +110,7 @@ ConfigActions::ConfigActions( QWidget * parent, const char * name, const QString
 
 
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //load configured values
   load();
@@ -127,18 +124,19 @@ ConfigActions::~ConfigActions()
 
 void ConfigActions::load( )
 {
-  config->setGroup( CONFIG_GROUP_ACTIONS );
+  KConfigGroup* configAct = new KConfigGroup( config, CONFIG_GROUP_ACTIONS );
 
-  chkNewMailsAlertWindow->setChecked( config->readBoolEntry( CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW, DEFAULT_ACTION_NEW_MAIL_ALERTWINDOW ) );
-  chkNewMailsMainWindow->setChecked( config->readBoolEntry( CONFIG_ENTRY_NEW_MAIL_MAINWINDOW, DEFAULT_ACTION_NEW_MAIL_MAINWINDOW ) );
-  chkNewMailsBeep->setChecked( config->readBoolEntry( CONFIG_ENTRY_NEW_MAIL_BEEP, DEFAULT_ACTION_NEW_MAIL_BEEP ) );
-  chkNewMailsSound->setChecked( config->readBoolEntry( CONFIG_ENTRY_NEW_MAIL_SOUND, DEFAULT_ACTION_NEW_MAIL_SOUND ) );
-  chkNewMailsCommand->setChecked( config->readBoolEntry( CONFIG_ENTRY_NEW_MAIL_COMMAND, DEFAULT_ACTION_NEW_MAIL_COMMAND ) );
-  chkNoNewMailsTerminate->setChecked( config->readBoolEntry( CONFIG_ENTRY_NO_NEW_MAIL_TERMINATE, DEFAULT_ACTION_NO_NEW_MAIL_TERMINATE ) );
-  chkNoNewMailsMinimize->setChecked( config->readBoolEntry( CONFIG_ENTRY_NO_NEW_MAIL_MINIMIZE, DEFAULT_ACTION_NO_NEW_MAIL_MINIMIZE ) );
 
-  txtNewMailsSound->setText( config->readEntry( CONFIG_ENTRY_NEW_MAIL_SOUNDPATH ) );
-  txtNewMailsCommand->setText( config->readEntry( CONFIG_ENTRY_NEW_MAIL_COMMANDPATH ) );
+  chkNewMailsAlertWindow->setChecked( configAct->readEntry( CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW, DEFAULT_ACTION_NEW_MAIL_ALERTWINDOW ) );
+  chkNewMailsMainWindow->setChecked( configAct->readEntry( CONFIG_ENTRY_NEW_MAIL_MAINWINDOW, DEFAULT_ACTION_NEW_MAIL_MAINWINDOW ) );
+  chkNewMailsBeep->setChecked( configAct->readEntry( CONFIG_ENTRY_NEW_MAIL_BEEP, DEFAULT_ACTION_NEW_MAIL_BEEP ) );
+  chkNewMailsSound->setChecked( configAct->readEntry( CONFIG_ENTRY_NEW_MAIL_SOUND, DEFAULT_ACTION_NEW_MAIL_SOUND ) );
+  chkNewMailsCommand->setChecked( configAct->readEntry( CONFIG_ENTRY_NEW_MAIL_COMMAND, DEFAULT_ACTION_NEW_MAIL_COMMAND ) );
+  chkNoNewMailsTerminate->setChecked( configAct->readEntry( CONFIG_ENTRY_NO_NEW_MAIL_TERMINATE, DEFAULT_ACTION_NO_NEW_MAIL_TERMINATE ) );
+  chkNoNewMailsMinimize->setChecked( configAct->readEntry( CONFIG_ENTRY_NO_NEW_MAIL_MINIMIZE, DEFAULT_ACTION_NO_NEW_MAIL_MINIMIZE ) );
+
+  txtNewMailsSound->setText( configAct->readEntry( CONFIG_ENTRY_NEW_MAIL_SOUNDPATH ) );
+  txtNewMailsCommand->setText( configAct->readEntry( CONFIG_ENTRY_NEW_MAIL_COMMANDPATH ) );
 
   //enable or disable configuration items of sound and command
   slotSoundToggled( chkNewMailsSound->isChecked() );
@@ -162,16 +160,17 @@ void ConfigActions::defaults( )
 
 void ConfigActions::save( )
 {
-  config->setGroup( CONFIG_GROUP_ACTIONS );
-  config->writeEntry( CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW, chkNewMailsAlertWindow->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_NEW_MAIL_MAINWINDOW, chkNewMailsMainWindow->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_NEW_MAIL_BEEP, chkNewMailsBeep->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_NEW_MAIL_SOUND, chkNewMailsSound->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_NEW_MAIL_SOUNDPATH, txtNewMailsSound->text() );
-  config->writeEntry( CONFIG_ENTRY_NEW_MAIL_COMMAND, chkNewMailsCommand->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_NEW_MAIL_COMMANDPATH, txtNewMailsCommand->text() );
-  config->writeEntry( CONFIG_ENTRY_NO_NEW_MAIL_TERMINATE, chkNoNewMailsTerminate->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_NO_NEW_MAIL_MINIMIZE, chkNoNewMailsMinimize->isChecked() );
+  KConfigGroup* configAct = new KConfigGroup( config, CONFIG_GROUP_ACTIONS );
+
+  configAct->writeEntry( CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW, chkNewMailsAlertWindow->isChecked() );
+  configAct->writeEntry( CONFIG_ENTRY_NEW_MAIL_MAINWINDOW, chkNewMailsMainWindow->isChecked() );
+  configAct->writeEntry( CONFIG_ENTRY_NEW_MAIL_BEEP, chkNewMailsBeep->isChecked() );
+  configAct->writeEntry( CONFIG_ENTRY_NEW_MAIL_SOUND, chkNewMailsSound->isChecked() );
+  configAct->writeEntry( CONFIG_ENTRY_NEW_MAIL_SOUNDPATH, txtNewMailsSound->text() );
+  configAct->writeEntry( CONFIG_ENTRY_NEW_MAIL_COMMAND, chkNewMailsCommand->isChecked() );
+  configAct->writeEntry( CONFIG_ENTRY_NEW_MAIL_COMMANDPATH, txtNewMailsCommand->text() );
+  configAct->writeEntry( CONFIG_ENTRY_NO_NEW_MAIL_TERMINATE, chkNoNewMailsTerminate->isChecked() );
+  configAct->writeEntry( CONFIG_ENTRY_NO_NEW_MAIL_MINIMIZE, chkNoNewMailsMinimize->isChecked() );
 
   //write configuration to disk
   config->sync();
@@ -210,7 +209,7 @@ void ConfigActions::slotChooseSound( )
 void ConfigActions::slotChooseCommand( )
 {
   //open file dialog
-  QString path = KFileDialog::getOpenFileName( QString::null, "", this, i18n("Select external command") );
+  QString path = KFileDialog::getOpenFileName( KUrl(), "", this, i18n("Select external command") );
 
   //write selected path into the edit line
   if( path != QString::null )
@@ -222,7 +221,16 @@ void ConfigActions::slotPlaySound( )
   QString path = txtNewMailsSound->text();
 
   if( path != QString::null )
-    KAudioPlayer::play( path );
+  {
+    Phonon::MediaObject *mediaObject = new Phonon::MediaObject( this );
+    mediaObject->setCurrentSource( Phonon::MediaSource( path ) );
+    Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput( Phonon::MusicCategory, this );
+    Phonon::createPath( mediaObject, audioOutput );
+    mediaObject->play();
+
+    delete mediaObject;
+    delete audioOutput;
+  }
 }
 
 void ConfigActions::slotExecuteCommand( )
@@ -231,11 +239,7 @@ void ConfigActions::slotExecuteCommand( )
 
   if( path != QString::null )
   {
-    KShellProcess proc;    //process handler to execute the binary
-
-    proc << path;
-
-    proc.start( KShellProcess::DontCare );
+    KProcess::execute( path );
   }
 }
 

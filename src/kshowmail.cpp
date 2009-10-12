@@ -170,7 +170,6 @@ void KShowmail::slotAddToWhitelist() {
 void KShowmail::slotSetup() {
 
 //    setupDialog->addModule( "kshowmailconfigdisplay.desktop" );
-//    setupDialog->addModule( "kshowmailconfigactions.desktop" );
 //    setupDialog->addModule( "kshowmailconfigfilter.desktop" );
 //    setupDialog->addModule( "kshowmailconfigspamcheck.desktop" );
 //    setupDialog->addModule( "kshowmailconfiglog.desktop" );
@@ -182,6 +181,7 @@ void KShowmail::slotSetup() {
 	setupDialog = new KCMultiDialog( this );
   //setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
   setupDialog->addModule( "kshowmailconfigaccounts.desktop" );
+  setupDialog->addModule( "kshowmailconfigactions.desktop" );
 
   //If the configuration was changed, it will call slotConfChanged
   connect( setupDialog, SIGNAL( configCommitted() ), this, SLOT( slotConfChanged() ) );
