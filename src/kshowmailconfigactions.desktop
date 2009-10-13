@@ -7,7 +7,7 @@ Name[es]=Acciones
 Comment=actions
 Comment[de]=Aktionen
 Comment[es]=Acciones
-Icon=media_playback_start
+Icon=media-playback-start
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library

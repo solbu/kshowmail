@@ -10,9 +10,9 @@ Icon=filter
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library
-X-KDE-Library=kshowmailconfigfilter
+X-KDE-Library=kcm_kshowmailconfigfilter
 X-KDE-CfgDlgHierarchy=
-X-KDE-FactoryName=kshowmailconfigfilter
+X-KDE-FactoryName=kcm_kshowmailconfigfilter
 X-KDE-IsHiddenByDefault=
 X-KDE-RootOnly=
 X-KDE-Weight=6

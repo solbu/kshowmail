@@ -10,9 +10,9 @@ Icon=kfind
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library
-X-KDE-Library=kshowmailconfigspamcheck
+X-KDE-Library=kcm_kshowmailconfigspamcheck
 X-KDE-CfgDlgHierarchy=
-X-KDE-FactoryName=kshowmailconfigspamcheck
+X-KDE-FactoryName=kcm_kshowmailconfigspamcheck
 X-KDE-IsHiddenByDefault=
 X-KDE-RootOnly=
 X-KDE-Weight=6
