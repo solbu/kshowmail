@@ -17,6 +17,7 @@
 #include <qgroupbox.h>
 #include <qtooltip.h>
 #include <qcheckbox.h>
+#include <QTreeWidget>
 
 //KDE headers
 #include <kcmodule.h>
@@ -126,7 +127,7 @@ Q_OBJECT
     /**
      * List of filters
      */
-//    KListView* listFilters;
+    QTreeWidget* listFilters;
 
     /**
      * Button to move a filter at top.

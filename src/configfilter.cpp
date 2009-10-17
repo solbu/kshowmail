@@ -57,57 +57,57 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   laySender->insertStretch( 2, 2 );
   laySender->insertStretch( 4, 2 );
 
-//   //GUI of filters
-//   //--------------
-//   gboxFilters = new QGroupBox( 0, Qt::Horizontal, i18n( "Second Check: Filters" ), this, "gboxFilters" );
-//   QHBoxLayout* layFilters = new QHBoxLayout( gboxFilters->layout(), 10 );
-//   layMain->addWidget( gboxFilters );
-// 
-//   listFilters = new KListView( gboxFilters, "listFilters" );
-//   listFilters->addColumn( i18n( "No." ) );
-//   listFilters->addColumn( i18n( "Name" ) );
-//   listFilters->addColumn( i18n( "Action" ) );
-//   layFilters->addWidget( listFilters );
-//   listFilters->setColumnWidthMode( 0, QListView::Maximum );
-//   listFilters->setColumnWidthMode( 1, QListView::Maximum );
-//   listFilters->setColumnWidthMode( 2, QListView::Maximum );
-//   listFilters->setResizeMode( QListView::LastColumn );
-//   listFilters->setColumnAlignment( 0, Qt::AlignHCenter );
-//   listFilters->setSorting( 0 );   //the list is sorted by filter number
-//   listFilters->setAllColumnsShowFocus( true );
-// 
-//   QVBoxLayout* layFiltersButtons = new QVBoxLayout( layFilters, 10 );
-//   btnAdd = new KPushButton( KStdGuiItem::add(), gboxFilters, "btnAdd" );
-//   btnEdit = new KPushButton( KStdGuiItem::configure(), gboxFilters, "btnEdit" );
-//   btnRemove = new KPushButton( KStdGuiItem::remove(), gboxFilters, "btnRemove" );
-//   btnMoveTop = new KPushButton( KGuiItem( "", "top", i18n( "Moves the selected filter at the top" ) ), gboxFilters, "btnMoveTop" );
-//   btnMoveUp = new KPushButton( KGuiItem( "", "up", i18n( "Moves the selected filter up" ) ), gboxFilters, "btnMoveUp" );
-//   btnMoveDown = new KPushButton( KGuiItem( "", "down", i18n( "Moves the selected filter down" ) ), gboxFilters, "btnMoveDown" );
-//   btnMoveBottom = new KPushButton( KGuiItem( "", "bottom", i18n( "Moves the selected filter at the bottm" ) ), gboxFilters, "btnMoveBottom" );
-//   btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   btnMoveTop->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   btnMoveUp->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   btnMoveDown->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   btnMoveBottom->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
-//   layFiltersButtons->addWidget( btnAdd );
-//   layFiltersButtons->addWidget( btnEdit );
-//   layFiltersButtons->addWidget( btnRemove );
-//   layFiltersButtons->addItem( new QSpacerItem( 1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
-//   layFiltersButtons->addWidget( btnMoveTop );
-//   layFiltersButtons->addWidget( btnMoveUp );
-//   layFiltersButtons->addWidget( btnMoveDown );
-//   layFiltersButtons->addWidget( btnMoveBottom );
-//   connect( btnAdd, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
-//   connect( btnEdit, SIGNAL( clicked() ), this, SLOT( slotEdit() ) );
-//   connect( btnRemove, SIGNAL( clicked() ), this, SLOT( slotRemove() ) );
-//   connect( btnMoveTop, SIGNAL( clicked() ), this, SLOT( slotMoveTop() ) );
-//   connect( btnMoveBottom, SIGNAL( clicked() ), this, SLOT( slotMoveBottom() ) );
-//   connect( btnMoveUp, SIGNAL( clicked() ), this, SLOT( slotMoveUp() ) );
-//   connect( btnMoveDown, SIGNAL( clicked() ), this, SLOT( slotMoveDown() ) );
-// 
-// 
+  //GUI of filters
+  //--------------
+  gboxFilters = new QGroupBox( i18n( "Second Check: Filters" ), this );
+  QHBoxLayout* layFilters = new QHBoxLayout();
+  gboxFilters->setLayout( layFilters );
+  layMain->addWidget( gboxFilters );
+
+  listFilters = new QTreeWidget( gboxFilters );
+  listFilters->setColumnCount( 3 );
+  listFilters->setHeaderLabels( QStringList( i18n( "No."), i18n( "Name" ), i18n( "Action" ) ) ),
+  layFilters->addWidget( listFilters );
+  listFilters->setColumnWidthMode( 0, QListView::Maximum );
+  listFilters->setColumnWidthMode( 1, QListView::Maximum );
+  listFilters->setColumnWidthMode( 2, QListView::Maximum );
+  listFilters->setResizeMode( QListView::LastColumn );
+  listFilters->setColumnAlignment( 0, Qt::AlignHCenter );
+  listFilters->setIndentation( 0 );   //the list is sorted by filter number
+  listFilters->setAllColumnsShowFocus( true );
+
+  QVBoxLayout* layFiltersButtons = new QVBoxLayout( layFilters, 10 );
+  btnAdd = new KPushButton( KStdGuiItem::add(), gboxFilters, "btnAdd" );
+  btnEdit = new KPushButton( KStdGuiItem::configure(), gboxFilters, "btnEdit" );
+  btnRemove = new KPushButton( KStdGuiItem::remove(), gboxFilters, "btnRemove" );
+  btnMoveTop = new KPushButton( KGuiItem( "", "top", i18n( "Moves the selected filter at the top" ) ), gboxFilters, "btnMoveTop" );
+  btnMoveUp = new KPushButton( KGuiItem( "", "up", i18n( "Moves the selectKListViewed filter up" ) ), gboxFilters, "btnMoveUp" );
+  btnMoveDown = new KPushButton( KGuiItem( "", "down", i18n( "Moves the selected filter down" ) ), gboxFilters, "btnMoveDown" );
+  btnMoveBottom = new KPushButton( KGuiItem( "", "bottom", i18n( "Moves the selected filter at the bottm" ) ), gboxFilters, "btnMoveBottom" );
+  btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  btnMoveTop->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  btnMoveUp->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  btnMoveDown->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  btnMoveBottom->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
+  layFiltersButtons->addWidget( btnAdd );
+  layFiltersButtons->addWidget( btnEdit );
+  layFiltersButtons->addWidget( btnRemove );
+  layFiltersButtons->addItem( new QSpacerItem( 1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
+  layFiltersButtons->addWidget( btnMoveTop );
+  layFiltersButtons->addWidget( btnMoveUp );
+  layFiltersButtons->addWidget( btnMoveDown );
+  layFiltersButtons->addWidget( btnMoveBottom );
+  connect( btnAdd, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
+  connect( btnEdit, SIGNAL( clicked() ), this, SLOT( slotEdit() ) );
+  connect( btnRemove, SIGNAL( clicked() ), this, SLOT( slotRemove() ) );
+  connect( btnMoveTop, SIGNAL( clicked() ), this, SLOT( slotMoveTop() ) );
+  connect( btnMoveBottom, SIGNAL( clicked() ), this, SLOT( slotMoveBottom() ) );
+  connect( btnMoveUp, SIGNAL( clicked() ), this, SLOT( slotMoveUp() ) );
+  connect( btnMoveDown, SIGNAL( clicked() ), this, SLOT( slotMoveDown() ) );
+
+
 //   //GUI of Others
 //   //-------------
 //   gboxOthers = new QGroupBox( 0, Qt::Horizontal, i18n( "Third Check: Action for all others" ), this, "gboxOthers" );
