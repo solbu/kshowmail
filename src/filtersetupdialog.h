@@ -21,13 +21,11 @@
 #include <qgroupbox.h>
 #include <qbuttongroup.h>
 #include <qradiobutton.h>
-#include <qvbox.h>
-#include <qobjectlist.h>
 #include <qtooltip.h>
 #include <qlabel.h>
 
 //KDE headers
-#include <kdialogbase.h>
+#include <KDialog>
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kcombobox.h>
@@ -36,7 +34,7 @@
 //KShowmail headers
 #include "filtersetupitem.h"
 #include "filtercriteriawidget.h"
-#include "../constants.h"
+#include "constants.h"
 #include "mailboxwizard.h"
 
 //IDs of the action combo box
@@ -51,7 +49,7 @@
  * @brief Dialog to setup a filter.
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-class FilterSetupDialog : public KDialogBase
+class FilterSetupDialog : public KDialog
 {
 
   Q_OBJECT

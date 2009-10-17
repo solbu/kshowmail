@@ -23,16 +23,17 @@
 #include <kconfig.h>
 #include <kgenericfactory.h>
 #include <kapplication.h>
-#include <klistview.h>
 #include <kpushbutton.h>
 #include <kcombobox.h>
 #include <klineedit.h>
+#include <KConfigGroup>
+#include <KStandardDirs>
 
 //Kshowmail headers
-#include "../constants.h"
+#include "constants.h"
 #include "senderlistdialog.h"
-#include "filtersetupdialog.h"
-#include "mailboxwizard.h"
+//#include "filtersetupdialog.h"
+//#include "mailboxwizard.h"
 
 //radio button IDs
 #define ID_COMBO_FILTER_OTHERS_ACTION_PASS       0
@@ -56,7 +57,7 @@ Q_OBJECT
     /**
      * Generic constructor
      */
-    ConfigFilter( QWidget* parent = 0, const char* name = 0, const QStringList &args = QStringList() );
+    ConfigFilter( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor
@@ -90,7 +91,7 @@ Q_OBJECT
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Check box to activate the filter
@@ -125,7 +126,7 @@ Q_OBJECT
     /**
      * List of filters
      */
-    KListView* listFilters;
+//    KListView* listFilters;
 
     /**
      * Button to move a filter at top.
@@ -281,7 +282,7 @@ Q_OBJECT
      * @param num number of the searched filter item
      * @return pointer to the found item
      */
-    FilterSetupItem* getFilterItem( uint num );
+//    FilterSetupItem* getFilterItem( uint num );
 
 };
 

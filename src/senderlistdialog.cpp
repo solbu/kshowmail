@@ -10,15 +10,16 @@
 //
 //
 #include "senderlistdialog.h"
+#include <qlistview.h>
 
-SenderListDialog::SenderListDialog(QWidget *parent, ListType list, const char *name)
-  : KDialogBase( parent, name, true, QString::null, Ok|Cancel, Ok, true )
+SenderListDialog::SenderListDialog(QWidget *parent, ListType list )
+  : KDialog( parent )
 {
   //save list type
   this->list = list;
 
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //set caption
   if( list == White )
@@ -32,15 +33,15 @@ SenderListDialog::SenderListDialog(QWidget *parent, ListType list, const char *n
   //main widget and layout
   QWidget* wdgMain = new QWidget( this );
   setMainWidget( wdgMain );
-  QVBoxLayout* layMain = new QVBoxLayout( wdgMain, 0, spacingHint() );
+  QVBoxLayout* layMain = new QVBoxLayout( wdgMain );
 
   //edit frame
   editFrame = new KEditListBox( wdgMain, "editFrame", true, KEditListBox::Add | KEditListBox::Remove );
   editFrame->setTitle( i18n( "List" ) );
   if( list == White )
-    QToolTip::add( editFrame->listBox(), i18n( "A mail whose sender is listed here will pass the filter.\nA mail will be accepted, if its From line incloses a list entry.\nE.g. a line of\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de> is accepted by the entries\nUlrich Weigelt\nulrich.weigelt@gmx.de\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de>" ) );
+    editFrame->listView()->setToolTip( i18n( "A mail whose sender is listed here will pass the filter.\nA mail will be accepted, if its From line incloses a list entry.\nE.g. a line of\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de> is accepted by the entries\nUlrich Weigelt\nulrich.weigelt@gmx.de\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de>" ) );
   else
-    QToolTip::add( editFrame->listBox(), i18n( "A mail whose sender is listed here will be hold up by the filter.\nA mail will be stopped, if its From line incloses a list entry.\nE.g. a line of\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de> is filtered by the entries\nUlrich Weigelt\nulrich.weigelt@gmx.de\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de>" ) );
+    editFrame->listView()->setToolTip( i18n( "A mail whose sender is listed here will be hold up by the filter.\nA mail will be stopped, if its From line incloses a list entry.\nE.g. a line of\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de> is filtered by the entries\nUlrich Weigelt\nulrich.weigelt@gmx.de\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de>" ) );
 
   layMain->addWidget( editFrame );
 
@@ -50,19 +51,20 @@ SenderListDialog::SenderListDialog(QWidget *parent, ListType list, const char *n
   //this radio buttons we just need in the blacklist
   if( list == Black )
   {
-    QGroupBox* gboxAction = new QGroupBox( 0, Qt::Horizontal, i18n( "Action" ), wdgMain, "gboxAction" );
-    QHBoxLayout* layAction = new QHBoxLayout( gboxAction->layout(), 10 );
+    QGroupBox* gboxAction = new QGroupBox( i18n( "Action" ), wdgMain );
+    QHBoxLayout* layAction = new QHBoxLayout();
+    gboxAction->setLayout( layAction );
     layMain->addWidget( gboxAction );
 
-    grpAction = new QButtonGroup( NULL, "grpAction" );
-    QRadioButton* btnDelete = new QRadioButton( i18n( "Delete"), gboxAction, "btnDelete" );
-    QRadioButton* btnMark = new QRadioButton( i18n( "Mark" ), gboxAction, "btnMark" );
+    grpAction = new QButtonGroup( NULL );
+    btnDelete = new QRadioButton( i18n( "Delete"), gboxAction );
+    btnMark = new QRadioButton( i18n( "Mark" ), gboxAction );
 
-    grpAction->insert( btnDelete, ID_BUTTON_FILTER_SENDERLIST_DELETE );
-    grpAction->insert( btnMark, ID_BUTTON_FILTER_SENDERLIST_MARK );
+    grpAction->addButton( btnDelete, ID_BUTTON_FILTER_SENDERLIST_DELETE );
+    grpAction->addButton( btnMark, ID_BUTTON_FILTER_SENDERLIST_MARK );
 
-    QToolTip::add( btnDelete, i18n( "The mails will be deleted." ) );
-    QToolTip::add( btnMark, i18n( "The mails will be marked." ) );
+    btnDelete->setToolTip( i18n( "The mails will be deleted." ) );
+    btnMark->setToolTip( i18n( "The mails will be marked." ) );
 
     layAction->addWidget( btnDelete );
     layAction->addWidget( btnMark );
@@ -70,9 +72,9 @@ SenderListDialog::SenderListDialog(QWidget *parent, ListType list, const char *n
     //set default
     switch( DEFAULT_FILTER_BLACKLIST_ACTION )
     {
-      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE  : grpAction->setButton( ID_BUTTON_FILTER_SENDERLIST_DELETE ); break;
-      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK    : grpAction->setButton( ID_BUTTON_FILTER_SENDERLIST_MARK ); break;
-      default                                           : grpAction->setButton( ID_BUTTON_FILTER_SENDERLIST_DELETE ); break;
+      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE  : btnDelete->setChecked( true ); break;
+      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK    : btnMark->setChecked( true ); break;
+      default                                           : btnDelete->setChecked( true ); break;
     }
   }
   //set size
@@ -89,62 +91,70 @@ SenderListDialog::~SenderListDialog()
 
 void SenderListDialog::slotSort( )
 {
-  editFrame->listBox()->sort();
+  editFrame->listView()->model()->sort( 0 );
 }
 
-void SenderListDialog::slotOk( )
+void SenderListDialog::slotButtonClicked( int button )
 {
-  //set config group
-  config->setGroup( CONFIG_GROUP_FILTER );
-
-  //save the list of senders
-  if( list == Black )
-    config->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST, editFrame->items() );
-  else
-    config->writeEntry( CONFIG_ENTRY_FILTER_WHITELIST, editFrame->items() );
-
-  //save blacklist action
-  if( list == Black )
+  if( button == KDialog::Ok )
   {
-   int action = grpAction->selectedId();
-   if( action != ID_BUTTON_FILTER_SENDERLIST_DELETE && action != ID_BUTTON_FILTER_SENDERLIST_MARK )
-     action = DEFAULT_FILTER_BLACKLIST_ACTION;
+    //set config group
+    KConfigGroup* configList = new KConfigGroup( config, CONFIG_GROUP_FILTER );
 
-    switch( action )
+    //save the list of senders
+    if( list == Black )
+      configList->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST, editFrame->items() );
+    else
+      configList->writeEntry( CONFIG_ENTRY_FILTER_WHITELIST, editFrame->items() );
+
+    //save blacklist action
+    if( list == Black )
     {
-      case ID_BUTTON_FILTER_SENDERLIST_DELETE   : config->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE ); break;
-      case ID_BUTTON_FILTER_SENDERLIST_MARK     : config->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK ); break;
-      default                                   : config->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE ); break;
-    }
-  }
+    int action = grpAction->checkedId();
+    if( action != ID_BUTTON_FILTER_SENDERLIST_DELETE && action != ID_BUTTON_FILTER_SENDERLIST_MARK )
+      action = DEFAULT_FILTER_BLACKLIST_ACTION;
 
-  config->sync();
+      switch( action )
+      {
+        case ID_BUTTON_FILTER_SENDERLIST_DELETE   : configList->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE ); break;
+        case ID_BUTTON_FILTER_SENDERLIST_MARK     : configList->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK ); break;
+        default                                   : configList->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE ); break;
+      }
+    }
+
+    config->sync();
+
+    delete configList;
+}
 
   //call slot of super class to close the dialog
-  KDialogBase::slotOk();
+  KDialog::slotButtonClicked( button );
+
 }
 
 void SenderListDialog::fillDialog( )
 {
   //set config group
-  config->setGroup( CONFIG_GROUP_FILTER );
+  KConfigGroup* configList = new KConfigGroup( config, CONFIG_GROUP_FILTER );
 
   //get list of senders
   if( list == Black )
-    editFrame->setItems( config->readListEntry( CONFIG_ENTRY_FILTER_BLACKLIST ) );
+    editFrame->setItems( configList->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST, QStringList() ) );
   else
-    editFrame->setItems( config->readListEntry( CONFIG_ENTRY_FILTER_WHITELIST ) );
+    editFrame->setItems( configList->readEntry( CONFIG_ENTRY_FILTER_WHITELIST, QStringList() ) );
 
   //get blacklist action
   if( list == Black )
   {
-    switch( config->readNumEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, DEFAULT_FILTER_BLACKLIST_ACTION ) )
+    switch( configList->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, DEFAULT_FILTER_BLACKLIST_ACTION ) )
     {
-      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE    : grpAction->setButton( ID_BUTTON_FILTER_SENDERLIST_DELETE ); break;
-      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK      : grpAction->setButton( ID_BUTTON_FILTER_SENDERLIST_MARK ); break;
-      default                                             : grpAction->setButton( ID_BUTTON_FILTER_SENDERLIST_DELETE ); break;
+      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE  : btnDelete->setChecked( true ); break;
+      case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK    : btnMark->setChecked( true ); break;
+      default                                           : btnDelete->setChecked( true ); break;
     }
   }
+
+  delete configList;
 }
 
 

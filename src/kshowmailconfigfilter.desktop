@@ -6,7 +6,7 @@ Name[es]=Filtro
 Comment=Filter
 Comment[de]=Filter
 Comment[es]=Filtro
-Icon=filter
+Icon=view-filter
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library

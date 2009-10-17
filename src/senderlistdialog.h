@@ -20,7 +20,7 @@
 #include <qpushbutton.h>
 
 //KDE headers
-#include <kdialogbase.h>
+#include <KDialog>
 #include <kapplication.h>
 #include <keditlistbox.h>
 #include <klocale.h>
@@ -28,7 +28,7 @@
 #include <kconfig.h>
 
 //KShowmail headers
-#include "../constants.h"
+#include "constants.h"
 
 //Button IDs
 #define ID_BUTTON_FILTER_SENDERLIST_DELETE 1
@@ -38,7 +38,7 @@
  * @brief This is a dialog to edit the blacklist and whitelist. It is used by the class ConfigFilter.
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-class SenderListDialog : public KDialogBase
+class SenderListDialog : public KDialog
 {
 
   Q_OBJECT
@@ -54,9 +54,8 @@ class SenderListDialog : public KDialogBase
      * Constructor
      * @param parent parent widget
      * @param list list which shall be opened
-     * @param name widget name
      */
-    SenderListDialog( QWidget *parent = 0, ListType list = Black, const char *name = 0 );
+    SenderListDialog( QWidget *parent = 0, ListType list = Black );
 
     /**
      * Destructor
@@ -73,7 +72,7 @@ class SenderListDialog : public KDialogBase
     /**
      * Application Config Object
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Edit Frame
@@ -84,6 +83,16 @@ class SenderListDialog : public KDialogBase
      * Combines the action radio buttons for the blacklist.
      */
     QButtonGroup* grpAction;
+
+    /**
+     * Radio button to delete filtered mails
+     */
+    QRadioButton* btnDelete;
+
+    /**
+     * Radio button to mark filtered mails
+     */
+    QRadioButton* btnMark;
 
     /**
      * Reads the entries for the dialog from the config file fill them in it.
@@ -100,11 +109,12 @@ class SenderListDialog : public KDialogBase
 
     /**
      * Overwritten method of KDialogBase.
-     * Called if OK was clicked.
-     * Stores the entered values.
-     * After then it invokes slotOk() of KDialogBase.
+     * Activated when the button <code>button</code> is clicked.
+     * If OK was clicked, it will stores the entered values.
+     * After then it invokes <code>slotButtonClicked<code/>of KDialogBase.
+     * @param button clicked button; is the type KDialog::ButtonCode
      */
-    void slotOk();
+    void slotButtonClicked( int button );
 
 
 };
