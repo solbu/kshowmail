@@ -11,100 +11,97 @@
 //
 #include "configdisplay.h"
 
-typedef KGenericFactory<ConfigDisplay, QWidget> ConfigDisplayFactory;
+K_PLUGIN_FACTORY( ConfigDisplayFactory, registerPlugin<ConfigDisplay>(); )
+K_EXPORT_PLUGIN( ConfigDisplayFactory( "kcm_kshowmailconfigdisplay" ) )
 
-K_EXPORT_COMPONENT_FACTORY( kcm_kshowmailconfigdisplay, ConfigDisplayFactory(
-    "kcm_kshowmailconfigdisplay" ) );
-
-ConfigDisplay::ConfigDisplay( QWidget * parent, const char * name, const QStringList & args )
-  : KCModule( ConfigDisplayFactory::instance(), parent, args )
+ConfigDisplay::ConfigDisplay( QWidget * parent, const QVariantList & args )
+  : KCModule( ConfigDisplayFactory::componentData(), parent, args )
 {
-  //set the module name
-  if ( !name )
-    setName( "configdisplay" );
-
   //build GUI
   //---------
 
   //main layout
-  QVBoxLayout* layMain = new QVBoxLayout( this, 0, 10 );
+  QVBoxLayout* layMain = new QVBoxLayout( this );
 
   //group boxes
-  QGroupBox* gboxAccountlist = new QGroupBox( 0, Qt::Horizontal, i18n( "Account list" ), this, "gboxAccountlist" );
+  QGroupBox* gboxAccountlist = new QGroupBox( i18n( "Account list" ), this );
   layMain->addWidget( gboxAccountlist );
-  QGroupBox* gboxMessagelist = new QGroupBox( 0, Qt::Horizontal, i18n( "Mail list" ), this, "gboxMessagelist" );
+  QGroupBox* gboxMessagelist = new QGroupBox( i18n( "Mail list" ), this );
   layMain->addWidget( gboxMessagelist );
-  QGroupBox* gboxMessageContent = new QGroupBox( 0, Qt::Horizontal, i18n( "Mail content" ), this, "gboxMessageContent" );
+  QGroupBox* gboxMessageContent = new QGroupBox( i18n( "Mail content" ), this );
   layMain->addWidget( gboxMessageContent );
 
   //group box layouts
-  QGridLayout* layAccountlist = new QGridLayout( gboxAccountlist->layout(), 3, 2, 10 );
-  QGridLayout* layMessagelist = new QGridLayout( gboxMessagelist->layout(), 5, 2, 10 );
-  QGridLayout* layMessageContent = new QGridLayout( gboxMessageContent->layout(), 1, 1, 10 );
+  QGridLayout* layAccountlist = new QGridLayout();
+  QGridLayout* layMessagelist = new QGridLayout();
+  QGridLayout* layMessageContent = new QGridLayout();
+  gboxAccountlist->setLayout( layAccountlist );
+  gboxMessagelist->setLayout( layMessagelist );
+  gboxMessageContent->setLayout( layMessageContent );
 
   //create items
-  chkAccountlistActive = new QCheckBox( i18n( "Active" ), gboxAccountlist, "chkAccountlistActive" );
-  QToolTip::add( chkAccountlistActive, i18n( "To switch on/off the 'Active' column in the account list" ) );
+  chkAccountlistActive = new QCheckBox( i18n( "Active" ), gboxAccountlist );
+  chkAccountlistActive->setToolTip( i18n( "To switch on/off the 'Active' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistActive, 0, 0 );
 
-  chkAccountlistAccount = new QCheckBox( i18n( "Account" ), gboxAccountlist, "chkAccountlistAccount" );
-  QToolTip::add( chkAccountlistAccount, i18n( "To switch on/off the 'Account' column in the account list" ) );
+  chkAccountlistAccount = new QCheckBox( i18n( "Account" ), gboxAccountlist );
+  chkAccountlistAccount->setToolTip( i18n( "To switch on/off the 'Account' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistAccount, 0, 1 );
 
-  chkAccountlistServer = new QCheckBox( i18n( "Server" ), gboxAccountlist, "chkAccountlistServer" );
-  QToolTip::add( chkAccountlistServer, i18n( "To switch on/off the 'Server' column in the account list" ) );
+  chkAccountlistServer = new QCheckBox( i18n( "Server" ), gboxAccountlist );
+  chkAccountlistServer->setToolTip( i18n( "To switch on/off the 'Server' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistServer, 1, 0 );
 
-  chkAccountlistUser = new QCheckBox( i18n( "User" ), gboxAccountlist, "chkAccountlistUser" );
-  QToolTip::add( chkAccountlistUser, i18n( "To switch on/off the 'User' column in the account list" ) );
+  chkAccountlistUser = new QCheckBox( i18n( "User" ), gboxAccountlist );
+  chkAccountlistUser->setToolTip( i18n( "To switch on/off the 'User' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistUser, 1, 1 );
 
-  chkAccountlistMessages = new QCheckBox( i18n( "Messages" ), gboxAccountlist, "chkAccountlistMessages" );
-  QToolTip::add( chkAccountlistMessages, i18n( "To switch on/off the 'Messages' column in the account list" ) );
+  chkAccountlistMessages = new QCheckBox( i18n( "Messages" ), gboxAccountlist );
+  chkAccountlistMessages->setToolTip( i18n( "To switch on/off the 'Messages' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistMessages, 2, 0 );
 
-  chkAccountlistSize = new QCheckBox( i18n( "Si&ze" ), gboxAccountlist, "chkAccountlistSize" );
-  QToolTip::add( chkAccountlistSize, i18n( "To switch on/off the 'Size' column in the account list" ) );
+  chkAccountlistSize = new QCheckBox( i18n( "Si&ze" ), gboxAccountlist );
+  chkAccountlistSize->setToolTip( i18n( "To switch on/off the 'Size' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistSize, 2, 1 );
 
-  chkMessagelistNumber = new QCheckBox( i18n( "Number" ), gboxMessagelist, "chkMessagelistNumber" );
-  QToolTip::add( chkMessagelistNumber, i18n( "To switch on/off the 'Number' column in the message list" ) );
+  chkMessagelistNumber = new QCheckBox( i18n( "Number" ), gboxMessagelist );
+  chkMessagelistNumber->setToolTip( i18n( "To switch on/off the 'Number' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistNumber, 0, 0 );
 
-  chkMessagelistAccount = new QCheckBox( i18n( "Account" ), gboxMessagelist, "chkMessagelistAccount" );
-  QToolTip::add( chkMessagelistAccount, i18n( "To switch on/off the 'Account' column in the message list" ) );
+  chkMessagelistAccount = new QCheckBox( i18n( "Account" ), gboxMessagelist );
+  chkMessagelistAccount->setToolTip( i18n( "To switch on/off the 'Account' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistAccount, 0, 1 );
 
-  chkMessagelistFrom = new QCheckBox( i18n( "From" ), gboxMessagelist, "chkMessagelistFrom" );
-  QToolTip::add( chkMessagelistFrom, i18n( "To switch on/off the 'From' column in the message list" ) );
+  chkMessagelistFrom = new QCheckBox( i18n( "From" ), gboxMessagelist );
+  chkMessagelistFrom->setToolTip( i18n( "To switch on/off the 'From' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistFrom, 1, 0 );
 
-  chkMessagelistTo = new QCheckBox( i18n( "To" ), gboxMessagelist, "chkMessagelistTo" );
-  QToolTip::add( chkMessagelistTo, i18n( "To switch on/off the 'To' column in the message list" ) );
+  chkMessagelistTo = new QCheckBox( i18n( "To" ), gboxMessagelist );
+  chkMessagelistTo->setToolTip( i18n( "To switch on/off the 'To' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistTo, 1, 1 );
 
-  chkMessagelistSubject = new QCheckBox( i18n( "Su&bject" ), gboxMessagelist, "chkMessagelistSubject" );
-  QToolTip::add( chkMessagelistSubject, i18n( "To switch on/off the 'Subject' column in the message list" ) );
+  chkMessagelistSubject = new QCheckBox( i18n( "Su&bject" ), gboxMessagelist );
+  chkMessagelistSubject->setToolTip( i18n( "To switch on/off the 'Subject' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistSubject, 2, 0 );
 
-  chkMessagelistDate = new QCheckBox( i18n( "Date" ), gboxMessagelist, "chkMessagelistDate" );
-  QToolTip::add( chkMessagelistDate, i18n( "To switch on/off the 'Date' column in the message list" ) );
+  chkMessagelistDate = new QCheckBox( i18n( "Date" ), gboxMessagelist );
+  chkMessagelistDate->setToolTip( i18n( "To switch on/off the 'Date' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistDate, 2, 1 );
 
-  chkMessagelistSize = new QCheckBox( i18n( "Size" ), gboxMessagelist, "chkMessagelistSize" );
-  QToolTip::add( chkMessagelistSize, i18n( "To switch on/off the 'Size' column in the message list" ) );
+  chkMessagelistSize = new QCheckBox( i18n( "Size" ), gboxMessagelist );
+  chkMessagelistSize->setToolTip( i18n( "To switch on/off the 'Size' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistSize, 3, 0 );
 
-  chkMessagelistContent = new QCheckBox( i18n( "Content" ), gboxMessagelist, "chkMessagelistContent" );
-  QToolTip::add( chkMessagelistContent, i18n( "To switch on/off the 'Content' column in the message list" ) );
+  chkMessagelistContent = new QCheckBox( i18n( "Content" ), gboxMessagelist );
+  chkMessagelistContent->setToolTip( i18n( "To switch on/off the 'Content' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistContent, 3, 1 );
 
-  chkMessagelistState = new QCheckBox( i18n( "State" ), gboxMessagelist, "chkMessagelistState" );
-  QToolTip::add( chkMessagelistState, i18n( "To switch on/off the 'State' column in the message list" ) );
+  chkMessagelistState = new QCheckBox( i18n( "State" ), gboxMessagelist );
+  chkMessagelistState->setToolTip( i18n( "To switch on/off the 'State' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistState, 4, 0 );
 
-  chkAllowHTML = new QCheckBox( i18n( "Allow HTML" ), gboxMessageContent, "chkAllowHTML" );
-  QToolTip::add( chkAllowHTML, i18n( "To switch on/off HTML in the message view") );
+  chkAllowHTML = new QCheckBox( i18n( "Allow HTML" ), gboxMessageContent );
+  chkAllowHTML->setToolTip( i18n( "To switch on/off HTML in the message view") );
   layMessageContent->addWidget( chkAllowHTML, 0, 0 );
 
   //connect all configuration itmes with slot changed() to notify the dialog about changes
@@ -127,7 +124,7 @@ ConfigDisplay::ConfigDisplay( QWidget * parent, const char * name, const QString
 
 
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //load configurated values
   load();
@@ -144,56 +141,70 @@ void ConfigDisplay::slotChanged( )
 
 void ConfigDisplay::load( )
 {
-  config->setGroup( CONFIG_GROUP_ACCOUNT_LIST );
-  chkAccountlistActive->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACTIVE, DEFAULT_DISPLAY_ACCOUNT_ACTIVE ) );
-  chkAccountlistAccount->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACCOUNT, DEFAULT_DISPLAY_ACCOUNT_ACCOUNT ) );
-  chkAccountlistServer->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SERVER, DEFAULT_DISPLAY_ACCOUNT_SERVER ) );
-  chkAccountlistUser->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_USER, DEFAULT_DISPLAY_ACCOUNT_USER ) );
-  chkAccountlistMessages->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_MESSAGES, DEFAULT_DISPLAY_ACCOUNT_MESSAGES ) );
-  chkAccountlistSize->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SIZE, DEFAULT_DISPLAY_ACCOUNT_SIZE ) );
+  KConfigGroup* configAccList = new KConfigGroup( config, CONFIG_GROUP_ACCOUNT_LIST );
 
-  config->setGroup( CONFIG_GROUP_MESSAGE_LIST );
-  chkMessagelistNumber->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_NUMBER, DEFAULT_DISPLAY_MESSAGE_NUMBER ) );
-  chkMessagelistAccount->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_ACCOUNT, DEFAULT_DISPLAY_MESSAGE_ACCOUNT ) );
-  chkMessagelistFrom->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_FROM, DEFAULT_DISPLAY_MESSAGE_FROM ) );
-  chkMessagelistTo->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_TO, DEFAULT_DISPLAY_MESSAGE_TO ) );
-  chkMessagelistSubject->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SUBJECT, DEFAULT_DISPLAY_MESSAGE_SUBJECT ) );
-  chkMessagelistDate->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_DATE, DEFAULT_DISPLAY_MESSAGE_DATE ) );
-  chkMessagelistSize->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, DEFAULT_DISPLAY_MESSAGE_SIZE ) );
-  chkMessagelistContent->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, DEFAULT_DISPLAY_MESSAGE_CONTENT ) );
-  chkMessagelistState->setChecked( config->readBoolEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_STATE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  chkAccountlistActive->setChecked( configAccList->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACTIVE, DEFAULT_DISPLAY_ACCOUNT_ACTIVE ) );
+  chkAccountlistAccount->setChecked( configAccList->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACCOUNT, DEFAULT_DISPLAY_ACCOUNT_ACCOUNT ) );
+  chkAccountlistServer->setChecked( configAccList->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SERVER, DEFAULT_DISPLAY_ACCOUNT_SERVER ) );
+  chkAccountlistUser->setChecked( configAccList->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_USER, DEFAULT_DISPLAY_ACCOUNT_USER ) );
+  chkAccountlistMessages->setChecked( configAccList->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_MESSAGES, DEFAULT_DISPLAY_ACCOUNT_MESSAGES ) );
+  chkAccountlistSize->setChecked( configAccList->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SIZE, DEFAULT_DISPLAY_ACCOUNT_SIZE ) );
 
-  config->setGroup( CONFIG_GROUP_VIEW );
-  chkAllowHTML->setChecked( config->readBoolEntry( CONFIG_ENTRY_VIEW_USE_HTML, DEFAULT_VIEW_USE_HTML ) );
+  KConfigGroup* configMessList = new KConfigGroup( config, CONFIG_GROUP_MESSAGE_LIST );
+
+  chkMessagelistNumber->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_NUMBER, DEFAULT_DISPLAY_MESSAGE_NUMBER ) );
+  chkMessagelistAccount->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_ACCOUNT, DEFAULT_DISPLAY_MESSAGE_ACCOUNT ) );
+  chkMessagelistFrom->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_FROM, DEFAULT_DISPLAY_MESSAGE_FROM ) );
+  chkMessagelistTo->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_TO, DEFAULT_DISPLAY_MESSAGE_TO ) );
+  chkMessagelistSubject->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SUBJECT, DEFAULT_DISPLAY_MESSAGE_SUBJECT ) );
+  chkMessagelistDate->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_DATE, DEFAULT_DISPLAY_MESSAGE_DATE ) );
+  chkMessagelistSize->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, DEFAULT_DISPLAY_MESSAGE_SIZE ) );
+  chkMessagelistContent->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, DEFAULT_DISPLAY_MESSAGE_CONTENT ) );
+  chkMessagelistState->setChecked( configMessList->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_STATE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+
+  KConfigGroup* configView = new KConfigGroup( config, CONFIG_GROUP_VIEW );
+
+  chkAllowHTML->setChecked( configView->readEntry( CONFIG_ENTRY_VIEW_USE_HTML, DEFAULT_VIEW_USE_HTML ) );
+
+  delete configAccList;
+  delete configMessList;
+  delete configView;
 
 }
 
 void ConfigDisplay::save()
 {
-  config->setGroup( CONFIG_GROUP_ACCOUNT_LIST );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACTIVE, chkAccountlistActive->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACCOUNT, chkAccountlistAccount->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SERVER, chkAccountlistServer->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_USER, chkAccountlistUser->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_MESSAGES, chkAccountlistMessages->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SIZE, chkAccountlistSize->isChecked() );
+  KConfigGroup* configAccList = new KConfigGroup( config, CONFIG_GROUP_ACCOUNT_LIST );
 
-  config->setGroup( CONFIG_GROUP_MESSAGE_LIST );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_NUMBER, chkMessagelistNumber->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_ACCOUNT, chkMessagelistAccount->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_FROM, chkMessagelistFrom->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_TO, chkMessagelistTo->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SUBJECT, chkMessagelistSubject->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_DATE, chkMessagelistDate->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, chkMessagelistSize->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, chkMessagelistContent->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_STATE, chkMessagelistState->isChecked() );
+  configAccList->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACTIVE, chkAccountlistActive->isChecked() );
+  configAccList->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACCOUNT, chkAccountlistAccount->isChecked() );
+  configAccList->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SERVER, chkAccountlistServer->isChecked() );
+  configAccList->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_USER, chkAccountlistUser->isChecked() );
+  configAccList->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_MESSAGES, chkAccountlistMessages->isChecked() );
+  configAccList->writeEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SIZE, chkAccountlistSize->isChecked() );
 
-  config->setGroup( CONFIG_GROUP_VIEW );
-  config->writeEntry( CONFIG_ENTRY_VIEW_USE_HTML, chkAllowHTML->isChecked() );
+  KConfigGroup* configMessList = new KConfigGroup( config, CONFIG_GROUP_MESSAGE_LIST );
+
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_NUMBER, chkMessagelistNumber->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_ACCOUNT, chkMessagelistAccount->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_FROM, chkMessagelistFrom->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_TO, chkMessagelistTo->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SUBJECT, chkMessagelistSubject->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_DATE, chkMessagelistDate->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, chkMessagelistSize->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, chkMessagelistContent->isChecked() );
+  configMessList->writeEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_STATE, chkMessagelistState->isChecked() );
+
+  KConfigGroup* configView = new KConfigGroup( config, CONFIG_GROUP_VIEW );
+
+  configView->writeEntry( CONFIG_ENTRY_VIEW_USE_HTML, chkAllowHTML->isChecked() );
 
   //write configuration to disk
   config->sync();
+
+  delete configAccList;
+  delete configMessList;
+  delete configView;
 }
 
 void ConfigDisplay::defaults()

@@ -24,13 +24,14 @@
 #include <kconfig.h>
 #include <kgenericfactory.h>
 #include <kapplication.h>
+#include <KConfigGroup>
 
 //KShowmail headers
-#include <../constants.h>
+#include <constants.h>
 
 
 /**
- * @brief Part of the setup dialog (KShowMailApp::SetupDialog) to configure the display.
+ * @brief Part of the setup dialog to configure the display.
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
 class ConfigDisplay : public KCModule
@@ -41,7 +42,7 @@ Q_OBJECT
     /**
      * Generic Constructor
      */
-    ConfigDisplay( QWidget *parent = 0, const char *name = 0, const QStringList &args = QStringList() );
+    ConfigDisplay( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor
@@ -75,7 +76,7 @@ Q_OBJECT
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Check box to switch on/off the "Active" column in the account list.

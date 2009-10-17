@@ -37,6 +37,10 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
   layMainNewMails->addLayout( layMainNewMailsDown );
   gboxNewMails->setLayout( layMainNewMails );
 
+  //layouts for the lower group box
+  QVBoxLayout* layMainNoNewMails = new QVBoxLayout();
+  gboxNoNewMails->setLayout( layMainNoNewMails );
+
 
   //items for the upper group box
   chkNewMailsAlertWindow = new QCheckBox( i18n( "Show message box" ), gboxNewMails );
@@ -55,7 +59,7 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
   chkNewMailsSound->setToolTip( i18n( "Plays sound if new mail" ) );
   layMainNewMailsDown->addWidget( chkNewMailsSound, 0, 0 );
 
-  btnNewMailsPlaySound = new KPushButton( KGuiItem( QString(), QString( "player_play" ), i18n( "Play the selected sound file" ), i18n( "Play the selected sound file" ) ), gboxNewMails );
+  btnNewMailsPlaySound = new KPushButton( KGuiItem( QString(), QString( "media-playback-start" ), i18n( "Play the selected sound file" ), i18n( "Play the selected sound file" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsPlaySound, 0, 1 );
 
   txtNewMailsSound = new KLineEdit( gboxNewMails );
@@ -68,7 +72,7 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
   chkNewMailsCommand->setToolTip( i18n( "Starts external program if new mail" ) );
   layMainNewMailsDown->addWidget( chkNewMailsCommand, 1, 0 );
 
-  btnNewMailsExecCommand = new KPushButton( KGuiItem( QString(), QString( "exec" ), i18n( "Start the selected program" ), i18n( "Start the selected program" ) ), gboxNewMails );
+  btnNewMailsExecCommand = new KPushButton( KGuiItem( QString(), QString( "system-run" ), i18n( "Start the selected program" ), i18n( "Start the selected program" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsExecCommand, 1, 1 );
 
   txtNewMailsCommand = new KLineEdit( gboxNewMails );
@@ -80,9 +84,11 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
   //items for the lower group box
   chkNoNewMailsMinimize = new QCheckBox( i18n( "Minimi&ze" ), gboxNoNewMails );
   chkNoNewMailsMinimize->setToolTip( i18n( "Minimize window if no new mail" ) );
+  layMainNoNewMails->addWidget( chkNoNewMailsMinimize );
 
   chkNoNewMailsTerminate = new QCheckBox( i18n( "Terminate" ), gboxNoNewMails );
   chkNoNewMailsTerminate->setToolTip( i18n( "Terminate kshowmail if no new mail" ) );
+  layMainNoNewMails->addWidget( chkNoNewMailsTerminate );
 
   //connect file choose buttons
   connect( btnNewMailsChooseSound, SIGNAL( clicked() ), this, SLOT( slotChooseSound() ) );
@@ -235,11 +241,15 @@ void ConfigActions::slotPlaySound( )
 
 void ConfigActions::slotExecuteCommand( )
 {
+  //get whole command
   QString path = txtNewMailsCommand->text();
+
+  //split it
+  QStringList parts = path.split( " ", QString::SkipEmptyParts );
 
   if( path != QString::null )
   {
-    KProcess::execute( path );
+    KProcess::execute( parts );
   }
 }
 

@@ -19,10 +19,6 @@ K_EXPORT_COMPONENT_FACTORY( kcm_kshowmailconfigfilter, ConfigFilterFactory(
 ConfigFilter::ConfigFilter( QWidget * parent, const char * name, const QStringList & args )
   : KCModule( ConfigFilterFactory::instance(), parent, args )
 {
-  //set the module name
-  if ( !name )
-    setName( "configfilter" );
-
   //build GUI
   //---------
 

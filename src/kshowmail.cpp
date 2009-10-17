@@ -182,6 +182,8 @@ void KShowmail::slotSetup() {
   //setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
   setupDialog->addModule( "kshowmailconfigaccounts.desktop" );
   setupDialog->addModule( "kshowmailconfigactions.desktop" );
+  setupDialog->addModule( "kshowmailconfigdisplay.desktop" );
+  setupDialog->addModule( "kshowmailconfigfilter.desktop" );
 
   //If the configuration was changed, it will call slotConfChanged
   connect( setupDialog, SIGNAL( configCommitted() ), this, SLOT( slotConfChanged() ) );
