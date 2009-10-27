@@ -12,16 +12,19 @@
 #ifndef FILTERSETUPITEM_H
 #define FILTERSETUPITEM_H
 
+//QT headers
+#include <QTreeWidgetItem>
+
 //KDE headers
-#include <klistview.h>
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
 #include <klocale.h>
+#include <KConfigGroup>
 
 //KShowmail headers
-#include "../constants.h"
-#include "../types.h"
+#include "constants.h"
+#include "types.h"
 
 using namespace Types;
 
@@ -29,7 +32,7 @@ using namespace Types;
  * @brief This class is used in ConfigFilter to show the available filters in the list view and to store a filter setup.
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-class FilterSetupItem : public KListViewItem
+class FilterSetupItem : public QTreeWidgetItem
 {
 
   public:
@@ -43,14 +46,14 @@ class FilterSetupItem : public KListViewItem
      * General Constructor
      * @param parent the list view
      */
-    FilterSetupItem( KListView* parent );
+    FilterSetupItem( QTreeWidget* parent );
 
     /**
      * Constructor
      * @param parent the list view
      * @param num filter number
      */
-    FilterSetupItem( KListView* parent, uint num );
+    FilterSetupItem( QTreeWidget* parent, uint num );
 
     /**
      * Destructor
@@ -164,14 +167,13 @@ class FilterSetupItem : public KListViewItem
     void save();
 
     /**
-     * Reimplemantation of QListViewItem::compare.
-     * Compares this list view item to i using the column col in ascending order. Reutrns <0 if this item is less than i,
+     * Compares this item to i using the column col in ascending order. Reutrns <0 if this item is less than i,
      * 0 if they are equal and >0 if this item is greater than i. The parameter ascneding will be ignored.
      * @param i pointer to the second view item
      * @param col number of the sorted column
      * @param ascending ignored
      */
-    virtual int compare( QListViewItem* i, int col, bool ascending ) const;
+    virtual int compare( FilterSetupItem* i, int col, bool ascending ) const;
 
     /**
      * Reads the settings from the config file.
@@ -190,7 +192,7 @@ class FilterSetupItem : public KListViewItem
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * List of filter criterias.

@@ -23,19 +23,19 @@
 #include <qregexp.h>
 #include <qfileinfo.h>
 #include <qmap.h>
+#include <QTreeWidget>
 
 //KDE headers
 #include <klocale.h>
 #include <klineedit.h>
 #include <kpushbutton.h>
 #include <kfiledialog.h>
-#include <klistview.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
 #include <kdebug.h>
 
 //Kshowmail headers
-#include "../constants.h"
+#include "constants.h"
 #include "mailboxwizardlistitem.h"
 
 /**

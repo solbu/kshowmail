@@ -33,9 +33,9 @@
 
 //KShowmail headers
 #include "filtersetupitem.h"
-#include "filtercriteriawidget.h"
+//#include "filtercriteriawidget.h"
 #include "constants.h"
-#include "mailboxwizard.h"
+//#include "mailboxwizard.h"
 
 //IDs of the action combo box
 #define ID_COMBO_FILTER_ACTION_PASS       0
@@ -77,7 +77,7 @@ class FilterSetupDialog : public KDialog
     /**
      * View which shows the filter items.
      */
-    KListView* ListView;
+    QTreeWidget* listView;
 
     /**
      * Contains the filter name.
@@ -172,7 +172,7 @@ class FilterSetupDialog : public KDialog
      * Adds a empty critera dialog widget.
      * @return Pointer to the new widget
      */
-    FilterCriteriaWidget* slotAddCriteriaWidget();
+//    FilterCriteriaWidget* slotAddCriteriaWidget();
 
     /**
      * Removes the last criteria dialog widget.

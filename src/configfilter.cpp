@@ -66,24 +66,22 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
 
   listFilters = new QTreeWidget( gboxFilters );
   listFilters->setColumnCount( 3 );
-  listFilters->setHeaderLabels( QStringList( i18n( "No."), i18n( "Name" ), i18n( "Action" ) ) ),
+  QStringList labels;
+  labels << i18n( "No.") << i18n( "Name" ) << i18n( "Action" );
+  listFilters->setHeaderLabels( labels ),
   layFilters->addWidget( listFilters );
-  listFilters->setColumnWidthMode( 0, QListView::Maximum );
-  listFilters->setColumnWidthMode( 1, QListView::Maximum );
-  listFilters->setColumnWidthMode( 2, QListView::Maximum );
-  listFilters->setResizeMode( QListView::LastColumn );
-  listFilters->setColumnAlignment( 0, Qt::AlignHCenter );
   listFilters->setIndentation( 0 );   //the list is sorted by filter number
   listFilters->setAllColumnsShowFocus( true );
 
-  QVBoxLayout* layFiltersButtons = new QVBoxLayout( layFilters, 10 );
-  btnAdd = new KPushButton( KStdGuiItem::add(), gboxFilters, "btnAdd" );
-  btnEdit = new KPushButton( KStdGuiItem::configure(), gboxFilters, "btnEdit" );
-  btnRemove = new KPushButton( KStdGuiItem::remove(), gboxFilters, "btnRemove" );
-  btnMoveTop = new KPushButton( KGuiItem( "", "top", i18n( "Moves the selected filter at the top" ) ), gboxFilters, "btnMoveTop" );
-  btnMoveUp = new KPushButton( KGuiItem( "", "up", i18n( "Moves the selectKListViewed filter up" ) ), gboxFilters, "btnMoveUp" );
-  btnMoveDown = new KPushButton( KGuiItem( "", "down", i18n( "Moves the selected filter down" ) ), gboxFilters, "btnMoveDown" );
-  btnMoveBottom = new KPushButton( KGuiItem( "", "bottom", i18n( "Moves the selected filter at the bottm" ) ), gboxFilters, "btnMoveBottom" );
+  QVBoxLayout* layFiltersButtons = new QVBoxLayout();
+  layFilters->addLayout( layFiltersButtons );
+  btnAdd = new KPushButton( KStandardGuiItem::add(), gboxFilters );
+  btnEdit = new KPushButton( KStandardGuiItem::configure(), gboxFilters );
+  btnRemove = new KPushButton( KStandardGuiItem::remove(), gboxFilters );
+  btnMoveTop = new KPushButton( KGuiItem( "", "go-top", i18n( "Moves the selected filter at the top" ) ), gboxFilters );
+  btnMoveUp = new KPushButton( KGuiItem( "", "go-up", i18n( "Moves the selectKListViewed filter up" ) ), gboxFilters );
+  btnMoveDown = new KPushButton( KGuiItem( "", "go-down", i18n( "Moves the selected filter down" ) ), gboxFilters );
+  btnMoveBottom = new KPushButton( KGuiItem( "", "go-bottom", i18n( "Moves the selected filter at the bottm" ) ), gboxFilters );
   btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
   btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
   btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
@@ -198,10 +196,10 @@ void ConfigFilter::load( )
     txtMailbox->clear();
 
   //enable or disable widgets for other action
-  slotOtherActionChanged( cmbActionOthers->currentItem() );
+  slotOtherActionChanged( cmbActionOthers->currentItem() ); */
 
   //get number of filters
-  uint numFilters = config->readNumEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, 0 );
+  uint numFilters = configFilter->readEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, 0 );
 
   //create filter setup items and load theirs settings
   for( uint ctr = 1; ctr <= numFilters; ctr++ )
@@ -214,7 +212,7 @@ void ConfigFilter::load( )
   }
 
   //set filter index counter
-  lastFilterNumber = numFilters;*/
+  lastFilterNumber = numFilters;
 
   delete configFilter;
 }
@@ -331,14 +329,14 @@ void ConfigFilter::slotOpenBlacklist( )
 
 void ConfigFilter::slotAdd( )
 {
-/*  //create a new filter setup item
+  //create a new filter setup item
   FilterSetupItem* item = new FilterSetupItem( listFilters , lastFilterNumber + 1 );
 
   //open setup dialog
   FilterSetupDialog* dlg = new FilterSetupDialog( this, item );
   int res = dlg->exec();
 
-  if( res == KDialogBase::Accepted )
+  if( res == KDialog::Accepted )
   {
     //inform application setup dialog about changes
     slotChanged();
@@ -351,7 +349,7 @@ void ConfigFilter::slotAdd( )
     delete item;
 
   //delete dialog
-  delete dlg;*/
+  delete dlg;
 }
 
 void ConfigFilter::slotEdit( )
@@ -595,8 +593,8 @@ void ConfigFilter::slotMoveDown( )
 void ConfigFilter::slotFilterActiveToggled( bool filterOn )
 {
   gboxSenderLists->setEnabled( filterOn );
-/*  gboxFilters->setEnabled( filterOn );
-  gboxOthers->setEnabled( filterOn );*/
+  gboxFilters->setEnabled( filterOn );
+/*  gboxOthers->setEnabled( filterOn );*/
 }
 
 void ConfigFilter::slotOpenMailBoxWizard( )

@@ -11,8 +11,8 @@
 //
 #include "filtersetupitem.h"
 
-FilterSetupItem::FilterSetupItem( KListView* parent )
- : KListViewItem( parent )
+FilterSetupItem::FilterSetupItem( QTreeWidget* parent )
+ : QTreeWidgetItem( parent )
 {
   //set default number
   number = 0;
@@ -20,8 +20,8 @@ FilterSetupItem::FilterSetupItem( KListView* parent )
   init();
 }
 
-FilterSetupItem::FilterSetupItem( KListView* parent, uint num )
-  : KListViewItem( parent )
+FilterSetupItem::FilterSetupItem( QTreeWidget* parent, uint num )
+  : QTreeWidgetItem( parent )
 {
   //store the given filter number
   number = num;
@@ -36,7 +36,7 @@ FilterSetupItem::~FilterSetupItem()
 void FilterSetupItem::init( )
 {
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //set default values
   setName( i18n( DEFAULT_FILTER_NAME ) );
@@ -100,19 +100,19 @@ void FilterSetupItem::save( )
   config->deleteGroup( group );
 
   //set group
-  config->setGroup( group );
+  KConfigGroup* configFilter = new KConfigGroup( config, group );
 
   //write entries
-  config->writeEntry( CONFIG_ENTRY_FILTER_NAME, name );
+  configFilter->writeEntry( CONFIG_ENTRY_FILTER_NAME, name );
 
   if( linkage == CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL ||
       linkage == CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY )
   {
-    config->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, linkage );
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, linkage );
   }
   else
   {
-    config->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, DEFAULT_FILTER_CRITERIA_LINKAGE );
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, DEFAULT_FILTER_CRITERIA_LINKAGE );
   }
 
   if( action == CONFIG_VALUE_FILTER_ACTION_PASS ||
@@ -122,18 +122,18 @@ void FilterSetupItem::save( )
       action == CONFIG_VALUE_FILTER_ACTION_IGNORE ||
       action == CONFIG_VALUE_FILTER_ACTION_SPAMCHECK )
   {
-    config->writeEntry( CONFIG_ENTRY_FILTER_ACTION, action );
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_ACTION, action );
   }
   else
   {
-    config->writeEntry( CONFIG_ENTRY_FILTER_ACTION, DEFAULT_FILTER_ACTION );
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_ACTION, DEFAULT_FILTER_ACTION );
   }
 
   //write action parameter
   switch( action )
   {
     case CONFIG_VALUE_FILTER_ACTION_MOVE  :
-      config->writeEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX, mailbox );
+      configFilter->writeEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX, mailbox );
       break;
 
     default: break;
@@ -142,7 +142,7 @@ void FilterSetupItem::save( )
   //write criteria list and number of criterias
   if( !criteriaList.empty() )
   {
-    config->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, criteriaList.size() );
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, criteriaList.size() );
 
     int ctr = 0; //number of the current criteria
     FilterCriteriaList_Type::iterator it;
@@ -150,8 +150,8 @@ void FilterSetupItem::save( )
     {
       ctr++;
 
-      config->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( ctr ), (*it).source );
-      config->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( ctr ), (*it).condition );
+      configFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( ctr ), (*it).source );
+      configFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( ctr ), (*it).condition );
 
       switch( (*it).source )
       {
@@ -159,18 +159,18 @@ void FilterSetupItem::save( )
         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO       :
         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT  :
         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER   :
-        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT  :   config->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), (*it).txtValue );
-                                                              config->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( ctr ), (*it).cs );
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT  :   configFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), (*it).txtValue );
+                                                              configFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( ctr ), (*it).cs );
                                                               break;
 
-        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE     :   config->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), (*it).numValue );
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE     :   configFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), (*it).numValue );
                                                               break;
       }
     }
   }
   else
   {
-    config->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, 0 );
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, 0 );
   }
 
 }
@@ -232,14 +232,24 @@ uint FilterSetupItem::getNumber( ) const
   return number;
 }
 
-int FilterSetupItem::compare( QListViewItem * i, int col, bool ascending ) const
+int FilterSetupItem::compare( FilterSetupItem * i, int col, bool ascending ) const
 {
   if( col == ColNumber )
   {
     return text( ColNumber ).toInt() - i->text( ColNumber ).toInt();
   }
   else
-    return key( col, ascending ).compare( i->key( col, ascending) );
+  {
+    if( ascending )
+    {
+      return text( col ).compare( text( col ) );
+    }
+    else
+    {
+      return text( col ).compare( text( col ) ) * -1;
+    }
+  }
+    
 
 }
 
@@ -265,19 +275,25 @@ void FilterSetupItem::updateActionColumn( )
 
 void FilterSetupItem::load( )
 {
+    //build group name
+  QString group;
+  group = QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( number );
+
+
   //set group
-  config->setGroup( QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( number ) );
+  //set group
+  KConfigGroup* configFilter = new KConfigGroup( config, group );
 
   //get name
-  setName( config->readEntry( CONFIG_ENTRY_FILTER_NAME, DEFAULT_FILTER_NAME ) );
+  setName( configFilter->readEntry( CONFIG_ENTRY_FILTER_NAME, DEFAULT_FILTER_NAME ) );
 
   //get linkage
-  setCriteriaLinkage( config->readNumEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, DEFAULT_FILTER_CRITERIA_LINKAGE ) );
+  setCriteriaLinkage( configFilter->readEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, DEFAULT_FILTER_CRITERIA_LINKAGE ) );
   if( linkage != CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL && linkage != CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY )
     setCriteriaLinkage( DEFAULT_FILTER_CRITERIA_LINKAGE );
 
   //get action
-  setAction( config->readNumEntry( CONFIG_ENTRY_FILTER_ACTION, DEFAULT_FILTER_ACTION ) );
+  setAction( configFilter->readEntry( CONFIG_ENTRY_FILTER_ACTION, DEFAULT_FILTER_ACTION ) );
   if( action != CONFIG_VALUE_FILTER_ACTION_PASS &&
       action != CONFIG_VALUE_FILTER_ACTION_DELETE &&
       action != CONFIG_VALUE_FILTER_ACTION_MARK &&
@@ -289,19 +305,19 @@ void FilterSetupItem::load( )
   //get action parameter
   switch( action )
   {
-    case CONFIG_VALUE_FILTER_ACTION_MOVE : setMailBox( config->readEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX, DEFAULT_FILTER_ACTION_MOVE_MAILBOX ) ); break;
+    case CONFIG_VALUE_FILTER_ACTION_MOVE : setMailBox( configFilter->readEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX, DEFAULT_FILTER_ACTION_MOVE_MAILBOX ) ); break;
     default                              : setMailBox( QString::null );
   }
 
   //get number of criterias
-  uint numCrit = config->readNumEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, 0 );
+  uint numCrit = configFilter->readEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, 0 );
 
   //get criterias
   for( uint ctr = 1; ctr <= numCrit; ctr++ )
   {
     struct FilterCriteria_Type crit;
 
-    crit.source = config->readNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( ctr ), DEFAULT_FILTER_CRITERIA_SOURCE );
+    crit.source = configFilter->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( ctr ), DEFAULT_FILTER_CRITERIA_SOURCE );
     if( crit.source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM &&
         crit.source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO &&
         crit.source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT &&
@@ -312,7 +328,7 @@ void FilterSetupItem::load( )
 
     switch( crit.source )
     {
-      case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE   : crit.condition = config->readNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( ctr ), DEFAULT_FILTER_CRITERIA_COND_NUM );
+      case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE   : crit.condition = configFilter->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( ctr ), DEFAULT_FILTER_CRITERIA_COND_NUM );
                                                         if( crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL &&
                                                             crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL &&
                                                             crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER &&
@@ -320,10 +336,10 @@ void FilterSetupItem::load( )
                                                             crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS &&
                                                             crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL )
                                                           crit.condition = DEFAULT_FILTER_CRITERIA_COND_NUM;
-                                                        crit.numValue = config->readNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), DEFAULT_FILTER_CRITERIA_SIZE );
+                                                        crit.numValue = configFilter->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), DEFAULT_FILTER_CRITERIA_SIZE );
                                                         break;
 
-      default                                         :  crit.condition = config->readNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( ctr ), DEFAULT_FILTER_CRITERIA_COND_TEXT );
+      default                                         :  crit.condition = configFilter->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( ctr ), DEFAULT_FILTER_CRITERIA_COND_TEXT );
                                                          if( crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS &&
                                                              crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS &&
                                                              crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS &&
@@ -331,8 +347,8 @@ void FilterSetupItem::load( )
                                                              crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR &&
                                                              crit.condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR )
                                                            crit.condition = DEFAULT_FILTER_CRITERIA_COND_TEXT;
-                                                         crit.txtValue = config->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ) );
-                                                         crit.cs = config->readBoolEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( ctr ), DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE );
+                                                         crit.txtValue = configFilter->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ) );
+                                                         crit.cs = configFilter->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( ctr ), DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE );
                                                          break;
     }
 

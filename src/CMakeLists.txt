@@ -49,6 +49,8 @@ target_link_libraries( kcm_kshowmailconfigdisplay ${KDE4_KDEUI_LIBS} )
 set( CONFIGFILTER_SRCS
      configfilter.cpp
      senderlistdialog.cpp
+     filtersetupitem.cpp
+     filtersetupdialog.cpp
    )
 
 kde4_add_plugin( kcm_kshowmailconfigfilter ${CONFIGFILTER_SRCS} )

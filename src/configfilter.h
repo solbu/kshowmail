@@ -33,7 +33,8 @@
 //Kshowmail headers
 #include "constants.h"
 #include "senderlistdialog.h"
-//#include "filtersetupdialog.h"
+#include "filtersetupitem.h"
+#include "filtersetupdialog.h"
 //#include "mailboxwizard.h"
 
 //radio button IDs

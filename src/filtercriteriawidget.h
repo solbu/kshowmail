@@ -32,8 +32,8 @@
 #include <kparts/componentfactory.h>
 
 //KShowmail headers
-#include <../constants.h>
-#include <../types.h>
+#include <constants.h>
+#include <types.h>
 
 //ComboBox IDs
 #define ID_COMBO_SOURCE_FROM    0
