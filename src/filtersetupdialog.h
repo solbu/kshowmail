@@ -35,7 +35,7 @@
 #include "filtersetupitem.h"
 //#include "filtercriteriawidget.h"
 #include "constants.h"
-//#include "mailboxwizard.h"
+#include "mailboxwizard.h"
 
 //IDs of the action combo box
 #define ID_COMBO_FILTER_ACTION_PASS       0

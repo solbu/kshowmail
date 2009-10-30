@@ -52,7 +52,7 @@ class MailBoxWizard : public QWizard
     /**
      * Constructor
      */
-    MailBoxWizard( QWidget* parent = 0, const char* name = 0 );
+    MailBoxWizard( QWidget* parent = 0 );
 
     /**
      * Destructor
@@ -80,19 +80,7 @@ class MailBoxWizard : public QWizard
     /**
      * This view shows the available mailboxes in the selected directory
      */
-    KListView* lstMailboxes;
-
-    /**
-     * Title of page 1.
-     * Set by constructor
-     */
-    QString title1;
-
-    /**
-     * Title of page 2.
-     * Set by Constructor.
-     */
-    QString title2;
+    QTreeWidget* lstMailboxes;
 
     /**
      * Returns whether the given directory is a maildir directory
@@ -121,9 +109,9 @@ class MailBoxWizard : public QWizard
     /**
      * Connected with the signal selected of this wizard.
      * Searchs for mailboxes inside the path typed in page1.
-     * @param pageTitle title of the selected page
+     * @param pageID ID of the showed page
      */
-    void slotPageChanged( const QString& pageTitle );
+    void slotPageChanged( int pageID );
 
 
 };

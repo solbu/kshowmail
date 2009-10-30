@@ -11,44 +11,47 @@
 //
 #include "mailboxwizard.h"
 
-MailBoxWizard::MailBoxWizard( QWidget* parent, const char* name )
- : QWizard( parent, name, true )
+MailBoxWizard::MailBoxWizard( QWidget* parent )
+ : QWizard( parent )
 {
 
   //this is page one
   //in this the user can chosse his mail directory
   //----------------------------------------------
-  QWidget* page1 = new QWidget( this, "page1" );
-  QHBoxLayout* layMain1 = new QHBoxLayout( page1, 0, 10 );
+  QWizardPage* page1 = new QWizardPage();
+  page1->setTitle( i18n( "Please choose the path to the mailboxes." ) );
+  page1->setSubTitle( i18n( "KShowmail supports only MailDir boxes." ) );
+  QHBoxLayout* layMain1 = new QHBoxLayout();
+  page1->setLayout( layMain1 );
 
-  txtMailDir = new KLineEdit( page1, "txtMailDir" );
+  txtMailDir = new KLineEdit( page1 );
   layMain1->addWidget( txtMailDir );
 
-  btnMailDir = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Press to choose the mail directory" ), i18n( "Press to choose the mail directory" ) ), page1, "btnMailDir" );
+  btnMailDir = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Press to choose the mail directory" ), i18n( "Press to choose the mail directory" ) ), page1 );
   btnMailDir->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   layMain1->addWidget( btnMailDir );
   connect( btnMailDir, SIGNAL( clicked() ), this, SLOT( slotOpenDirDialog() ) );
 
-  title1 = i18n( "Please choose the path to the mailboxes.\nKShowmail supports only MailDir boxes." );
-  addPage( page1, title1 );
+  addPage( page1 );
 
 
   //this is page two
   //in this the user can choose the mailbox
   //---------------------------------------
-  QWidget* page2 = new QWidget( this, "page2" );
-  QHBoxLayout* layMain2 = new QHBoxLayout( page2, 0, 10 );
+  QWizardPage* page2 = new QWizardPage();
+  page2->setTitle( i18n( "Please choose the mailbox" ) );
+  QHBoxLayout* layMain2 = new QHBoxLayout();
+  page2->setLayout( layMain2 );
 
-  lstMailboxes = new KListView( page2, "lstMailboxes" );
-  lstMailboxes->addColumn( "Mailbox" );
-  lstMailboxes->setRootIsDecorated( true );
+  lstMailboxes = new QTreeWidget( page2 );
+  lstMailboxes->setColumnCount( 1 );
+  lstMailboxes->setHeaderLabel( "Mailbox" );
+  lstMailboxes->setIndentation( 0 );
   layMain2->addWidget( lstMailboxes );
 
-  title2 = i18n( "Please choose the mailbox" );
-  addPage( page2, title2 );
-  setFinishEnabled( page2, true );
+  addPage( page2 );
 
-  connect( this, SIGNAL( selected( const QString& ) ), this, SLOT( slotPageChanged( const QString& ) ) );
+  connect( this, SIGNAL( currentIdChanged(int) ), this, SLOT( slotPageChanged( int ) ) );
 }
 
 
@@ -62,7 +65,7 @@ void MailBoxWizard::slotOpenDirDialog( )
   QString oldPath = txtMailDir->text();
 
   //get new path
-  QString path = KFileDialog::getExistingDirectory( oldPath, this, i18n( "Choose the mailbox directory") );
+  QString path = KFileDialog::getExistingDirectory( KUrl::fromPathOrUrl( oldPath ), this, i18n( "Choose the mailbox directory") );
 
   //put new or old path in the edit line
   if( path == QString::null )
@@ -71,10 +74,11 @@ void MailBoxWizard::slotOpenDirDialog( )
     txtMailDir->setText( path );
 }
 
-void MailBoxWizard::slotPageChanged( const QString& pageTitle )
+void MailBoxWizard::slotPageChanged( int pageID )
 {
+  kdDebug() << pageID << endl;
   //just we looking for mailboxes if the page 2 was opened
-  if( pageTitle == title2 )
+  if( pageID == 1 )
   {
     //clear all entries
     lstMailboxes->clear();
@@ -88,6 +92,7 @@ void MailBoxWizard::slotPageChanged( const QString& pageTitle )
 
       for( QStringList::const_iterator it = entries.begin(); it != entries.end(); ++it )
       {
+        kdDebug() << *it << endl;
         //add an entry to the mailbox list
         QDir newMailDir( mailDir );
         newMailDir.cd( (*it) );
@@ -130,29 +135,29 @@ void MailBoxWizard::addMailBoxListItem( QString boxname, QDir path )
 {
   //translate some default mailboxes
   QString boxnameTrans;
-  if( boxname.lower() == "inbox" )
+  if( boxname.toLower() == "inbox" )
     boxnameTrans = i18n( "Inbox" );
-  else if( boxname.lower() == "outbox" )
+  else if( boxname.toLower() == "outbox" )
     boxnameTrans = i18n( "Outbox" );
-  else if( boxname.lower() == "drafts" )
+  else if( boxname.toLower() == "drafts" )
     boxnameTrans = i18n( "Drafts" );
-  else if( boxname.lower() == "sent-mail" )
+  else if( boxname.toLower() == "sent-mail" )
     boxnameTrans = i18n( "sent-mail" );
-  else if( boxname.lower() == "trash" )
+  else if( boxname.toLower() == "trash" )
     boxnameTrans = i18n( "Trash" );
   else
     boxnameTrans = boxname;
 
   //create item
   MailBoxWizardListItem* newItem;
-  newItem = new MailBoxWizardListItem( lstMailboxes, boxnameTrans, path.absPath() + "/" + boxname + "/" );
+  newItem = new MailBoxWizardListItem( lstMailboxes, boxnameTrans, path.absolutePath() + "/" + boxname + "/" );
 
 
 }
 
 QString MailBoxWizard::getPath( )
 {
-  MailBoxWizardListItem* item = (MailBoxWizardListItem*)lstMailboxes->selectedItem();
+  MailBoxWizardListItem* item = (MailBoxWizardListItem*)lstMailboxes->selectedItems().first();
 
   QString path = QString::null;
   if( item != NULL )

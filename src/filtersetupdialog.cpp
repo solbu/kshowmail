@@ -94,37 +94,37 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   connect( cmbAction, SIGNAL( activated( int ) ), this, SLOT( slotActionChanged( int ) ) );
 
   //insert items
-  cmbAction->insertItem( i18n( "Show" ), ID_COMBO_FILTER_ACTION_PASS );
-  cmbAction->insertItem( i18n( "Delete" ), ID_COMBO_FILTER_ACTION_DELETE );
-  cmbAction->insertItem( i18n( "Mark" ), ID_COMBO_FILTER_ACTION_MARK );
-  cmbAction->insertItem( i18n( "Move" ), ID_COMBO_FILTER_ACTION_MOVE );
-  cmbAction->insertItem( i18n( "Spamcheck" ), ID_COMBO_FILTER_ACTION_SPAMCHECK );
-  cmbAction->insertItem( i18n( "Ignore" ), ID_COMBO_FILTER_ACTION_IGNORE );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_PASS, i18n( "Show" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_DELETE, i18n( "Delete" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_MARK, i18n( "Mark" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_MOVE, i18n( "Move" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_SPAMCHECK, i18n( "Spamcheck" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_IGNORE, i18n( "Ignore" ) );
 
-//   //create edit line to defined the mailbox for move
-//   txtMailbox = new KLineEdit( gboxAction );
-//   layAction->addWidget( txtMailbox );
-// 
-//   //create wizard button to configure mailbox
-//   btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "wizard" ), gboxAction );
-//   layAction->addWidget( btnMailboxWizard );
-//   QToolTip::add( btnMailboxWizard, i18n( "Choose the mailbox" ) );
-//   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
-// 
-//   //set default action
-//   switch( DEFAULT_FILTER_ACTION )
-//   {
-//     case CONFIG_VALUE_FILTER_ACTION_PASS       : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_PASS ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_DELETE     : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_DELETE ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_MARK       : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_MARK ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_MOVE       : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_MOVE ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK  : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_SPAMCHECK ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_IGNORE     : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_IGNORE ); break;
-//   }
-// 
-//   //enable or disable action widgets
-//   slotActionChanged( cmbAction->currentItem() );
-// 
+  //create edit line to defined the mailbox for move
+  txtMailbox = new KLineEdit( gboxAction );
+  layAction->addWidget( txtMailbox );
+
+  //create wizard button to configure mailbox
+  btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "tools-wizard" ), gboxAction );
+  layAction->addWidget( btnMailboxWizard );
+  btnMailboxWizard->setToolTip( i18n( "Choose the mailbox" ) );
+  connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
+
+  //set default action
+  switch( DEFAULT_FILTER_ACTION )
+  {
+    case CONFIG_VALUE_FILTER_ACTION_PASS       : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_PASS ); break;
+    case CONFIG_VALUE_FILTER_ACTION_DELETE     : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_DELETE ); break;
+    case CONFIG_VALUE_FILTER_ACTION_MARK       : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_MARK ); break;
+    case CONFIG_VALUE_FILTER_ACTION_MOVE       : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_MOVE ); break;
+    case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK  : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_SPAMCHECK ); break;
+    case CONFIG_VALUE_FILTER_ACTION_IGNORE     : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_IGNORE ); break;
+  }
+
+  //enable or disable action widgets
+  slotActionChanged( cmbAction->currentIndex() );
+
 //   //this adds a first empty criteria widget at the dialog if the given setup item pointer is null
 //   //(this means we want to create a new filter)
 //   if( item == NULL )
@@ -203,36 +203,36 @@ void FilterSetupDialog::fillDialog( )
 //     slotAddCriteriaWidget();
 // 
 // 
-//   //set action
-//   switch( filter->getAction() )
-//   {
-//     case CONFIG_VALUE_FILTER_ACTION_PASS      : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_PASS ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_DELETE    : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_DELETE ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_MARK      : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_MARK ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_MOVE      : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_MOVE ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_IGNORE    : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_IGNORE ); break;
-//     case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_SPAMCHECK ); break;
-//     default                                   : kdError() << "FilterSetupDialog:: fillDialog: The Filter Setup Item of filter " << filter->getName() << " has returned an invalid action value. Set default value." << endl;
-//                                                 switch( DEFAULT_FILTER_ACTION )
-//                                                 {
-//                                                   case CONFIG_VALUE_FILTER_ACTION_PASS      : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_PASS ); break;
-//                                                   case CONFIG_VALUE_FILTER_ACTION_DELETE    : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_DELETE ); break;
-//                                                   case CONFIG_VALUE_FILTER_ACTION_MARK      : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_MARK ); break;
-//                                                   case CONFIG_VALUE_FILTER_ACTION_MOVE      : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_MOVE ); break;
-//                                                   case CONFIG_VALUE_FILTER_ACTION_IGNORE    : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_IGNORE ); break;
-//                                                   case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK : cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_SPAMCHECK ); break;
-//                                                   default: kdError() << "FilterSetupDialog::fillDialog: The default value DEFAULT_FILTER_ACTION in constants.h is also invalid. Set action to PASS." << endl;
-//                                                            cmbAction->setCurrentItem( ID_COMBO_FILTER_ACTION_PASS );
-//                                                            break;
-//                                                 }
-//   }
-// 
-//   //set mailbox name if action is MOVE
-//   if( filter->getAction() == CONFIG_VALUE_FILTER_ACTION_MOVE )
-//     txtMailbox->setText( filter->getMailBox() );
-// 
-//   //enable or disable action widgets
-//   slotActionChanged( cmbAction->currentItem() );
+  //set action
+  switch( filter->getAction() )
+  {
+    case CONFIG_VALUE_FILTER_ACTION_PASS      : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_PASS ); break;
+    case CONFIG_VALUE_FILTER_ACTION_DELETE    : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_DELETE ); break;
+    case CONFIG_VALUE_FILTER_ACTION_MARK      : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_MARK ); break;
+    case CONFIG_VALUE_FILTER_ACTION_MOVE      : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_MOVE ); break;
+    case CONFIG_VALUE_FILTER_ACTION_IGNORE    : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_IGNORE ); break;
+    case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_SPAMCHECK ); break;
+    default                                   : kdError() << "FilterSetupDialog:: fillDialog: The Filter Setup Item of filter " << filter->getName() << " has returned an invalid action value. Set default value." << endl;
+                                                switch( DEFAULT_FILTER_ACTION )
+                                                {
+                                                  case CONFIG_VALUE_FILTER_ACTION_PASS      : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_PASS ); break;
+                                                  case CONFIG_VALUE_FILTER_ACTION_DELETE    : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_DELETE ); break;
+                                                  case CONFIG_VALUE_FILTER_ACTION_MARK      : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_MARK ); break;
+                                                  case CONFIG_VALUE_FILTER_ACTION_MOVE      : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_MOVE ); break;
+                                                  case CONFIG_VALUE_FILTER_ACTION_IGNORE    : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_IGNORE ); break;
+                                                  case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK : cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_SPAMCHECK ); break;
+                                                  default: kdError() << "FilterSetupDialog::fillDialog: The default value DEFAULT_FILTER_ACTION in constants.h is also invalid. Set action to PASS." << endl;
+                                                           cmbAction->setCurrentIndex( ID_COMBO_FILTER_ACTION_PASS );
+                                                           break;
+                                                }
+  }
+
+  //set mailbox name if action is MOVE
+  if( filter->getAction() == CONFIG_VALUE_FILTER_ACTION_MOVE )
+    txtMailbox->setText( filter->getMailBox() );
+
+  //enable or disable action widgets
+  slotActionChanged( cmbAction->currentIndex() );
 
 }
 
@@ -445,13 +445,13 @@ void FilterSetupDialog::slotActionChanged( int index )
 
 void FilterSetupDialog::slotOpenMailBoxWizard( )
 {
-/*  MailBoxWizard wizard( this, "malboxwizard" );
-  wizard.setCaption( i18n( "Mailbox Select" ) );
+  MailBoxWizard wizard( this );
+  wizard.setWindowTitle( i18n( "Mailbox Select" ) );
   int res = wizard.exec();
 
   if( res == QDialog::Accepted )
     txtMailbox->setText( wizard.getPath() );
-*/
+
 }
 
 

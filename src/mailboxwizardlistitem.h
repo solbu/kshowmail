@@ -13,16 +13,13 @@
 #define MAILBOXWIZARDLISTITEM_H
 
 //Qt-Headers
-#include <qlistview.h>
-
-//KDE-Headers
-#include <klistview.h>
+#include <QTreeWidget>
 
 /**
  * This is a list item in the mailbox list of the mailbox wizard
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-class MailBoxWizardListItem : public KListViewItem
+class MailBoxWizardListItem : public QTreeWidgetItem
 {
 
   public:
@@ -34,7 +31,7 @@ class MailBoxWizardListItem : public KListViewItem
      * @param label column content
      * @param path the absolute path to this mailbox
      */
-    MailBoxWizardListItem( QListView* parent, QString label, QString path );
+    MailBoxWizardListItem( QTreeWidget* parent, QString label, QString path );
 
     /**
      * Destructor

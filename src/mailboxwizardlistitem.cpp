@@ -15,8 +15,8 @@ MailBoxWizardListItem::~MailBoxWizardListItem()
 {
 }
 
-MailBoxWizardListItem::MailBoxWizardListItem( QListView* parent, QString label, QString path )
- : KListViewItem( parent, label )
+MailBoxWizardListItem::MailBoxWizardListItem( QTreeWidget* parent, QString label, QString path )
+ : QTreeWidgetItem( parent, QStringList( label ) )
 {
   this->path = path;
 }
