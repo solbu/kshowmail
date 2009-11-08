@@ -354,29 +354,35 @@ void ConfigFilter::slotAdd( )
 
 void ConfigFilter::slotEdit( )
 {
-//   //get selected item
-//   FilterSetupItem* item = (FilterSetupItem*)listFilters->selectedItem();
-// 
-//   //return if no item selected
-//   if( item == NULL ) return;
-// 
-//   //open setup dialog
-//   FilterSetupDialog* dlg = new FilterSetupDialog( this, item );
-//   int res = dlg->exec();
-// 
-//   //inform application setup dialog about changes
-//   if( res == KDialogBase::Accepted )
-//     slotChanged();
-// 
-//   //delete dialog
-//   delete dlg;
+  //get selected item
+  QList<QTreeWidgetItem*> items = listFilters->selectedItems();
+  if( items.isEmpty() ) return;
+  
+  FilterSetupItem* item = (FilterSetupItem*)items.first();
+
+  //return if no item selected
+  if( item == NULL ) return;
+
+  //open setup dialog
+  FilterSetupDialog* dlg = new FilterSetupDialog( this, item );
+  int res = dlg->exec();
+
+  //inform application setup dialog about changes
+  if( res == KDialog::Accepted )
+    slotChanged();
+
+  //delete dialog
+  delete dlg;
 
 }
 
 void ConfigFilter::slotRemove( )
 {
-/*  //get selected item
-  FilterSetupItem* item = (FilterSetupItem*)listFilters->selectedItem();
+  //get selected item
+  QList<QTreeWidgetItem*> items = listFilters->selectedItems();
+  if( items.isEmpty() ) return;
+
+  FilterSetupItem* item = (FilterSetupItem*)items.first();
 
   if( item != NULL )
   {
@@ -394,7 +400,7 @@ void ConfigFilter::slotRemove( )
 
     //inform application setup dialog about changes
     slotChanged();
-  }*/
+  }
 }
 
 void ConfigFilter::slotOtherActionChanged( int index )
@@ -413,69 +419,73 @@ void ConfigFilter::slotOtherActionChanged( int index )
 
 void ConfigFilter::decreaseNumbers( uint number )
 {
-/*  //get an iterator of the list view
-  QListViewItemIterator it( listFilters );
+  //get an iterator of the list view
+  QTreeWidgetItemIterator it( listFilters );
 
   //iterate over the filter list
-  while( it.current() )
+  while( *it )
   {
     //get number of current filter item
-    uint curNumber = ( (FilterSetupItem*)it.current() )->getNumber();
+    uint curNumber = ( (FilterSetupItem*)*it)->getNumber();
 
     //decrease current number, if the given number is lesser or equals
     if( curNumber >= number && curNumber > 0 )
-      ( (FilterSetupItem*)it.current() )->setNumber( curNumber - 1 );
+      ( (FilterSetupItem*)*it)->setNumber( curNumber - 1 );
 
     //get next item
     ++it;
-  }*/
+  }
 }
 
 void ConfigFilter::slotMoveTop( )
 {
-//   //get selected item
-//   FilterSetupItem* item = (FilterSetupItem*)listFilters->selectedItem();
-// 
-//   if( item != NULL )
-//   {
-//     //get number of the item
-//     uint num = item->getNumber();
-// 
-//     if( num > 1 )
-//     {
-//       //set number of the selected to zero, this will move it at the top
-//       item->setNumber( 0 );
-// 
-//       //now we move all items after the old position one step up
-//       decreaseNumbers( num + 1 );
-// 
-//       //at last we add one to all numbers
-//       QListViewItemIterator it( listFilters );
-// 
-//       while( it.current() )
-//       {
-//         uint curNumber = ( (FilterSetupItem*)it.current() )->getNumber();
-//         ( (FilterSetupItem*)it.current() )->setNumber( curNumber + 1 );
-// 
-//         ++it;
-//       }
-// 
-//       //refresh list view
-//       listFilters->sort();
-// 
-//       //inform application setup dialog about changes
-//       slotChanged();
-// 
-//     }
-//   }
-// 
+  //get selected item
+  QList<QTreeWidgetItem*> items = listFilters->selectedItems();
+  if( items.isEmpty() ) return;
+
+  FilterSetupItem* item = (FilterSetupItem*)items.first();
+
+  if( item != NULL )
+  {
+    //get number of the item
+    uint num = item->getNumber();
+
+    if( num > 1 )
+    {
+      //set number of the selected to zero, this will move it at the top
+      item->setNumber( 0 );
+
+      //now we move all items after the old position one step up
+      decreaseNumbers( num + 1 );
+
+      //at last we add one to all numbers
+      QTreeWidgetItemIterator it( listFilters );
+
+      while( *it )
+      {
+        uint curNumber = ( (FilterSetupItem*)*it )->getNumber();
+        ( (FilterSetupItem*)*it )->setNumber( curNumber + 1 );
+
+        ++it;
+      }
+
+
+      //inform application setup dialog about changes
+      slotChanged();
+
+    }
+  }
+
 
 }
 
 void ConfigFilter::slotMoveBottom( )
 {
-/*  //get selected item
-  FilterSetupItem* item = (FilterSetupItem*)listFilters->selectedItem();
+  //get selected item
+  QList<QTreeWidgetItem*> items = listFilters->selectedItems();
+  if( items.isEmpty() ) return;
+
+  FilterSetupItem* item = (FilterSetupItem*)items.first();
 
   if( item != NULL )
   {
@@ -491,19 +501,21 @@ void ConfigFilter::slotMoveBottom( )
       decreaseNumbers( num + 1 );
 
       //refresh list view
-      listFilters->sort();
 
       //inform application setup dialog about changes
       slotChanged();
     }
 
-  }*/
+  }
 }
 
 void ConfigFilter::slotMoveUp( )
 {
-/*  //get selected item
-  FilterSetupItem* item = (FilterSetupItem*)listFilters->selectedItem();
+  //get selected item
+  QList<QTreeWidgetItem*> items = listFilters->selectedItems();
+  if( items.isEmpty() ) return;
+
+  FilterSetupItem* item = (FilterSetupItem*)items.first();
 
   if( item != NULL )
   {
@@ -527,14 +539,17 @@ void ConfigFilter::slotMoveUp( )
       }
     }
     //refresh list view
-    listFilters->sort();
-  }*/
+
+  }
 }
 
 void ConfigFilter::slotMoveDown( )
 {
-/*  //get selected item
-  FilterSetupItem* item = (FilterSetupItem*)listFilters->selectedItem();
+  //get selected item
+  QList<QTreeWidgetItem*> items = listFilters->selectedItems();
+  if( items.isEmpty() ) return;
+
+  FilterSetupItem* item = (FilterSetupItem*)items.first();
 
   if( item != NULL )
   {
@@ -558,37 +573,36 @@ void ConfigFilter::slotMoveDown( )
       }
     }
     //refresh list view
-    listFilters->sort();
-  }*/
+  }
 }
 
-// FilterSetupItem* ConfigFilter::getFilterItem( uint num )
-// {
-//   FilterSetupItem* foundItem = NULL;
-//   bool found = false;
-// 
-//   //get Iterator
-//   QListViewItemIterator it( listFilters );
-// 
-//   //iterate over th elist to look for the item
-//   while( it.current() && !found )
-//   {
-//     //get current number
-//     uint curNumber = ( (FilterSetupItem*)it.current() )->getNumber();
-// 
-//     //have we found it?
-//     if( curNumber == num )
-//     {
-//       foundItem = (FilterSetupItem*)it.current();
-// 
-//       found = true;
-//     }
-// 
-//     ++it;
-//   }
-// 
-//   return foundItem;
-// }
+FilterSetupItem* ConfigFilter::getFilterItem( uint num )
+{
+  FilterSetupItem* foundItem = NULL;
+  bool found = false;
+
+  //get Iterator
+  QTreeWidgetItemIterator it( listFilters );
+
+  //iterate over th elist to look for the item
+  while( *it && !found )
+  {
+    //get current number
+    uint curNumber = ( (FilterSetupItem*)*it )->getNumber();
+
+    //have we found it?
+    if( curNumber == num )
+    {
+      foundItem = (FilterSetupItem*)*it;
+
+      found = true;
+    }
+
+    ++it;
+  }
+
+  return foundItem;
+}
 
 void ConfigFilter::slotFilterActiveToggled( bool filterOn )
 {

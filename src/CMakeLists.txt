@@ -53,10 +53,11 @@ set( CONFIGFILTER_SRCS
      filtersetupdialog.cpp
      mailboxwizard.cpp
      mailboxwizardlistitem.cpp
+     filtercriteriawidget.cpp
    )
 
 kde4_add_plugin( kcm_kshowmailconfigfilter ${CONFIGFILTER_SRCS} )
-target_link_libraries( kcm_kshowmailconfigfilter ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS})
+target_link_libraries( kcm_kshowmailconfigfilter ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KUTILS_LIBS} )
 
 
 ########### install files ###############

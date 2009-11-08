@@ -284,7 +284,7 @@ Q_OBJECT
      * @param num number of the searched filter item
      * @return pointer to the found item
      */
-//    FilterSetupItem* getFilterItem( uint num );
+    FilterSetupItem* getFilterItem( uint num );
 
 };
 

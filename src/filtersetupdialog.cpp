@@ -125,12 +125,12 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   //enable or disable action widgets
   slotActionChanged( cmbAction->currentIndex() );
 
-//   //this adds a first empty criteria widget at the dialog if the given setup item pointer is null
-//   //(this means we want to create a new filter)
-//   if( item == NULL )
-//   {
-//     slotAddCriteriaWidget();
-//   }
+  //this adds a first empty criteria widget at the dialog if the given setup item pointer is null
+  //(this means we want to create a new filter)
+  if( item == NULL )
+  {
+    slotAddCriteriaWidget();
+  }
 
   //write values of the given filter into the dialog items
   if( filter != NULL )
@@ -152,57 +152,60 @@ void FilterSetupDialog::fillDialog( )
   }
 
   //set filter name
-//  txtName->setText( filter->getName() );
+ txtName->setText( filter->getName() );
 
-//   //set linkage
-//   switch( filter->getCriteriaLinkage() )
-//   {
-//     case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL : grpLinkage->setButton( ID_BUTTON_LINKAGE_MATCH_ALL ); break;
-//     case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY : grpLinkage->setButton( ID_BUTTON_LINKAGE_MATCH_ANY ); break;
-//     default                                             : kdError() << "FilterSetupDialog::fillDialog: The Filter Setup Item of filter " << filter->getName() << " has returned an invalid linkage value. Set default value." << endl;
-//                                                           switch( DEFAULT_FILTER_CRITERIA_LINKAGE )
-//                                                           {
-//                                                             case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL : grpLinkage->setButton( ID_BUTTON_LINKAGE_MATCH_ALL ); break;
-//                                                             case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY : grpLinkage->setButton( ID_BUTTON_LINKAGE_MATCH_ANY ); break;
-//                                                             default: kdError() << "FilterSetupDialog::fillDialog: The default value DEFAULT_FILTER_CRITERIA_LINKAGE in constants.h is also invalid. Set linkage to ALL." << endl;
-//                                                                      grpLinkage->setButton( ID_BUTTON_LINKAGE_MATCH_ALL );
-//                                                                      break;
-//                                                           }
-//                                                           break;
-//   }
-// 
-//   //set criterias
-//   FilterCriteriaList_Type criteriaList = filter->getCriteriaList();
-// 
-//   if( !criteriaList.empty() )
-//   {
-//     FilterCriteriaList_Type::iterator it;
-//     for( it = criteriaList.begin(); it != criteriaList.end(); ++it )
-//     {
-//       //get source and condition
-//       int source = (*it).source;
-//       int condition = (*it).condition;
-// 
-//       //depend on the source we add a numeric or text criteria
-//       switch( source )
-//       {
-//         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM     :
-//         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO       :
-//         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT  :
-//         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER   :
-//         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT  : addCriteriaWidget( source, condition, (*it).txtValue, (*it).cs ); break;
-// 
-//         case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE     : addCriteriaWidget( source, condition, (*it).numValue ); break;
-//         default                                           : kdError() << "FilterSetupDialog::fillDialog: The Filter Setup Item of filter " << filter->getName() << " has returned an invalid criteria. Add an empty criteria." << endl;
-//                                                             break;
-//       }
-//     }
-//   }
-//   else
-//     //just add a empty criteria widget
-//     slotAddCriteriaWidget();
-// 
-// 
+  //set linkage
+  QRadioButton* btnToCheck;
+  switch( filter->getCriteriaLinkage() )
+  {
+    case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL : btnToCheck = static_cast<QRadioButton*>( grpLinkage->button( ID_BUTTON_LINKAGE_MATCH_ALL ) ); break;
+    case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY : btnToCheck = static_cast<QRadioButton*>( grpLinkage->button( ID_BUTTON_LINKAGE_MATCH_ANY ) ); break;
+    default                                             : kdError() << "FilterSetupDialog::fillDialog: The Filter Setup Item of filter " << filter->getName() << " has returned an invalid linkage value. Set default value." << endl;
+                                                          switch( DEFAULT_FILTER_CRITERIA_LINKAGE )
+                                                          {
+                                                            case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL : btnToCheck = static_cast<QRadioButton*>( grpLinkage->button( ID_BUTTON_LINKAGE_MATCH_ALL ) ); break;
+                                                            case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY : btnToCheck = static_cast<QRadioButton*>( grpLinkage->button( ID_BUTTON_LINKAGE_MATCH_ANY ) ); break;
+                                                            default: kdError() << "FilterSetupDialog::fillDialog: The default value DEFAULT_FILTER_CRITERIA_LINKAGE in constants.h is also invalid. Set linkage to ALL." << endl;
+                                                                     btnToCheck = static_cast<QRadioButton*>( grpLinkage->button( ID_BUTTON_LINKAGE_MATCH_ALL ) );
+                                                                     break;
+                                                          }
+                                                          break;
+  }
+  btnToCheck->setChecked( true );
+
+
+  //set criterias
+  FilterCriteriaList_Type criteriaList = filter->getCriteriaList();
+
+  if( !criteriaList.empty() )
+  {
+    FilterCriteriaList_Type::iterator it;
+    for( it = criteriaList.begin(); it != criteriaList.end(); ++it )
+    {
+      //get source and condition
+      int source = (*it).source;
+      int condition = (*it).condition;
+
+      //depend on the source we add a numeric or text criteria
+      switch( source )
+      {
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM     :
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO       :
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT  :
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER   :
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT  : addCriteriaWidget( source, condition, (*it).txtValue, (*it).cs ); break;
+
+        case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE     : addCriteriaWidget( source, condition, (*it).numValue ); break;
+        default                                           : kdError() << "FilterSetupDialog::fillDialog: The Filter Setup Item of filter " << filter->getName() << " has returned an invalid criteria. Add an empty criteria." << endl;
+                                                            break;
+      }
+    }
+  }
+  else
+    //just add a empty criteria widget
+    slotAddCriteriaWidget();
+
+
   //set action
   switch( filter->getAction() )
   {
@@ -236,75 +239,69 @@ void FilterSetupDialog::fillDialog( )
 
 }
 
-// FilterCriteriaWidget* FilterSetupDialog::slotAddCriteriaWidget( )
-// {
-//   //create a new widget
-//   FilterCriteriaWidget* crit = new FilterCriteriaWidget( wdgCriteriasHolding );
-//   crit->setHidden( false );   //the new widgets are hidden by default
-// 
-//   //insert it into the layout
-//   layCriteriasHolding->addWidget( crit );
-// 
-//   //hide remove button if necessary
-//   const QObjectList* critList = wdgCriteriasHolding->children();
-// 
-//   if( critList != NULL )
-//   {
-//     if( critList->count() <= 2 )
-//       btnRemoveCriteria->setEnabled( false );
-//     else
-//       btnRemoveCriteria->setEnabled( true );
-//   }
-// 
-// 
-// 
-//   return crit;
-// }
+FilterCriteriaWidget* FilterSetupDialog::slotAddCriteriaWidget( )
+{
+  //create a new widget
+  FilterCriteriaWidget* crit = new FilterCriteriaWidget( wdgCriteriasHolding );
+  crit->setHidden( false );   //the new widgets are hidden by default
+
+  //insert it into the layout
+  layCriteriasHolding->addWidget( crit );
+
+  //hide remove button if necessary
+  const QObjectList critList = wdgCriteriasHolding->children();
+
+  if( critList.count() <= 2 )
+    btnRemoveCriteria->setEnabled( false );
+  else
+    btnRemoveCriteria->setEnabled( true );
+
+
+
+  return crit;
+}
 
 void FilterSetupDialog::slotRemoveCriteriaWidget( )
 {
-//   //get a list of all criteria widgets
-//   const QObjectList* critList = wdgCriteriasHolding->children();
-// 
-//   //return, if the pointer to the list is invalid
-//   if( critList == NULL )
-//   {
-//     kdError() << "FilterSetupDialog::slotRemoveCriteriaWidget: No object found in the criteria widget holding." << endl;;
-//     return;
-//   }
-// 
-//   //return, if the holding widget doesn't contain a criteria widget
-//   //the count of children has to be greater than 2, because the layout is the first child
-//   //and one criteria must always be present.
-//   if( critList->count() <= 2 ) return;
-// 
-//   //get iterator
-//   QObjectListIterator it( *critList );
-// 
-//   //get last child
-//   QObject* obj = it.toLast();
-// 
-//   //remove last child
-//   if( obj->isA( "FilterCriteriaWidget" ) )
-//   {
-//     ((QWidget*)obj)->setHidden( true );
-//     layCriteriasHolding->remove( (QWidget*)obj );
-//     wdgCriteriasHolding->removeChild( obj );
-//   }
-//   else
-//     kdError() << "FilterSetupDialog::slotRemoveCriteriaWidget: the last object of the criteria widget holding is not a criteria widget." << endl;
-// 
-//   //hide remove button if necessary
-//   if( critList->count() <= 2 )
-//     btnRemoveCriteria->setEnabled( false );
-//   else
-//     btnRemoveCriteria->setEnabled( true );
+  //get a list of all criteria widgets
+  QObjectList critList = wdgCriteriasHolding->children();
+
+  //return, if the holding widget doesn't contain a criteria widget
+  //the count of children has to be greater than 2, because the layout is the first child
+  //and one criteria must always be present.
+  if( critList.count() <= 2 ) return;
+
+  //get iterator
+  QListIterator<QObject*> it( critList );
+  while( it.hasNext() )
+    kdDebug() << it.next()->objectName() << endl;
+
+  //get last child
+  it.toBack();
+  QObject* obj = it.previous();
+
+  //remove last child
+  if( obj->objectName() == FILTER_CRITERIA_WIDGET_NAME )
+  {
+    ((QWidget*)obj)->setHidden( true );
+    layCriteriasHolding->removeWidget( (QWidget*)obj );
+    critList.removeAll( obj );
+    delete obj;
+  }
+  else
+    kdError() << "FilterSetupDialog::slotRemoveCriteriaWidget: the last object of the criteria widget holding is not a criteria widget." << endl;
+
+  //hide remove button if necessary
+  if( critList.count() <= 2 )
+    btnRemoveCriteria->setEnabled( false );
+  else
+    btnRemoveCriteria->setEnabled( true );
 
 }
 
 void FilterSetupDialog::addCriteriaWidget( int source, int condition, uint value )
 {
-/*  //check source and condition
+  //check source and condition
   if( source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE )
   {
     kdError() << "FilterSetupDialog::addCriteriaWidget: invalid source parameter." << endl;
@@ -326,51 +323,58 @@ void FilterSetupDialog::addCriteriaWidget( int source, int condition, uint value
   FilterCriteriaWidget* crit = slotAddCriteriaWidget();
 
   //set values
-  crit->setNumCriteria( source, condition, value );*/
+  crit->setNumCriteria( source, condition, value );
 }
 
 void FilterSetupDialog::addCriteriaWidget( int source, int condition, QString value, bool cs )
 {
-//   //check source and condition
-//   if( source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM &&
-//       source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO &&
-//       source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT &&
-//       source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER &&
-//       source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT )
-//   {
-//     kdError() << "FilterSetupDialog::addCriteriaWidget: invalid source parameter." << endl;
-//     return;
-//   }
-// 
-//   if( condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS &&
-//       condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS &&
-//       condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS &&
-//       condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS &&
-//       condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR &&
-//       condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR )
-//   {
-//     kdError() << "FilterSetupDialog::addCriteriaWidget: invalid condition parameter." << endl;
-//     return;
-//   }
-// 
-//   //create widget
-//   FilterCriteriaWidget* crit = slotAddCriteriaWidget();
-// 
-//   //set values
-//   crit->setTextCriteria( source, condition, value, cs );
+  //check source and condition
+  if( source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM &&
+      source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO &&
+      source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT &&
+      source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER &&
+      source != CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT )
+  {
+    kdError() << "FilterSetupDialog::addCriteriaWidget: invalid source parameter." << endl;
+    return;
+  }
+
+  if( condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS &&
+      condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS &&
+      condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS &&
+      condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS &&
+      condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR &&
+      condition != CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR )
+  {
+    kdError() << "FilterSetupDialog::addCriteriaWidget: invalid condition parameter." << endl;
+    return;
+  }
+
+  //create widget
+  FilterCriteriaWidget* crit = slotAddCriteriaWidget();
+
+  //set values
+  crit->setTextCriteria( source, condition, value, cs );
 
 }
 
-void FilterSetupDialog::slotOk()
+void FilterSetupDialog::slotButtonClicked( int button )
 {
-/*
+  //call the original slot if the clicked button is not Ok
+  if( button != KDialog::Ok )
+  {
+    KDialog::slotButtonClicked( button );
+    return;
+  }
+
+
   //here we write the settings back to the filter setup item
 
   //filter name
   filter->setName( txtName->text() );
 
   //linkage
-  switch( grpLinkage->selectedId() )
+  switch( grpLinkage->checkedId() )
   {
     case ID_BUTTON_LINKAGE_MATCH_ALL    : filter->setCriteriaLinkage( CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL ); break;
     case ID_BUTTON_LINKAGE_MATCH_ANY    : filter->setCriteriaLinkage( CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY ); break;
@@ -379,7 +383,7 @@ void FilterSetupDialog::slotOk()
   }
 
   //action
-  switch( cmbAction->currentItem() )
+  switch( cmbAction->currentIndex() )
   {
     case ID_COMBO_FILTER_ACTION_PASS      : filter->setAction( CONFIG_VALUE_FILTER_ACTION_PASS ); break;
     case ID_COMBO_FILTER_ACTION_DELETE    : filter->setAction( CONFIG_VALUE_FILTER_ACTION_DELETE ); break;
@@ -392,27 +396,27 @@ void FilterSetupDialog::slotOk()
   }
 
   //mailbox name if action is MOVE
-  if( cmbAction->currentItem() == ID_COMBO_FILTER_ACTION_MOVE )
+  if( cmbAction->currentIndex() == ID_COMBO_FILTER_ACTION_MOVE )
     filter->setMailBox( txtMailbox->text() );
 
   //criteria widgets
 
   //get list of all children of the criterias holding widget
-  const QObjectList* children = wdgCriteriasHolding->children();
+  QObjectList children = wdgCriteriasHolding->children();
 
   //get iterator of the list
-  QObjectListIterator it( *children );
+  QListIterator<QObject*> it( children );
 
   QObject* obj;   //current child object
   FilterCriteriaList_Type critList;   //list of criterias; will be give to the filter setup item
 
   //iterate over the children list
-  while ( ( obj = it.current() ) != NULL )
+  while ( it.hasNext() )
   {
-    //get next child
-    ++it;
+    //get child
+    obj = it.next();
 
-    if( obj->isA( "FilterCriteriaWidget" ) )  //check for criteria object
+    if( obj->objectName() == "FilterCriteriaWidget" )  //check for criteria object
     {
       //get the values of the criteria
       FilterCriteria_Type crit = ( (FilterCriteriaWidget*)obj )->getValues();
@@ -426,7 +430,7 @@ void FilterSetupDialog::slotOk()
   filter->setCriteriaList( critList );
 
   //call slot of super class to close the dialog
-  KDialogBase::slotOk();*/
+  KDialog::slotButtonClicked( KDialog::Ok );
 }
 
 void FilterSetupDialog::slotActionChanged( int index )

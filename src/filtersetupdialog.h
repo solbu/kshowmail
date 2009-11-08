@@ -33,7 +33,7 @@
 
 //KShowmail headers
 #include "filtersetupitem.h"
-//#include "filtercriteriawidget.h"
+#include "filtercriteriawidget.h"
 #include "constants.h"
 #include "mailboxwizard.h"
 
@@ -153,13 +153,14 @@ class FilterSetupDialog : public KDialog
   protected slots:
 
     /**
-     * Overwritten method of KDialogBase.
-     * Called if OK was clicked.
+     * Overwritten method of KDialog.
+     * Called if a button is clocked clicked.
      * Stores the entered values into the given account item.
      * If no item was given it creates a new one.
-     * After then it invokes slotOk() of KDialogBase.
+     * After then it invokes slotButtonClicked() of KDialog.
+     * @param button clicked button
      */
-    void slotOk();
+    void slotButtonClicked( int button );
 
     /**
      * Connected with combobox cmbAction.
@@ -172,7 +173,7 @@ class FilterSetupDialog : public KDialog
      * Adds a empty critera dialog widget.
      * @return Pointer to the new widget
      */
-//    FilterCriteriaWidget* slotAddCriteriaWidget();
+    FilterCriteriaWidget* slotAddCriteriaWidget();
 
     /**
      * Removes the last criteria dialog widget.

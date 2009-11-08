@@ -57,6 +57,8 @@
 #define ID_COMBO_COND_NUM_LESS          4
 #define ID_COMBO_COND_NUM_LESS_EQUAL    5
 
+#define FILTER_CRITERIA_WIDGET_NAME "FilterCriteriaWidg"
+
 using namespace Types;
 
 /**
@@ -73,7 +75,7 @@ Q_OBJECT
     /**
      * Constructor
      */
-    FilterCriteriaWidget( QWidget *parent = 0, const char *name = 0 );
+    FilterCriteriaWidget( QWidget *parent = 0 );
 
     /**
      * Destructor
