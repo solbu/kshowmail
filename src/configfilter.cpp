@@ -70,7 +70,8 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   labels << i18n( "No.") << i18n( "Name" ) << i18n( "Action" );
   listFilters->setHeaderLabels( labels ),
   layFilters->addWidget( listFilters );
-  listFilters->setIndentation( 0 );   //the list is sorted by filter number
+  listFilters->setIndentation( 0 );
+  listFilters->sortItems( 1, Qt::AscendingOrder ); //the list is sorted by filter number
   listFilters->setAllColumnsShowFocus( true );
 
   QVBoxLayout* layFiltersButtons = new QVBoxLayout();
@@ -350,6 +351,10 @@ void ConfigFilter::slotAdd( )
 
   //delete dialog
   delete dlg;
+
+  //do sorting
+  listFilters->sortItems( 0, Qt::AscendingOrder );
+
 }
 
 void ConfigFilter::slotEdit( )
@@ -400,6 +405,10 @@ void ConfigFilter::slotRemove( )
 
     //inform application setup dialog about changes
     slotChanged();
+
+    //do sorting
+    listFilters->sortItems( 0, Qt::AscendingOrder );
+
   }
 }
 
@@ -473,6 +482,10 @@ void ConfigFilter::slotMoveTop( )
       //inform application setup dialog about changes
       slotChanged();
 
+      //do sorting
+      listFilters->sortItems( 0, Qt::AscendingOrder );
+
+
     }
   }
 
@@ -504,7 +517,10 @@ void ConfigFilter::slotMoveBottom( )
 
       //inform application setup dialog about changes
       slotChanged();
-    }
+
+      //do sorting
+      listFilters->sortItems( 0, Qt::AscendingOrder );
+  }
 
   }
 }
@@ -536,9 +552,11 @@ void ConfigFilter::slotMoveUp( )
         //inform application setup dialog about changes
         slotChanged();
 
+      //do sorting
+      listFilters->sortItems( 0, Qt::AscendingOrder );
+
       }
     }
-    //refresh list view
 
   }
 }
@@ -570,9 +588,11 @@ void ConfigFilter::slotMoveDown( )
         //inform application setup dialog about changes
         slotChanged();
 
+      //do sorting
+      listFilters->sortItems( 0, Qt::AscendingOrder );
+        
       }
     }
-    //refresh list view
   }
 }
 

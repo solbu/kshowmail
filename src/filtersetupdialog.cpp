@@ -202,8 +202,10 @@ void FilterSetupDialog::fillDialog( )
     }
   }
   else
+  {
     //just add a empty criteria widget
     slotAddCriteriaWidget();
+  }
 
 
   //set action
@@ -416,7 +418,7 @@ void FilterSetupDialog::slotButtonClicked( int button )
     //get child
     obj = it.next();
 
-    if( obj->objectName() == "FilterCriteriaWidget" )  //check for criteria object
+    if( obj->objectName() == FILTER_CRITERIA_WIDGET_NAME )  //check for criteria object
     {
       //get the values of the criteria
       FilterCriteria_Type crit = ( (FilterCriteriaWidget*)obj )->getValues();
