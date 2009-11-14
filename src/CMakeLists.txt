@@ -59,6 +59,12 @@ set( CONFIGFILTER_SRCS
 kde4_add_plugin( kcm_kshowmailconfigfilter ${CONFIGFILTER_SRCS} )
 target_link_libraries( kcm_kshowmailconfigfilter ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KUTILS_LIBS} )
 
+set( CONFIGLOG_SRCS
+     configlog.cpp
+   )
+kde4_add_plugin( kcm_kshowmailconfiglog ${CONFIGLOG_SRCS} )
+target_link_libraries( kcm_kshowmailconfiglog ${KDE4_KDEUI_LIBS} )
+
 
 ########### install files ###############
 

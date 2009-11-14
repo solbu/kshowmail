@@ -32,7 +32,7 @@
 #include <kapplication.h>
 
 //Kshowmail headers
-#include "../constants.h"
+#include "constants.h"
 
 
 /**
@@ -48,7 +48,7 @@ Q_OBJECT
     /**
      * Generic constructor
      */
-    ConfigLog( QWidget* parent = 0, const char* name = 0, const QStringList &args = QStringList() );
+    ConfigLog( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor
@@ -82,7 +82,7 @@ Q_OBJECT
   /**
    * Connector to the configuration file
    */
-    KConfig* config;
+    KSharedConfigPtr config;
 
   /**
    * Checkbox to activate log of deleted mails

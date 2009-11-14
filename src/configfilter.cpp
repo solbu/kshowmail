@@ -107,63 +107,62 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   connect( btnMoveDown, SIGNAL( clicked() ), this, SLOT( slotMoveDown() ) );
 
 
-//   //GUI of Others
-//   //-------------
-//   gboxOthers = new QGroupBox( 0, Qt::Horizontal, i18n( "Third Check: Action for all others" ), this, "gboxOthers" );
-//   QHBoxLayout* layOthers = new QHBoxLayout( gboxOthers->layout(), 10 );
-//   layMain->addWidget( gboxOthers );
-// 
-//   //create combobox to select action
-//   cmbActionOthers = new KComboBox( gboxOthers, "cmbActionOthers" );
-//   layOthers->addWidget( cmbActionOthers );
-//   QToolTip::add( cmbActionOthers, i18n( "Choose the action for all mails which are not filtered by the steps before." ) );
-//   connect( cmbActionOthers, SIGNAL( activated( int ) ), this, SLOT( slotOtherActionChanged( int ) ) );
-//   connect( cmbActionOthers, SIGNAL( activated( int ) ), this, SLOT( slotChanged() ) );
-// 
-//   //insert items
-//   cmbActionOthers->insertItem( i18n( "Show" ), ID_COMBO_FILTER_OTHERS_ACTION_PASS );
-//   cmbActionOthers->insertItem( i18n( "Delete" ), ID_COMBO_FILTER_OTHERS_ACTION_DELETE );
-//   cmbActionOthers->insertItem( i18n( "Mark" ), ID_COMBO_FILTER_OTHERS_ACTION_MARK );
-//   cmbActionOthers->insertItem( i18n( "Move" ), ID_COMBO_FILTER_OTHERS_ACTION_MOVE );
-//   cmbActionOthers->insertItem( i18n( "Spamcheck" ), ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK );
-//   cmbActionOthers->insertItem( i18n( "Ignore" ), ID_COMBO_FILTER_OTHERS_ACTION_IGNORE );
-// 
-//   //create edit line to defined the mailbox for move
-//   txtMailbox = new KLineEdit( gboxOthers );
-//   layOthers->addWidget( txtMailbox );
-//   connect( txtMailbox, SIGNAL( textChanged( const QString & ) ), this, SLOT( slotChanged() ) );
-// 
-//   //create wizard button to configure mailbox
-//   btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "wizard" ), gboxOthers );
-//   layOthers->addWidget( btnMailboxWizard );
-//   QToolTip::add( btnMailboxWizard, i18n( "Choose the mailbox" ) );
-//   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
-// 
-//   //set defaults
-//   switch( DEFAULT_FILTER_OTHERS_ACTION )
-//   {
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE     : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_DELETE ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_MARK ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_MOVE ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE     : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK  : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
-//   }
-//   chkActivateFilter->setChecked( DEFAULT_FILTER_ACTIVE );
-// 
-//   //enable or disable widgets
-//   slotOtherActionChanged( cmbActionOthers->currentItem() );
-//   slotFilterActiveToggled( DEFAULT_FILTER_ACTIVE );
-// 
+  //GUI of Others
+  //-------------
+  gboxOthers = new QGroupBox( i18n( "Third Check: Action for all others" ), this );
+  QHBoxLayout* layOthers = new QHBoxLayout( );
+  gboxOthers->setLayout( layOthers );
+  layMain->addWidget( gboxOthers );
+
+  //create combobox to select action
+  cmbActionOthers = new KComboBox( gboxOthers );
+  cmbActionOthers->setToolTip( i18n( "Choose the action for all mails which are not filtered by the steps before." ) );
+  layOthers->addWidget( cmbActionOthers );
+  connect( cmbActionOthers, SIGNAL( activated( int ) ), this, SLOT( slotOtherActionChanged( int ) ) );
+  connect( cmbActionOthers, SIGNAL( activated( int ) ), this, SLOT( slotChanged() ) );
+
+  //insert items
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_PASS, i18n( "Show" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_DELETE, i18n( "Delete" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_MARK, i18n( "Mark" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_MOVE, i18n( "Move" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK, i18n( "Spamcheck" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE, i18n( "Ignore" ) );
+
+  //create edit line to defined the mailbox for move
+  txtMailbox = new KLineEdit( gboxOthers );
+  layOthers->addWidget( txtMailbox );
+  connect( txtMailbox, SIGNAL( textChanged( const QString & ) ), this, SLOT( slotChanged() ) );
+
+  //create wizard button to configure mailbox
+  btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "tools-wizard" ), gboxOthers );
+  btnMailboxWizard->setToolTip( i18n( "Choose the mailbox" ) );
+  layOthers->addWidget( btnMailboxWizard );
+  connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
+
+  //set defaults
+  switch( DEFAULT_FILTER_OTHERS_ACTION )
+  {
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_DELETE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MARK ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MOVE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK  : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
+  }
+  chkActivateFilter->setChecked( DEFAULT_FILTER_ACTIVE );
+
+  //enable or disable widgets
+  slotOtherActionChanged( cmbActionOthers->currentIndex() );
+  slotFilterActiveToggled( DEFAULT_FILTER_ACTIVE );
+
   //get application config object (kshowmailrc)
   config = KGlobal::config();
-//
-//   //init counter for filter item numbering. This variable contains the last assigned number of a filter setup item.
-//   //Because it is initialized with zero, the first filter number is 1.
-//   lastFilterNumber = 0;
 
-  //load configured values
-  load();
+  //init counter for filter item numbering. This variable contains the last assigned number of a filter setup item.
+  //Because it is initialized with zero, the first filter number is 1.
+  lastFilterNumber = 0;
+
 }
 
 
@@ -180,14 +179,14 @@ void ConfigFilter::load( )
   slotFilterActiveToggled( chkActivateFilter->isChecked() );
 
   //load other action
-/*  switch( configFilter->readEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ) )
+  switch( configFilter->readEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ) )
   {
-    case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
-    case CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE     : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_DELETE ); break;
-    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_MARK ); break;
-    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_MOVE ); break;
-    case CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE     : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE ); break;
-    case CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK  : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_DELETE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MARK ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MOVE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK  : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
   }
 
   //get mailbox name
@@ -197,7 +196,10 @@ void ConfigFilter::load( )
     txtMailbox->clear();
 
   //enable or disable widgets for other action
-  slotOtherActionChanged( cmbActionOthers->currentItem() ); */
+  slotOtherActionChanged( cmbActionOthers->currentIndex() );
+
+  //clear filter list
+  listFilters->clear();
 
   //get number of filters
   uint numFilters = configFilter->readEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, 0 );
@@ -223,23 +225,23 @@ void ConfigFilter::defaults( )
   chkActivateFilter->setChecked( DEFAULT_FILTER_ACTIVE );
   slotFilterActiveToggled( chkActivateFilter->isChecked() );
 
-//   switch( DEFAULT_FILTER_OTHERS_ACTION )
-//   {
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE     : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_DELETE ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_MARK ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE       : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_MOVE ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE     : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE ); break;
-//     case CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK  : cmbActionOthers->setCurrentItem( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
-//   }
-// 
-//   if( DEFAULT_FILTER_OTHERS_ACTION == CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE )
-//     txtMailbox->setText( QString( DEFAULT_FILTER_ACTION_MOVE_MAILBOX ) );
-//   else
-//     txtMailbox->clear();
-// 
-//   //enable or disable widgets for other action
-//   slotOtherActionChanged( cmbActionOthers->currentItem() );
+  switch( DEFAULT_FILTER_OTHERS_ACTION )
+  {
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_DELETE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MARK ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MOVE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK  : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
+  }
+
+  if( DEFAULT_FILTER_OTHERS_ACTION == CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE )
+    txtMailbox->setText( QString( DEFAULT_FILTER_ACTION_MOVE_MAILBOX ) );
+  else
+    txtMailbox->clear();
+
+  //enable or disable widgets for other action
+  slotOtherActionChanged( cmbActionOthers->currentIndex() );
 
   slotChanged();
 }
@@ -251,55 +253,55 @@ void ConfigFilter::save( )
   //save filter active state
   configFilter->writeEntry( CONFIG_ENTRY_FILTER_ACTIVE, chkActivateFilter->isChecked() );
 
-//   //save other action
-//   switch( cmbActionOthers->currentItem() )
-//   {
-//     case ID_COMBO_FILTER_OTHERS_ACTION_PASS      : config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS ); break;
-//     case ID_COMBO_FILTER_OTHERS_ACTION_DELETE    : config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE ); break;
-//     case ID_COMBO_FILTER_OTHERS_ACTION_MARK      : config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK ); break;
-//     case ID_COMBO_FILTER_OTHERS_ACTION_MOVE      : config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE ); break;
-//     case ID_COMBO_FILTER_OTHERS_ACTION_IGNORE    : config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE ); break;
-//     case ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK : config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
-//     default                                      : config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ); break;
-//   }
-// 
-//   //save mailbox name
-//   if( cmbActionOthers->currentItem() == ID_COMBO_FILTER_OTHERS_ACTION_MOVE )
-//   {
-//     config->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_MAILBOX, txtMailbox->text() );
-//   }
-//   else
-//   {
-//     config->deleteEntry( CONFIG_ENTRY_FILTER_OTHERS_MAILBOX );
-//   }
-// 
-//   //get old number of filters
-//   uint oldNumFilter = config->readNumEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, 0 );
-// 
-//   //save current number of filters
-//   config->writeEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, lastFilterNumber );
-// 
-//   //delete surplus filter configurations
-//   if( oldNumFilter > lastFilterNumber )
-//   {
-//     for( uint ctr = lastFilterNumber + 1; ctr <= oldNumFilter; ctr++ )
-//     {
-//       config->deleteGroup( QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( ctr ) );
-//     }
-//   }
-// 
-//   //save the filters
-//   QListViewItemIterator it( listFilters );
-// 
-//   while( it.current() )
-//   {
-//     ( (FilterSetupItem*)it.current() )->save();
-// 
-//     //get next item
-//     ++it;
-//   }
-// 
+  //save other action
+  switch( cmbActionOthers->currentIndex() )
+  {
+    case ID_COMBO_FILTER_OTHERS_ACTION_PASS      : configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_DELETE    : configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_MARK      : configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_MOVE      : configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_IGNORE    : configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK : configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
+    default                                      : configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ); break;
+  }
 
+  //save mailbox name
+  if( cmbActionOthers->currentIndex() == ID_COMBO_FILTER_OTHERS_ACTION_MOVE )
+  {
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_MAILBOX, txtMailbox->text() );
+  }
+  else
+  {
+    configFilter->deleteEntry( CONFIG_ENTRY_FILTER_OTHERS_MAILBOX );
+  }
+
+  //get old number of filters
+  uint oldNumFilter = configFilter->readEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, 0 );
+
+  //save current number of filters
+  configFilter->writeEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, lastFilterNumber );
+
+  //delete surplus filter configurations
+  if( oldNumFilter > lastFilterNumber )
+  {
+    for( uint ctr = lastFilterNumber + 1; ctr <= oldNumFilter; ctr++ )
+    {
+      config->deleteGroup( QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( ctr ) );
+    }
+  }
+
+  //save the filters
+  QTreeWidgetItemIterator it( listFilters );
+
+  //iterate over the filter list
+  while( *it )
+  {
+    ( (FilterSetupItem*)*it)->save();
+
+    //get next item
+    ++it;
+  }
+  
   config->sync();
 }
 
@@ -414,7 +416,7 @@ void ConfigFilter::slotRemove( )
 
 void ConfigFilter::slotOtherActionChanged( int index )
 {
-/*  switch( index )
+  switch( index )
   {
     case ID_COMBO_FILTER_OTHERS_ACTION_MOVE : txtMailbox->setEnabled( true );
                                               if( txtMailbox->text() == "" ) txtMailbox->setText( DEFAULT_FILTER_ACTION_MOVE_MAILBOX );
@@ -423,7 +425,7 @@ void ConfigFilter::slotOtherActionChanged( int index )
     default                                 : txtMailbox->setEnabled( false );
                                               btnMailboxWizard->setHidden( true );
                                               break;
-  }*/
+  }
 }
 
 void ConfigFilter::decreaseNumbers( uint number )
@@ -628,17 +630,17 @@ void ConfigFilter::slotFilterActiveToggled( bool filterOn )
 {
   gboxSenderLists->setEnabled( filterOn );
   gboxFilters->setEnabled( filterOn );
-/*  gboxOthers->setEnabled( filterOn );*/
+  gboxOthers->setEnabled( filterOn );
 }
 
 void ConfigFilter::slotOpenMailBoxWizard( )
 {
-//   MailBoxWizard wizard( this, "malboxwizard" );
-//   wizard.setCaption( i18n( "Mailbox Select" ) );
-//   int res = wizard.exec();
-// 
-//   if( res == QDialog::Accepted )
-//     txtMailbox->setText( wizard.getPath() );
+  MailBoxWizard wizard( this );
+  wizard.setWindowTitle( i18n( "Mailbox Select" ) );
+  int res = wizard.exec();
+
+  if( res == QDialog::Accepted )
+    txtMailbox->setText( wizard.getPath() );
 
 }
 
