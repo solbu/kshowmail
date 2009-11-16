@@ -86,6 +86,7 @@ install(TARGETS
   kcm_kshowmailconfigactions
   kcm_kshowmailconfigdisplay
   kcm_kshowmailconfigfilter
+  kcm_kshowmailconfiglog
   DESTINATION ${PLUGIN_INSTALL_DIR}
 )
 

@@ -172,9 +172,6 @@ void KShowmail::slotSetup() {
 //    setupDialog->addModule( "kshowmailconfigdisplay.desktop" );
 //    setupDialog->addModule( "kshowmailconfigspamcheck.desktop" );
 
-    //If the configuration was changed, it will call slotConfChanged
-    connect( setupDialog, SIGNAL( configCommitted() ), this, SLOT( slotConfChanged() ) );
-
 	//create the dialog and add the pages
 	setupDialog = new KCMultiDialog( this );
   //setupDialog->addModule( "kshowmailconfiggeneral.desktop" );

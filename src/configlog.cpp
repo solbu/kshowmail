@@ -33,6 +33,7 @@ ConfigLog::ConfigLog( QWidget * parent, const QVariantList & args )
   connect( chkLogDeletedMails, SIGNAL( toggled( bool ) ), this, SLOT( slotChangeItems() ) );
 
   QVBoxLayout* layDelMailsConfig = new QVBoxLayout();
+  layDelMailsConfig->setMargin( 20 );
   layMain->addLayout( layDelMailsConfig );
 
   grpDelMailsRemove = new QButtonGroup( NULL );
@@ -116,25 +117,31 @@ void ConfigLog::load()
   chkLogDeletedMails->setChecked( configLog->readEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, DEFAULT_LOG_LOG_DELETED_MAILS ) );
   chkLogMovedMails->setChecked( configLog->readEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, DEFAULT_LOG_LOG_MOVED_MAILS ) );
 
+  QRadioButton* btnToCheck;
   if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, DEFAULT_LOG_REMOVE_DELETED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
-    grpDelMailsRemove->setButton( ID_BUTTON_REMOVE_AT_EXIT );
+    btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
   else if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, DEFAULT_LOG_REMOVE_DELETED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
-    grpDelMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+    btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
   else
-    if( DEFAULT_LOG_REMOVE_DELETED_MAILS == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
-      grpDelMailsRemove->setButton( ID_BUTTON_REMOVE_AT_EXIT );
+    if( QString( DEFAULT_LOG_REMOVE_DELETED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
+      btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
     else
-      grpDelMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+      btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
 
+  btnToCheck->setChecked( true );
+
+  
   if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, DEFAULT_LOG_REMOVE_MOVED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
-    grpMovMailsRemove->setButton( ID_BUTTON_REMOVE_AT_EXIT );
+    btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
   else if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, DEFAULT_LOG_REMOVE_MOVED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
-    grpMovMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+    btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
   else
-    if( DEFAULT_LOG_REMOVE_MOVED_MAILS == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
-      grpMovMailsRemove->setButton( ID_BUTTON_REMOVE_AT_EXIT );
+    if( QString( DEFAULT_LOG_REMOVE_MOVED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
+      btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
   else
-    grpMovMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+    btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
+
+  btnToCheck->setChecked( true );
 
   spbDelDays->setValue( configLog->readEntry( CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS, DEFAULT_LOG_HOLDDAYS_DELETED_MAILS ) );
   spbMovDays->setValue( configLog->readEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS, DEFAULT_LOG_HOLDDAYS_MOVED_MAILS ) );
@@ -155,19 +162,24 @@ void ConfigLog::defaults()
   else
     chkLogMovedMails->setChecked( false );
 
-  if( DEFAULT_LOG_REMOVE_DELETED_MAILS == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
-    grpDelMailsRemove->setButton( ID_BUTTON_REMOVE_AT_EXIT );
-  else if( DEFAULT_LOG_REMOVE_DELETED_MAILS == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
-    grpDelMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+  QRadioButton* btnToCheck;
+  if( QString( DEFAULT_LOG_REMOVE_DELETED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
+    btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
+  else if( QString( DEFAULT_LOG_REMOVE_DELETED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ) )
+    btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
   else
-    grpDelMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+    btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
 
-  if( DEFAULT_LOG_REMOVE_MOVED_MAILS == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
-    grpMovMailsRemove->setButton( ID_BUTTON_REMOVE_AT_EXIT );
-  else if( DEFAULT_LOG_REMOVE_MOVED_MAILS == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
-    grpMovMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+  btnToCheck->setChecked( true );
+  
+  if( QString( DEFAULT_LOG_REMOVE_MOVED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
+    btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
+  else if( QString( DEFAULT_LOG_REMOVE_MOVED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ) )
+    btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
   else
-    grpMovMailsRemove->setButton( ID_BUTTON_REMOVE_AFTER_DAYS );
+    btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
+
+  btnToCheck->setChecked( true );
 
   spbDelDays->setValue( DEFAULT_LOG_HOLDDAYS_DELETED_MAILS );
   spbMovDays->setValue( DEFAULT_LOG_HOLDDAYS_MOVED_MAILS );
@@ -181,28 +193,28 @@ void ConfigLog::defaults()
 void ConfigLog::save()
 {
   //set group
-  config->setGroup( CONFIG_GROUP_LOG );
+  KConfigGroup* configLog = new KConfigGroup( config, CONFIG_GROUP_FILTER );
 
   //write settings
-  config->writeEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, chkLogDeletedMails->isOn() );
-  config->writeEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, chkLogMovedMails->isOn() );
+  configLog->writeEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, chkLogDeletedMails->isChecked() );
+  configLog->writeEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, chkLogMovedMails->isChecked() );
 
-  switch( grpDelMailsRemove->selectedId() )
+  switch( grpDelMailsRemove->checkedId() )
   {
-    case ID_BUTTON_REMOVE_AT_EXIT     : config->writeEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
-    case ID_BUTTON_REMOVE_AFTER_DAYS  : config->writeEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
-    default                           : config->writeEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
+    case ID_BUTTON_REMOVE_AT_EXIT     : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
+    case ID_BUTTON_REMOVE_AFTER_DAYS  : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
+    default                           : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
   }
 
-  switch( grpMovMailsRemove->selectedId() )
+  switch( grpMovMailsRemove->checkedId() )
   {
-    case ID_BUTTON_REMOVE_AT_EXIT     : config->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
-    case ID_BUTTON_REMOVE_AFTER_DAYS  : config->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
-    default                           : config->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
+    case ID_BUTTON_REMOVE_AT_EXIT     : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
+    case ID_BUTTON_REMOVE_AFTER_DAYS  : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
+    default                           : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
   }
 
-  config->writeEntry( CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS, spbDelDays->value() );
-  config->writeEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS, spbMovDays->value() );
+  configLog->writeEntry( CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS, spbDelDays->value() );
+  configLog->writeEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS, spbMovDays->value() );
 }
 
 void ConfigLog::slotChanged()
@@ -217,7 +229,7 @@ void ConfigLog::slotChangeItems()
     btnDelMailsRemoveExit->setEnabled( true );
     btnDelMailsRemoveDays->setEnabled( true );
     spbDelDays->setEnabled( true );
-    switch( grpDelMailsRemove->selectedId() )
+    switch( grpDelMailsRemove->checkedId() )
     {
       case ID_BUTTON_REMOVE_AFTER_DAYS      : spbDelDays->setEnabled( true ); break;
       case ID_BUTTON_REMOVE_AT_EXIT         : spbDelDays->setEnabled( false ); break;
@@ -236,7 +248,7 @@ void ConfigLog::slotChangeItems()
     btnMovMailsRemoveExit->setEnabled( true );
     btnMovMailsRemoveDays->setEnabled( true );
     spbMovDays->setEnabled( true );
-    switch( grpMovMailsRemove->selectedId() )
+    switch( grpMovMailsRemove->checkedId() )
     {
       case ID_BUTTON_REMOVE_AFTER_DAYS      : spbMovDays->setEnabled( true ); break;
       case ID_BUTTON_REMOVE_AT_EXIT         : spbMovDays->setEnabled( false ); break;

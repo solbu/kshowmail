@@ -24,12 +24,14 @@
 #include <qradiobutton.h>
 #include <qbuttongroup.h>
 #include <qspinbox.h>
+#include <QStyle>
 
 //KDE headers
 #include <kcmodule.h>
 #include <kconfig.h>
 #include <kgenericfactory.h>
 #include <kapplication.h>
+#include <kconfiggroup.h>
 
 //Kshowmail headers
 #include "constants.h"
