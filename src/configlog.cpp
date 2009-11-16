@@ -55,7 +55,7 @@ ConfigLog::ConfigLog( QWidget * parent, const QVariantList & args )
   connect( spbDelDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( spbDelDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChangeItems() ) );
   spbDelDays->setSuffix( i18n( " Days" ) );
-  spbDelDays->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Minimum );
+  spbDelDays->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layDelMailsConfigDays->addWidget( spbDelDays );
 
 
