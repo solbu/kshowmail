@@ -144,6 +144,9 @@ void Account::refreshMailList()
 
   kdDebug() << "refresh " << getName() << endl;
 
+  //set state
+  state = AccountRefreshing;
+
   doConnect();
   
 }
@@ -314,16 +317,15 @@ void Account::closeConnection()
 void Account::initBeforeConnect()
 {
   quitSent = false;
+  apopAvail = false;
 }
 
 void Account::slotConnected()
 {
-  kdDebug() << getName() << ": connected with " << getHost() << endl;
 }
 
 void Account::slotHostFound()
 {
-  kdDebug() << getName() << ": Host " << getHost() << " found." << endl;
 }
 
 void Account::slotSocketError( QAbstractSocket::SocketError ErrorCode)
@@ -352,17 +354,18 @@ void Account::handleError( QString error )
   KMessageBox::error( NULL, i18n( "Account %1: %2" ).arg( getName() ).arg( error ) );
   emit sigMessageWindowClosed();
 
+  kdDebug() << state << endl;
   //emit ready signal
-//   switch( state )
-//   {
-//     case AccountDeleting    : emit sigDeleteReady( getAccountName() ); break;
-//     case AccountDownloading : emit sigShowBodiesReady( getAccountName() ); break;
-//     case AccountRefreshing  : emit sigRefreshReady( getAccountName() ); break;
-//     default                 : break;
-//   }
-// 
-//   //set state
-//   state = AccountIdle;
+  switch( state )
+  {
+    case AccountDeleting    : emit sigDeleteReady( getName() ); break;
+    case AccountDownloading : emit sigShowBodiesReady( getName() ); break;
+    case AccountRefreshing  : emit sigRefreshReady( getName() ); break;
+    default                 : break;
+  }
+
+  //set state
+  state = AccountIdle;
 
 
 }
@@ -392,7 +395,27 @@ void Account::slotReadFirstServerMessage()
 {
   QStringList text = readfromSocket();
 
-  kdDebug() << text.first() << endl;
+  //it must be a positive response
+  if( !isPositiveServerMessage( text ) )
+  {
+    //it is not a greeting of a POP3 server
+    //invoke error handling and close the connection
+    handleError( i18n( "%1 is not a POP3 mail server").arg( getHost() ) );
+    return;
+  }
+
+  //get just the first line
+  QString response = text.first();
+
+  //get the APOP timestamp if avalailable
+  QRegExp regEx( "<.*>" );
+  if( regEx.indexIn( response ) != -1 )
+  {
+    //we have found a timestamp
+    apopAvail = true;
+
+    apopTimestamp = regEx.cap();
+  }
 
   //get the capabilities
   getCapabilities();
@@ -594,3 +617,19 @@ void Account::finishTask()
 
 
 }
+
+void Account::slotCommitResponse()
+{
+  //get the response
+  QStringList response = readfromSocket();
+
+  if( !isPositiveServerMessage( response ) )
+  {
+    //the server has not accepted the commit
+    handleError( i18n( "%1 has not accepted the %2 command. Error message is: %3").arg( getHost() ).arg( COMMIT ).arg( response.first() ) );
+    return;
+  }
+
+  finishTask();
+}
+

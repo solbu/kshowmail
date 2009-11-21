@@ -420,6 +420,13 @@ class Account : public QObject
      */
     void slotAuthMechResponse();
 
+    /**
+     * Connected with signal readyRead of the socket by commit().
+     * Analyzes the commit response of the server.
+     * @see ccommit()
+     */
+    void slotCommitResponse();
+
 
 		
 	private:
@@ -484,6 +491,22 @@ class Account : public QObject
      * State of the account.
      */
     Types::AccountState_Type state;
+
+    /**
+     * APOP available
+     */
+    bool apopAvail;
+
+    /**
+     * Is set to TRUE by slotLoginAPOPResponse if the first login with APOP is failed.
+     * After a setup load it will set to false.
+     */
+    bool dontUseAPOP;
+
+    /**
+     * Timestamp for APOP sent with the server greeting
+     */
+    QString apopTimestamp;
 
 
 
