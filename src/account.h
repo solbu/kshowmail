@@ -32,6 +32,7 @@
 #include <KConfig>
 #include <KGlobal>
 #include <KPasswordDialog>
+#include <kcodecs.h>
 
 //KShowmail headers
 #include "mail.h"
@@ -267,6 +268,20 @@ class Account : public QObject
     */
    int getPasswordStorage() const;
 
+  /**
+   * Returns the state of the account.
+   * @return account state
+   */
+   Types::AccountState_Type getState();
+
+   /**
+    * Return whether an unsecure login is allowed.
+    * @return TRUE - unsecure login is allowed
+    */
+   bool isUnsecureLoginAllowed() const;
+
+
+
   protected:
 
     /**
@@ -377,7 +392,41 @@ class Account : public QObject
      */
     void finishTask();
 
-    
+    /**
+     * Sends the login name.
+     * The response will be received by slotLoginUserResponse().
+     * @see slotLoginUserResponse
+     */
+    void loginUser();
+
+    /**
+     * Sends the password for login
+     * The response will be received by slotLoginPasswdResponse().
+     * @see slotLoginPasswdResponse
+     */
+    void loginPasswd();
+
+    /**
+     * Initiates a login using APOP.
+     * The response will be received by slotLoginApopResponse().
+     * @see slotLoginApopResponse()
+     */
+    void loginApop();
+
+    /**
+     * Removes the status indicator from a single line server message.
+     * @param message server message
+     * @return server message without status indicator
+     */
+    QString removeStatusIndicator( const QString& message );
+
+    /**
+     * If the first line of the server response is the status indicator (+OK or -ERR), this methode will
+     * remove this line.
+     */
+    void removeStatusIndicator( QStringList* response );
+
+
 
 
   protected slots:
@@ -426,6 +475,24 @@ class Account : public QObject
      * @see ccommit()
      */
     void slotCommitResponse();
+
+    /**
+     * Received the response of the USER command during login.
+     * @see loginUser()
+     */
+    void slotLoginUserResponse();
+
+    /**
+     * Received the response of the PASS command during login.
+     * @see loginPasswd()
+     */
+    void slotLoginPasswdResponse();
+
+    /**
+     * Receives the response of a login using APOP.
+     * @see loginApop()
+     */
+    void slotLoginApopResponse();
 
 
 		
@@ -508,6 +575,10 @@ class Account : public QObject
      */
     QString apopTimestamp;
 
+    /**
+     * TRUE - unsafe login is allowed if a secure login failed
+     */
+    bool allowUnsecureLogin;
 
 
   signals:

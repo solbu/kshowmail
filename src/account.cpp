@@ -633,3 +633,162 @@ void Account::slotCommitResponse()
   finishTask();
 }
 
+void Account::loginUser()
+{
+  kdDebug() << "Login without security on " << getName() << endl;
+
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotLoginUserResponse() ) );
+
+  //send the command
+  sendCommand( LOGIN_USER + " " + getUser() );
+}
+
+void Account::slotLoginUserResponse()
+{
+  //get the response
+  QStringList response = readfromSocket();
+
+  if( !isPositiveServerMessage( response ) )
+  {
+    //the server has not accepted the user
+    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response ) ) );
+    return;
+  }
+
+  //send the password
+  loginPasswd();
+}
+
+void Account::loginPasswd()
+{
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotLoginPasswdResponse() ) );
+
+  //send the command
+  sendCommand( LOGIN_PASSWD + " " + getPassword() );
+}
+
+void Account::slotLoginPasswdResponse()
+{
+  //get the response
+  QStringList response = readfromSocket();
+
+  if( !isPositiveServerMessage( response ) )
+  {
+    //the server has not accepted the password
+    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response ) ) );
+    return;
+  }
+
+  //now we have to decide what we want to do at next
+  switch( getState() )
+  {
+/*    case AccountRefreshing    : getUIDList(); break;
+    case AccountDeleting      : deleteNextMail(); break;
+    case AccountDownloading   : showNextMail(); break;*/
+    default                   : commit(); break;
+  }
+}
+
+QString Account::removeStatusIndicator(const QString & message)
+{
+  QString ret( message );
+
+  if( ret.startsWith( RESPONSE_POSITIVE ) )
+  {
+    return ret.remove( 0, RESPONSE_POSITIVE.length() );
+  }
+  else if( ret.startsWith( RESPONSE_NEGATIVE ) )
+  {
+    return ret.remove( 0, RESPONSE_NEGATIVE.length() );
+  }
+
+  return ret;
+}
+
+
+
+
+void Account::loginApop()
+{
+  kdDebug() << "Login with APOP on " << getName() << endl;
+
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotLoginApopResponse() ) );
+
+  //calculate MD5 string
+  QString secret( apopTimestamp + getPassword() );
+  KMD5 md5( secret.toAscii() );
+  QString md5Digest( md5.hexDigest() );
+
+  //send the command
+  sendCommand( LOGIN_APOP + " " + getUser() + " " + md5Digest );
+}
+
+void Account::slotLoginApopResponse()
+{
+  //get the response
+  QStringList response = readfromSocket();
+
+  if( !isPositiveServerMessage( response ) )
+  {
+    //the login using APOP is failed, if the user has allowed it, we try it with plain login
+    if( allowUnsecureLogin )
+    {
+      //disconnect and try a new login without APOP
+      closeConnection();
+      dontUseAPOP = true;
+      doConnect();
+      return;
+    }
+    else
+    {
+      handleError( i18n( "Login has failed. Error message is: %1\n\
+          Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.\n\
+          Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response ) ) );
+      return;
+    }
+  }
+
+  //now we have to decide what we want to do at next
+  switch( getState() )
+  {
+/*    case AccountRefreshing    : getUIDList(); return;
+    case AccountDeleting      : deleteNextMail(); return;
+    case AccountDownloading   : showNextMail(); return;*/
+    default                   : commit(); return;
+  }
+
+}
+
+void Account::removeStatusIndicator( QStringList* response )
+{
+  //return, if the given list has no elements
+  if( response->isEmpty() ) return;
+
+  //get first line
+  QString firstLine = response->first();
+
+  //is it an indicator?
+  if( firstLine.startsWith( RESPONSE_POSITIVE ) || firstLine.startsWith( RESPONSE_NEGATIVE ) )
+  {
+    //Yes, it is. Zack und weg!
+    response->pop_front();
+  }
+}
+
+Types::AccountState_Type Account::getState()
+{
+  return state;
+}
+
+bool Account::isUnsecureLoginAllowed() const
+{
+  return allowUnsecureLogin;
+}
+
+
