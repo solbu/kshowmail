@@ -105,6 +105,7 @@ namespace Constants
   #define DEFAULT_ACCOUNT_ACTIVE true
   #define DEFAULT_ACCOUNT_SECTRANSFER 1
     //1: no secure transfer, 2: SSL, 3: TLS
+  #define DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN false
 
   //filter defaults
   #define DEFAULT_FILTER_ACTIVE false
@@ -266,6 +267,7 @@ namespace Constants
   #define CONFIG_ENTRY_ACCOUNT_PASSWORD_STORAGE "PasswordStorage"
   #define CONFIG_ENTRY_ACCOUNT_ACTIVE           "Active"
   #define CONFIG_ENTRY_ACCOUNT_SECTRANSFER      "SecureTransfer"
+  #define CONFIG_ENTRY_ACCOUNT_ALLOW_UNSECURE_LOGIN "AllowUnsecureLogin"
 
 
   //general filter

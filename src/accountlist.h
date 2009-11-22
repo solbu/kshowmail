@@ -117,6 +117,22 @@ class AccountList : public QObject
      */
     AccountTaskMap_Type AccountRefreshMap;
 
+    /**
+     * Number of windows, which have been opened by the accounts to show mails.
+     * Used by slotMessageWindowOpened() and slotMessageWindowClosed().
+     * @see slotMessageWindowOpened
+     * @see slotMessageWindowClosed
+     */
+    int ctrOpenMessageWindows;
+
+  protected:
+
+    /**
+     * initializes this
+     */
+    void init();
+
+
   protected slots:
 
     /**
@@ -130,6 +146,28 @@ class AccountList : public QObject
      */
     void slotCheckRefreshState( QString account );
 
+    /**
+     * Connected with signal sigMessageWindowOpened of all accounts.
+     * When an account has sent this signal the counter ctrOpenMessageWindows
+     * will be incremented.
+     * When the counter was incremented from zero (the first window was opened)
+     * the signal sigMessageWindowOpened will be emitted.
+     * @see ctrOpenMessageWindows
+     * @see sigMessageWindowOpened
+     */
+    void slotMessageWindowOpened();
+
+    /**
+     * Connected with signal sigMessageWindowClosed of all accounts.
+     * When an account has sent this signal the counter ctrOpenMessageWindows
+     * will be decremented.
+     * When the counter has reached zero the signal sigAllMessageWindowsClosed
+     * will be emitted.
+     * @see ctrOpenMessageWindows
+     * @see sigAllMessageWindowsClosed
+     */
+    void slotMessageWindowClosed();
+
 
 
   signals:
@@ -139,6 +177,21 @@ class AccountList : public QObject
      */
     void sigRefreshReady();
 
+    /**
+     * Will be emitted by slotMessageWindowOpened when an account has
+     * opened a window to show a mail.
+     * @see slotMessageWindowOpened
+     */
+    void sigMessageWindowOpened();
+
+    /**
+     * Will be emitted by slotMessageWindowClosed when all accounts have
+     * closed their windows to show mails.
+     * @see slotMessageWindowClosed
+     */
+    void sigAllMessageWindowsClosed();
+
+    
 };
 
 #endif // ACCOUNTLIST_H

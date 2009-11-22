@@ -10,6 +10,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 {
 	//create the account list
 	accounts = new AccountList( this );
+  connect( accounts, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotNormalCursor() ) );
+  connect( accounts, SIGNAL( sigAllMessageWindowsClosed() ), this, SLOT( slotWaitingCursor() ) );
+
 	
 	//create the models for the account view and mail view
 	AccountViewModel* accountModel = new AccountViewModel( accounts, this );
@@ -247,6 +250,20 @@ void KShowmail::slotRefreshReady()
 
   //show status message
   showStatusMessage( i18n( "Ready" ) );
+}
+
+void KShowmail::slotNormalCursor( )
+{
+  //set normal cursor
+  while( QApplication::overrideCursor() )
+    QApplication::restoreOverrideCursor();
+
+}
+
+void KShowmail::slotWaitingCursor( )
+{
+  //set waiting cursor
+  QApplication::setOverrideCursor( Qt::WaitCursor );
 }
 
 

@@ -149,6 +149,13 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
  
    btnToCheck = static_cast<QRadioButton*>( grpSecureTransfer->button( DEFAULT_ACCOUNT_SECTRANSFER ) );
    btnToCheck->setChecked( true );
+
+  //checkbox to allow unsecure transfer
+  chkAllowUnsecureLogin = new QCheckBox( i18n( "Allow unsafe login"), pgSecurity );
+  chkAllowUnsecureLogin->setToolTip( i18n( "Select it to allow an unsafe login if necessary.\nThe password will be transmit unencrypted. Maybe someone can read it!" ) );
+  laySecurity->addWidget( chkAllowUnsecureLogin );
+  chkAllowUnsecureLogin->setChecked( DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN );
+
  
    //set pages to tab widget
    tabs->addTab( pgGeneral, i18n( "General" ) );
@@ -282,6 +289,8 @@ void AccountSetupDialog::slotButtonClicked( int button )
     default                         : account->setTransferSecurity( DEFAULT_ACCOUNT_SECTRANSFER ); break;
   }
 
+  account->setUnsecureLoginAllowed( chkAllowUnsecureLogin->isChecked() );
+  
   //call slot of super class to close the dialog
   KDialog::slotButtonClicked( KDialog::Ok );
 }
@@ -345,6 +354,9 @@ void AccountSetupDialog::fillDialog( )
     default                                    : btnToCheck = static_cast<QRadioButton*>( grpSecureTransfer->button( ID_BUTTON_SECTRANSFER_NONE ) ); break;
   }
   btnToCheck->setChecked( true );
+
+  chkAllowUnsecureLogin->setChecked( account->getUnsecureLoginAllowed() );
+
 
 }
 

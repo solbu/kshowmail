@@ -152,6 +152,22 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotRefreshReady();
 
+    /**
+     * Connected with signal sigMessageWindowOpened of m_ConfigList.
+     * This signal will be emitted when a window to show a mail body
+     * was opened.
+     * Switches the cursor to normal view.
+     */
+    void slotNormalCursor();
+
+    /**
+     * Connected with signal sigAllMessageWindowsClosed of m_ConfigList.
+     * This signal will be emitted when all windows to show a mail body
+     * have been closed.
+     * Switches the cursor to waiting view.
+     */
+    void slotWaitingCursor();
+
 
 	
 	private:

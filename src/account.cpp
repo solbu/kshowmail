@@ -120,6 +120,8 @@ void Account::load()
 	else
 		transferSecurity = TransSecNone;
 
+  allowUnsecureLogin = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ALLOW_UNSECURE_LOGIN, DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN );
+
   delete accountConfig;
 }
 
@@ -566,8 +568,29 @@ void Account::slotAuthMechResponse()
     clearMessage( text );
   }
 
+  //the next step is the login
+  //if APOP available, we use it
+  //otherwise plain login
+  //we also don't use APOP if the a previous APOP login failed
+  if( apopAvail && !dontUseAPOP )
+    loginApop();
+  else
+  {
+    if( allowUnsecureLogin == true )
+      loginUser();
+    else
+    {
+      emit sigMessageWindowOpened();
+      KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login.\n\
+                                       If you want to use this Account you must allow unsafe login at the account setup.\
+                                       Bear in mind in this case criminals could read your password!" ).arg( getName() ), i18n( "Unsafe login is not allowed") );
+      emit sigMessageWindowClosed();
 
-  commit();
+      //the user has not allowed unsafe login; finish the task
+      commit();
+
+    }
+  }
 
 }
 
@@ -653,7 +676,7 @@ void Account::slotLoginUserResponse()
   if( !isPositiveServerMessage( response ) )
   {
     //the server has not accepted the user
-    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response ) ) );
+    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response.first() ) ) );
     return;
   }
 
@@ -679,7 +702,7 @@ void Account::slotLoginPasswdResponse()
   if( !isPositiveServerMessage( response ) )
   {
     //the server has not accepted the password
-    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response ) ) );
+    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response.first() ) ) );
     return;
   }
 
@@ -726,13 +749,15 @@ void Account::loginApop()
   QString md5Digest( md5.hexDigest() );
 
   //send the command
-  sendCommand( LOGIN_APOP + " " + getUser() + " " + md5Digest );
+  sendCommand( LOGIN_APOP + " " + getUser() + " " + md5Digest + "rttt" );
 }
 
 void Account::slotLoginApopResponse()
 {
   //get the response
   QStringList response = readfromSocket();
+
+  printServerMessage( response );
 
   if( !isPositiveServerMessage( response ) )
   {
@@ -747,9 +772,11 @@ void Account::slotLoginApopResponse()
     }
     else
     {
+      emit sigMessageWindowOpened();
       handleError( i18n( "Login has failed. Error message is: %1\n\
           Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.\n\
-          Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response ) ) );
+          Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response.first() ) ) );
+      emit sigMessageWindowClosed();
       return;
     }
   }

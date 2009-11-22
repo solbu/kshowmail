@@ -170,6 +170,7 @@ void AccountSetupItem::save() const
 
   accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, getActive() );
   accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, getTransferSecurity() );
+  accountConfig->writeEntry( CONFIG_ENTRY_ACCOUNT_ALLOW_UNSECURE_LOGIN, getUnsecureLoginAllowed() );
 
 }
 
@@ -192,6 +193,7 @@ void AccountSetupItem::load( )
 
   _active = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
   _transferSecurity = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, DEFAULT_ACCOUNT_SECTRANSFER );
+  _allowUnsecureLogin = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ALLOW_UNSECURE_LOGIN, DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN );
 }
 
 void AccountSetupItem::setTransferSecurity( int type )
@@ -249,5 +251,16 @@ void AccountSetupItem::print()
 
   }
 }
+
+void AccountSetupItem::setUnsecureLoginAllowed(bool allowed)
+{
+  _allowUnsecureLogin = allowed;
+}
+
+bool AccountSetupItem::getUnsecureLoginAllowed() const
+{
+  return _allowUnsecureLogin;
+}
+
 
 

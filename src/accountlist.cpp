@@ -18,6 +18,7 @@
 
 AccountList::AccountList( QObject* parent ) : QObject( parent )
 {
+  init();
 	
 }
 
@@ -30,6 +31,8 @@ Account* AccountList::addAccount( const QString& name )
 
   //conect the signals with the slots of this list
   connect( acc, SIGNAL( sigRefreshReady( QString ) ), this, SLOT( slotCheckRefreshState( QString ) ) );
+  connect( acc, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotMessageWindowOpened() ) );
+  connect( acc, SIGNAL( sigMessageWindowClosed() ), this, SLOT( slotMessageWindowClosed() ) );
 	
 	//append it to the list
 	accounts.append( acc );
@@ -183,3 +186,36 @@ void AccountList::slotCheckRefreshState( QString account )
   }
 
 }
+
+void AccountList::init()
+{
+  //assume, no window to show a mail is open at beginning
+  ctrOpenMessageWindows = 0;
+}
+
+void AccountList::slotMessageWindowOpened( )
+{
+  //increment the window counter
+  ctrOpenMessageWindows++;
+
+  //if the counter was incremented from zero
+  //(the first window was opened), emit the
+  //signal
+  if( ctrOpenMessageWindows == 1 )
+    emit sigMessageWindowOpened();
+}
+
+void AccountList::slotMessageWindowClosed( )
+{
+  //decrement the window counter
+  ctrOpenMessageWindows--;
+  if( ctrOpenMessageWindows < 0 )
+    ctrOpenMessageWindows = 0;
+
+  //if counter is zero (all windows was closed),
+  //emit signal
+  if( ctrOpenMessageWindows == 0 )
+    emit sigAllMessageWindowsClosed();
+}
+
+

@@ -185,6 +185,19 @@ class AccountSetupItem : public QTreeWidgetItem
      */
     void print();
 
+    /**
+     * Sets whether an unsecure login is allowed
+     * @param allowed TRUE - unsecure login is allowd
+     */
+    void setUnsecureLoginAllowed( bool allowed );
+
+    /**
+     * Return whether an unsecure login is allowed.
+     * @return TRUE - unsecure login is allowed
+     */
+    bool getUnsecureLoginAllowed() const;
+
+    
 
   private:
 
@@ -240,6 +253,12 @@ class AccountSetupItem : public QTreeWidgetItem
      */
     int _transferSecurity;
 
+    /**
+     * TRUE - unsafe login is allowed if a secure login failed
+     */
+    bool _allowUnsecureLogin;
+
+    
   protected:
 
     /**

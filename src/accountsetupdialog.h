@@ -129,6 +129,13 @@ Q_OBJECT
      */
     QButtonGroup* grpSecureTransfer;
 
+    /**
+     * Check box to select whether unsecure login is allowed
+     */
+    QCheckBox* chkAllowUnsecureLogin;
+
+    
+
   protected slots:
 
     /**
