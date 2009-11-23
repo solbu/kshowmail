@@ -426,6 +426,18 @@ class Account : public QObject
      */
     void removeStatusIndicator( QStringList* response );
 
+    /**
+     * If the last line of the server response is the end of response marker,
+     * this methode will remove this line.
+     */
+    void removeEndOfResponseMarker( QStringList* response );
+
+    /**
+     * Sends the UIDL command to get a list of the mail UID's
+     * The response will be received by the slotUIDListResponse.
+     * @see slotUIDListResponse
+     */
+    void getUIDList();
 
 
 
@@ -493,6 +505,12 @@ class Account : public QObject
      * @see loginApop()
      */
     void slotLoginApopResponse();
+
+    /**
+     * Reiceves the response of the UIDL command, which gets the UID's of the mails.
+     * @see getUIDList()
+     */
+    void slotUIDListResponse();
 
 
 		

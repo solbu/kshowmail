@@ -485,9 +485,16 @@ void Account::slotCapabilitiesResponse()
 
 void Account::printServerMessage( QStringList& text ) const
 {
-  for( int i = 0; i < text.size(); ++i )
+  if( text.isEmpty() )
   {
-    kdDebug() << text.at( i ) << endl;
+    kdDebug() << "empty server message" << endl;
+  }
+  else
+  {
+    for( int i = 0; i < text.size(); ++i )
+    {
+      kdDebug() << text.at( i ) << endl;
+    }
   }
 }
 
@@ -709,8 +716,8 @@ void Account::slotLoginPasswdResponse()
   //now we have to decide what we want to do at next
   switch( getState() )
   {
-/*    case AccountRefreshing    : getUIDList(); break;
-    case AccountDeleting      : deleteNextMail(); break;
+    case AccountRefreshing    : getUIDList(); break;
+/*    case AccountDeleting      : deleteNextMail(); break;
     case AccountDownloading   : showNextMail(); break;*/
     default                   : commit(); break;
   }
@@ -749,7 +756,7 @@ void Account::loginApop()
   QString md5Digest( md5.hexDigest() );
 
   //send the command
-  sendCommand( LOGIN_APOP + " " + getUser() + " " + md5Digest + "rttt" );
+  sendCommand( LOGIN_APOP + " " + getUser() + " " + md5Digest );
 }
 
 void Account::slotLoginApopResponse()
@@ -772,11 +779,9 @@ void Account::slotLoginApopResponse()
     }
     else
     {
-      emit sigMessageWindowOpened();
       handleError( i18n( "Login has failed. Error message is: %1\n\
           Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.\n\
           Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response.first() ) ) );
-      emit sigMessageWindowClosed();
       return;
     }
   }
@@ -784,8 +789,8 @@ void Account::slotLoginApopResponse()
   //now we have to decide what we want to do at next
   switch( getState() )
   {
-/*    case AccountRefreshing    : getUIDList(); return;
-    case AccountDeleting      : deleteNextMail(); return;
+    case AccountRefreshing    : getUIDList(); return;
+/*    case AccountDeleting      : deleteNextMail(); return;
     case AccountDownloading   : showNextMail(); return;*/
     default                   : commit(); return;
   }
@@ -816,6 +821,134 @@ Types::AccountState_Type Account::getState()
 bool Account::isUnsecureLoginAllowed() const
 {
   return allowUnsecureLogin;
+}
+
+void Account::getUIDList()
+{
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotUIDListResponse() ) );
+
+  //send the command
+  sendCommand( UID_LIST );
+}
+
+void Account::slotUIDListResponse()
+{
+  //get the response
+  QStringList receivedUIDs = readfromSocket();
+
+  //no response from the server
+  if( receivedUIDs.isEmpty() )
+  {
+    handleError( i18n( "%1 has not sent a response after %2 command.").arg( getHost() ).arg( UID_LIST ) );
+    return;
+  }
+
+  //it is a negative response?
+  if( !isPositiveServerMessage( receivedUIDs ) )
+  {
+    handleError( i18n( "%1 doesn't support mail UID's. KShowmail can't work without this. Error message is: %2" ).arg( getName() ).arg( receivedUIDs.first() ) );
+    return;
+  }
+
+  //remove first and last line of the response
+  //this are the state and the end of response marker
+  //we don't need it
+  removeStatusIndicator( &receivedUIDs );
+  removeEndOfResponseMarker( &receivedUIDs );
+
+  printServerMessage( receivedUIDs );
+commit();
+/*  //have we get any UIDs?
+  if( receivedUIDs.isEmpty() )
+  {
+    //we haven't received any UIDs. The account has no mails.
+    //finalize the refresh
+    swapMailLists();
+    return;
+  }
+
+
+  int number;                 //an extracted mail number
+  QString uid;                //an extracted uid
+  bool isNew = false;         //state of the received mail
+
+  //analyze UIDs
+  //iterate over all UIDs in the list
+  for ( QStringList::Iterator it = receivedUIDs.begin(); it != receivedUIDs.end(); ++it )
+  {
+    QString line = *it;
+
+    //every line has the format "number UID", e.g.: 1 bf10d38018de7c1d628d65288d722f6a
+    //get the position of the separating space
+    int positionOfSpace = line.find( " " );
+
+    //if no space was found, the line is corrupt
+    if( positionOfSpace == -1 )
+    {
+      handleError( i18n( "Get corrupt UID list. No spaces" ) );
+      return;
+    }
+    else
+    {
+      //extract mail number and uid
+      bool isNumber;
+      number = line.left( positionOfSpace ).toInt( &isNumber );
+      //check number
+      if( !isNumber )
+      {
+        //the first part is not a number
+        handleError( i18n( "Get corrupt UID list. No number found at begin." ) );
+        return;
+      }
+      else
+      {
+        //number is ok; extract uid
+        uid = line.mid( positionOfSpace + 1 );
+
+        //determine about new mail or not
+        if( !mailList->hasMail( uid ) )
+        {
+          //the old list doesn't contain a mail with this uid
+          //the mail is new
+          isNew = true;
+        }
+        else if( ( accountList->keepNew() || refreshPerformedByFilters ) && mailList->isNew( uid ) )
+        {
+          //the mail is already in the old list
+          //but we will leave the state of formerly new mails, because the user wants it or this refresh is performed by filters
+          isNew = true;
+        }
+        else
+          isNew = false;
+
+        //append mail to the list
+        tempMailList->appendNewMail( number, uid, isNew );
+
+      }
+    }
+  }
+
+  //the next step is to get the mail sizes
+  getMailSizes();*/
+}
+
+void Account::removeEndOfResponseMarker( QStringList * response )
+{
+  //return, if the given list has no elements
+  if( response->isEmpty() ) return;
+
+  //get last line
+  QString lastLine = response->last();
+
+  //is it a marker?
+  if( lastLine == END_MULTILINE_RESPONSE  )
+  {
+    //Yes, it is. Zack und weg!
+    response->pop_back();
+  }
+
 }
 
 
