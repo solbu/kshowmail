@@ -28,7 +28,9 @@
 
 //KSHowmail headers
 #include "mail.h"
+#include "types.h"
 
+using namespace Types;
 
 class MailList : public QObject
 {
@@ -49,14 +51,52 @@ class MailList : public QObject
 
     /**
      * Creates a mail object and adds it to the list
-     * @param unid UNID of the mail
+     * @param number number of the mail on the server
+     * @param uid Unique ID of the mail
+     * @param isNew TRUE - mail is new; FALSE - mail is not new
      */
-    void addMail( const QString& unid );
+    void addMail( long number, const QString& unid, bool isNew );
 
     /**
      * Prints all data of this mail list to stdout
      */
     void print() const;
+
+    /**
+     * Returns whether there is mail with the given uid in the list.
+     * @param uid UID of the mail
+     * @return TRUE - mail is in the list
+     * @return FALSE - mail is not in the list
+     */
+    bool hasMail( QString uid );
+
+    /**
+     * Returns whether the given mail is new.
+     * @param uid UID of the mail
+     * @return TRUE - mail is new
+     * @return FALSE - mail is not new or mail doesn't exist
+     */
+    bool isNew( QString uid ) const;
+
+    /**
+     * Sets the size of a mail.
+     * @param number number of the mail
+     * @param size mail size
+     */
+    void setSize( long number, long size );
+
+    /**
+     * Returns the numbers of mails which are marked as new.
+     * @return numbers of the new mails
+     */
+    Types::MailNumberList_Type getNewMails();
+
+    /**
+     * Sets the header of the given mail.
+     * @param number number of the mail
+     * @param header the header
+     */
+    void setHeader( int number, QStringList header );
 
 
   private:

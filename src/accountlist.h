@@ -96,7 +96,15 @@ class AccountList : public QObject
      * When the refresh is done, the signal refreshReady will be emitted.
      */
     void refreshMailLists();
-		
+
+    /**
+     * Returns whether all new mails will keep new status until the app is closed.
+     * @return TRUE - mails keep new status at next refresh
+     * @return FALSE - mails don't keep new status at next refresh
+     */
+    bool keepNew();
+
+    
 	private:
 		
 		/**
@@ -124,6 +132,12 @@ class AccountList : public QObject
      * @see slotMessageWindowClosed
      */
     int ctrOpenMessageWindows;
+
+    /**
+     * TRUE - mails keep new until termination
+     */
+    bool keepMailsNew;
+    
 
   protected:
 

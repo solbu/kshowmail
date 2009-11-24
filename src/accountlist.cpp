@@ -115,6 +115,10 @@ void AccountList::loadSetup()
 		iter++;
   }
 
+  //read the setup of other things
+    keepMailsNew = confAccounts->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW );
+
+
 }
 
 bool AccountList::hasAccount( QString accountName ) const
@@ -216,6 +220,11 @@ void AccountList::slotMessageWindowClosed( )
   //emit signal
   if( ctrOpenMessageWindows == 0 )
     emit sigAllMessageWindowsClosed();
+}
+
+bool AccountList::keepNew( )
+{
+  return keepMailsNew;
 }
 
 

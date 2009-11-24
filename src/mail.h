@@ -23,6 +23,10 @@
 //Qt header
 #include <QObject>
 #include <QStringList>
+#include <QDateTime>
+
+//KDE headers
+#include <kmime_codec_base64.h>
 
 using namespace std;
 
@@ -38,10 +42,12 @@ class Mail : public QObject
 		
 		/**
 		 * Constructor
-		 * @param unid UNID
+     * @param number number of the mail on the server
+     * @param uid Unique ID of the mail
+     * @param isNew TRUE - mail is new; FALSE - mail is not new
 		 * @param parent parent object
 		 */
-		Mail( const QString& unid, QObject* parent );
+		Mail( long number, const QString& unid, bool isNew, QObject* parent );
 		
 		/**
 		 * Destructor
@@ -58,7 +64,7 @@ class Mail : public QObject
 		 * Sets the number.
 		 * @param number the number
 		 */
-		void setNumber( int number );
+		void setNumber( long number );
 		
 		/**
 		 * Prints the data of this mail to stdout
@@ -87,8 +93,65 @@ class Mail : public QObject
 		 * Returns the number of this mail on the server
 		 * @return number
 		 */
-		int getNumber() const;
-		
+		long getNumber() const;
+
+    /**
+     * Sets whether the mail is new or not.
+     * @param isnew TRUE - mail is new; FALSE - mail is not new
+     */
+    void setNew( bool isnew );
+
+    /**
+     * Returns whether the mail is new or not.
+     * @return TRUE - mail is new
+     * @return FALSE - mail is not new
+     */
+    bool isNew() const;
+
+    /**
+     * Sets the mail header and extracts From, To, Subject, Date and Content Type.
+     * All parts of the header are coded according RFC 2047.
+     * @param header the mail header
+     */
+    void setHeader( const QStringList& header );
+    
+    /**
+     * Returns the header
+     * @return mail header
+     */
+    QStringList getHeader() const;
+
+    /**
+     * Sets the given string as subject
+     * @param subject the mail subject
+     */
+    void setSubject( const QString& subject );
+
+    /**
+     * Sets the given string as sender address
+     * @param from sender address
+     */
+    void setFrom( const QString& from );
+
+    /**
+     * Sets the given string as recipient address
+     * @param to recipient address
+     */
+    void setTo( const QString& to );
+
+    /**
+     * Converts the given string to a date-time value and stores it.
+     * @param date the date
+     */
+    void setDate( const QString& date );
+
+    /**
+     * Sets the given string as content type.
+     * @param content the content type
+     */
+    void setContent( const QString& content );
+
+    
 	private:
 		
 		/**
@@ -109,19 +172,60 @@ class Mail : public QObject
 		/**
 		 * Size (Bytes)
 		 */
-		int size;
+		long size;
 		
 		/**
 		 * Number of this mail on the server
 		 */
 		long number;
-		
+
+    /**
+     * It is set to TRUE when the mail is new.
+     */
+    bool _new;
+
+    /**
+     * The sender address
+     */
+    QString from;
+
+    /**
+     * The addressee
+     */
+    QString to;
+
+    /**
+     * The date on which the mail was sent
+     */
+    QDateTime sendDate;
+    
+    /**
+     * The content type
+     */
+    QString contentType;
+
+
 	protected:
 		
 		/**
 		 * Initiates the object
 		 */
 		void init();
+
+    /**
+     * Searches in the header for a line which starts with the
+     * given item.
+     * For example:
+     * scanHeader( "From") will find the line
+     * "From: Ulrich Weigelt <ulrich.weigelt@gmx.de>"
+     * and returns "Ulrich Weigelt <ulrich.weigelt@gmx.de>"
+     * Returns an empty string (""), if nothing was found.
+     * @param item the search item
+     * @return the content of the found line
+     */
+    QString scanHeader( const QString& item ) const;
+
+    
 		
 };
 

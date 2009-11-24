@@ -26,10 +26,10 @@ MailList::MailList( QObject* parent ) : QObject( parent )
 
 MailList::~MailList(){}
 
-void MailList::addMail( const QString& unid )
+void MailList::addMail( long number, const QString& unid, bool isNew )
 {
   //create the mail object
-  Mail* mail = new Mail( unid, this );
+  Mail* mail = new Mail( number, unid, isNew, this );
 
   //append it to the list
   mails.append( mail );
@@ -45,4 +45,104 @@ void MailList::print() const
     cout << "------------------" << endl;
   }
 }
+
+bool MailList::hasMail(QString uid)
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+     
+    //compare the uid
+    if( mail->getUNID() == uid )
+    {
+      found = true;
+    }
+  }
+  return found;
+
+}
+
+bool MailList::isNew(QString uid) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+  bool newMail = false;                           //at time we have not found it, therefore the return value is false
+
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+    
+    //compare the uid
+    if( mail->getUNID() == uid )
+    {
+      found = true;
+      newMail = mail->isNew();
+    }
+  }
+
+  return newMail;
+}
+
+void MailList::setSize( long number, long size )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                  //True, when the wanted mail was found
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+    
+    //if the current mail has the given number, decode the mail
+    if( mail->getNumber() == number )
+    {
+      mail->setSize( size );
+      found = true;
+    }
+  }
+}
+
+Types::MailNumberList_Type MailList::getNewMails()
+{
+  MailNumberList_Type numberList;  //contains the numbers of the new mails
+
+  QListIterator<Mail*> it( mails ); //iterator for the mail list
+
+  //iterate over all mails
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+    
+    //if current mail is new append its number to the mail number list
+    if( mail->isNew() )
+      numberList.append( mail->getNumber() );
+  }
+
+  return numberList;
+}
+
+void MailList::setHeader(int number, QStringList header)
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                  //True, when the wanted mail was found
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+    
+    //if the current mail has the given number, set the header
+    if( mail->getNumber() == number )
+    {
+      mail->setHeader( header );
+      found = true;
+    }
+  }
+
+}
+
+
 

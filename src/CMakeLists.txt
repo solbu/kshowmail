@@ -16,7 +16,7 @@ set(kshowmail_SRCS
 
 kde4_add_executable(kshowmail ${kshowmail_SRCS})
 
-target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} )
+target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} ${KDE4_KMIME_LIBS} )
 
 install(TARGETS kshowmail ${INSTALL_TARGETS_DEFAULT_ARGS} )
 

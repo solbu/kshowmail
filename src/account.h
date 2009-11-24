@@ -439,6 +439,35 @@ class Account : public QObject
      */
     void getUIDList();
 
+    /**
+     * Copies the pointer to the temporary list to the mail list.
+     * The temporary list will be the current mail list.
+     */
+    void swapMailLists();
+
+    /**
+     * Sends the LIST command to get a list of mail sizes.
+     * The response will be received by slotMailListResponse.
+     * @see slotMailSizesResponse
+     */
+    void getMailSizes();
+
+    /**
+     * Gets the headers of the new mails from the server.
+     */
+    void getHeaders();
+
+    /**
+     * Get the header of the first mail in newMails.
+     * After a succesful download this
+     * mail will be removed from the list by slotHeaderDownloaded() and this
+     * method will be invoked again.
+     * If the list is empty, it will call copyHeaders() to get the known
+     * headers from the old mail list.
+     * @see copyHeaders()
+     * @see slotHeaderDownloaded()
+     */
+    virtual void getNextHeader();
 
 
   protected slots:
@@ -512,6 +541,36 @@ class Account : public QObject
      */
     void slotUIDListResponse();
 
+    /**
+     * step of the refresh cycle.
+     * Applies the filters to the mails in the mail list.
+     * Invoked by swapMailLists().
+     * This methode maybe starts a new refresh cycle because after a deletion or moving we need a
+     * actual list of mails on the server.
+     * To avoid a never-ending loop you must not call this methode during the second refresh cycle.
+     * Therefore it sets filterApplied to TRUE.
+     * @see filterApplied
+     * @see applyFiltersDeleted()
+     */
+    void applyFilters();
+
+    /**
+     * Receives the response of the LIST command, which gets the
+     * numbers and sizes of the mails
+     * @see getMailSizes()
+     */
+    void slotMailSizesResponse();
+
+    /**
+     * Receives the header requested by getNextHeader().
+     * Stores the received headers into the appropriate instance of the mail list.
+     * Removes the first mail from newMails and invokes
+     * getNextHeader() again to get the next header.
+     * If the list is empty after it has removed the first item, it will call
+     * copyHeaders().
+     */
+    void slotGetHeaderResponse();
+
 
 		
 	private:
@@ -549,6 +608,14 @@ class Account : public QObject
      * The mail container
      */
     MailList* mails;
+
+    /**
+     * While refreshing, this mail list instance will be used to
+     * build a new mail list. After that this pointer will be assigned
+     * to maillist.
+     */
+    MailList* tempMailList;
+    
 
     /**
      * The socket. Handles all server operations
@@ -597,6 +664,30 @@ class Account : public QObject
      * TRUE - unsafe login is allowed if a secure login failed
      */
     bool allowUnsecureLogin;
+
+   /**
+     * This is a flag whether the filters was applied during a refresh cycle.
+     * If some mails was deleted (recommend by the filter), we need a actual
+     * list of mails from the server. Therefore a second refresh cycle will be started.
+     * To avoid a never-ending loop this flag will be set to TRUE by applyFilters().
+     * If the second refresh is running this one will not invoke the filters.
+    */
+    bool filterApplied;
+
+    /**
+     * This flag is set by applyFiltersDeleted() to indicate the refresh cycle is the second one after a deletion which was performed by filters.
+     * The refresh cycle need it to hold the remaining mails as new.
+     */
+    bool refreshPerformedByFilters;
+
+    /**
+     * Contains the numbers of new mails.
+     * Set by getHeaders() and used by getNextHeader() to download
+     * the headers of the new mails.
+     * @see getHeaders()
+     * @see getNextHeader()
+     */
+    MailNumberList_Type newMails;
 
 
   signals:

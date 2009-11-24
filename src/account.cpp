@@ -38,10 +38,6 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
 
   init();
 	
-	mails->addMail( QString( "1234" ) );
-	mails->addMail( QString( "fefe" ) );
-	mails->addMail( QString( "23fw" ) );
-	mails->addMail( QString( "2rwe" ) );
 }
 
 Account::~Account()
@@ -148,6 +144,13 @@ void Account::refreshMailList()
 
   //set state
   state = AccountRefreshing;
+
+  //create a new mail list
+  //When the refresh has finished successfully, this will
+  //replace the old mail list
+  tempMailList = new MailList( this );
+
+
 
   doConnect();
   
@@ -320,6 +323,12 @@ void Account::initBeforeConnect()
 {
   quitSent = false;
   apopAvail = false;
+
+  //at the next refresh the filter was not applied yet
+  filterApplied = false;
+
+  refreshPerformedByFilters = false;  
+
 }
 
 void Account::slotConnected()
@@ -764,8 +773,6 @@ void Account::slotLoginApopResponse()
   //get the response
   QStringList response = readfromSocket();
 
-  printServerMessage( response );
-
   if( !isPositiveServerMessage( response ) )
   {
     //the login using APOP is failed, if the user has allowed it, we try it with plain login
@@ -858,9 +865,7 @@ void Account::slotUIDListResponse()
   removeStatusIndicator( &receivedUIDs );
   removeEndOfResponseMarker( &receivedUIDs );
 
-  printServerMessage( receivedUIDs );
-commit();
-/*  //have we get any UIDs?
+  //have we get any UIDs?
   if( receivedUIDs.isEmpty() )
   {
     //we haven't received any UIDs. The account has no mails.
@@ -870,7 +875,7 @@ commit();
   }
 
 
-  int number;                 //an extracted mail number
+  long number;                 //an extracted mail number
   QString uid;                //an extracted uid
   bool isNew = false;         //state of the received mail
 
@@ -882,7 +887,7 @@ commit();
 
     //every line has the format "number UID", e.g.: 1 bf10d38018de7c1d628d65288d722f6a
     //get the position of the separating space
-    int positionOfSpace = line.find( " " );
+    int positionOfSpace = line.indexOf( " " );
 
     //if no space was found, the line is corrupt
     if( positionOfSpace == -1 )
@@ -894,7 +899,8 @@ commit();
     {
       //extract mail number and uid
       bool isNumber;
-      number = line.left( positionOfSpace ).toInt( &isNumber );
+      number = line.left( positionOfSpace ).toLong( &isNumber );
+      
       //check number
       if( !isNumber )
       {
@@ -908,13 +914,13 @@ commit();
         uid = line.mid( positionOfSpace + 1 );
 
         //determine about new mail or not
-        if( !mailList->hasMail( uid ) )
+        if( !mails->hasMail( uid ) )
         {
           //the old list doesn't contain a mail with this uid
           //the mail is new
           isNew = true;
         }
-        else if( ( accountList->keepNew() || refreshPerformedByFilters ) && mailList->isNew( uid ) )
+        else if( ( accountList->keepNew() || refreshPerformedByFilters ) && mails->isNew( uid ) )
         {
           //the mail is already in the old list
           //but we will leave the state of formerly new mails, because the user wants it or this refresh is performed by filters
@@ -923,15 +929,15 @@ commit();
         else
           isNew = false;
 
-        //append mail to the list
-        tempMailList->appendNewMail( number, uid, isNew );
+        //add mail to the list
+        tempMailList->addMail( number, uid, isNew );
 
       }
     }
   }
 
   //the next step is to get the mail sizes
-  getMailSizes();*/
+  getMailSizes();
 }
 
 void Account::removeEndOfResponseMarker( QStringList * response )
@@ -949,6 +955,293 @@ void Account::removeEndOfResponseMarker( QStringList * response )
     response->pop_back();
   }
 
+}
+
+void Account::swapMailLists( )
+{
+  //delete old mail list
+  delete mails;
+
+  //assign the new list
+  if( tempMailList != NULL )
+    mails = tempMailList;
+  else
+    mails = new MailList( this );
+
+
+  //if the filters were not applied yet, we do it now
+  //applyFilters() will either start a second refresh cycle if it did some deletions
+  //or call commit() to commit the refresh cycle.
+  //if the filters were already applied we commit the refresh.
+//   if( filterApplied | !headerFilter.isActive() )
+//   {
+//     //reset the flag for the next refresh
+//     filterApplied = false;
+// 
+//     //commit the refresh cycle
+//     commit();
+//     return;
+//   }
+//   else
+//   {
+//     //apply the filters
+//     applyFilters();
+//     return;
+//   }
+
+  commit();
+}
+
+void Account::applyFilters()
+{
+/*  //are we executed by the MOVE routines?
+  if( !downloadActionsInvoked )
+  {
+    //this is the first call (at the current refresh cycle) of this methode
+    //we get the lists of mails to delete an move and call the MOVE routines if necessary
+
+    //OK, the filters were applied
+    filterApplied = true;
+
+    //order the mail list to apply the header filters
+    //it returns lists of mail numbers which shall be deleted or moved
+    //the marking will be done by the mail list itself
+    //the mail list removes all mails which shall be ignored itself
+    mailsToDelete.clear();
+    mailList->applyHeaderFilter( &headerFilter, getAccountName(), mailsToDelete, mailsToDownload, nmbIgnoredMails, FLog );
+    nmbDeletedMailsLastRefresh += mailsToDelete.count();
+    nmbDeletedMailsLastStart += mailsToDelete.count();
+
+    //This part will be executed, if mails shall be downloaded
+    if( !mailsToDownload.empty() )
+    {
+      downloadActionsInvoked = true;
+      doDownloadActions();
+
+      //we quit this methode at this point, because after the bodies are downloaded and written this methode will recalled.
+      //At this time the else branch of this IF-statement will be executed and the methode continues
+      return;
+    }
+
+  }
+  else
+  {
+    //this is the second call (at the current refresh cycle) of this methode.
+    //it is called by the Move routines.
+    //the downloading of the mailbodies and writing it to the mailboxes has ended.
+    //A second call was just exceuted, if there was mails to move
+    downloadActionsInvoked = false;
+
+    //after an move error there are maybe some mails leftover in MailsToMove
+    mailsToDownload.clear();
+  }
+
+
+
+  //we have get the list of mails to delete and the all mails to move are written to its mailboxes
+  //now we delete this mails (the moved mails too)
+
+  if( !mailsToDelete.empty() )
+  {
+    //there are mails to delete
+    //we delete they
+    //after the delete cycle has done its job, it will call applyFiltersDeleted()
+    deletionPerformedByFilters = true;  //this is set to indicate the deletion is performed by filters and not by user
+                                        //the deletion methodes need it to decide on branch targets
+    deleteNextMail();
+  }
+  else
+  {
+    //if we need not to start a second refresh cycle (no mails was deleted or moved)
+    //we just commit the refresh and let the filter applied flag to false for the next regular refresh
+    commit();
+    filterApplied = false;
+  }*/
+}
+
+void Account::getMailSizes()
+{
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailSizesResponse() ) );
+
+  //send the command
+  sendCommand( MAIL_LIST );
+}
+
+void Account::slotMailSizesResponse()
+{
+
+  //get the response
+  QStringList receivedSizes = readfromSocket();
+
+  //no response from the server
+  if( receivedSizes.isEmpty() )
+  {
+    handleError( i18n( "%1 has not sent a response after %2 command.").arg( getHost() ).arg( MAIL_LIST ) );
+    return;
+  }
+
+  //it is a negative response?
+  if( !isPositiveServerMessage( receivedSizes ) )
+  {
+    handleError( i18n(  "Error while try to get the mail sizes. Message is: %1" ).arg( receivedSizes.first() ) );
+    return;
+  }
+
+  //remove first and last line of the response
+  //this are the state and the end of response marker
+  //we don't need it
+  removeStatusIndicator( &receivedSizes );
+  removeEndOfResponseMarker( &receivedSizes );
+
+
+  int number;                 //an extracted mail number
+  long size;                   //an extracted size
+
+  //analyze Sizes
+  if( receivedSizes.isEmpty() )
+  {
+    handleError( i18n(  "Error while try to get the mail sizes. All mails are disappeard." ) );
+    return;
+  }
+
+  //iterate over all sizes in the list
+  for ( QStringList::Iterator it = receivedSizes.begin(); it != receivedSizes.end(); ++it )
+  {
+    QString line = *it;
+
+    //every line has the format "number size", e.g.: 1 1234
+    //get the position of the separating space
+    int positionOfSpace = line.indexOf( " " );
+
+    //if no space was found, the line is corrupt
+    if( positionOfSpace == -1 )
+    {
+      handleError( i18n( "Get corrupt size list. No spaces" ) );
+      return;
+    }
+    else
+    {
+      //extract mail number and size
+      bool isNumber;
+      number = line.left( positionOfSpace ).toInt( &isNumber );
+      //check number
+      if( !isNumber )
+      {
+        //the first part is not a number
+        handleError( i18n( "Get corrupt UID list. No numbers at begin." ) );
+        return;
+      }
+      else
+      {
+        //number is ok; extract size
+        size = line.mid( positionOfSpace + 1 ).toLong( &isNumber );
+
+        //check size
+        if( !isNumber )
+        {
+          //the second part of the string is not a number
+          handleError( i18n( "Get corrupt UID list. No sizes found at end." ) );
+          return;
+        }
+        else
+        {
+          //size is ok
+          //set it
+          tempMailList->setSize( number, size );
+        }
+      }
+    }
+  }
+
+  //now we get the headers
+  getHeaders();
+}
+
+void Account::getHeaders( )
+{
+  //get the numbers of all new mails
+  newMails = tempMailList->getNewMails();
+  if( newMails.empty() )
+  {
+    //no new mails available; copy the known headers from the old mail list
+    commit();
+    //copyHeaders();
+    return;
+  }
+
+  //get the headers
+  getNextHeader();
+}
+
+void Account::getNextHeader( )
+{
+  //if the list of mails empty, copy the known headers from the old mail list
+  if( newMails.empty() )
+  {
+    commit();
+    //copyHeaders();
+    return;
+  }
+
+  //we get the header of mail number ...
+  QString mailNumber;
+  mailNumber =  mailNumber.setNum( *newMails.begin() );
+
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotGetHeaderResponse() ) );
+
+  //send the command
+  sendCommand( GET_HEADER + " " + mailNumber + " 0" );
+}
+
+void Account::slotGetHeaderResponse( )
+{
+  //we get the header of mail number
+  int mailNumber = *newMails.begin();
+
+  //get the response
+  QStringList header = readfromSocket();
+
+  //no response from the server
+  if( header.isEmpty() )
+  {
+    handleError( i18n( "%1 has not sent the header of mail %2.").arg( getHost() ).arg( mailNumber ) );
+    return;
+  }
+
+  //it is a negative response?
+  if( !isPositiveServerMessage( header ) )
+  {
+    handleError( i18n( "%1 doesn't support the TOP command. KShowmail can't work without this. Error message is: %2" ).arg( getName() ).arg( header.first() ) );
+    return;
+  }
+
+  //remove first and last line of the response
+  //this are the state and the end of response marker
+  //we don't need it
+  removeStatusIndicator( &header );
+  removeEndOfResponseMarker( &header );
+
+  //store header
+  tempMailList->setHeader( *newMails.begin(), header );
+
+  //remove the first item of the list of new mails
+  newMails.removeFirst();
+
+  //if the list of new mails is empty, copy the headers of old mails to the new list
+  if( newMails.empty() )
+  {
+    tempMailList->print();
+    commit();
+    //copyHeaders();
+    return;
+  }
+
+  //get next header
+  getNextHeader();
 }
 
 
