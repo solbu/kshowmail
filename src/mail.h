@@ -24,9 +24,10 @@
 #include <QObject>
 #include <QStringList>
 #include <QDateTime>
+#include <QRegExp>
 
 //KDE headers
-#include <kmime_codec_base64.h>
+#include <kmime/kmime_codecs.h>
 
 using namespace std;
 
@@ -225,7 +226,10 @@ class Mail : public QObject
      */
     QString scanHeader( const QString& item ) const;
 
-    
+    /**
+     * Decodes a rfc2047 encoded string
+     */
+    QString decodeRfc2047( const QString& text ) const;
 		
 };
 

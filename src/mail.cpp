@@ -154,6 +154,7 @@ QString Mail::scanHeader(const QString & item) const
 void Mail::setSubject( const QString & subject )
 {
   this->subject = subject;
+  kdDebug() << "Decode:" << decodeRfc2047( subject ) << endl;
 }
 
 void Mail::setFrom( const QString & from )
@@ -187,4 +188,44 @@ QStringList Mail::getHeader() const
   return header;
 }
 
+QString Mail::decodeRfc2047( const QString& text ) const
+{
+  //header informations can be encoded with RFC2047B or RFC2047Q
+  //to get the right codec we have to look into the encoding string
+  KMime::Codec* codec;
+
+  //Look for RFC2047B
+  QRegExp regex( "=\\?.*\\?[bB]\\?.*=" );
+  if( regex.indexIn( text ) != -1 )
+  {
+    //to get the codec for RFC2047B you must pass a "b"
+    codec = KMime::Codec::codecForName( "b" );
+  }
+  else
+  {
+    regex= QRegExp( "=\\?.*\\?[qQ]\\?.*=" );
+    if( regex.indexIn( text ) != -1 )
+    {
+      //to get the codec for RFC2047Q you must pass a "q"
+      codec = KMime::Codec::codecForName( "q" );
+    }
+    else
+    {
+      //it is no rfc2047 encoded string
+      return text;
+    }
+  }
+  
+  
+  if( codec == NULL )
+  {
+    kdDebug() << "No codec available." << endl;
+    return text;
+  }
+
+  
+  KMime::Decoder *decoder = codec->makeDecoder();
+
+  return "decodiert";
+}
 
