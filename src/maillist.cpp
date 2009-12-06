@@ -126,6 +126,7 @@ Types::MailNumberList_Type MailList::getNewMails()
 
 void MailList::setHeader(int number, QStringList header)
 {
+  kdDebug() << "Set Header of " << number << endl;
   QListIterator<Mail*> it( mails );   //iterator for the mail list
   bool found = false;                  //True, when the wanted mail was found
 

@@ -381,9 +381,27 @@ void Account::handleError( QString error )
 
 }
 
-QStringList Account::readfromSocket()
+QStringList Account::readfromSocket( QString charset )
 {
-  //buffer for the datas
+  QTextStream socketStream( socket ); //to read from socket
+
+  //set charset if known
+  if( !charset.isNull() && charset.length() != 0 )
+  {
+    QTextCodec* codec = QTextCodec::codecForName( charset );
+    if( codec == NULL )
+    {
+      kdDebug() << "No codec found for " << charset << endl;
+    }
+    else
+    {
+      socketStream.setCodec( codec );
+    }
+    
+  }
+
+
+/*  //buffer for the datas
   char lineBuffer[1024];
 
   //return object
@@ -395,10 +413,10 @@ QStringList Account::readfromSocket()
     while( socket->canReadLine() )
     {
       socket->readLine( lineBuffer, sizeof( lineBuffer ) );
-      text.append( QString( lineBuffer ).simplified() );
+      QString readedLine = QString( lineBuffer ).simplified();
+      text.append( readedLine );
     }
-  }
-
+  }*/
   return text;
 }
 
@@ -1199,11 +1217,13 @@ void Account::getNextHeader( )
 
 void Account::slotGetHeaderResponse( )
 {
+  kdDebug() << "hab den header" << endl;
   //we get the header of mail number
   int mailNumber = *newMails.begin();
 
   //get the response
   QStringList header = readfromSocket();
+  kdDebug() << "hab den header jetzt" << endl;
 
   //no response from the server
   if( header.isEmpty() )

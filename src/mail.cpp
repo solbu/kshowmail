@@ -154,7 +154,7 @@ QString Mail::scanHeader(const QString & item) const
 void Mail::setSubject( const QString & subject )
 {
   this->subject = subject;
-  kdDebug() << "Decode:" << decodeRfc2047( subject ) << endl;
+  kdDebug() << "Decode:" << decodeRfc2047( subject ) << "*" << endl;
 }
 
 void Mail::setFrom( const QString & from )
@@ -195,15 +195,17 @@ QString Mail::decodeRfc2047( const QString& text ) const
   KMime::Codec* codec;
 
   //Look for RFC2047B
-  QRegExp regex( "=\\?.*\\?[bB]\\?.*=" );
+  QString input;
+  QRegExp regex( "=\\?.*\\?[bB]\\?.*\\?=" );
   if( regex.indexIn( text ) != -1 )
   {
     //to get the codec for RFC2047B you must pass a "b"
     codec = KMime::Codec::codecForName( "b" );
+    
   }
   else
   {
-    regex= QRegExp( "=\\?.*\\?[qQ]\\?.*=" );
+    regex= QRegExp( "=\\?.*\\?[qQ]\\?.*\\?=" );
     if( regex.indexIn( text ) != -1 )
     {
       //to get the codec for RFC2047Q you must pass a "q"
@@ -211,7 +213,7 @@ QString Mail::decodeRfc2047( const QString& text ) const
     }
     else
     {
-      //it is no rfc2047 encoded string
+      //it is not a rfc2047 encoded string
       return text;
     }
   }
@@ -226,6 +228,91 @@ QString Mail::decodeRfc2047( const QString& text ) const
   
   KMime::Decoder *decoder = codec->makeDecoder();
 
-  return "decodiert";
+  //look for the encoded string parts
+  //we are using the regex of the codec choice
+  //the loop ends when the whole string is scaned
+  bool breakIt = false;
+  QString decodedText;
+  QString encodedText( text );
+
+  while( !breakIt && !encodedText.isEmpty() )
+  {
+    //look for a encoded string part
+    regex.setMinimal( true );
+    int index = regex.indexIn( encodedText );
+    if( index == -1 )
+    {
+      //nothing found
+      breakIt = true;
+
+      //append the remained text to the decoded string
+      decodedText.append( encodedText );
+    }
+    else
+    {
+      //there is a encoded part
+      //append the part to the found index to the decoded text and
+      //remove it from the encoded text
+      decodedText.append( encodedText.left( index ) );
+      encodedText = encodedText.remove( 0, index );
+
+      //get the encoded part and remove it from the source string
+      QString encodedPart( encodedText.left( regex.matchedLength() ) );
+      encodedText = encodedText.remove( 0, regex.matchedLength() );
+
+      //extract the text between the thirth and fourth question mark
+      int firstQuestionMark = encodedPart.indexOf( "?" );
+      int secondQuestionMark = encodedPart.indexOf( "?", firstQuestionMark + 1);
+      int thirthQuestionMark = encodedPart.indexOf( "?", secondQuestionMark + 1 );
+      int fourthQuestionMark = encodedPart.indexOf( "?", thirthQuestionMark + 1 );
+      encodedPart = encodedPart.mid( thirthQuestionMark + 1, fourthQuestionMark - thirthQuestionMark - 1 );
+
+      //decode it
+
+      //the KMime decoders work on Byte-Arrays
+      //copy the input string into a byte array
+      QByteArray decInput;
+      decInput.append( encodedPart );
+      QByteArray::ConstIterator iterIn = decInput.begin();
+
+      //this is the byte array for the decoder output
+      QByteArray decOutput( 256, '\0');
+      QByteArray::Iterator iterOut = decOutput.begin();
+
+      //in this we build the string to return
+      QString out;
+
+      //Lets go!
+      while( !decoder->decode( iterIn, decInput.end(), iterOut, decOutput.end() ) )
+      {
+        if( iterOut == decOutput.end() )
+        {
+          out.append( decOutput );
+          iterOut = decOutput.begin();
+          kdDebug() << out << endl;
+        }
+      }
+      while( !decoder->finish( iterOut, decOutput.end() ) )
+      {
+        if( iterOut == decOutput.end() )
+        {
+          out.append( decOutput );
+          iterOut = decOutput.begin();
+          kdDebug() << "in Finish:" << out << endl;
+        }
+      }
+      decOutput.resize( iterOut - decOutput.begin() );
+      out.append( decOutput );
+
+      //append the decoded part to the target string
+      decodedText.append( out );
+      
+    }
+  }
+
+
+  delete decoder;
+
+  return decodedText;
 }
 

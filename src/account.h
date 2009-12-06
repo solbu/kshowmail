@@ -26,6 +26,7 @@
 #include <QApplication>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QTextCodec>
 
 //KDE headers
 #include <KConfigGroup>
@@ -328,9 +329,10 @@ class Account : public QObject
 
     /**
      * Reads all data from the socket
+     * @param charset the Charset
      * @return read text
      */
-    QStringList readfromSocket();
+    QStringList readfromSocket( QString charset );
 
     /**
      * Sends a command to the server
