@@ -26,13 +26,12 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   mails = new MailList( this );
 
   //create TCP-Socket
-  socket = new QTcpSocket( this );
+  socket = new KTcpSocket( this );
 
   //connect the socket with the slots
   connect( socket, SIGNAL( error( QAbstractSocket::SocketError ) ), this, SLOT( slotSocketError( QAbstractSocket::SocketError ) ) );
   connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
   connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
-  connect( socket, SIGNAL( connectionClosed() ), this, SLOT( slotConnectionClosedByServer() ) );
 
   
 
@@ -293,7 +292,7 @@ int Account::getPasswordStorage( ) const
 void Account::doConnect()
 {
   //break, if there is already a connection
-  if( socket->state() != QTcpSocket::UnconnectedState )
+  if( socket->state() != KTcpSocket::UnconnectedState )
   {
     //handleError( "Already connected" );
     closeConnection();
@@ -312,7 +311,7 @@ void Account::doConnect()
 
 void Account::closeConnection()
 {
-  if( socket->state() != QTcpSocket::UnconnectedState && socket->state() != QTcpSocket::ClosingState )
+  if( socket->state() != KTcpSocket::UnconnectedState && socket->state() != KTcpSocket::ClosingState )
   {
     kdDebug() << "Close Connection: " << getName() << endl;
     socket->close();
@@ -360,12 +359,10 @@ void Account::handleError( QString error )
   closeConnection();
 
   //show error
-
   emit sigMessageWindowOpened();
   KMessageBox::error( NULL, i18n( "Account %1: %2" ).arg( getName() ).arg( error ) );
   emit sigMessageWindowClosed();
 
-  kdDebug() << state << endl;
   //emit ready signal
   switch( state )
   {
@@ -377,18 +374,18 @@ void Account::handleError( QString error )
 
   //set state
   state = AccountIdle;
-
-
 }
 
-QStringList Account::readfromSocket( QString charset )
+QStringList Account::readfromSocket( QString charset, bool singleLine )
 {
   QTextStream socketStream( socket ); //to read from socket
+  QStringList serverResponse; //buffer for the server response
+
 
   //set charset if known
   if( !charset.isNull() && charset.length() != 0 )
   {
-    QTextCodec* codec = QTextCodec::codecForName( charset );
+    QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
     if( codec == NULL )
     {
       kdDebug() << "No codec found for " << charset << endl;
@@ -400,6 +397,49 @@ QStringList Account::readfromSocket( QString charset )
     
   }
 
+  //read from socket
+  bool responseEndFound = false;  //end of a multi-line response found
+
+  //loop until the last line is read
+  //the last line is either a single point or a -ERR at first
+  while( !responseEndFound )
+  {
+    //get line
+    QString line = socketStream.readLine();
+
+    if( line.isNull() )
+    {
+      if( !socket->waitForReadyRead() )
+      {
+        handleError( i18n( "Timeout" ) );
+        return QStringList();
+      }
+
+      line = socketStream.readLine();
+      
+    }
+
+    //check for a negative response
+    if( isNegativeResponse( line ) )
+    {
+      serverResponse.append( line );
+      responseEndFound = true;
+    }
+    //check for response end with the point
+    else if( line == END_MULTILINE_RESPONSE )
+    {
+      responseEndFound = true;
+    }
+    //it is a normal data line
+    else
+    {
+      serverResponse.append( line );
+      //break the loop if we anticipate single line
+      if( singleLine ) responseEndFound = true;
+    }
+  }
+
+  return serverResponse;
 
 /*  //buffer for the datas
   char lineBuffer[1024];
@@ -417,12 +457,20 @@ QStringList Account::readfromSocket( QString charset )
       text.append( readedLine );
     }
   }*/
-  return text;
+//  return text;
 }
 
 void Account::slotReadFirstServerMessage()
 {
-  QStringList text = readfromSocket();
+  QStringList text = readfromSocket( NULL, true );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( text.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   //it must be a positive response
   if( !isPositiveServerMessage( text ) )
@@ -455,7 +503,7 @@ void Account::sendCommand( const QString& command )
   kdDebug() << "Send " << command << " to " << getName() << endl;
 
   //call error handler, if the socket is not connected
-  if( socket->state() != QAbstractSocket::ConnectedState )
+  if( socket->state() != KTcpSocket::ConnectedState )
   {
     handleError( i18n( "No connect to %1" ).arg( getHost() ) );
     return;
@@ -493,7 +541,15 @@ void Account::getCapabilities()
 void Account::slotCapabilitiesResponse()
 {
   //get server answer
-  QStringList text = readfromSocket();
+  QStringList text = readfromSocket( NULL, false );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( text.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   //have we got capabilities?
   bool haveCapa = isPositiveServerMessage( text );
@@ -570,10 +626,13 @@ void Account::clearMessage( QStringList& message )
     message.replace( 0, firstLine );
   }
 
-  //remove termination line
-  if( message.last() == END_MULTILINE_RESPONSE )
+  if( !message.isEmpty() )
   {
-    message.removeLast();
+    //remove termination line
+    if( message.last() == END_MULTILINE_RESPONSE )
+    {
+      message.removeLast();
+    }
   }
 }
 
@@ -590,7 +649,15 @@ void Account::getAuthMech()
 void Account::slotAuthMechResponse()
 {
   //get server answer
-  QStringList text = readfromSocket();
+  QStringList text = readfromSocket( NULL, false );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( text.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   //have we got capabilities?
   bool haveAuth = isPositiveServerMessage( text );
@@ -630,7 +697,7 @@ void Account::slotAuthMechResponse()
 
 void Account::commit()
 {
-  if( socket->state() == QAbstractSocket::ConnectedState )
+  if( socket->state() == KTcpSocket::ConnectedState )
   {
     //connect the signal readyRead of the socket with the response handle methode
     disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
@@ -678,7 +745,15 @@ void Account::finishTask()
 void Account::slotCommitResponse()
 {
   //get the response
-  QStringList response = readfromSocket();
+  QStringList response = readfromSocket( NULL, true );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( response.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   if( !isPositiveServerMessage( response ) )
   {
@@ -705,7 +780,15 @@ void Account::loginUser()
 void Account::slotLoginUserResponse()
 {
   //get the response
-  QStringList response = readfromSocket();
+  QStringList response = readfromSocket( NULL, true );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( response.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   if( !isPositiveServerMessage( response ) )
   {
@@ -731,7 +814,15 @@ void Account::loginPasswd()
 void Account::slotLoginPasswdResponse()
 {
   //get the response
-  QStringList response = readfromSocket();
+  QStringList response = readfromSocket( NULL, true );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( response.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   if( !isPositiveServerMessage( response ) )
   {
@@ -789,7 +880,15 @@ void Account::loginApop()
 void Account::slotLoginApopResponse()
 {
   //get the response
-  QStringList response = readfromSocket();
+  QStringList response = readfromSocket( NULL, true );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( response.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   if( !isPositiveServerMessage( response ) )
   {
@@ -861,7 +960,15 @@ void Account::getUIDList()
 void Account::slotUIDListResponse()
 {
   //get the response
-  QStringList receivedUIDs = readfromSocket();
+  QStringList receivedUIDs = readfromSocket( NULL, false );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( receivedUIDs.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   //no response from the server
   if( receivedUIDs.isEmpty() )
@@ -1091,7 +1198,15 @@ void Account::slotMailSizesResponse()
 {
 
   //get the response
-  QStringList receivedSizes = readfromSocket();
+  QStringList receivedSizes = readfromSocket( NULL, false );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( receivedSizes.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
 
   //no response from the server
   if( receivedSizes.isEmpty() )
@@ -1217,18 +1332,17 @@ void Account::getNextHeader( )
 
 void Account::slotGetHeaderResponse( )
 {
-  kdDebug() << "hab den header" << endl;
   //we get the header of mail number
   int mailNumber = *newMails.begin();
 
   //get the response
-  QStringList header = readfromSocket();
-  kdDebug() << "hab den header jetzt" << endl;
+  QStringList header = readfromSocket( NULL, false );
 
   //no response from the server
   if( header.isEmpty() )
   {
     handleError( i18n( "%1 has not sent the header of mail %2.").arg( getHost() ).arg( mailNumber ) );
+    finishTask();
     return;
   }
 
@@ -1262,6 +1376,12 @@ void Account::slotGetHeaderResponse( )
 
   //get next header
   getNextHeader();
+}
+
+bool Account::isNegativeResponse(const QString & response)
+{
+  return response.startsWith( RESPONSE_NEGATIVE );
+
 }
 
 

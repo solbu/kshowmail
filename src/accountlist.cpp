@@ -179,6 +179,7 @@ void AccountList::slotCheckRefreshState( QString account )
   //are ready
   for ( it = AccountRefreshMap.begin(); it != AccountRefreshMap.end(); ++it )
   {
+
     if( *it == true )
       accountRefreshing = true;
   }

@@ -24,7 +24,6 @@
 #include <QObject>
 #include <QList>
 #include <QApplication>
-#include <QTcpSocket>
 #include <QTimer>
 #include <QTextCodec>
 
@@ -34,6 +33,7 @@
 #include <KGlobal>
 #include <KPasswordDialog>
 #include <kcodecs.h>
+#include <ktcpsocket.h>
 
 //KShowmail headers
 #include "mail.h"
@@ -330,9 +330,10 @@ class Account : public QObject
     /**
      * Reads all data from the socket
      * @param charset the Charset
+     * @param singleLine TRUE - the response will be a single line; FALSE - the response has more lines
      * @return read text
      */
-    QStringList readfromSocket( QString charset );
+    QStringList readfromSocket( QString charset, bool singleLine );
 
     /**
      * Sends a command to the server
@@ -471,6 +472,15 @@ class Account : public QObject
      */
     virtual void getNextHeader();
 
+    /**
+     * Returns whether the given string is a negative server response.
+     * @param response server response to check
+     * @return TRUE - response is negative
+     * @return FALSE - response is positive
+     */
+    bool isNegativeResponse( const QString& response );
+
+    
 
   protected slots:
 
@@ -622,7 +632,7 @@ class Account : public QObject
     /**
      * The socket. Handles all server operations
      */
-    QTcpSocket* socket;
+    KTcpSocket* socket;
 
     /**
      * Pointer to the account list object

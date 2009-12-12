@@ -12,6 +12,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	accounts = new AccountList( this );
   connect( accounts, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotNormalCursor() ) );
   connect( accounts, SIGNAL( sigAllMessageWindowsClosed() ), this, SLOT( slotWaitingCursor() ) );
+  connect( accounts, SIGNAL( sigRefreshReady() ), this, SLOT( slotRefreshReady() ) );
 
 	
 	//create the models for the account view and mail view
@@ -111,8 +112,6 @@ void KShowmail::initActions()
   actionSendFeedback->setIcon( KIcon( "mail-flag" ) );
   connect( actionSendFeedback, SIGNAL( triggered() ), this, SLOT( slotSendFeedbackMail() ) );
 
-  //Connect the signals with the slots
-  connect( accounts, SIGNAL( sigRefreshReady() ), this, SLOT( slotRefreshReady() ) );
 
 
   //loads the setup
@@ -263,7 +262,8 @@ void KShowmail::slotNormalCursor( )
 void KShowmail::slotWaitingCursor( )
 {
   //set waiting cursor
-  QApplication::setOverrideCursor( Qt::WaitCursor );
+  if( state != idle )
+    QApplication::setOverrideCursor( Qt::WaitCursor );
 }
 
 

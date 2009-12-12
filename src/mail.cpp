@@ -45,6 +45,7 @@ void Mail::print() const
   cout << "New Flag: " << isNew() << endl;
   cout << "From: " << from.toStdString() << endl;
   cout << "To: " << to.toStdString() << endl;
+  cout << "Send Date: " << sendDate.toString( KDateTime::LocalDate ).toStdString() << endl;
   cout << "Content Type: " << contentType.toStdString() << endl;
 }
 
@@ -95,7 +96,7 @@ void Mail::setHeader(const QStringList & header)
   //get subject
   QString subject = scanHeader( "Subject" );
   subject = subject.simplified();
-  setSubject( subject );
+  setSubject( subject);
 
   //extract sender and store it
   QString from = scanHeader( "From" );
@@ -153,8 +154,7 @@ QString Mail::scanHeader(const QString & item) const
 
 void Mail::setSubject( const QString & subject )
 {
-  this->subject = subject;
-  kdDebug() << "Decode:" << decodeRfc2047( subject ) << "*" << endl;
+  this->subject = decodeRfc2047( subject );
 }
 
 void Mail::setFrom( const QString & from )
@@ -176,6 +176,10 @@ void Mail::setDate( const QString& date )
   dwDate.FromString( date );
   dwDate.Parse();
   sendDate.setTime_t( dwDate.AsUnixTime() );*/
+
+  KMime::Headers::Date mimeDate;
+  mimeDate.from7BitString( QByteArray( date.toAscii() ) );
+  sendDate = mimeDate.dateTime();
 }
 
 void Mail::setContent( const QString& contentType )
@@ -260,12 +264,19 @@ QString Mail::decodeRfc2047( const QString& text ) const
       QString encodedPart( encodedText.left( regex.matchedLength() ) );
       encodedText = encodedText.remove( 0, regex.matchedLength() );
 
-      //extract the text between the thirth and fourth question mark
+      //get the indexes of the question marks
       int firstQuestionMark = encodedPart.indexOf( "?" );
       int secondQuestionMark = encodedPart.indexOf( "?", firstQuestionMark + 1);
       int thirthQuestionMark = encodedPart.indexOf( "?", secondQuestionMark + 1 );
       int fourthQuestionMark = encodedPart.indexOf( "?", thirthQuestionMark + 1 );
+
+      //extract the charset string between the first and second question mark
+      QString charset = encodedPart.mid( firstQuestionMark + 1, secondQuestionMark - firstQuestionMark - 1 );
+      
+      //extract the text between the thirth and fourth question mark      
       encodedPart = encodedPart.mid( thirthQuestionMark + 1, fourthQuestionMark - thirthQuestionMark - 1 );
+
+      
 
       //decode it
 
@@ -303,6 +314,16 @@ QString Mail::decodeRfc2047( const QString& text ) const
       }
       decOutput.resize( iterOut - decOutput.begin() );
       out.append( decOutput );
+
+      //transform it to unicode if necessary
+      if( !charset.toLower().startsWith( "utf") )
+      {
+        QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
+        if( codec != NULL )
+        {
+          out = codec->toUnicode( out.toLocal8Bit() );
+        }
+      }
 
       //append the decoded part to the target string
       decodedText.append( out );

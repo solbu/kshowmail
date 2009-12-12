@@ -164,7 +164,7 @@ class KShowmail : public KXmlGuiWindow
      * Connected with signal sigAllMessageWindowsClosed of m_ConfigList.
      * This signal will be emitted when all windows to show a mail body
      * have been closed.
-     * Switches the cursor to waiting view.
+     * Switches the cursor to waiting view if the application state is not "idle"
      */
     void slotWaitingCursor();
 

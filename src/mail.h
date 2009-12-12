@@ -23,11 +23,13 @@
 //Qt header
 #include <QObject>
 #include <QStringList>
-#include <QDateTime>
 #include <QRegExp>
+#include <QTextCodec>
 
 //KDE headers
 #include <kmime/kmime_codecs.h>
+#include <kmime/kmime_headers.h>
+#include <KDateTime>
 
 using namespace std;
 
@@ -198,7 +200,7 @@ class Mail : public QObject
     /**
      * The date on which the mail was sent
      */
-    QDateTime sendDate;
+    KDateTime sendDate;
     
     /**
      * The content type
