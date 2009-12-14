@@ -20,3 +20,7 @@
 
 #include "corruptdataexception.h"
 
+
+CorruptDataException::CorruptDataException ( const QString& message ) : Exception ( message )
+{
+}

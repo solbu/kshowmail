@@ -16,6 +16,9 @@ set(kshowmail_SRCS
    corruptdataexception.cpp
  )
 
+#enable exceptions
+SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
+
 kde4_add_executable(kshowmail ${kshowmail_SRCS})
 
 target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} ${KDEPIMLIBS_KMIME_LIBS} )

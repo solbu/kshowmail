@@ -1389,15 +1389,22 @@ void Account::copyHeaders( )
   //get the UIDs of the old mails in the temporary mail list
   QStringList UIDs = tempMailList->getUIDsOfOldMails();
 
-  //iterate over all members of the list,
-  //get the header from the old list and store it in the new one
-  QStringList::iterator it;
-  for ( it = UIDs.begin(); it != UIDs.end(); ++it )
+  try
   {
-    QStringList header = mails->getHeaderOf( *it );
-    tempMailList->setHeader( *it, header );
+    //iterate over all members of the list,
+    //get the header from the old list and store it in the new one
+    QStringList::iterator it;
+    for ( it = UIDs.begin(); it != UIDs.end(); ++it )
+    {
+      QStringList header = mails->getHeaderOf( *it );
+      tempMailList->setHeader( *it, header );
+    }
   }
-
+  catch( CorruptDataException& e )
+  {
+    kdDebug() << "Fehler: " << e.what() << endl;
+  }
+  
   //now we have the a complete new mail list
   swapMailLists();
 }

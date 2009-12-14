@@ -163,7 +163,7 @@ QStringList MailList::getUIDsOfOldMails( )
   return list;
 }
 
-QStringList MailList::getHeaderOf( QString unid )
+QStringList MailList::getHeaderOf( QString unid ) throw( CorruptDataException )
 {
   QListIterator<Mail*> it( mails );   //iterator for the mail list
 
@@ -180,8 +180,8 @@ QStringList MailList::getHeaderOf( QString unid )
     }
   }
 
-  //nothing found; return an empty list
-  return QStringList();
+  //nothing found
+  throw CorruptDataException( "No mail with unid " + unid + " found in mail list" );
 }
 
 void MailList::setHeader( QString unid, QStringList header )

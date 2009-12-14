@@ -35,13 +35,13 @@ class Exception
      * Constructor
      * @param message error message
      */
-    Exception( QString message );
+    Exception( const QString& message );
 
     /**
      * Returns the error message
      * @return error message
      */
-    QString what();
+    QString what() const;
 
   private:
 

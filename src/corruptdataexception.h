@@ -21,8 +21,21 @@
 #ifndef CORRUPTDATAEXCEPTION_H
 #define CORRUPTDATAEXCEPTION_H
 
-class CorruptDataException
+//KShowmail headers
+#include "exception.h"
+
+/**
+ * @brief Exception class for corrupt data in a data model
+ */
+class CorruptDataException : public Exception
 {
+  public:
+    
+    /**
+     * Constructor
+     * @param message error message
+     */
+    CorruptDataException ( const QString& message );
 };
 
 #endif // CORRUPTDATAEXCEPTION_H

@@ -21,13 +21,13 @@
 #include "exception.h"
 
 
-Exception::Exception ( QString message )
+Exception::Exception ( const QString& message )
   : message( message )
 {
 }
 
 
-QString Exception::what()
+QString Exception::what() const
 {
   return message;
 }

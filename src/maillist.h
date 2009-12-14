@@ -29,6 +29,7 @@
 //KSHowmail headers
 #include "mail.h"
 #include "types.h"
+#include "corruptdataexception.h"
 
 using namespace Types;
 
@@ -115,8 +116,9 @@ class MailList : public QObject
      * Returns the header of the mail with the given UID.
      * @param unid UID
      * @return mail header
+     * @throw CorruptDataException
      */
-    QStringList getHeaderOf( QString unid );
+    QStringList getHeaderOf( QString unid ) throw( CorruptDataException );
 
 
 
