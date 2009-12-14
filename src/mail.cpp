@@ -169,14 +169,6 @@ void Mail::setTo( const QString & to )
 
 void Mail::setDate( const QString& date )
 {
-/*  DwDateTime dwDate;      //this class represents an RFC-822 date-time;
-                          //see mimelib/datetime.h
-
-  //convert and store the date-time
-  dwDate.FromString( date );
-  dwDate.Parse();
-  sendDate.setTime_t( dwDate.AsUnixTime() );*/
-
   KMime::Headers::Date mimeDate;
   mimeDate.from7BitString( QByteArray( date.toAscii() ) );
   sendDate = mimeDate.dateTime();

@@ -98,6 +98,27 @@ class MailList : public QObject
      */
     void setHeader( int number, QStringList header );
 
+    /**
+     * Sets the header of the mail with the given UID.
+     * @param unid UID
+     * @param header mail header
+     */
+    void setHeader( QString unid, QStringList header );    
+
+    /**
+     * Returns a list of the UIDs of all old mails.
+     * @return UIDs of all old mails
+     */
+    QStringList getUIDsOfOldMails();
+
+    /**
+     * Returns the header of the mail with the given UID.
+     * @param unid UID
+     * @return mail header
+     */
+    QStringList getHeaderOf( QString unid );
+
+
 
   private:
 

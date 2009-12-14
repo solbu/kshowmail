@@ -144,5 +144,63 @@ void MailList::setHeader(int number, QStringList header)
 
 }
 
+QStringList MailList::getUIDsOfOldMails( )
+{
+  QStringList list;                 //contains the UIDs of the old mails
+  QListIterator<Mail*> it( mails ); //iterator for the mail list
+
+  //iterate over all mails
+  while( it.hasNext() )
+  {
+    //get next Mail
+    Mail* mail = it.next();
+    
+    //if current mail is new append its number to the mail number list
+    if( !mail->isNew() )
+      list.append( mail->getUNID() );
+  }
+
+  return list;
+}
+
+QStringList MailList::getHeaderOf( QString unid )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+
+  //looking for the mail with the UID 'uid'
+  while( it.hasNext() )
+  {
+    //get next mail
+    Mail* mail = it.next();
+    
+    //if the current mail has the given uid, get the header
+    if( mail->getUNID() == unid )
+    {
+      return mail->getHeader();
+    }
+  }
+
+  //nothing found; return an empty list
+  return QStringList();
+}
+
+void MailList::setHeader( QString unid, QStringList header )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  //looking for the mail with the UID 'uid'
+  while( it.hasNext() )
+  {
+    //get th next mail
+    Mail* mail = it.next();
+    
+    //if the current mail has the given UID, set the header
+    if( mail->getUNID() == unid )
+    {
+      mail->setHeader( header );
+      return;
+    }
+  }
+}
+
 
 

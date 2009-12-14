@@ -12,6 +12,8 @@ set(kshowmail_SRCS
    encryption.cpp
    kwalletaccess.cpp
    maillist.cpp
+   exception.cpp
+   corruptdataexception.cpp
  )
 
 kde4_add_executable(kshowmail ${kshowmail_SRCS})

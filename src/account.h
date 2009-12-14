@@ -480,7 +480,13 @@ class Account : public QObject
      */
     bool isNegativeResponse( const QString& response );
 
-    
+    /**
+     * Copies the known headers of the old mails from the
+     * old mail list to the new one.
+     * At the end it invokes swapMailLists().
+     */
+    void copyHeaders();
+
 
   protected slots:
 
