@@ -507,7 +507,7 @@ class Account : public QObject
     * Will be invoked, when an socket error occures.
     * @param errorNr Error code of the socket
     */
-   void slotSocketError( QAbstractSocket::SocketError ErrorCode );
+   void slotSocketError( KTcpSocket::Error ErrorCode );
 
     /**
      * Reads the first message send by server.

@@ -29,7 +29,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   socket = new KTcpSocket( this );
 
   //connect the socket with the slots
-  connect( socket, SIGNAL( error( QAbstractSocket::SocketError ) ), this, SLOT( slotSocketError( QAbstractSocket::SocketError ) ) );
+  connect( socket, SIGNAL( error( KTcpSocket::Error ) ), this, SLOT( slotSocketError( KTcpSocket::Error ) ) );
   connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
   connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
 
@@ -338,14 +338,21 @@ void Account::slotHostFound()
 {
 }
 
-void Account::slotSocketError( QAbstractSocket::SocketError ErrorCode)
+void Account::slotSocketError( KTcpSocket::Error ErrorCode)
 {
   QString message;    //the error message
   switch( ErrorCode )
   {
-    case QAbstractSocket::ConnectionRefusedError    : message = i18n( "Connection refused" ); break;
-    case QAbstractSocket::HostNotFoundError         : message = QString( i18n( "Host not found: %1" ).arg( getHost() ) ); break;
-    default                                         : message = i18n( "Unknown connection error" ); break;
+    case KTcpSocket::UnknownError              : message = i18n( "Unknown error" ); break;
+    case KTcpSocket::ConnectionRefusedError    : message = i18n( "Connection refused" ); break;
+    case KTcpSocket::HostNotFoundError         : message = QString( i18n( "Host not found: %1" ).arg( getHost() ) ); break;
+    case KTcpSocket::RemoteHostClosedError     : message = QString( i18n( "Host %1 closed" ).arg( getHost() ) ); break;
+    case KTcpSocket::SocketAccessError         : message = i18n( "Socket access error" ); break;
+    case KTcpSocket::SocketResourceError       : message = i18n( "Socket resource error" ); break;
+    case KTcpSocket::SocketTimeoutError        : message = i18n( "Socket timeout error" ); break;
+    case KTcpSocket::NetworkError              : message = i18n( "Network error" ); break;
+    case KTcpSocket::UnsupportedSocketOperationError : message = i18n( "Unsupported Socket Operation Error" ); break;
+    default                                    : message = i18n( "Unknown connection error" ); break;
   }
 
   //show error and handle all other
@@ -1299,8 +1306,7 @@ void Account::getHeaders( )
   if( newMails.empty() )
   {
     //no new mails available; copy the known headers from the old mail list
-    commit();
-    //copyHeaders();
+    copyHeaders();
     return;
   }
 
@@ -1313,8 +1319,7 @@ void Account::getNextHeader( )
   //if the list of mails empty, copy the known headers from the old mail list
   if( newMails.empty() )
   {
-    commit();
-    //copyHeaders();
+    copyHeaders();
     return;
   }
 
@@ -1368,9 +1373,7 @@ void Account::slotGetHeaderResponse( )
   //if the list of new mails is empty, copy the headers of old mails to the new list
   if( newMails.empty() )
   {
-    tempMailList->print();
-    commit();
-    //copyHeaders();
+    copyHeaders();
     return;
   }
 
