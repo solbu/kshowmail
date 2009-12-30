@@ -210,6 +210,9 @@ bool KShowmail::queryClose() {
 
 void KShowmail::slotConfChanged() {
   accounts->loadSetup();
+
+  //refresh the views
+  view->refreshViews();
 }
 
 void KShowmail::showStatusMessage( const QString& text)
@@ -249,6 +252,9 @@ void KShowmail::slotRefreshReady()
 
   //show status message
   showStatusMessage( i18n( "Ready" ) );
+
+  //refresh view
+  view->refreshViews();
 }
 
 void KShowmail::slotNormalCursor( )

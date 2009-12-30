@@ -30,6 +30,9 @@
 //KShowmail headers
 #include "accountlist.h"
 
+//constants
+#define NUMBER_ACCOUNTVIEW_COLUMNS 6
+
 class AccountViewModel : public QAbstractItemModel
 {
 	Q_OBJECT
@@ -120,6 +123,12 @@ class AccountViewModel : public QAbstractItemModel
 		 * @param role role
 		 */
 		bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
+
+    /**
+     * Emits the dataChanged signal to the views to inform they about changed data
+     */
+    void refresh();
+    
 		
 	private:
 		

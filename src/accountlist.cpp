@@ -116,7 +116,7 @@ void AccountList::loadSetup()
   }
 
   //read the setup of other things
-    keepMailsNew = confAccounts->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW );
+  keepMailsNew = confAccounts->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW );
 
 
 }
@@ -226,6 +226,25 @@ void AccountList::slotMessageWindowClosed( )
 bool AccountList::keepNew( )
 {
   return keepMailsNew;
+}
+
+int AccountList::getNumberMails( ) const
+{
+  QListIterator<Account*> it( accounts );   //to iterate over all accounts
+  int number = 0;                             //number of mails
+
+  //iterate over all accounts and sum up the number of mails
+  while( it.hasNext() )
+  {
+    //get Account
+    Account* account = it.next();
+
+    //add number of mails of this account
+    number += account->getNumberMails();
+
+  }
+
+  return number;
 }
 
 

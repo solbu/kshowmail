@@ -26,6 +26,9 @@
 //KShowmail headers
 #include "accountlist.h"
 
+//constants
+#define NUMBER_MAILVIEW_COLUMNS 7
+
 class MailViewModel : public QAbstractItemModel
 {
 	Q_OBJECT
@@ -100,7 +103,28 @@ class MailViewModel : public QAbstractItemModel
 		 */
 		QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
 
+    /**
+     * Returns the flags of the given index.
+     * All items are enabled and selectable.
+     * @param index index
+     */
+    virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
 
+    /**
+     * Emits the dataChanged signal to the views to inform they about changed data
+     */
+    void refresh();
+
+
+
+  private:
+
+    /**
+     * Pointer to the account list
+     */
+    AccountList* accounts;
+
+    
 
 };
 

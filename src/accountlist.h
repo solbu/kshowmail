@@ -104,7 +104,13 @@ class AccountList : public QObject
      */
     bool keepNew();
 
-    
+    /**
+     * Returns the number of mails.
+     * @return number of mails
+     */
+    int getNumberMails() const;
+
+
 	private:
 		
 		/**

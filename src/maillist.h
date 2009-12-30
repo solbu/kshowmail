@@ -120,6 +120,12 @@ class MailList : public QObject
      */
     QStringList getHeaderOf( QString unid ) throw( CorruptDataException );
 
+    /**
+     * Returns the number of mails.
+     * @return number of mails
+     */
+    int getNumberMails() const;
+
 
 
   private:

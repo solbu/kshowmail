@@ -18,6 +18,7 @@
 
 MailViewModel::MailViewModel( AccountList* accounts, QObject* parent ) : QAbstractItemModel( parent )
 {
+  this->accounts = accounts;
 }
 
 MailViewModel::~MailViewModel(){}
@@ -40,28 +41,46 @@ int MailViewModel::rowCount ( const QModelIndex & parent ) const
 {
 	//return 0, if the parent is valid
 	if( parent.isValid() ) return 0;
-	
-	return 10;
+
+	kdDebug() << "Number of Mails: " << accounts->getNumberMails() << endl;
+	return accounts->getNumberMails();
 }
 
 int MailViewModel::columnCount ( const QModelIndex & parent ) const
 {
-	return 7;
+	return NUMBER_MAILVIEW_COLUMNS;
 }
 
 QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
 {
+  kdDebug() << "data" << endl;
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
 	
-	if( index.row() > 10 || index.column() > 7 ) return QVariant();
-	
-	return "Data" + QString( index.row() ) + QString( index.column() );
+	if( index.row() > rowCount() || index.column() > NUMBER_MAILVIEW_COLUMNS - 1 ) return QVariant();
+
+    //the kind of data we return is dependent on the given role
+  switch( role )
+  {
+    case( Qt::DisplayRole ) :
+
+      switch( index.column() )
+      {
+        default : return QVariant( QString( "Data %1 %2").arg( index.row() ).arg( index.column() ) );
+      }
+      break;
+  }
+  
+	return QVariant();
 }
 
 bool MailViewModel::hasChildren ( const QModelIndex & parent ) const
 {
-	return false;
+  //it is the root index
+  if( !parent.isValid() ) return true;
+
+  //it isn't the root index
+  return false;
 }
 
 QVariant MailViewModel::headerData( int section, Qt::Orientation orientation, int role ) const
@@ -83,4 +102,16 @@ QVariant MailViewModel::headerData( int section, Qt::Orientation orientation, in
 		case 8	:	return QVariant( i18n( "State" ) ); break;
 		default : return QVariant();
 	}
+}
+
+Qt::ItemFlags MailViewModel::flags ( const QModelIndex & index ) const
+{
+  return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+}
+
+void MailViewModel::refresh()
+{
+  //kdDebug() << "Refresh: " << rowCount() << endl;
+  emit dataChanged( createIndex( 0, 0 ), createIndex( rowCount() - 1, NUMBER_MAILVIEW_COLUMNS - 1 ) );
+
 }

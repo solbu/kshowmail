@@ -46,6 +46,11 @@ class KShowmailView : public QSplitter
 		 * Destructor
 		 */
 		~KShowmailView();
+
+    /**
+     * Refreshes the account and mail view
+     */
+    void refreshViews();
 		
 	private:
 		

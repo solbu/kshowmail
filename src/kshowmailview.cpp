@@ -34,7 +34,18 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 	//create mail view
 	viewMails = new QTreeView( splitter );
 	viewMails->setModel( mailModel );
+  viewMails->setIndentation( 0 );
 
 }
 
 KShowmailView::~KShowmailView(){}
+
+void KShowmailView::refreshViews()
+{
+  AccountViewModel* accountModel = dynamic_cast<AccountViewModel*>( viewAccounts->model() );
+  accountModel->refresh();
+
+  MailViewModel* mailModel = dynamic_cast<MailViewModel*>( viewMails->model() );
+  mailModel->refresh();
+  
+}

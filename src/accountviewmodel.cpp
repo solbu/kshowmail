@@ -46,13 +46,13 @@ int AccountViewModel::rowCount ( const QModelIndex & parent ) const
 {
 	//return 0, if the parent is valid
 	if( parent.isValid() ) return 0;
-	
+
 	return accounts->numberAccounts();
 }
 
 int AccountViewModel::columnCount ( const QModelIndex & parent ) const
 {
-	return 6;
+	return NUMBER_ACCOUNTVIEW_COLUMNS;
 }
 
 QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
@@ -60,7 +60,7 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
 	
-	if( index.row() > rowCount() || index.column() > 5 ) return QVariant();
+	if( index.row() > rowCount() || index.column() > NUMBER_ACCOUNTVIEW_COLUMNS - 1 ) return QVariant();
 
   //get the account object
   Account* acc = accounts->getAccount( index.row() );
@@ -185,4 +185,10 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
 	return true;
 
 
+}
+
+void AccountViewModel::refresh()
+{
+  emit dataChanged( createIndex( 0, 0 ), createIndex( rowCount() - 1, NUMBER_ACCOUNTVIEW_COLUMNS - 1 ) );
+  
 }

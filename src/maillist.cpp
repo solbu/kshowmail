@@ -202,5 +202,8 @@ void MailList::setHeader( QString unid, QStringList header )
   }
 }
 
-
+int MailList::getNumberMails() const
+{
+  return mails.count();
+}
 

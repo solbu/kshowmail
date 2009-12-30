@@ -281,6 +281,12 @@ class Account : public QObject
     */
    bool isUnsecureLoginAllowed() const;
 
+  /**
+    * Returns the number of mails if this account is active. Otherwise returns 0.
+    * @return number of mails or 0
+   */
+   int getNumberMails() const;
+
 
 
   protected:

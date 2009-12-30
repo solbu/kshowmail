@@ -725,8 +725,6 @@ void Account::commit()
 
 void Account::finishTask()
 {
-  kdDebug() << "finishTask " << getName() << endl;
-
   //stop the timeout timer
   timeoutTimer->stop();
 
@@ -1412,4 +1410,9 @@ void Account::copyHeaders( )
   swapMailLists();
 }
 
+int Account::getNumberMails() const
+{
+  if( isActive() ) return mails->getNumberMails();
 
+  return 0;
+}
