@@ -1416,3 +1416,8 @@ int Account::getNumberMails() const
 
   return 0;
 }
+
+Mail* Account::getMail( int number ) const throw ( CorruptDataException )
+{
+  return mails->getMail( number );
+}

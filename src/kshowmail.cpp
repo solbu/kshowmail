@@ -255,6 +255,7 @@ void KShowmail::slotRefreshReady()
 
   //refresh view
   view->refreshViews();
+
 }
 
 void KShowmail::slotNormalCursor( )

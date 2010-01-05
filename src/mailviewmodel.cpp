@@ -42,7 +42,6 @@ int MailViewModel::rowCount ( const QModelIndex & parent ) const
 	//return 0, if the parent is valid
 	if( parent.isValid() ) return 0;
 
-	kdDebug() << "Number of Mails: " << accounts->getNumberMails() << endl;
 	return accounts->getNumberMails();
 }
 
@@ -53,19 +52,23 @@ int MailViewModel::columnCount ( const QModelIndex & parent ) const
 
 QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
 {
-  kdDebug() << "data" << endl;
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
 	
-	if( index.row() > rowCount() || index.column() > NUMBER_MAILVIEW_COLUMNS - 1 ) return QVariant();
+	if( index.row() >= rowCount() || index.column() > NUMBER_MAILVIEW_COLUMNS - 1 ) return QVariant();
 
-    //the kind of data we return is dependent on the given role
+  //get the mail
+  Mail* mail = accounts->getMail( index.row() );
+  
+  //the kind of data we return is dependent on the given role
   switch( role )
   {
     case( Qt::DisplayRole ) :
 
       switch( index.column() )
       {
+        case  0 : return QVariant( (int)mail->getNumber() );
+        case  1 : return QVariant( );
         default : return QVariant( QString( "Data %1 %2").arg( index.row() ).arg( index.column() ) );
       }
       break;
@@ -112,6 +115,7 @@ Qt::ItemFlags MailViewModel::flags ( const QModelIndex & index ) const
 void MailViewModel::refresh()
 {
   //kdDebug() << "Refresh: " << rowCount() << endl;
-  emit dataChanged( createIndex( 0, 0 ), createIndex( rowCount() - 1, NUMBER_MAILVIEW_COLUMNS - 1 ) );
+  //emit dataChanged( createIndex( 0, 0 ), createIndex( rowCount() - 1, NUMBER_MAILVIEW_COLUMNS - 1 ) );
+  reset();
 
 }

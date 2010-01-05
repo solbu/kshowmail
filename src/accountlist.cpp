@@ -247,4 +247,32 @@ int AccountList::getNumberMails( ) const
   return number;
 }
 
+Mail* AccountList::getMail( int number ) const throw ( CorruptDataException )
+{
+  int nrMail = number;
+  
+  //search for the account
+  QListIterator<Account*> it( accounts );
+  while( it.hasNext() )
+  {
+    //get account
+    Account* account = it.next();
 
+    //get number of mails in this account
+    int nrMails = account->getNumberMails();
+
+    //is it in this account?
+    if( nrMail < nrMails )
+    {
+      //this is the right account
+      return account->getMail( nrMail );
+    }
+
+    //it is not the right account
+    //we have to decrease the given mail number at the number of mails in account
+    nrMail = nrMail - account->getNumberMails();
+  }
+
+  //we have not found anything
+  throw CorruptDataException( i18n( "A mail with number %1 is not available.").arg( number ) );
+}

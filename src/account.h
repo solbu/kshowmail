@@ -287,6 +287,15 @@ class Account : public QObject
    */
    int getNumberMails() const;
 
+    /**
+     * Returns the mail with the given number.<p>
+     * The number is not the number which is given by the mail server.
+     * It is the number in order of storage in this list.<p>
+     * @param number number of the desired mail
+     * @return pointer to the desired mail
+     * @throws CorruptDataException no mail with this number is available
+     */
+    Mail* getMail( int number ) const throw ( CorruptDataException );
 
 
   protected:

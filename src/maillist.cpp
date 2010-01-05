@@ -207,3 +207,19 @@ int MailList::getNumberMails() const
   return mails.count();
 }
 
+Mail* MailList::getMail( int number ) const throw ( CorruptDataException )
+{
+  //check number
+  if( number < 0 )
+  {
+    throw CorruptDataException( i18n( "%1 is a invalid parameter" ).arg( number ) );
+  }
+
+  if( number >= getNumberMails() )
+  {
+    throw CorruptDataException( i18n( "no mail with number %1 available").arg( number ) );
+  }
+
+  //return mail
+  return mails.value( number );
+}
