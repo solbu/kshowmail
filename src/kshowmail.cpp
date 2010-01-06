@@ -18,9 +18,12 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	//create the models for the account view and mail view
 	AccountViewModel* accountModel = new AccountViewModel( accounts, this );
 	MailViewModel* mailModel = new MailViewModel( accounts, this );
+
+  //create the mail selection model
+  mailSelectModel = new QItemSelectionModel( mailModel );
 	
 	//set central widget
-	view = new KShowmailView( accountModel, mailModel, this );
+	view = new KShowmailView( accountModel, mailModel, mailSelectModel, this );
 	setCentralWidget( view );
 
   // add a status bar
@@ -38,6 +41,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 
   //get the application config object
   config = KGlobal::config();
+  configGeneral = new KConfigGroup( config, CONFIG_GROUP_GENERAL );
 		
 	//load the setup
 	accounts->loadSetup();
@@ -158,25 +162,31 @@ void KShowmail::slotDelete() {
     return;
   }
 
+
+
   //return, if no mails are selected
-/*  if( !accounts.hasSelectedMails() )
+  if( !mailSelectModel->hasSelection() )
     return;
 
   //confirm deletion if required
-  if( accounts.confirmDeletion() )
+  bool confirmDeletion = configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_DELETE, DEFAULT_CONFIRM_DELETE );
+  
+  if( confirmDeletion )
   {
-    //get subjects off all selected mails
+    kdDebug() << "Mails delete?" << endl;
+    
+/*    //get subjects off all selected mails
     QStringList subjects = m_ConfigList.getSelectedSubjects();
 
     //show question
     int answer = KMessageBox::questionYesNoList( this, i18n( "Do you want to delete these mails?"), subjects, i18n( "Delete?" ) );
 
     if( answer == KMessageBox::No )
-      return;
+      return;*/
   }
 
   //set the state
-  m_state = deleting;
+/*  m_state = deleting;
 
   //show status message
   slotStatusMsg( i18n( "Deleting Mail(s) ..." ) );
@@ -208,12 +218,11 @@ void KShowmail::slotAddToWhitelist() {
 
 void KShowmail::slotSetup() {
 
-//    setupDialog->addModule( "kshowmailconfigdisplay.desktop" );
 //    setupDialog->addModule( "kshowmailconfigspamcheck.desktop" );
 
 	//create the dialog and add the pages
 	setupDialog = new KCMultiDialog( this );
-  //setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
+  setupDialog->addModule( "kshowmailconfiggeneral.desktop" );
   setupDialog->addModule( "kshowmailconfigaccounts.desktop" );
   setupDialog->addModule( "kshowmailconfigactions.desktop" );
   setupDialog->addModule( "kshowmailconfigdisplay.desktop" );

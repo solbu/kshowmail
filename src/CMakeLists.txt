@@ -70,6 +70,12 @@ set( CONFIGLOG_SRCS
 kde4_add_plugin( kcm_kshowmailconfiglog ${CONFIGLOG_SRCS} )
 target_link_libraries( kcm_kshowmailconfiglog ${KDE4_KDEUI_LIBS} )
 
+set( CONFIGGENERAL_SRCS
+     configgeneral.cpp
+   )
+kde4_add_plugin( kcm_kshowmailconfiggeneral ${CONFIGGENERAL_SRCS} )
+target_link_libraries( kcm_kshowmailconfiggeneral ${KDE4_KDEUI_LIBS} )
+
 
 ########### install files ###############
 
@@ -92,6 +98,7 @@ install(TARGETS
   kcm_kshowmailconfigdisplay
   kcm_kshowmailconfigfilter
   kcm_kshowmailconfiglog
+  kcm_kshowmailconfiggeneral
   DESTINATION ${PLUGIN_INSTALL_DIR}
 )
 

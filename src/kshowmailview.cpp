@@ -17,7 +17,7 @@
 #include "./kshowmailview.h"
 
 
-KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
+KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
 	
 	//Split the view into two parts
@@ -35,6 +35,8 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 	viewMails = new QTreeView( splitter );
 	viewMails->setModel( mailModel );
   viewMails->setIndentation( 0 );
+  viewMails->setSelectionMode( QAbstractItemView::ExtendedSelection );
+  viewMails->setSelectionModel( mailSelectModel );
 
 }
 

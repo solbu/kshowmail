@@ -11,90 +11,89 @@
 //
 #include "configgeneral.h"
 
-typedef KGenericFactory<ConfigGeneral, QWidget> ConfigGeneralFactory;
+K_PLUGIN_FACTORY( ConfigGeneralFactory, registerPlugin<ConfigGeneral>(); )
+K_EXPORT_PLUGIN( ConfigGeneralFactory( "kcm_kshowmailconfiggeneral" ) )
 
-K_EXPORT_COMPONENT_FACTORY( kcm_kshowmailconfiggeneral, ConfigGeneralFactory(
-    "kcm_kshowmailconfiggeneral" ) );
-
-ConfigGeneral::ConfigGeneral( QWidget * parent, const char * name, const QStringList & args )
-  : KCModule( ConfigGeneralFactory::instance(), parent, args )
+ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
+  : KCModule( ConfigGeneralFactory::componentData(), parent, args )
 {
-  //set the module name
-  if ( !name )
-    setName( "configgeneral" );
-
   //build GUI
   //---------
 
   //main layout
-  QVBoxLayout* layMain = new QVBoxLayout( this, 0, 10 );
+  QVBoxLayout* layMain = new QVBoxLayout( this );
 
   //layout for check buttons (upper half)
-  QGridLayout* layMainTop = new QGridLayout( layMain, 4, 2, 15 );
+  QGridLayout* layMainTop = new QGridLayout();
   layMainTop->setMargin( 20 );
+  layMain->addLayout( layMainTop );
 
   //group box for timers
-  QGroupBox* gboxTimers = new QGroupBox( 0, Qt::Horizontal, i18n( "&Timers" ), this, "gboxTimers" );
+  QGroupBox* gboxTimers = new QGroupBox( i18n( "&Timers" ), this );
   layMain->addWidget( gboxTimers );
 
   //layouts for timers
-  QGridLayout* layTimers = new QGridLayout( gboxTimers->layout(),3, 3, 20 );
+  QGridLayout* layTimers = new QGridLayout();
+  gboxTimers->setLayout( layTimers );
 
   //create items
-  chkConfirmClose = new QCheckBox( i18n( "Confirm Close" ), this, "chkConfirmClose" );
-  QToolTip::add( chkConfirmClose, i18n( "If checked, window close must be confirmed" ) );
+  chkConfirmClose = new QCheckBox( i18n( "Confirm Close" ), this );
+  chkConfirmClose->setToolTip( i18n( "If checked, window close must be confirmed" ) );
   layMainTop->addWidget( chkConfirmClose, 0, 0 );
 
-  chkConfirmDelete = new QCheckBox( i18n( "Confirm delete" ), this, "chkConfirmDelete" );
-  QToolTip::add( chkConfirmDelete, i18n( "If checked, message delete must be confirmed" ) );
+  chkConfirmDelete = new QCheckBox( i18n( "Confirm delete" ), this );
+  chkConfirmDelete->setToolTip( i18n( "If checked, message delete must be confirmed" ) );
   layMainTop->addWidget( chkConfirmDelete, 0, 1 );
 
-  chkStartMinimized = new QCheckBox( i18n( "Start Minimi&zed" ), this, "chkStartMinimized" );
-  QToolTip::add( chkStartMinimized, i18n( "Application is started as icon" ) );
+  chkStartMinimized = new QCheckBox( i18n( "Start Minimi&zed" ), this );
+  chkStartMinimized->setToolTip( i18n( "Application is started as icon" ) );
   layMainTop->addWidget( chkStartMinimized, 1, 0 );
 
-  chkCloseToTray = new QCheckBox( i18n( "Close to tray" ), this, "chkCloseToTray" );
-  QToolTip::add( chkCloseToTray, i18n( "Close button leaves the application running in tray" ) );
+  chkCloseToTray = new QCheckBox( i18n( "Close to tray" ), this );
+  chkCloseToTray->setToolTip( i18n( "Close button leaves the application running in tray" ) );
   layMainTop->addWidget( chkCloseToTray, 1, 1 );
 
-  chkMinimizeToTray = new QCheckBox( i18n( "Minimize to tray" ), this, "chkMinimizeToTray" );
-  QToolTip::add( chkMinimizeToTray, i18n( "Minimizes to the tray rather than to the taskbar" ) );
+  chkMinimizeToTray = new QCheckBox( i18n( "Minimize to tray" ), this );
+  chkMinimizeToTray->setToolTip( i18n( "Minimizes to the tray rather than to the taskbar" ) );
   layMainTop->addWidget( chkMinimizeToTray, 2, 0 );
 
-  chkShowConnectionErrors = new QCheckBox( i18n( "Show Connection Errors during refresh" ), this, "chkShowConnectionErrors" );
-  QToolTip::add( chkShowConnectionErrors, i18n( "If a connection error occurs during refresh (e.g. unknown server), an error message will be shown. During other actions, this error always will be shown" ) );
+  chkShowConnectionErrors = new QCheckBox( i18n( "Show Connection Errors during refresh" ), this );
+  chkShowConnectionErrors->setToolTip( i18n( "If a connection error occurs during refresh (e.g. unknown server), an error message will be shown. During other actions, this error always will be shown" ) );
   layMainTop->addWidget( chkShowConnectionErrors, 2, 1 );
 
-  chkKeepNew = new QCheckBox( i18n( "&Keep mail as new" ), this, "chkKeepNew" );
-  QToolTip::add( chkKeepNew, i18n( "Keep mail as new until termination" ) );
+  chkKeepNew = new QCheckBox( i18n( "&Keep mail as new" ), this );
+  chkKeepNew->setToolTip( i18n( "Keep mail as new until termination" ) );
   layMainTop->addWidget( chkKeepNew, 3, 0 );
 
-  QLabel* lblTimerInitial = new QLabel( i18n( "Initial Timer:" ), gboxTimers, "lblTimerInitial" );
-  QLabel* lblInitialUnit = new QLabel( i18n( "[Seconds]" ), gboxTimers, "lblInitialUnit" );
-  spbInitial = new QSpinBox( 0, 99999, 1, gboxTimers, "spbInitial" );
-  QToolTip::add( spbInitial, i18n( "Seconds until first automatic logon (0 = no automatic)" ) );
-  QToolTip::add( lblTimerInitial, i18n( "Seconds until first automatic logon (0 = no automatic)" ) );
+  QLabel* lblTimerInitial = new QLabel( i18n( "Initial Timer:" ), gboxTimers );
+  spbInitial = new QSpinBox( gboxTimers );
+  spbInitial->setMinimum( 0 );
+  spbInitial->setMaximum( 99999 );
+  spbInitial->setSuffix( i18n( " Seconds") );
+  spbInitial->setToolTip( i18n( "Seconds until first automatic logon (0 = no automatic)" ) );
+  lblTimerInitial->setToolTip( i18n( "Seconds until first automatic logon (0 = no automatic)" ) );
   layTimers->addWidget( lblTimerInitial, 0, 0 );
   layTimers->addWidget( spbInitial, 0, 1 );
-  layTimers->addWidget( lblInitialUnit, 0, 2 );
 
-  QLabel* lblTimerInterval = new QLabel( i18n( "Interval Timer:" ), gboxTimers, "lblTimerInterval" );
-  QLabel* lblIntervalUnit = new QLabel( i18n( "[Minutes]" ), gboxTimers, "lblIntervalUnit" );
-  spbInterval = new QSpinBox( 0, 99999, 1, gboxTimers, "spbInterval" );
-  QToolTip::add( spbInterval, i18n( "Minutes between automatic logon (0 = no automatic)" ) );
-  QToolTip::add( lblTimerInterval, i18n( "Minutes between automatic logon (0 = no automatic)" ) );
+  QLabel* lblTimerInterval = new QLabel( i18n( "Interval Timer:" ), gboxTimers );
+  spbInterval = new QSpinBox( gboxTimers );
+  spbInterval->setMinimum( 0 );
+  spbInterval->setMaximum( 99999 );
+  spbInterval->setSuffix( i18n( " Minutes") );
+  spbInterval->setToolTip( i18n( "Minutes between automatic logon (0 = no automatic)" ) );
+  lblTimerInterval->setToolTip( i18n( "Minutes between automatic logon (0 = no automatic)" ) );
   layTimers->addWidget( lblTimerInterval, 1, 0 );
   layTimers->addWidget( spbInterval, 1, 1 );
-  layTimers->addWidget( lblIntervalUnit, 1, 2 );
 
-  QLabel* lblTimerTimeout = new QLabel( i18n( "Timeout:" ), gboxTimers, "lblTimerTimeout" );
-  QLabel* lblTimeoutUnit = new QLabel( i18n( "[Seconds]" ), gboxTimers, "lblTimeoutUnit" );
-  spbTimeout = new QSpinBox( MINIMUM_TIMEOUT_TIME, 99999, 1, gboxTimers, "spbTimeout" );
-  QToolTip::add( spbTimeout, i18n( "Seconds until a server connect will be canceled" ) );
-  QToolTip::add( lblTimerTimeout, i18n( "Seconds until a server connect will be canceled" ) );
+  QLabel* lblTimerTimeout = new QLabel( i18n( "Timeout:" ), gboxTimers );
+  spbTimeout = new QSpinBox( gboxTimers );
+  spbTimeout->setMinimum( MINIMUM_TIMEOUT_TIME );
+  spbTimeout->setMaximum( 99999 );
+  spbTimeout->setSuffix( i18n( " Seconds" ) );
+  spbTimeout->setToolTip( i18n( "Seconds until a server connect will be canceled" ) );
+  lblTimerTimeout->setToolTip( i18n( "Seconds until a server connect will be canceled" ) );
   layTimers->addWidget( lblTimerTimeout, 2, 0 );
   layTimers->addWidget( spbTimeout, 2, 1 );
-  layTimers->addWidget( lblTimeoutUnit, 2, 2 );
 
 
   //connect all configuration itmes with slot changed() to notify the dialog about changes
@@ -111,7 +110,7 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const char * name, const QString
 
 
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //load configurated values
   load();
@@ -124,19 +123,19 @@ ConfigGeneral::~ConfigGeneral()
 
 void ConfigGeneral::load( )
 {
-  config->setGroup( CONFIG_GROUP_GENERAL );
+  KConfigGroup* configGeneral = new KConfigGroup( config, CONFIG_GROUP_GENERAL );
 
-  chkConfirmClose->setChecked( config->readBoolEntry( CONFIG_ENTRY_CONFIRM_CLOSE, DEFAULT_CONFIRM_CLOSE ) );
-  chkConfirmDelete->setChecked( config->readBoolEntry( CONFIG_ENTRY_CONFIRM_DELETE, DEFAULT_CONFIRM_DELETE ) );
-  chkStartMinimized->setChecked( config->readBoolEntry( CONFIG_ENTRY_START_MINIMIZED, DEFAULT_START_MINIMIZED ) );
-  chkCloseToTray->setChecked( config->readBoolEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, DEFAULT_CLOSE_TO_TRAY ) );
-  chkMinimizeToTray->setChecked( config->readBoolEntry( CONFIG_ENTRY_MINIMIZE_TO_TRAY, DEFAULT_MINIMIZE_TO_TRAY ) );
-  chkShowConnectionErrors->setChecked( config->readBoolEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, DEFAULT_SHOW_CONNECTION_ERRORS ) );
-  chkKeepNew->setChecked( config->readBoolEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW ) );
+  chkConfirmClose->setChecked( configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_CLOSE, DEFAULT_CONFIRM_CLOSE ) );
+  chkConfirmDelete->setChecked( configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_DELETE, DEFAULT_CONFIRM_DELETE ) );
+  chkStartMinimized->setChecked( configGeneral->readEntry( CONFIG_ENTRY_START_MINIMIZED, DEFAULT_START_MINIMIZED ) );
+  chkCloseToTray->setChecked( configGeneral->readEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, DEFAULT_CLOSE_TO_TRAY ) );
+  chkMinimizeToTray->setChecked( configGeneral->readEntry( CONFIG_ENTRY_MINIMIZE_TO_TRAY, DEFAULT_MINIMIZE_TO_TRAY ) );
+  chkShowConnectionErrors->setChecked( configGeneral->readEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, DEFAULT_SHOW_CONNECTION_ERRORS ) );
+  chkKeepNew->setChecked( configGeneral->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW ) );
 
-  spbInitial->setValue( config->readNumEntry( CONFIG_ENTRY_INITIAL_TIME, DEFAULT_INITIAL_TIME ) );
-  spbInterval->setValue( config->readNumEntry( CONFIG_ENTRY_INTERVAL_TIME, DEFAULT_INTERVAL_TIME) );
-  spbTimeout->setValue( config->readNumEntry( CONFIG_ENTRY_TIMEOUT_TIME, DEFAULT_TIMEOUT_TIME) );
+  spbInitial->setValue( configGeneral->readEntry( CONFIG_ENTRY_INITIAL_TIME, DEFAULT_INITIAL_TIME ) );
+  spbInterval->setValue( configGeneral->readEntry( CONFIG_ENTRY_INTERVAL_TIME, DEFAULT_INTERVAL_TIME) );
+  spbTimeout->setValue( configGeneral->readEntry( CONFIG_ENTRY_TIMEOUT_TIME, DEFAULT_TIMEOUT_TIME) );
 }
 
 void ConfigGeneral::defaults( )
@@ -156,18 +155,18 @@ void ConfigGeneral::defaults( )
 
 void ConfigGeneral::save( )
 {
-  config->setGroup( CONFIG_GROUP_GENERAL );
+  KConfigGroup* configGeneral = new KConfigGroup( config, CONFIG_GROUP_GENERAL );
 
-  config->writeEntry( CONFIG_ENTRY_CONFIRM_CLOSE, chkConfirmClose->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_CONFIRM_DELETE, chkConfirmDelete->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_START_MINIMIZED, chkStartMinimized->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, chkCloseToTray->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_MINIMIZE_TO_TRAY, chkMinimizeToTray->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, chkShowConnectionErrors->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_KEEP_NEW, chkKeepNew->isChecked() );
-  config->writeEntry( CONFIG_ENTRY_INITIAL_TIME, spbInitial->value() );
-  config->writeEntry( CONFIG_ENTRY_INTERVAL_TIME, spbInterval->value() );
-  config->writeEntry( CONFIG_ENTRY_TIMEOUT_TIME, spbTimeout->value() );
+  configGeneral->writeEntry( CONFIG_ENTRY_CONFIRM_CLOSE, chkConfirmClose->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_CONFIRM_DELETE, chkConfirmDelete->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_START_MINIMIZED, chkStartMinimized->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, chkCloseToTray->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_MINIMIZE_TO_TRAY, chkMinimizeToTray->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, chkShowConnectionErrors->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_KEEP_NEW, chkKeepNew->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_INITIAL_TIME, spbInitial->value() );
+  configGeneral->writeEntry( CONFIG_ENTRY_INTERVAL_TIME, spbInterval->value() );
+  configGeneral->writeEntry( CONFIG_ENTRY_TIMEOUT_TIME, spbTimeout->value() );
 
   //write configuration to disk
   config->sync();

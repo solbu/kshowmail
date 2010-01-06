@@ -38,9 +38,10 @@ class KShowmailView : public QSplitter
 		 * Constructor
 		 * @param accountModel model for the account view
 		 * @param mailModel model for the mail view
+     * @param mailSelectModel selection model of the mail view model
 		 * @param parent pointer to parent widget
 		 */
-		KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QWidget* parent = 0 );
+		KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QWidget* parent = 0 );
 		
 		/**
 		 * Destructor

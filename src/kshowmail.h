@@ -198,9 +198,19 @@ class KShowmail : public KXmlGuiWindow
     KSharedConfigPtr config;
 
     /**
+     * config group of general preferences
+     */
+    KConfigGroup* configGeneral;
+
+    /**
      * Working state
      */
     State_Type state;
+
+    /**
+     * The sleection model of the mail list
+     */
+    QItemSelectionModel* mailSelectModel;
 
 };
 
