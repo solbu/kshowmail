@@ -22,12 +22,15 @@
 
 //KDE headers
 #include <KDE/KLocale>
+#include <KIcon>
+#include <KStandardDirs>
+#include <kdatetime.h>
 
 //KShowmail headers
 #include "accountlist.h"
 
 //constants
-#define NUMBER_MAILVIEW_COLUMNS 7
+#define NUMBER_MAILVIEW_COLUMNS 9
 
 class MailViewModel : public QAbstractItemModel
 {
@@ -124,6 +127,10 @@ class MailViewModel : public QAbstractItemModel
      */
     AccountList* accounts;
 
+    /**
+     * Icon for a new mail
+     */
+    KIcon picNewMail;
     
 
 };

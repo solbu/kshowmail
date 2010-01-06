@@ -19,6 +19,10 @@
 MailViewModel::MailViewModel( AccountList* accounts, QObject* parent ) : QAbstractItemModel( parent )
 {
   this->accounts = accounts;
+
+  //load pictures
+  picNewMail = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/mail-unread-new.png" ) );
+
 }
 
 MailViewModel::~MailViewModel(){}
@@ -67,11 +71,38 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
 
       switch( index.column() )
       {
-        case  0 : return QVariant( (int)mail->getNumber() );
-        case  1 : return QVariant( );
-        default : return QVariant( QString( "Data %1 %2").arg( index.row() ).arg( index.column() ) );
+        case  0 : return QVariant(); break;
+        case  1 : return QVariant( (int)mail->getNumber() ); break;
+        case  2 : return QVariant( mail->getAccount()->getName() ); break;
+        case  3 : return QVariant( mail->getFrom() ); break;
+        case  4 : return QVariant( mail->getTo() ); break;
+        case  5 : return QVariant( mail->getSubject() ); break;
+        case  6 : return QVariant( mail->getDateTime().toString( KDateTime::LocalDate ) ); break;
+        case  7 : return QVariant( mail->getSizeSuffix() ); break;
+        case  8 : return QVariant( mail->getContent() ); break;
+        default : return QVariant();
       }
       break;
+
+    case( Qt::DecorationRole ):
+
+      switch( index.column() )
+      {
+        case 0  :
+          if( mail->isNew() )
+          {
+            return QVariant( picNewMail );
+          }
+          else
+          {
+            return QVariant();
+          }
+          break;
+
+        default : return QVariant();
+      }
+      break;
+
   }
   
 	return QVariant();
@@ -94,15 +125,15 @@ QVariant MailViewModel::headerData( int section, Qt::Orientation orientation, in
 
 	switch( section )
 	{
-		case 0	:	return QVariant( i18n( "Number" ) ); break;
-		case 1	:	return QVariant( i18n( "Account" ) ); break;
-		case 2	:	return QVariant( i18n( "From" ) ); break;
-		case 3	:	return QVariant( i18n( "To" ) ); break;
-		case 4	:	return QVariant( i18n( "Subject" ) ); break;
-		case 5	:	return QVariant( i18n( "Date" ) ); break;
-		case 6	:	return QVariant( i18n( "Size" ) ); break;
-		case 7	:	return QVariant( i18n( "Content" ) ); break;
-		case 8	:	return QVariant( i18n( "State" ) ); break;
+    case 0  : return QVariant( i18n( "State" ) ); break;
+		case 1	:	return QVariant( i18n( "Number" ) ); break;
+		case 2	:	return QVariant( i18n( "Account" ) ); break;
+		case 3	:	return QVariant( i18n( "From" ) ); break;
+		case 4	:	return QVariant( i18n( "To" ) ); break;
+		case 5	:	return QVariant( i18n( "Subject" ) ); break;
+		case 6	:	return QVariant( i18n( "Date" ) ); break;
+		case 7	:	return QVariant( i18n( "Size" ) ); break;
+		case 8	:	return QVariant( i18n( "Content" ) ); break;
 		default : return QVariant();
 	}
 }

@@ -223,3 +223,8 @@ Mail* MailList::getMail( int number ) const throw ( CorruptDataException )
   //return mail
   return mails.value( number );
 }
+
+Account* MailList::getAccount() const
+{
+  return dynamic_cast<Account*>( parent() );
+}

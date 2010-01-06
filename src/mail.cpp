@@ -329,3 +329,48 @@ QString Mail::decodeRfc2047( const QString& text ) const
   return decodedText;
 }
 
+Account* Mail::getAccount() const
+{
+  return (dynamic_cast<MailList*>( parent() ))->getAccount();
+}
+
+QString Mail::getFrom() const
+{
+  return from;
+}
+
+QString Mail::getTo() const
+{
+  return to;
+}
+
+QString Mail::getSizeSuffix() const
+{
+  QString strSize;
+
+  if( size >= 1024 * 1024 )
+  {
+    //prefix is mega
+    strSize = QString( "%L1M" ).arg( ( (double)size / ( 1024 * 1024 ) ), 0, 'f', 1 );
+  }
+  else if( size >= 1024 )
+  {
+    //prefix is kilo
+    strSize = QString( "%L1K" ).arg( ( (double)size / 1024 ), 0, 'f', 1 );
+  }
+  else
+    //no prefix
+    strSize = QString( "%L1" ).arg( size );
+
+  return strSize;
+}
+
+KDateTime Mail::getDateTime() const
+{
+  return sendDate;
+}
+
+QString Mail::getContent() const
+{
+  return contentType;
+}

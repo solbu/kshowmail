@@ -21,16 +21,19 @@
 #ifndef MAILLIST_H
 #define MAILLIST_H
 
+class MailList;
+
 //Qt headers
 #include <QtCore/QObject>
 
 //KDE headers
 #include <klocale.h>
 
-//KSHowmail headers
+//KShowmail headers
 #include "mail.h"
 #include "types.h"
 #include "corruptdataexception.h"
+#include "account.h"
 
 using namespace Types;
 
@@ -136,6 +139,12 @@ class MailList : public QObject
      * @throws CorruptDataException no mail with this number is available
      */
     Mail* getMail( int number ) const throw ( CorruptDataException );
+
+    /**
+     * Returns a pointer to the account which this list holds.
+     * @return account
+     */
+    Account* getAccount() const;
 
   private:
 

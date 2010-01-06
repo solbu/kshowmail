@@ -17,6 +17,8 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
+class Account;
+
 //C++ headers
 #include <iostream>
 
@@ -43,6 +45,7 @@
 #include "kwalletaccess.h"
 #include "maillist.h"
 #include "accountlist.h"
+#include "corruptdataexception.h"
 
 
 /**

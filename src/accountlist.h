@@ -31,6 +31,7 @@
 #include "account.h"
 #include "constants.h"
 #include "types.h"
+#include "corruptdataexception.h"
 
 using namespace Types;
 

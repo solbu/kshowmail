@@ -17,6 +17,8 @@
 #ifndef MAIL_H
 #define MAIL_H
 
+class Mail;
+
 //C++ headers
 #include <iostream>
 
@@ -30,6 +32,10 @@
 #include <kmime/kmime_codecs.h>
 #include <kmime/kmime_headers.h>
 #include <KDateTime>
+
+//KShowmail headers
+#include "maillist.h"
+#include "account.h"
 
 using namespace std;
 
@@ -149,11 +155,44 @@ class Mail : public QObject
     void setDate( const QString& date );
 
     /**
+     * Returns the datetime of mail send
+     */
+    KDateTime getDateTime() const;
+
+    /**
      * Sets the given string as content type.
      * @param content the content type
      */
     void setContent( const QString& content );
 
+    /**
+     * Returns the content type.
+     * @return content type
+     */
+    QString getContent() const;
+
+    /**
+     * Returns a pointer to the account which contains this mail.
+     * @return account
+     */
+    Account* getAccount() const;
+
+    /**
+     * Returns the sender address.
+     * @return sender address
+     */
+    QString getFrom() const;
+
+    /**
+     * Returns the addressee.
+     * @return the addressee
+     */
+    QString getTo() const;
+
+    /**
+     * Returns the mails size as string with suffix
+     */
+    QString getSizeSuffix() const;
     
 	private:
 		
