@@ -150,7 +150,44 @@ void KShowmail::slotShowMessage() {
 }
 
 void KShowmail::slotDelete() {
-  kDebug() << "slotDelete" << endl;
+
+  //just delete, if no operation is running
+  if( state != idle )
+  {
+    kapp->beep();
+    return;
+  }
+
+  //return, if no mails are selected
+/*  if( !accounts.hasSelectedMails() )
+    return;
+
+  //confirm deletion if required
+  if( accounts.confirmDeletion() )
+  {
+    //get subjects off all selected mails
+    QStringList subjects = m_ConfigList.getSelectedSubjects();
+
+    //show question
+    int answer = KMessageBox::questionYesNoList( this, i18n( "Do you want to delete these mails?"), subjects, i18n( "Delete?" ) );
+
+    if( answer == KMessageBox::No )
+      return;
+  }
+
+  //set the state
+  m_state = deleting;
+
+  //show status message
+  slotStatusMsg( i18n( "Deleting Mail(s) ..." ) );
+
+  //set waiting cursor
+  QApplication::setOverrideCursor( Qt::waitCursor );
+
+  //order the account list to delete the selected mails
+  //test!
+  m_ConfigList.deleteSelectedMails();
+*/
 }
 
 void KShowmail::slotStop() {
