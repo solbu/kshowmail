@@ -20,6 +20,7 @@
 //Qt headers
 #include <QObject>
 #include <QList>
+#include <qitemselectionmodel.h>
 
 //KDE headers
 #include <KGlobal>
@@ -131,6 +132,27 @@ class AccountList : public QObject
      */
     Mail* getMail( int number ) const throw ( CorruptDataException );
 
+    /**
+     * Returns the selected mails.
+     * @param mailSelectModel selection model of the mail view
+     * @return selected mails
+     */
+    QList<Mail*> getSelectedMails( QItemSelectionModel* mailSelectModel ) const;
+
+    /**
+     * Returns the subjects of the selected mails.
+     * @param mailSelectModel selection model of the mail view
+     * @return subjects
+     */
+    QStringList getSelectedSubjects( QItemSelectionModel* mailSelectModel ) const;
+
+    /**
+     * Deletes all selected mails from the servers and the mail lists.
+     * This just starts the deletion and returns after then. When all
+     * accounts are ready the signal sigDeleteReady will be emitted.
+     */
+    void deleteSelectedMails( QItemSelectionModel* mailSelectModel );
+
 
 	private:
 		
@@ -151,6 +173,19 @@ class AccountList : public QObject
      * @see slotCheckRefreshState()
      */
     AccountTaskMap_Type AccountRefreshMap;
+
+    /**
+     * This map is used by the delete methods.
+     * deleteSelectedMails() clears it and after that inserts for every account
+     * an item. The Key is the account name and the data is TRUE.
+     * When slotCheckDeletionState() is invoked by a signal sent by an account,
+     * this slot will set the appropriate item data to FALSE. If the data of all
+     * items are set to FALSE, the method will know all accounts have ended the
+     * deletion and will emit sigDeleteReady.
+     * @see deleteSelectedMails()
+     * @see slotCheckDeletionState()
+     */
+    AccountTaskMap_Type AccountDeletionMap;
 
     /**
      * Number of windows, which have been opened by the accounts to show mails.
@@ -210,6 +245,17 @@ class AccountList : public QObject
     void slotMessageWindowClosed();
 
 
+    /**
+     * Connected with signal sigDeleteReady of all accounts.
+     * When an account has sent this signal its appropriate item
+     * in AccountDeletionMap will set to FALSE.
+     * When all accounts have done the deletion it will emit signal
+     * sigDeleteReady.
+     * @param account name of the account which has emitted the signal
+     * @see AccountDeletionMap
+     */
+    void slotCheckDeletionState( QString account );
+
 
   signals:
 
@@ -231,6 +277,16 @@ class AccountList : public QObject
      * @see slotMessageWindowClosed
      */
     void sigAllMessageWindowsClosed();
+
+    /**
+     * Will be emitted when all selected mails are deleted.
+     */
+    void sigDeleteReady();
+
+    /**
+     * Will be emitted when all selected mails are shown.
+     */
+    void sigShowBodiesReady();
 
     
 };

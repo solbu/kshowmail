@@ -168,6 +168,15 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotWaitingCursor();
 
+    /**
+     * Connected with signal sigDeleteReady of account list.
+     * This signal will be emitted when one or many accounts have
+     * ended a deletion.
+     * This slot refreshes the view, sets the state to idle and sets
+     * a normal cursor.
+     */
+    void slotDeletionReady();
+
 
 	
 	private:

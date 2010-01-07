@@ -744,6 +744,8 @@ void Account::finishTask()
     default                 : break;
   }
 
+  //clear lists
+  mailsToDelete.clear();
 
 }
 
@@ -1420,4 +1422,14 @@ int Account::getNumberMails() const
 Mail* Account::getMail( int number ) const throw ( CorruptDataException )
 {
   return mails->getMail( number );
+}
+
+void Account::addMailToDelete( int number )
+{
+  mailsToDelete.append( number );
+}
+
+void Account::deleteMails()
+{
+  emit sigDeleteReady( getName() );
 }

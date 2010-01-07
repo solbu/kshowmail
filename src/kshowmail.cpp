@@ -13,6 +13,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   connect( accounts, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotNormalCursor() ) );
   connect( accounts, SIGNAL( sigAllMessageWindowsClosed() ), this, SLOT( slotWaitingCursor() ) );
   connect( accounts, SIGNAL( sigRefreshReady() ), this, SLOT( slotRefreshReady() ) );
+  connect( accounts, SIGNAL( sigDeleteReady() ), this, SLOT( slotDeletionReady() ) );
 
 	
 	//create the models for the account view and mail view
@@ -162,42 +163,41 @@ void KShowmail::slotDelete() {
     return;
   }
 
-
-
   //return, if no mails are selected
   if( !mailSelectModel->hasSelection() )
     return;
 
   //confirm deletion if required
   bool confirmDeletion = configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_DELETE, DEFAULT_CONFIRM_DELETE );
+
+
   
   if( confirmDeletion )
   {
-    kdDebug() << "Mails delete?" << endl;
     
-/*    //get subjects off all selected mails
-    QStringList subjects = m_ConfigList.getSelectedSubjects();
+    //get subjects off all selected mails
+    QStringList subjects = accounts->getSelectedSubjects( mailSelectModel );
 
     //show question
     int answer = KMessageBox::questionYesNoList( this, i18n( "Do you want to delete these mails?"), subjects, i18n( "Delete?" ) );
 
     if( answer == KMessageBox::No )
-      return;*/
+      return;
   }
 
+
   //set the state
-/*  m_state = deleting;
+  state = deleting;
 
   //show status message
-  slotStatusMsg( i18n( "Deleting Mail(s) ..." ) );
+  //slotStatusMsg( i18n( "Deleting Mail(s) ..." ) );
 
   //set waiting cursor
-  QApplication::setOverrideCursor( Qt::waitCursor );
+  QApplication::setOverrideCursor( Qt::WaitCursor );
 
   //order the account list to delete the selected mails
-  //test!
-  m_ConfigList.deleteSelectedMails();
-*/
+  accounts->deleteSelectedMails( mailSelectModel );
+
 }
 
 void KShowmail::slotStop() {
@@ -317,6 +317,23 @@ void KShowmail::slotWaitingCursor( )
   //set waiting cursor
   if( state != idle )
     QApplication::setOverrideCursor( Qt::WaitCursor );
+}
+
+void KShowmail::slotDeletionReady( )
+{
+  //set state to idle
+  state = idle;
+
+  //set normal cursor
+  while( QApplication::overrideCursor() )
+    QApplication::restoreOverrideCursor();
+
+  //show status message
+  //slotStatusMsg( i18n( "Ready." ) );
+  kdDebug() << "Deletion ready" << endl;
+
+  //refresh mail list
+  slotRefresh();
 }
 
 

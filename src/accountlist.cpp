@@ -33,6 +33,7 @@ Account* AccountList::addAccount( const QString& name )
   connect( acc, SIGNAL( sigRefreshReady( QString ) ), this, SLOT( slotCheckRefreshState( QString ) ) );
   connect( acc, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotMessageWindowOpened() ) );
   connect( acc, SIGNAL( sigMessageWindowClosed() ), this, SLOT( slotMessageWindowClosed() ) );
+  connect( acc, SIGNAL( sigDeleteReady(QString) ), this, SLOT( slotCheckDeletionState(QString) ) );
 	
 	//append it to the list
 	accounts.append( acc );
@@ -275,4 +276,104 @@ Mail* AccountList::getMail( int number ) const throw ( CorruptDataException )
 
   //we have not found anything
   throw CorruptDataException( i18n( "A mail with number %1 is not available.").arg( number ) );
+}
+
+QList<Mail*> AccountList::getSelectedMails( QItemSelectionModel* mailSelectModel ) const
+{
+  QList<Mail*> list;  //result list
+
+  //get selected rows
+  QModelIndexList indexList = mailSelectModel->selectedRows();
+
+  //get the mail of every selected row an store the pointer into the result list
+  QListIterator<QModelIndex> it( indexList );
+  while( it.hasNext() )
+  {
+    //get Index
+    QModelIndex index = it.next();
+
+    //get mail
+    Mail* mail = getMail( index.row() );
+
+    //store mail pointer
+    list.append( mail );
+  }
+
+  return list;
+}
+
+QStringList AccountList::getSelectedSubjects( QItemSelectionModel* mailSelectModel ) const
+{
+  QStringList list; //result list
+
+  //get the selected mails
+  QList<Mail*> mailList = getSelectedMails( mailSelectModel );
+
+  //get the subjects of the selected mails and store their subjects
+  QListIterator<Mail*> it( mailList );
+  while( it.hasNext() )
+  {
+    //get Mail
+    Mail* mail = it.next();
+
+    //store subject
+    list.append( mail->getSubject() );
+    
+  }
+
+  return list;
+
+}
+
+void AccountList::deleteSelectedMails( QItemSelectionModel* mailSelectModel )
+{
+  //an account has a list of mails to delete
+  //we put the mail number of every selected mail into the list of its account
+  QList<Mail*> mailList = getSelectedMails( mailSelectModel );
+  if( mailList.isEmpty() )
+  {
+    emit sigDeleteReady();
+    return;
+  }
+  
+  QListIterator<Mail*> it( mailList );
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+    mail->getAccount()->addMailToDelete( mail->getNumber() );
+  }
+
+  //order the accounts to delete the mails
+
+  QListIterator<Account*> it( accounts );
+
+  //clear the map, which contains the names of the accounts,
+  //which have gotten an order to delete
+  AccountDeletionMap.clear();
+
+  //inserts an item for every account which will get an order to delete
+  //its selected mails. The key is the account name and the data is TRUE.
+  //it is important to do this in a seperate iteration because this avoids
+  //race conditions
+  while( it.hasNext() )
+  {
+    //get Account
+    Account* account = it.next();
+    
+    //insert item
+    AccountDeletionMap.insert( account->getName(), true );
+
+  }
+
+  //order all accounts to delete its selected mail
+  it.toFront();
+  while( it.hasNext() )
+  {
+    //get Account
+    Account* account = it.next();
+
+    account->deleteMails();
+  }
+
+  
 }

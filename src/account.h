@@ -300,6 +300,22 @@ class Account : public QObject
      */
     Mail* getMail( int number ) const throw ( CorruptDataException );
 
+    /**
+     * Adds a mail number to the list of mails to delete.<p>
+     * The number is the mail number given by the mail server.
+     * @param number mail number
+     * @see mailsToDelete
+     */
+    void addMailToDelete( int number );
+
+  /**
+   * Deletes mails which are listed in mailsToDelete.
+   * This just starts the deletion and returns after then.
+   * When the deletion is ready the signal sigDeleteReady will be emitted.
+   */
+   virtual void deleteMails();
+
+
 
   protected:
 
@@ -724,6 +740,15 @@ class Account : public QObject
      * @see getNextHeader()
      */
     MailNumberList_Type newMails;
+
+   /**
+     * Contains the numbers of mails which will be deleted.
+     * Set by addMailToDelete() and used by deleteNextMail() to get
+     * the number of the next mail to delete.
+     * @see addMailToDelete()
+     * @see deleteNextMail()
+    */
+    MailNumberList_Type mailsToDelete;
 
 
   signals:
