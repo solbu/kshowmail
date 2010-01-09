@@ -172,7 +172,7 @@ class AccountList : public QObject
      * @see refreshMailLists()
      * @see slotCheckRefreshState()
      */
-    AccountTaskMap_Type AccountRefreshMap;
+    AccountTaskMap_Type accountRefreshMap;
 
     /**
      * This map is used by the delete methods.
@@ -185,7 +185,7 @@ class AccountList : public QObject
      * @see deleteSelectedMails()
      * @see slotCheckDeletionState()
      */
-    AccountTaskMap_Type AccountDeletionMap;
+    AccountTaskMap_Type accountDeletionMap;
 
     /**
      * Number of windows, which have been opened by the accounts to show mails.

@@ -448,23 +448,6 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
 
   return serverResponse;
 
-/*  //buffer for the datas
-  char lineBuffer[1024];
-
-  //return object
-  QStringList text;
-
-  //wait for a whole line
-  while( socket->bytesAvailable() != 0 )
-  {
-    while( socket->canReadLine() )
-    {
-      socket->readLine( lineBuffer, sizeof( lineBuffer ) );
-      QString readedLine = QString( lineBuffer ).simplified();
-      text.append( readedLine );
-    }
-  }*/
-//  return text;
 }
 
 void Account::slotReadFirstServerMessage()
@@ -689,7 +672,7 @@ void Account::slotAuthMechResponse()
     else
     {
       emit sigMessageWindowOpened();
-      KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login.\n\
+      KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login.\
                                        If you want to use this Account you must allow unsafe login at the account setup.\
                                        Bear in mind in this case criminals could read your password!" ).arg( getName() ), i18n( "Unsafe login is not allowed") );
       emit sigMessageWindowClosed();
@@ -842,8 +825,8 @@ void Account::slotLoginPasswdResponse()
   switch( getState() )
   {
     case AccountRefreshing    : getUIDList(); break;
-/*    case AccountDeleting      : deleteNextMail(); break;
-    case AccountDownloading   : showNextMail(); break;*/
+    case AccountDeleting      : deleteNextMail(); break;
+/*    case AccountDownloading   : showNextMail(); break;*/
     default                   : commit(); break;
   }
 }
@@ -911,7 +894,7 @@ void Account::slotLoginApopResponse()
     else
     {
       handleError( i18n( "Login has failed. Error message is: %1\n\
-          Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.\n\
+          Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.\
           Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response.first() ) ) );
       return;
     }
@@ -921,8 +904,8 @@ void Account::slotLoginApopResponse()
   switch( getState() )
   {
     case AccountRefreshing    : getUIDList(); return;
-/*    case AccountDeleting      : deleteNextMail(); return;
-    case AccountDownloading   : showNextMail(); return;*/
+    case AccountDeleting      : deleteNextMail(); return;
+/*    case AccountDownloading   : showNextMail(); return;*/
     default                   : commit(); return;
   }
 
@@ -1431,5 +1414,97 @@ void Account::addMailToDelete( int number )
 
 void Account::deleteMails()
 {
-  emit sigDeleteReady( getName() );
+    //check whether we have a password for this account
+  //if not, ask for it
+  //return when no password is available
+  if( !assertPassword() )
+  {
+    emit sigDeleteReady( name );
+    return;
+  }
+
+  //return if no mails in the list
+  if( mailsToDelete.empty() )
+  {
+    emit sigDeleteReady( name );
+    return;
+  }
+
+  //set account state
+  state = AccountDeleting;
+
+  //connect
+  doConnect();
+
 }
+
+void Account::deleteNextMail( )
+{
+  //if the list of mails to delete is empty, finalize the deletion and return
+  if( mailsToDelete.empty() )
+  {
+/*    if( deletionPerformedByFilters )
+    {
+      applyFiltersDeleted();
+    }
+    else
+    {*/
+      commit();
+//    }
+    return;
+  }
+
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailDeleted() ) );
+
+  //send deletion command
+  sendCommand( DELETE + " " + QString( "%1" ).arg( mailsToDelete.first() ) );
+}
+
+void Account::slotMailDeleted()
+{
+  //get the response
+  QStringList answer = readfromSocket( NULL, true );
+
+  //no response from the server
+  if( answer.isEmpty() )
+  {
+    handleError( i18n( "%1 has not sent a answer after removing of mail %2.").arg( getHost() ).arg( mailsToDelete.first() ) );
+    finishTask();
+    return;
+  }
+
+  //it is a negative response?
+  if( !isPositiveServerMessage( answer ) )
+  {
+    handleError( i18n( "Error while removing mail %1 of %2: %3" ).arg( mailsToDelete.first() ).arg( getName() ).arg( answer.first() ) );
+    return;
+  }
+
+
+    //remove the first item of the list of mails to delete
+    mailsToDelete.removeFirst();
+
+    //if the list of mails to delete is empty, finalize the deletion and return
+    if( mailsToDelete.empty() )
+    {
+/*      if( deletionPerformedByFilters )
+      {
+        applyFiltersDeleted();
+      }
+      else
+      {*/
+        commit();
+//      }
+      return;
+    }
+//  }
+
+  //delete next mail in list
+  deleteNextMail();
+
+}
+
+
+

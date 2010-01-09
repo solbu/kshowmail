@@ -190,7 +190,7 @@ void KShowmail::slotDelete() {
   state = deleting;
 
   //show status message
-  //slotStatusMsg( i18n( "Deleting Mail(s) ..." ) );
+  showStatusMessage( i18n( "Deleting Mail(s) ..." ) );
 
   //set waiting cursor
   QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -329,8 +329,7 @@ void KShowmail::slotDeletionReady( )
     QApplication::restoreOverrideCursor();
 
   //show status message
-  //slotStatusMsg( i18n( "Ready." ) );
-  kdDebug() << "Deletion ready" << endl;
+  showStatusMessage( i18n( "Ready." ) );
 
   //refresh mail list
   slotRefresh();

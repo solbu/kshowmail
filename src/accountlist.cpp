@@ -144,7 +144,7 @@ void AccountList::refreshMailLists()
 
   //clear the map, which contains the names of the accounts,
   //which have gotten an order to show mails
-  AccountRefreshMap.clear();
+  accountRefreshMap.clear();
 
   //inserts an item for every account which will get an order to refresh
   //its mail list. The key is the account name and the data is TRUE.
@@ -156,7 +156,7 @@ void AccountList::refreshMailLists()
     Account* account = *iter;
     
     //insert item
-    AccountRefreshMap.insert( account->getName(), true );
+    accountRefreshMap.insert( account->getName(), true );
   }
 
   //iterate over all accounts and order them to refresh the mail lists
@@ -174,11 +174,11 @@ void AccountList::slotCheckRefreshState( QString account )
   AccountTaskMap_Type::Iterator it;   //iterator over the account map
 
   //set the appropriate item in AccountRefreshMap to FALSE
-  AccountRefreshMap[ account ] = false;
+  accountRefreshMap[ account ] = false;
 
   //iterate over the account map to check whether all accounts
   //are ready
-  for ( it = AccountRefreshMap.begin(); it != AccountRefreshMap.end(); ++it )
+  for ( it = accountRefreshMap.begin(); it != accountRefreshMap.end(); ++it )
   {
 
     if( *it == true )
@@ -345,35 +345,58 @@ void AccountList::deleteSelectedMails( QItemSelectionModel* mailSelectModel )
 
   //order the accounts to delete the mails
 
-  QListIterator<Account*> it( accounts );
+  QListIterator<Account*> itAcc( accounts );
 
   //clear the map, which contains the names of the accounts,
   //which have gotten an order to delete
-  AccountDeletionMap.clear();
+  accountDeletionMap.clear();
 
   //inserts an item for every account which will get an order to delete
   //its selected mails. The key is the account name and the data is TRUE.
   //it is important to do this in a seperate iteration because this avoids
   //race conditions
-  while( it.hasNext() )
+  while( itAcc.hasNext() )
   {
     //get Account
-    Account* account = it.next();
+    Account* account = itAcc.next();
     
     //insert item
-    AccountDeletionMap.insert( account->getName(), true );
+    accountDeletionMap.insert( account->getName(), true );
 
   }
 
   //order all accounts to delete its selected mail
-  it.toFront();
-  while( it.hasNext() )
+  itAcc.toFront();
+  while( itAcc.hasNext() )
   {
     //get Account
-    Account* account = it.next();
+    Account* account = itAcc.next();
 
     account->deleteMails();
   }
 
   
 }
+
+void AccountList::slotCheckDeletionState( QString account )
+{
+  bool accountDeleting = false;     //set to TRUE if an account is still deleting
+  AccountTaskMap_Type::Iterator it; //iterator over the account deletion map
+
+  //set the appropriate item in AccountDeletionMap to FALSE
+  accountDeletionMap[ account ] = false;
+
+  //iterate over the account deletion map to check, whether all accounts
+  //are ready
+  for ( it = accountDeletionMap.begin(); it != accountDeletionMap.end(); ++it )
+  {
+    if( *it == true )
+      accountDeleting = true;
+  }
+
+  //emit sigDeleteReady if all accounts are ready
+  if( !accountDeleting )
+    emit sigDeleteReady();
+}
+
+

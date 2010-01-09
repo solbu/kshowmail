@@ -308,13 +308,12 @@ class Account : public QObject
      */
     void addMailToDelete( int number );
 
-  /**
-   * Deletes mails which are listed in mailsToDelete.
-   * This just starts the deletion and returns after then.
-   * When the deletion is ready the signal sigDeleteReady will be emitted.
-   */
-   virtual void deleteMails();
-
+    /**
+     * Deletes mails which are listed in mailsToDelete.
+     * This just starts the deletion and returns after then.
+     * When the deletion is ready the signal sigDeleteReady will be emitted.
+     */
+     virtual void deleteMails();
 
 
   protected:
@@ -521,6 +520,17 @@ class Account : public QObject
      */
     void copyHeaders();
 
+    /**
+     * Deletes the first mail of MailsToDelete.
+     * After a succesful deletion this mail will be removed from the list
+     * by slotMailDeleted() and this method will be invoked again.
+     * If the list is empty, it will call commitDelete.
+     * @see slotMailDeleted()
+     * @see MailsToDelete
+     */
+    void deleteNextMail();
+
+
 
   protected slots:
 
@@ -622,6 +632,19 @@ class Account : public QObject
      * copyHeaders().
      */
     void slotGetHeaderResponse();
+
+    /**
+     * Removes the deleted mail from the internal mail list (m_pshowrecord).
+     * Removes the first mail from MailsToDelete and invokes
+     * deleteNextMail() again to delete the next mail.
+     * If the list is empty after it has removed the first item, it will call
+     * commitDelete().
+     * If an error is occured, it will call slotFinalizeDeletion().
+     * @see deleteNextMail()
+     * @see MailsToDelete
+     * @see slotFinalizeDeletion()
+     */
+    void slotMailDeleted();
 
 
 		
