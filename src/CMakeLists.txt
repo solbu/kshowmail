@@ -14,6 +14,10 @@ set(kshowmail_SRCS
    maillist.cpp
    exception.cpp
    corruptdataexception.cpp
+   filterlogentry.cpp
+   filterlogviewdeleteditem.cpp
+   filterlogviewmoveditem.cpp
+   filterlogview.cpp
  )
 
 #enable exceptions
