@@ -34,6 +34,8 @@ class MailList;
 #include "types.h"
 #include "corruptdataexception.h"
 #include "account.h"
+#include "headerfilter.h"
+#include "filterlog.h"
 
 using namespace Types;
 
@@ -145,6 +147,18 @@ class MailList : public QObject
      * @return account
      */
     Account* getAccount() const;
+
+    /**
+     * Apply the filters to the mails in this list.
+     * @param filter pointer to the header filter
+     * @param account name of this account
+     * @param deleteList reference to a list in which this methode writes the numbers of mails to delete
+     * @param downloadList reference to a list in which this methode writes the number of mails to download
+     * @param nmbIgnoredMails reference to an integer in which it writes the number of ignored mails
+     * @param log pointer to the filter log
+     */
+    void applyHeaderFilter( HeaderFilter* filter, QString account, MailNumberList_Type& deleteList, MailToDownloadMap_Type& downloadList, int& nmbIgnoredMails, FilterLog* log = NULL );
+
 
   private:
 

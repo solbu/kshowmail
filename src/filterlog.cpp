@@ -14,7 +14,7 @@
 FilterLog::FilterLog()
 {
   //get the application config object
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //load the setup
   loadSetup();
@@ -50,7 +50,7 @@ void FilterLog::addEntry(FilterAction_Type action, const QDateTime & dateTime, c
   {
     case FActDelete   : listDeletedMails.append( entry ); break;
     case FActMove     : listMovedMails.append( entry ); break;
-    default           : kdError( "FilterLog::addEntry: Could not relate the following mail:" );
+    default           : kdError() << "FilterLog::addEntry: Could not relate the following mail:" << endl;
                         entry.print();
                         break;
   }
@@ -112,12 +112,12 @@ void FilterLog::save()
 
 
   //get the name of the file to save
-  QString filename = locateLocal( "appdata", LOG_FILE );
+  QString filename = KStandardDirs::locateLocal( "appdata", LOG_FILE );
 
   //and save
   QFile file( filename );
 
-  if ( file.open( IO_WriteOnly ) ) //open file
+  if ( file.open( QFile::WriteOnly ) ) //open file
   {
     QTextStream stream( &file );
     doc.save( stream, 2 );
@@ -139,12 +139,12 @@ void FilterLog::load()
   QDomDocument doc( LOG_DOCTYPE );
 
   //get the name of the file
-  QString filename = locateLocal( "appdata", LOG_FILE );
+  QString filename = KStandardDirs::locateLocal( "appdata", LOG_FILE );
 
   //load the log from file into the DOM document
   QFile file( filename );
 
-  if ( !file.open( IO_ReadOnly ) )
+  if ( !file.open( QFile::ReadOnly ) )
     return;         //return, if the file can't opened
 
   if ( !doc.setContent( &file ) ) {
@@ -194,14 +194,14 @@ LogEntryList FilterLog::getMovedMails( )
 
 void FilterLog::loadSetup( )
 {
-  config->setGroup( CONFIG_GROUP_LOG );
+  KConfigGroup* configLog = new KConfigGroup( config, CONFIG_GROUP_LOG );
 
-  logDeletedMails = config->readBoolEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, DEFAULT_LOG_LOG_DELETED_MAILS );
-  logMovedMails = config->readBoolEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, DEFAULT_LOG_LOG_MOVED_MAILS );
+  logDeletedMails = configLog->readEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, DEFAULT_LOG_LOG_DELETED_MAILS );
+  logMovedMails = configLog->readEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, DEFAULT_LOG_LOG_MOVED_MAILS );
 
   if( logDeletedMails )
   {
-    QString storageMode = config->readEntry(CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, DEFAULT_LOG_REMOVE_DELETED_MAILS );
+    QString storageMode = configLog->readEntry(CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, DEFAULT_LOG_REMOVE_DELETED_MAILS );
     if( storageMode == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
       deletedMailsStorageMode = exit;
     else if( storageMode == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
@@ -210,7 +210,7 @@ void FilterLog::loadSetup( )
       deletedMailsStorageMode = days;
 
     if( deletedMailsStorageMode == days )
-      daysStoreDeletedMails = config->readNumEntry( CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS, DEFAULT_LOG_HOLDDAYS_DELETED_MAILS );
+      daysStoreDeletedMails = configLog->readEntry( CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS, DEFAULT_LOG_HOLDDAYS_DELETED_MAILS );
     else
       daysStoreDeletedMails = 7;
   }

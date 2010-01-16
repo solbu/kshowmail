@@ -26,6 +26,7 @@
 #include "mailviewmodel.h"
 #include "mail.h"
 #include "types.h"
+#include "filterlogview.h"
 
 using namespace Types;
 
@@ -75,6 +76,16 @@ class KShowmail : public KXmlGuiWindow
      * Initializes the statusbar
      */
     void initStatusBar();
+
+    /**
+     * Refreshes the status bar filter field.
+     */
+    void refreshFilterStatusBar();
+
+     /**
+      * The filter log.
+      */
+     FilterLog fLog;
 
   protected slots:
 

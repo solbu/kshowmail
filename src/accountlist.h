@@ -33,6 +33,7 @@
 #include "constants.h"
 #include "types.h"
 #include "corruptdataexception.h"
+#include "filterlog.h"
 
 using namespace Types;
 
@@ -96,8 +97,9 @@ class AccountList : public QObject
     /**
      * Orders the accounts to refresh the mails.
      * When the refresh is done, the signal refreshReady will be emitted.
+     * @param log pointer to the filter log
      */
-    void refreshMailLists();
+    void refreshMailLists( FilterLog* log );
 
     /**
      * Returns whether all new mails will keep new status until the app is closed.
@@ -152,6 +154,42 @@ class AccountList : public QObject
      * accounts are ready the signal sigDeleteReady will be emitted.
      */
     void deleteSelectedMails( QItemSelectionModel* mailSelectModel );
+
+    /**
+      * Returns the number of deleted mails by last refresh.
+      * @return number of deleted mails by last refresh
+      */
+    int numberDeletedMailsLastRefresh();
+
+    /**
+      * Returns the number of deleted mails since start.
+      * @return number of deleted mails since start
+      */
+    int numberDeletedMailsStart();
+
+    /**
+      * Returns the number of moved mails by last refresh.
+      * @return number of moved mails by last refresh
+      */
+    int numberMovedMailsLastRefresh();
+
+    /**
+      * Returns the number of moved mails since start.
+      * @return number of moved mails since start
+      */
+    int numberMovedMailsStart();
+
+    /**
+      * Returns the number of ignored mails by last refresh.
+      * @return number of ignored mails by last refresh
+      */
+    int numberIgnoredMails();
+
+    /**
+     * Reloads the filter settings
+     */
+    void refreshFilterSetup();
+
 
 
 	private:

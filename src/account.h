@@ -46,7 +46,8 @@ class Account;
 #include "maillist.h"
 #include "accountlist.h"
 #include "corruptdataexception.h"
-
+#include "headerfilter.h"
+#include "filterlog.h"
 
 /**
  * @brief Constants of the POP3 protocol
@@ -193,9 +194,10 @@ class Account : public QObject
    * This just starts the refresh and returns after then.
    * When the refresh is ready, the signal sigRefreshReady
    * will be emitted.
+   * @param log pointer to the filter log
    * @see sigRefreshReady
    */
-  void refreshMailList( );
+  void refreshMailList( FilterLog* log = NULL );
 
    /**
     * Gets the account password.
@@ -315,7 +317,44 @@ class Account : public QObject
      */
      virtual void deleteMails();
 
+    /**
+     * Returns the number of deleted mails by last refresh.
+     * @return number of deleted mails by last refresh
+     */
+    int numberDeletedMailsLastRefresh();
 
+    /**
+     * Returns the number of deleted mails since start.
+     * @return number of deleted mails since start
+     */
+  int numberDeletedMailsStart();
+
+    /**
+     * Returns the number of moved mails by last refresh.
+     * @return number of moved mails by last refresh
+     */
+  int numberMovedMailsLastRefresh();
+
+    /**
+     * Returns the number of moved mails since start.
+     * @return number of moved mails since start
+     */
+  int numberMovedMailsStart();
+
+    /**
+     * Returns the number of ignored mails by last refresh.
+     * @return number of ignored mails by last refresh
+     */
+  int numberIgnoredMails();
+
+  /**
+   * Reloads the settings of the filters.
+   * It just calls the load() methode of the header filter.
+   */
+  void reloadFilterSettings();
+
+  
+    
   protected:
 
     /**
@@ -530,6 +569,55 @@ class Account : public QObject
      */
     void deleteNextMail();
 
+    /**
+     * Does all filter actions for which we have to download the mails
+     * These are:
+     * Moving, spam check
+     * It doesn't removes they from the server.
+     */
+    void doDownloadActions();
+
+    /**
+     * Gets the body of the first mail in MailsToDownload.
+     * After a succesful download and writing into the mailbox this
+     * mail will be removed from the list by slotMailDownloadedforDownloadActions() and this
+     * method will be invoked again.
+     * If the list is empty, it will call applyFilters() to continue the filtering.
+     * @see applyFilters()
+     * @see slotMailDownloadedforDownloadActions()
+     */
+    void getNextMailForDownloadActions();
+
+    /**
+     * If there are mails to delete by filters applyFilters will call the regular deletion cycle of this class with set byFilter-flag.
+     * Therefore the deletion will not branch to commitDeletion() but to this methode.
+     * This performs a second refresh cycle to get an effective mail list from the server.
+     * This new cycle will not apply the filters again, because the flag filterApplied is set to TRUE.
+     * @see applyFilters()
+     * @see filterApplied
+     */
+    void applyFiltersDeleted();
+
+    /**
+     * Send a commit and restart the refresh cycle
+     * We restart the refresh to get a fresh maillist after a deletion performed by the filter.
+     * We need a commit before because the mails server only after a commit reorders the mail numbers
+     */
+    void commitBeforeRefresh();
+
+    /**
+     * step of the refresh cycle.
+     * Applies the filters to the mails in the mail list.
+     * Invoked by swapMailLists().
+     * This methode maybe starts a new refresh cycle because after a deletion or moving we need a
+     * actual list of mails on the server.
+     * To avoid a never-ending loop you must not call this methode during the second refresh cycle.
+     * Therefore it sets filterApplied to TRUE.
+     * @see filterApplied
+     * @see applyFiltersDeleted()
+     */
+    void applyFilters();
+
 
 
   protected slots:
@@ -604,19 +692,6 @@ class Account : public QObject
     void slotUIDListResponse();
 
     /**
-     * step of the refresh cycle.
-     * Applies the filters to the mails in the mail list.
-     * Invoked by swapMailLists().
-     * This methode maybe starts a new refresh cycle because after a deletion or moving we need a
-     * actual list of mails on the server.
-     * To avoid a never-ending loop you must not call this methode during the second refresh cycle.
-     * Therefore it sets filterApplied to TRUE.
-     * @see filterApplied
-     * @see applyFiltersDeleted()
-     */
-    void applyFilters();
-
-    /**
      * Receives the response of the LIST command, which gets the
      * numbers and sizes of the mails
      * @see getMailSizes()
@@ -645,6 +720,30 @@ class Account : public QObject
      * @see slotFinalizeDeletion()
      */
     void slotMailDeleted();
+
+    /**
+     * Downloads a mail to write it into a mailbox or do a spam check.
+     * Maybe it puts the number of the downloaded mail into the list of mails to delete (mailsToDelete).
+     * Removes the first mail from MailsToMove and invokes getNextMailForMove()
+     * again to get and write the next mail.
+     * If the list is empty after it has removed the first item, it will call
+     * applyFilters() to continue the filtering.
+     * If an error is occured the current mail will not put into MailsToDelete. And it returns
+     * to applyFilters() immediately.
+     * @param job job which has emit the result signal
+     * @see MailsToDownload
+     * @see getNextMailForDownloadActions()
+     * @see applyFilters()
+     */
+    void slotMailDownloadedForAction();
+
+    /**
+     * Connected with the result signal of the pop3 job launched by commitBeforeRefresh()
+     * Restarts a second refresh cycle after a deletion performed by the filter.
+     * @see commitBeforeRefresh
+     * @see applyFiltersDeleted
+     */
+    void slotCommitBeforeRefreshDone();
 
 
 		
@@ -772,6 +871,77 @@ class Account : public QObject
      * @see deleteNextMail()
     */
     MailNumberList_Type mailsToDelete;
+
+    /**
+     * Contains the numbers of the mails shall be moved for actions like moving to mailbox or spam check.
+     * Contains also some parameters (like mailbox) about the action which have to be performed.
+     * Set and used by applyFilters().
+     * @see applyFilters()
+     */
+    MailToDownloadMap_Type mailsToDownload;
+
+    /**
+     * Contains the numbers of mails for which the bodies will be shown.
+     * Set by showSelectedMails() and used by showNextMail() to get
+     * the number of the next mail to show.
+     * @see showSelectedMails()
+     * @see showNextMail()
+     */
+    MailNumberList_Type mailsToShow;
+
+    /**
+     * Pointer to the filter log.
+     * Will be set by refreshMailList() at every refresh.
+     */
+    FilterLog* fLog;
+
+    
+    /**
+     * Number of deleted mails by last refresh.
+     */
+    int nmbDeletedMailsLastRefresh;
+
+    /**
+     * Number of moved mails by last refresh.
+     */
+    int nmbMovedMailsLastRefresh;
+
+    /**
+     * Number of moved mails since start.
+     */
+    int nmbMovedMailsLastStart;
+
+    /**
+     * Number of ignored mails by last refresh.
+     */
+    int nmbIgnoredMails;
+
+    /**
+     * Counter for moving to create an unique file name
+     */
+    int moveCounter;
+
+    /**
+     * Number of deleted mails since start.
+     */
+    int nmbDeletedMailsLastStart;
+
+    /**
+     * This flag is set to TRUE by applyFilters() to indicate the mailbodies are downloading and writing to the mailboxes or spam checking.
+     * When this is ended, applyFilters() will be called again and it reset this flag
+     */
+    bool downloadActionsInvoked;
+
+    /**
+     * Every account has is own header filter instance.
+     */
+    HeaderFilter headerFilter;
+
+    /**
+     * This flag is set by applyFilters() to indicate the deletion cycle is performed by filters and not by user.
+     * The deletion methodes need it to decide on branch targets
+     */
+    bool deletionPerformedByFilters;
 
 
   signals:

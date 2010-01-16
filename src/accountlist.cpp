@@ -119,7 +119,8 @@ void AccountList::loadSetup()
   //read the setup of other things
   keepMailsNew = confAccounts->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW );
 
-
+  //read filter setup
+  refreshFilterSetup();
 }
 
 bool AccountList::hasAccount( QString accountName ) const
@@ -133,7 +134,7 @@ bool AccountList::hasAccount( QString accountName ) const
   return false;
 }
 
-void AccountList::refreshMailLists()
+void AccountList::refreshMailLists( FilterLog* log )
 {
   //return, if no accounts available
   if( accounts.count() == 0 )
@@ -164,7 +165,7 @@ void AccountList::refreshMailLists()
   {
     Account* account = *iter;
 
-    account->refreshMailList();
+    account->refreshMailList( log );
   }
 }
 
@@ -398,5 +399,101 @@ void AccountList::slotCheckDeletionState( QString account )
   if( !accountDeleting )
     emit sigDeleteReady();
 }
+
+int AccountList::numberDeletedMailsLastRefresh( )
+{
+  QListIterator<Account*> it( accounts ); //iterator for the account list
+  int number = 0;
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+
+    number += account->numberDeletedMailsLastRefresh();
+  }
+
+  return number;
+}
+
+int AccountList::numberDeletedMailsStart( )
+{
+  QListIterator<Account*> it( accounts ); //iterator for the account list
+  int number = 0;
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+
+    number += account->numberDeletedMailsStart();
+  }
+
+  return number;
+}
+
+int AccountList::numberMovedMailsLastRefresh( )
+{
+  QListIterator<Account*> it( accounts ); //iterator for the account list
+  int number = 0;
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+
+    number += account->numberMovedMailsLastRefresh();
+  }
+
+  return number;
+}
+
+int AccountList::numberMovedMailsStart( )
+{
+  QListIterator<Account*> it( accounts ); //iterator for the account list
+  int number = 0;
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+
+    number += account->numberMovedMailsStart();
+  }
+
+  return number;
+}
+
+int AccountList::numberIgnoredMails( )
+{
+  QListIterator<Account*> it( accounts ); //iterator for the account list
+  int number = 0;
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+
+    number += account->numberIgnoredMails();
+  }
+
+  return number;
+}
+
+void AccountList::refreshFilterSetup( )
+{
+  QListIterator<Account*> it( accounts ); //iterator for the account list
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+
+    //reload filter setup of the current account
+    account->reloadFilterSettings();
+  }
+
+}
+
 
 

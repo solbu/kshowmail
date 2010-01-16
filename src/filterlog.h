@@ -26,6 +26,7 @@
 #include <kstandarddirs.h>
 #include <kapplication.h>
 #include <kconfig.h>
+#include <KConfigGroup>
 
 //KShowmail headers
 #include "filterlogentry.h"
@@ -136,7 +137,7 @@ class FilterLog{
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * List of entries about deleted mails.

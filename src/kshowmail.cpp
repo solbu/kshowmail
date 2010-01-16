@@ -49,6 +49,11 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 
   //at beginning the state is "idle"
   state = idle;
+
+
+  //TEST
+  fLog.addDeletedMail( QDateTime::currentDateTime(), "Stephie", "GMX", "Liebe" );
+  fLog.addMovedMail( QDateTime::currentDateTime(), "Heike", "GMX", "Shamrock", "Heikes Mails");
 	
 }
 
@@ -143,7 +148,7 @@ void KShowmail::slotRefresh() {
   QApplication::setOverrideCursor( Qt::WaitCursor );
 
   //order the account list to do the refresh
-  accounts->refreshMailLists();
+  accounts->refreshMailLists( &fLog );
 }
 
 void KShowmail::slotShowHeader() {
@@ -205,7 +210,12 @@ void KShowmail::slotStop() {
 }
 
 void KShowmail::slotShowFilterLog() {
-  kDebug() << "slotShowFilterLog" << endl;
+
+  //open dialog
+  FilterLogView view( this, &fLog );
+  view.exec();
+
+  refreshFilterStatusBar();
 }
 
 void KShowmail::slotAddToBlacklist() {
@@ -246,19 +256,28 @@ void KShowmail::slotSendFeedbackMail() {
 }
 
 void KShowmail::slotFileQuit() {
+
   kapp->closeAllWindows();
 }
 
 bool KShowmail::queryClose() {
-  kDebug() << "queryClose" << endl;
+
+  //Einstellungen speichern
+  fLog.save();
+  config->sync();
+
   return true;
 }
 
 void KShowmail::slotConfChanged() {
+
   accounts->loadSetup();
+  fLog.loadSetup();
 
   //refresh the views
   view->refreshViews();
+
+  
 }
 
 void KShowmail::showStatusMessage( const QString& text)
@@ -276,14 +295,18 @@ void KShowmail::showStatusMessage( const QString& text)
 
 void KShowmail::initStatusBar()
 {
-  statusBar()->insertItem( i18n( "Ready" ), STATUSBAR_FIELD_STATE );
-  statusBar()->insertItem( "", STATUSBAR_FIELD_FILTER, 1 );
+  statusBar()->insertPermanentItem( i18n( "Ready" ), STATUSBAR_FIELD_STATE );
+  statusBar()->insertPermanentItem( "", STATUSBAR_FIELD_FILTER, 1 );
   statusBar()->setItemAlignment( STATUSBAR_FIELD_FILTER, Qt::AlignLeft | Qt::AlignVCenter );
-  statusBar()->insertItem( "", STATUSBAR_FIELD_NEXT_REFRESH );
-  statusBar()->insertItem( "", STATUSBAR_FIELD_LAST_REFRESH );
+  statusBar()->insertPermanentItem( "", STATUSBAR_FIELD_NEXT_REFRESH );
+  statusBar()->insertPermanentItem( "", STATUSBAR_FIELD_LAST_REFRESH );
+
+  statusBar()->setSizeGripEnabled( true );
 
   statusBar()->setToolTip( i18n( "Shows the number of deleted, moved or ignored mails by the filter.\nThe positions denotes:\nby last refresh / since application start / listed by the log" ) );
   statusBar()->show();
+
+  refreshFilterStatusBar();
 
 }
 
@@ -335,6 +358,20 @@ void KShowmail::slotDeletionReady( )
   slotRefresh();
 }
 
+void KShowmail::refreshFilterStatusBar( )
+{
+  int numberDeletedLastRefresh = accounts->numberDeletedMailsLastRefresh();
+  int numberDeletedSinceStart = accounts->numberDeletedMailsStart();
+  int numberDeletedLog = fLog.numberDeletedMails();
+
+  int numberMovedLastRefresh = accounts->numberMovedMailsLastRefresh();
+  int numberMovedSinceStart = accounts->numberMovedMailsStart();
+  int numberMovedLog = fLog.numberMovedMails();
+
+  int numberIgnored = accounts->numberIgnoredMails();
+
+  statusBar()->changeItem( i18n( "Filter: Deleted: %1/%2/%3; Moved: %4/%5/%6; Ignored: %7" ).arg( numberDeletedLastRefresh ).arg( numberDeletedSinceStart ).arg( numberDeletedLog ).arg( numberMovedLastRefresh ).arg( numberMovedSinceStart ).arg( numberMovedLog ).arg( numberIgnored ), STATUSBAR_FIELD_FILTER );
+}
 
 
 #include "kshowmail.moc"

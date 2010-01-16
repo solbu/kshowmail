@@ -75,6 +75,19 @@ void Account::init()
   //at start, we are idle
   state = AccountIdle;
 
+  //initialize counters
+  nmbDeletedMailsLastRefresh = 0;
+  nmbMovedMailsLastRefresh = 0;
+  nmbIgnoredMails = 0;
+  moveCounter = 0;
+  nmbDeletedMailsLastStart = 0;
+  nmbMovedMailsLastStart = 0;
+  nmbIgnoredMails = 0;
+
+  downloadActionsInvoked = false;
+  deletionPerformedByFilters = false;
+
+
 }
 
 bool Account::isActive( ) const
@@ -120,8 +133,12 @@ void Account::load()
   delete accountConfig;
 }
 
-void Account::refreshMailList()
+void Account::refreshMailList( FilterLog* log )
 {
+  //store pointer to log
+  if( log != NULL )
+    fLog = log;
+  
   //do nothing, if this account is not active
   if( !isActive() )
   {
@@ -148,6 +165,14 @@ void Account::refreshMailList()
   //When the refresh has finished successfully, this will
   //replace the old mail list
   tempMailList = new MailList( this );
+
+  //init counter
+  if( !refreshPerformedByFilters )
+  {
+    nmbDeletedMailsLastRefresh = 0;
+    nmbMovedMailsLastRefresh = 0;
+    nmbIgnoredMails = 0;
+  }
 
 
 
@@ -1109,7 +1134,7 @@ void Account::swapMailLists( )
 
 void Account::applyFilters()
 {
-/*  //are we executed by the MOVE routines?
+  //are we executed by the MOVE routines?
   if( !downloadActionsInvoked )
   {
     //this is the first call (at the current refresh cycle) of this methode
@@ -1123,7 +1148,7 @@ void Account::applyFilters()
     //the marking will be done by the mail list itself
     //the mail list removes all mails which shall be ignored itself
     mailsToDelete.clear();
-    mailList->applyHeaderFilter( &headerFilter, getAccountName(), mailsToDelete, mailsToDownload, nmbIgnoredMails, FLog );
+    mails->applyHeaderFilter( &headerFilter, getName(), mailsToDelete, mailsToDownload, nmbIgnoredMails, fLog );
     nmbDeletedMailsLastRefresh += mailsToDelete.count();
     nmbDeletedMailsLastStart += mailsToDelete.count();
 
@@ -1171,7 +1196,7 @@ void Account::applyFilters()
     //we just commit the refresh and let the filter applied flag to false for the next regular refresh
     commit();
     filterApplied = false;
-  }*/
+  }
 }
 
 void Account::getMailSizes()
@@ -1443,14 +1468,14 @@ void Account::deleteNextMail( )
   //if the list of mails to delete is empty, finalize the deletion and return
   if( mailsToDelete.empty() )
   {
-/*    if( deletionPerformedByFilters )
+    if( deletionPerformedByFilters )
     {
       applyFiltersDeleted();
     }
     else
-    {*/
+    {
       commit();
-//    }
+    }
     return;
   }
 
@@ -1483,28 +1508,270 @@ void Account::slotMailDeleted()
   }
 
 
-    //remove the first item of the list of mails to delete
-    mailsToDelete.removeFirst();
+  //remove the first item of the list of mails to delete
+  mailsToDelete.removeFirst();
 
-    //if the list of mails to delete is empty, finalize the deletion and return
-    if( mailsToDelete.empty() )
+  //if the list of mails to delete is empty, finalize the deletion and return
+  if( mailsToDelete.empty() )
+  {
+    if( deletionPerformedByFilters )
     {
-/*      if( deletionPerformedByFilters )
-      {
-        applyFiltersDeleted();
-      }
-      else
-      {*/
-        commit();
-//      }
+      applyFiltersDeleted();
+    }
+    else
+    {
+      commit();
+    }
       return;
     }
-//  }
 
   //delete next mail in list
   deleteNextMail();
 
 }
 
+int Account::numberDeletedMailsLastRefresh( )
+{
+  return nmbDeletedMailsLastRefresh;
+}
 
+int Account::numberDeletedMailsStart( )
+{
+  return nmbDeletedMailsLastStart;
+}
 
+int Account::numberMovedMailsLastRefresh( )
+{
+  return nmbMovedMailsLastRefresh;
+}
+
+int Account::numberMovedMailsStart( )
+{
+  return nmbMovedMailsLastStart;
+}
+
+int Account::numberIgnoredMails( )
+{
+  return nmbIgnoredMails;
+}
+
+void Account::reloadFilterSettings( )
+{
+  headerFilter.load();
+}
+
+void Account::doDownloadActions()
+{
+  //get first mail
+  getNextMailForDownloadActions();
+}
+
+void Account::getNextMailForDownloadActions()
+{
+    //if the list of mails to move is empty return to applyFilters
+//   if( mailsToDownload.empty() )
+//   {
+//     applyFilters();
+//     return;
+//   }
+
+  applyFilters(); //remove it!
+
+//   //clear the class variable mailbody, which contains the downloaded mail body
+//   mailbody.resize( 0 );
+// 
+//   //start job
+//   startKIOJob( QString( "/download/%1" ).arg( MailsToDownload.begin().key() ) );
+//   connect( pop3Job, SIGNAL( data( KIO::Job*, const QByteArray & ) ), SLOT( slotDataMailBody( KIO::Job*, const QByteArray & ) ) );
+//   connect( pop3Job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotMailDownloadedForAction( KIO::Job* ) ) );
+
+}
+
+void Account::slotMailDownloadedForAction()
+{
+//   //stop timeout timer
+//   pop3Timer->stop();
+// 
+//   //check for errors
+//   //if an error has occured, the download will be canceled
+//   //or will ask for a new password
+//   if( job->error() == KIO::ERR_COULD_NOT_LOGIN )
+//   {
+//     //login failed, ask for a new password
+//     job->showErrorDialog();
+//     bool res = assertPassword( true );
+//     if( res == false )
+//     {
+//       //we have not got a new password; cancel delete
+//       applyFilters();
+//       return;
+//     }
+//     //if we have got a new password, jump to the end of the if-statement
+//   }
+//   else if( job->error() != 0 )
+//   {
+//     job->showErrorDialog();
+//     applyFilters();
+//     return;
+//   }
+//   else
+//   {
+//     //succesful download
+//     //do action
+//     MailToDownloadMap_Type::Iterator firstMail = MailsToDownload.begin();
+//     int currentMailNumber = firstMail.key();  //get mail number
+//     QString currentMailBox( firstMail.data().mailbox ); //get mailbox
+//     QString mail( mailbody );                 //convert mailtext
+//     FilterAction_Type action = firstMail.data().action; //get action
+// 
+//     bool resultMove = false;    //TRUE - mail is written into the mailbox
+//     bool resultSpam = false;  //TRUE - mail is Spam
+//     bool deleteIt = false;    //TRUE - mail shall be deleted
+//     bool resultAction = false;  //True - the action was succesful performed
+// 
+//     switch( action )
+//     {
+//       case FActMove       : resultMove = writeToMailBox( mail, currentMailBox );
+//                             //log entry is made by ShowRecordElem::applyHeaderFilter
+//                             if( resultMove == true )
+//                             {
+//                               nmbMovedMailsLastRefresh++;
+//                               nmbMovedMailsLastStart++;
+// 
+//                               resultAction = true;
+//                               deleteIt = true;
+//                             }
+//                             else
+//                             {
+//                               resultAction = false;
+//                               deleteIt = false;
+//                             }
+//                             break;
+// 
+//       case FActSpamcheck  : resultSpam = isSpam( mailbody );  //it is spam?
+//                             if( resultSpam == true )          //yes, it is spam! Arrgghh! Torture it!!!
+//                             {
+//                               switch( appConfig->getSpamAction() )
+//                               {
+//                                 case FActMove   : resultMove = writeToMailBox( mail, appConfig->getSpamMailbox() );
+//                                                   if( resultMove == true )
+//                                                   {
+//                                                     nmbMovedMailsLastRefresh++;
+//                                                     nmbMovedMailsLastStart++;
+// 
+//                                                     if( FLog != NULL )
+//                                                       m_pshowrecord->writeToMoveLog( FLog, currentMailNumber, getAccountName(), appConfig->getSpamMailbox() );
+//                                                     resultAction = true;
+//                                                     deleteIt = true;
+//                                                   }
+//                                                   else
+//                                                   {
+//                                                     resultAction = false;
+//                                                     deleteIt = false;
+//                                                   }
+//                                                   break;
+// 
+//                                 case FActMark   : m_pshowrecord->setMarkAtNextViewRefresh( currentMailNumber );
+//                                                   resultAction = true;
+//                                                   deleteIt = false;
+//                                                   break;
+// 
+//                                 case FActDelete : if( FLog != NULL )
+//                                                     m_pshowrecord->writeToDeleteLog( FLog, currentMailNumber, getAccountName() );
+// 
+//                                                   nmbDeletedMailsLastRefresh++;
+//                                                   nmbDeletedMailsLastStart++;
+//                                                   resultAction = true;
+//                                                   deleteIt = true;
+//                                                   break;
+// 
+//                                 default         : kdError() << "invalid action for spam mail" << endl;
+//                                                   resultAction = false;
+//                                                   deleteIt = false;
+//                                                   break;
+// 
+//                               }
+//                             }
+//                             else    //mail is not spam
+//                             {
+//                               resultAction = true;
+//                               deleteIt = false;
+//                             }
+//                             break;
+// 
+//       default             : deleteIt = false;
+//                             resultAction = false;
+// 
+//     }
+// 
+//     if( resultAction == true )
+//     {
+//       //Action was successful
+//       //remove this mail from the list
+//       MailsToDownload.remove( firstMail );
+// 
+//       //maybe add this mail to list of mails to delete
+//       if( deleteIt )
+//         MailsToDelete.append( currentMailNumber );
+//     }
+//     else
+//     {
+//       //Action was not successful
+//       //returns to applyFilters() to continue the filtering
+//       applyFilters();
+//       return;
+//     }
+// 
+// 
+//     //if the list of mails is empty, return to applyFilters() to continue the filtering
+//     if( MailsToDownload.empty() )
+//     {
+//       applyFilters();
+//       return;
+//     }
+//   }
+// 
+
+  //show next mail in list
+  getNextMailForDownloadActions();
+}
+
+void Account::applyFiltersDeleted( )
+{
+  //unset the flag
+  deletionPerformedByFilters = false;
+
+  //start the second refresh cycle
+  refreshPerformedByFilters = true;
+
+  //this sends a commit and restart the refresh
+  commitBeforeRefresh();
+}
+
+void Account::commitBeforeRefresh()
+{
+    if( socket->state() == KTcpSocket::ConnectedState )
+  {
+    //connect the signal readyRead of the socket with the response handle methode
+    disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+    connect( socket, SIGNAL( readyRead() ), this, SLOT( slotCommitBeforeRefreshDone() ) );
+
+    //set the this flag to avoid an error message, if the server close the connection
+    //immediately
+    quitSent = true;
+
+    //send the command
+    sendCommand( COMMIT );
+  }
+  else
+  {
+    finishTask();
+  }
+
+}
+
+void Account::slotCommitBeforeRefreshDone( )
+{
+  //after a commit was send, we start a new refresh cyle
+  refreshMailList();
+}
