@@ -159,6 +159,12 @@ class MailList : public QObject
      */
     void applyHeaderFilter( HeaderFilter* filter, QString account, MailNumberList_Type& deleteList, MailToDownloadMap_Type& downloadList, int& nmbIgnoredMails, FilterLog* log = NULL );
 
+    /**
+     * Removes the mail which has the given number.
+     * @param number number of the mail which will be removed
+     */
+    void removeMail( int number );
+
 
   private:
 

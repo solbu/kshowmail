@@ -20,6 +20,7 @@
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
+#include <KConfigGroup>
 
 //Kshowmail headers
 #include "types.h"
@@ -70,7 +71,7 @@ class SenderListFilter{
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * blacklisted addresses

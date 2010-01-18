@@ -21,7 +21,7 @@ FilterLogEntry::FilterLogEntry()
   act = FActNone;
 }
 
-FilterLogEntry::FilterLogEntry( FilterAction_Type action, const QDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox)
+FilterLogEntry::FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox)
   : act( action ), sentDateTime( dateTime ), sender( sender ), account( account ), subject( subject ), mailbox( mailbox )
 {
 }
@@ -44,7 +44,7 @@ void FilterLogEntry::print()
     default             : strAction = "ERROR! UNKNOWN ACTION"; break;
   }
 
-  kdDebug() << sentDateTime.toString( Qt::LocalDate ) << ";" << account << ";" << sender << ";" << subject << ";" << strAction << endl;
+  kdDebug() << sentDateTime.toString( KDateTime::LocalDate ) << ";" << account << ";" << sender << ";" << subject << ";" << strAction << endl;
 }
 
 FilterLogEntry::FilterLogEntry(const FilterLogEntry & ent)
@@ -110,7 +110,7 @@ void FilterLogEntry::save( QDomDocument& doc, QDomElement& parent )
 {
   //create a new element and store the entry
   QDomElement elem = doc.createElement( LOG_ENTRY_ELEMENT );
-  elem.setAttribute( LOG_ENTRY_ATTRIBUTE_DATETIME, sentDateTime.toString( Qt::ISODate) );
+  elem.setAttribute( LOG_ENTRY_ATTRIBUTE_DATETIME, sentDateTime.toString( KDateTime::ISODate ) );
   elem.setAttribute( LOG_ENTRY_ATTRIBUTE_SENDER, sender );
   elem.setAttribute( LOG_ENTRY_ATTRIBUTE_ACCOUNT, account );
   elem.setAttribute( LOG_ENTRY_ATTRIBUTE_SUBJECT, subject );
@@ -119,7 +119,7 @@ void FilterLogEntry::save( QDomDocument& doc, QDomElement& parent )
   parent.appendChild( elem );
 }
 
-QDateTime FilterLogEntry::getDate( )
+KDateTime FilterLogEntry::getDate( )
 {
   return sentDateTime;
 }

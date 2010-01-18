@@ -77,6 +77,7 @@ void Mail::setNumber( long number )
 void Mail::init()
 {
 	size = 0;
+  markAtViewRefresh = false;
 }
 
 void Mail::setNew( bool isnew )
@@ -374,3 +375,24 @@ QString Mail::getContent() const
 {
   return contentType;
 }
+
+FilterAction_Type Mail::applyHeaderFilter( HeaderFilter* filter, QString account, QString& mailbox, FilterLog* log )
+{
+  FilterAction_Type action = filter->check( getFrom(), getTo(), getSize(), getSubject(), getHeader(), account, mailbox );
+
+  //if the action is MARK, the related view entry shall be marked at the next view refresh
+  if( action == FActMark ) markAtViewRefresh = true;
+
+  //if the action is DELETE, we add a entry to the log
+  if( log == NULL )
+    kdError() << "Mail::applyHeaderFilter: Pointer to the filter log is NULL. Can't write to log." << endl;;
+  if( action == FActDelete && log != NULL )
+    log->addDeletedMail( getDateTime(), getFrom(), account, getSubject() );
+  if( action == FActMove && log != NULL )
+    log->addMovedMail( getDateTime(), getFrom(), account, getSubject(), mailbox );
+
+
+  return action;
+}
+
+

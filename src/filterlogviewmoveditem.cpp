@@ -21,7 +21,7 @@ FilterLogViewMovedItem::~FilterLogViewMovedItem()
 {
 }
 
-void FilterLogViewMovedItem::setValues( QDateTime date, QString sender, QString account, QString mailbox, QString subject )
+void FilterLogViewMovedItem::setValues( KDateTime date, QString sender, QString account, QString mailbox, QString subject )
 {
   //store values
   this->date = date;
@@ -31,14 +31,14 @@ void FilterLogViewMovedItem::setValues( QDateTime date, QString sender, QString 
   this->subject = subject;
 
   //set column text
-  setText( ColDate, date.toString( Qt::LocalDate ) );
+  setText( ColDate, date.toString( KDateTime::LocalDate ) );
   setText( ColSender, sender );
   setText( ColAccount, account );
   setText( ColMailbox, mailbox );
   setText( ColSubject, subject );
 }
 
-QDateTime FilterLogViewMovedItem::getDate( )
+KDateTime FilterLogViewMovedItem::getDate( )
 {
   return date;
 }

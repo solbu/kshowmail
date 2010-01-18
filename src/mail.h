@@ -193,6 +193,22 @@ class Mail : public QObject
      * Returns the mails size as string with suffix
      */
     QString getSizeSuffix() const;
+
+    /**
+     * Looks for a filter matching the mail header and returns the action recommend by this filter.
+     * If the action is MARK, it set markAtViewRefresh to True so the related view entry will be marked
+     * at the next view refresh.
+     * @param filter pointer to the header filter
+     * @param account name of the account
+     * @param mailbox reference to a QString object in which the mailbox name shall be written if the action is MOVE
+     * @param log pointer to the filter log
+     * @return recommend action
+     * @see FilterAction_Type
+     * @see HeaderFilter
+     * @see markAtViewRefresh
+     */
+    FilterAction_Type applyHeaderFilter( HeaderFilter* filter, QString account, QString& mailbox, FilterLog* log = NULL );
+
     
 	private:
 		
@@ -245,6 +261,14 @@ class Mail : public QObject
      * The content type
      */
     QString contentType;
+
+    /**
+     * TRUE - the mail shall be marked at the next mail view refresh.
+     * It will be set to True by applyHeaderFilter() if the recommend filter action is MARK.
+     * It is used by setViewItem(). This methode marks the related list entry and after then it set
+     * this variable to False.
+     */
+    bool markAtViewRefresh;
 
 
 	protected:

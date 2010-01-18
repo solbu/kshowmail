@@ -13,12 +13,12 @@
 #define FILTERLOGENTRY_H
 
 //Qt headers
-#include <qdatetime.h>
 #include <qstring.h>
 #include <qdom.h>
 
 //KDE headers
 #include <kdebug.h>
+#include <KDateTime>
 
 //KShowmail headers
 #include "types.h"
@@ -51,7 +51,7 @@ class FilterLogEntry{
      * @param subject Subject of the mail
      * @param mailbox mailbox where the mails was moved
      */
-    FilterLogEntry( FilterAction_Type action, const QDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString::null );
+    FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString::null );
 
     /**
      * Copy Constructor
@@ -133,7 +133,7 @@ class FilterLogEntry{
      * Returns the date and time of send
      * @return send date and time
      */
-    QDateTime getDate();
+    KDateTime getDate();
 
     /**
      * Returns the sender.
@@ -169,7 +169,7 @@ class FilterLogEntry{
     /**
      * Delivery date and time
      */
-    QDateTime sentDateTime;
+    KDateTime sentDateTime;
 
     /**
      * Sender

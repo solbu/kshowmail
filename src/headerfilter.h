@@ -20,6 +20,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
+#include <KConfigGroup>
 
 //KShowmail headers
 #include "constants.h"
@@ -58,7 +59,7 @@ class HeaderFilter{
      * @param mailboxName contains the mailbox name after call, if filter action is MOVE
      * @return recommend action
      */
-    FilterAction_Type check( QString from, QString to, uint size, QString subject, QString header, QString account, QString& mailboxName ) const;
+    FilterAction_Type check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName ) const;
 
     /**
      * Loads the settings from the application config file.

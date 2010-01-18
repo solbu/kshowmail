@@ -14,7 +14,6 @@
 
 //Qt headers
 #include <qlist.h>
-#include <qdatetime.h>
 #include <qdom.h>
 #include <qfile.h>
 #include <qtextstream.h>
@@ -27,6 +26,7 @@
 #include <kapplication.h>
 #include <kconfig.h>
 #include <KConfigGroup>
+#include <KDateTime>
 
 //KShowmail headers
 #include "filterlogentry.h"
@@ -65,7 +65,7 @@ class FilterLog{
      * @param account Account which has received the mail
      * @param subject Subject of the mail
      */
-    void addDeletedMail( const QDateTime& dateTime, const QString& sender, const QString& account, const QString& subject );
+    void addDeletedMail( const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject );
 
     /**
      * Adds an entry about a moved mail.
@@ -75,7 +75,7 @@ class FilterLog{
      * @param subject Subject of the mail
      * @param mailbox mailbox
      */
-    void addMovedMail( const QDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox );
+    void addMovedMail( const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox );
 
     /**
      * Prints the log state.
@@ -176,7 +176,7 @@ class FilterLog{
      * adds an entry.
      * The target list will be coose on the basis of the given filter action.
      */
-    void addEntry( FilterAction_Type action, const QDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString::null );
+    void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString::null );
 
 };
 

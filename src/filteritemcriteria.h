@@ -20,6 +20,7 @@
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
+#include <KConfigGroup>
 
 //Kshowmail headers
 #include "types.h"
@@ -57,7 +58,7 @@ class FilterItemCriteria{
      * @param account Account
      * @return TRUE - the criteria matches; FALSE - the criteria doesn't match
      */
-    bool check( QString from, QString to, uint size, QString subject, QString header, QString account ) const;
+    bool check( QString from, QString to, uint size, QString subject, QStringList header, QString account ) const;
 
     /**
      * Prints the settings.
@@ -65,11 +66,6 @@ class FilterItemCriteria{
     void print() const;
 
   private:
-
-    /**
-     * Connector to the configuration file
-     */
-    KConfig* config;
 
     /**
      * Types of source.
@@ -141,6 +137,13 @@ class FilterItemCriteria{
      * @return TRUE - value matches; FALSE - value doesn't match
      */
     bool checkNum( uint value ) const;
+
+    /**
+     * Compares a text list
+     * @param value Value to compare
+     * @return TRUE - value matches; FALSE - value doesn't match
+     */
+    bool checkTextList( QStringList list ) const;
 };
 
 #endif

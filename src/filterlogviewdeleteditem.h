@@ -13,11 +13,11 @@
 #define FILTERLOGVIEWDELETEDITEM_H
 
 //Qt Headers
-#include <qdatetime.h>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
 //KDE headers
+#include <KDateTime>
 
 /**
  * @brief Item of the filter log view of deleted mails
@@ -51,13 +51,13 @@ class FilterLogViewDeletedItem : public QTreeWidgetItem
      * @param account account
      * @param subject mail subject
      */
-    void setValues( QDateTime date, QString sender, QString account, QString subject );
+    void setValues( KDateTime date, QString sender, QString account, QString subject );
 
     /**
      * Returns the date of sent
      * @return date of sent
      */
-    QDateTime getDate();
+    KDateTime getDate();
 
 
   private:
@@ -65,7 +65,7 @@ class FilterLogViewDeletedItem : public QTreeWidgetItem
     /**
      * sent date and time
      */
-    QDateTime date;
+    KDateTime date;
 
     /**
      * sender of the mail

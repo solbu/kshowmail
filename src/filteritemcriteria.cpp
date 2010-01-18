@@ -13,9 +13,6 @@
 
 FilterItemCriteria::FilterItemCriteria( uint FilterNr, uint CritNr )
 {
-  //get the application config object
-  config = KApplication::kApplication()->config();
-
   //save numbers
   FilterNumber = FilterNr;
   CriteriaNumber = CritNr;
@@ -24,10 +21,10 @@ FilterItemCriteria::FilterItemCriteria( uint FilterNr, uint CritNr )
   //---------
 
   //set group
-  config->setGroup( QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( FilterNr ) );
+  KConfigGroup* config = new KConfigGroup( KGlobal::config(), QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( FilterNr ) );
 
   //get source
-  switch( config->readNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_SOURCE ) )
+  switch( config->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_SOURCE ) )
   {
     case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM       : source = SrcFrom; break;
     case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO         : source = SrcTo; break;
@@ -41,7 +38,7 @@ FilterItemCriteria::FilterItemCriteria( uint FilterNr, uint CritNr )
   //get condition
   if( source == SrcSize )
   {
-    switch( config->readNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_COND_NUM ) )
+    switch( config->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_COND_NUM ) )
     {
       case CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL          : numCondition = NumCondEqual; break;
       case CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL      : numCondition = NumCondNotEqual; break;
@@ -54,7 +51,7 @@ FilterItemCriteria::FilterItemCriteria( uint FilterNr, uint CritNr )
   }
   else
   {
-    switch( config->readNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_COND_TEXT ) )
+    switch( config->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_COND_TEXT ) )
     {
       case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS      : txtCondition = TxtCondContains; break;
       case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS  : txtCondition = TxtCondNotContains; break;
@@ -65,13 +62,13 @@ FilterItemCriteria::FilterItemCriteria( uint FilterNr, uint CritNr )
       default                                                   : txtCondition = TxtCondContains; break;
     }
 
-    cs = config->readBoolEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE );
+    cs = config->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE );
   }
 
   //get Value
   if( source == SrcSize )
   {
-    numValue = config->readUnsignedNumEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( CritNr ) );
+    numValue = config->readEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( CritNr ), 0 );
   }
   else
   {
@@ -84,13 +81,13 @@ FilterItemCriteria::~FilterItemCriteria()
 {
 }
 
-bool FilterItemCriteria::check( QString from, QString to, uint size, QString subject, QString header, QString account ) const
+bool FilterItemCriteria::check( QString from, QString to, uint size, QString subject, QStringList header, QString account ) const
 {
   switch( source )
   {
     case SrcFrom    : return checkText( from ); break;
     case SrcTo      : return checkText( to ); break;
-    case SrcHeader  : return checkText( header ); break;
+    case SrcHeader  : return checkTextList( header ); break;
     case SrcSize    : return checkNum( size ); break;
     case SrcSubject : return checkText( subject ); break;
     case SrcAccount : return checkText( account ); break;
@@ -101,10 +98,64 @@ bool FilterItemCriteria::check( QString from, QString to, uint size, QString sub
   return false;
 }
 
+bool FilterItemCriteria::checkTextList( QStringList list ) const
+{
+  //return false if the source is not the header
+  if( source != SrcHeader )
+  {
+    kdError() << "FilterItemCriteria::checkTextList: The source is not the header. (Filter " << FilterNumber << ", Criteria " << CriteriaNumber << ")" << endl;
+    return false;
+  }
+
+  //return false if given value is not valid
+  if( list.isEmpty() )
+  {
+    kdError() << "FilterItemCriteria::checkTextList: The given value is empty. (Filter " << FilterNumber << ", Criteria " << CriteriaNumber << ")" << endl;
+    return false;
+  }
+
+  //return false if the value of this criteria is empty
+  if( txtValue.isEmpty() || txtValue.isNull() )
+  {
+    kdWarning() << "There is no value for Filter " << FilterNumber << "/Criteria " << CriteriaNumber << endl;
+  }
+
+  switch( txtCondition )
+  {
+    case TxtCondContains    : {
+                                QStringList result = list.filter( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
+                                return !result.isEmpty();
+                              }
+
+    case TxtCondNotContains : {
+                                QStringList result = list.filter( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
+                                return result.isEmpty();
+                              }
+
+    case TxtCondEqual       : return list.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
+
+    case TxtCondNotEqual    : return !list.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
+
+    case TxtCondRegExpr     : {
+                                QStringList result = list.filter( QRegExp( txtValue ) );
+                                return !result.isEmpty();
+                              }
+                              
+    case TxtCondNotRegExpr  : {
+                                QStringList result = list.filter( QRegExp( txtValue ) );
+                                return result.isEmpty();
+                              }
+                              
+    default                 : return false;
+
+  }
+
+}
+
 bool FilterItemCriteria::checkText( QString value ) const
 {
   //return false if the source is not text
-  if( source != SrcFrom && source != SrcTo && source != SrcHeader && source != SrcSubject && source != SrcAccount )
+  if( source != SrcFrom && source != SrcTo && source != SrcSubject && source != SrcAccount )
   {
     kdError() << "FilterItemCriteria::checkText: The source is not text. (Filter " << FilterNumber << ", Criteria " << CriteriaNumber << ")" << endl;
     return false;
@@ -125,9 +176,9 @@ bool FilterItemCriteria::checkText( QString value ) const
 
   switch( txtCondition )
   {
-    case TxtCondContains        : return value.contains( txtValue, cs ) > 0; break;
+    case TxtCondContains        : return value.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive ); break;
 
-    case TxtCondNotContains     : return value.contains( txtValue, cs ) < 1; break;
+    case TxtCondNotContains     : return !value.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive ); break;
 
     case TxtCondEqual           : if( cs )
                                   {
@@ -135,19 +186,19 @@ bool FilterItemCriteria::checkText( QString value ) const
                                   }
                                   else
                                   {
-                                    return QString::localeAwareCompare( txtValue.upper(), value.upper() ) == 0;
+                                    return QString::localeAwareCompare( txtValue.toUpper(), value.toUpper() ) == 0;
                                   }
                                   break;
 
     case TxtCondNotEqual        : if( cs )
                                     return value.localeAwareCompare( txtValue ) != 0;
                                   else
-                                    return value.localeAwareCompare( txtValue.upper(), value.upper() ) != 0;
+                                    return value.localeAwareCompare( txtValue.toUpper(), value.toUpper() ) != 0;
                                   break;
 
-    case TxtCondRegExpr         : return value.find( QRegExp( txtValue ) ) != -1; break;
+    case TxtCondRegExpr         : return value.indexOf( QRegExp( txtValue ) ) != -1; break;
 
-    case TxtCondNotRegExpr      : return value.find( QRegExp( txtValue ) ) == -1; break;
+    case TxtCondNotRegExpr      : return value.indexOf( QRegExp( txtValue ) ) == -1; break;
 
     default                     : return false;
   }

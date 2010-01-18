@@ -52,9 +52,8 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 
 
   //TEST
-  fLog.addDeletedMail( QDateTime::currentDateTime(), "Stephie", "GMX", "Liebe" );
-  fLog.addMovedMail( QDateTime::currentDateTime(), "Heike", "GMX", "Shamrock", "Heikes Mails");
-	
+	SenderListFilter filter;
+  
 }
 
 KShowmail::~KShowmail()

@@ -15,7 +15,7 @@ SenderListFilter::SenderListFilter()
 {
 
   //get the application config object
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //load the setup
   load();
@@ -45,14 +45,14 @@ FilterAction_Type SenderListFilter::check( QString sender ) const
 void SenderListFilter::load( )
 {
   //set group
-  config->setGroup( CONFIG_GROUP_FILTER );
+  KConfigGroup* configFilter = new KConfigGroup( config, CONFIG_GROUP_FILTER );
 
   //get lists
-  blacklist = config->readListEntry( CONFIG_ENTRY_FILTER_BLACKLIST );
-  whitelist = config->readListEntry( CONFIG_ENTRY_FILTER_WHITELIST );
+  blacklist = configFilter->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST, QStringList() );
+  whitelist = configFilter->readEntry( CONFIG_ENTRY_FILTER_WHITELIST, QStringList() );
 
   //get blacklist action
-  switch( config->readNumEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, DEFAULT_FILTER_BLACKLIST_ACTION ) )
+  switch( configFilter->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, DEFAULT_FILTER_BLACKLIST_ACTION ) )
   {
     case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE  : blacklistAction = FActDelete; break;
     case CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK    : blacklistAction = FActMark; break;
@@ -69,7 +69,7 @@ bool SenderListFilter::search( QStringList list, QString sender ) const
   bool found = false;
   for( QStringList::Iterator it = list.begin(); it != list.end() && found == false; ++it )
   {
-    if( sender.contains( *it, false ) || (*it).contains( sender, false ) )
+    if( sender.contains( *it, Qt::CaseInsensitive ) || (*it).contains( sender, Qt::CaseInsensitive ) )
       found = true;
   }
 

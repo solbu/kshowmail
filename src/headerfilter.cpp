@@ -32,7 +32,7 @@ HeaderFilter::~HeaderFilter()
   }
 }
 
-FilterAction_Type HeaderFilter::check( QString from, QString to, uint size, QString subject, QString header, QString account, QString& mailboxName ) const
+FilterAction_Type HeaderFilter::check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName ) const
 {
   //return PASS, if filter is not active
   if( !active )
@@ -68,7 +68,7 @@ void HeaderFilter::load( )
   senderlist.load();
 
   //set group
-  KConfigGroup configFilter = new KConfigGroup( config, CONFIG_GROUP_FILTER );
+  KConfigGroup* configFilter = new KConfigGroup( config, CONFIG_GROUP_FILTER );
 
   //get filter active state
   active = configFilter->readEntry( CONFIG_ENTRY_FILTER_ACTIVE, DEFAULT_FILTER_ACTIVE );
@@ -122,11 +122,10 @@ void HeaderFilter::print( )
   kdDebug() << endl;
   kdDebug() << "Number of filters: " << numberFilterItems << endl << endl;
 
-  QPtrListIterator<FilterItem> it( filters );
-  FilterItem* filter;
-  while( ( filter = it.current() ) != NULL )
+  QListIterator<FilterItem*> it( filters );
+  while( it.hasNext() )
   {
-    ++it;
+    FilterItem* filter = it.next();
     filter->print();
     kdDebug() << endl;
   }

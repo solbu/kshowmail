@@ -228,3 +228,61 @@ Account* MailList::getAccount() const
 {
   return dynamic_cast<Account*>( parent() );
 }
+
+void MailList::applyHeaderFilter( HeaderFilter * filter, QString account, MailNumberList_Type& deleteList, MailToDownloadMap_Type& downloadList, int& nmbIgnoredMails, FilterLog* log )
+{
+
+  MailNumberList_Type mailsToIgnore;  //this list holds the numbers of all mails, which shall be ignored
+
+  //Loop over all mails in this list
+  QListIterator<Mail*> it( mails );
+  while( it.hasNext() )
+  {
+
+    Mail* pElem = it.next();
+    
+    //apply the filters to the current mail
+    QString mailbox;
+    FilterAction_Type action = pElem->applyHeaderFilter( filter, account, mailbox, log );
+
+    //do recommend action
+    //we don't need to do everything for action MARK, because ShowRecordElem::applyHeaderFilter() marks the mail entry itself
+    struct DownloadActionParams_Type params;
+    switch( action )
+    {
+      case FActDelete     : deleteList.append( pElem->getNumber() ); break;
+      case FActMove       : params.action = FActMove;
+                            params.mailbox = mailbox;
+                            downloadList.insert( pElem->getNumber(), params );
+                            break;
+      case FActIgnore     : mailsToIgnore.append( pElem->getNumber() ); break;
+      case FActSpamcheck  : params.action = FActSpamcheck;
+                            downloadList.insert( pElem->getNumber(), params );
+      default          : break;
+    }
+  }
+
+  //remove all mails which shall be ignored from the mail list
+  nmbIgnoredMails = mailsToIgnore.count();
+  MailNumberList_Type::iterator iter;
+  for ( iter = mailsToIgnore.begin(); iter != mailsToIgnore.end(); ++iter )
+    removeMail( *iter );
+
+
+}
+
+void MailList::removeMail( int number )
+{
+  QMutableListIterator<Mail*> it( mails );   //iterator for the mail list
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+
+    //if the current mail has the given number, remove it
+    if( mail->getNumber() == number )
+      it.remove();
+  }
+}
+

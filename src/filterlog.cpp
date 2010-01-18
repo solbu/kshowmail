@@ -28,19 +28,19 @@ FilterLog::~FilterLog()
 {
 }
 
-void FilterLog::addDeletedMail(const QDateTime & dateTime, const QString & sender, const QString & account, const QString & subject)
+void FilterLog::addDeletedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject)
 {
   if( logDeletedMails )
     addEntry( FActDelete, dateTime, sender, account, subject, "" );
 }
 
-void FilterLog::addMovedMail(const QDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox)
+void FilterLog::addMovedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox)
 {
   if( logMovedMails )
     addEntry( FActMove, dateTime, sender, account, subject, mailbox );
 }
 
-void FilterLog::addEntry(FilterAction_Type action, const QDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox)
+void FilterLog::addEntry(FilterAction_Type action, const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox)
 {
   //create entry
   FilterLogEntry entry = FilterLogEntry( action, dateTime, sender, account, subject, mailbox );
@@ -88,7 +88,7 @@ void FilterLog::clearMovedMailsLog()
 void FilterLog::save()
 {
   //maybe we have to remove old entries, calculate minimum date
-  QDateTime minTime = QDateTime::currentDateTime();
+  KDateTime minTime = KDateTime::currentLocalDateTime();
   minTime = minTime.addDays( daysStoreDeletedMails * -1 );
 
   //we need a XML document
@@ -132,7 +132,7 @@ void FilterLog::save()
 void FilterLog::load()
 {
   //maybe we have to remove old entries, calculate minimum date
-  QDateTime minTime = QDateTime::currentDateTime();
+  KDateTime minTime = KDateTime::currentLocalDateTime();
   minTime = minTime.addDays( daysStoreDeletedMails * -1 );
 
   //we need a XML document
@@ -170,7 +170,7 @@ void FilterLog::load()
       if( e.tagName() == LOG_ENTRY_ELEMENT )
       {
         //add the read entry to the list of deleted mails
-        QDateTime mailTime = QDateTime::fromString( e.attribute( LOG_ENTRY_ATTRIBUTE_DATETIME ), Qt::ISODate );
+        KDateTime mailTime = KDateTime::fromString( e.attribute( LOG_ENTRY_ATTRIBUTE_DATETIME ), KDateTime::ISODate );
         if( mailTime >= minTime )
           addDeletedMail( mailTime,
                           e.attribute( LOG_ENTRY_ATTRIBUTE_SENDER ),

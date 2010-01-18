@@ -20,6 +20,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
+#include <KConfigGroup>
 
 //KShowmail headers
 #include "filteritemcriteria.h"
@@ -64,14 +65,14 @@ class FilterItem{
      * @param mailboxName contains the mailbox name after call, if filter action is MOVE
      * @return recommend action
      */
-    FilterAction_Type check( QString from, QString to, uint size, QString subject, QString header, QString account, QString& mailboxName ) const;
+    FilterAction_Type check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName ) const;
 
   private:
 
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Filter number. Just for messages.

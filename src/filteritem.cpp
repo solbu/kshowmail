@@ -13,23 +13,20 @@
 
 FilterItem::FilterItem( uint filterNr )
 {
-  //get the application config object
-  config = KApplication::kApplication()->config();
-
   //save number
   filterNumber = filterNr;
 
-  //set config group
-  config->setGroup( QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( filterNr ) );
+  //get config group
+  KConfigGroup* confFilter = new KConfigGroup( KGlobal::config(), QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( filterNr ) );
 
   //get name
-  name = config->readEntry( CONFIG_ENTRY_FILTER_NAME );
+  name = confFilter->readEntry( CONFIG_ENTRY_FILTER_NAME );
 
   //get number of criterias
-  numberCriterias = config->readNumEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER );
+  numberCriterias = confFilter->readEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, 0 );
 
   //get criteria linkage
-  switch( config->readNumEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, DEFAULT_FILTER_CRITERIA_LINKAGE ) )
+  switch( confFilter->readEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, DEFAULT_FILTER_CRITERIA_LINKAGE ) )
   {
     case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL : linkage = LinkAll; break;
     case CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY : linkage = LinkAny; break;
@@ -39,7 +36,7 @@ FilterItem::FilterItem( uint filterNr )
   }
 
   //get action
-  switch( config->readNumEntry( CONFIG_ENTRY_FILTER_ACTION, DEFAULT_FILTER_ACTION ) )
+  switch( confFilter->readEntry( CONFIG_ENTRY_FILTER_ACTION, DEFAULT_FILTER_ACTION ) )
   {
     case CONFIG_VALUE_FILTER_ACTION_PASS      : action = FActPass; break;
     case CONFIG_VALUE_FILTER_ACTION_DELETE    : action = FActDelete; break;
@@ -55,7 +52,7 @@ FilterItem::FilterItem( uint filterNr )
   //get mailbox name if filter action is move
   if( action == FActMove )
   {
-    mailbox = config->readEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX );
+    mailbox = confFilter->readEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX );
     if( mailbox.isNull() || mailbox.isEmpty() )
     {
       kdWarning() << "Filter " << filterNumber << ": No mailbox name found. Set default: " << DEFAULT_FILTER_ACTION_MOVE_MAILBOX << endl;
@@ -64,7 +61,6 @@ FilterItem::FilterItem( uint filterNr )
   }
 
   //now we get the criterias
-  criterias.setAutoDelete( true ); //the list shall delete all criterias if it will be deleted itself
   for( uint critNr = 1; critNr <= numberCriterias; critNr++ )
   {
     criterias.append( new FilterItemCriteria( filterNr, critNr ) ); //a new created criteria loads its settings itself
@@ -74,9 +70,16 @@ FilterItem::FilterItem( uint filterNr )
 
 FilterItem::~FilterItem()
 {
+
+  //remove all criterias
+  QListIterator<FilterItemCriteria*> it( criterias );
+  while( it.hasNext() )
+  {
+    delete it.next();
+  }
 }
 
-FilterAction_Type FilterItem::check( QString from, QString to, uint size, QString subject, QString header, QString account, QString& mailboxName ) const
+FilterAction_Type FilterItem::check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName ) const
 {
   bool match = false;   //TRUE, if filter matches
 
@@ -84,27 +87,26 @@ FilterAction_Type FilterItem::check( QString from, QString to, uint size, QStrin
   if( criterias.isEmpty() ) return FActNone;
 
   //get iterator
-  QPtrListIterator<FilterItemCriteria> it( criterias );
+  QListIterator<FilterItemCriteria*> it( criterias );
 
-  FilterItemCriteria* crit;
 
   //check criterias
   if( linkage == LinkAll )
   {
     match = true;
-    while( ( crit = it.current() ) != NULL && match )
+    while( it.hasNext() && match )
     {
-      ++it;
-
+      FilterItemCriteria* crit = it.next();
+      
       match = match && crit->check( from, to, size, subject, header, account );
     }
   }
   else if( linkage == LinkAny )
   {
     match = false;
-    while( ( crit = it.current() ) != NULL && !match )
+    while( it.hasNext() && !match )
     {
-      ++it;
+      FilterItemCriteria* crit = it.next();
 
       match = crit->check( from, to, size, subject, header, account );
     }
@@ -154,11 +156,10 @@ void FilterItem::print( ) const
   }
 
   kdDebug() << "Criterias:" << endl;
-  QPtrListIterator<FilterItemCriteria> it( criterias );
-  FilterItemCriteria* crit;
-  while( ( crit = it.current() ) != NULL )
+  QListIterator<FilterItemCriteria*> it( criterias );
+  while( it.hasNext() )
   {
-    ++it;
+    FilterItemCriteria* crit = it.next();
     crit->print();
   }
 }
