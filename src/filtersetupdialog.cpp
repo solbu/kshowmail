@@ -356,7 +356,14 @@ void FilterSetupDialog::addCriteriaWidget( int source, int condition, QString va
   FilterCriteriaWidget* crit = slotAddCriteriaWidget();
 
   //set values
-  crit->setTextCriteria( source, condition, value, cs );
+  if( source == CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER )
+  {
+    crit->setTextListCriteria( source, condition, value, cs );
+  }
+  else
+  {
+    crit->setTextCriteria( source, condition, value, cs );
+  }
 
 }
 

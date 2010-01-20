@@ -147,7 +147,7 @@ namespace Constants
   /**
    * XML file to store mails
    */
-  #define MAIL_FILE               "kshowmail.xml"
+  #define MAIL_FILE               "mails.xml"
   #define MAIL_FILE_DOCTYPE       "KShowmail"
   #define ROOT_ELEMENT            "accounts"
   #define ACCOUNT_ELEMENT         "account"

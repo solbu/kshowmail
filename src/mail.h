@@ -39,6 +39,9 @@ class Mail;
 
 using namespace std;
 
+//separator to join the header to a single string to save it on disk
+#define HEADER_SEPARATOR "§$%&"
+
 /**
  * This class represents a mail
  */
@@ -48,7 +51,8 @@ class Mail : public QObject
 	Q_OBJECT
 	
 	public:
-		
+    
+    
 		/**
 		 * Constructor
      * @param number number of the mail on the server
@@ -73,7 +77,7 @@ class Mail : public QObject
 		 * Sets the number.
 		 * @param number the number
 		 */
-		void setNumber( long number );
+		void setNumber( int number );
 		
 		/**
 		 * Prints the data of this mail to stdout
@@ -102,7 +106,7 @@ class Mail : public QObject
 		 * Returns the number of this mail on the server
 		 * @return number
 		 */
-		long getNumber() const;
+		int getNumber() const;
 
     /**
      * Sets whether the mail is new or not.
@@ -209,6 +213,20 @@ class Mail : public QObject
      */
     FilterAction_Type applyHeaderFilter( HeaderFilter* filter, QString account, QString& mailbox, FilterLog* log = NULL );
 
+    /**
+     * Creates a new DOM element in the given DOM document and add it to given
+     * DOM parent element
+     * @param doc the DOM document in that all options are stored
+     * @param parent the parent element (account) of the mail
+     */
+    void save( QDomDocument& doc, QDomElement& parent );
+
+    /**
+     * Returns whether this mail was marked by filter.
+     * @return TRUE - marked; FALSE - not marked
+     */
+    bool isMarkedByFilter() const;
+
     
 	private:
 		
@@ -235,7 +253,7 @@ class Mail : public QObject
 		/**
 		 * Number of this mail on the server
 		 */
-		long number;
+		int number;
 
     /**
      * It is set to TRUE when the mail is new.
@@ -263,12 +281,10 @@ class Mail : public QObject
     QString contentType;
 
     /**
-     * TRUE - the mail shall be marked at the next mail view refresh.
+     * TRUE - the mail was marked by the filter.
      * It will be set to True by applyHeaderFilter() if the recommend filter action is MARK.
-     * It is used by setViewItem(). This methode marks the related list entry and after then it set
-     * this variable to False.
      */
-    bool markAtViewRefresh;
+    bool markedByFilter;
 
 
 	protected:

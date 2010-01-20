@@ -496,4 +496,93 @@ void AccountList::refreshFilterSetup( )
 }
 
 
+void AccountList::saveOptions ()
+{
+  //create XML document
+  QDomDocument doc( "KShowmail" );
+
+  //create root element
+  QDomElement root = doc.createElement( ROOT_ELEMENT );
+
+  //create for every account an element
+  //the account saves its mails into this element
+  //after that the element will be appended to the root element
+  int i = 0;
+  QListIterator<Account*> it( accounts ); //iterator for the account list
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+    
+    //save mails
+    QDomElement accElem = doc.createElement( QString( ACCOUNT_ELEMENT ) + QString( "%1" ).arg( i++ ) );
+    account->saveOptions( doc, accElem ); //account saves the mails into given XML document and the setup into the application config file
+    root.appendChild( accElem );
+
+  }
+
+  //append root element to XML document
+  doc.appendChild( root );
+
+  //save XML document
+  QString cachefilename = KStandardDirs::locateLocal( "appdata", MAIL_FILE ); //get file path
+  QFile file( cachefilename );  //create file
+
+  if( file.error() != QFile::NoError )
+  {
+    kdError() << "Couldn't save mail cache. " << file.errorString() << endl;
+    return;
+  }
+
+  //open file
+  if( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+  {
+    kdError() << "Couldn't save mail cache. " << file.errorString() << endl;
+    return;    
+  }
+
+  //write data
+  QTextStream stream( &file );
+  doc.save( stream, 2 );
+  stream.flush();
+
+  //close file
+  file.close();
+  
+}
+
+QList<int> AccountList::getMarkedMails() const
+{
+  QList<int> list;
+  
+  if( accounts.isEmpty() ) return list;
+
+  //this is the start index of an account.
+  //The first account has a start index of zero. The first mail in its list has the index zero.
+  //If the first account has four mails in its list, the start index of the second account is 4. And so on...
+  int start = 0;
+
+  QListIterator<Account*> it( accounts );
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+
+    //get all marked mails from this account
+    QList<int> markedMails = account->getMarkedMails();
+
+    QListIterator<int> itMarked( markedMails );
+    while( itMarked.hasNext() )
+    {
+      //add the start index and store it to return
+      list.append( itMarked.next() + start );
+    }
+
+    //increase the start index
+    start = start + account->getNumberMails();
+  }
+
+  
+  return list;
+}
 

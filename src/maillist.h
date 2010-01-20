@@ -165,6 +165,26 @@ class MailList : public QObject
      */
     void removeMail( int number );
 
+    /**
+     * Saves all stored mails into the given DOM document inside the
+     * given account element.
+     * @param doc DOM document in that all options are stored
+     * @param parent account element
+     */
+    void saveMails( QDomDocument& doc, QDomElement& parent );
+
+    /**
+     * Returns the number of marked mails.<p>
+     * The number is not the number which is given by the mail server.
+     * It is the number in order of storage in this list.<p>
+     * We need this numbers, because the order of mails in the mail view model is like
+     * the order in this list.<p>
+     * The first mail in this list is number zero.
+     * @return numbers mails marked by filter
+     */
+    QList<int> getMarkedMails() const;
+     
+
 
   private:
 

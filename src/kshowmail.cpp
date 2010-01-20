@@ -52,8 +52,6 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 
 
   //TEST
-	SenderListFilter filter;
-  
 }
 
 KShowmail::~KShowmail()
@@ -264,6 +262,7 @@ bool KShowmail::queryClose() {
   //Einstellungen speichern
   fLog.save();
   config->sync();
+  accounts->saveOptions();
 
   return true;
 }
@@ -276,7 +275,6 @@ void KShowmail::slotConfChanged() {
   //refresh the views
   view->refreshViews();
 
-  
 }
 
 void KShowmail::showStatusMessage( const QString& text)

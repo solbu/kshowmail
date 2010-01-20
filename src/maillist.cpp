@@ -268,7 +268,6 @@ void MailList::applyHeaderFilter( HeaderFilter * filter, QString account, MailNu
   for ( iter = mailsToIgnore.begin(); iter != mailsToIgnore.end(); ++iter )
     removeMail( *iter );
 
-
 }
 
 void MailList::removeMail( int number )
@@ -286,3 +285,37 @@ void MailList::removeMail( int number )
   }
 }
 
+void MailList::saveMails( QDomDocument& doc, QDomElement& parent )
+{
+  //Loop over all mail items
+  QListIterator<Mail*> it( mails );
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+    mail->save( doc, parent );
+  }
+}
+
+QList<int> MailList::getMarkedMails() const
+{
+  QList<int> list;
+
+  if( mails.isEmpty() ) return list;
+
+  int pos = -1;
+  QListIterator<Mail*> it( mails );
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+    pos++;
+
+    if( mail->isMarkedByFilter())
+    {
+      list.append( pos );
+    }
+    
+  }
+
+  return list;
+  
+}

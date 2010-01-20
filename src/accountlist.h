@@ -21,6 +21,7 @@
 #include <QObject>
 #include <QList>
 #include <qitemselectionmodel.h>
+#include <QFile>
 
 //KDE headers
 #include <KGlobal>
@@ -189,6 +190,31 @@ class AccountList : public QObject
      * Reloads the filter settings
      */
     void refreshFilterSetup();
+
+    /**
+     * Saves the current mails data and the account setups.
+     * The mails data will be saved into an XML file (kshowmail.xml).
+     * The account setups will be saved into the application config file (kshowmailrc).
+     */
+    void saveOptions();
+
+    /**
+     * Returns the number of marked mails.<p>
+     * The number is not the number which is given by the mail server.
+     * It is the number in order of storage in this list. For example:<p>
+     * Account GMX contains 4 mails.<p>
+     * Account Freenet contains 3 mails.<p>
+     * Account Yahoo contains 5 mails.<p>
+     * (the accounts are stored in the account list in this order)<p>
+     * getMail( 0 ) returns the first mail of account GMX.<p>
+     * getMail( 5 ) returns the second mail of account Freenet.<p>
+     * getMail( 11 ) returns the last mail of account Yahoo.<p>
+     * getMail( 20 ) throws an exception.<p>
+     * We need this numbers, because the order of mails in the mail view model is like
+     * the order in this list.<p>
+     * @return numbers mails marked by filter
+     */
+    QList<int> getMarkedMails() const;
 
 
 

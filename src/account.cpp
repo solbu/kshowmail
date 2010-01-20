@@ -86,7 +86,7 @@ void Account::init()
 
   downloadActionsInvoked = false;
   deletionPerformedByFilters = false;
-
+  filterApplied = false;
 
 }
 
@@ -1113,21 +1113,21 @@ void Account::swapMailLists( )
   //applyFilters() will either start a second refresh cycle if it did some deletions
   //or call commit() to commit the refresh cycle.
   //if the filters were already applied we commit the refresh.
-//   if( filterApplied | !headerFilter.isActive() )
-//   {
-//     //reset the flag for the next refresh
-//     filterApplied = false;
-// 
-//     //commit the refresh cycle
-//     commit();
-//     return;
-//   }
-//   else
-//   {
-//     //apply the filters
-//     applyFilters();
-//     return;
-//   }
+  if( filterApplied | !headerFilter.isActive() )
+  {
+    //reset the flag for the next refresh
+    filterApplied = false;
+
+    //commit the refresh cycle
+    commit();
+    return;
+  }
+  else
+  {
+    //apply the filters
+    applyFilters();
+    return;
+  }
 
   commit();
 }
@@ -1775,3 +1775,23 @@ void Account::slotCommitBeforeRefreshDone( )
   //after a commit was send, we start a new refresh cyle
   refreshMailList();
 }
+
+void Account::saveOptions( QDomDocument& doc, QDomElement& parent )
+{
+  //get application config
+  KConfigGroup* config = new KConfigGroup( KGlobal::config(), getName() );
+
+  //save the active state
+  config->writeEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, isActive() );
+  config->sync();
+
+  //save the stored mails inside this account
+  parent.setAttribute( ATTRIBUTE_ACCOUNT_NAME, getName() );
+  mails->saveMails( doc, parent );
+}
+
+QList<int> Account::getMarkedMails() const
+{
+  return mails->getMarkedMails();
+}
+

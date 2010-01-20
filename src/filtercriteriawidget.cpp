@@ -73,6 +73,28 @@ FilterCriteriaWidget::FilterCriteriaWidget( QWidget *parent )
     default                                                   : cmbConditionText->setCurrentIndex( ID_COMBO_COND_TEXT_CONTAINS ); break;
   }
 
+  //Comboboxes to select the condition between source and value (text list)
+  cmbConditionTextList = new KComboBox( this );
+  cmbConditionTextList->insertItem( ID_COMBO_COND_TEXT_CONTAINS, i18n( "some line contains" ) );
+  cmbConditionTextList->insertItem( ID_COMBO_COND_TEXT_NOT_CONTAINS, i18n( "no line contains" ) );
+  cmbConditionTextList->insertItem( ID_COMBO_COND_TEXT_EQUALS, i18n( "some line equals" ) );
+  cmbConditionTextList->insertItem( ID_COMBO_COND_TEXT_NOT_EQUALS, i18n( "no line equals" ) );
+  cmbConditionTextList->insertItem( ID_COMBO_COND_TEXT_REGEXPR, i18n( "some line matches reg. expr." ) );
+  cmbConditionTextList->insertItem( ID_COMBO_COND_TEXT_NOT_REGEXPR, i18n( "no line matches reg. expr." ) );
+  layLine1->addWidget( cmbConditionTextList );
+  connect( cmbConditionTextList, SIGNAL( activated( int ) ), this, SLOT( slotSetWidgets() ) );
+
+  switch( DEFAULT_FILTER_CRITERIA_COND_TEXT )
+  {
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS      : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_CONTAINS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS  : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_NOT_CONTAINS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS        : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_EQUALS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS    : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_NOT_EQUALS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR       : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_REGEXPR );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR   : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_NOT_REGEXPR );break;
+    default                                                   : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_CONTAINS ); break;
+  }
+
   cmbConditionNum = new KComboBox( this );
   cmbConditionNum->insertItem( ID_COMBO_COND_NUM_EQUAL, i18n( "is equal to" ) );
   cmbConditionNum->insertItem( ID_COMBO_COND_NUM_NOT_EQUAL, i18n( "is not equal to" ) );
@@ -137,47 +159,55 @@ void FilterCriteriaWidget::slotSetWidgets( )
                                     cmbConditionText->setHidden( false );
                                     txtCompValueText->setHidden( false );
                                     chkCaseSensitive->setHidden( false );
+                                    cmbConditionTextList->setHidden( true );
                                     break;
     case ID_COMBO_SOURCE_TO       : cmbConditionNum->setHidden( true );
                                     spbCompValueNum->setHidden( true );
                                     cmbConditionText->setHidden( false );
                                     txtCompValueText->setHidden( false );
                                     chkCaseSensitive->setHidden( false );
+                                    cmbConditionTextList->setHidden( true );
                                     break;
     case ID_COMBO_SOURCE_SIZE     : cmbConditionNum->setHidden( false );
                                     spbCompValueNum->setHidden( false );
                                     cmbConditionText->setHidden( true );
                                     txtCompValueText->setHidden( true );
                                     chkCaseSensitive->setHidden( true );
+                                    cmbConditionTextList->setHidden( true );
                                     break;
     case ID_COMBO_SOURCE_SUBJECT  : cmbConditionNum->setHidden( true );
                                     spbCompValueNum->setHidden( true );
                                     cmbConditionText->setHidden( false );
                                     txtCompValueText->setHidden( false );
                                     chkCaseSensitive->setHidden( false );
+                                    cmbConditionTextList->setHidden( true );
                                     break;
     case ID_COMBO_SOURCE_HEADER   : cmbConditionNum->setHidden( true );
                                     spbCompValueNum->setHidden( true );
-                                    cmbConditionText->setHidden( false );
+                                    cmbConditionText->setHidden( true );
                                     txtCompValueText->setHidden( false );
                                     chkCaseSensitive->setHidden( false );
+                                    cmbConditionTextList->setHidden( false );
                                     break;
     case ID_COMBO_SOURCE_ACCOUNT  : cmbConditionNum->setHidden( true );
                                     spbCompValueNum->setHidden( true );
                                     cmbConditionText->setHidden( false );
                                     txtCompValueText->setHidden( false );
                                     chkCaseSensitive->setHidden( false );
+                                    cmbConditionTextList->setHidden( true );
                                     break;
     default:                        cmbConditionNum->setHidden( true );
                                     spbCompValueNum->setHidden( true );
                                     cmbConditionText->setHidden( false );
                                     txtCompValueText->setHidden( false );
                                     chkCaseSensitive->setHidden( false );
+                                    cmbConditionTextList->setHidden( true );
                                     break;
   }
 
   //show or hide widgets of regular expressions
-  if( !cmbConditionText->isHidden() && ( cmbConditionText->currentIndex() == ID_COMBO_COND_TEXT_REGEXPR || cmbConditionText->currentIndex() == ID_COMBO_COND_TEXT_NOT_REGEXPR ) )
+  if( ( !cmbConditionText->isHidden() && ( cmbConditionText->currentIndex() == ID_COMBO_COND_TEXT_REGEXPR || cmbConditionText->currentIndex() == ID_COMBO_COND_TEXT_NOT_REGEXPR ) ) ||
+      ( !cmbConditionTextList->isHidden() && ( cmbConditionTextList->currentIndex() == ID_COMBO_COND_TEXT_REGEXPR || cmbConditionTextList->currentIndex() == ID_COMBO_COND_TEXT_NOT_REGEXPR ) ) )
   {
     if( kRegExpEditorAvailable )
       btnOpenRegExpEditor->setHidden( false );
@@ -260,7 +290,6 @@ void FilterCriteriaWidget::setTextCriteria( int source, int condition, QString v
     case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM     : cmbSource->setCurrentIndex( ID_COMBO_SOURCE_FROM ); break;
     case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO       : cmbSource->setCurrentIndex( ID_COMBO_SOURCE_TO ); break;
     case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT  : cmbSource->setCurrentIndex( ID_COMBO_SOURCE_SUBJECT ); break;
-    case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER   : cmbSource->setCurrentIndex( ID_COMBO_SOURCE_HEADER ); break;
     case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT  : cmbSource->setCurrentIndex( ID_COMBO_SOURCE_ACCOUNT ); break;
     default                                           : kdError() << "FilterCriteriaWidget::setTextCriteria: invalid source parameter." << endl;
                                                         return;
@@ -276,6 +305,39 @@ void FilterCriteriaWidget::setTextCriteria( int source, int condition, QString v
     case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR       : cmbConditionText->setCurrentIndex( ID_COMBO_COND_TEXT_REGEXPR );break;
     case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR   : cmbConditionText->setCurrentIndex( ID_COMBO_COND_TEXT_NOT_REGEXPR );break;
     default                                                   : cmbConditionText->setCurrentIndex( ID_COMBO_COND_TEXT_CONTAINS ); break;
+  }
+
+  //set value
+  txtCompValueText->setText( value );
+
+  //set case sensitve
+  chkCaseSensitive->setChecked( cs );
+
+  //show or hide widgets
+  slotSetWidgets();
+
+}
+
+void FilterCriteriaWidget::setTextListCriteria( int source, int condition, QString value, bool cs )
+{
+  //set source
+  switch( source )
+  {
+    case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER   : cmbSource->setCurrentIndex( ID_COMBO_SOURCE_HEADER ); break;
+    default                                           : kdError() << "FilterCriteriaWidget::setTextListCriteria: invalid source parameter." << endl;
+                                                        return;
+  }
+
+  //set condition
+  switch( condition )
+  {
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS      : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_CONTAINS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS  : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_NOT_CONTAINS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS        : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_EQUALS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS    : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_NOT_EQUALS );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR       : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_REGEXPR );break;
+    case CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR   : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_NOT_REGEXPR );break;
+    default                                                   : cmbConditionTextList->setCurrentIndex( ID_COMBO_COND_TEXT_CONTAINS ); break;
   }
 
   //set value
@@ -307,10 +369,21 @@ FilterCriteria_Type FilterCriteriaWidget::getValues()
   if( crit.source == CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM ||
       crit.source == CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO ||
       crit.source == CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT ||
-      crit.source == CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER ||
       crit.source == CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT )
   {
     switch( cmbConditionText->currentIndex() )
+    {
+      case ID_COMBO_COND_TEXT_CONTAINS      : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS; break;
+      case ID_COMBO_COND_TEXT_NOT_CONTAINS  : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS; break;
+      case ID_COMBO_COND_TEXT_EQUALS        : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS; break;
+      case ID_COMBO_COND_TEXT_NOT_EQUALS    : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS; break;
+      case ID_COMBO_COND_TEXT_REGEXPR       : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR; break;
+      case ID_COMBO_COND_TEXT_NOT_REGEXPR   : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR; break;
+      default                               : crit.condition = 99; break;
+    }
+  } else if( crit.source == CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER )
+  {
+    switch( cmbConditionTextList->currentIndex() )
     {
       case ID_COMBO_COND_TEXT_CONTAINS      : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS; break;
       case ID_COMBO_COND_TEXT_NOT_CONTAINS  : crit.condition = CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS; break;

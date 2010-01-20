@@ -345,15 +345,35 @@ class Account : public QObject
      * Returns the number of ignored mails by last refresh.
      * @return number of ignored mails by last refresh
      */
-  int numberIgnoredMails();
+    int numberIgnoredMails();
 
-  /**
-   * Reloads the settings of the filters.
-   * It just calls the load() methode of the header filter.
-   */
-  void reloadFilterSettings();
+    /**
+    * Reloads the settings of the filters.
+    * It just calls the load() methode of the header filter.
+    */
+    void reloadFilterSettings();
 
-  
+    /**
+    * Saves the stored mails into the given
+    * DOM document. It doesn't create a new DOM element but used the given one.
+    * Saves the setup into the application config.
+    * @param doc DOM document which contains all application settings, mails and account settings
+    * @param parent DOM element in which all settings and mails of this account will be saved
+    */
+    void saveOptions( QDomDocument& doc, QDomElement& parent );
+
+    /**
+     * Returns the number of marked mails.<p>
+     * The number is not the number which is given by the mail server.
+     * It is the number in order of storage in the mail list.<p>
+     * We need this numbers, because the order of mails in the mail view model is like
+     * the order in the mail list.<p>
+     * The first mail in the mail list is number zero.
+     * @return numbers mails marked by filter
+     */
+    QList<int> getMarkedMails() const;
+
+
     
   protected:
 

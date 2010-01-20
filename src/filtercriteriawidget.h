@@ -100,6 +100,15 @@ Q_OBJECT
     void setTextCriteria( int source, int condition, QString value, bool cs );
 
     /**
+     * Sets the values of a text list criteria.
+     * @param source Object of Comparison (see constants.h for valid values)
+     * @param condition Condition of the comparison (see constants.h for valid values)
+     * @param value comparison string
+     * @param cs TRUE - comparison is case sensitive; FALSE - comparison is not case sensitive
+     */
+    void setTextListCriteria( int source, int condition, QString value, bool cs );
+
+    /**
      * Returns the values of the criteria.
      * @return criteria values
      */
@@ -116,6 +125,11 @@ Q_OBJECT
      * Combobox to select the condition of a text source (From, To, ...)
      */
     KComboBox* cmbConditionText;
+
+    /**
+     * Combobox to select the condition of a text list source (Header)
+     */
+    KComboBox* cmbConditionTextList;
 
     /**
      * Combobox to select the condition of a numeric source (Size, ...)

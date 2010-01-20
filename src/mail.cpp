@@ -64,12 +64,12 @@ long Mail::getSize() const
 	return size;
 }
 
-long Mail::getNumber() const
+int Mail::getNumber() const
 {
 	return number;
 }
 
-void Mail::setNumber( long number )
+void Mail::setNumber( int number )
 {
 	this->number = number;
 }
@@ -77,7 +77,7 @@ void Mail::setNumber( long number )
 void Mail::init()
 {
 	size = 0;
-  markAtViewRefresh = false;
+  markedByFilter = false;
 }
 
 void Mail::setNew( bool isnew )
@@ -381,7 +381,7 @@ FilterAction_Type Mail::applyHeaderFilter( HeaderFilter* filter, QString account
   FilterAction_Type action = filter->check( getFrom(), getTo(), getSize(), getSubject(), getHeader(), account, mailbox );
 
   //if the action is MARK, the related view entry shall be marked at the next view refresh
-  if( action == FActMark ) markAtViewRefresh = true;
+  if( action == FActMark ) markedByFilter = true;
 
   //if the action is DELETE, we add a entry to the log
   if( log == NULL )
@@ -395,4 +395,32 @@ FilterAction_Type Mail::applyHeaderFilter( HeaderFilter* filter, QString account
   return action;
 }
 
+void Mail::save( QDomDocument& doc, QDomElement& parent )
+{
+  //build item tag of this mail( with mail number)
+  QString hdr = QString( ITEM_MESSAGE );
+  hdr.append( "%1" );
+  hdr = hdr.arg( getNumber() );
+
+  //create a new element and store the mail meta data in it
+  QDomElement elem = doc.createElement( hdr );
+  elem.setAttribute( QString( ATTRIBUTE_MAIL_NUMBER ), getNumber() );
+  elem.setAttribute( QString( ATTRIBUTE_MAIL_SIZE ), (qlonglong)getSize() );
+  elem.setAttribute( QString( ATTRIBUTE_MAIL_UID ), getUNID() );
+
+  //create a sub element for the mail header in store the header in it
+  QDomElement subelem = doc.createElement( ITEM_MAIL_HEADER );
+  subelem.appendChild( doc.createTextNode( getHeader().join( HEADER_SEPARATOR ) ) );
+
+  //add header element to the mail element
+  elem.appendChild( subelem );
+
+  //add mail element to the account (parent) element
+  parent.appendChild( elem );
+}
+
+bool Mail::isMarkedByFilter() const
+{
+  return markedByFilter;
+}
 
