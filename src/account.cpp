@@ -851,7 +851,7 @@ void Account::slotLoginPasswdResponse()
   {
     case AccountRefreshing    : getUIDList(); break;
     case AccountDeleting      : deleteNextMail(); break;
-/*    case AccountDownloading   : showNextMail(); break;*/
+    case AccountDownloading   : showNextMail(); break;
     default                   : commit(); break;
   }
 }
@@ -930,7 +930,7 @@ void Account::slotLoginApopResponse()
   {
     case AccountRefreshing    : getUIDList(); return;
     case AccountDeleting      : deleteNextMail(); return;
-/*    case AccountDownloading   : showNextMail(); return;*/
+    case AccountDownloading   : showNextMail(); return;
     default                   : commit(); return;
   }
 
@@ -1437,6 +1437,11 @@ void Account::addMailToDelete( int number )
   mailsToDelete.append( number );
 }
 
+void Account::addMailToShow( int number )
+{
+  mailsToShow.append( number );
+}
+
 void Account::deleteMails()
 {
     //check whether we have a password for this account
@@ -1487,6 +1492,24 @@ void Account::deleteNextMail( )
   sendCommand( DELETE + " " + QString( "%1" ).arg( mailsToDelete.first() ) );
 }
 
+void Account::showNextMail()
+{
+  //if the list of mails to show is empty finalize it
+  if( mailsToShow.isEmpty() )
+  {
+    commit();
+    return;
+  }
+
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailDeleted() ) );
+
+  //send download command
+  sendCommand( GET_MAIL + " " + QString( "%1" ).arg( mailsToShow.first() ) );
+  
+}
+
 void Account::slotMailDeleted()
 {
   //get the response
@@ -1522,12 +1545,87 @@ void Account::slotMailDeleted()
     {
       commit();
     }
-      return;
-    }
+    return;
+  }
 
   //delete next mail in list
   deleteNextMail();
 
+}
+
+void Account::slotBodyDownloaded()
+{
+  //get the response
+  QStringList answer = readfromSocket( NULL, true );
+
+  //no response from the server
+  if( answer.isEmpty() )
+  {
+    handleError( i18n( "%1 has not sent a answer after retrieve of mail %2.").arg( getHost() ).arg( mailsToShow.first() ) );
+    finishTask();
+    return;
+  }
+
+  //it is a negative response?
+  if( !isPositiveServerMessage( answer ) )
+  {
+    handleError( i18n( "Error while downloading mail %1 of %2: %3" ).arg( mailsToShow.first() ).arg( getName() ).arg( answer.first() ) );
+    return;
+  }
+
+
+  //remove the first item of the list of mails to delete
+  mailsToShow.removeFirst();
+
+  //if the list of mails to delete is empty, finalize the deletion and return
+  if( mailsToShow.empty() )
+  {
+    commit();
+    return;
+  }
+
+  //succesful download
+  //show mail
+  
+  int currentMail = mailsToShow.first();
+ 
+  QString tsender = mails->getSenderOf( currentMail );
+  QString tdate = mails->getDateOf( currentMail );
+  QString tsize = mails->getSizeOf( currentMail );
+  QString tsubject = mails->getSubjectOf( currentMail );
+  QString tmailbody( m_pshowrecord->decodeMailBody( mailbody, currentMail, appConfig->allowHTML() ) );
+
+    //emit signal to notify the opening of a window
+    emit sigMessageWindowOpened();
+
+    //create and open the window
+    ShowMailDialog dlg( kapp->mainWidget(), m_strAccount, appConfig->allowHTML(), tsender, tdate, tsize, tsubject, tmailbody );
+    int ret = dlg.exec();
+
+    //emit signal to notify the closing of a window
+    emit sigMessageWindowClosed();
+
+    //cancel the download if desired
+    if( ret == KDialogBase::Rejected )
+    {
+      MailsToShow.clear();
+      commitDownloading();
+      return;
+    }
+
+    //remove the first item of the list of mails to show
+    MailsToShow.remove( MailsToShow.begin() );
+
+    //if the list of mails is empty, finalize the showing and return
+    if( MailsToShow.empty() )
+    {
+      commitDownloading();
+      return;
+    }
+
+
+  //show next mail in list
+  showNextMail();
 }
 
 int Account::numberDeletedMailsLastRefresh( )
@@ -1793,5 +1891,31 @@ void Account::saveOptions( QDomDocument& doc, QDomElement& parent )
 QList<int> Account::getMarkedMails() const
 {
   return mails->getMarkedMails();
+}
+
+void Account::showMails()
+{
+  //check whether we have a password for this account
+  //if not, ask for it
+  //return when no password is available
+  if( !assertPassword() )
+  {
+    emit sigShowBodiesReady( name );
+    return;
+  }
+
+  //return if no mails in the list
+  if( mailsToShow.empty() )
+  {
+    emit sigShowBodiesReady( name );
+    return;
+  }
+
+  //set account state
+  state = AccountDownloading;
+
+  //connect
+  doConnect();
+
 }
 

@@ -42,12 +42,21 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 
 KShowmailView::~KShowmailView(){}
 
-void KShowmailView::refreshViews()
+void KShowmailView::refreshViews( QItemSelectionModel* mailSelectModel, QList<int> markedMails )
 {
   AccountViewModel* accountModel = dynamic_cast<AccountViewModel*>( viewAccounts->model() );
   accountModel->refresh();
 
   MailViewModel* mailModel = dynamic_cast<MailViewModel*>( viewMails->model() );
   mailModel->refresh();
+
+  //mark filtered mails
+  QListIterator<int> itMark( markedMails );
+  while( itMark.hasNext() )
+  {
+    int row = itMark.next();
+    mailSelectModel->select( mailModel->index( row, 0 ), QItemSelectionModel::Select | QItemSelectionModel::Rows );
+  }
+
   
 }

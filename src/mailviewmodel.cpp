@@ -145,8 +145,6 @@ Qt::ItemFlags MailViewModel::flags ( const QModelIndex & index ) const
 
 void MailViewModel::refresh()
 {
-  //kdDebug() << "Refresh: " << rowCount() << endl;
-  //emit dataChanged( createIndex( 0, 0 ), createIndex( rowCount() - 1, NUMBER_MAILVIEW_COLUMNS - 1 ) );
   reset();
-
 }
+

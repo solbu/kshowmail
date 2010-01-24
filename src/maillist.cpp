@@ -319,3 +319,92 @@ QList<int> MailList::getMarkedMails() const
   return list;
   
 }
+
+
+QString MailList::getSenderOf( int number ) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+  QString sender;                                 //sender of the wanted mail
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+    
+    //if the current mail has the given number, remove it
+    if( mail->getNumber() == number )
+    {
+      sender = mail->getFrom();
+      found = true;
+    }
+  }
+  return sender;
+}
+
+QString MailList::getDateOf( int number ) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+  QString date;                                   //sent date of the wanted mail
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+
+    //if the current mail has the given number, remove it
+    if( mail->getNumber() == number )
+    {
+      date = mail->getDateTime().toString( KDateTime::LocalDate );
+      found = true;
+    }
+  }
+  return date;
+
+}
+
+QString MailList::getSizeOf( int number ) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+  QString size;                                   //size of the wanted mail
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+
+    //if the current mail has the given number, remove it
+    if( mail->getNumber() == number )
+    {
+      size = mail->getSizeSuffix();
+      found = true;
+    }
+  }
+  return size;
+
+}
+
+QString MailList::getSubjectOf( int number ) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+  QString subject;                                //subject of the wanted mail
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+
+    //if the current mail has the given number, get the subject
+    if( mail->getNumber() == number )
+    {
+      subject = mail->getSubject();
+      found = true;
+    }
+  }
+  return subject;
+
+}
+

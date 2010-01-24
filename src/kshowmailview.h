@@ -49,9 +49,11 @@ class KShowmailView : public QSplitter
 		~KShowmailView();
 
     /**
-     * Refreshes the account and mail view
+     * Refreshes the account and mail view. Marks filtered mails.
+     * @param mailSelectModel mail selection model
+     * @param markedMails row numbers of the filtered mails which shall be marked
      */
-    void refreshViews();
+    void refreshViews( QItemSelectionModel* mailSelectModel, QList<int> markedMails );
 		
 	private:
 		

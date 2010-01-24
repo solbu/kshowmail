@@ -34,6 +34,7 @@ Account* AccountList::addAccount( const QString& name )
   connect( acc, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotMessageWindowOpened() ) );
   connect( acc, SIGNAL( sigMessageWindowClosed() ), this, SLOT( slotMessageWindowClosed() ) );
   connect( acc, SIGNAL( sigDeleteReady(QString) ), this, SLOT( slotCheckDeletionState(QString) ) );
+  connect( acc, SIGNAL( sigShowBodiesReady(QString) ), this, SLOT( slotCheckShowBodiesState(QString) ) );
 	
 	//append it to the list
 	accounts.append( acc );
@@ -584,5 +585,83 @@ QList<int> AccountList::getMarkedMails() const
 
   
   return list;
+}
+
+void AccountList::showSelectedMails( QItemSelectionModel* mailSelectModel )
+{
+  //an account has a list of mails to show
+  //we put the mail number of every selected mail into the list of its account
+  QList<Mail*> mailList = getSelectedMails( mailSelectModel );
+  if( mailList.isEmpty() )
+  {
+    emit sigShowBodiesReady();
+    return;
+  }
+
+  QListIterator<Mail*> it( mailList );
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+    mail->getAccount()->addMailToShow( mail->getNumber() );
+  }
+
+  //order the accounts to delete the mails
+
+  QListIterator<Account*> itAcc( accounts );
+
+  //clear the map, which contains the names of the accounts,
+  //which have gotten an order to show its mails
+  AccountShowBodiesMap.clear();
+
+  //inserts an item for every account which will get an order to show
+  //its selected mails. The key is the account name and the data is TRUE.
+  //it is important to do this in a seperate iteration because this avoids
+  //race conditions
+  while( itAcc.hasNext() )
+  {
+    //get Account
+    Account* account = itAcc.next();
+
+    //insert item
+    AccountShowBodiesMap.insert( account->getName(), true );
+
+  }
+
+  //order all accounts to show its selected mail
+  itAcc.toFront();
+  while( itAcc.hasNext() )
+  {
+    //get Account
+    Account* account = itAcc.next();
+
+    account->showMails();
+  }
+
+
+}
+
+void AccountList::slotCheckShowBodiesState( QString account )
+{
+  bool accountDownloading = false;    //set to TRUE if an account is downloading mail body yet
+  AccountTaskMap_Type::Iterator it;   //iterator over the account map
+
+  //set the appropriate item in AccountShowBodiesMap to FALSE
+  AccountShowBodiesMap[ account ] = false;
+
+  //iterate over the account map to check, whether all accounts
+  //are ready
+  for ( it = AccountShowBodiesMap.begin(); it != AccountShowBodiesMap.end(); ++it )
+  {
+    if( *it == true )
+      accountDownloading = true;
+  }
+
+  //emit sigShowBodiesReady if all accounts are ready
+  //and assume all windows to show the mails are closed
+  if( !accountDownloading )
+  {
+    emit sigShowBodiesReady();
+    ctrOpenMessageWindows = 0;
+  }
 }
 

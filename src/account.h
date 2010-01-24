@@ -311,6 +311,14 @@ class Account : public QObject
     void addMailToDelete( int number );
 
     /**
+     * Adds a mail number to the list of mails to show.<p>
+     * The number is the mail number given by the mail server.
+     * @param number mail number
+     * @see mailsToShow
+     */
+    void addMailToShow( int number );
+
+    /**
      * Deletes mails which are listed in mailsToDelete.
      * This just starts the deletion and returns after then.
      * When the deletion is ready the signal sigDeleteReady will be emitted.
@@ -372,6 +380,15 @@ class Account : public QObject
      * @return numbers mails marked by filter
      */
     QList<int> getMarkedMails() const;
+
+    /**
+     * Downloads and shows the bodies of mails in <code>mailsToShow</code>.
+     * This just starts the download and returns after then.
+     * When the download is ready and the body is shown the sigShowBodiesReady
+     * will be emitted.
+     * @see mailsToShow
+     */
+    void showMails();
 
 
     
@@ -590,6 +607,17 @@ class Account : public QObject
     void deleteNextMail();
 
     /**
+     * Shows the body of the first mail in MailsToShow.
+     * After a succesful download and opening of the window this
+     * mail will be removed from the list by slotBodyDownloaded() and this
+     * method will be invoked again.
+     * If the list is empty, it will call commitDownloading().
+     * @see commitDownloading()
+     * @see slotBodyDownloaded()
+     */
+    void showNextMail();
+
+    /**
      * Does all filter actions for which we have to download the mails
      * These are:
      * Moving, spam check
@@ -734,12 +762,22 @@ class Account : public QObject
      * deleteNextMail() again to delete the next mail.
      * If the list is empty after it has removed the first item, it will call
      * commitDelete().
-     * If an error is occured, it will call slotFinalizeDeletion().
      * @see deleteNextMail()
      * @see MailsToDelete
-     * @see slotFinalizeDeletion()
      */
     void slotMailDeleted();
+
+    /**
+     * Opens a window (class ShowMailDialog) with the downloaded mail body.
+     * Removes the first mail from MailsToShow and invokes showNextMail()
+     * again to show the next mail.
+     * If the list is empty after it has removed the first item, it will call
+     * commitDownloading().
+     * @see showNextMail()
+     * @see MailsToShow
+     * @see ShowMailDialog
+     */
+    void slotBodyDownloaded();
 
     /**
      * Downloads a mail to write it into a mailbox or do a spam check.

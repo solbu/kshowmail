@@ -48,7 +48,7 @@ class MailViewModel : public QAbstractItemModel
 		/**
 		 * Destructor
 		 */
-		~MailViewModel();
+		virtual ~MailViewModel();
 		
 		/**
 		 * Returns the index of the mail data in this model specified by the given row, column.
@@ -58,7 +58,7 @@ class MailViewModel : public QAbstractItemModel
 		 * @param column Column
 		 * @param parent parent index; not used
 		 */
-		virtual QModelIndex index( int row, int column, const QModelIndex& parent ) const;
+		virtual QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const;
 		
 		/**
 		 * Overloaded from QAbstractItemModel
@@ -117,8 +117,6 @@ class MailViewModel : public QAbstractItemModel
      * Emits the dataChanged signal to the views to inform they about changed data
      */
     void refresh();
-
-
 
   private:
 

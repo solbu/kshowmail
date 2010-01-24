@@ -184,6 +184,34 @@ class MailList : public QObject
      */
     QList<int> getMarkedMails() const;
      
+    /**
+     * Returns the sender of the mail with the given number.
+     * @param number mail number
+     * @return sender
+     */
+    QString getSenderOf( int number ) const;
+
+    /**
+     * Returns the date of sent of the mail with the given number.
+     * @param number mail number
+     * @return date
+     */
+    QString getDateOf( int number ) const;
+
+    /**
+     * Returns the size of the mail with the given number.
+     * @param number mail number
+     * @return size
+     */
+    QString getSizeOf( int number ) const;
+
+    /**
+     * Returns the subject of the mail with the given number.
+     * @param number mail number
+     * @return subject
+     */
+    QString getSubjectOf( int number ) const;
+
 
 
   private:

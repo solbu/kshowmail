@@ -14,11 +14,12 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   connect( accounts, SIGNAL( sigAllMessageWindowsClosed() ), this, SLOT( slotWaitingCursor() ) );
   connect( accounts, SIGNAL( sigRefreshReady() ), this, SLOT( slotRefreshReady() ) );
   connect( accounts, SIGNAL( sigDeleteReady() ), this, SLOT( slotDeletionReady() ) );
+  connect( accounts, SIGNAL( sigShowBodiesReady() ), this, SLOT( slotShowMessageReady() ) );
 
 	
 	//create the models for the account view and mail view
 	AccountViewModel* accountModel = new AccountViewModel( accounts, this );
-	MailViewModel* mailModel = new MailViewModel( accounts, this );
+	mailModel = new MailViewModel( accounts, this );
 
   //create the mail selection model
   mailSelectModel = new QItemSelectionModel( mailModel );
@@ -149,11 +150,58 @@ void KShowmail::slotRefresh() {
 }
 
 void KShowmail::slotShowHeader() {
-  kDebug() << "slotShowHeader" << endl;
+
+  //only show headers, if the app is idle
+  if( state != idle )
+  {
+    kapp->beep ();
+    return;
+  }
+
+  //get selected Mails
+  QList<Mail*> mailList = accounts->getSelectedMails( mailSelectModel );
+
+  //iterate over all mails
+  QListIterator<Mail*> itMails( mailList );
+  int dialogReturnValue = QDialog::Accepted;
+  while( itMails.hasNext() && dialogReturnValue == QDialog::Accepted )
+  {
+    Mail* mail = itMails.next();
+
+    //create and open the window
+    QString account( mail->getAccount()->getName() );
+    QString subject( mail->getSubject() );
+    ShowHeaderDialog dlg( this->centralWidget(), account , subject, mail->getHeader() );
+    dialogReturnValue = dlg.exec();
+  }
 }
 
 void KShowmail::slotShowMessage() {
-  kDebug() << "slotShowMessage" << endl;
+
+  //return, if application is not idle
+  if( state != idle )
+  {
+    kapp->beep ();
+    return;
+  }
+
+  //return, if no mails are selected
+  if( !mailSelectModel->hasSelection() )
+    return;
+
+  //set the state
+  state = showing;
+
+  //show status message
+  showStatusMessage( i18n( "Downloading ..." ) );
+
+  //set waiting cursor
+  QApplication::setOverrideCursor( Qt::WaitCursor );
+
+  //order the account list to show the selected mails
+  accounts->showSelectedMails( mailSelectModel );
+
+
 }
 
 void KShowmail::slotDelete() {
@@ -273,7 +321,7 @@ void KShowmail::slotConfChanged() {
   fLog.loadSetup();
 
   //refresh the views
-  view->refreshViews();
+  view->refreshViews( mailSelectModel, QList<int>() );
 
 }
 
@@ -320,7 +368,7 @@ void KShowmail::slotRefreshReady()
   showStatusMessage( i18n( "Ready" ) );
 
   //refresh view
-  view->refreshViews();
+  view->refreshViews( mailSelectModel, accounts->getMarkedMails() );
 
 }
 
@@ -368,6 +416,21 @@ void KShowmail::refreshFilterStatusBar( )
   int numberIgnored = accounts->numberIgnoredMails();
 
   statusBar()->changeItem( i18n( "Filter: Deleted: %1/%2/%3; Moved: %4/%5/%6; Ignored: %7" ).arg( numberDeletedLastRefresh ).arg( numberDeletedSinceStart ).arg( numberDeletedLog ).arg( numberMovedLastRefresh ).arg( numberMovedSinceStart ).arg( numberMovedLog ).arg( numberIgnored ), STATUSBAR_FIELD_FILTER );
+}
+
+void KShowmail::slotShowMessageReady( )
+{
+  //set state to idle
+  state = idle;
+
+  //set normal cursor
+  while( QApplication::overrideCursor() )
+    QApplication::restoreOverrideCursor();
+
+  //show status message
+  showStatusMessage( i18n( "Ready." ) );
+
+
 }
 
 

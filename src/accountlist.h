@@ -35,6 +35,7 @@
 #include "types.h"
 #include "corruptdataexception.h"
 #include "filterlog.h"
+#include "mail.h"
 
 using namespace Types;
 
@@ -199,7 +200,7 @@ class AccountList : public QObject
     void saveOptions();
 
     /**
-     * Returns the number of marked mails.<p>
+     * Returns the number of mails which are marked by filter.<p>
      * The number is not the number which is given by the mail server.
      * It is the number in order of storage in this list. For example:<p>
      * Account GMX contains 4 mails.<p>
@@ -216,7 +217,10 @@ class AccountList : public QObject
      */
     QList<int> getMarkedMails() const;
 
-
+    /**
+     * Downloads and shows the selected mails.
+     */
+    void showSelectedMails( QItemSelectionModel* mailSelectModel );
 
 	private:
 		
@@ -250,6 +254,19 @@ class AccountList : public QObject
      * @see slotCheckDeletionState()
      */
     AccountTaskMap_Type accountDeletionMap;
+
+    /**
+     * This map is used by the methods to show the mail body.
+     * showSelectedMails() clears it and after that inserts for every account
+     * an item. The Key is the account name and the data is TRUE.
+     * When slotCheckShowBodiesState() is invoked by a signal sent by an account,
+     * this slot will set the appropriate item data to FALSE. If the data of all
+     * items are set to FALSE, the method will know all accounts have shown the
+     * mail body and will emit sigShowBodiesReady.
+     * @see showSelectedMails()
+     * @see slotCheckShowBodiesState()
+     */
+    AccountTaskMap_Type AccountShowBodiesMap;
 
     /**
      * Number of windows, which have been opened by the accounts to show mails.
@@ -319,6 +336,17 @@ class AccountList : public QObject
      * @see AccountDeletionMap
      */
     void slotCheckDeletionState( QString account );
+
+    /**
+     * Connected with signal sigShowBodiesReady of all accounts.
+     * When an account has sent this signal its appropriate item
+     * in AccountShowBodiesMap will set to FALSE.
+     * When all accounts have shown the mail it will emit signal
+     * sigShowBodiesReady.
+     * @param account name of the account which has emitted the signal
+     * @see AccountShowBodiesMap
+     */
+    void slotCheckShowBodiesState( QString account );
 
 
   signals:

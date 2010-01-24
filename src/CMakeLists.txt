@@ -23,6 +23,8 @@ set(kshowmail_SRCS
    filteritem.cpp
    filteritemcriteria.cpp
    senderlistfilter.cpp
+   showheaderdialog.cpp
+   showmaildialog.cpp
  )
 
 #enable exceptions

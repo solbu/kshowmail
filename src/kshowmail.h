@@ -6,6 +6,9 @@
 #ifndef KSHOWMAIL_H
 #define KSHOWMAIL_H
 
+//Qt headers
+#include <QListIterator>
+
 
 //KDE headers
 #include <kstatusbar.h>
@@ -27,6 +30,8 @@
 #include "mail.h"
 #include "types.h"
 #include "filterlogview.h"
+#include "showheaderdialog.h"
+#include "showmaildialog.h"
 
 using namespace Types;
 
@@ -97,7 +102,6 @@ class KShowmail : public KXmlGuiWindow
 
     /**
      * Shows the headers of all selected mails.
-     * Connected with action m_actionShowHeader.
      */
     void slotShowHeader();
 
@@ -188,6 +192,14 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotDeletionReady();
 
+    /**
+     * Connected with signal sigShowBodiesReady of account list.
+     * This signal will be emitted when all accounts have downloaded
+     * and shown the selected messages.
+     * This slot sets the state to idle and sets a normal cursor.
+     */
+    void slotShowMessageReady();
+
 
 	
 	private:
@@ -228,9 +240,14 @@ class KShowmail : public KXmlGuiWindow
     State_Type state;
 
     /**
-     * The sleection model of the mail list
+     * The selection model of the mail view
      */
     QItemSelectionModel* mailSelectModel;
+
+    /**
+     * The model of the mail view
+     */
+    MailViewModel* mailModel;
 
 };
 
