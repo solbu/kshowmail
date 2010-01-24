@@ -17,6 +17,8 @@
 #ifndef ACCOUNTVIEWMODEL_H
 #define ACCOUNTVIEWMODEL_H
 
+class AccountList;
+
 //Qt headers
 #include <QAbstractItemModel>
 

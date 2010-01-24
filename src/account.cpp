@@ -1503,7 +1503,7 @@ void Account::showNextMail()
 
   //connect the signal readyRead of the socket with the response handle methode
   disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
-  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailDeleted() ) );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotBodyDownloaded() ) );
 
   //send download command
   sendCommand( GET_MAIL + " " + QString( "%1" ).arg( mailsToShow.first() ) );
@@ -1556,7 +1556,7 @@ void Account::slotMailDeleted()
 void Account::slotBodyDownloaded()
 {
   //get the response
-  QStringList answer = readfromSocket( NULL, true );
+  QStringList answer = readfromSocket( NULL, false );
 
   //no response from the server
   if( answer.isEmpty() )
@@ -1574,16 +1574,6 @@ void Account::slotBodyDownloaded()
   }
 
 
-  //remove the first item of the list of mails to delete
-  mailsToShow.removeFirst();
-
-  //if the list of mails to delete is empty, finalize the deletion and return
-  if( mailsToShow.empty() )
-  {
-    commit();
-    return;
-  }
-
   //succesful download
   //show mail
   
@@ -1593,35 +1583,34 @@ void Account::slotBodyDownloaded()
   QString tdate = mails->getDateOf( currentMail );
   QString tsize = mails->getSizeOf( currentMail );
   QString tsubject = mails->getSubjectOf( currentMail );
-  QString tmailbody( m_pshowrecord->decodeMailBody( mailbody, currentMail, appConfig->allowHTML() ) );
 
-    //emit signal to notify the opening of a window
-    emit sigMessageWindowOpened();
+	//emit signal to notify the opening of a window
+  emit sigMessageWindowOpened();
 
-    //create and open the window
-    ShowMailDialog dlg( kapp->mainWidget(), m_strAccount, appConfig->allowHTML(), tsender, tdate, tsize, tsubject, tmailbody );
-    int ret = dlg.exec();
+  //create and open the window
+  ShowMailDialog dlg( kapp->activeWindow(), getName(), false, tsender, tdate, tsize, tsubject, answer );
+  int ret = dlg.exec();
 
-    //emit signal to notify the closing of a window
-    emit sigMessageWindowClosed();
+	//emit signal to notify the closing of a window
+  emit sigMessageWindowClosed();
 
-    //cancel the download if desired
-    if( ret == KDialogBase::Rejected )
-    {
-      MailsToShow.clear();
-      commitDownloading();
-      return;
-    }
+  //cancel the download if desired
+  if( ret == KDialog::Rejected )
+	{
+		mailsToShow.clear();
+		commit();
+    return;
+	}
 
-    //remove the first item of the list of mails to show
-    MailsToShow.remove( MailsToShow.begin() );
+  //remove the first item of the list of mails to show
+  mailsToShow.removeFirst();
 
-    //if the list of mails is empty, finalize the showing and return
-    if( MailsToShow.empty() )
-    {
-      commitDownloading();
-      return;
-    }
+	//if the list of mails is empty, finalize the showing and return
+  if( mailsToShow.empty() )
+	{
+    commit();
+		return;
+	}
 
 
   //show next mail in list

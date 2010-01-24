@@ -17,6 +17,8 @@
 #ifndef KSHOWMAILVIEW_H
 #define KSHOWMAILVIEW_H
 
+class AccountViewModel;
+
 //Qt headers
 #include <qsplitter.h>
 

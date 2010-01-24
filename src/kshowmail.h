@@ -6,6 +6,9 @@
 #ifndef KSHOWMAIL_H
 #define KSHOWMAIL_H
 
+class KShowmailView;
+class MailViewModel;
+
 //Qt headers
 #include <QListIterator>
 
@@ -37,7 +40,7 @@ using namespace Types;
 
 /**
  * This class serves as the main window for kshowmail.
- *
+ * For my lovely Stephie!
  * @short main class
  * @author Eggert Ehmke
  * @author Ulrich Weigelt

@@ -17,6 +17,8 @@
 #ifndef MAILVIEWMODEL_H
 #define MAILVIEWMODEL_H
 
+class AccountList;
+
 //Qt Headers
 #include <QAbstractItemModel>
 

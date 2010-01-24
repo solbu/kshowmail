@@ -36,6 +36,7 @@ class Account;
 #include <KPasswordDialog>
 #include <kcodecs.h>
 #include <ktcpsocket.h>
+#include <KApplication>
 
 //KShowmail headers
 #include "mail.h"
@@ -48,6 +49,8 @@ class Account;
 #include "corruptdataexception.h"
 #include "headerfilter.h"
 #include "filterlog.h"
+#include "showmaildialog.h"
+#include "kshowmail.h"
 
 /**
  * @brief Constants of the POP3 protocol
