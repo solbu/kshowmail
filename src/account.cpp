@@ -15,6 +15,7 @@
 */
 
 #include "./account.h"
+#include "maillist.h"
 
 Account::Account( QString name, AccountList* accountList, QObject* parent ) 
 	: QObject( parent )
@@ -1583,6 +1584,8 @@ void Account::slotBodyDownloaded()
   QString tdate = mails->getDateOf( currentMail );
   QString tsize = mails->getSizeOf( currentMail );
   QString tsubject = mails->getSubjectOf( currentMail );
+
+  kdDebug() << "Charset: " << mails->getCharsetOf( currentMail ) << endl;
 
 	//emit signal to notify the opening of a window
   emit sigMessageWindowOpened();

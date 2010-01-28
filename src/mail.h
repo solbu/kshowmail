@@ -227,6 +227,34 @@ class Mail : public QObject
      */
     bool isMarkedByFilter() const;
 
+    /**
+     * Decodes the given mail body.
+     * The mail object has to do this job, because
+     * it has stored the mail header and therefore it knows the content
+     * type and encoding of the mail.
+     * It decodes just the text or html part of the body. The rest of it
+     * will be rejected.
+     * @param body the encoded mail (including header)
+     * @param preferHTML decode HTML part if present
+     * @return decoded mail body
+     */
+    QStringList decodeMailBody( QStringList body, bool preferHTML ) const;
+
+    /**
+     * Returns the boundary, if the mail has a multi part body.
+     * Otherwise it returns an empty string.
+     * @return boundary
+     */
+    QString getBoundary() const;
+
+    /**
+     * Returns the char set of the content (e.g. iso-8859-1).
+     * If no char set is denoted, it will returns an empty string.
+     * @return charset
+     */
+    QString getCharset() const;
+
+
     
 	private:
 		

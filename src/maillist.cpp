@@ -408,3 +408,24 @@ QString MailList::getSubjectOf( int number ) const
 
 }
 
+QString MailList::getCharsetOf( int number ) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+  QString charset;                                //subject of the wanted mail
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+
+    //if the current mail has the given number, get the subject
+    if( mail->getNumber() == number )
+    {
+      charset = mail->getCharset();
+      found = true;
+    }
+  }
+  return charset;
+
+}

@@ -293,7 +293,6 @@ QString Mail::decodeRfc2047( const QString& text ) const
         {
           out.append( decOutput );
           iterOut = decOutput.begin();
-          kdDebug() << out << endl;
         }
       }
       while( !decoder->finish( iterOut, decOutput.end() ) )
@@ -302,21 +301,22 @@ QString Mail::decodeRfc2047( const QString& text ) const
         {
           out.append( decOutput );
           iterOut = decOutput.begin();
-          kdDebug() << "in Finish:" << out << endl;
         }
       }
       decOutput.resize( iterOut - decOutput.begin() );
       out.append( decOutput );
 
-      //transform it to unicode if necessary
-      if( !charset.toLower().startsWith( "utf") )
-      {
-        QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
-        if( codec != NULL )
-        {
-          out = codec->toUnicode( out.toLocal8Bit() );
-        }
-      }
+      //Ich glaub, dass kann weg
+
+//       //transform it to unicode if necessary
+//       if( !charset.toLower().startsWith( "utf") )
+//       {
+//         QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
+//         if( codec != NULL )
+//         {
+//           out = codec->toUnicode( out.toLocal8Bit() );
+//         }
+//       }
 
       //append the decoded part to the target string
       decodedText.append( out );
@@ -423,4 +423,230 @@ bool Mail::isMarkedByFilter() const
 {
   return markedByFilter;
 }
+
+QStringList Mail::decodeMailBody( QStringList body, bool preferHTML ) const
+{
+  QString charset;    //charset of the content
+  QString encoding;   //content transfer encoding
+
+  //get boundary that is separating the parts of a multipart message
+  //if the header doesn't contain a boundary attribute, this messsage
+  //has just one part
+  QString boundary = getBoundary();
+
+  return QStringList();
+
+/*  //process body subject to it is a multipart messsage or not
+  if( boundary == "" )
+  {
+    //the message has just one body part
+
+    //get the position of the first blank line
+    int posBlankLine = strBody.find( "\n\n" );
+
+    //truncate body; the found blank line is separating the
+    //header from the message
+    strBody = strBody.mid( posBlankLine + 2 );
+    if( !strBody.isEmpty() )    //fixed bug 1773636
+      while( strBody[ 0 ] == '\n')
+        strBody.remove( 0, 1 );
+
+
+    //get charset of the message; it is behind the
+    //content type attribute in the header
+    charset = getCharset();
+
+    //get transfer encoding type from the header
+    encoding = getTransferEncoding();
+  }
+  else
+  {
+    //the message has multiple parts
+
+    //get positions of a plain text and html flag (value of the content type attribute)
+    int posPlainFlag = strBody.find( "text/plain", 0, false );
+    int posHTMLFlag = strBody.find( "text/html", 0, false );
+
+    //just decode the body, if a plain text or a HTML part is available
+    if( posPlainFlag != -1 || posHTMLFlag != -1 )
+    {
+      //do we want to take the HTML part?
+      bool hasHTML = posHTMLFlag != -1;
+      bool takeHTML = ( hasHTML && preferHTML ) || posPlainFlag == -1;
+
+      //now we want to extract the designated part
+      //While the (truncated) mail text (or the header at the first pass)
+      //contains a boundary attribute we will extract the designated part
+      //between the boundaries
+      int posInside;    //a position inside the designated part
+      while( boundary != "" )
+      {
+        //get a position inside the designated part
+        if( takeHTML )
+          posInside = strBody.find( "text/html", 0, false );
+        else
+          posInside = strBody.find( "text/plain", 0, false );
+
+        //get length of the boundary
+        int lengthBoundary = boundary.length();
+
+        //calculate the begin and end of the part to extract
+        int beginPart = strBody.findRev( boundary.ascii(), posInside ) + lengthBoundary + 1;
+        int lengthPart = strBody.findRev( '\n', strBody.find( boundary.ascii(), posInside ) ) - beginPart;
+
+        strBody = strBody.mid( beginPart, lengthPart );
+
+        //looking for a further boundary attribute
+        //get the position of the first occurance of "boundary="
+        int posBoundary = strBody.find( "boundary=", 0, false );
+
+        if( posBoundary >= 0 )
+        {
+          //calculate positon of the first quote
+          int posFirstQuote = posBoundary + 9;
+
+          //get the position of closing quote
+          int posSecondQuote = strBody.find( '"', posFirstQuote + 1 );
+
+          //get boundary string
+          boundary.append( strBody.mid( posFirstQuote + 1, posSecondQuote - posFirstQuote - 1 ) );
+        }
+        else
+          boundary = "";
+      }
+
+      //now we get charset and transfer encoding if available in the extracted
+      //part
+
+      //get the position of the first occurance of "charset="
+      int posCharset = strBody.find( "charset=", 0, false );
+
+      //continue, if a charset attribute was found
+      if( posCharset >= 0 )
+      {
+        //calculate positon of the value
+        int posBeginValue = posCharset + 8;
+
+        //get end of the value
+        int posEndValue = strBody.find( '\n', posBeginValue ) - 1;
+
+        //get charset
+        charset.append( strBody.mid( posBeginValue, posEndValue - posBeginValue + 1 ) );
+
+        //remove quotes
+        charset.remove( '"' );
+        //remove all content after the first semicolon (inclusive)
+        int posSemicolon = charset.find( ';' );
+        charset = charset.left( posSemicolon );
+      }
+
+      //get the position of the first occurance of "charset="
+      int posEncoding = strBody.find( "Content-Transfer-Encoding:", 0, false );
+
+      //continue, if a charset attribute was found
+      if( posEncoding >= 0 )
+      {
+        //calculate positon of the value
+        int posBeginValue = posEncoding + 26;
+
+        //get end of the value
+        int posEndValue = strBody.find( '\n', posBeginValue ) - 1;
+
+        //get charset
+        encoding.append( strBody.mid( posBeginValue, posEndValue - posBeginValue + 1 ) );
+
+        //remove quotes and spaces
+        encoding = encoding.stripWhiteSpace();
+        encoding.remove( '"' );
+      }
+
+      //cut off the part header; the found blank line is separating the
+      //part header from the message
+      if( posCharset != -1 || posEncoding != -1 )
+      {
+        int posBlankLine = strBody.find( "\n\n" );
+        strBody = strBody.mid( posBlankLine + 2 );
+        if( !strBody.isEmpty() )  //fixed bug 1773636
+          while( strBody[ 0 ] == '\n')
+            strBody.remove( 0, 1 );
+      }
+    }
+  }
+
+  //Good things come to those who wait. We have extract the message.
+  //Now we have to decode the message, if it is encoded
+  if( encoding == "quoted-printable" && !strBody.isEmpty() )  //fixed bug 1773636
+  {
+    strBody = KCodecs::quotedPrintableDecode( strBody );
+  }
+
+  return QString( strBody );*/
+}
+
+QString Mail::getBoundary( ) const
+{
+  QString boundary;
+
+  //check, whether it is a multipart message
+  if( contentType.contains( "multipart", Qt::CaseInsensitive ) )
+  {
+    //it is a multipart message
+
+    //get the line with "boundary="
+    QStringList boundaries = header.filter( "boundray=", Qt::CaseInsensitive );
+    if( boundaries.isEmpty() ) return boundary;
+    QString boundLine = boundaries.first();
+
+    //get the position of the first occurance of "boundary="
+    int posBoundary = boundLine.indexOf( "boundary=", 0, Qt::CaseInsensitive );
+
+    //continue, if a boundary attribute was found
+    if( posBoundary >= 0 )
+    {
+      //calculate positon of the first quote
+      int posFirstQuote = posBoundary + 9;
+
+      //get the position of closing quote
+      int posSecondQuote = boundLine.indexOf( '"', posFirstQuote + 1 );
+
+      //get boundary string
+      boundary.append( boundLine.mid( posFirstQuote + 1, posSecondQuote - posFirstQuote - 1 ) );
+    }
+  }
+
+  return boundary;
+}
+
+QString Mail::getCharset( ) const
+{
+  QString charset;
+  const QString TAG( "charset=" );
+
+  //get the line with "charset="
+  QStringList charsets = header.filter( TAG, Qt::CaseInsensitive );
+  if( charsets.isEmpty() ) return charset;
+  QString charsetline = charsets.first();
+
+  //get the position of the first occurance of "charset="
+  int posCharset = charsetline.indexOf( TAG, 0, Qt::CaseInsensitive );
+
+  //continue, if a charset attribute was found
+  if( posCharset != -1 )
+  {
+    //if the charset quoted?
+    int posFirstQuote = charsetline.indexOf( '"', 0, Qt::CaseInsensitive );
+    if( posFirstQuote != -1 && posFirstQuote <= posCharset + TAG.length() +  )
+    //calculate positon of the first quote
+    int posStart = posCharset + 8;
+
+    //get the position of closing quote
+    int posEnd = charsetline.indexOf( ';', posStart + 1 );
+
+    //get boundary string
+    charset.append( charsetline.mid( posStart + 1, posEnd - posStart - 1 ) );
+  }
+  
+  return charset;
+}
+
 

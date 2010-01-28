@@ -212,7 +212,13 @@ class MailList : public QObject
      */
     QString getSubjectOf( int number ) const;
 
-
+    /**
+     * Returns the charset of the mail with the given number.
+     * @param number mail number
+     * @return charset
+     */
+    QString getCharsetOf( int number ) const;
+    
 
   private:
 
