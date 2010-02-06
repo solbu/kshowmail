@@ -153,6 +153,31 @@ QString Mail::scanHeader(const QString & item) const
   return "";
 }
 
+QString Mail::scanBodyPart( const QStringList& part, const QString& item ) const {
+
+  //behind the keyword there is a : and a blank
+  QString _item( item );
+  _item.append( ": " );
+
+  //searching for the keyword
+  QListIterator<QString> it( part );
+  while( it.hasNext() ) {
+
+    QString line = it.next();
+    if( line.startsWith( _item ) )
+    {
+      //remove the keyword from the line and remove the remained chars
+      int lengthKeyword = _item.length();
+      return line.remove( 0, lengthKeyword );
+    }
+  }
+
+  //we have nothing found
+  return "";
+
+}
+
+
 void Mail::setSubject( const QString & subject )
 {
   this->subject = decodeRfc2047( subject );
@@ -306,18 +331,6 @@ QString Mail::decodeRfc2047( const QString& text ) const
       decOutput.resize( iterOut - decOutput.begin() );
       out.append( decOutput );
 
-      //Ich glaub, dass kann weg
-
-//       //transform it to unicode if necessary
-//       if( !charset.toLower().startsWith( "utf") )
-//       {
-//         QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
-//         if( codec != NULL )
-//         {
-//           out = codec->toUnicode( out.toLocal8Bit() );
-//         }
-//       }
-
       //append the decoded part to the target string
       decodedText.append( out );
       
@@ -424,53 +437,113 @@ bool Mail::isMarkedByFilter() const
   return markedByFilter;
 }
 
-QStringList Mail::decodeMailBody( QStringList body, bool preferHTML ) const
+QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) const
 {
   QString charset;    //charset of the content
   QString encoding;   //content transfer encoding
+  QStringList decodedBody;
 
   //get boundary that is separating the parts of a multipart message
   //if the header doesn't contain a boundary attribute, this messsage
   //has just one part
   QString boundary = getBoundary();
+  kdDebug() << "Boundary: " << boundary << endl;
 
-  return QStringList();
-
-/*  //process body subject to it is a multipart messsage or not
+  //process body subject to it is a multipart messsage or not
   if( boundary == "" )
   {
     //the message has just one body part
 
     //get the position of the first blank line
-    int posBlankLine = strBody.find( "\n\n" );
+    int posBlankLine = body.indexOf( "" );
 
     //truncate body; the found blank line is separating the
     //header from the message
-    strBody = strBody.mid( posBlankLine + 2 );
-    if( !strBody.isEmpty() )    //fixed bug 1773636
-      while( strBody[ 0 ] == '\n')
-        strBody.remove( 0, 1 );
+    if( posBlankLine != -1 && !body.isEmpty() && body.size() > posBlankLine + 1 ) {
+      decodedBody = body.mid( posBlankLine + 1 );
+    }
 
 
     //get charset of the message; it is behind the
     //content type attribute in the header
-    charset = getCharset();
+    charset = getCharsetFromHeader();
 
     //get transfer encoding type from the header
-    encoding = getTransferEncoding();
+    encoding = getTransferEncodingFromHeader();
+    
   }
   else
   {
     //the message has multiple parts
 
-    //get positions of a plain text and html flag (value of the content type attribute)
-    int posPlainFlag = strBody.find( "text/plain", 0, false );
-    int posHTMLFlag = strBody.find( "text/html", 0, false );
+    //have we got a plain text or html part?
+    bool hasPlaintText = !body.filter( "text/plain", Qt::CaseInsensitive ).isEmpty();
+    bool hasHTML = !body.filter( "text/html", Qt::CaseInsensitive ).isEmpty();
 
     //just decode the body, if a plain text or a HTML part is available
-    if( posPlainFlag != -1 || posHTMLFlag != -1 )
+    if( hasPlaintText || hasHTML )
     {
-      //do we want to take the HTML part?
+
+      //get the position of the first blank line
+      int posBlankLine = body.indexOf( "" );
+
+      //truncate body; the found blank line is separating the
+      //header from the message
+      if( posBlankLine != -1 && !body.isEmpty() && body.size() > posBlankLine + 1 ) {
+        decodedBody = body.mid( posBlankLine + 1 );
+      }
+
+      if( decodedBody.isEmpty() ) return body;
+      
+      //split the body into its parts
+      QList<QStringList> bodyParts;
+      QListIterator<QString> itBody( decodedBody );
+
+      //in the body the boundary has "--" in front
+      boundary = "--" + boundary;
+      
+      //the first line must be the boundary
+      QString line = itBody.next();
+      if( line != boundary ) return body;
+
+      QStringList part; //contains the current part
+
+      while( itBody.hasNext() ) {
+
+        //get next line
+        line = itBody.next();
+
+        if( line != boundary ) {
+
+          //it is not a boundary
+          part.append( line );
+
+        } else {
+
+          //it is a boundary
+          //append the part to the part list and create a new (empty) part
+          bodyParts.append( part );
+          part = QStringList();
+        }
+        
+      }
+
+      QListIterator<QStringList> itParts( bodyParts );
+      while( itParts.hasNext() ) {
+
+        QStringList part = itParts.next();
+
+        QListIterator<QString> itPart( part );
+        while( itPart.hasNext() ) {
+
+          kdDebug() << itPart.next() << endl;
+        }
+
+        kdDebug() << "************************" << endl;
+      }
+      
+      
+/*      //do we want to take the HTML part?
       bool hasHTML = posHTMLFlag != -1;
       bool takeHTML = ( hasHTML && preferHTML ) || posPlainFlag == -1;
 
@@ -569,22 +642,94 @@ QStringList Mail::decodeMailBody( QStringList body, bool preferHTML ) const
         if( !strBody.isEmpty() )  //fixed bug 1773636
           while( strBody[ 0 ] == '\n')
             strBody.remove( 0, 1 );
-      }
+      }*/
     }
   }
 
   //Good things come to those who wait. We have extract the message.
-  //Now we have to decode the message, if it is encoded
-  if( encoding == "quoted-printable" && !strBody.isEmpty() )  //fixed bug 1773636
-  {
-    strBody = KCodecs::quotedPrintableDecode( strBody );
+  //Now we have to decode the message, if it is encoded.
+
+  //join the body
+  QString joinedBody = decodedBody.join( "\n" );
+
+
+  if( encoding != "" ) {
+
+    //get the codec
+    KMime::Codec* codec = KMime::Codec::codecForName( encoding.toAscii() );
+
+    if( codec != NULL ) {
+
+      //create decoder
+      KMime::Decoder *decoder = codec->makeDecoder();
+
+      //the KMime decoders work on Byte-Arrays
+      //copy the input string into a byte array
+      QByteArray decInput;
+      decInput.append( joinedBody );
+      QByteArray::ConstIterator iterIn = decInput.begin();
+
+      //this is the byte array for the decoder output
+      QByteArray decOutput( 256, '\0');
+      QByteArray::Iterator iterOut = decOutput.begin();
+
+      //in this we build the string to return
+      QString out;
+
+      //Lets go!
+      while( !decoder->decode( iterIn, decInput.end(), iterOut, decOutput.end() ) )
+      {
+        if( iterOut == decOutput.end() )
+        {
+          out.append( decOutput );
+          iterOut = decOutput.begin();
+        }
+      }
+      while( !decoder->finish( iterOut, decOutput.end() ) )
+      {
+        if( iterOut == decOutput.end() )
+        {
+          out.append( decOutput );
+          iterOut = decOutput.begin();
+        }
+      }
+      decOutput.resize( iterOut - decOutput.begin() );
+      out.append( decOutput );
+
+
+      joinedBody = out;
+    }
+
+
   }
 
-  return QString( strBody );*/
+  //apply charset
+  if( charset != "" ) {
+
+    //get codec
+    QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
+    
+    if( codec != NULL )
+    {
+      joinedBody = codec->toUnicode( joinedBody.toAscii() );
+    }
+
+  }
+
+  //split the body to a string list
+  decodedBody = joinedBody.split( "\n" );
+
+
+  kdDebug() << "Charset: " << charset << endl;
+  kdDebug() << "Transfer Encoding: " << encoding << endl;
+
+  return decodedBody;
 }
 
 QString Mail::getBoundary( ) const
 {
+  const QString TAG( "boundary=" );
+
   QString boundary;
 
   //check, whether it is a multipart message
@@ -593,18 +738,18 @@ QString Mail::getBoundary( ) const
     //it is a multipart message
 
     //get the line with "boundary="
-    QStringList boundaries = header.filter( "boundray=", Qt::CaseInsensitive );
+    QStringList boundaries = header.filter( TAG, Qt::CaseInsensitive );
     if( boundaries.isEmpty() ) return boundary;
     QString boundLine = boundaries.first();
 
     //get the position of the first occurance of "boundary="
-    int posBoundary = boundLine.indexOf( "boundary=", 0, Qt::CaseInsensitive );
+    int posBoundary = boundLine.indexOf( TAG, 0, Qt::CaseInsensitive );
 
     //continue, if a boundary attribute was found
     if( posBoundary >= 0 )
     {
       //calculate positon of the first quote
-      int posFirstQuote = posBoundary + 9;
+      int posFirstQuote = posBoundary + TAG.length();
 
       //get the position of closing quote
       int posSecondQuote = boundLine.indexOf( '"', posFirstQuote + 1 );
@@ -617,13 +762,18 @@ QString Mail::getBoundary( ) const
   return boundary;
 }
 
-QString Mail::getCharset( ) const
+QString Mail::getCharsetFromHeader( ) const
 {
+  return getCharset( header );
+}
+
+QString Mail::getCharset( const QStringList& text ) const {
+
   QString charset;
   const QString TAG( "charset=" );
 
   //get the line with "charset="
-  QStringList charsets = header.filter( TAG, Qt::CaseInsensitive );
+  QStringList charsets = text.filter( TAG, Qt::CaseInsensitive );
   if( charsets.isEmpty() ) return charset;
   QString charsetline = charsets.first();
 
@@ -635,18 +785,43 @@ QString Mail::getCharset( ) const
   {
     //if the charset quoted?
     int posFirstQuote = charsetline.indexOf( '"', 0, Qt::CaseInsensitive );
-    if( posFirstQuote != -1 && posFirstQuote <= posCharset + TAG.length() +  )
-    //calculate positon of the first quote
-    int posStart = posCharset + 8;
+    if( posFirstQuote != -1 && posFirstQuote == posCharset + TAG.length() )
+    {
+      //yes it is quoted
 
-    //get the position of closing quote
-    int posEnd = charsetline.indexOf( ';', posStart + 1 );
+      //get the position of closing quote
+      int posLastQuote = charsetline.indexOf( '"', posFirstQuote + 1, Qt::CaseInsensitive );
 
-    //get boundary string
-    charset.append( charsetline.mid( posStart + 1, posEnd - posStart - 1 ) );
+      if( posLastQuote != - 1 )
+      {
+        //get the string
+        charset = charsetline.mid( posFirstQuote + 1, posLastQuote - posFirstQuote - 1 );
+      }
+    }
+    else
+    {
+      //if the charset is not quoted
+    }
+
   }
-  
+
   return charset;
+
+  
 }
 
+QString Mail::getTransferEncodingFromHeader() const {
 
+  return scanHeader( "Content-Transfer-Encoding" );
+}
+
+QString Mail::getTransferEncoding( const QStringList& text ) const {
+
+  const QString TAG( "Content-Transfer-Encoding" );
+
+  return scanBodyPart( text, TAG );
+
+  
+  
+
+}

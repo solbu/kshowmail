@@ -238,7 +238,7 @@ class Mail : public QObject
      * @param preferHTML decode HTML part if present
      * @return decoded mail body
      */
-    QStringList decodeMailBody( QStringList body, bool preferHTML ) const;
+    QStringList decodeMailBody( const QStringList& body, bool preferHTML ) const;
 
     /**
      * Returns the boundary, if the mail has a multi part body.
@@ -248,12 +248,18 @@ class Mail : public QObject
     QString getBoundary() const;
 
     /**
-     * Returns the char set of the content (e.g. iso-8859-1).
+     * Returns the char set of the content (e.g. iso-8859-1) from the header.
      * If no char set is denoted, it will returns an empty string.
      * @return charset
      */
-    QString getCharset() const;
+    QString getCharsetFromHeader() const;
 
+    /**
+     * Returns the transfer encoding string from the header if existing.
+     * Otherwise it returns an empty string.
+     * @return transfer encoding
+     */
+    QString getTransferEncodingFromHeader() const;
 
     
 	private:
@@ -336,10 +342,40 @@ class Mail : public QObject
     QString scanHeader( const QString& item ) const;
 
     /**
+     * Searches in the given body part for a line which starts with the
+     * given item.
+     * For example:
+     * scanBodyPart( "Content-Transfer-Encoding") will find the line
+     * "Content-Transfer-Encoding: 7bit"
+     * and returns "7bit"
+     * Returns an empty string (""), if nothing was found.
+     * @param part the body part
+     * @param item the search item
+     * @return the content of the found line
+     */
+    QString scanBodyPart( const QStringList& part, const QString& item ) const;
+
+    /**
      * Decodes a rfc2047 encoded string
      */
     QString decodeRfc2047( const QString& text ) const;
+
+    /**
+     * Returns the charset of the given header or body part.<p>
+     * It looks for the charset tag and returns the string behind this.
+     * @param text body part or header
+     * @return charset string
+     */
+    QString getCharset( const QStringList& text ) const;    
 		
+    /**
+     * Returns the transfer encoding of the given header or body part.<p>
+     * It looks for the transfer encoding tag and returns the string behind this.
+     * @param text body part or header
+     * @return charset string
+     */
+    QString getTransferEncoding( const QStringList& text ) const;
+
 };
 
 #endif // MAIL_H

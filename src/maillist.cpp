@@ -408,7 +408,7 @@ QString MailList::getSubjectOf( int number ) const
 
 }
 
-QString MailList::getCharsetOf( int number ) const
+QString MailList::getCharsetFromHeaderOf( int number ) const
 {
   QListIterator<Mail*> it( mails );   //iterator for the mail list
   bool found = false;                             //True, when the wanted mail was found
@@ -422,10 +422,34 @@ QString MailList::getCharsetOf( int number ) const
     //if the current mail has the given number, get the subject
     if( mail->getNumber() == number )
     {
-      charset = mail->getCharset();
+      charset = mail->getCharsetFromHeader();
       found = true;
     }
   }
   return charset;
 
 }
+
+QStringList MailList::decodeMailBody( const QStringList& body, int number, bool preferHTML ) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() )
+  {
+
+    Mail* mail = it.next();
+    
+    //if the current mail has the given number, decode the mail
+    if( mail->getNumber() == number )
+    {
+      return mail->decodeMailBody( body, preferHTML );
+    }
+  }
+
+  //nothing found
+  return QStringList();
+
+}
+
+

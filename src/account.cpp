@@ -1574,24 +1574,36 @@ void Account::slotBodyDownloaded()
     return;
   }
 
+  //remove first and last line of the response
+  //this are the state and the end of response marker
+  //we don't need it
+  removeStatusIndicator( &answer );
+  removeEndOfResponseMarker( &answer );
+
 
   //succesful download
   //show mail
+
+  //is HTML allowed?
+  KConfigGroup* configView = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
+  bool allowHTML = configView->readEntry( CONFIG_ENTRY_VIEW_USE_HTML, DEFAULT_VIEW_USE_HTML );
+
   
   int currentMail = mailsToShow.first();
+  
  
   QString tsender = mails->getSenderOf( currentMail );
   QString tdate = mails->getDateOf( currentMail );
   QString tsize = mails->getSizeOf( currentMail );
   QString tsubject = mails->getSubjectOf( currentMail );
+  QStringList body = mails->decodeMailBody( answer, currentMail, allowHTML );
 
-  kdDebug() << "Charset: " << mails->getCharsetOf( currentMail ) << endl;
 
 	//emit signal to notify the opening of a window
   emit sigMessageWindowOpened();
 
   //create and open the window
-  ShowMailDialog dlg( kapp->activeWindow(), getName(), false, tsender, tdate, tsize, tsubject, answer );
+  ShowMailDialog dlg( kapp->activeWindow(), getName(), false, tsender, tdate, tsize, tsubject, body );
   int ret = dlg.exec();
 
 	//emit signal to notify the closing of a window

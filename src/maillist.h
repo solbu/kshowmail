@@ -217,8 +217,23 @@ class MailList : public QObject
      * @param number mail number
      * @return charset
      */
-    QString getCharsetOf( int number ) const;
-    
+    QString getCharsetFromHeaderOf( int number ) const;
+
+    /**
+     * Decodes the given mail body by the appropriate mail object.
+     * The mail object has to do this job, because
+     * it has stored the mail header and therefore it knows the content
+     * type and encoding of the mail.
+     * It decodes just the text or html part of the body. The rest of it
+     * will be rejected.
+     * @param body the whole mail (including header)
+     * @param number number of the downloaded mail
+     * @param preferHTML decode HTML part if present
+     * @return decoded mail body
+     */
+    QStringList decodeMailBody( const QStringList& body, int number, bool preferHTML ) const;
+
+
 
   private:
 
