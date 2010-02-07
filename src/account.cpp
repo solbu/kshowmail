@@ -1670,170 +1670,165 @@ void Account::doDownloadActions()
 void Account::getNextMailForDownloadActions()
 {
     //if the list of mails to move is empty return to applyFilters
-//   if( mailsToDownload.empty() )
-//   {
-//     applyFilters();
-//     return;
-//   }
+  if( mailsToDownload.empty() )
+  {
+    applyFilters();
+    return;
+  }
 
-  applyFilters(); //remove it!
 
-//   //clear the class variable mailbody, which contains the downloaded mail body
-//   mailbody.resize( 0 );
-// 
-//   //start job
-//   startKIOJob( QString( "/download/%1" ).arg( MailsToDownload.begin().key() ) );
-//   connect( pop3Job, SIGNAL( data( KIO::Job*, const QByteArray & ) ), SLOT( slotDataMailBody( KIO::Job*, const QByteArray & ) ) );
-//   connect( pop3Job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotMailDownloadedForAction( KIO::Job* ) ) );
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailDownloadedForAction() ) );
+
+  //send download command
+  sendCommand( GET_MAIL + " " + QString( "%1" ).arg( mailsToShow.first() ) );
 
 }
 
 void Account::slotMailDownloadedForAction()
 {
-//   //stop timeout timer
-//   pop3Timer->stop();
-// 
-//   //check for errors
-//   //if an error has occured, the download will be canceled
-//   //or will ask for a new password
-//   if( job->error() == KIO::ERR_COULD_NOT_LOGIN )
-//   {
-//     //login failed, ask for a new password
-//     job->showErrorDialog();
-//     bool res = assertPassword( true );
-//     if( res == false )
-//     {
-//       //we have not got a new password; cancel delete
-//       applyFilters();
-//       return;
-//     }
-//     //if we have got a new password, jump to the end of the if-statement
-//   }
-//   else if( job->error() != 0 )
-//   {
-//     job->showErrorDialog();
-//     applyFilters();
-//     return;
-//   }
-//   else
-//   {
-//     //succesful download
-//     //do action
-//     MailToDownloadMap_Type::Iterator firstMail = MailsToDownload.begin();
-//     int currentMailNumber = firstMail.key();  //get mail number
-//     QString currentMailBox( firstMail.data().mailbox ); //get mailbox
-//     QString mail( mailbody );                 //convert mailtext
-//     FilterAction_Type action = firstMail.data().action; //get action
-// 
-//     bool resultMove = false;    //TRUE - mail is written into the mailbox
-//     bool resultSpam = false;  //TRUE - mail is Spam
-//     bool deleteIt = false;    //TRUE - mail shall be deleted
-//     bool resultAction = false;  //True - the action was succesful performed
-// 
-//     switch( action )
-//     {
-//       case FActMove       : resultMove = writeToMailBox( mail, currentMailBox );
-//                             //log entry is made by ShowRecordElem::applyHeaderFilter
-//                             if( resultMove == true )
+
+    //get the response
+  QStringList mail = readfromSocket( NULL, false );
+
+  //no response from the server
+  if( mail.isEmpty() )
+  {
+    handleError( i18n( "%1 has not sent a answer after retrieve of mail %2.").arg( getHost() ).arg( mailsToShow.first() ) );
+    finishTask();
+    return;
+  }
+
+  //it is a negative response?
+  if( !isPositiveServerMessage( mail ) )
+  {
+    handleError( i18n( "Error while downloading mail %1 of %2: %3" ).arg( mailsToShow.first() ).arg( getName() ).arg( mail.first() ) );
+    return;
+  }
+
+  //remove first and last line of the response
+  //this are the state and the end of response marker
+  //we don't need it
+  removeStatusIndicator( &mail );
+  removeEndOfResponseMarker( &mail );
+
+  //succesful download
+
+  //do action
+  MailToDownloadMap_Type::Iterator firstMail = mailsToDownload.begin();
+  int currentMailNumber = firstMail.key();  //get mail number
+  QString currentMailBox( firstMail.value().mailbox ); //get mailbox
+
+  FilterAction_Type action = firstMail.value().action; //get action
+
+  bool resultMove = false;    //TRUE - mail is written into the mailbox
+  bool resultSpam = false;  //TRUE - mail is Spam
+  bool deleteIt = false;    //TRUE - mail shall be deleted
+  bool resultAction = false;  //True - the action was succesful performed
+
+  switch( action )
+  {
+    case FActMove       : resultMove = writeToMailBox( mail, currentMailBox );
+                          //log entry is made by Mail::applyHeaderFilter
+                          if( resultMove == true )
+                          {
+                            nmbMovedMailsLastRefresh++;
+                            nmbMovedMailsLastStart++;
+
+                            resultAction = true;
+                            deleteIt = true;
+                          }
+                          else
+                          {
+                            resultAction = false;
+                            deleteIt = false;
+                          }
+                          break;
+
+//     case FActSpamcheck  : resultSpam = isSpam( mailbody );  //it is spam?
+//                           if( resultSpam == true )          //yes, it is spam! Arrgghh! Torture it!!!
+//                           {
+//                             switch( appConfig->getSpamAction() )
 //                             {
-//                               nmbMovedMailsLastRefresh++;
-//                               nmbMovedMailsLastStart++;
+//                               case FActMove   : resultMove = writeToMailBox( mail, appConfig->getSpamMailbox() );
+//                                                 if( resultMove == true )
+//                                                 {
+//                                                   nmbMovedMailsLastRefresh++;
+//                                                   nmbMovedMailsLastStart++;
 // 
-//                               resultAction = true;
-//                               deleteIt = true;
-//                             }
-//                             else
-//                             {
-//                               resultAction = false;
-//                               deleteIt = false;
-//                             }
-//                             break;
-// 
-//       case FActSpamcheck  : resultSpam = isSpam( mailbody );  //it is spam?
-//                             if( resultSpam == true )          //yes, it is spam! Arrgghh! Torture it!!!
-//                             {
-//                               switch( appConfig->getSpamAction() )
-//                               {
-//                                 case FActMove   : resultMove = writeToMailBox( mail, appConfig->getSpamMailbox() );
-//                                                   if( resultMove == true )
-//                                                   {
-//                                                     nmbMovedMailsLastRefresh++;
-//                                                     nmbMovedMailsLastStart++;
-// 
-//                                                     if( FLog != NULL )
-//                                                       m_pshowrecord->writeToMoveLog( FLog, currentMailNumber, getAccountName(), appConfig->getSpamMailbox() );
-//                                                     resultAction = true;
-//                                                     deleteIt = true;
-//                                                   }
-//                                                   else
-//                                                   {
-//                                                     resultAction = false;
-//                                                     deleteIt = false;
-//                                                   }
-//                                                   break;
-// 
-//                                 case FActMark   : m_pshowrecord->setMarkAtNextViewRefresh( currentMailNumber );
-//                                                   resultAction = true;
-//                                                   deleteIt = false;
-//                                                   break;
-// 
-//                                 case FActDelete : if( FLog != NULL )
-//                                                     m_pshowrecord->writeToDeleteLog( FLog, currentMailNumber, getAccountName() );
-// 
-//                                                   nmbDeletedMailsLastRefresh++;
-//                                                   nmbDeletedMailsLastStart++;
+//                                                   if( FLog != NULL )
+//                                                     m_pshowrecord->writeToMoveLog( FLog, currentMailNumber, getAccountName(), appConfig->getSpamMailbox() );
 //                                                   resultAction = true;
 //                                                   deleteIt = true;
-//                                                   break;
-// 
-//                                 default         : kdError() << "invalid action for spam mail" << endl;
+//                                                 }
+//                                                 else
+//                                                 {
 //                                                   resultAction = false;
 //                                                   deleteIt = false;
-//                                                   break;
+//                                                 }
+//                                                 break;
 // 
-//                               }
+//                               case FActMark   : m_pshowrecord->setMarkAtNextViewRefresh( currentMailNumber );
+//                                                 resultAction = true;
+//                                                 deleteIt = false;
+//                                                 break;
+// 
+//                               case FActDelete : if( FLog != NULL )
+//                                                   m_pshowrecord->writeToDeleteLog( FLog, currentMailNumber, getAccountName() );
+// 
+//                                                 nmbDeletedMailsLastRefresh++;
+//                                                 nmbDeletedMailsLastStart++;
+//                                                 resultAction = true;
+//                                                 deleteIt = true;
+//                                                 break;
+// 
+//                               default         : kdError() << "invalid action for spam mail" << endl;
+//                                                 resultAction = false;
+//                                                 deleteIt = false;
+//                                                 break;
+// 
 //                             }
-//                             else    //mail is not spam
-//                             {
-//                               resultAction = true;
-//                               deleteIt = false;
-//                             }
-//                             break;
-// 
-//       default             : deleteIt = false;
-//                             resultAction = false;
-// 
-//     }
-// 
-//     if( resultAction == true )
-//     {
-//       //Action was successful
-//       //remove this mail from the list
-//       MailsToDownload.remove( firstMail );
-// 
-//       //maybe add this mail to list of mails to delete
-//       if( deleteIt )
-//         MailsToDelete.append( currentMailNumber );
-//     }
-//     else
-//     {
-//       //Action was not successful
-//       //returns to applyFilters() to continue the filtering
-//       applyFilters();
-//       return;
-//     }
-// 
-// 
-//     //if the list of mails is empty, return to applyFilters() to continue the filtering
-//     if( MailsToDownload.empty() )
-//     {
-//       applyFilters();
-//       return;
-//     }
-//   }
-// 
+//                           }
+//                           else    //mail is not spam
+//                           {
+//                             resultAction = true;
+//                             deleteIt = false;
+//                           }
+//                           break;
 
-  //show next mail in list
+    default             : deleteIt = false;
+                          resultAction = false;
+
+  }
+
+  if( resultAction == true )
+  {
+    //Action was successful
+    //remove this mail from the list
+    mailsToDownload.remove( firstMail.key() );
+
+    //maybe add this mail to list of mails to delete
+    if( deleteIt )
+      mailsToDelete.append( currentMailNumber );
+  }
+  else
+  {
+    //Action was not successful
+    //returns to applyFilters() to continue the filtering
+    applyFilters();
+    return;
+  }
+
+
+  //if the list of mails is empty, return to applyFilters() to continue the filtering
+  if( mailsToDownload.empty() )
+  {
+    applyFilters();
+    return;
+  }
+
+  //get next mail in list
   getNextMailForDownloadActions();
 }
 
@@ -1920,5 +1915,98 @@ void Account::showMails()
   //connect
   doConnect();
 
+}
+
+bool Account::writeToMailBox( const QStringList& mail, const QString& box )
+{
+  QDir mailDir( box );
+
+  //check whether the given path is a maildir
+  if( !isMailDir( mailDir ) )
+  {
+    //show an error message
+    KMessageBox::error( NULL, i18n( "%1 is not a mailbox." ).arg( box ) );
+    return false;
+  }
+
+  //create unique file name according http://cr.yp.to/proto/maildir.html
+  QString partTime = QString::number( time( NULL ) );   //left part, output of time()
+
+  char hname[256];                                      //right part, the hostname
+  QString partHostname;
+  if( gethostname( hname, 255 ) == 0 )
+    partHostname = QString( hname );
+  else
+  {
+    //the hostname is not readable
+    //show an error message and exit
+    KMessageBox::error( NULL, i18n( "Can't read the hostname of your computer. But KShowmail need it to write a mail into the mailbox." ) );
+    return false;
+  }
+
+  QString partPID = QString::number( getpid() );      //middle part, the PID
+
+  QString partCounter = QString::number( moveCounter++ );
+
+  QString uniqueName( partTime + "." + partPID + partCounter + "." + partHostname );
+
+  //build absolute path
+  mailDir.cd( "tmp" );
+  QString absFile = mailDir.filePath( uniqueName );
+
+  //and writing!
+  QFile file( absFile );
+  if( file.open( QFile::WriteOnly ) )
+  {
+    QTextStream stream( &file );
+    stream << mail.join( "\n" ) << endl;
+    file.close();
+  }
+  else
+  {
+    KMessageBox::detailedError( NULL, i18n( "Could not file a mail to %1." ).arg( box ), file.errorString() );
+    return false;
+  }
+
+  //now we move it to the "new" subdirectory
+  mailDir.cdUp();
+  mailDir.cd( "new" );
+  QString absNewFile = mailDir.filePath( uniqueName );
+
+  if( rename( absFile.toAscii(), absNewFile.toAscii() ) == -1 )
+  {
+    KMessageBox::error( NULL, i18n( "Could not move a mail from %1 to %2." ).arg( absFile ).arg( absNewFile ) );
+    return false;
+  }
+
+  //the writing was successful
+  return true;
+}
+
+bool Account::isMailDir( const QDir& path )
+{
+  //get a list of all subdirectories in this directory
+  const QStringList entries = path.entryList( QDir::Dirs | QDir::Readable | QDir::Writable | QDir::Hidden, QDir::Name | QDir::IgnoreCase | QDir::LocaleAware );
+
+  //a maildir folder must contains the folders "cur", "new" and "tmp"
+  bool curFound = false;
+  bool newFound = false;
+  bool tmpFound = false;
+
+  //iterate over all directories and look for the three necessary dirs
+  QStringList::const_iterator it = entries.begin();
+  while( it != entries.end() && !( curFound && newFound && tmpFound ) )
+  {
+    if( *it == "tmp" )
+      tmpFound = true;
+    else if( *it == "cur" )
+      curFound = true;
+    else if( *it == "new" )
+      newFound = true;
+
+    ++it;
+  }
+
+  return curFound && newFound && tmpFound;
 }
 

@@ -28,6 +28,7 @@ class Account;
 #include <QApplication>
 #include <QTimer>
 #include <QTextCodec>
+#include <QDir>
 
 //KDE headers
 #include <KConfigGroup>
@@ -37,6 +38,7 @@ class Account;
 #include <kcodecs.h>
 #include <ktcpsocket.h>
 #include <KApplication>
+#include <KDE/KLocale>
 
 //KShowmail headers
 #include "mail.h"
@@ -668,6 +670,21 @@ class Account : public QObject
      * @see applyFiltersDeleted()
      */
     void applyFilters();
+
+    /**
+     * Writes the given mail into the mailbox.
+     * @param mail the Mail
+     * @param box path to the mailbox
+     * @return TRUE - Writing was succesful
+     */
+    bool writeToMailBox( const QStringList& mail, const QString& box );
+
+    /**
+     * Returns whether the given directory is a maildir directory
+     * @param path the directory for test
+     * @return TRUE - directory is a maildir directory
+     */
+    bool isMailDir( const QDir& path );
 
 
 
