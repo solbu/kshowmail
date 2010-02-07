@@ -1580,7 +1580,6 @@ void Account::slotBodyDownloaded()
   removeStatusIndicator( &answer );
   removeEndOfResponseMarker( &answer );
 
-
   //succesful download
   //show mail
 
@@ -1603,7 +1602,7 @@ void Account::slotBodyDownloaded()
   emit sigMessageWindowOpened();
 
   //create and open the window
-  ShowMailDialog dlg( kapp->activeWindow(), getName(), false, tsender, tdate, tsize, tsubject, body );
+  ShowMailDialog dlg( kapp->activeWindow(), getName(), allowHTML, tsender, tdate, tsize, tsubject, body );
   int ret = dlg.exec();
 
 	//emit signal to notify the closing of a window

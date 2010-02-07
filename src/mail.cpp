@@ -447,7 +447,6 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
   //if the header doesn't contain a boundary attribute, this messsage
   //has just one part
   QString boundary = getBoundary();
-  kdDebug() << "Boundary: " << boundary << endl;
 
   //process body subject to it is a multipart messsage or not
   if( boundary == "" )
@@ -513,7 +512,7 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
         //get next line
         line = itBody.next();
 
-        if( line != boundary ) {
+        if( !line.startsWith( boundary ) ) {
 
           //it is not a boundary
           part.append( line );
@@ -528,121 +527,46 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
         
       }
 
+      //do we want to take the HTML part?
+      bool takeHTML = ( hasHTML && preferHTML ) || !hasPlaintText;
+
+      //search for the desired part
+      QString contentTypeString;
+      if( takeHTML ) {
+        contentTypeString = QString( "text/html" );
+      } else {
+        contentTypeString = QString( "text/plain" );
+      }
+
       QListIterator<QStringList> itParts( bodyParts );
-      while( itParts.hasNext() ) {
+      bool found = false;
+      while( itParts.hasNext() && !found ) {
 
         QStringList part = itParts.next();
+        if( !part.filter( contentTypeString, Qt::CaseInsensitive ).isEmpty() ) {
 
-        QListIterator<QString> itPart( part );
-        while( itPart.hasNext() ) {
-
-          kdDebug() << itPart.next() << endl;
+          //found!!
+          decodedBody = part;
+          found = true;
         }
-
-        kdDebug() << "************************" << endl;
-      }
-      
-      
-/*      //do we want to take the HTML part?
-      bool hasHTML = posHTMLFlag != -1;
-      bool takeHTML = ( hasHTML && preferHTML ) || posPlainFlag == -1;
-
-      //now we want to extract the designated part
-      //While the (truncated) mail text (or the header at the first pass)
-      //contains a boundary attribute we will extract the designated part
-      //between the boundaries
-      int posInside;    //a position inside the designated part
-      while( boundary != "" )
-      {
-        //get a position inside the designated part
-        if( takeHTML )
-          posInside = strBody.find( "text/html", 0, false );
-        else
-          posInside = strBody.find( "text/plain", 0, false );
-
-        //get length of the boundary
-        int lengthBoundary = boundary.length();
-
-        //calculate the begin and end of the part to extract
-        int beginPart = strBody.findRev( boundary.ascii(), posInside ) + lengthBoundary + 1;
-        int lengthPart = strBody.findRev( '\n', strBody.find( boundary.ascii(), posInside ) ) - beginPart;
-
-        strBody = strBody.mid( beginPart, lengthPart );
-
-        //looking for a further boundary attribute
-        //get the position of the first occurance of "boundary="
-        int posBoundary = strBody.find( "boundary=", 0, false );
-
-        if( posBoundary >= 0 )
-        {
-          //calculate positon of the first quote
-          int posFirstQuote = posBoundary + 9;
-
-          //get the position of closing quote
-          int posSecondQuote = strBody.find( '"', posFirstQuote + 1 );
-
-          //get boundary string
-          boundary.append( strBody.mid( posFirstQuote + 1, posSecondQuote - posFirstQuote - 1 ) );
-        }
-        else
-          boundary = "";
       }
 
-      //now we get charset and transfer encoding if available in the extracted
-      //part
+      //nothing found?
+      if( !found ) return body;
 
-      //get the position of the first occurance of "charset="
-      int posCharset = strBody.find( "charset=", 0, false );
+      //extract charset and transfer encoding
+      charset = getCharset( decodedBody );
+      encoding = getTransferEncoding( decodedBody );
 
-      //continue, if a charset attribute was found
-      if( posCharset >= 0 )
-      {
-        //calculate positon of the value
-        int posBeginValue = posCharset + 8;
-
-        //get end of the value
-        int posEndValue = strBody.find( '\n', posBeginValue ) - 1;
-
-        //get charset
-        charset.append( strBody.mid( posBeginValue, posEndValue - posBeginValue + 1 ) );
-
-        //remove quotes
-        charset.remove( '"' );
-        //remove all content after the first semicolon (inclusive)
-        int posSemicolon = charset.find( ';' );
-        charset = charset.left( posSemicolon );
+      //we just need the text after the first blank line
+      posBlankLine = decodedBody.indexOf( "" );
+      if( posBlankLine != -1 && !decodedBody.isEmpty() && decodedBody.size() > posBlankLine + 1 ) {
+        decodedBody = decodedBody.mid( posBlankLine + 1 );
       }
 
-      //get the position of the first occurance of "charset="
-      int posEncoding = strBody.find( "Content-Transfer-Encoding:", 0, false );
+      if( decodedBody.isEmpty() ) return body;
 
-      //continue, if a charset attribute was found
-      if( posEncoding >= 0 )
-      {
-        //calculate positon of the value
-        int posBeginValue = posEncoding + 26;
 
-        //get end of the value
-        int posEndValue = strBody.find( '\n', posBeginValue ) - 1;
-
-        //get charset
-        encoding.append( strBody.mid( posBeginValue, posEndValue - posBeginValue + 1 ) );
-
-        //remove quotes and spaces
-        encoding = encoding.stripWhiteSpace();
-        encoding.remove( '"' );
-      }
-
-      //cut off the part header; the found blank line is separating the
-      //part header from the message
-      if( posCharset != -1 || posEncoding != -1 )
-      {
-        int posBlankLine = strBody.find( "\n\n" );
-        strBody = strBody.mid( posBlankLine + 2 );
-        if( !strBody.isEmpty() )  //fixed bug 1773636
-          while( strBody[ 0 ] == '\n')
-            strBody.remove( 0, 1 );
-      }*/
     }
   }
 
