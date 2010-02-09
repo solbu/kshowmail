@@ -261,7 +261,15 @@ class Mail : public QObject
      */
     QString getTransferEncodingFromHeader() const;
 
-    
+    /**
+     * Writes this mail into the Move Log.
+     * @param log pointer to the log
+     * @param account name of the account
+     * @param mailbox name of the mailbox
+     */
+    void writeToMoveLog( FilterLog* log, QString account, QString mailbox );
+
+
 	private:
 		
 		/**

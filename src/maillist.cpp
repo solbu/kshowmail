@@ -452,4 +452,42 @@ QStringList MailList::decodeMailBody( const QStringList& body, int number, bool 
 
 }
 
+void MailList::writeToMoveLog( FilterLog * log, int number, QString account, QString mailbox )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+		Mail* mail = it.next();
+		
+    //if the current mail has the given number, set the header
+    if( mail->getNumber() == number )
+    {
+      mail->writeToMoveLog( log, account, mailbox );
+      found = true;
+    }
+  }
+}
+
+void MailList::setMarkAtNextViewRefresh( int number )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+		Mail* mail = it.next();
+		
+    //if the current mail has the given number, set the header
+    if( mail->getNumber() == number )
+    {
+      mail->setMarkAtNextViewRefresh();
+      found = true;
+    }
+  }
+}
+
 

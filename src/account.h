@@ -686,6 +686,20 @@ class Account : public QObject
      */
     bool isMailDir( const QDir& path );
 
+    /**
+     * Forwards the given mail to SpamAssassin and returns the test result
+     * @param mail the mail to test
+     * @return TRUE - mail is spam
+     */
+    bool isSpam( QStringList mail ) const;
+
+    /**
+     * Looks for a running spamd daemon of SpamAssassin.
+     * @return TRUE - SpamAssassin is running
+     */
+    bool isSpamAssassinRunning() const;
+
+
 
 
   protected slots:
@@ -1021,6 +1035,15 @@ class Account : public QObject
      */
     bool deletionPerformedByFilters;
 
+    /**
+     * Mailbox for Spam, if configured
+     */
+     QString spamMailbox;
+
+    /**
+     * Action which shall be done, if the mail is Spam
+     */
+		FilterAction_Type spamAction;
 
   signals:
 

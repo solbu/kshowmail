@@ -131,7 +131,32 @@ void Account::load()
 
   allowUnsecureLogin = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ALLOW_UNSECURE_LOGIN, DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN );
 
+	  //read Spam configs
+	KConfigGroup* spamConfig = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_SPAMCHECK );
+  int intSpamAction = spamConfig->readEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, DEFAULT_SPAMCHECK_ACTION );
+
+  switch( intSpamAction )
+  {
+    case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE       : spamAction = FActDelete; break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MARK         : spamAction = FActMark; break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE         : spamAction = FActMove; break;
+    default                                         :
+      kdError() << "Invalid value in " << CONFIG_ENTRY_SPAMCHECK_ACTION << ". Set default value." << endl;
+      switch( DEFAULT_SPAMCHECK_ACTION )
+      {
+        case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE       : spamAction = FActDelete; break;
+        case CONFIG_VALUE_SPAMCHECK_ACTION_MARK         : spamAction = FActMark; break;
+        case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE         : spamAction = FActMove; break;
+        default                                         : spamAction = FActMark; break;
+      }
+
+  }
+
+  if( spamAction == FActMove )
+    spamMailbox = spamConfig->readEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX, DEFAULT_SPAMCHECK_ACTION_MOVE_MAILBOX );
+
   delete accountConfig;
+	delete spamConfig;
 }
 
 void Account::refreshMailList( FilterLog* log )
@@ -1746,56 +1771,56 @@ void Account::slotMailDownloadedForAction()
                           }
                           break;
 
-//     case FActSpamcheck  : resultSpam = isSpam( mailbody );  //it is spam?
-//                           if( resultSpam == true )          //yes, it is spam! Arrgghh! Torture it!!!
-//                           {
-//                             switch( appConfig->getSpamAction() )
-//                             {
-//                               case FActMove   : resultMove = writeToMailBox( mail, appConfig->getSpamMailbox() );
-//                                                 if( resultMove == true )
-//                                                 {
-//                                                   nmbMovedMailsLastRefresh++;
-//                                                   nmbMovedMailsLastStart++;
-// 
-//                                                   if( FLog != NULL )
-//                                                     m_pshowrecord->writeToMoveLog( FLog, currentMailNumber, getAccountName(), appConfig->getSpamMailbox() );
-//                                                   resultAction = true;
-//                                                   deleteIt = true;
-//                                                 }
-//                                                 else
-//                                                 {
-//                                                   resultAction = false;
-//                                                   deleteIt = false;
-//                                                 }
-//                                                 break;
-// 
-//                               case FActMark   : m_pshowrecord->setMarkAtNextViewRefresh( currentMailNumber );
-//                                                 resultAction = true;
-//                                                 deleteIt = false;
-//                                                 break;
-// 
-//                               case FActDelete : if( FLog != NULL )
-//                                                   m_pshowrecord->writeToDeleteLog( FLog, currentMailNumber, getAccountName() );
-// 
-//                                                 nmbDeletedMailsLastRefresh++;
-//                                                 nmbDeletedMailsLastStart++;
-//                                                 resultAction = true;
-//                                                 deleteIt = true;
-//                                                 break;
-// 
-//                               default         : kdError() << "invalid action for spam mail" << endl;
-//                                                 resultAction = false;
-//                                                 deleteIt = false;
-//                                                 break;
-// 
-//                             }
-//                           }
-//                           else    //mail is not spam
-//                           {
-//                             resultAction = true;
-//                             deleteIt = false;
-//                           }
-//                           break;
+    case FActSpamcheck  : resultSpam = isSpam( mail );  //it is spam?
+                          if( resultSpam == true )          //yes, it is spam! Arrgghh! Torture it!!!
+                          {
+                            switch( spamAction )
+                            {
+                              case FActMove   : resultMove = writeToMailBox( mail, spamMailbox );
+                                                if( resultMove == true )
+                                                {
+                                                  nmbMovedMailsLastRefresh++;
+                                                  nmbMovedMailsLastStart++;
+
+                                                  if( fLog != NULL )
+                                                    mails->writeToMoveLog( fLog, currentMailNumber, getName(), spamMailbox );
+                                                  resultAction = true;
+                                                  deleteIt = true;
+                                                }
+                                                else
+                                                {
+                                                  resultAction = false;
+                                                  deleteIt = false;
+                                                }
+                                                break;
+
+                              case FActMark   : mails->setMarkAtNextViewRefresh( currentMailNumber );
+                                                resultAction = true;
+                                                deleteIt = false;
+                                                break;
+
+                              case FActDelete : if( FLog != NULL )
+                                                  m_pshowrecord->writeToDeleteLog( FLog, currentMailNumber, getAccountName() );
+
+                                                nmbDeletedMailsLastRefresh++;
+                                                nmbDeletedMailsLastStart++;
+                                                resultAction = true;
+                                                deleteIt = true;
+                                                break;
+
+                              default         : kdError() << "invalid action for spam mail" << endl;
+                                                resultAction = false;
+                                                deleteIt = false;
+                                                break;
+
+                            }
+                          }
+                          else    //mail is not spam
+                          {
+                            resultAction = true;
+                            deleteIt = false;
+                          }
+                          break;
 
     default             : deleteIt = false;
                           resultAction = false;
@@ -2010,3 +2035,61 @@ bool Account::isMailDir( const QDir& path )
   return curFound && newFound && tmpFound;
 }
 
+bool Account::isSpam( QStringList mail ) const
+{
+  //check for a running spamassassin
+  if( !isSpamAssassinRunning() )
+  {
+    KMessageBox::information( NULL, i18n( "You want to check your mails for spam, but SpamAssassin is not running.\nKShowmail skips the spam check." ), i18n( "SpamAssassin is not running" ), "ConfigElemNoSpamAssassinRunning" );
+    return false;
+  }
+
+  //calls spmac and get an file pointer to stdin of it
+  FILE *write_fp;
+  write_fp = popen( "spamc -E", "w" );
+
+  //forward the mail to SpamAssassin
+  if( write_fp != NULL )
+  {
+    fwrite( mail.join( "\n" ).toAscii(), sizeof( char), mail.size(), write_fp );
+
+    //check exit code of spamc and return result
+    int excode = pclose( write_fp );
+    if(  excode == 0 )
+      return false;
+    else
+      return true;
+  }
+  else
+  {
+    kdError() << "Could not call the command spamc of SpamAssassin." << endl;
+    return false;
+  }
+
+  return false;
+}
+
+bool Account::isSpamAssassinRunning( ) const
+{
+  FILE *read_fp;
+  char buffer[ BUFSIZ + 1 ];
+  int chars_read;
+  bool found = false;
+
+  memset( buffer, '\0', sizeof( buffer ) );
+  read_fp = popen( "ps -eo comm", "r" );
+  if( read_fp != NULL )
+  {
+    chars_read = fread( buffer, sizeof( char ), BUFSIZ, read_fp );
+    while( chars_read > 0 )
+    {
+      buffer[ chars_read - 1 ] = '\0';
+      QString output( buffer );
+      found = output.contains( NAME_SPAMASSASSIN_DAEMON ) > 0;
+      chars_read = fread( buffer, sizeof( char ), BUFSIZ, read_fp );
+    }
+    pclose( read_fp );
+  }
+
+  return found;
+}

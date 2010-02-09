@@ -744,8 +744,10 @@ QString Mail::getTransferEncoding( const QStringList& text ) const {
   const QString TAG( "Content-Transfer-Encoding" );
 
   return scanBodyPart( text, TAG );
-
-  
-  
-
 }
+
+void Mail::writeToMoveLog( FilterLog * log, QString account, QString mailbox )
+{
+  log->addMovedMail( getDateTime(), getFrom(), account, getSubject(), mailbox );
+}
+

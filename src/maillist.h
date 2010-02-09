@@ -233,6 +233,21 @@ class MailList : public QObject
      */
     QStringList decodeMailBody( const QStringList& body, int number, bool preferHTML ) const;
 
+    /**
+     * Writes the mail into the Move Log.
+     * @param log pointer to the log
+     * @param number number of the mail
+     * @param account name of the account
+     * @param mailbox name of the mailbox
+     */
+    void writeToMoveLog( FilterLog* log, int number, QString account, QString mailbox );
+
+    /**
+     * The given mail will be marked at the next view refresh.
+     * @param number number of the mail
+     */
+    void setMarkAtNextViewRefresh( int number );
+
 
 
   private:
