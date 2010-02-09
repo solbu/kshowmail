@@ -12,53 +12,47 @@
 #include "configspamcheck.h"
 
 
-typedef KGenericFactory<ConfigSpamcheck, QWidget> ConfigSpamcheckFactory;
+K_PLUGIN_FACTORY( ConfigSpamcheckFactory, registerPlugin<ConfigSpamcheck>(); )
+K_EXPORT_PLUGIN( ConfigSpamcheckFactory( "kcm_kshowmailconfigspamcheck" ) )
 
-K_EXPORT_COMPONENT_FACTORY( kcm_kshowmailconfigspamcheck, ConfigSpamcheckFactory(
-    "kcm_kshowmailconfigspamcheck" ) );
-
-
-ConfigSpamcheck::ConfigSpamcheck(QWidget * parent, const char * name, const QStringList & args)
-  : KCModule( ConfigSpamcheckFactory::instance(), parent, args )
+ConfigSpamcheck::ConfigSpamcheck( QWidget * parent, const QVariantList & args )
+  : KCModule( ConfigSpamcheckFactory::componentData(), parent, args )
 {
-  //set the module name
-  if ( !name )
-    setName( "configfilter" );
-
   //build GUI
   //---------
 
   //main layout
-  QVBoxLayout* layMain = new QVBoxLayout( this, 0, 10 );
+  QVBoxLayout* layMain = new QVBoxLayout( this );
 
   //description
-  QLabel* lblDescription = new QLabel( this, "lblDescription" );
-  lblDescription->setAlignment( Qt::WordBreak );
+  QLabel* lblDescription = new QLabel( this );
+  lblDescription->setAlignment( Qt::AlignJustify );
   lblDescription->setText( QString( "<i>%1</i>" ).arg( i18n( "KShowmail uses SpamAssassin to check the mails for spam. You have to install, configure and start the SpamAssassin daemon, before you can use this service." ) ) );
   lblDescription->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Maximum );
   layMain->addWidget( lblDescription );
 
   //Test button
-  btnTest = new KPushButton( KStdGuiItem::test(), this, "btnTest" );
+  btnTest = new KPushButton( KStandardGuiItem::test(), this );
   btnTest->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Maximum );
   layMain->addWidget( btnTest );
   connect( btnTest, SIGNAL( clicked() ), this, SLOT( slotTestSpamAssassin() ) );
 
   //action
-  gboxAction = new QGroupBox( 0, Qt::Horizontal, i18n( "Action for Spam" ), this, "gboxAction" );
-  QHBoxLayout* layAction = new QHBoxLayout( gboxAction->layout(), 10 );
+  gboxAction = new QGroupBox( i18n( "Action for Spam" ), this );
+  QHBoxLayout* layAction = new QHBoxLayout();
+	gboxAction->setLayout( layAction );
   layMain->addWidget( gboxAction );
 
-  cmbAction = new KComboBox( gboxAction, "cmbAction" );
+  cmbAction = new KComboBox( gboxAction );
   layAction->addWidget( cmbAction );
-  QToolTip::add( cmbAction, i18n( "Choose the action for spam mails." ) );
+	cmbAction->setToolTip( i18n( "Choose the action for spam mails." ) );
   connect( cmbAction, SIGNAL( activated( int ) ), this, SLOT( slotActionChanged( int ) ) );
   connect( cmbAction, SIGNAL( activated( int ) ), this, SLOT( slotChanged() ) );
 
   //insert items
-  cmbAction->insertItem( i18n( "Delete" ), ID_SPAM_ACTION_BUTTONS_DELETE );
-  cmbAction->insertItem( i18n( "Mark" ), ID_SPAM_ACTION_BUTTONS_MARK );
-  cmbAction->insertItem( i18n( "Move" ), ID_SPAM_ACTION_BUTTONS_MOVE );
+  cmbAction->insertItem( ID_SPAM_ACTION_BUTTONS_DELETE, i18n( "Delete" ) );
+  cmbAction->insertItem( ID_SPAM_ACTION_BUTTONS_MARK, i18n( "Mark" ) );
+  cmbAction->insertItem( ID_SPAM_ACTION_BUTTONS_MOVE, i18n( "Move" ) );
 
   //create edit line to defined the mailbox for move
   txtMailbox = new KLineEdit( gboxAction );
@@ -68,25 +62,25 @@ ConfigSpamcheck::ConfigSpamcheck(QWidget * parent, const char * name, const QStr
   //create wizard button to configure mailbox
   btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "wizard" ), gboxAction );
   layAction->addWidget( btnMailboxWizard );
-  QToolTip::add( btnMailboxWizard, i18n( "Choose the mailbox" ) );
+  btnMailboxWizard->setToolTip( i18n( "Choose the mailbox" ) );
   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
 
   //set defaults
   switch( DEFAULT_SPAMCHECK_ACTION )
   {
-    case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE     : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_DELETE ); break;
-    case CONFIG_VALUE_SPAMCHECK_ACTION_MARK       : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_MARK ); break;
-    case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE       : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_MOVE ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE     : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_DELETE ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MARK       : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_MARK ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE       : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_MOVE ); break;
   }
 
   txtMailbox->setText( DEFAULT_SPAMCHECK_ACTION_MOVE_MAILBOX );
 
   //enable or disable widgets
-  slotActionChanged( cmbAction->currentItem() );
+  slotActionChanged( cmbAction->currentIndex() );
   gboxAction->setEnabled( isSpamAssassinRunning() );
 
   //get application config object (kshowmailrc)
-  config = KApplication::kApplication()->config();
+  config = KGlobal::config();
 
   //load configured values
   load();
@@ -98,33 +92,33 @@ ConfigSpamcheck::~ConfigSpamcheck()
 
 void ConfigSpamcheck::load()
 {
-  config->setGroup( CONFIG_GROUP_SPAMCHECK );
+  KConfigGroup* configSpam = new KConfigGroup( config, CONFIG_GROUP_SPAMCHECK );
 
   //load action
-  switch( config->readNumEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, DEFAULT_SPAMCHECK_ACTION ) )
+  switch( configSpam->readEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, DEFAULT_SPAMCHECK_ACTION ) )
   {
-    case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE     : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_DELETE ); break;
-    case CONFIG_VALUE_SPAMCHECK_ACTION_MARK       : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_MARK ); break;
-    case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE       : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_MOVE ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE     : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_DELETE ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MARK       : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_MARK ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE       : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_MOVE ); break;
   }
 
   //get mailbox name
-  if( config->readNumEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, DEFAULT_SPAMCHECK_ACTION ) == CONFIG_VALUE_SPAMCHECK_ACTION_MOVE )
-    txtMailbox->setText( config->readEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX, DEFAULT_SPAMCHECK_ACTION_MOVE_MAILBOX ) );
+  if( configSpam->readEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, DEFAULT_SPAMCHECK_ACTION ) == CONFIG_VALUE_SPAMCHECK_ACTION_MOVE )
+    txtMailbox->setText( configSpam->readEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX, DEFAULT_SPAMCHECK_ACTION_MOVE_MAILBOX ) );
   else
     txtMailbox->clear();
 
   //enable or disable widgets for other action
-  slotActionChanged( cmbAction->currentItem() );
+  slotActionChanged( cmbAction->currentIndex() );
 }
 
 void ConfigSpamcheck::defaults()
 {
   switch( DEFAULT_SPAMCHECK_ACTION )
   {
-    case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE     : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_DELETE ); break;
-    case CONFIG_VALUE_SPAMCHECK_ACTION_MARK       : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_MARK ); break;
-    case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE       : cmbAction->setCurrentItem( ID_SPAM_ACTION_BUTTONS_MOVE ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_DELETE     : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_DELETE ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MARK       : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_MARK ); break;
+    case CONFIG_VALUE_SPAMCHECK_ACTION_MOVE       : cmbAction->setCurrentIndex( ID_SPAM_ACTION_BUTTONS_MOVE ); break;
   }
 
   if( DEFAULT_SPAMCHECK_ACTION == CONFIG_VALUE_SPAMCHECK_ACTION_MOVE )
@@ -133,32 +127,32 @@ void ConfigSpamcheck::defaults()
     txtMailbox->clear();
 
   //enable or disable widgets for other action
-  slotActionChanged( cmbAction->currentItem() );
+  slotActionChanged( cmbAction->currentIndex() );
 
   slotChanged();
 }
 
 void ConfigSpamcheck::save()
 {
-  config->setGroup( CONFIG_GROUP_SPAMCHECK );
+  KConfigGroup* configSpam = new KConfigGroup( config, CONFIG_GROUP_SPAMCHECK );
 
   //save action
-  switch( cmbAction->currentItem() )
+  switch( cmbAction->currentIndex() )
   {
-    case ID_SPAM_ACTION_BUTTONS_DELETE    : config->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, CONFIG_VALUE_SPAMCHECK_ACTION_DELETE ); break;
-    case ID_SPAM_ACTION_BUTTONS_MARK      : config->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, CONFIG_VALUE_SPAMCHECK_ACTION_MARK ); break;
-    case ID_SPAM_ACTION_BUTTONS_MOVE      : config->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, CONFIG_VALUE_SPAMCHECK_ACTION_MOVE ); break;
-    default                               : config->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, DEFAULT_SPAMCHECK_ACTION ); break;
+    case ID_SPAM_ACTION_BUTTONS_DELETE    : configSpam->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, CONFIG_VALUE_SPAMCHECK_ACTION_DELETE ); break;
+    case ID_SPAM_ACTION_BUTTONS_MARK      : configSpam->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, CONFIG_VALUE_SPAMCHECK_ACTION_MARK ); break;
+    case ID_SPAM_ACTION_BUTTONS_MOVE      : configSpam->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, CONFIG_VALUE_SPAMCHECK_ACTION_MOVE ); break;
+    default                               : configSpam->writeEntry( CONFIG_ENTRY_SPAMCHECK_ACTION, DEFAULT_SPAMCHECK_ACTION ); break;
   }
 
   //save mailbox name
-  if( cmbAction->currentItem() == ID_SPAM_ACTION_BUTTONS_MOVE )
+  if( cmbAction->currentIndex() == ID_SPAM_ACTION_BUTTONS_MOVE )
   {
-    config->writeEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX, txtMailbox->text() );
+    configSpam->writeEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX, txtMailbox->text() );
   }
   else
   {
-    config->deleteEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX );
+    configSpam->deleteEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX );
   }
 
   config->sync();
@@ -186,8 +180,8 @@ void ConfigSpamcheck::slotActionChanged( int index )
 
 void ConfigSpamcheck::slotOpenMailBoxWizard( )
 {
-  MailBoxWizard wizard( this, "malboxwizard" );
-  wizard.setCaption( i18n( "Mailbox Select" ) );
+  MailBoxWizard wizard( this );
+  wizard.setWindowTitle( i18n( "Mailbox Select" ) );
   int res = wizard.exec();
 
   if( res == QDialog::Accepted )

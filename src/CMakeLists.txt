@@ -87,6 +87,14 @@ set( CONFIGGENERAL_SRCS
 kde4_add_plugin( kcm_kshowmailconfiggeneral ${CONFIGGENERAL_SRCS} )
 target_link_libraries( kcm_kshowmailconfiggeneral ${KDE4_KDEUI_LIBS} )
 
+set( CONFIGSPAMCHECK_SRCS
+		 configspamcheck.cpp
+     mailboxwizard.cpp
+     mailboxwizardlistitem.cpp
+	 )
+kde4_add_plugin( kcm_kshowmailconfigspamcheck ${CONFIGSPAMCHECK_SRCS} )
+target_link_libraries( kcm_kshowmailconfigspamcheck ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} )
+
 
 ########### install files ###############
 
@@ -110,6 +118,7 @@ install(TARGETS
   kcm_kshowmailconfigfilter
   kcm_kshowmailconfiglog
   kcm_kshowmailconfiggeneral
+  kcm_kshowmailconfigspamcheck
   DESTINATION ${PLUGIN_INSTALL_DIR}
 )
 

@@ -23,6 +23,7 @@
 #include <qlabel.h>
 #include <qgroupbox.h>
 #include <qtooltip.h>
+#include <QVariantList>
 
 //KDE headers
 #include <kcmodule.h>
@@ -36,7 +37,7 @@
 #include <kmessagebox.h>
 
 //Kshowmail headers
-#include "../constants.h"
+#include "constants.h"
 #include "mailboxwizard.h"
 
 //radio button IDs
@@ -59,7 +60,7 @@ Q_OBJECT
     /**
      * Generic constructor
      */
-    ConfigSpamcheck( QWidget* parent = 0, const char* name = 0, const QStringList &args = QStringList() );
+    ConfigSpamcheck( QWidget* parent = 0, const QVariantList& args = QVariantList() );
 
     /**
      * Destructor
@@ -93,7 +94,7 @@ Q_OBJECT
     /**
      * Connector to the configuration file
      */
-    KConfig* config;
+    KSharedConfigPtr config;
 
     /**
      * Button to test for a running SpamAssassin
