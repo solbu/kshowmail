@@ -1682,7 +1682,7 @@ void Account::getNextMailForDownloadActions()
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailDownloadedForAction() ) );
 
   //send download command
-  sendCommand( GET_MAIL + " " + QString( "%1" ).arg( mailsToShow.first() ) );
+  sendCommand( GET_MAIL + " " + QString( "%1" ).arg( mailsToDownload.begin().key() ) );
 
 }
 

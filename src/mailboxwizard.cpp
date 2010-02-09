@@ -92,7 +92,6 @@ void MailBoxWizard::slotPageChanged( int pageID )
 
       for( QStringList::const_iterator it = entries.begin(); it != entries.end(); ++it )
       {
-        kdDebug() << *it << endl;
         //add an entry to the mailbox list
         QDir newMailDir( mailDir );
         newMailDir.cd( (*it) );
