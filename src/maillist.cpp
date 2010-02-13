@@ -246,7 +246,7 @@ void MailList::applyHeaderFilter( HeaderFilter * filter, QString account, MailNu
     FilterAction_Type action = pElem->applyHeaderFilter( filter, account, mailbox, log );
 
     //do recommend action
-    //we don't need to do everything for action MARK, because ShowRecordElem::applyHeaderFilter() marks the mail entry itself
+    //we don't need to do everything for action MARK, because Mail::applyHeaderFilter() marks the mail entry itself
     struct DownloadActionParams_Type params;
     switch( action )
     {
@@ -485,6 +485,25 @@ void MailList::setMarkAtNextViewRefresh( int number )
     if( mail->getNumber() == number )
     {
       mail->setMarkAtNextViewRefresh();
+      found = true;
+    }
+  }
+}
+
+void MailList::writeToDeleteLog( FilterLog * log, int number, QString account )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+
+    //if the current mail has the given number, set the header
+    if( mail->getNumber() == number )
+    {
+      mail->writeToDeleteLog( log, account );
       found = true;
     }
   }

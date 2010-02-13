@@ -427,8 +427,10 @@ int AccountList::numberDeletedMailsStart( )
   {
     Account* account = it.next();
 
+
     number += account->numberDeletedMailsStart();
   }
+
 
   return number;
 }

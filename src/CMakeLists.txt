@@ -25,6 +25,7 @@ set(kshowmail_SRCS
    senderlistfilter.cpp
    showheaderdialog.cpp
    showmaildialog.cpp
+   systemtrayicon.cpp
  )
 
 #enable exceptions

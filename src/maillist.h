@@ -243,6 +243,14 @@ class MailList : public QObject
     void writeToMoveLog( FilterLog* log, int number, QString account, QString mailbox );
 
     /**
+     * Writes the mail into the Delete Log.
+     * @param log pointer to the log
+     * @param number number of the mail
+     * @param account name of the account
+     */
+    void writeToDeleteLog( FilterLog* log, int number, QString account );
+
+    /**
      * The given mail will be marked at the next view refresh.
      * @param number number of the mail
      */

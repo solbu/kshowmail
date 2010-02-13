@@ -342,7 +342,7 @@ int Account::getPasswordStorage( ) const
 
 void Account::doConnect()
 {
-  //break, if there is already a connection
+ //break, if there is already a connection
   if( socket->state() != KTcpSocket::UnconnectedState )
   {
     //handleError( "Already connected" );
@@ -1799,8 +1799,8 @@ void Account::slotMailDownloadedForAction()
                                                 deleteIt = false;
                                                 break;
 
-                              case FActDelete : if( FLog != NULL )
-                                                  m_pshowrecord->writeToDeleteLog( FLog, currentMailNumber, getAccountName() );
+                              case FActDelete : if( fLog != NULL )
+                                                  mails->writeToDeleteLog( fLog, currentMailNumber, getName() );
 
                                                 nmbDeletedMailsLastRefresh++;
                                                 nmbDeletedMailsLastStart++;
@@ -1871,7 +1871,7 @@ void Account::applyFiltersDeleted( )
 
 void Account::commitBeforeRefresh()
 {
-    if( socket->state() == KTcpSocket::ConnectedState )
+  if( socket->state() == KTcpSocket::ConnectedState )
   {
     //connect the signal readyRead of the socket with the response handle methode
     disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
@@ -2037,6 +2037,7 @@ bool Account::isMailDir( const QDir& path )
 
 bool Account::isSpam( QStringList mail ) const
 {
+
   //check for a running spamassassin
   if( !isSpamAssassinRunning() )
   {
@@ -2051,7 +2052,9 @@ bool Account::isSpam( QStringList mail ) const
   //forward the mail to SpamAssassin
   if( write_fp != NULL )
   {
-    fwrite( mail.join( "\n" ).toAscii(), sizeof( char), mail.size(), write_fp );
+    //join the mail to a string
+    QString joinedMail = mail.join( "\n" );
+    fwrite( joinedMail.toAscii(), sizeof( char), joinedMail.size(), write_fp );
 
     //check exit code of spamc and return result
     int excode = pclose( write_fp );

@@ -44,6 +44,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //get the application config object
   config = KGlobal::config();
   configGeneral = new KConfigGroup( config, CONFIG_GROUP_GENERAL );
+
+  //create system tray icon
+  trayIcon = new SystemTrayIcon( this );
 		
 	//load the setup
 	accounts->loadSetup();
@@ -369,6 +372,9 @@ void KShowmail::slotRefreshReady()
 
   //refresh view
   view->refreshViews( mailSelectModel, accounts->getMarkedMails() );
+
+  //refresh filter status bar
+  refreshFilterStatusBar();
 
 }
 

@@ -35,6 +35,7 @@ class MailViewModel;
 #include "filterlogview.h"
 #include "showheaderdialog.h"
 #include "showmaildialog.h"
+#include "systemtrayicon.h"
 
 using namespace Types;
 
@@ -251,6 +252,11 @@ class KShowmail : public KXmlGuiWindow
      * The model of the mail view
      */
     MailViewModel* mailModel;
+
+    /**
+     * The system tray icon
+     */
+    SystemTrayIcon* trayIcon;
 
 };
 

@@ -269,6 +269,18 @@ class Mail : public QObject
      */
     void writeToMoveLog( FilterLog* log, QString account, QString mailbox );
 
+    /**
+     * Writes this mail into the Delete Log.
+     * @param log pointer to the log
+     * @param account name of the account
+     */
+    void writeToDeleteLog( FilterLog* log, QString account );
+
+    /**
+     * The mail will be marked at the next view refresh.
+     */
+    void setMarkAtNextViewRefresh();
+
 
 	private:
 		

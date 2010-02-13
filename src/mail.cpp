@@ -751,3 +751,13 @@ void Mail::writeToMoveLog( FilterLog * log, QString account, QString mailbox )
   log->addMovedMail( getDateTime(), getFrom(), account, getSubject(), mailbox );
 }
 
+void Mail::setMarkAtNextViewRefresh( )
+{
+  markedByFilter = true;
+}
+
+void Mail::writeToDeleteLog( FilterLog * log, QString account )
+{
+  log->addDeletedMail( getDateTime(), getFrom(), account, getSubject() );
+}
+
