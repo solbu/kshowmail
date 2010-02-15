@@ -4,4 +4,5 @@ install( FILES accountActive.png
                button_blacklist.png
                mail-unread-new.png
                account.svgz
+               trayIcon.png
                DESTINATION ${DATA_INSTALL_DIR}/kshowmail/pics )

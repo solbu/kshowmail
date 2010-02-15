@@ -21,8 +21,15 @@
 #ifndef SYSTEMTRAYICON_H
 #define SYSTEMTRAYICON_H
 
+//Qt headers
+#include <QIcon>
+#include <QPainter>
+
 //KDE headers
 #include <KSystemTrayIcon>
+#include <KLocale>
+#include <KDebug>
+#include <KGlobalSettings>
 
 class SystemTrayIcon : public KSystemTrayIcon
 {
@@ -34,7 +41,27 @@ class SystemTrayIcon : public KSystemTrayIcon
      * Constructor
      * @param parent parent widget
      */
-    SystemTrayIcon( QWidget* parent );
+    SystemTrayIcon( QWidget* parent, QIcon trayIcon );
+
+    /**
+     * Draws the given number on the icon.
+     * @param n number to draw
+     * @param color color
+     */
+    void drawNumber (int n, const QColor& color);
+
+    /**
+     * Clears the number from the icon
+     */
+    void clear ();
+
+  protected:
+
+    /**
+     * the icon
+     */
+    QIcon _icon;
+
 };
 
 #endif // SYSTEMTRAYICON_H

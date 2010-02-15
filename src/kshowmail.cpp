@@ -46,7 +46,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   configGeneral = new KConfigGroup( config, CONFIG_GROUP_GENERAL );
 
   //create system tray icon
-  trayIcon = new SystemTrayIcon( this );
+  trayIcon = new SystemTrayIcon( this, QIcon( KStandardDirs::locate( "data", "kshowmail/pics/trayIcon.png" ) ) );
+  trayIcon->show();
+  trayIcon->drawNumber( 99, Qt::black );
 		
 	//load the setup
 	accounts->loadSetup();

@@ -21,9 +21,45 @@
 #include "systemtrayicon.h"
 
 
-SystemTrayIcon::SystemTrayIcon( QWidget* parent ) : KSystemTrayIcon( parent )
+SystemTrayIcon::SystemTrayIcon( QWidget* parent, QIcon trayIcon ) : KSystemTrayIcon( trayIcon, parent )
 {
+  //save the icon
+  _icon = trayIcon;
   
+  //set tool tip
+  setToolTip( i18n("KShowmail: a powerful pop3 email checker") );
 }
 
 
+void SystemTrayIcon::drawNumber (int n, const QColor& color)
+{
+  //reset the icon
+  setIcon( _icon );
+
+  //get icon picture
+  QPixmap pix = icon().pixmap( 22, 22 );
+
+  //convert number to text
+  QString num( QString::number( n ) );
+
+  //paint number into the pixmap
+  QPainter p( &pix );
+  QFont font = KGlobalSettings::toolBarFont();
+  font.setPixelSize( 14 );
+  font.setBold( true );
+  p.setFont( font );
+  p.setPen( color );
+  p.drawText( 0, 0, 22, 22, Qt::AlignCenter, num );
+
+  //create a new icon with the pixmap
+  QIcon iconWithNumber = QIcon();
+  iconWithNumber.addPixmap( pix );
+
+  //set new icon
+  setIcon( iconWithNumber );
+}
+
+void SystemTrayIcon::clear ()
+{
+  setIcon( _icon );
+}

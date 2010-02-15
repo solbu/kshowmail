@@ -24,6 +24,7 @@ class MailViewModel;
 #include <KApplication>
 #include <KCMultiDialog>
 #include <KMessageBox>
+#include <KSystemTrayIcon>
 
 //KShowmail headers
 #include "kshowmailview.h"
