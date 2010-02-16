@@ -28,11 +28,19 @@ SystemTrayIcon::SystemTrayIcon( QWidget* parent, QIcon trayIcon ) : KSystemTrayI
   
   //set tool tip
   setToolTip( i18n("KShowmail: a powerful pop3 email checker") );
+
+  //create flashing timer
+  flashingTimer = new QTimer( this );
+  flashingTimer->setSingleShot( false );
+  connect( flashingTimer, SIGNAL( timeout() ), this, SLOT( slotFlash() ) );
 }
 
 
 void SystemTrayIcon::drawNumber (int n, const QColor& color)
 {
+  //stop the flashing timer
+  flashingTimer->stop();
+  
   //reset the icon
   setIcon( _icon );
 
@@ -61,5 +69,67 @@ void SystemTrayIcon::drawNumber (int n, const QColor& color)
 
 void SystemTrayIcon::clear ()
 {
+  //stop the flashing timer
+  flashingTimer->stop();
+
+}
+
+void SystemTrayIcon::showLooking() {
+
+  //stop timer
+  flashingTimer->stop();
+  
+  //draw first question mark
+  drawLooking();
+
+  //initiate flag
+  flasherFlag = true;
+
+  //start timer
+  flashingTimer->start( 1000 );
+  
+}
+
+void SystemTrayIcon::drawLooking() {
+
+  //reset the icon
   setIcon( _icon );
+
+  //get icon picture
+  QPixmap pix = icon().pixmap( 22, 22 );
+
+  //paint question mark into the pixmap
+  QPainter p( &pix );
+  QFont font = KGlobalSettings::toolBarFont();
+  font.setPixelSize( 14 );
+  font.setBold( true );
+  p.setFont( font );
+  p.setPen( Qt::black );
+  p.drawText( 0, 0, 22, 22, Qt::AlignCenter, "?" );
+
+  //create a new icon with the pixmap
+  QIcon iconWithMark = QIcon();
+  iconWithMark.addPixmap( pix );
+
+  //set new icon
+  setIcon( iconWithMark );
+}
+
+void SystemTrayIcon::slotFlash() {
+
+  if( flasherFlag ) {
+
+    //clear the icon
+    setIcon( _icon );
+    
+    flasherFlag = false;
+    
+  } else {
+
+    //draw the question mark
+    drawLooking();
+    
+    flasherFlag = true;
+  }
+
 }

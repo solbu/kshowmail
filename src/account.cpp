@@ -2096,3 +2096,35 @@ bool Account::isSpamAssassinRunning( ) const
 
   return found;
 }
+
+int Account::getNumberNewMails( )
+{
+  return mails->getNumberNewMails();
+}
+
+long Account::getTotalSize() {
+  return mails->getTotalSize();
+}
+
+QString Account::getTotalSizeUnit() {
+
+  int size = getTotalSize();
+  QString strSize;
+
+  if( size >= 1024 * 1024 )
+  {
+    //prefix is mega
+    strSize = QString( "%L1M" ).arg( ( (double)size / ( 1024 * 1024 ) ), 0, 'f', 1 );
+  }
+  else if( size >= 1024 )
+  {
+    //prefix is kilo
+    strSize = QString( "%L1K" ).arg( ( (double)size / 1024 ), 0, 'f', 1 );
+  }
+  else
+    //no prefix
+    strSize = QString( "%L1" ).arg( size );
+
+  return strSize;
+
+}

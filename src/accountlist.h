@@ -222,6 +222,14 @@ class AccountList : public QObject
      */
     void showSelectedMails( QItemSelectionModel* mailSelectModel );
 
+    /**
+     * Returns the number of new mails.
+     * @return number of new mails
+     */
+    int getNumberNewMails();
+
+    
+
 	private:
 		
 		/**

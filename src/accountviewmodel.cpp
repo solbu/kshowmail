@@ -78,6 +78,9 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 				case 0  : return QVariant(); break;
         case 1  : return QVariant( acc->getName() ); break;
         case 2  : return QVariant( acc->getHost() ); break;
+        case 3  : return QVariant( acc->getUser() ); break;
+        case 4  : return QVariant( acc->getNumberMails() ); break;
+        case 5  : return QVariant( acc->getTotalSizeUnit() ); break;
         default : return QVariant(); break;
       }
       break;

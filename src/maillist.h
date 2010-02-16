@@ -256,6 +256,18 @@ class MailList : public QObject
      */
     void setMarkAtNextViewRefresh( int number );
 
+    /**
+     * Returns the number of new mails.
+     * @return number of new mails
+     */
+    int getNumberNewMails();
+
+    /**
+     * Returns the total size (bytes) of all mails.
+     * @return total size
+     */
+    long getTotalSize();
+
 
 
   private:

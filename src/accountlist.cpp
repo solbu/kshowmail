@@ -667,3 +667,21 @@ void AccountList::slotCheckShowBodiesState( QString account )
   }
 }
 
+int AccountList::getNumberNewMails( )
+{
+  QListIterator<Account*> it( accounts );   //to iterate over all accounts
+  int number = 0;                             //number of new mails
+
+  //iterate over all accounts and sum up the number of new mails
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+    
+    if( account->isActive() )
+      number += account->getNumberNewMails();
+
+  }
+
+  return number;
+}
+

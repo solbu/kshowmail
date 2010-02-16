@@ -395,7 +395,22 @@ class Account : public QObject
      */
     void showMails();
 
+    /**
+     * Returns the number of new mails.
+     * @return number of new mails
+     */
+    int getNumberNewMails();
 
+    /**
+     * Returns the total size (bytes) of all mails.
+     * @return total size
+     */
+    long getTotalSize();
+
+    /**
+     * Returns the total size of all mails with unit.
+     */
+    QString getTotalSizeUnit();
     
   protected:
 

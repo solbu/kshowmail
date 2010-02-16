@@ -48,7 +48,6 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //create system tray icon
   trayIcon = new SystemTrayIcon( this, QIcon( KStandardDirs::locate( "data", "kshowmail/pics/trayIcon.png" ) ) );
   trayIcon->show();
-  trayIcon->drawNumber( 99, Qt::black );
 		
 	//load the setup
 	accounts->loadSetup();
@@ -146,6 +145,9 @@ void KShowmail::slotRefresh() {
 
   //show message in the status bar
   showStatusMessage( i18n( "Refreshing ..." ) );
+
+  //order the tray icon to flash
+  trayIcon->showLooking();
 
   //set waiting cursor
   QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -377,6 +379,9 @@ void KShowmail::slotRefreshReady()
 
   //refresh filter status bar
   refreshFilterStatusBar();
+
+  //show the number of mails
+  trayIcon->drawNumber( accounts->getNumberMails(), accounts->getNumberNewMails() != 0 ? Qt::red : Qt::black );
 
 }
 

@@ -509,4 +509,36 @@ void MailList::writeToDeleteLog( FilterLog * log, int number, QString account )
   }
 }
 
+int MailList::getNumberNewMails( )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  int number = 0;                                 //number of new mails
+
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+
+    //increment number, if this mail is new
+    if( mail->isNew() )
+      number++;
+  }
+
+  return number;
+}
+
+long MailList::getTotalSize( )
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  long size = 0;                                   //total size of all mails
+
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+
+    size += mail->getSize();
+  }
+
+  return size;
+}
+
 

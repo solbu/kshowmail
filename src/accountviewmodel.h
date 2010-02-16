@@ -21,6 +21,7 @@ class AccountList;
 
 //Qt headers
 #include <QAbstractItemModel>
+#include <QModelIndex>
 
 //KDE headers
 #include <KDebug>

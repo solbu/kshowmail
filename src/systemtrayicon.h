@@ -24,6 +24,8 @@
 //Qt headers
 #include <QIcon>
 #include <QPainter>
+#include <QColor>
+#include <QTimer>
 
 //KDE headers
 #include <KSystemTrayIcon>
@@ -48,20 +50,51 @@ class SystemTrayIcon : public KSystemTrayIcon
      * @param n number to draw
      * @param color color
      */
-    void drawNumber (int n, const QColor& color);
+    void drawNumber( int n, const QColor& color );
 
     /**
      * Clears the number from the icon
      */
     void clear ();
 
-  protected:
+    /**
+     * Shows a flashing question mark
+     */
+    void showLooking();
+
+  private:
 
     /**
      * the icon
      */
     QIcon _icon;
 
+    /**
+     * Timer to animate the ?
+     */
+    QTimer* flashingTimer;
+
+    /**
+     * auxiliary flag for the flasher<p>
+     * TRUE - question mark is on; FALSE - question mark is off
+     */
+    bool flasherFlag;
+
+  protected:
+
+    /**
+     * Draws a question mark
+     */
+    void drawLooking();
+
+  protected slots:
+
+    /**
+     * Receives the timer event and depending on flasherFlag it calls drawLooking() or clears the icon.
+     * @see flasherFlag
+     * @see drawLooking
+     */
+    void slotFlash();
 };
 
 #endif // SYSTEMTRAYICON_H
