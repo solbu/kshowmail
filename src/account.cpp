@@ -33,8 +33,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   connect( socket, SIGNAL( error( KTcpSocket::Error ) ), this, SLOT( slotSocketError( KTcpSocket::Error ) ) );
   connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
   connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
-
-  
+  connect( socket, SIGNAL( sslErrors(QList<KSslError>) ), this, SLOT( slotSSLError(QList<KSslError>) ) );
 
   init();
 	
@@ -88,6 +87,9 @@ void Account::init()
   downloadActionsInvoked = false;
   deletionPerformedByFilters = false;
   filterApplied = false;
+
+  //handle the errors
+  dontHandleError = false;
 
 }
 
@@ -345,9 +347,7 @@ void Account::doConnect()
  //break, if there is already a connection
   if( socket->state() != KTcpSocket::UnconnectedState )
   {
-    //handleError( "Already connected" );
     closeConnection();
-    //return;
   }
 
   initBeforeConnect();
@@ -357,7 +357,20 @@ void Account::doConnect()
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReadFirstServerMessage() ) );
   
   //do connect
-  socket->connectToHost( getHost(), getPort() );
+  if( transferSecurity == TransSecNone ) {
+    
+    socket->connectToHost( getHost(), getPort() );
+
+  } else if( transferSecurity == TransSecSSL ) {
+
+    socket->connectToHostEncrypted( getHost(), getPort() );
+    
+    
+  } else {
+
+    handleError( "Unsupported Transfer Security" );
+    return;
+  }
 }
 
 void Account::closeConnection()
@@ -377,7 +390,9 @@ void Account::initBeforeConnect()
   //at the next refresh the filter was not applied yet
   filterApplied = false;
 
-  refreshPerformedByFilters = false;  
+  refreshPerformedByFilters = false;
+
+  dontHandleError = false;
 
 }
 
@@ -391,6 +406,10 @@ void Account::slotHostFound()
 
 void Account::slotSocketError( KTcpSocket::Error ErrorCode)
 {
+  //maybe we must not handle this error
+  if( dontHandleError ) return;
+
+  
   QString message;    //the error message
   switch( ErrorCode )
   {
@@ -413,6 +432,7 @@ void Account::slotSocketError( KTcpSocket::Error ErrorCode)
 
 void Account::handleError( QString error )
 {
+  
   //close connection
   closeConnection();
 
@@ -2127,4 +2147,45 @@ QString Account::getTotalSizeUnit() {
 
   return strSize;
 
+}
+
+void Account::slotSSLError( const QList<KSslError>& errors ) {
+
+  //make a single error string
+  QString message;
+  QListIterator<KSslError> it( errors );
+  while( it.hasNext() ) {
+
+    KSslError error = it.next();
+
+    message.append( error.errorString() );
+  }
+
+  //ask the user whether he want to cancel or continue
+  emit sigMessageWindowOpened();
+  int answer = KMessageBox::warningContinueCancel( NULL,
+                                                   i18n( "SSL error: %1\nDo you want to continue?" ).arg( message ),
+                                                   i18n( "SSL-Error - %1" ).arg( getName() ),
+                                                   KStandardGuiItem::cont(),
+                                                   KStandardGuiItem::cancel(),
+                                                   QString( "askSSLErrorContinue_%1").arg( getName() ) );
+  emit sigMessageWindowClosed();
+
+  if( answer == KMessageBox::Continue ) {
+  
+    //continue
+    socket->ignoreSslErrors();
+    
+  } else {
+
+    //the socket calls slotSocketError, but we don't want a further error message
+    dontHandleError = true;
+
+    //cancel
+    finishTask();
+
+  }
+  
+  return;
+  
 }

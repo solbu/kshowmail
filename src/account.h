@@ -29,6 +29,7 @@ class Account;
 #include <QTimer>
 #include <QTextCodec>
 #include <QDir>
+#include <QSslCertificate>
 
 //KDE headers
 #include <KConfigGroup>
@@ -39,6 +40,8 @@ class Account;
 #include <ktcpsocket.h>
 #include <KApplication>
 #include <KDE/KLocale>
+#include <KMessageBox>
+
 
 //KShowmail headers
 #include "mail.h"
@@ -738,6 +741,13 @@ class Account : public QObject
     */
    void slotSocketError( KTcpSocket::Error ErrorCode );
 
+   /**
+    * Connected with signale sslErrors of the socket<p>
+    * Will be invoked, when a ssl socket error occures.
+    * @param errors list of errors
+    */
+   void slotSSLError( const QList<KSslError>& errors );
+
     /**
      * Reads the first message send by server.
      */
@@ -1059,6 +1069,11 @@ class Account : public QObject
      * Action which shall be done, if the mail is Spam
      */
 		FilterAction_Type spamAction;
+
+    /**
+     * TRUE - the error will not be handled by slotSocketError.
+     */
+    bool dontHandleError;
 
   signals:
 

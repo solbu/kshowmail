@@ -33,7 +33,7 @@ SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
 
 kde4_add_executable(kshowmail ${kshowmail_SRCS})
 
-target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} ${KDEPIMLIBS_KMIME_LIBS} )
+target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} ${KDEPIMLIBS_KMIME_LIBS} ${KDE4_KIO_LIBS} )
 
 install(TARGETS kshowmail ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
