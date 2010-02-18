@@ -487,13 +487,14 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
 
     if( line.isNull() )
     {
+      continue;
       if( !socket->waitForReadyRead() )
       {
         handleError( i18n( "Timeout" ) );
         return QStringList();
       }
 
-      line = socketStream.readLine();
+       line = socketStream.readLine();
       
     }
 
