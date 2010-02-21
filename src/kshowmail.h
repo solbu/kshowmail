@@ -205,6 +205,25 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotShowMessageReady();
 
+    /**
+     * This will be called by the refresh timer every second.<p>
+     * It decreases timeToRefresh and calls slotRefresh when it is zero.
+     */
+    void slotRefreshTimer();
+
+  protected:
+
+    /**
+     * Starts the refresh timer.
+     * @param initiate TRUE - this is the first automatic refresh (use initiate time)
+     */
+    void startAutomaticRefresh( bool initiate = false );
+
+    /**
+     * Stops the refresh timer.
+     */
+    void stopAutomaticRefresh();
+
 
 	
 	private:
@@ -230,7 +249,7 @@ class KShowmail : public KXmlGuiWindow
     KCMultiDialog* setupDialog;
 
     /**
-     * The application config object
+     * application config
      */
     KSharedConfigPtr config;
 
@@ -258,6 +277,16 @@ class KShowmail : public KXmlGuiWindow
      * The system tray icon
      */
     SystemTrayIcon* trayIcon;
+
+    /**
+     * The refresh timer. It times out every second and calls slotRefreshTimer().
+     */
+    QTimer* refreshTimer;
+
+    /**
+     * Number of seconds until the next refresh
+     */
+    unsigned int timeToRefresh;
 
 };
 

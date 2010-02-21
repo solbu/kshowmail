@@ -41,7 +41,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   // toolbar position, icon size, etc.
   setupGUI();
 
-  //get the application config object
+  //get the config objects
   config = KGlobal::config();
   configGeneral = new KConfigGroup( config, CONFIG_GROUP_GENERAL );
 
@@ -52,11 +52,16 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	//load the setup
 	accounts->loadSetup();
 
+  //refresh timer
+  refreshTimer = new QTimer( this );
+  connect( refreshTimer, SIGNAL( timeout() ), this, SLOT( slotRefreshTimer() ) );
+
   //at beginning the state is "idle"
   state = idle;
 
+  //run initial refresh
+  startAutomaticRefresh( true );
 
-  //TEST
 }
 
 KShowmail::~KShowmail()
@@ -136,9 +141,11 @@ void KShowmail::slotRefresh() {
   //just do it, if the app doesn't do anything
   if ( state != idle )
   {
-    kapp->beep();
     return;
   }
+
+  //stop refresh timer
+  refreshTimer->stop();
 
   //set new state
   state = refreshing;
@@ -330,19 +337,16 @@ void KShowmail::slotConfChanged() {
   //refresh the views
   view->refreshViews( mailSelectModel, QList<int>() );
 
+  //restart refresh timer
+  startAutomaticRefresh();
+
+
 }
 
 void KShowmail::showStatusMessage( const QString& text)
 {
-  //get current time
-  // added by Gustavo Zamorano to include time
-  QString sTime = QTime::currentTime().toString ();
-
   //set given text
   statusBar()->changeItem( text, STATUSBAR_FIELD_STATE );
-
-  //set current time
-  statusBar()->changeItem( i18n( "Last Refresh: %1" ).arg( sTime ), STATUSBAR_FIELD_LAST_REFRESH );
 }
 
 void KShowmail::initStatusBar()
@@ -382,6 +386,15 @@ void KShowmail::slotRefreshReady()
 
   //show the number of mails
   trayIcon->drawNumber( accounts->getNumberMails(), accounts->getNumberNewMails() != 0 ? Qt::red : Qt::black );
+
+  //show refresh time
+  QString sTime = QTime::currentTime().toString ();
+  statusBar()->changeItem( i18n( "Last Refresh: %1" ).arg( sTime ), STATUSBAR_FIELD_LAST_REFRESH );
+
+
+
+  //start the refresh timer
+  startAutomaticRefresh();
 
 }
 
@@ -446,5 +459,56 @@ void KShowmail::slotShowMessageReady( )
 
 }
 
+void KShowmail::startAutomaticRefresh( bool initiate ) {
 
+  //just start if auto refresh is desired
+  if( configGeneral->readEntry( CONFIG_ENTRY_AUTO_REFRESH, DEFAULT_AUTO_REFRESH ) ) {
+
+    //get refresh time
+    if( initiate ) {
+
+      timeToRefresh = configGeneral->readEntry( CONFIG_ENTRY_INITIAL_TIME, DEFAULT_INITIAL_TIME );
+
+    } else {
+
+      timeToRefresh = configGeneral->readEntry( CONFIG_ENTRY_INTERVAL_TIME, DEFAULT_INTERVAL_TIME ) * 60;
+    }
+
+    //start the timer
+    refreshTimer->start( 1000 );
+
+  } else {
+
+    refreshTimer->stop();
+  }
+
+
+}
+
+void KShowmail::slotRefreshTimer() {
+
+  //decrease refresh counter
+  timeToRefresh--;
+
+  //show time to next refrsh in statusbar
+  QTime time;
+  time = time.addSecs( timeToRefresh );
+
+  statusBar()->changeItem( QString( "Next Refresh: %1" ).arg( time.toString() ), STATUSBAR_FIELD_NEXT_REFRESH );
+
+  //start refresh at zero
+  if( timeToRefresh == 0 ) {
+
+    stopAutomaticRefresh();
+    slotRefresh();
+  }
+
+}
+
+void KShowmail::stopAutomaticRefresh() {
+
+  refreshTimer->stop();
+  timeToRefresh = 0;
+
+}
 #include "kshowmail.moc"

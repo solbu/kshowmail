@@ -117,6 +117,11 @@ Q_OBJECT
     QCheckBox* chkKeepNew;
 
     /**
+     * Check box to select automatic refresh
+     */
+    QCheckBox* chkAutomaticRefresh;
+
+    /**
      * Spin box to set the initial timer.
      */
     QSpinBox* spbInitial;
@@ -125,6 +130,16 @@ Q_OBJECT
      * Spin box to set the interval timer.
      */
     QSpinBox* spbInterval;
+
+    /**
+     * Label for interval timer
+     */
+    QLabel* lblTimerInterval;
+
+    /**
+     * Label for initial timer
+     */
+    QLabel* lblTimerInitial;
 
     /**
      * Spin box to set the time out timer.
@@ -138,6 +153,13 @@ Q_OBJECT
      * Calls the slot changed() of KCModule to notify the dialog about the change.
      */
     void slotChanged();
+
+    /**
+     * Connected with the check box of automatic refresh.<p>
+     * Enables or disables the refresh timer spin boxes
+     * @param checked TRUE - box is checked; FALSE - box is not checked
+     */
+    void slotAutomaticRefreshChanged( bool checked );
 
 };
 

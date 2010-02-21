@@ -40,9 +40,10 @@ namespace Constants
   #define DEFAULT_MINIMIZE_TO_TRAY        true
   #define DEFAULT_SHOW_CONNECTION_ERRORS  true
   #define DEFAULT_KEEP_NEW                false
+  #define DEFAULT_AUTO_REFRESH            false
 
-  #define DEFAULT_INITIAL_TIME    0
-  #define DEFAULT_INTERVAL_TIME   0
+  #define DEFAULT_INITIAL_TIME    5
+  #define DEFAULT_INTERVAL_TIME   5
   #define MINIMUM_TIMEOUT_TIME    5
   #define DEFAULT_TIMEOUT_TIME    30
 
@@ -198,6 +199,7 @@ namespace Constants
   #define CONFIG_ENTRY_INITIAL_TIME             "InitialTime"
   #define CONFIG_ENTRY_INTERVAL_TIME            "IntervalTime"
   #define CONFIG_ENTRY_TIMEOUT_TIME             "TimeoutTime"
+  #define CONFIG_ENTRY_AUTO_REFRESH             "AutomaticRefresh"
 
   #define CONFIG_GROUP_ACTIONS                "Actions"
   #define CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW   "showAlertMessageIfNewMail"

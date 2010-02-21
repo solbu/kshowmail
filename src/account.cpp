@@ -14,7 +14,7 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "./account.h"
+#include "account.h"
 #include "maillist.h"
 
 Account::Account( QString name, AccountList* accountList, QObject* parent ) 
@@ -425,6 +425,33 @@ void Account::slotSocketError( KTcpSocket::Error ErrorCode)
     default                                    : message = i18n( "Unknown connection error" ); break;
   }
 
+//   switch( ErrorCode ) {
+// 
+//     case QAbstractSocket::ConnectionRefusedError    : message = i18n( "The connection was refused by the peer or timed out" ); break;
+//     case QAbstractSocket::RemoteHostClosedError     : message = i18n( "The remote host closed the connection" ); break;
+//     case QAbstractSocket::HostNotFoundError         : message = QString( i18n( "Host not found: %1" ).arg( getHost() ) ); break;
+//     case QAbstractSocket::SocketAccessError         : message = i18n( "Socket access error" ); break;
+//     case QAbstractSocket::SocketResourceError       : message = i18n( "Socket resource error" ); break;
+//     case QAbstractSocket::SocketTimeoutError        : message = i18n( "Socket timeout error" ); break;
+//     case QAbstractSocket::DatagramTooLargeError     : message = i18n( "The datagram was larger than the operation system's limit" ); break;
+//     case QAbstractSocket::NetworkError              : message = i18n( "Network error" ); break;
+//     case QAbstractSocket::AddressInUseError         : message = i18n( "The adress is already in use." ); break;
+//     case QAbstractSocket::SocketAddressNotAvailableError : message = i18n( "The address does not belong to the host" ); break;
+//     case QAbstractSocket::UnsupportedSocketOperationError : message = i18n( "Unsupported Socket Operation Error" ); break;
+//     case QAbstractSocket::ProxyAuthenticationRequiredError : message = i18n( "The socket is using a proxy, and the proxy requires authentication." ); break;
+//     case QAbstractSocket::SslHandshakeFailedError   : message = i18n( "The SSL/TLS handshake failed, so the connection was closed." ); break;
+//     case QAbstractSocket::UnfinishedSocketOperationError : message = i18n( "The last operation attempted has not finished yet." ); break;
+//     case QAbstractSocket::ProxyConnectionRefusedError : message = i18n( "Could not contact the proxy server because the connection to that server was denied." ); break;
+//     case QAbstractSocket::ProxyConnectionClosedError  : message = i18n( "The connection to the proxy server was closed unexpectedly." ); break;
+//     case QAbstractSocket::ProxyConnectionTimeoutError : message = i18n( "The connection to the proxy server timed out or the proxy server stopped responding in the authentication phase." ); break;
+//     case QAbstractSocket::ProxyNotFoundError        : message = i18n( "The proxy address was not found." ); break;
+//     case QAbstractSocket::ProxyProtocolError        : message = i18n( "The connection negotiation with the proxy server because the response from the proxy server could not be understand." ); break;
+//     case QAbstractSocket::UnknownSocketError        : message = i18n( "Unknown socket error" ); break;
+//     default                                         : message = i18n( "Unknown connection error" ); break;
+// 
+// 
+//   }
+
   //show error and handle all other
   handleError( message );
 
@@ -456,69 +483,143 @@ void Account::handleError( QString error )
 
 QStringList Account::readfromSocket( QString charset, bool singleLine )
 {
-  QTextStream socketStream( socket ); //to read from socket
-  QStringList serverResponse; //buffer for the server response
 
-
-  //set charset if known
-  if( !charset.isNull() && charset.length() != 0 )
-  {
-    QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
-    if( codec == NULL )
-    {
-      kdDebug() << "No codec found for " << charset << endl;
-    }
-    else
-    {
-      socketStream.setCodec( codec );
-    }
-    
-  }
-
-  //read from socket
+  QString readed;
   bool responseEndFound = false;  //end of a multi-line response found
 
-  //loop until the last line is read
-  //the last line is either a single point or a -ERR at first
-  while( !responseEndFound )
-  {
-    //get line
-    QString line = socketStream.readLine();
+  //all lines of the response are terminated by a CRLF pair.
+  QString lineTerm( 13 );
+  lineTerm.append( 10 );
 
-    if( line.isNull() )
-    {
-      continue;
+
+  //this string is at the end of a multiline response
+  QString endOfMultiLine( lineTerm );
+  endOfMultiLine.append( END_MULTILINE_RESPONSE );
+  endOfMultiLine.append( lineTerm );
+  
+  while( !responseEndFound ) {
+
+    if( socket->bytesAvailable() == 0 ) {
+
       if( !socket->waitForReadyRead() )
       {
-        handleError( i18n( "Timeout" ) );
         return QStringList();
       }
-
-       line = socketStream.readLine();
-      
     }
 
-    //check for a negative response
-    if( isNegativeResponse( line ) )
+    //append the readed bytes
+    readed.append( QString( socket->readAll() ) );
+
+    //check for end of response
+    if( isNegativeResponse( readed ) )
     {
-      serverResponse.append( line );
       responseEndFound = true;
     }
-    //check for response end with the point
-    else if( line == END_MULTILINE_RESPONSE )
+    //check for end of multiline response
+    else if( readed.endsWith( endOfMultiLine ) )
     {
       responseEndFound = true;
     }
     //it is a normal data line
     else
     {
-      serverResponse.append( line );
       //break the loop if we anticipate single line
-      if( singleLine ) responseEndFound = true;
+      if( singleLine && readed.endsWith( lineTerm ) ) responseEndFound = true;
     }
-  }
+    
 
-  return serverResponse;
+  }
+  
+  kdDebug() << readed << endl;
+
+  //split the response into lines
+  QStringList response = readed.split( lineTerm );
+
+  //the last line could be an empty string, because there is a CRLF at the end of
+  //the received byte stream and therefore QString.split() creates this.
+  //We can't use QString::SkipEmptyParts in split() because we want to keep the empty lines
+  //into the mail
+  if( response.last().isEmpty() ) {
+
+    response.removeLast();
+  }
+  
+  return response;
+  
+//   QTextStream socketStream( socket ); //to read from socket
+//   QStringList serverResponse; //buffer for the server response
+// 
+// 
+//   //set charset if known
+//   if( !charset.isNull() && charset.length() != 0 )
+//   {
+//     QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
+//     if( codec == NULL )
+//     {
+//       kdDebug() << "No codec found for " << charset << endl;
+//     }
+//     else
+//     {
+//       socketStream.setCodec( codec );
+//     }
+//     
+//   }
+// 
+//   //read from socket
+//   bool responseEndFound = false;  //end of a multi-line response found
+// 
+//   //loop until the last line is read
+//   //the last line is either a single point or a -ERR at first
+//   while( !responseEndFound )
+//   {
+// 
+//     if( socketStream.atEnd() ) {
+// 
+//       if( !socket->waitForReadyRead() ) {
+// 
+//         handleError( i18n( "Timeout") );
+//         return QStringList();
+// 
+//       }
+// 
+//     }
+//     //get line
+//     QString line = socketStream.readLine();
+//     kdDebug() << line << endl;
+// 
+// //     if( line.isNull() )
+// //     {
+// //       if( !socket->waitForReadyRead() )
+// //       {
+// //         handleError( i18n( "Timeout" ) );
+// //         return QStringList();
+// //       }
+// // 
+// //        line = socketStream.readLine();
+// //       
+// //     }
+// 
+//     //check for a negative response
+//     if( isNegativeResponse( line ) )
+//     {
+//       serverResponse.append( line );
+//       responseEndFound = true;
+//     }
+//     //check for response end with the point
+//     else if( line == END_MULTILINE_RESPONSE )
+//     {
+//       responseEndFound = true;
+//     }
+//     //it is a normal data line
+//     else
+//     {
+//       serverResponse.append( line );
+//       //break the loop if we anticipate single line
+//       if( singleLine ) responseEndFound = true;
+//     }
+//   }
+//
+//  return serverResponse;
 
 }
 

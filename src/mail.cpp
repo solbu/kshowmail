@@ -644,9 +644,6 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
   decodedBody = joinedBody.split( "\n" );
 
 
-  kdDebug() << "Charset: " << charset << endl;
-  kdDebug() << "Transfer Encoding: " << encoding << endl;
-
   return decodedBody;
 }
 

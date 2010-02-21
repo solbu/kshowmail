@@ -28,13 +28,19 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   layMainTop->setMargin( 20 );
   layMain->addLayout( layMainTop );
 
-  //group box for timers
-  QGroupBox* gboxTimers = new QGroupBox( i18n( "&Timers" ), this );
-  layMain->addWidget( gboxTimers );
+  //group box for automatic refresh
+  QGroupBox* gboxAutomaticRefresh = new QGroupBox( i18n( "&Automatic Refresh" ), this );
+  layMain->addWidget( gboxAutomaticRefresh );
 
-  //layouts for timers
-  QGridLayout* layTimers = new QGridLayout();
-  gboxTimers->setLayout( layTimers );
+  //layout for automatic refresh
+  QGridLayout* layAutoRefresh = new QGridLayout();
+  gboxAutomaticRefresh->setLayout( layAutoRefresh );
+
+  //group box for server connect
+  QGroupBox* gBoxServerConnect = new QGroupBox( i18n( "Server Connect"), this  );
+  layMain->addWidget( gBoxServerConnect );
+  QGridLayout* layServerConnect = new QGridLayout();
+  gBoxServerConnect->setLayout( layServerConnect );
 
   //create items
   chkConfirmClose = new QCheckBox( i18n( "Confirm Close" ), this );
@@ -57,43 +63,52 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   chkMinimizeToTray->setToolTip( i18n( "Minimizes to the tray rather than to the taskbar" ) );
   layMainTop->addWidget( chkMinimizeToTray, 2, 0 );
 
-  chkShowConnectionErrors = new QCheckBox( i18n( "Show Connection Errors during refresh" ), this );
-  chkShowConnectionErrors->setToolTip( i18n( "If a connection error occurs during refresh (e.g. unknown server), an error message will be shown. During other actions, this error always will be shown" ) );
-  layMainTop->addWidget( chkShowConnectionErrors, 2, 1 );
-
   chkKeepNew = new QCheckBox( i18n( "&Keep mail as new" ), this );
   chkKeepNew->setToolTip( i18n( "Keep mail as new until termination" ) );
-  layMainTop->addWidget( chkKeepNew, 3, 0 );
+  layMainTop->addWidget( chkKeepNew, 2, 1 );
 
-  QLabel* lblTimerInitial = new QLabel( i18n( "Initial Timer:" ), gboxTimers );
-  spbInitial = new QSpinBox( gboxTimers );
+
+
+  chkAutomaticRefresh = new QCheckBox( i18n( "Automatic refresh" ) );
+  chkAutomaticRefresh->setToolTip( i18n( "Run refreshes of the mail list automatically") );
+  layAutoRefresh->addWidget( chkAutomaticRefresh, 0, 0 );
+  connect( chkAutomaticRefresh, SIGNAL( toggled( bool) ), this, SLOT( slotAutomaticRefreshChanged( bool ) ) );
+
+  lblTimerInitial = new QLabel( i18n( "Initial Timer:" ), gboxAutomaticRefresh );
+  spbInitial = new QSpinBox( gboxAutomaticRefresh );
   spbInitial->setMinimum( 0 );
   spbInitial->setMaximum( 99999 );
   spbInitial->setSuffix( i18n( " Seconds") );
   spbInitial->setToolTip( i18n( "Seconds until first automatic logon (0 = no automatic)" ) );
-  lblTimerInitial->setToolTip( i18n( "Seconds until first automatic logon (0 = no automatic)" ) );
-  layTimers->addWidget( lblTimerInitial, 0, 0 );
-  layTimers->addWidget( spbInitial, 0, 1 );
+  lblTimerInitial->setToolTip( i18n( "Seconds until first automatic logon (0 = it refreshes immediately)" ) );
+  layAutoRefresh->addWidget( lblTimerInitial, 1, 0 );
+  layAutoRefresh->addWidget( spbInitial, 1, 1 );
 
-  QLabel* lblTimerInterval = new QLabel( i18n( "Interval Timer:" ), gboxTimers );
-  spbInterval = new QSpinBox( gboxTimers );
-  spbInterval->setMinimum( 0 );
+  lblTimerInterval = new QLabel( i18n( "Interval Timer:" ), gboxAutomaticRefresh );
+  spbInterval = new QSpinBox( gboxAutomaticRefresh );
+  spbInterval->setMinimum( 1 );
   spbInterval->setMaximum( 99999 );
   spbInterval->setSuffix( i18n( " Minutes") );
   spbInterval->setToolTip( i18n( "Minutes between automatic logon (0 = no automatic)" ) );
   lblTimerInterval->setToolTip( i18n( "Minutes between automatic logon (0 = no automatic)" ) );
-  layTimers->addWidget( lblTimerInterval, 1, 0 );
-  layTimers->addWidget( spbInterval, 1, 1 );
+  layAutoRefresh->addWidget( lblTimerInterval, 2, 0 );
+  layAutoRefresh->addWidget( spbInterval, 2, 1 );
 
-  QLabel* lblTimerTimeout = new QLabel( i18n( "Timeout:" ), gboxTimers );
-  spbTimeout = new QSpinBox( gboxTimers );
+
+  chkShowConnectionErrors = new QCheckBox( i18n( "Show Connection Errors during refresh" ), gBoxServerConnect );
+  chkShowConnectionErrors->setToolTip( i18n( "If a connection error occurs during refresh (e.g. unknown server), an error message will be shown. During other actions, this error always will be shown" ) );
+  layServerConnect->addWidget( chkShowConnectionErrors, 0, 0 );
+
+
+  QLabel* lblTimerTimeout = new QLabel( i18n( "Timeout:" ), gBoxServerConnect );
+  spbTimeout = new QSpinBox( gBoxServerConnect );
   spbTimeout->setMinimum( MINIMUM_TIMEOUT_TIME );
   spbTimeout->setMaximum( 99999 );
   spbTimeout->setSuffix( i18n( " Seconds" ) );
   spbTimeout->setToolTip( i18n( "Seconds until a server connect will be canceled" ) );
   lblTimerTimeout->setToolTip( i18n( "Seconds until a server connect will be canceled" ) );
-  layTimers->addWidget( lblTimerTimeout, 2, 0 );
-  layTimers->addWidget( spbTimeout, 2, 1 );
+  layServerConnect->addWidget( lblTimerTimeout, 1, 0 );
+  layServerConnect->addWidget( spbTimeout, 1, 1 );
 
 
   //connect all configuration itmes with slot changed() to notify the dialog about changes
@@ -107,6 +122,7 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   connect( spbInitial, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( spbInterval, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( spbTimeout, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
+  connect( chkAutomaticRefresh, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
 
   //get application config object (kshowmailrc)
@@ -133,6 +149,9 @@ void ConfigGeneral::load( )
   chkShowConnectionErrors->setChecked( configGeneral->readEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, DEFAULT_SHOW_CONNECTION_ERRORS ) );
   chkKeepNew->setChecked( configGeneral->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW ) );
 
+  
+  chkAutomaticRefresh->setChecked( configGeneral->readEntry( CONFIG_ENTRY_AUTO_REFRESH, DEFAULT_AUTO_REFRESH ) );
+  slotAutomaticRefreshChanged( chkAutomaticRefresh->isChecked() );
   spbInitial->setValue( configGeneral->readEntry( CONFIG_ENTRY_INITIAL_TIME, DEFAULT_INITIAL_TIME ) );
   spbInterval->setValue( configGeneral->readEntry( CONFIG_ENTRY_INTERVAL_TIME, DEFAULT_INTERVAL_TIME) );
   spbTimeout->setValue( configGeneral->readEntry( CONFIG_ENTRY_TIMEOUT_TIME, DEFAULT_TIMEOUT_TIME) );
@@ -148,6 +167,8 @@ void ConfigGeneral::defaults( )
   chkShowConnectionErrors->setChecked( DEFAULT_SHOW_CONNECTION_ERRORS );
   chkKeepNew->setChecked( DEFAULT_KEEP_NEW );
 
+  chkAutomaticRefresh->setChecked( DEFAULT_AUTO_REFRESH );
+  slotAutomaticRefreshChanged( chkAutomaticRefresh->isChecked() );
   spbInitial->setValue( DEFAULT_INITIAL_TIME );
   spbInterval->setValue( DEFAULT_INTERVAL_TIME );
   spbTimeout->setValue( DEFAULT_TIMEOUT_TIME );
@@ -167,6 +188,7 @@ void ConfigGeneral::save( )
   configGeneral->writeEntry( CONFIG_ENTRY_INITIAL_TIME, spbInitial->value() );
   configGeneral->writeEntry( CONFIG_ENTRY_INTERVAL_TIME, spbInterval->value() );
   configGeneral->writeEntry( CONFIG_ENTRY_TIMEOUT_TIME, spbTimeout->value() );
+  configGeneral->writeEntry( CONFIG_ENTRY_AUTO_REFRESH, chkAutomaticRefresh->isChecked() );
 
   //write configuration to disk
   config->sync();
@@ -175,6 +197,14 @@ void ConfigGeneral::save( )
 void ConfigGeneral::slotChanged( )
 {
   KCModule::changed();
+}
+
+void ConfigGeneral::slotAutomaticRefreshChanged( bool checked ) {
+
+  spbInitial->setEnabled( checked );
+  spbInterval->setEnabled( checked );
+  lblTimerInitial->setEnabled( checked );
+  lblTimerInterval->setEnabled( checked );
 }
 
 #include "configgeneral.moc"
