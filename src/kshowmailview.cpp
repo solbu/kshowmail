@@ -37,6 +37,8 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
   viewMails->setIndentation( 0 );
   viewMails->setSelectionMode( QAbstractItemView::ExtendedSelection );
   viewMails->setSelectionModel( mailSelectModel );
+	
+	loadSetup();
 
 }
 
@@ -57,6 +59,60 @@ void KShowmailView::refreshViews( QItemSelectionModel* mailSelectModel, QList<in
     int row = itMark.next();
     mailSelectModel->select( mailModel->index( row, 0 ), QItemSelectionModel::Select | QItemSelectionModel::Rows );
   }
+}
 
-  
+void KShowmailView::saveSetup() {
+
+	//get config objects
+	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
+	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
+	
+	//save the column widths
+	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, viewAccounts->columnWidth( 0 ) );
+	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT, viewAccounts->columnWidth( 1 ) );
+	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SERVER, viewAccounts->columnWidth( 2 ) );
+	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_USER, viewAccounts->columnWidth( 3 ) );
+	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES, viewAccounts->columnWidth( 4 ) );
+	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE, viewAccounts->columnWidth( 5 ) );
+	
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_STATE, viewMails->columnWidth( 0 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_NUMBER, viewMails->columnWidth( 1 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_ACCOUNT, viewMails->columnWidth( 2 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_FROM, viewMails->columnWidth( 3 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_TO, viewMails->columnWidth( 4 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SUBJECT, viewMails->columnWidth( 5 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_DATE, viewMails->columnWidth( 6 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SIZE, viewMails->columnWidth( 7 ) );
+	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, viewMails->columnWidth( 8 ) );
+	
+	
+	configAcc->sync();
+	configMail->sync();
+	
+}
+
+void KShowmailView::loadSetup() {
+
+		//get config object for the account list
+	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
+	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
+	
+	viewAccounts->setColumnWidth( 0, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, DEFAULT_WIDTH_ACCOUNT_ACTIVE ) );
+	viewAccounts->setColumnWidth( 1, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT, DEFAULT_WIDTH_ACCOUNT_ACCOUNT ) );
+	viewAccounts->setColumnWidth( 2, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SERVER, DEFAULT_WIDTH_ACCOUNT_SERVER ) );
+	viewAccounts->setColumnWidth( 3, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_USER, DEFAULT_WIDTH_ACCOUNT_USER ) );
+	viewAccounts->setColumnWidth( 4, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES, DEFAULT_WIDTH_ACCOUNT_MESSAGES ) );
+	viewAccounts->setColumnWidth( 5, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE, DEFAULT_WIDTH_ACCOUNT_SIZE ) );
+	
+	viewMails->setColumnWidth( 0, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_STATE, DEFAULT_WIDTH_MESSAGE_STATE ) );
+	viewMails->setColumnWidth( 1, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_NUMBER, DEFAULT_WIDTH_MESSAGE_NUMBER ) );
+	viewMails->setColumnWidth( 2, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_ACCOUNT, DEFAULT_WIDTH_MESSAGE_ACCOUNT ) );
+	viewMails->setColumnWidth( 3, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_FROM, DEFAULT_WIDTH_MESSAGE_FROM ) );
+	viewMails->setColumnWidth( 4, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_TO, DEFAULT_WIDTH_MESSAGE_TO ) );
+	viewMails->setColumnWidth( 5, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SUBJECT, DEFAULT_WIDTH_MESSAGE_SUBJECT ) );
+	viewMails->setColumnWidth( 6, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_DATE, DEFAULT_WIDTH_MESSAGE_DATE ) );
+	viewMails->setColumnWidth( 7, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SIZE, DEFAULT_WIDTH_MESSAGE_SIZE ) );
+	viewMails->setColumnWidth( 8, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, DEFAULT_WIDTH_MESSAGE_CONTENT ) );
+	
+	
 }

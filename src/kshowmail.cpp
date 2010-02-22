@@ -325,6 +325,7 @@ bool KShowmail::queryClose() {
   fLog.save();
   config->sync();
   accounts->saveOptions();
+	view->saveSetup();
 
   return true;
 }

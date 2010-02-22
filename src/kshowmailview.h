@@ -57,6 +57,16 @@ class KShowmailView : public QSplitter
      */
     void refreshViews( QItemSelectionModel* mailSelectModel, QList<int> markedMails );
 		
+		/**
+		 * Saves the column widths
+		 */
+		void saveSetup();
+		
+		/**
+		 * Loads and sets the column widths
+		 */
+		void loadSetup();
+		
 	private:
 		
 		/**
