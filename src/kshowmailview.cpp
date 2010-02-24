@@ -68,22 +68,51 @@ void KShowmailView::saveSetup() {
 	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
 	
 	//save the column widths
-	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, viewAccounts->columnWidth( 0 ) );
-	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT, viewAccounts->columnWidth( 1 ) );
-	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SERVER, viewAccounts->columnWidth( 2 ) );
-	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_USER, viewAccounts->columnWidth( 3 ) );
-	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES, viewAccounts->columnWidth( 4 ) );
-	configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE, viewAccounts->columnWidth( 5 ) );
-	
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_STATE, viewMails->columnWidth( 0 ) );
+  if( !viewAccounts->isColumnHidden( 0 ) )
+    configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, viewAccounts->columnWidth( 0 ) );
+
+  if( !viewAccounts->isColumnHidden( 1 ) )
+    configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT, viewAccounts->columnWidth( 1 ) );
+
+  if( !viewAccounts->isColumnHidden( 2 ) )
+    configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SERVER, viewAccounts->columnWidth( 2 ) );
+
+  if( !viewAccounts->isColumnHidden( 3 ) )
+    configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_USER, viewAccounts->columnWidth( 3 ) );
+
+  if( !viewAccounts->isColumnHidden( 4 ) )
+    configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES, viewAccounts->columnWidth( 4 ) );
+
+  if( !viewAccounts->isColumnHidden( 5 ) )
+    configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE, viewAccounts->columnWidth( 5 ) );
+
+  
+  if( !viewMails->isColumnHidden( 0 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_STATE, viewMails->columnWidth( 0 ) );
+  
+  if( !viewMails->isColumnHidden( 1 ) )
 	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_NUMBER, viewMails->columnWidth( 1 ) );
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_ACCOUNT, viewMails->columnWidth( 2 ) );
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_FROM, viewMails->columnWidth( 3 ) );
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_TO, viewMails->columnWidth( 4 ) );
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SUBJECT, viewMails->columnWidth( 5 ) );
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_DATE, viewMails->columnWidth( 6 ) );
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SIZE, viewMails->columnWidth( 7 ) );
-	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, viewMails->columnWidth( 8 ) );
+
+  if( !viewMails->isColumnHidden( 2 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_ACCOUNT, viewMails->columnWidth( 2 ) );
+
+  if( !viewMails->isColumnHidden( 3 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_FROM, viewMails->columnWidth( 3 ) );
+
+  if( !viewMails->isColumnHidden( 4 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_TO, viewMails->columnWidth( 4 ) );
+
+  if( !viewMails->isColumnHidden( 5 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SUBJECT, viewMails->columnWidth( 5 ) );
+
+  if( !viewMails->isColumnHidden( 6 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_DATE, viewMails->columnWidth( 6 ) );
+
+  if( !viewMails->isColumnHidden( 7 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SIZE, viewMails->columnWidth( 7 ) );
+
+  if( !viewMails->isColumnHidden( 8 ) )
+    configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, viewMails->columnWidth( 8 ) );
 	
 	
 	configAcc->sync();
@@ -93,7 +122,7 @@ void KShowmailView::saveSetup() {
 
 void KShowmailView::loadSetup() {
 
-		//get config object for the account list
+//get config object for the account list
 	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
 	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
 	
@@ -113,6 +142,22 @@ void KShowmailView::loadSetup() {
 	viewMails->setColumnWidth( 6, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_DATE, DEFAULT_WIDTH_MESSAGE_DATE ) );
 	viewMails->setColumnWidth( 7, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_SIZE, DEFAULT_WIDTH_MESSAGE_SIZE ) );
 	viewMails->setColumnWidth( 8, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, DEFAULT_WIDTH_MESSAGE_CONTENT ) );
+
+  viewAccounts->setColumnHidden( 0 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACTIVE, DEFAULT_DISPLAY_ACCOUNT_ACTIVE ) );
+  viewAccounts->setColumnHidden( 1 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_ACCOUNT, DEFAULT_DISPLAY_ACCOUNT_ACCOUNT ) );
+  viewAccounts->setColumnHidden( 2 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SERVER, DEFAULT_DISPLAY_ACCOUNT_SERVER ) );
+  viewAccounts->setColumnHidden( 3 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_USER, DEFAULT_DISPLAY_ACCOUNT_USER ) );
+  viewAccounts->setColumnHidden( 4 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_MESSAGES, DEFAULT_DISPLAY_ACCOUNT_MESSAGES ) );
+  viewAccounts->setColumnHidden( 5 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SIZE, DEFAULT_DISPLAY_ACCOUNT_SIZE ) );
 	
+  viewMails->setColumnHidden( 0 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_STATE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 1 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_NUMBER, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 2 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_ACCOUNT, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 3 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_FROM, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 4 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_TO, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 5 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SUBJECT, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 6 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_DATE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 7 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+  viewMails->setColumnHidden( 8 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, DEFAULT_DISPLAY_MESSAGE_STATE ) );
 	
 }

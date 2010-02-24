@@ -51,6 +51,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 		
 	//load the setup
 	accounts->loadSetup();
+  view->loadSetup();
 
   //refresh timer
   refreshTimer = new QTimer( this );
@@ -131,9 +132,6 @@ void KShowmail::initActions()
 
 
 
-  //loads the setup
-  accounts->loadSetup();
-  
 }
 
 void KShowmail::slotRefresh() {
@@ -287,6 +285,8 @@ void KShowmail::slotAddToWhitelist() {
 
 void KShowmail::slotSetup() {
 
+  //save the column widthes
+  view->saveSetup();
 
 	//create the dialog and add the pages
 	setupDialog = new KCMultiDialog( this );
@@ -334,6 +334,7 @@ void KShowmail::slotConfChanged() {
 
   accounts->loadSetup();
   fLog.loadSetup();
+  view->loadSetup();
 
   //refresh the views
   view->refreshViews( mailSelectModel, QList<int>() );
