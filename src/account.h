@@ -414,6 +414,13 @@ class Account : public QObject
      * Returns the total size of all mails with unit.
      */
     QString getTotalSizeUnit();
+		
+    /**
+     * Gets the stored mails.
+     * @param parent DOM element which contains the mails of this account
+     */
+    void readStoredMails( QDomElement& parent );
+		
     
   protected:
 

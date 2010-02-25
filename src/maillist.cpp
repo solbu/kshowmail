@@ -26,13 +26,15 @@ MailList::MailList( QObject* parent ) : QObject( parent )
 
 MailList::~MailList(){}
 
-void MailList::addMail( long number, const QString& unid, bool isNew )
+Mail* MailList::addMail( long number, const QString& unid, bool isNew )
 {
   //create the mail object
   Mail* mail = new Mail( number, unid, isNew, this );
 
   //append it to the list
   mails.append( mail );
+	
+	return mail;
 }
 
 void MailList::print() const
@@ -542,3 +544,35 @@ long MailList::getTotalSize( )
 }
 
 
+void MailList::readStoredMails( QDomElement& parent )
+{
+  //clear the list
+  mails.clear();
+
+  //get first DOM node (mail)
+  QDomNode n = parent.firstChild();
+
+  //iterate over all mail items stored in the given account
+  while( !n.isNull() )
+  {
+    //get element of the current node
+    QDomElement e = n.toElement();
+		
+    //get values
+    int number = e.attribute( ATTRIBUTE_MAIL_NUMBER ).toInt();
+    int size = e.attribute( ATTRIBUTE_MAIL_SIZE ).toInt();
+    QString unid = e.attribute( ATTRIBUTE_MAIL_UID );
+    QDomElement subelem = e.namedItem( ITEM_MAIL_HEADER ).toElement();
+    QStringList header = subelem.text().split( HEADER_SEPARATOR );
+
+    //create mail
+		Mail* mail = addMail( number, unid, false );
+		
+		//set other values
+		mail->setSize( size );
+		mail->setHeader( header );
+
+    //get next DOM node
+    n = n.nextSibling();
+  }
+}

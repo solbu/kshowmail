@@ -15,7 +15,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   connect( accounts, SIGNAL( sigRefreshReady() ), this, SLOT( slotRefreshReady() ) );
   connect( accounts, SIGNAL( sigDeleteReady() ), this, SLOT( slotDeletionReady() ) );
   connect( accounts, SIGNAL( sigShowBodiesReady() ), this, SLOT( slotShowMessageReady() ) );
-
+	
 	
 	//create the models for the account view and mail view
 	AccountViewModel* accountModel = new AccountViewModel( accounts, this );
@@ -52,6 +52,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	//load the setup
 	accounts->loadSetup();
   view->loadSetup();
+
+	//read stored mails
+	accounts->readStoredMails();
 
   //refresh timer
   refreshTimer = new QTimer( this );

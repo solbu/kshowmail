@@ -27,6 +27,7 @@ class Mail;
 #include <QStringList>
 #include <QRegExp>
 #include <QTextCodec>
+#include <QDomElement>
 
 //KDE headers
 #include <kmime/kmime_codecs.h>

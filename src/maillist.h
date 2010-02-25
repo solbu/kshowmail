@@ -25,6 +25,7 @@ class MailList;
 
 //Qt headers
 #include <QtCore/QObject>
+#include <QDomElement>
 
 //KDE headers
 #include <klocale.h>
@@ -61,8 +62,9 @@ class MailList : public QObject
      * @param number number of the mail on the server
      * @param uid Unique ID of the mail
      * @param isNew TRUE - mail is new; FALSE - mail is not new
+		 * @return appended mail
      */
-    void addMail( long number, const QString& unid, bool isNew );
+    Mail* addMail( long number, const QString& unid, bool isNew );
 
     /**
      * Prints all data of this mail list to stdout
@@ -267,6 +269,14 @@ class MailList : public QObject
      * @return total size
      */
     long getTotalSize();
+
+    /**
+     * Reads out all mails stored inside the given account element,
+     * creates objects from class Mail and stores them in
+     * this list. All old items will be removed.
+     * @param parent account element (DOM element)
+     */
+    void readStoredMails( QDomElement& parent );
 
 
 

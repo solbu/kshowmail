@@ -685,3 +685,76 @@ int AccountList::getNumberNewMails( )
   return number;
 }
 
+void AccountList::readStoredMails( )
+{
+  //open file
+  QString MailFileName = KStandardDirs::locateLocal( "appdata", MAIL_FILE );
+  QFile file( MailFileName );
+  bool fileOpen = file.open( QFile::ReadOnly );
+
+  //return, if the file could not be opened
+  if( !fileOpen )
+  {
+    kdError() << "AccountList::readStoredMails: File " << MailFileName << " could not be opened." << endl;
+    return;
+  }
+
+  //create DOM document with the content read from the file
+  QDomDocument doc( MAIL_FILE_DOCTYPE );
+  QString* errorMsg = new QString();
+
+  bool success = doc.setContent( &file );
+  if( !success )
+  {
+    kdError() << "AccountList::readStoredMails: Invalid content in " << MAIL_FILE << ". " << *errorMsg << endl;
+  }
+
+  //get the root element
+  QDomElement accs = doc.namedItem ( ROOT_ELEMENT ).toElement();
+
+  //get the first account element
+  QDomNode accNode = accs.firstChild();
+
+  //get all account elements
+  while( !accNode.isNull() )
+  {
+    //convert account node to DOM element
+    QDomElement accElem = accNode.toElement();
+
+    //get the account name
+    QString accName = accElem.attribute( ATTRIBUTE_ACCOUNT_NAME );
+
+    //get the proper account object
+    Account* account = getAccount( accName );
+
+		if( account != NULL ) {
+		
+			//order the account to read its stored mails
+			account->readStoredMails( accElem );		
+		}
+
+    //get next account node
+    accNode = accNode.nextSibling();
+  }
+
+  //close file
+  file.close();
+}
+
+Account* AccountList::getAccount( QString name ) const {
+
+	QListIterator<Account*> it( accounts );   //to iterate over all accounts
+
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+    
+    if( account->getName() == name )
+      return account;
+
+  }
+
+  return NULL;
+
+
+}

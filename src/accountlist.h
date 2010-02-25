@@ -82,6 +82,13 @@ class AccountList : public QObject
      * @return pointer to the requested account
      */
     Account* getAccount( int index ) const;
+		
+		/**
+		 * Returns the account with the given name.
+		 * @param name account name
+		 * @return requested account; NULL if no account found
+		 */
+		Account* getAccount( QString name ) const;
 
     /**
      * Returns whether the list contains a account with the given name
@@ -228,6 +235,12 @@ class AccountList : public QObject
      */
     int getNumberNewMails();
 
+    /**
+     * Reads stored mails data.
+     * At every setup saving (e.g. at exit) the mails data will be stored into the file kshowmail.xml.
+     * At application start we read this file to identify mails which are not new at first refresh.
+     */
+    void readStoredMails();
     
 
 	private:

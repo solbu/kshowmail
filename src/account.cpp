@@ -2291,3 +2291,9 @@ void Account::slotSSLError( const QList<KSslError>& errors ) {
   return;
   
 }
+
+void Account::readStoredMails( QDomElement& parent )
+{
+  //get mails
+  mails->readStoredMails( parent );
+}
