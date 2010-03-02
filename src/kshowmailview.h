@@ -41,9 +41,10 @@ class KShowmailView : public QSplitter
 		 * @param accountModel model for the account view
 		 * @param mailModel model for the mail view
      * @param mailSelectModel selection model of the mail view model
+     * @param accountSelectModel selection model of the account view model
 		 * @param parent pointer to parent widget
 		 */
-		KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QWidget* parent = 0 );
+		KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QItemSelectionModel* accountSelectModel, QWidget* parent = 0 );
 		
 		/**
 		 * Destructor
@@ -66,6 +67,8 @@ class KShowmailView : public QSplitter
 		 * Loads and sets the column widths
 		 */
 		void loadSetup();
+
+    void addActionToAccountList( KAction* action );
 		
 	private:
 		

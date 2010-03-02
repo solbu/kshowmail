@@ -17,7 +17,7 @@
 #include "./kshowmailview.h"
 
 
-KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
+KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QItemSelectionModel* accountSelectModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
 	
 	//Split the view into two parts
@@ -30,6 +30,8 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
   viewAccounts->setContextMenuPolicy( Qt::ActionsContextMenu );
 	AccountViewDelegate* delegateAccounts = new AccountViewDelegate( this );
 	viewAccounts->setItemDelegate( delegateAccounts );
+  viewAccounts->setContextMenuPolicy( Qt::ActionsContextMenu );
+  viewAccounts->setSelectionModel( accountSelectModel );
   
 	//create mail view
 	viewMails = new QTreeView( splitter );
@@ -160,4 +162,10 @@ void KShowmailView::loadSetup() {
   viewMails->setColumnHidden( 7 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
   viewMails->setColumnHidden( 8 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, DEFAULT_DISPLAY_MESSAGE_STATE ) );
 	
+}
+
+void KShowmailView::addActionToAccountList( KAction* action ) {
+
+  viewAccounts->addAction( action );
+
 }

@@ -845,13 +845,11 @@ void Account::slotAuthMechResponse()
     else
     {
       emit sigMessageWindowOpened();
-      KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login.\
-                                       If you want to use this Account you must allow unsafe login at the account setup.\
-                                       Bear in mind in this case criminals could read your password!" ).arg( getName() ), i18n( "Unsafe login is not allowed") );
+      KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup. Bear in mind in this case criminals could read your password!" ).arg( getName() ), i18n( "Unsafe login is not allowed") );
       emit sigMessageWindowClosed();
 
       //the user has not allowed unsafe login; finish the task
-      commit();
+      finishTask();
 
     }
   }
@@ -930,8 +928,6 @@ void Account::slotCommitResponse()
 
 void Account::loginUser()
 {
-  kdDebug() << "Login without security on " << getName() << endl;
-
   //connect the signal readyRead of the socket with the response handle methode
   disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotLoginUserResponse() ) );
@@ -1025,8 +1021,6 @@ QString Account::removeStatusIndicator(const QString & message)
 
 void Account::loginApop()
 {
-  kdDebug() << "Login with APOP on " << getName() << endl;
-
   //connect the signal readyRead of the socket with the response handle methode
   disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotLoginApopResponse() ) );
@@ -1066,9 +1060,7 @@ void Account::slotLoginApopResponse()
     }
     else
     {
-      handleError( i18n( "Login has failed. Error message is: %1\n\
-          Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.\
-          Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response.first() ) ) );
+      handleError( i18n( "Login has failed. Error message is: %1\nMaybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup. Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response.first() ) ) );
       return;
     }
   }

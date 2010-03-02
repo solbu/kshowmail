@@ -180,6 +180,11 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
 	
 	//set active state of the account
 	acc->setActive( value.toBool() );
+
+  //write it into the application config
+  KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), acc->getName() );
+  configAcc->writeEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, value.toBool() );
+  configAcc->sync();
 	
 	//emit signal of changed data
 	emit dataChanged( index, index );

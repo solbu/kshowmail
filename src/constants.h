@@ -271,6 +271,8 @@ namespace Constants
   #define CONFIG_ENTRY_ACCOUNT_SECTRANSFER      "SecureTransfer"
   #define CONFIG_ENTRY_ACCOUNT_ALLOW_UNSECURE_LOGIN "AllowUnsecureLogin"
 
+  #define CONFIG_VALUE_ACCOUNT_PROTOCOL_POP3    "POP3"
+
 
   //general filter
   #define CONFIG_GROUP_FILTER "Filter"

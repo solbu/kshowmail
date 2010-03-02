@@ -26,6 +26,7 @@ set(kshowmail_SRCS
    showheaderdialog.cpp
    showmaildialog.cpp
    systemtrayicon.cpp
+   accountsetupdialogcontext.cpp
  )
 
 #enable exceptions

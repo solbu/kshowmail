@@ -37,6 +37,7 @@ class MailViewModel;
 #include "showheaderdialog.h"
 #include "showmaildialog.h"
 #include "systemtrayicon.h"
+#include "accountsetupdialogcontext.h"
 
 using namespace Types;
 
@@ -211,6 +212,13 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotRefreshTimer();
 
+    /**
+     * Connected with action actionSetupAccount<p>
+     * shows the setup dialog for the selected account
+     * @see actionSetupAccount
+     */
+    void slotSetupAccount();
+
   protected:
 
     /**
@@ -238,6 +246,54 @@ class KShowmail : public KXmlGuiWindow
      */
     KAction* actionRefresh;
 
+    /**
+     * Show header action; connected with slotShowHeader()
+     * @see slotShowHeader
+     */
+    KAction* actionShowHeader;
+
+    /**
+     * Show mail action; connected with slotShowMessage()
+     * @see slotShowMessage
+     */
+    KAction* actionShowMessage;
+
+    /**
+     * delete mail action; connected with slotDelete()
+     * @see slotDelete
+     */
+    KAction* actionDelete;
+
+    /**
+     * stop action; connected with slotStop().
+     * @see slotStop
+     */
+    KAction* actionStop;
+
+    /**
+     * Show filter log action; connected with slotShowFilterLog()
+     * @see slotShowFilterLog
+     */
+    KAction* actionShowFilterLog;
+
+    /**
+     * Add to white list action, connected with slotAddToWhitelist()
+     * @see slotAddToWhitelist
+     */
+    KAction* actionAddWhitelist;
+
+    /**
+     * Add to black list action; connected with slotAddToBlacklist()
+     * @see slotAddToBlacklist
+     */
+    KAction* actionAddBlacklist;
+
+    /**
+     * setup account action; connected with slotSetupAccount()
+     * @see slotSetupAccount
+     */
+    KAction* actionSetupAccount;
+    
 		/**
 		 * account list
 		 */
@@ -267,6 +323,11 @@ class KShowmail : public KXmlGuiWindow
      * The selection model of the mail view
      */
     QItemSelectionModel* mailSelectModel;
+
+    /**
+     * The selection model of the account view
+     */
+    QItemSelectionModel* accountSelectModel;
 
     /**
      * The model of the mail view
