@@ -21,10 +21,6 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	AccountViewModel* accountModel = new AccountViewModel( accounts, this );
 	mailModel = new MailViewModel( accounts, this );
 
-  //create sort proxy models
-  QSortFilterProxyModel *sortModel = new QSortFilterProxyModel( this );
-
-
   //create the selection models
   mailSelectModel = new QItemSelectionModel( mailModel );
   accountSelectModel = new QItemSelectionModel( accountModel );

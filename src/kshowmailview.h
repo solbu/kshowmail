@@ -21,10 +21,7 @@ class AccountViewModel;
 
 //Qt headers
 #include <qsplitter.h>
-
-//KDE headers
 #include <QTreeView>
-#include <QSortFilterProxyModel>
 
 //KShowmail headers
 #include "accountviewmodel.h"

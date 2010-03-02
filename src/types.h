@@ -134,6 +134,37 @@ namespace Types
 			PwStorageFile,		/**<save password into the config file*/
 			PwStorageKWallet	/**<use KWallet*/
 		};
+		
+		/**
+		 * Account list sorting<p>
+		 * The members of this enum represent the columns of the account list which shall be sorted.
+		 */
+		enum AccountSort_Type {
+		
+			AccSortActive,		/**<sort by active state*/
+			AccSortName,			/**<sort by name*/
+			AccSortServer,		/**<sort by server*/
+			AccSortUser,			/**<sort by user*/
+			AccSortNrMess,		/**<sort by the number of messages*/
+			AccSortSize				/**<sort by the total size of messages*/
+		};
+		
+		/**
+		 * Mail list sorting<p>
+		 * The members of this enum represent the columns of the mail list which shall be sorted.
+		 */
+		enum MailSort_Type {
+		
+			MailSortNumber,			/**<sort by mail number*/
+			MailSortState,			/**<sort by mail state*/
+			MailSortAccount,		/**<sort by account*/
+			MailSortFrom,				/**<sort by sender*/
+			MailSortTo,					/**<sort by addressee*/
+			MailSortSubject,		/**<sort by subject*/
+			MailSortDate,				/**<sort by date*/
+			MailSortSize,				/**<sort by size*/
+			MailSortContent			/**<sort by content type*/
+		};
 
 }
 

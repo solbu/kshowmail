@@ -148,3 +148,9 @@ void MailViewModel::refresh()
   reset();
 }
 
+void MailViewModel::sort( int column, Qt::SortOrder order ) {
+
+	kdDebug() << column << " " << order << endl;
+	
+	refresh();
+}

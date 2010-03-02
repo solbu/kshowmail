@@ -755,6 +755,11 @@ Account* AccountList::getAccount( QString name ) const {
   }
 
   return NULL;
-
-
 }
+
+void AccountList::sort(AccountSort_Type property, Qt::SortOrder order)
+{
+
+	kdDebug() << property << " " << order << endl;
+}
+

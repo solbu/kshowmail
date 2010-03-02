@@ -25,8 +25,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 
 	//create account view
 	viewAccounts = new QTreeView( splitter );
-  sortModel->setSourceModel( accountModel );
-	viewAccounts->setModel( sortModel );
+	viewAccounts->setModel( accountModel );
   viewAccounts->setIndentation( 0 );
   viewAccounts->setContextMenuPolicy( Qt::ActionsContextMenu );
 	AccountViewDelegate* delegateAccounts = new AccountViewDelegate( this );

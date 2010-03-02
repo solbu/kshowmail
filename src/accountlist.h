@@ -242,6 +242,12 @@ class AccountList : public QObject
      */
     void readStoredMails();
     
+		/**
+		 * Sort the list by the given account property in the given order.
+		 * @param property by this account property the list shall be sorted
+		 * @param order sort order
+		 */
+		void sort( AccountSort_Type property, Qt::SortOrder order = Qt::AscendingOrder );
 
 	private:
 		

@@ -197,7 +197,24 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
 
 void AccountViewModel::refresh()
 {
-  reset();
-  
+  reset(); 
 }
 
+void AccountViewModel::sort( int column, Qt::SortOrder order ) {
+
+	AccountSort_Type prop;
+	switch( column ) {
+	
+		case 0	: prop = AccSortActive; break;
+		case 1	: prop = AccSortName; break;
+		case 2	: prop = AccSortServer; break;
+		case 3	: prop = AccSortUser; break;
+		case 4	: prop = AccSortNrMess; break;
+		case 5	: prop = AccSortSize; break;
+		default : prop = AccSortName;
+	}
+	
+	accounts->sort( prop, order );
+	
+	refresh();
+}

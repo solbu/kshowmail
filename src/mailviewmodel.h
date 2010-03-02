@@ -120,6 +120,14 @@ class MailViewModel : public QAbstractItemModel
      */
     void refresh();
 
+    /**
+		 * Sorts the model by column in the given order.
+		 * @param column column to sort
+		 * @param order sort order
+		 */
+		void sort( int column, Qt::SortOrder order = Qt::AscendingOrder );
+		
+		
   private:
 
     /**

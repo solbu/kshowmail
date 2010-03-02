@@ -2289,3 +2289,57 @@ void Account::readStoredMails( QDomElement& parent )
   //get mails
   mails->readStoredMails( parent );
 }
+
+int Account::compare( Account* other, AccountSort_Type property ) {
+
+	switch( property ) {
+	
+		//compare by active state
+		case AccSortActive : {
+			
+			if( other->getState() == getState() ) return 0;
+			else if( getState() == false ) return -1;
+			else return 1;
+			break;
+		
+		}
+		
+		//compare by name
+		case AccSortName : {
+		
+			return QString::localeAwareCompare( getName(), other->getName() );
+		}
+		
+		//compare by server
+		case AccSortServer : {
+			
+			return QString::localeAwareCompare( getHost(), other->getHost() );
+		}
+		
+		//compare by user
+		case AccSortUser : {
+		
+			return QString::localeAwareCompare( getUser(), other->getUser() );
+		}
+		
+		//compare by number of messages
+		case AccSortNrMess : {
+		
+			if( getNumberMails() == other->getNumberMails() ) return 0;
+			else if( getNumberMails() < other->getNumberMails() ) return -1;
+			else return 1;
+		}
+		
+		//compare by total size of messages
+		case AccSortSize : {
+		
+			if( getTotalSize() == other->getTotalSize() ) return 0;
+			else if( getTotalSize() < other->getTotalSize() ) return -1;
+			else return 1;
+		}
+		
+		default: {
+			return QString::localeAwareCompare( getName(), other->getName() );
+		}
+	}
+}

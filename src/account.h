@@ -421,7 +421,15 @@ class Account : public QObject
      */
     void readStoredMails( QDomElement& parent );
 		
-    
+    /**
+		 * Compares this account with <i>other</i> and returns an integer less than, 
+		 * equal to, or greater than zero if this account is less than, equal to, 
+		 * or greater than <i>other</i>.
+		 * @param other other account
+		 * @param property the account property which will be compared
+		 */
+		int compare( Account* other, AccountSort_Type property );
+		
   protected:
 
     /**
