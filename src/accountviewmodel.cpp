@@ -197,7 +197,7 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
 
 void AccountViewModel::refresh()
 {
-  //emit dataChanged( createIndex( 0, 0 ), createIndex( rowCount() - 1, NUMBER_ACCOUNTVIEW_COLUMNS - 1 ) );
   reset();
   
 }
+

@@ -132,7 +132,7 @@ class AccountViewModel : public QAbstractItemModel
      */
     void refresh();
     
-		
+    
 	private:
 		
 		/**

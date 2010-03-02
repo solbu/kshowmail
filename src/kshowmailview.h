@@ -24,6 +24,7 @@ class AccountViewModel;
 
 //KDE headers
 #include <QTreeView>
+#include <QSortFilterProxyModel>
 
 //KShowmail headers
 #include "accountviewmodel.h"

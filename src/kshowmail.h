@@ -11,7 +11,7 @@ class MailViewModel;
 
 //Qt headers
 #include <QListIterator>
-
+#include <QSortFilterProxyModel>
 
 //KDE headers
 #include <kstatusbar.h>

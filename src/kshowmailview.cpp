@@ -25,13 +25,15 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 
 	//create account view
 	viewAccounts = new QTreeView( splitter );
-	viewAccounts->setModel( accountModel );
+  sortModel->setSourceModel( accountModel );
+	viewAccounts->setModel( sortModel );
   viewAccounts->setIndentation( 0 );
   viewAccounts->setContextMenuPolicy( Qt::ActionsContextMenu );
 	AccountViewDelegate* delegateAccounts = new AccountViewDelegate( this );
 	viewAccounts->setItemDelegate( delegateAccounts );
   viewAccounts->setContextMenuPolicy( Qt::ActionsContextMenu );
   viewAccounts->setSelectionModel( accountSelectModel );
+  viewAccounts->setSortingEnabled( true );
   
 	//create mail view
 	viewMails = new QTreeView( splitter );
@@ -39,6 +41,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
   viewMails->setIndentation( 0 );
   viewMails->setSelectionMode( QAbstractItemView::ExtendedSelection );
   viewMails->setSelectionModel( mailSelectModel );
+  viewMails->setSortingEnabled( true );
 	
 	loadSetup();
 
