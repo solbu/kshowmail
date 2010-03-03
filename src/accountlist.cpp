@@ -757,9 +757,13 @@ Account* AccountList::getAccount( QString name ) const {
   return NULL;
 }
 
-void AccountList::sort(AccountSort_Type property, Qt::SortOrder order)
+QList< Account* > AccountList::getAllAccounts() const
 {
 
-	kdDebug() << property << " " << order << endl;
+  QList<Account*> list;
+
+  list.append( accounts );
+
+  return list;
 }
 

@@ -58,6 +58,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	accounts->loadSetup();
   view->loadSetup();
 
+  //refresh the view
+  view->refreshViews( mailSelectModel, QList<int>() );
+
 	//read stored mails
 	accounts->readStoredMails();
 

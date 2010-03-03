@@ -91,6 +91,12 @@ class AccountList : public QObject
 		Account* getAccount( QString name ) const;
 
     /**
+     * Returns a list which contains the pointers to all accounts
+     * @return all accounts
+     */
+    QList<Account*> getAllAccounts() const;
+
+    /**
      * Returns whether the list contains a account with the given name
      * @param accoutName name of the wanted account
      * @return TRUE - the account is in the list
@@ -242,13 +248,6 @@ class AccountList : public QObject
      */
     void readStoredMails();
     
-		/**
-		 * Sort the list by the given account property in the given order.
-		 * @param property by this account property the list shall be sorted
-		 * @param order sort order
-		 */
-		void sort( AccountSort_Type property, Qt::SortOrder order = Qt::AscendingOrder );
-
 	private:
 		
 		/**

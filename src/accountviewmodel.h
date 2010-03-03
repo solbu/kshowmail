@@ -22,6 +22,7 @@ class AccountList;
 //Qt headers
 #include <QAbstractItemModel>
 #include <QModelIndex>
+#include <QList>
 
 //KDE headers
 #include <KDebug>
@@ -145,6 +146,11 @@ class AccountViewModel : public QAbstractItemModel
 		 * Pointer to the account list
 		 */
 		AccountList* accounts;
+
+    /**
+     * In this we store the pointer to the accounts
+     */
+    QList<Account*> viewAccountList;
 
     /**
      * Picture for a active account

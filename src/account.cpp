@@ -2297,8 +2297,8 @@ int Account::compare( Account* other, AccountSort_Type property ) {
 		//compare by active state
 		case AccSortActive : {
 			
-			if( other->getState() == getState() ) return 0;
-			else if( getState() == false ) return -1;
+			if( other->isActive() == isActive() ) return 0;
+			else if( isActive() == false ) return -1;
 			else return 1;
 			break;
 		

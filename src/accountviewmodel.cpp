@@ -24,6 +24,9 @@ AccountViewModel::AccountViewModel( AccountList* accounts, QObject* parent ) : Q
   picActive = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/accountActive.png" ) );
   picNotActive = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/accountNotActive.png" ) );
 
+  //store all account pointers into the view list
+  refresh();
+
 }
 
 AccountViewModel::~AccountViewModel(){}
@@ -47,7 +50,7 @@ int AccountViewModel::rowCount ( const QModelIndex & parent ) const
 	//return 0, if the parent is valid
 	if( parent.isValid() ) return 0;
 
-	return accounts->numberAccounts();
+	return viewAccountList.size();
 }
 
 int AccountViewModel::columnCount ( const QModelIndex & parent ) const
@@ -62,8 +65,10 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 	
 	if( index.row() > rowCount() || index.column() > NUMBER_ACCOUNTVIEW_COLUMNS - 1 ) return QVariant();
 
+  if( index.row() > viewAccountList.size() - 1 ) return QVariant();
+  
   //get the account object
-  Account* acc = accounts->getAccount( index.row() );
+  Account* acc = viewAccountList.at( index.row() );
 
   //return a empty data if the pointer to the account is NULL
   if( acc == NULL ) return QVariant();
@@ -174,8 +179,11 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
 	if( index.column() != 0 ) return false;
 	if( index.row() > rowCount( ) ) return false;
 	
-	//get account
-  Account* acc = accounts->getAccount( index.row() );
+  if( index.row() > viewAccountList.size() - 1 ) return false;
+
+  //get the account object
+  Account* acc = viewAccountList.at( index.row() );
+  
   if( acc == NULL ) return false;
 	
 	//set active state of the account
@@ -197,11 +205,16 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
 
 void AccountViewModel::refresh()
 {
+  viewAccountList.clear();
+  viewAccountList.append( accounts->getAllAccounts() );
   reset(); 
 }
 
 void AccountViewModel::sort( int column, Qt::SortOrder order ) {
 
+  if( viewAccountList.empty() ) return;
+
+  
 	AccountSort_Type prop;
 	switch( column ) {
 	
@@ -214,7 +227,61 @@ void AccountViewModel::sort( int column, Qt::SortOrder order ) {
 		default : prop = AccSortName;
 	}
 	
-	accounts->sort( prop, order );
-	
-	refresh();
+  //sort the view list
+  QList<Account*> sortedList;
+
+  QListIterator<Account*> itUnsort( viewAccountList );
+  while( itUnsort.hasNext() ) {
+
+    //get next account
+    Account* accUnsorted = itUnsort.next();
+
+    //find a place for it in the temporary list
+    if( sortedList.size() == 0 ) {
+
+      sortedList.append( accUnsorted );
+
+    } else {
+
+      int sizeSortedList = sortedList.size();
+      int indexSort = 0;
+      bool placed = false;
+      while( indexSort < sizeSortedList && !placed ) {
+        
+        //get the Account in the sorted List
+        Account* accSorted = sortedList.at( indexSort );
+
+        //is the account from the unsorted list lesser (greater) than the account from the sorted list insert the first one at this
+        //position into the sorted list and break the searching for place
+        if( order == Qt::AscendingOrder ) {
+
+          if( accUnsorted->compare( accSorted, prop ) <= 0 ) {
+
+            sortedList.insert( indexSort, accUnsorted );
+            placed = true;
+          }
+
+        } else {
+
+          if( accUnsorted->compare( accSorted, prop ) > 0 ) {
+
+            sortedList.insert( indexSort, accUnsorted );
+            placed = true;
+          }
+        }
+
+        indexSort++;
+      }
+
+      //if the account could not placed, we append it at the end
+      if( !placed )
+        sortedList.append( accUnsorted );
+    }
+  }
+
+  //switch the lists
+  viewAccountList.clear();
+  viewAccountList.append( sortedList );
+  
+	reset();
 }
