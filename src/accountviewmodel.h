@@ -30,6 +30,7 @@ class AccountList;
 #include <KIcon>
 #include <KStandardDirs>
 #include <KDebug>
+#include <KConfigGroup>
 
 //KShowmail headers
 #include "accountlist.h"
@@ -140,6 +141,16 @@ class AccountViewModel : public QAbstractItemModel
 		 */
 		void sort( int column, Qt::SortOrder order = Qt::AscendingOrder );
 		
+		/**
+		 * Sorts the model by the last sort properties.
+		 */
+		void sort();
+		
+		/**
+		 * Saves the setup
+		 */
+		void saveSetup();
+		
 	private:
 		
 		/**
@@ -163,6 +174,16 @@ class AccountViewModel : public QAbstractItemModel
      * Set by the constructor
      */
     KIcon picNotActive;
+		
+		/**
+		 * Last sort order
+		 */
+		Qt::SortOrder lastSortOrder;
+		
+		/**
+		 * last sort column
+		 */
+		int lastSortColumn;
 
 
 		

@@ -75,6 +75,9 @@ namespace Constants
 
   //default view options
   #define DEFAULT_VIEW_USE_HTML      false
+  #define DEFAULT_SORT_ORDER         "asc"
+  #define DEFAULT_SORT_COLUMN_ACCOUNT 1
+  #define DEFAULT_SORT_COLUMN_MESSAGE 2
 
   //default column widthes
   #define DEFAULT_WIDTH_ACCOUNT_ACTIVE    50
@@ -214,6 +217,9 @@ namespace Constants
 
   #define CONFIG_GROUP_VIEW                "View"
   #define CONFIG_ENTRY_VIEW_USE_HTML       "useHTML"
+  
+  #define CONFIG_VALUE_SORT_ORDER_ASCENDING				"asc"
+  #define CONFIG_VALUE_SORT_ORDER_DESCENDING      "desc"
 
   #define CONFIG_GROUP_ACCOUNT_LIST               "LayoutAccountList"
   #define CONFIG_ENTRY_DISPLAY_ACCOUNT_ACTIVE     "showAccountListActiveColumn"
@@ -228,6 +234,8 @@ namespace Constants
   #define CONFIG_ENTRY_WIDTH_ACCOUNT_USER     		"widthAccountListUserColumn"
   #define CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES 		"widthAccountListMessagesColumn"
   #define CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE     		"widthAccountListSizeColumn"
+  #define CONFIG_ENTRY_SORT_COLUMN_ACCOUNT				"sortColumnAccountList"
+  #define CONFIG_ENTRY_SORT_ORDER_ACCOUNT					"sortOrderAccountList"
 
 
   #define CONFIG_GROUP_MESSAGE_LIST               "LayoutMessageList"
@@ -249,6 +257,8 @@ namespace Constants
   #define CONFIG_ENTRY_WIDTH_MESSAGE_SIZE     		"widthMessageListSizeColumn"
   #define CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT  		"widthMessageListContentColumn"
   #define CONFIG_ENTRY_WIDTH_MESSAGE_STATE    		"widthMessageListStateColumn"
+  #define CONFIG_ENTRY_SORT_COLUMN_MESSAGE				"sortColumnMessageList"
+  #define CONFIG_ENTRY_SORT_ORDER_MESSAGE					"sortOrderMessageList"
 
   #define CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE     1
   #define CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE     2

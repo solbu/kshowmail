@@ -207,11 +207,16 @@ void AccountViewModel::refresh()
 {
   viewAccountList.clear();
   viewAccountList.append( accounts->getAllAccounts() );
+	sort();
   reset(); 
 }
 
 void AccountViewModel::sort( int column, Qt::SortOrder order ) {
 
+	//save last sort properties
+	lastSortOrder = order;
+	lastSortColumn = column;
+	
   if( viewAccountList.empty() ) return;
 
   
@@ -284,4 +289,27 @@ void AccountViewModel::sort( int column, Qt::SortOrder order ) {
   viewAccountList.append( sortedList );
   
 	reset();
+}
+
+void AccountViewModel::sort()
+{
+	sort( lastSortColumn, lastSortOrder );
+}
+
+void AccountViewModel::saveSetup()
+{
+	KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
+	
+	conf->writeEntry( CONFIG_ENTRY_SORT_COLUMN_ACCOUNT, lastSortColumn );
+	
+	if( lastSortOrder == Qt::AscendingOrder ) {
+	
+		conf->writeEntry( CONFIG_ENTRY_SORT_ORDER_ACCOUNT, CONFIG_VALUE_SORT_ORDER_ASCENDING );
+	
+	} else {
+	
+		conf->writeEntry( CONFIG_ENTRY_SORT_ORDER_ACCOUNT, CONFIG_VALUE_SORT_ORDER_DESCENDING );
+	}
+	
+	conf->sync();
 }
