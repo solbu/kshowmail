@@ -60,9 +60,11 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
 	if( !index.isValid() ) return QVariant();
 	
 	if( index.row() >= rowCount() || index.column() > NUMBER_MAILVIEW_COLUMNS - 1 ) return QVariant();
+	
+	if( index.row() > viewMailList.size() - 1 ) return QVariant();
 
   //get the mail
-  Mail* mail = accounts->getMail( index.row() );
+  Mail* mail = viewMailList.at( index.row() );
   
   //the kind of data we return is dependent on the given role
   switch( role )
@@ -145,12 +147,29 @@ Qt::ItemFlags MailViewModel::flags ( const QModelIndex & index ) const
 
 void MailViewModel::refresh()
 {
+	viewMailList.clear();
+	viewMailList.append( accounts->getAllMails() );
+	sort(); 
   reset();
 }
 
 void MailViewModel::sort( int column, Qt::SortOrder order ) {
 
-	kdDebug() << column << " " << order << endl;
 	
-	refresh();
+	reset();
+}
+
+void MailViewModel::saveSetup()
+{
+
+}
+
+void MailViewModel::sort()
+{
+	sort( lastSortColumn, lastSortOrder );
+}
+
+Mail* MailViewModel::getMail(const QModelIndex index) const
+{
+	return viewMailList.at( index.row() );
 }

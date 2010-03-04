@@ -333,6 +333,11 @@ class KShowmail : public KXmlGuiWindow
      * The model of the mail view
      */
     MailViewModel* mailModel;
+		
+		/**
+		 * The model of the account view
+		 */
+		AccountViewModel* accountModel;
 
     /**
      * The system tray icon

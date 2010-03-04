@@ -247,6 +247,13 @@ class AccountList : public QObject
      * At application start we read this file to identify mails which are not new at first refresh.
      */
     void readStoredMails();
+		
+		/**
+		 * Returns a list which contains the pointers to all mails.
+		 * @return all mails
+		 */
+		QList<Mail*> getAllMails() const;
+		
     
 	private:
 		

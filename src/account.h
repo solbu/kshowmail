@@ -430,6 +430,13 @@ class Account : public QObject
 		 */
 		int compare( Account* other, AccountSort_Type property );
 		
+		/**
+		 * Returns a list which contains the pointers to all mails.
+		 * @return all mails
+		 */
+		QList<Mail*> getAllMails() const;
+
+
   protected:
 
     /**

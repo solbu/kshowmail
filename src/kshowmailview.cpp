@@ -42,6 +42,10 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
   viewMails->setSelectionModel( mailSelectModel );
   viewMails->setSortingEnabled( true );
 	
+	//save the pointer to the models
+	this->mailModel = mailModel;
+	this->accountModel = accountModel;
+	
 	loadSetup();
 
 }
@@ -119,6 +123,10 @@ void KShowmailView::saveSetup() {
     configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, viewMails->columnWidth( 8 ) );
 	
 	
+	//save models setup
+	accountModel->saveSetup();
+	mailModel->saveSetup();
+	
 	configAcc->sync();
 	configMail->sync();
 	
@@ -163,6 +171,35 @@ void KShowmailView::loadSetup() {
   viewMails->setColumnHidden( 6 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_DATE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
   viewMails->setColumnHidden( 7 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
   viewMails->setColumnHidden( 8 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, DEFAULT_DISPLAY_MESSAGE_STATE ) );
+	
+	//load sorting
+	KConfigGroup* confSort = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
+	
+	QString strSortOrderAcc = confSort->readEntry( CONFIG_ENTRY_SORT_ORDER_ACCOUNT, DEFAULT_SORT_ORDER );
+	int sortColumnAcc = confSort->readEntry( CONFIG_ENTRY_SORT_COLUMN_ACCOUNT, DEFAULT_SORT_COLUMN_ACCOUNT );
+	if( strSortOrderAcc == CONFIG_VALUE_SORT_ORDER_DESCENDING ) {
+	
+		viewAccounts->sortByColumn( sortColumnAcc, Qt::DescendingOrder );
+	
+	} else {
+	
+		viewAccounts->sortByColumn( sortColumnAcc, Qt::AscendingOrder );
+	}
+	
+	QString strSortOderMail = confSort->readEntry( CONFIG_ENTRY_SORT_ORDER_MESSAGE, DEFAULT_SORT_ORDER );
+	int sortColumnMail = confSort->readEntry( CONFIG_ENTRY_SORT_COLUMN_MESSAGE, DEFAULT_SORT_COLUMN_MESSAGE );
+	if( strSortOderMail == CONFIG_VALUE_SORT_ORDER_DESCENDING ) {
+	
+		viewMails->sortByColumn( sortColumnMail, Qt::DescendingOrder );
+	
+	} else {
+	
+		viewMails->sortByColumn( sortColumnMail, Qt::AscendingOrder );
+	}
+	
+	delete confSort;
+	delete configAcc;
+	delete configMail;
 	
 }
 

@@ -18,7 +18,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	
 	
 	//create the models for the account view and mail view
-	AccountViewModel* accountModel = new AccountViewModel( accounts, this );
+	accountModel = new AccountViewModel( accounts, this );
 	mailModel = new MailViewModel( accounts, this );
 
   //create the selection models
@@ -538,7 +538,7 @@ void KShowmail::slotSetupAccount() {
   
   //get account
   QModelIndex selIndex = accountSelectModel->selectedRows().first();
-  Account* acc = accounts->getAccount( selIndex.row() );
+  Account* acc = accountModel->getAccount( selIndex );
 
   //open setup dialog
   AccountSetupDialogContext* dlg = new AccountSetupDialogContext( this, acc->getName() );

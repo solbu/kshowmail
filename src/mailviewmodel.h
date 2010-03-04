@@ -127,6 +127,23 @@ class MailViewModel : public QAbstractItemModel
 		 */
 		void sort( int column, Qt::SortOrder order = Qt::AscendingOrder );
 		
+		/**
+		 * Saves the setup
+		 */
+		void saveSetup();
+		
+		/**
+		 * Sorts the model by the last sort properties.
+		 */
+		void sort();
+		
+		/**
+		 * Returns the mail at the given index
+		 * @param index index
+		 */
+		Mail* getMail( const QModelIndex index ) const;
+		
+		
 		
   private:
 
@@ -136,10 +153,25 @@ class MailViewModel : public QAbstractItemModel
     AccountList* accounts;
 
     /**
+     * In this we store the pointer to the mails
+     */
+    QList<Mail*> viewMailList;
+
+    /**
      * Icon for a new mail
      */
     KIcon picNewMail;
     
+		/**
+		 * Last sort order
+		 */
+		Qt::SortOrder lastSortOrder;
+		
+		/**
+		 * last sort column
+		 */
+		int lastSortColumn;
+
 
 };
 

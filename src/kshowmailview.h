@@ -79,6 +79,16 @@ class KShowmailView : public QSplitter
 		 * mail list
 		 */
 		QTreeView* viewMails;
+		
+		/**
+		 * Mail view model
+		 */
+		MailViewModel* mailModel;
+		
+		/**
+		 * Account view model
+		 */
+		AccountViewModel* accountModel;
 };
 
 #endif // KSHOWMAILVIEW_H

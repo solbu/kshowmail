@@ -576,3 +576,11 @@ void MailList::readStoredMails( QDomElement& parent )
     n = n.nextSibling();
   }
 }
+
+QList<Mail*> MailList::getAllMails() const
+{
+	QList<Mail*> list;
+	list.append( mails );
+	return list;
+}
+

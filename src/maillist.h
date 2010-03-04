@@ -278,7 +278,11 @@ class MailList : public QObject
      */
     void readStoredMails( QDomElement& parent );
 
-
+		/**
+		 * Returns a list which contains the pointers to all mails.
+		 * @return all mails
+		 */
+		QList<Mail*> getAllMails() const;
 
   private:
 

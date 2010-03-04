@@ -2343,3 +2343,8 @@ int Account::compare( Account* other, AccountSort_Type property ) {
 		}
 	}
 }
+
+QList< Mail* > Account::getAllMails() const
+{
+	return mails->getAllMails();
+}

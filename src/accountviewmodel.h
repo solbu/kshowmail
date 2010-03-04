@@ -151,6 +151,12 @@ class AccountViewModel : public QAbstractItemModel
 		 */
 		void saveSetup();
 		
+		/**
+		 * Returns the account at the given index
+		 * @param index index
+		 */
+		Account* getAccount( const QModelIndex index ) const;
+		
 	private:
 		
 		/**

@@ -767,3 +767,17 @@ QList< Account* > AccountList::getAllAccounts() const
   return list;
 }
 
+QList< Mail* > AccountList::getAllMails() const
+{
+	QList<Mail*> listMails;
+	
+	QListIterator<Account*> itAcc( accounts );
+	while( itAcc.hasNext() ) {
+	
+		Account* acc = itAcc.next();
+		
+		listMails.append( acc->getAllMails() );
+	}
+	
+	return listMails;
+}
