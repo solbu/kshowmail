@@ -1567,11 +1567,6 @@ int Account::getNumberMails() const
   return 0;
 }
 
-Mail* Account::getMail( int number ) const throw ( CorruptDataException )
-{
-  return mails->getMail( number );
-}
-
 void Account::addMailToDelete( int number )
 {
   mailsToDelete.append( number );
@@ -2023,11 +2018,6 @@ void Account::saveOptions( QDomDocument& doc, QDomElement& parent )
   //save the stored mails inside this account
   parent.setAttribute( ATTRIBUTE_ACCOUNT_NAME, getName() );
   mails->saveMails( doc, parent );
-}
-
-QList<int> Account::getMarkedMails() const
-{
-  return mails->getMarkedMails();
 }
 
 void Account::showMails()

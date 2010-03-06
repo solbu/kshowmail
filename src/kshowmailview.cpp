@@ -41,6 +41,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
   viewMails->setSelectionMode( QAbstractItemView::ExtendedSelection );
   viewMails->setSelectionModel( mailSelectModel );
   viewMails->setSortingEnabled( true );
+  viewMails->setContextMenuPolicy( Qt::ActionsContextMenu );
 	
 	//save the pointer to the models
 	this->mailModel = mailModel;
@@ -52,7 +53,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 
 KShowmailView::~KShowmailView(){}
 
-void KShowmailView::refreshViews( QItemSelectionModel* mailSelectModel, QList<int> markedMails )
+void KShowmailView::refreshViews( QItemSelectionModel* mailSelectModel )
 {
   AccountViewModel* accountModel = dynamic_cast<AccountViewModel*>( viewAccounts->model() );
   accountModel->refresh();
@@ -61,11 +62,12 @@ void KShowmailView::refreshViews( QItemSelectionModel* mailSelectModel, QList<in
   mailModel->refresh();
 
   //mark filtered mails
-  QListIterator<int> itMark( markedMails );
+  QModelIndexList markedMails = mailModel->getMarkedMails();
+  QListIterator<QModelIndex> itMark( markedMails );
   while( itMark.hasNext() )
   {
-    int row = itMark.next();
-    mailSelectModel->select( mailModel->index( row, 0 ), QItemSelectionModel::Select | QItemSelectionModel::Rows );
+    QModelIndex index = itMark.next();
+    mailSelectModel->select( index, QItemSelectionModel::Select | QItemSelectionModel::Rows );
   }
 }
 
@@ -207,4 +209,9 @@ void KShowmailView::addActionToAccountList( KAction* action ) {
 
   viewAccounts->addAction( action );
 
+}
+
+void KShowmailView::addActionToMailList(KAction* action)
+{
+  viewMails->addAction( action );
 }

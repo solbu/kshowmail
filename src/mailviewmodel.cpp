@@ -277,6 +277,32 @@ QStringList MailViewModel::getSelectedSubjects( QItemSelectionModel* selectModel
   return subjects;
 }
 
+QStringList MailViewModel::getSelectedSenders( QItemSelectionModel* selectModel ) const
+{
+  QStringList senders;
+
+  if( !selectModel->hasSelection() ) return senders;
+
+    //get selected rows
+  QModelIndexList indexList = selectModel->selectedRows();
+
+  //get the mail of every selected row an store the subject in the result list
+  QListIterator<QModelIndex> it( indexList );
+  while( it.hasNext() )
+  {
+    //get Index
+    QModelIndex index = it.next();
+
+    //get mail
+    Mail* mail = getMail( index );
+
+    //store subject
+    senders.append( mail->getFrom() );
+  }
+
+  return senders;
+}
+
 QList<Mail*> MailViewModel::getSelectedMails( QItemSelectionModel* mailSelectModel ) const
 {
   QList<Mail*> list;  //result list
@@ -301,3 +327,24 @@ QList<Mail*> MailViewModel::getSelectedMails( QItemSelectionModel* mailSelectMod
   return list;
 }
 
+QModelIndexList MailViewModel::getMarkedMails() const
+{
+  QModelIndexList indexList;
+
+  for( int i = 0; i < rowCount(); i++ ) {
+
+    //get index
+    QModelIndex ix = index( i, 0 );
+    
+    //get mail
+    Mail* mail = getMail( ix );
+
+    //add the index to the list if this mail is marked
+    if( mail->isMarkedByFilter() ) {
+
+      indexList.append( ix );
+    }
+  }
+
+  return indexList;
+}

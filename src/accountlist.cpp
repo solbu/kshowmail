@@ -250,36 +250,6 @@ int AccountList::getNumberMails( ) const
   return number;
 }
 
-Mail* AccountList::getMail( int number ) const throw ( CorruptDataException )
-{
-  int nrMail = number;
-  
-  //search for the account
-  QListIterator<Account*> it( accounts );
-  while( it.hasNext() )
-  {
-    //get account
-    Account* account = it.next();
-
-    //get number of mails in this account
-    int nrMails = account->getNumberMails();
-
-    //is it in this account?
-    if( nrMail < nrMails )
-    {
-      //this is the right account
-      return account->getMail( nrMail );
-    }
-
-    //it is not the right account
-    //we have to decrease the given mail number at the number of mails in account
-    nrMail = nrMail - account->getNumberMails();
-  }
-
-  //we have not found anything
-  throw CorruptDataException( i18n( "A mail with number %1 is not available.").arg( number ) );
-}
-
 void AccountList::deleteMails()
 {
   //order the accounts to delete the mails
@@ -490,40 +460,6 @@ void AccountList::saveOptions ()
   //close file
   file.close();
   
-}
-
-QList<int> AccountList::getMarkedMails() const
-{
-  QList<int> list;
-  
-  if( accounts.isEmpty() ) return list;
-
-  //this is the start index of an account.
-  //The first account has a start index of zero. The first mail in its list has the index zero.
-  //If the first account has four mails in its list, the start index of the second account is 4. And so on...
-  int start = 0;
-
-  QListIterator<Account*> it( accounts );
-  while( it.hasNext() )
-  {
-    Account* account = it.next();
-
-    //get all marked mails from this account
-    QList<int> markedMails = account->getMarkedMails();
-
-    QListIterator<int> itMarked( markedMails );
-    while( itMarked.hasNext() )
-    {
-      //add the start index and store it to return
-      list.append( itMarked.next() + start );
-    }
-
-    //increase the start index
-    start = start + account->getNumberMails();
-  }
-
-  
-  return list;
 }
 
 void AccountList::showMails()

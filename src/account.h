@@ -301,16 +301,6 @@ class Account : public QObject
    int getNumberMails() const;
 
     /**
-     * Returns the mail with the given number.<p>
-     * The number is not the number which is given by the mail server.
-     * It is the number in order of storage in this list.<p>
-     * @param number number of the desired mail
-     * @return pointer to the desired mail
-     * @throws CorruptDataException no mail with this number is available
-     */
-    Mail* getMail( int number ) const throw ( CorruptDataException );
-
-    /**
      * Adds a mail number to the list of mails to delete.<p>
      * The number is the mail number given by the mail server.
      * @param number mail number
@@ -377,17 +367,6 @@ class Account : public QObject
     * @param parent DOM element in which all settings and mails of this account will be saved
     */
     void saveOptions( QDomDocument& doc, QDomElement& parent );
-
-    /**
-     * Returns the number of marked mails.<p>
-     * The number is not the number which is given by the mail server.
-     * It is the number in order of storage in the mail list.<p>
-     * We need this numbers, because the order of mails in the mail view model is like
-     * the order in the mail list.<p>
-     * The first mail in the mail list is number zero.
-     * @return numbers mails marked by filter
-     */
-    QList<int> getMarkedMails() const;
 
     /**
      * Downloads and shows the bodies of mails in <code>mailsToShow</code>.

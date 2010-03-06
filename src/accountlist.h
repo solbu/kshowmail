@@ -130,26 +130,6 @@ class AccountList : public QObject
     int getNumberMails() const;
 
     /**
-     * Returns the mail with the given number.<p>
-     * The number is not the number which is given by the mail server.
-     * It is the number in order of storage in the account list. For example:<p>
-     * Account GMX contains 4 mails.<p>
-     * Account Freenet contains 3 mails.<p>
-     * Account Yahoo contains 5 mails.<p>
-     * (the accounts are stored in the account list in this order)<p>
-     * getMail( 0 ) returns the first mail of account GMX.<p>
-     * getMail( 5 ) returns the second mail of account Freenet.<p>
-     * getMail( 11 ) returns the last mail of account Yahoo.<p>
-     * getMail( 20 ) throws an exception.<p>
-     * This methode is used by the mail view model.
-     * @param number number of the desired mail
-     * @return pointer to the found mail
-     * @see MailViewModel
-     * @throws CorruptDataException
-     */
-    Mail* getMail( int number ) const throw ( CorruptDataException );
-
-    /**
      * Deletes all mails from the servers and the mail lists.<p>
      * You need to call Account::addMailToDelete() before.<p>
      * This just starts the deletion and returns after then. When all
@@ -198,24 +178,6 @@ class AccountList : public QObject
      * The account setups will be saved into the application config file (kshowmailrc).
      */
     void saveOptions();
-
-    /**
-     * Returns the number of mails which are marked by filter.<p>
-     * The number is not the number which is given by the mail server.
-     * It is the number in order of storage in this list. For example:<p>
-     * Account GMX contains 4 mails.<p>
-     * Account Freenet contains 3 mails.<p>
-     * Account Yahoo contains 5 mails.<p>
-     * (the accounts are stored in the account list in this order)<p>
-     * getMail( 0 ) returns the first mail of account GMX.<p>
-     * getMail( 5 ) returns the second mail of account Freenet.<p>
-     * getMail( 11 ) returns the last mail of account Yahoo.<p>
-     * getMail( 20 ) throws an exception.<p>
-     * We need this numbers, because the order of mails in the mail view model is like
-     * the order in this list.<p>
-     * @return numbers mails marked by filter
-     */
-    QList<int> getMarkedMails() const;
 
     /**
      * Downloads and shows the selected mails.

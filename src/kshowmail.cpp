@@ -38,6 +38,12 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //set actions for context menus
   view->addActionToAccountList( actionRefresh );
   view->addActionToAccountList( actionSetupAccount );
+  view->addActionToMailList( actionShowHeader );
+  view->addActionToMailList( actionShowMessage );
+  view->addActionToMailList( actionDelete );
+  view->addActionToMailList( actionAddWhitelist );
+  view->addActionToMailList( actionAddBlacklist );
+ 
 
   // a call to KXmlGuiWindow::setupGUI() populates the GUI
   // with actions, using KXMLGUI.
@@ -59,7 +65,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   view->loadSetup();
 
   //refresh the view
-  view->refreshViews( mailSelectModel, QList<int>() );
+  view->refreshViews( mailSelectModel );
 
 	//read stored mails
 	accounts->readStoredMails();
@@ -313,11 +319,50 @@ void KShowmail::slotShowFilterLog() {
 }
 
 void KShowmail::slotAddToBlacklist() {
-  kDebug() << "slotAddToBlacklist" << endl;
+
+  //get selected senders
+  QStringList senders = mailModel->getSelectedSenders( mailSelectModel );
+  kdDebug() << senders << endl;
+
+  //get previous blacklist from config
+  KConfigGroup* config = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_FILTER );
+  QStringList blackList = config->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST, QStringList() );
+
+  //append new entries
+  blackList.append( senders );
+
+  //write extended whitelist back
+  config->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST, blackList );
+  config->sync();
+
+  delete config;
+
+  //load new config
+  accounts->refreshFilterSetup();
+
 }
 
 void KShowmail::slotAddToWhitelist() {
-  kDebug() << "slotAddToWhitelist" << endl;
+
+  //get selected senders
+  QStringList senders = mailModel->getSelectedSenders( mailSelectModel );
+  kdDebug() << senders << endl;
+
+  //get previous whitelist from config
+  KConfigGroup* config = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_FILTER );
+  QStringList whiteList = config->readEntry( CONFIG_ENTRY_FILTER_WHITELIST, QStringList() );
+
+  //append new entries
+  whiteList.append( senders );
+
+  //write extended whitelist back
+  config->writeEntry( CONFIG_ENTRY_FILTER_WHITELIST, whiteList );
+  config->sync();
+
+  delete config;
+
+  //load new config
+  accounts->refreshFilterSetup();
 }
 
 void KShowmail::slotSetup() {
@@ -374,7 +419,7 @@ void KShowmail::slotConfChanged() {
   view->loadSetup();
 
   //refresh the views
-  view->refreshViews( mailSelectModel, QList<int>() );
+  view->refreshViews( mailSelectModel );
 
   //restart refresh timer
   startAutomaticRefresh();
@@ -418,7 +463,7 @@ void KShowmail::slotRefreshReady()
   showStatusMessage( i18n( "Ready" ) );
 
   //refresh view
-  view->refreshViews( mailSelectModel, accounts->getMarkedMails() );
+  view->refreshViews( mailSelectModel );
 
   //refresh filter status bar
   refreshFilterStatusBar();

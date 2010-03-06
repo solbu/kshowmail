@@ -22,6 +22,11 @@ class AccountViewModel;
 //Qt headers
 #include <qsplitter.h>
 #include <QTreeView>
+#include <QModelIndexList>
+#include <QItemSelectionModel>
+
+//KDE headers
+#include <KAction>
 
 //KShowmail headers
 #include "accountviewmodel.h"
@@ -52,9 +57,8 @@ class KShowmailView : public QSplitter
     /**
      * Refreshes the account and mail view. Marks filtered mails.
      * @param mailSelectModel mail selection model
-     * @param markedMails row numbers of the filtered mails which shall be marked
      */
-    void refreshViews( QItemSelectionModel* mailSelectModel, QList<int> markedMails );
+    void refreshViews( QItemSelectionModel* mailSelectModel );
 		
 		/**
 		 * Saves the column widths
@@ -66,7 +70,17 @@ class KShowmailView : public QSplitter
 		 */
 		void loadSetup();
 
+    /**
+     * Adds an action to the account view context menu
+     * @param action action to add
+     */
     void addActionToAccountList( KAction* action );
+
+    /**
+     * Adds an action to the mail view context menu
+     * @param action action to add
+     */
+    void addActionToMailList( KAction* action );
 		
 	private:
 		

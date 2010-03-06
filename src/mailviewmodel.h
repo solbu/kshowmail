@@ -153,11 +153,24 @@ class MailViewModel : public QAbstractItemModel
     QStringList getSelectedSubjects( QItemSelectionModel* selectModel ) const;
 
     /**
+     * Returns the senders of the selected mails.
+     * @param selectModel mail select model
+     * @return mail senders
+     */
+    QStringList getSelectedSenders( QItemSelectionModel* selectModel ) const;
+
+    /**
      * Returns the selected mails.
      * @param mailSelectModel selection model of the mail view
      * @return selected mails
      */
     QList<Mail*> getSelectedMails( QItemSelectionModel* mailSelectModel ) const;
+
+    /**
+     * Returns the indexes of mails which are marked by filter.<p>
+     * @return indexes of mails marked by filter
+     */
+    QModelIndexList getMarkedMails() const;
 
 
 		

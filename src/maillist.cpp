@@ -209,23 +209,6 @@ int MailList::getNumberMails() const
   return mails.count();
 }
 
-Mail* MailList::getMail( int number ) const throw ( CorruptDataException )
-{
-  //check number
-  if( number < 0 )
-  {
-    throw CorruptDataException( i18n( "%1 is a invalid parameter" ).arg( number ) );
-  }
-
-  if( number >= getNumberMails() )
-  {
-    throw CorruptDataException( i18n( "no mail with number %1 available").arg( number ) );
-  }
-
-  //return mail
-  return mails.value( number );
-}
-
 Account* MailList::getAccount() const
 {
   return dynamic_cast<Account*>( parent() );
@@ -296,30 +279,6 @@ void MailList::saveMails( QDomDocument& doc, QDomElement& parent )
     Mail* mail = it.next();
     mail->save( doc, parent );
   }
-}
-
-QList<int> MailList::getMarkedMails() const
-{
-  QList<int> list;
-
-  if( mails.isEmpty() ) return list;
-
-  int pos = -1;
-  QListIterator<Mail*> it( mails );
-  while( it.hasNext() )
-  {
-    Mail* mail = it.next();
-    pos++;
-
-    if( mail->isMarkedByFilter())
-    {
-      list.append( pos );
-    }
-    
-  }
-
-  return list;
-  
 }
 
 
