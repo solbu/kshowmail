@@ -475,7 +475,11 @@ void KShowmail::slotRefreshReady()
   QString sTime = QTime::currentTime().toString ();
   statusBar()->changeItem( i18n( "Last Refresh: %1" ).arg( sTime ), STATUSBAR_FIELD_LAST_REFRESH );
 
+  //handle new mails actions
+  if( accounts->getNumberNewMails() > 0 ) {
 
+    handleNewMails();
+  }
 
   //start the refresh timer
   startAutomaticRefresh();
@@ -617,4 +621,34 @@ void KShowmail::slotSetupAccount() {
   delete dlg;
 
 }
+
+void KShowmail::handleNewMails()
+{
+  //get config
+  KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACTIONS );
+  
+  //play sound
+  if( conf->readEntry( CONFIG_ENTRY_NEW_MAIL_SOUND, DEFAULT_ACTION_NEW_MAIL_SOUND ) ) {
+
+    //get file
+    QString file = conf->readEntry( CONFIG_ENTRY_NEW_MAIL_SOUNDPATH, "" );
+    if( file.length() != 0 )
+    {
+      Phonon::MediaObject *mediaObject = new Phonon::MediaObject( this );
+      mediaObject->setCurrentSource( Phonon::MediaSource( file ) );
+      Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput( Phonon::MusicCategory, this );
+      Phonon::createPath( mediaObject, audioOutput );
+      mediaObject->play();
+
+      delete mediaObject;
+      delete audioOutput;
+    }
+
+  }
+
+  delete conf;
+  
+}
+
+
 #include "kshowmail.moc"

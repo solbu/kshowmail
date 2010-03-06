@@ -26,6 +26,8 @@ class MailViewModel;
 #include <KCMultiDialog>
 #include <KMessageBox>
 #include <KSystemTrayIcon>
+#include <Phonon/AudioOutput>
+#include <Phonon/MediaObject>
 
 //KShowmail headers
 #include "kshowmailview.h"
@@ -233,7 +235,10 @@ class KShowmail : public KXmlGuiWindow
      */
     void stopAutomaticRefresh();
 
-
+    /**
+     * Handles all action for new mails
+     */
+    void handleNewMails();
 	
 	private:
 		
