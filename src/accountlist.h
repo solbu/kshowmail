@@ -150,25 +150,12 @@ class AccountList : public QObject
     Mail* getMail( int number ) const throw ( CorruptDataException );
 
     /**
-     * Returns the selected mails.
-     * @param mailSelectModel selection model of the mail view
-     * @return selected mails
-     */
-    QList<Mail*> getSelectedMails( QItemSelectionModel* mailSelectModel ) const;
-
-    /**
-     * Returns the subjects of the selected mails.
-     * @param mailSelectModel selection model of the mail view
-     * @return subjects
-     */
-    QStringList getSelectedSubjects( QItemSelectionModel* mailSelectModel ) const;
-
-    /**
-     * Deletes all selected mails from the servers and the mail lists.
+     * Deletes all mails from the servers and the mail lists.<p>
+     * You need to call Account::addMailToDelete() before.<p>
      * This just starts the deletion and returns after then. When all
      * accounts are ready the signal sigDeleteReady will be emitted.
      */
-    void deleteSelectedMails( QItemSelectionModel* mailSelectModel );
+    void deleteMails();
 
     /**
       * Returns the number of deleted mails by last refresh.
@@ -232,8 +219,9 @@ class AccountList : public QObject
 
     /**
      * Downloads and shows the selected mails.
+     * You need to call Account::addMailToShow() before.<p>
      */
-    void showSelectedMails( QItemSelectionModel* mailSelectModel );
+    void showMails();
 
     /**
      * Returns the number of new mails.

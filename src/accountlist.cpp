@@ -280,71 +280,8 @@ Mail* AccountList::getMail( int number ) const throw ( CorruptDataException )
   throw CorruptDataException( i18n( "A mail with number %1 is not available.").arg( number ) );
 }
 
-QList<Mail*> AccountList::getSelectedMails( QItemSelectionModel* mailSelectModel ) const
+void AccountList::deleteMails()
 {
-  QList<Mail*> list;  //result list
-
-  //get selected rows
-  QModelIndexList indexList = mailSelectModel->selectedRows();
-
-  //get the mail of every selected row an store the pointer into the result list
-  QListIterator<QModelIndex> it( indexList );
-  while( it.hasNext() )
-  {
-    //get Index
-    QModelIndex index = it.next();
-
-    //get mail
-    Mail* mail = getMail( index.row() );
-
-    //store mail pointer
-    list.append( mail );
-  }
-
-  return list;
-}
-
-QStringList AccountList::getSelectedSubjects( QItemSelectionModel* mailSelectModel ) const
-{
-  QStringList list; //result list
-
-  //get the selected mails
-  QList<Mail*> mailList = getSelectedMails( mailSelectModel );
-
-  //get the subjects of the selected mails and store their subjects
-  QListIterator<Mail*> it( mailList );
-  while( it.hasNext() )
-  {
-    //get Mail
-    Mail* mail = it.next();
-
-    //store subject
-    list.append( mail->getSubject() );
-    
-  }
-
-  return list;
-
-}
-
-void AccountList::deleteSelectedMails( QItemSelectionModel* mailSelectModel )
-{
-  //an account has a list of mails to delete
-  //we put the mail number of every selected mail into the list of its account
-  QList<Mail*> mailList = getSelectedMails( mailSelectModel );
-  if( mailList.isEmpty() )
-  {
-    emit sigDeleteReady();
-    return;
-  }
-  
-  QListIterator<Mail*> it( mailList );
-  while( it.hasNext() )
-  {
-    Mail* mail = it.next();
-    mail->getAccount()->addMailToDelete( mail->getNumber() );
-  }
-
   //order the accounts to delete the mails
 
   QListIterator<Account*> itAcc( accounts );
@@ -589,24 +526,8 @@ QList<int> AccountList::getMarkedMails() const
   return list;
 }
 
-void AccountList::showSelectedMails( QItemSelectionModel* mailSelectModel )
+void AccountList::showMails()
 {
-  //an account has a list of mails to show
-  //we put the mail number of every selected mail into the list of its account
-  QList<Mail*> mailList = getSelectedMails( mailSelectModel );
-  if( mailList.isEmpty() )
-  {
-    emit sigShowBodiesReady();
-    return;
-  }
-
-  QListIterator<Mail*> it( mailList );
-  while( it.hasNext() )
-  {
-    Mail* mail = it.next();
-    mail->getAccount()->addMailToShow( mail->getNumber() );
-  }
-
   //order the accounts to delete the mails
 
   QListIterator<Account*> itAcc( accounts );

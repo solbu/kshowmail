@@ -282,6 +282,15 @@ class Mail : public QObject
      */
     void setMarkAtNextViewRefresh();
 
+    /**
+     * Compares this mail with <i>other</i> and returns an integer less than,
+     * equal to, or greater than zero if this mail is less than, equal to,
+     * or greater than <i>other</i>.
+     * @param other other mail
+     * @param property the mail property which will be compared
+     */
+    int compare( Mail* other, MailSort_Type property );
+
 
 	private:
 		

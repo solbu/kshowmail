@@ -155,7 +155,84 @@ void MailViewModel::refresh()
 
 void MailViewModel::sort( int column, Qt::SortOrder order ) {
 
-	
+  //save last sort properties
+  lastSortOrder = order;
+  lastSortColumn = column;
+
+  if( viewMailList.empty() ) return;
+
+
+  MailSort_Type prop;
+  switch( column ) {
+
+    case 0  : prop = MailSortState; break;
+    case 1  : prop = MailSortNumber; break;
+    case 2  : prop = MailSortAccount; break;
+    case 3  : prop = MailSortFrom; break;
+    case 4  : prop = MailSortTo; break;
+    case 5  : prop = MailSortSubject; break;
+    case 6  : prop = MailSortDate; break;
+    case 7  : prop = MailSortSize; break;
+    case 8  : prop = MailSortContent; break;
+    default : prop = MailSortAccount;
+  }
+
+  //sort the view list
+  QList<Mail*> sortedList;
+
+  QListIterator<Mail*> itUnsort( viewMailList );
+  while( itUnsort.hasNext() ) {
+
+    //get next account
+    Mail* mailUnsorted = itUnsort.next();
+
+    //find a place for it in the temporary list
+    if( sortedList.size() == 0 ) {
+
+      sortedList.append( mailUnsorted );
+
+    } else {
+
+      int sizeSortedList = sortedList.size();
+      int indexSort = 0;
+      bool placed = false;
+      while( indexSort < sizeSortedList && !placed ) {
+
+        //get the mail in the sorted List
+        Mail* mailSorted = sortedList.at( indexSort );
+
+        //is the mail from the unsorted list lesser (greater) than the mail from the sorted list insert the first one at this
+        //position into the sorted list and break the searching for place
+        if( order == Qt::AscendingOrder ) {
+
+          if( mailUnsorted->compare( mailSorted, prop ) <= 0 ) {
+
+            sortedList.insert( indexSort, mailUnsorted );
+            placed = true;
+          }
+
+        } else {
+
+          if( mailUnsorted->compare( mailSorted, prop ) > 0 ) {
+
+            sortedList.insert( indexSort, mailUnsorted );
+            placed = true;
+          }
+        }
+
+        indexSort++;
+      }
+
+      //if the mail could not placed, we append it at the end
+      if( !placed )
+        sortedList.append( mailUnsorted );
+    }
+  }
+
+  //switch the lists
+  viewMailList.clear();
+  viewMailList.append( sortedList );
+
 	reset();
 }
 
@@ -173,3 +250,54 @@ Mail* MailViewModel::getMail(const QModelIndex index) const
 {
 	return viewMailList.at( index.row() );
 }
+
+QStringList MailViewModel::getSelectedSubjects( QItemSelectionModel* selectModel ) const
+{
+  QStringList subjects;
+  
+  if( !selectModel->hasSelection() ) return subjects;
+
+    //get selected rows
+  QModelIndexList indexList = selectModel->selectedRows();
+
+  //get the mail of every selected row an store the subject in the result list
+  QListIterator<QModelIndex> it( indexList );
+  while( it.hasNext() )
+  {
+    //get Index
+    QModelIndex index = it.next();
+
+    //get mail
+    Mail* mail = getMail( index );
+
+    //store subject
+    subjects.append( mail->getSubject() );
+  }
+
+  return subjects;
+}
+
+QList<Mail*> MailViewModel::getSelectedMails( QItemSelectionModel* mailSelectModel ) const
+{
+  QList<Mail*> list;  //result list
+
+  //get selected rows
+  QModelIndexList indexList = mailSelectModel->selectedRows();
+
+  //get the mail of every selected row an store the pointer into the result list
+  QListIterator<QModelIndex> it( indexList );
+  while( it.hasNext() )
+  {
+    //get Index
+    QModelIndex index = it.next();
+
+    //get mail
+    Mail* mail = getMail( index );
+
+    //store mail pointer
+    list.append( mail );
+  }
+
+  return list;
+}
+

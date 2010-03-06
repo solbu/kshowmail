@@ -1584,17 +1584,17 @@ void Account::addMailToShow( int number )
 
 void Account::deleteMails()
 {
-    //check whether we have a password for this account
-  //if not, ask for it
-  //return when no password is available
-  if( !assertPassword() )
+  //return if no mails in the list
+  if( mailsToDelete.empty() )
   {
     emit sigDeleteReady( name );
     return;
   }
 
-  //return if no mails in the list
-  if( mailsToDelete.empty() )
+  //check whether we have a password for this account
+  //if not, ask for it
+  //return when no password is available
+  if( !assertPassword() )
   {
     emit sigDeleteReady( name );
     return;

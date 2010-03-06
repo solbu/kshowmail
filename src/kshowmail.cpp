@@ -188,7 +188,7 @@ void KShowmail::slotShowHeader() {
   }
 
   //get selected Mails
-  QList<Mail*> mailList = accounts->getSelectedMails( mailSelectModel );
+  QList<Mail*> mailList = mailModel->getSelectedMails( mailSelectModel );
 
   //iterate over all mails
   QListIterator<Mail*> itMails( mailList );
@@ -227,8 +227,18 @@ void KShowmail::slotShowMessage() {
   //set waiting cursor
   QApplication::setOverrideCursor( Qt::WaitCursor );
 
-  //order the account list to show the selected mails
-  accounts->showSelectedMails( mailSelectModel );
+  //get selected Mails
+  QList<Mail*> mailsToShow = mailModel->getSelectedMails( mailSelectModel );
+
+  //add the mails to the accounts deletion lists
+  QListIterator<Mail*> itShow( mailsToShow );
+  while( itShow.hasNext() ) {
+
+    Mail* mail = itShow.next();
+    mail->getAccount()->addMailToShow( mail->getNumber() );
+  }
+
+  accounts->showMails();
 
 
 }
@@ -255,7 +265,7 @@ void KShowmail::slotDelete() {
   {
     
     //get subjects off all selected mails
-    QStringList subjects = accounts->getSelectedSubjects( mailSelectModel );
+    QStringList subjects = mailModel->getSelectedSubjects( mailSelectModel );
 
     //show question
     int answer = KMessageBox::questionYesNoList( this, i18n( "Do you want to delete these mails?"), subjects, i18n( "Delete?" ) );
@@ -274,8 +284,18 @@ void KShowmail::slotDelete() {
   //set waiting cursor
   QApplication::setOverrideCursor( Qt::WaitCursor );
 
-  //order the account list to delete the selected mails
-  accounts->deleteSelectedMails( mailSelectModel );
+  //get selected Mails
+  QList<Mail*> mailsToDelete = mailModel->getSelectedMails( mailSelectModel );
+
+  //add the mails to the accounts deletion lists
+  QListIterator<Mail*> itDel( mailsToDelete );
+  while( itDel.hasNext() ) {
+
+    Mail* mail = itDel.next();
+    mail->getAccount()->addMailToDelete( mail->getNumber() );
+  }
+
+  accounts->deleteMails();
 
 }
 

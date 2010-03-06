@@ -21,6 +21,7 @@ class AccountList;
 
 //Qt Headers
 #include <QAbstractItemModel>
+#include <QItemSelectionModel>
 
 //KDE headers
 #include <KDE/KLocale>
@@ -30,6 +31,7 @@ class AccountList;
 
 //KShowmail headers
 #include "accountlist.h"
+#include "mail.h"
 
 //constants
 #define NUMBER_MAILVIEW_COLUMNS 9
@@ -143,7 +145,21 @@ class MailViewModel : public QAbstractItemModel
 		 */
 		Mail* getMail( const QModelIndex index ) const;
 		
-		
+		/**
+     * Returns the subjects of the selected mails.
+     * @param selectModel mail select model
+     * @return mail subjects
+     */
+    QStringList getSelectedSubjects( QItemSelectionModel* selectModel ) const;
+
+    /**
+     * Returns the selected mails.
+     * @param mailSelectModel selection model of the mail view
+     * @return selected mails
+     */
+    QList<Mail*> getSelectedMails( QItemSelectionModel* mailSelectModel ) const;
+
+
 		
   private:
 

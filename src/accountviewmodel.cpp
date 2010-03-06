@@ -213,8 +213,6 @@ void AccountViewModel::refresh()
 
 void AccountViewModel::sort( int column, Qt::SortOrder order ) {
 
-	kdDebug() << column << " " << order << endl;
-	
 	//save last sort properties
 	lastSortOrder = order;
 	lastSortColumn = column;

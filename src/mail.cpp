@@ -758,3 +758,77 @@ void Mail::writeToDeleteLog( FilterLog * log, QString account )
   log->addDeletedMail( getDateTime(), getFrom(), account, getSubject() );
 }
 
+int Mail::compare(Mail* other, MailSort_Type property)
+{
+
+  switch( property ) {
+
+    //compare by state
+    case MailSortState : {
+
+      if( isNew() == other->isNew() ) return 0;
+      else if( isNew() ) return 1;
+      else return 0;
+
+    }
+
+    //compary by number
+    case MailSortNumber : {
+
+      if( getNumber() == other->getNumber() ) return 0;
+      else if( getNumber() > other->getNumber() ) return 1;
+      else return -1;
+    }
+
+    //comapre by account
+    case MailSortAccount : {
+
+      return QString::localeAwareCompare( getAccount()->getName(), other->getAccount()->getName() );
+    }
+
+    //compare by sender
+    case MailSortFrom : {
+
+      return QString::localeAwareCompare( getFrom(), other->getFrom() );
+    }
+
+    //compary by To
+    case MailSortTo : {
+
+      return QString::localeAwareCompare( getTo(), other->getTo() );
+    }
+
+    //compare by subject
+    case MailSortSubject : {
+
+      return QString::localeAwareCompare( getSubject(), other->getSubject() );
+    }
+
+    //compare by date
+    case MailSortDate : {
+
+      if( getDateTime() == other->getDateTime() ) return 0;
+      else if( getDateTime() > other->getDateTime() ) return 1;
+      else return -1;
+    }
+
+    //compare by size
+    case MailSortSize : {
+
+      if( getSize() == other->getSize() ) return 0;
+      else if( getSize() > other->getSize() ) return 1;
+      else return -1;
+    }
+
+    //compare by content
+    case MailSortContent : {
+
+      return QString::localeAwareCompare( getContent(), other->getContent() );
+    }
+
+    default : {
+      return QString::localeAwareCompare( getAccount()->getName(), other->getAccount()->getName() );
+    }
+
+  }
+}
