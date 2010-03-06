@@ -130,11 +130,6 @@ class MailViewModel : public QAbstractItemModel
 		void sort( int column, Qt::SortOrder order = Qt::AscendingOrder );
 		
 		/**
-		 * Saves the setup
-		 */
-		void saveSetup();
-		
-		/**
 		 * Sorts the model by the last sort properties.
 		 */
 		void sort();
@@ -171,6 +166,11 @@ class MailViewModel : public QAbstractItemModel
      * @return indexes of mails marked by filter
      */
     QModelIndexList getMarkedMails() const;
+
+    /**
+     * Saves the setup
+     */
+    void saveSetup();
 
 
 		

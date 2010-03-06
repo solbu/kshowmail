@@ -236,11 +236,6 @@ void MailViewModel::sort( int column, Qt::SortOrder order ) {
 	reset();
 }
 
-void MailViewModel::saveSetup()
-{
-
-}
-
 void MailViewModel::sort()
 {
 	sort( lastSortColumn, lastSortOrder );
@@ -348,3 +343,22 @@ QModelIndexList MailViewModel::getMarkedMails() const
 
   return indexList;
 }
+
+void MailViewModel::saveSetup()
+{
+  KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
+
+  conf->writeEntry( CONFIG_ENTRY_SORT_COLUMN_MESSAGE, lastSortColumn );
+
+  if( lastSortOrder == Qt::AscendingOrder ) {
+
+    conf->writeEntry( CONFIG_ENTRY_SORT_ORDER_MESSAGE, CONFIG_VALUE_SORT_ORDER_ASCENDING );
+
+  } else {
+
+    conf->writeEntry( CONFIG_ENTRY_SORT_ORDER_MESSAGE, CONFIG_VALUE_SORT_ORDER_DESCENDING );
+  }
+
+  conf->sync();
+}
+

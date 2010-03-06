@@ -26,12 +26,14 @@
 #include <QPainter>
 #include <QColor>
 #include <QTimer>
+#include <QMenu>
 
 //KDE headers
 #include <KSystemTrayIcon>
 #include <KLocale>
 #include <KDebug>
 #include <KGlobalSettings>
+#include <kaction.h>
 
 class SystemTrayIcon : public KSystemTrayIcon
 {
@@ -42,8 +44,10 @@ class SystemTrayIcon : public KSystemTrayIcon
     /**
      * Constructor
      * @param parent parent widget
+     * @param trayIcon icon
+     * @param actionRefresh refresh action
      */
-    SystemTrayIcon( QWidget* parent, QIcon trayIcon );
+    SystemTrayIcon( QWidget* parent, QIcon trayIcon, KAction* actionRefresh );
 
     /**
      * Draws the given number on the icon.

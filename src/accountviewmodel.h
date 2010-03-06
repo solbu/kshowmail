@@ -34,6 +34,7 @@ class AccountList;
 
 //KShowmail headers
 #include "accountlist.h"
+#include "account.h"
 
 //constants
 #define NUMBER_ACCOUNTVIEW_COLUMNS 6

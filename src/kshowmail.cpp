@@ -57,7 +57,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   configGeneral = new KConfigGroup( config, CONFIG_GROUP_GENERAL );
 
   //create system tray icon
-  trayIcon = new SystemTrayIcon( this, QIcon( KStandardDirs::locate( "data", "kshowmail/pics/trayIcon.png" ) ) );
+  trayIcon = new SystemTrayIcon( this, QIcon( KStandardDirs::locate( "data", "kshowmail/pics/trayIcon.png" ) ), actionRefresh );
   trayIcon->show();
 		
 	//load the setup

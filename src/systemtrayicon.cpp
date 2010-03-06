@@ -21,7 +21,7 @@
 #include "systemtrayicon.h"
 
 
-SystemTrayIcon::SystemTrayIcon( QWidget* parent, QIcon trayIcon ) : KSystemTrayIcon( trayIcon, parent )
+SystemTrayIcon::SystemTrayIcon( QWidget* parent, QIcon trayIcon, KAction* actionRefresh ) : KSystemTrayIcon( trayIcon, parent )
 {
   //save the icon
   _icon = trayIcon;
@@ -33,6 +33,9 @@ SystemTrayIcon::SystemTrayIcon( QWidget* parent, QIcon trayIcon ) : KSystemTrayI
   flashingTimer = new QTimer( this );
   flashingTimer->setSingleShot( false );
   connect( flashingTimer, SIGNAL( timeout() ), this, SLOT( slotFlash() ) );
+
+  //add action
+  contextMenu()->addAction( actionRefresh );
 }
 
 
