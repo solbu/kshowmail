@@ -76,7 +76,8 @@ bool MailList::isNew(QString uid) const
   while( it.hasNext() && !found )
   {
     Mail* mail = it.next();
-    
+
+    kdDebug() << "compare: " << uid << " " << mail->getUNID() << endl;
     //compare the uid
     if( mail->getUNID() == uid )
     {

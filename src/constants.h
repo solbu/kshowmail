@@ -37,7 +37,6 @@ namespace Constants
   #define DEFAULT_CONFIRM_DELETE          true
   #define DEFAULT_START_MINIMIZED         false
   #define DEFAULT_CLOSE_TO_TRAY           true
-  #define DEFAULT_MINIMIZE_TO_TRAY        true
   #define DEFAULT_SHOW_CONNECTION_ERRORS  true
   #define DEFAULT_KEEP_NEW                false
   #define DEFAULT_AUTO_REFRESH            false
@@ -196,7 +195,6 @@ namespace Constants
   #define CONFIG_ENTRY_CONFIRM_DELETE           "confirmDelete"
   #define CONFIG_ENTRY_START_MINIMIZED          "startMinimized"
   #define CONFIG_ENTRY_CLOSE_TO_TRAY            "closeToTray"
-  #define CONFIG_ENTRY_MINIMIZE_TO_TRAY         "minimizeToTray"
   #define CONFIG_ENTRY_SHOW_CONNECTION_ERRORS   "showConnectionErrors"
   #define CONFIG_ENTRY_KEEP_NEW                 "keepMailsNew"
   #define CONFIG_ENTRY_INITIAL_TIME             "InitialTime"

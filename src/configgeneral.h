@@ -102,11 +102,6 @@ Q_OBJECT
     QCheckBox* chkCloseToTray;
 
     /**
-     * Check box to select whether minimizes to the tray rather than to the taskbar.
-     */
-    QCheckBox* chkMinimizeToTray;
-
-    /**
      * Check box to select whether connection errors will be shown.
      */
     QCheckBox* chkShowConnectionErrors;

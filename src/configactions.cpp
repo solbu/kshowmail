@@ -234,8 +234,6 @@ void ConfigActions::slotPlaySound( )
     Phonon::createPath( mediaObject, audioOutput );
     mediaObject->play();
 
-    //delete mediaObject;
-    //delete audioOutput;
   }
 }
 

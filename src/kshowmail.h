@@ -13,6 +13,7 @@ class MailViewModel;
 #include <QListIterator>
 #include <QSortFilterProxyModel>
 #include <QList>
+#include <QStringList>
 
 //KDE headers
 #include <kstatusbar.h>
@@ -28,6 +29,7 @@ class MailViewModel;
 #include <KSystemTrayIcon>
 #include <Phonon/AudioOutput>
 #include <Phonon/MediaObject>
+#include <KProcess>
 
 //KShowmail headers
 #include "kshowmailview.h"
@@ -41,6 +43,7 @@ class MailViewModel;
 #include "showmaildialog.h"
 #include "systemtrayicon.h"
 #include "accountsetupdialogcontext.h"
+#include "newmaildialog.h"
 
 using namespace Types;
 
@@ -100,6 +103,34 @@ class KShowmail : public KXmlGuiWindow
       * The filter log.
       */
      FilterLog fLog;
+
+    /**
+     * Starts the refresh timer.
+     * @param initiate TRUE - this is the first automatic refresh (use initiate time)
+     */
+    void startAutomaticRefresh( bool initiate = false );
+
+    /**
+     * Stops the refresh timer.
+     */
+    void stopAutomaticRefresh();
+
+    /**
+     * Handles all actions for new mails
+     */
+    void handleNewMails();
+
+    /**
+     * Handles all actions when no new mails are arrived
+     */
+    void handleNoNewMails();
+
+    /**
+     * Asks the user to confirm the closing
+     * @return TRUE - close; FALSE don't close
+     */
+    bool askCloseConfirmation();
+
 
   protected slots:
 
@@ -222,24 +253,12 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotSetupAccount();
 
-  protected:
-
     /**
-     * Starts the refresh timer.
-     * @param initiate TRUE - this is the first automatic refresh (use initiate time)
+     * Connected with newMailDlg, signal cancelClicked<p>
+     * Shows the main window
      */
-    void startAutomaticRefresh( bool initiate = false );
+    void slotShowMainWindow();
 
-    /**
-     * Stops the refresh timer.
-     */
-    void stopAutomaticRefresh();
-
-    /**
-     * Handles all action for new mails
-     */
-    void handleNewMails();
-	
 	private:
 		
 		/**
@@ -359,6 +378,29 @@ class KShowmail : public KXmlGuiWindow
      * Number of seconds until the next refresh
      */
     unsigned int timeToRefresh;
+
+    /**
+     * This is to play a sound for new mails
+     * @see handleNewMails
+     */
+    Phonon::MediaObject *mediaObject;
+
+    /**
+     * This is to play a sound for new mails
+     * @see handleNewMails
+     */
+    Phonon::AudioOutput *audioOutput;
+
+    /**
+     * The new mail dialog
+     * @see handleNewMails
+     */
+    NewMailDialog* newMailDlg;
+
+    /**
+     * This is to avoid a confirm close dialog
+     */
+    bool forceExit;
 
 };
 

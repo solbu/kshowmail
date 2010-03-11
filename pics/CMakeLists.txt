@@ -5,4 +5,5 @@ install( FILES accountActive.png
                mail-unread-new.png
                account.svgz
                trayIcon.png
+               newMailPic.png
                DESTINATION ${DATA_INSTALL_DIR}/kshowmail/pics )

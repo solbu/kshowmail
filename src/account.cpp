@@ -530,8 +530,6 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
 
   }
   
-  kdDebug() << readed << endl;
-
   //split the response into lines
   QStringList response = readed.split( lineTerm );
 
@@ -1202,6 +1200,7 @@ void Account::slotUIDListResponse()
         }
         else if( ( accountList->keepNew() || refreshPerformedByFilters ) && mails->isNew( uid ) )
         {
+          kdDebug() << "KEEP NEW !!!!!!!!!!" << endl;
           //the mail is already in the old list
           //but we will leave the state of formerly new mails, because the user wants it or this refresh is performed by filters
           isNew = true;

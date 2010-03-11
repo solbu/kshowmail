@@ -8,6 +8,9 @@
 
 KShowmail::KShowmail() : KXmlGuiWindow()
 {
+  //init some flags
+  forceExit = false;
+  
 	//create the account list
 	accounts = new AccountList( this );
   connect( accounts, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotNormalCursor() ) );
@@ -68,7 +71,16 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   view->refreshViews( mailSelectModel );
 
 	//read stored mails
-	accounts->readStoredMails();
+	//accounts->readStoredMails();
+
+  //this is to play the new mail sound
+  mediaObject = new Phonon::MediaObject( this );
+  audioOutput = new Phonon::AudioOutput( Phonon::MusicCategory, this );
+  Phonon::createPath( mediaObject, audioOutput );
+
+  //the new mail dialog
+  newMailDlg = new NewMailDialog( this );
+  connect( newMailDlg, SIGNAL( cancelClicked() ), this, SLOT( slotShowMainWindow() ) );
 
   //refresh timer
   refreshTimer = new QTimer( this );
@@ -79,6 +91,12 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 
   //run initial refresh
   startAutomaticRefresh( true );
+
+  //minimize the window if desired
+  if( configGeneral->readEntry( CONFIG_ENTRY_START_MINIMIZED, DEFAULT_START_MINIMIZED ) ) {
+
+    showMinimized();
+  }
 
 }
 
@@ -398,16 +416,46 @@ void KShowmail::slotSendFeedbackMail() {
 
 void KShowmail::slotFileQuit() {
 
+  //ask for confirmation
+  if( configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_CLOSE, DEFAULT_CONFIRM_CLOSE ) ) {
+
+    if( askCloseConfirmation() == false )
+      return;
+  }
+
+  //don't ask for confirmation again in queryClose()
+  forceExit = true;
+
+  //close it
   kapp->closeAllWindows();
 }
 
 bool KShowmail::queryClose() {
 
-  //Einstellungen speichern
+  //save setup
   fLog.save();
   config->sync();
   accounts->saveOptions();
 	view->saveSetup();
+
+  //force exit
+  if( forceExit ) {
+    return true;
+  }
+
+  //just minimize?
+  if( configGeneral->readEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, DEFAULT_CLOSE_TO_TRAY ) ) {
+
+    showMinimized();
+    return false;
+  }
+  
+  //confirm closing
+  if( configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_CLOSE, DEFAULT_CONFIRM_CLOSE ) ) {
+
+    if( askCloseConfirmation() == true )
+      return true;
+  }
 
   return true;
 }
@@ -479,6 +527,10 @@ void KShowmail::slotRefreshReady()
   if( accounts->getNumberNewMails() > 0 ) {
 
     handleNewMails();
+
+  } else {
+
+    handleNoNewMails();
   }
 
   //start the refresh timer
@@ -634,20 +686,78 @@ void KShowmail::handleNewMails()
     QString file = conf->readEntry( CONFIG_ENTRY_NEW_MAIL_SOUNDPATH, "" );
     if( file.length() != 0 )
     {
-      Phonon::MediaObject *mediaObject = new Phonon::MediaObject( this );
       mediaObject->setCurrentSource( Phonon::MediaSource( file ) );
-      Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput( Phonon::MusicCategory, this );
-      Phonon::createPath( mediaObject, audioOutput );
       mediaObject->play();
 
-      delete mediaObject;
-      delete audioOutput;
     }
 
   }
 
+  if( conf->readEntry( CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW, DEFAULT_ACTION_NEW_MAIL_ALERTWINDOW) ) {
+
+      newMailDlg->show();
+  }
+
+  if( conf->readEntry( CONFIG_ENTRY_NEW_MAIL_MAINWINDOW, DEFAULT_ACTION_NEW_MAIL_MAINWINDOW ) ) {
+
+      slotShowMainWindow();
+  }
+
+  if( conf->readEntry( CONFIG_ENTRY_NEW_MAIL_BEEP, DEFAULT_ACTION_NEW_MAIL_BEEP ) ) {
+
+      kapp->beep();
+  }
+
+  if( conf->readEntry( CONFIG_ENTRY_NEW_MAIL_COMMAND, DEFAULT_ACTION_NEW_MAIL_COMMAND ) ) {
+
+    //get command
+    QString command = conf->readEntry( CONFIG_ENTRY_NEW_MAIL_COMMANDPATH, "" );
+
+    //execute it
+    if( command.length() > 0 ) {
+
+      QStringList parts = command.split( " ", QString::SkipEmptyParts );
+
+      if( command != QString::null )
+      {
+        KProcess::execute( parts );
+      }
+
+    }
+
+  }
+  
   delete conf;
   
+}
+
+void KShowmail::slotShowMainWindow()
+{
+  showNormal();
+}
+
+void KShowmail::handleNoNewMails()
+{
+
+  //get config
+  KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACTIONS );
+
+  if( conf->readEntry( CONFIG_ENTRY_NO_NEW_MAIL_MINIMIZE, DEFAULT_ACTION_NO_NEW_MAIL_MINIMIZE ) ) {
+
+    showMinimized();
+  }
+
+  if( conf->readEntry( CONFIG_ENTRY_NO_NEW_MAIL_TERMINATE, DEFAULT_ACTION_NO_NEW_MAIL_TERMINATE ) ) {
+
+    forceExit = true;
+    kapp->closeAllWindows();
+  }
+}
+
+bool KShowmail::askCloseConfirmation()
+{
+  return KMessageBox::questionYesNo( this, i18n ("KShowmail will be closed.\nAre you sure?") ) == KMessageBox::Yes;
+
 }
 
 

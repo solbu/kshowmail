@@ -59,13 +59,9 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   chkCloseToTray->setToolTip( i18n( "Close button leaves the application running in tray" ) );
   layMainTop->addWidget( chkCloseToTray, 1, 1 );
 
-  chkMinimizeToTray = new QCheckBox( i18n( "Minimize to tray" ), this );
-  chkMinimizeToTray->setToolTip( i18n( "Minimizes to the tray rather than to the taskbar" ) );
-  layMainTop->addWidget( chkMinimizeToTray, 2, 0 );
-
   chkKeepNew = new QCheckBox( i18n( "&Keep mail as new" ), this );
   chkKeepNew->setToolTip( i18n( "Keep mail as new until termination" ) );
-  layMainTop->addWidget( chkKeepNew, 2, 1 );
+  layMainTop->addWidget( chkKeepNew, 2, 0 );
 
 
 
@@ -116,7 +112,6 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   connect( chkConfirmDelete, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( chkStartMinimized, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( chkCloseToTray, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
-  connect( chkMinimizeToTray, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( chkShowConnectionErrors, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( chkKeepNew, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( spbInitial, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
@@ -145,7 +140,6 @@ void ConfigGeneral::load( )
   chkConfirmDelete->setChecked( configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_DELETE, DEFAULT_CONFIRM_DELETE ) );
   chkStartMinimized->setChecked( configGeneral->readEntry( CONFIG_ENTRY_START_MINIMIZED, DEFAULT_START_MINIMIZED ) );
   chkCloseToTray->setChecked( configGeneral->readEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, DEFAULT_CLOSE_TO_TRAY ) );
-  chkMinimizeToTray->setChecked( configGeneral->readEntry( CONFIG_ENTRY_MINIMIZE_TO_TRAY, DEFAULT_MINIMIZE_TO_TRAY ) );
   chkShowConnectionErrors->setChecked( configGeneral->readEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, DEFAULT_SHOW_CONNECTION_ERRORS ) );
   chkKeepNew->setChecked( configGeneral->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW ) );
 
@@ -163,7 +157,6 @@ void ConfigGeneral::defaults( )
   chkConfirmDelete->setChecked( DEFAULT_CONFIRM_DELETE );
   chkStartMinimized->setChecked( DEFAULT_START_MINIMIZED );
   chkCloseToTray->setChecked( DEFAULT_CLOSE_TO_TRAY );
-  chkMinimizeToTray->setChecked( DEFAULT_MINIMIZE_TO_TRAY );
   chkShowConnectionErrors->setChecked( DEFAULT_SHOW_CONNECTION_ERRORS );
   chkKeepNew->setChecked( DEFAULT_KEEP_NEW );
 
@@ -182,7 +175,6 @@ void ConfigGeneral::save( )
   configGeneral->writeEntry( CONFIG_ENTRY_CONFIRM_DELETE, chkConfirmDelete->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_START_MINIMIZED, chkStartMinimized->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, chkCloseToTray->isChecked() );
-  configGeneral->writeEntry( CONFIG_ENTRY_MINIMIZE_TO_TRAY, chkMinimizeToTray->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, chkShowConnectionErrors->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_KEEP_NEW, chkKeepNew->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_INITIAL_TIME, spbInitial->value() );
