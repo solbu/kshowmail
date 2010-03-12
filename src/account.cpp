@@ -387,10 +387,6 @@ void Account::initBeforeConnect()
   quitSent = false;
   apopAvail = false;
 
-  //at the next refresh the filter was not applied yet
-  filterApplied = false;
-
-  refreshPerformedByFilters = false;
 
   dontHandleError = false;
 
@@ -1200,7 +1196,6 @@ void Account::slotUIDListResponse()
         }
         else if( ( accountList->keepNew() || refreshPerformedByFilters ) && mails->isNew( uid ) )
         {
-          kdDebug() << "KEEP NEW !!!!!!!!!!" << endl;
           //the mail is already in the old list
           //but we will leave the state of formerly new mails, because the user wants it or this refresh is performed by filters
           isNew = true;
@@ -1247,6 +1242,7 @@ void Account::swapMailLists( )
   else
     mails = new MailList( this );
 
+  refreshPerformedByFilters = false;
 
   //if the filters were not applied yet, we do it now
   //applyFilters() will either start a second refresh cycle if it did some deletions
@@ -1254,7 +1250,7 @@ void Account::swapMailLists( )
   //if the filters were already applied we commit the refresh.
   if( filterApplied | !headerFilter.isActive() )
   {
-    //reset the flag for the next refresh
+    //reset the flags for the next refresh
     filterApplied = false;
 
     //commit the refresh cycle

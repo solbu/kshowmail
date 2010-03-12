@@ -118,7 +118,11 @@ void AccountList::loadSetup()
   }
 
   //read the setup of other things
-  keepMailsNew = confAccounts->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW );
+  KConfigGroup* confGeneral = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_GENERAL );
+  keepMailsNew = confGeneral->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW );
+
+  delete confAccounts;
+  delete confGeneral;
 
   //read filter setup
   refreshFilterSetup();
