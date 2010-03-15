@@ -415,6 +415,11 @@ class Account : public QObject
 		 */
 		QList<Mail*> getAllMails() const;
 
+    /**
+     * Cancels the current running task
+     */
+    void cancelTask();
+
 
   protected:
 
@@ -719,8 +724,6 @@ class Account : public QObject
     bool isSpamAssassinRunning() const;
 
 
-
-
   protected slots:
 
    /**
@@ -863,7 +866,12 @@ class Account : public QObject
      */
     void slotCommitBeforeRefreshDone();
 
-
+     /**
+      * Connected with the timeout timer.<p>
+      * Closes the server connect and finishes the task
+      * @see timeoutTimer
+      */
+     void slotTimeout();
 		
 	private:
 		
@@ -1075,6 +1083,17 @@ class Account : public QObject
      * TRUE - the error will not be handled by slotSocketError.
      */
     bool dontHandleError;
+
+    /**
+     * TRUE - informs the user about connection errors<p>
+     * FALSE - doesn't inform
+     */
+    bool informAboutErrors;
+
+    /**
+     * Seconds to Timeout
+     */
+    int timeOutTime;
 
   signals:
 

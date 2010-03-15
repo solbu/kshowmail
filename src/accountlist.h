@@ -203,6 +203,11 @@ class AccountList : public QObject
 		 * @return all mails
 		 */
 		QList<Mail*> getAllMails() const;
+
+    /**
+     * Cancels all running tasks.
+     */
+    void cancelTasks();
 		
     
 	private:

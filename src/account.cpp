@@ -35,6 +35,10 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
   connect( socket, SIGNAL( sslErrors(QList<KSslError>) ), this, SLOT( slotSSLError(QList<KSslError>) ) );
 
+  //create timeout timer
+  timeoutTimer = new QTimer( this );
+  connect( timeoutTimer, SIGNAL( timeout() ), this, SLOT( slotTimeout() ) );
+
   init();
 	
 }
@@ -68,9 +72,6 @@ void Account::init()
 {
   //set active
   active = true;
-
-  //Timeout timer
-  timeoutTimer = new QTimer( this );
 
   //at start, we are idle
   state = AccountIdle;
@@ -157,8 +158,14 @@ void Account::load()
   if( spamAction == FActMove )
     spamMailbox = spamConfig->readEntry( CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX, DEFAULT_SPAMCHECK_ACTION_MOVE_MAILBOX );
 
+  //read general configs
+  KConfigGroup* generalConfig = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_GENERAL );
+  informAboutErrors = generalConfig->readEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, DEFAULT_SHOW_CONNECTION_ERRORS );
+  timeOutTime = generalConfig->readEntry( CONFIG_ENTRY_TIMEOUT_TIME, DEFAULT_TIMEOUT_TIME );
+
   delete accountConfig;
 	delete spamConfig;
+  delete generalConfig;
 }
 
 void Account::refreshMailList( FilterLog* log )
@@ -387,8 +394,15 @@ void Account::initBeforeConnect()
   quitSent = false;
   apopAvail = false;
 
+  downloadActionsInvoked = false;
+  deletionPerformedByFilters = false;
+  filterApplied = false;
+
 
   dontHandleError = false;
+
+  //start timeout timer
+  timeoutTimer->start( timeOutTime * 1000 );
 
 }
 
@@ -459,10 +473,16 @@ void Account::handleError( QString error )
   //close connection
   closeConnection();
 
+  //stop timeout timer
+  timeoutTimer->stop();
+
   //show error
-  emit sigMessageWindowOpened();
-  KMessageBox::error( NULL, i18n( "Account %1: %2" ).arg( getName() ).arg( error ) );
-  emit sigMessageWindowClosed();
+  if( informAboutErrors ) {
+
+    emit sigMessageWindowOpened();
+    KMessageBox::error( NULL, i18n( "Account %1: %2" ).arg( getName() ).arg( error ) );
+    emit sigMessageWindowClosed();
+  }
 
   //emit ready signal
   switch( state )
@@ -475,6 +495,12 @@ void Account::handleError( QString error )
 
   //set state
   state = AccountIdle;
+
+  //clear lists
+  mailsToDelete.clear();
+  mailsToDownload.clear();
+  mailsToShow.clear();
+
 }
 
 QStringList Account::readfromSocket( QString charset, bool singleLine )
@@ -894,6 +920,8 @@ void Account::finishTask()
 
   //clear lists
   mailsToDelete.clear();
+  mailsToDownload.clear();
+  mailsToShow.clear();
 
 }
 
@@ -1234,6 +1262,7 @@ void Account::removeEndOfResponseMarker( QStringList * response )
 void Account::swapMailLists( )
 {
   //delete old mail list
+  
   delete mails;
 
   //assign the new list
@@ -2332,4 +2361,18 @@ int Account::compare( Account* other, AccountSort_Type property ) {
 QList< Mail* > Account::getAllMails() const
 {
 	return mails->getAllMails();
+}
+
+void Account::slotTimeout()
+{
+  handleError( i18n( "Timeout" ) );
+}
+
+void Account::cancelTask()
+{
+  if( state != AccountIdle ) {
+
+    socket->close();
+    handleError( "Task canceled" );
+  }
 }

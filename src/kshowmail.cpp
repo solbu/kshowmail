@@ -324,7 +324,7 @@ void KShowmail::slotDelete() {
 }
 
 void KShowmail::slotStop() {
-  kDebug() << "slotStop" << endl;
+  accounts->cancelTasks();
 }
 
 void KShowmail::slotShowFilterLog() {

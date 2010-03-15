@@ -24,7 +24,17 @@ MailList::MailList( QObject* parent ) : QObject( parent )
 {
 }
 
-MailList::~MailList(){}
+MailList::~MailList(){
+
+  //delete all mails
+  QListIterator<Mail*> iter( mails );
+  while( iter.hasNext() )
+  {
+    Mail* mail = iter.next();
+    delete mail;
+  }
+  
+}
 
 Mail* MailList::addMail( long number, const QString& unid, bool isNew )
 {

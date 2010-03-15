@@ -642,3 +642,16 @@ QList< Mail* > AccountList::getAllMails() const
 	
 	return listMails;
 }
+
+void AccountList::cancelTasks()
+{
+  QListIterator<Account*> it( accounts );   //to iterate over all accounts
+
+  while( it.hasNext() )
+  {
+    Account* account = it.next();
+    account->cancelTask();
+  }
+
+
+}
