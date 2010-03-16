@@ -93,6 +93,11 @@ namespace POP3Constants
   static const QString CAPA_RESPONSE_STLS( "STLS" );
 
   /**
+   * command for start TLS
+   */
+  static const QString START_TLS( "STLS" );
+
+  /**
    * Commit command
    */
   static const QString COMMIT( "QUIT" );
@@ -723,6 +728,11 @@ class Account : public QObject
      */
     bool isSpamAssassinRunning() const;
 
+    /**
+     * Invites the server to crypt using TLS (STARTTLS)
+     */
+    void startTLS();
+
 
   protected slots:
 
@@ -859,7 +869,6 @@ class Account : public QObject
     void slotMailDownloadedForAction();
 
     /**
-     * Connected with the result signal of the pop3 job launched by commitBeforeRefresh()
      * Restarts a second refresh cycle after a deletion performed by the filter.
      * @see commitBeforeRefresh
      * @see applyFiltersDeleted
@@ -872,6 +881,11 @@ class Account : public QObject
       * @see timeoutTimer
       */
      void slotTimeout();
+
+     /**
+      * Receives the response of the STLS command
+      */
+     void slotStartTLSResponse();
 		
 	private:
 		
@@ -1095,6 +1109,14 @@ class Account : public QObject
      */
     int timeOutTime;
 
+    /**
+     * TRUE - the server supports StartTLS.<p>
+     * Set by slotCapabilitiesResponse()
+     * @see slotCapabilitiesResponse
+     */
+    bool supportsStartTLS;
+
+    
   signals:
 
     /**

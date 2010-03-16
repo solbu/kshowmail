@@ -394,6 +394,9 @@ void Account::initBeforeConnect()
   quitSent = false;
   apopAvail = false;
 
+  //Capability flags
+  supportsStartTLS = false;
+
   downloadActionsInvoked = false;
   deletionPerformedByFilters = false;
   filterApplied = false;
@@ -525,6 +528,7 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
 
       if( !socket->waitForReadyRead() )
       {
+        kdDebug() << "GMX: " << readed << endl;
         return QStringList();
       }
     }
@@ -742,6 +746,9 @@ void Account::slotCapabilitiesResponse()
   {
     //remove status indicator and termination char
     clearMessage( text );
+
+    //has STARTTLS?
+    supportsStartTLS = text.contains( CAPA_RESPONSE_STLS, Qt::CaseInsensitive );
   }
 
   //get authentification mechanism
@@ -852,11 +859,17 @@ void Account::slotAuthMechResponse()
     clearMessage( text );
   }
 
-  //the next step is the login
+  //if the STARTTLS is supported, we start this now
+  //otherwise the next step is the login
   //if APOP available, we use it
   //otherwise plain login
   //we also don't use APOP if the a previous APOP login failed
-  if( apopAvail && !dontUseAPOP )
+  if( supportsStartTLS && transferSecurity == TransSecTLS ) {
+
+    startTLS();
+    return;
+    
+  } else if( apopAvail && !dontUseAPOP )
     loginApop();
   else
   {
@@ -2375,4 +2388,71 @@ void Account::cancelTask()
     socket->close();
     handleError( "Task canceled" );
   }
+}
+
+void Account::startTLS()
+{
+  //connect the signal readyRead of the socket with the response handle methode
+  disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotStartTLSResponse() ) );
+
+  //send the command
+  sendCommand( START_TLS );
+
+}
+
+void Account::slotStartTLSResponse()
+{
+  //get server answer
+  QStringList text = readfromSocket( NULL, true );
+
+  //if the socket has not returned something, we finish at this point
+  //we don't need to show an error message, because the handleError-Methode was called already
+  if( text.isEmpty() )
+  {
+    finishTask();
+    return;
+  }
+
+  //have we got a acknowledgment?
+  bool ack = isPositiveServerMessage( text );
+
+  //if the server isn't ready for TLS, continue without TLS
+  if( !ack ) {
+
+    kdError() << "The Server " << getHost() << " says it supports STLS but it doesn't accept the STLS command: " << text.first() << endl;
+    
+    if( apopAvail && !dontUseAPOP ) {
+
+      loginApop();
+      return;
+
+    } else {
+
+      if( allowUnsecureLogin == true ) {
+
+        loginUser();
+
+      } else {
+
+        emit sigMessageWindowOpened();
+        KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup. Bear in mind in this case criminals could read your password!" ).arg( getName() ), i18n( "Unsafe login is not allowed") );
+        emit sigMessageWindowClosed();
+
+        //the user has not allowed unsafe login; finish the task
+        finishTask();
+
+      }
+    }
+
+  } else {
+
+    //Yes, lets start TLS!!!
+
+    socket->startClientEncryption();
+
+    //login
+    loginUser();
+  }
+
 }
