@@ -2386,7 +2386,10 @@ int Account::compare( Account* other, AccountSort_Type property ) {
 
 QList< Mail* > Account::getAllMails() const
 {
-	return mails->getAllMails();
+	if( isActive() )
+		return mails->getAllMails();
+	else
+		return QList<Mail*>();
 }
 
 void Account::slotTimeout()

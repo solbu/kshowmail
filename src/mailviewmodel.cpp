@@ -46,7 +46,7 @@ int MailViewModel::rowCount ( const QModelIndex & parent ) const
 	//return 0, if the parent is valid
 	if( parent.isValid() ) return 0;
 
-	return accounts->getNumberMails();
+	return viewMailList.size();
 }
 
 int MailViewModel::columnCount ( const QModelIndex & parent ) const
