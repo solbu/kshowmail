@@ -30,6 +30,7 @@ class Account;
 #include <QTextCodec>
 #include <QDir>
 #include <QSslCertificate>
+#include <QThread>
 
 //KDE headers
 #include <KConfigGroup>

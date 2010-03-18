@@ -364,7 +364,7 @@ void Account::doConnect()
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReadFirstServerMessage() ) );
   
   //do connect
-  if( transferSecurity == TransSecNone ) {
+  if( transferSecurity == TransSecNone || transferSecurity == TransSecTLS ) {
     
     socket->connectToHost( getHost(), getPort() );
 
@@ -522,18 +522,22 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
   endOfMultiLine.append( END_MULTILINE_RESPONSE );
   endOfMultiLine.append( lineTerm );
   
+	//read all bytes until we have get the line end of a single line response
+	//or the end line of a multiline response
   while( !responseEndFound ) {
 
+		//wait for new bytes
     if( socket->bytesAvailable() == 0 ) {
 
       if( !socket->waitForReadyRead() )
       {
-        kdDebug() << "GMX: " << readed << endl;
         return QStringList();
       }
+      
+
     }
 
-    //append the readed bytes
+    //append the available bytes
     readed.append( QString( socket->readAll() ) );
 
     //check for end of response
@@ -749,6 +753,15 @@ void Account::slotCapabilitiesResponse()
 
     //has STARTTLS?
     supportsStartTLS = text.contains( CAPA_RESPONSE_STLS, Qt::CaseInsensitive );
+		
+		//if TLS is selected but this provide doesn't support it,
+		//we will finish this task here
+		if( transferSecurity == TransSecTLS && !supportsStartTLS ) {
+		
+			handleError( i18n( "No support for START-TLS" ) );
+			return;
+		}
+		
   }
 
   //get authentification mechanism

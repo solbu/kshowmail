@@ -168,6 +168,12 @@ Q_OBJECT
      * Writes the values of the account into the dialog items.
      */
     void fillDialog();
+		
+		/**
+		 * Enables or disables the unsecure login checkbox depending on the
+		 * choosed security.
+		 */
+		void enableLoginCheckbox();
 
 };
 

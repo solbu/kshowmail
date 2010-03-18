@@ -357,6 +357,8 @@ void AccountSetupDialog::fillDialog( )
 
   chkAllowUnsecureLogin->setChecked( account->getUnsecureLoginAllowed() );
 
+	//enable or disable the unsecure login checkbox
+	enableLoginCheckbox();
 
 }
 
@@ -368,8 +370,26 @@ void AccountSetupDialog::slotSecureTransferChanged( int id )
     case ID_BUTTON_SECTRANSFER_SSL    : spbPort->setValue( DEFAULT_ACCOUNT_PORT_POP3SSL ); break;
     case ID_BUTTON_SECTRANSFER_TLS    : spbPort->setValue( DEFAULT_ACCOUNT_PORT_POP3 ); break;
   }
+  
+	//enable or disable the unsecure login checkbox  
+  enableLoginCheckbox();
 }
 
+void AccountSetupDialog::enableLoginCheckbox()
+{
+	//get the current transfer security
+	int transSec = grpSecureTransfer->checkedId();
+	
+	if( transSec == ID_BUTTON_SECTRANSFER_NONE ) {
+	
+		chkAllowUnsecureLogin->setEnabled( true );
+	
+	} else {
+	
+		chkAllowUnsecureLogin->setEnabled( false );
+	}
+
+}
 
 
 #include "accountsetupdialog.moc"
