@@ -34,6 +34,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
   connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
   connect( socket, SIGNAL( sslErrors(QList<KSslError>) ), this, SLOT( slotSSLError(QList<KSslError>) ) );
+  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReadyRead() ) );
 
   //create timeout timer
   timeoutTimer = new QTimer( this );
@@ -521,7 +522,7 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
   QString endOfMultiLine( lineTerm );
   endOfMultiLine.append( END_MULTILINE_RESPONSE );
   endOfMultiLine.append( lineTerm );
-  
+
 	//read all bytes until we have get the line end of a single line response
 	//or the end line of a multiline response
   while( !responseEndFound ) {
@@ -529,6 +530,8 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
 		//wait for new bytes
     if( socket->bytesAvailable() == 0 ) {
 
+      kdDebug() << getName() << ": Warte auf Bytes" << endl;
+      kdDebug() << "State of " << getName() << ": " << socket->state() << endl;
       if( !socket->waitForReadyRead() )
       {
         return QStringList();
@@ -537,10 +540,13 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
 
     }
 
-    //append the available bytes
-    readed.append( QString( socket->readAll() ) );
+    //read
+    readed.append( socket->readAll() );
+    kdDebug() << getName() << ": " << readed << endl;
 
     //check for end of response
+    //-------------------------
+    //is negative response?
     if( isNegativeResponse( readed ) )
     {
       responseEndFound = true;
@@ -559,7 +565,8 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
     
 
   }
-  
+
+
   //split the response into lines
   QStringList response = readed.split( lineTerm );
 
@@ -2472,3 +2479,4 @@ void Account::slotStartTLSResponse()
   }
 
 }
+

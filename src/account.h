@@ -31,6 +31,7 @@ class Account;
 #include <QDir>
 #include <QSslCertificate>
 #include <QThread>
+#include <QByteArray>
 
 //KDE headers
 #include <KConfigGroup>
@@ -887,7 +888,7 @@ class Account : public QObject
       * Receives the response of the STLS command
       */
      void slotStartTLSResponse();
-		
+
 	private:
 		
 		/**
