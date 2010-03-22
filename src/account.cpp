@@ -418,14 +418,14 @@ void Account::slotHostFound()
 {
 }
 
-void Account::slotSocketError( KTcpSocket::Error ErrorCode)
+void Account::slotSocketError( KTcpSocket::Error errorCode)
 {
   //maybe we must not handle this error
   if( dontHandleError ) return;
 
   
   QString message;    //the error message
-  switch( ErrorCode )
+  switch( errorCode )
   {
     case KTcpSocket::UnknownError              : message = i18n( "Unknown error" ); break;
     case KTcpSocket::ConnectionRefusedError    : message = i18n( "Connection refused" ); break;

@@ -753,9 +753,9 @@ class Account : public QObject
    /**
     * Connected with signal error of the socket.
     * Will be invoked, when an socket error occures.
-    * @param errorNr Error code of the socket
+    * @param errorCode Error code of the socket
     */
-   void slotSocketError( KTcpSocket::Error ErrorCode );
+   void slotSocketError( KTcpSocket::Error errorCode );
 
    /**
     * Connected with signale sslErrors of the socket<p>
@@ -863,7 +863,6 @@ class Account : public QObject
      * applyFilters() to continue the filtering.
      * If an error is occured the current mail will not put into MailsToDelete. And it returns
      * to applyFilters() immediately.
-     * @param job job which has emit the result signal
      * @see MailsToDownload
      * @see getNextMailForDownloadActions()
      * @see applyFilters()

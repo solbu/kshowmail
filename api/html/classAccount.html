@@ -131,7 +131,7 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccount.html#ec737aff73ff822140d285306731d8da">slotHostFound</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccount.html#d0ebf00a3737ddeb1ccdb6fa270995b0">slotSocketError</a> (KTcpSocket::Error ErrorCode)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccount.html#0b11bee7c841aaa8237dccdfccdbe222">slotSocketError</a> (KTcpSocket::Error errorCode)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccount.html#09ea69c48d1dae107c40e37688e51a76">slotSSLError</a> (const QList&lt; KSslError &gt; &amp;errors)</td></tr>
 
@@ -2210,7 +2210,7 @@ Connected with signal connected of the socket. Will be invoked after the socket 
 Connected with signal hostFound of the socket. Will be invoked after the socket has done the DNS lookup 
 </div>
 </div><p>
-<a class="anchor" name="d0ebf00a3737ddeb1ccdb6fa270995b0"></a><!-- doxytag: member="Account::slotSocketError" ref="d0ebf00a3737ddeb1ccdb6fa270995b0" args="(KTcpSocket::Error ErrorCode)" -->
+<a class="anchor" name="0b11bee7c841aaa8237dccdfccdbe222"></a><!-- doxytag: member="Account::slotSocketError" ref="0b11bee7c841aaa8237dccdfccdbe222" args="(KTcpSocket::Error errorCode)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -2218,7 +2218,7 @@ Connected with signal hostFound of the socket. Will be invoked after the socket 
           <td class="memname">void Account::slotSocketError           </td>
           <td>(</td>
           <td class="paramtype">KTcpSocket::Error&nbsp;</td>
-          <td class="paramname"> <em>ErrorCode</em>          </td>
+          <td class="paramname"> <em>errorCode</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [protected, slot]</code></td>
         </tr>
@@ -2229,7 +2229,7 @@ Connected with signal hostFound of the socket. Will be invoked after the socket 
 <p>
 Connected with signal error of the socket. Will be invoked, when an socket error occures. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>errorNr</em>&nbsp;</td><td>Error code of the socket </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>errorCode</em>&nbsp;</td><td>Error code of the socket </td></tr>
   </table>
 </dl>
 
@@ -2518,12 +2518,7 @@ MailsToShow <p>
 <div class="memdoc">
 
 <p>
-Downloads a mail to write it into a mailbox or do a spam check. Maybe it puts the number of the downloaded mail into the list of mails to delete (mailsToDelete). Removes the first mail from MailsToMove and invokes getNextMailForMove() again to get and write the next mail. If the list is empty after it has removed the first item, it will call <a class="el" href="classAccount.html#ccdf99ff196dbe01a9f2a8137341a373">applyFilters()</a> to continue the filtering. If an error is occured the current mail will not put into MailsToDelete. And it returns to <a class="el" href="classAccount.html#ccdf99ff196dbe01a9f2a8137341a373">applyFilters()</a> immediately. <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>job</em>&nbsp;</td><td>job which has emit the result signal </td></tr>
-  </table>
-</dl>
-<dl class="see" compact><dt><b>See also:</b></dt><dd>MailsToDownload <p>
+Downloads a mail to write it into a mailbox or do a spam check. Maybe it puts the number of the downloaded mail into the list of mails to delete (mailsToDelete). Removes the first mail from MailsToMove and invokes getNextMailForMove() again to get and write the next mail. If the list is empty after it has removed the first item, it will call <a class="el" href="classAccount.html#ccdf99ff196dbe01a9f2a8137341a373">applyFilters()</a> to continue the filtering. If an error is occured the current mail will not put into MailsToDelete. And it returns to <a class="el" href="classAccount.html#ccdf99ff196dbe01a9f2a8137341a373">applyFilters()</a> immediately. <dl class="see" compact><dt><b>See also:</b></dt><dd>MailsToDownload <p>
 <a class="el" href="classAccount.html#40ebeb22286577195e01b693b9295899">getNextMailForDownloadActions()</a> <p>
 <a class="el" href="classAccount.html#ccdf99ff196dbe01a9f2a8137341a373">applyFilters()</a> </dd></dl>
 
@@ -3309,7 +3304,7 @@ Set by <a class="el" href="classAccount.html#ac2bb97707718206933ea07b5509d12d">s
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="account_8h-source.html">account.h</a><li>src/<a class="el" href="account_8cpp.html">account.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 20 13:50:30 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -60,7 +60,7 @@ class MailList : public QObject
     /**
      * Creates a mail object and adds it to the list
      * @param number number of the mail on the server
-     * @param uid Unique ID of the mail
+     * @param unid Unique ID of the mail
      * @param isNew TRUE - mail is new; FALSE - mail is not new
 		 * @return appended mail
      */

@@ -98,7 +98,7 @@ class AccountList : public QObject
 
     /**
      * Returns whether the list contains a account with the given name
-     * @param accoutName name of the wanted account
+     * @param accountName name of the wanted account
      * @return TRUE - the account is in the list
      * @return FALSE - the account is not in the list
      */

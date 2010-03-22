@@ -299,7 +299,7 @@
 <a name="l00746"></a>00746 
 <a name="l00751"></a>00751    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ec737aff73ff822140d285306731d8da">slotHostFound</a>();
 <a name="l00752"></a>00752 
-<a name="l00758"></a>00758    <span class="keywordtype">void</span> <a class="code" href="classAccount.html#d0ebf00a3737ddeb1ccdb6fa270995b0">slotSocketError</a>( KTcpSocket::Error ErrorCode );
+<a name="l00758"></a>00758    <span class="keywordtype">void</span> <a class="code" href="classAccount.html#0b11bee7c841aaa8237dccdfccdbe222">slotSocketError</a>( KTcpSocket::Error errorCode );
 <a name="l00759"></a>00759 
 <a name="l00765"></a>00765    <span class="keywordtype">void</span> <a class="code" href="classAccount.html#09ea69c48d1dae107c40e37688e51a76">slotSSLError</a>( <span class="keyword">const</span> QList&lt;KSslError&gt;&amp; errors );
 <a name="l00766"></a>00766 
@@ -327,116 +327,116 @@
 <a name="l00844"></a>00844 
 <a name="l00855"></a>00855     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4e09a9c0aa29b2e3f2d1474fd90c7ae0">slotBodyDownloaded</a>();
 <a name="l00856"></a>00856 
-<a name="l00871"></a>00871     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#79bd9a4d8eb35366b186475941c2de2d">slotMailDownloadedForAction</a>();
-<a name="l00872"></a>00872 
-<a name="l00878"></a>00878     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#253e59ac68c6286416841d798a38bef7">slotCommitBeforeRefreshDone</a>();
-<a name="l00879"></a>00879 
-<a name="l00885"></a>00885      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4fef3a9e3b72505f6091ea3ed368276d">slotTimeout</a>();
-<a name="l00886"></a>00886 
-<a name="l00890"></a>00890      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#f1a8bd9405314c274cc24ebe96dba17f">slotStartTLSResponse</a>();
-<a name="l00891"></a>00891 
-<a name="l00892"></a>00892         <span class="keyword">private</span>:
-<a name="l00893"></a>00893                 
-<a name="l00897"></a><a class="code" href="classAccount.html#be08d97f4ba31a2483afd49376ac4fca">00897</a>                 QString name;
-<a name="l00898"></a>00898                 
-<a name="l00902"></a><a class="code" href="classAccount.html#79d8002523eb6a1a4b07e649c31a515b">00902</a>     <span class="keywordtype">bool</span> active;
-<a name="l00903"></a>00903 
-<a name="l00907"></a><a class="code" href="classAccount.html#f8863d5d638310a80fb82d47175cf3c0">00907</a>     <a class="code" href="namespaceTypes.html#a6bd0f4ca0fe97e362ec3019cdf257f9">TransferSecurity_Type</a> <a class="code" href="classAccount.html#f8863d5d638310a80fb82d47175cf3c0">transferSecurity</a>;
-<a name="l00908"></a>00908 
-<a name="l00912"></a><a class="code" href="classAccount.html#dbb4c75c5000491095659d57bf8432a5">00912</a>     KUrl <a class="code" href="classAccount.html#dbb4c75c5000491095659d57bf8432a5">url</a>;
-<a name="l00913"></a>00913 
-<a name="l00921"></a><a class="code" href="classAccount.html#269e44e39a9762652540e21e405f64c1">00921</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#269e44e39a9762652540e21e405f64c1">passwordStorage</a>;
-<a name="l00922"></a>00922 
-<a name="l00926"></a><a class="code" href="classAccount.html#8ba56d88f5a3d1eff36ba78481bf7584">00926</a>     <a class="code" href="classMailList.html">MailList</a>* <a class="code" href="classAccount.html#8ba56d88f5a3d1eff36ba78481bf7584">mails</a>;
-<a name="l00927"></a>00927 
-<a name="l00933"></a><a class="code" href="classAccount.html#de305e4671a5a01b637400b28fe0718d">00933</a>     <a class="code" href="classMailList.html">MailList</a>* <a class="code" href="classAccount.html#de305e4671a5a01b637400b28fe0718d">tempMailList</a>;
-<a name="l00934"></a>00934     
-<a name="l00935"></a>00935 
-<a name="l00939"></a><a class="code" href="classAccount.html#69994f2519a09c4b1951997fc0da143f">00939</a>     KTcpSocket* <a class="code" href="classAccount.html#69994f2519a09c4b1951997fc0da143f">socket</a>;
-<a name="l00940"></a>00940 
-<a name="l00944"></a><a class="code" href="classAccount.html#25c6a0fe23dbe020a8f1f2259b80fc7c">00944</a>     <a class="code" href="classAccountList.html">AccountList</a>* accountList;
-<a name="l00945"></a>00945 
-<a name="l00951"></a><a class="code" href="classAccount.html#019cd466572643e52dc7213d3be69c9a">00951</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#019cd466572643e52dc7213d3be69c9a">quitSent</a>;
-<a name="l00952"></a>00952 
-<a name="l00956"></a><a class="code" href="classAccount.html#6eaf3595a3dbbb5d8ebf441186543cb1">00956</a>     QTimer* <a class="code" href="classAccount.html#6eaf3595a3dbbb5d8ebf441186543cb1">timeoutTimer</a>;
-<a name="l00957"></a>00957 
-<a name="l00961"></a><a class="code" href="classAccount.html#709933c49b495528dc5a8cf55bc402ff">00961</a>     <a class="code" href="namespaceTypes.html#57c868019acd102e855ff50f6043c1b6">Types::AccountState_Type</a> <a class="code" href="classAccount.html#709933c49b495528dc5a8cf55bc402ff">state</a>;
-<a name="l00962"></a>00962 
-<a name="l00966"></a><a class="code" href="classAccount.html#9bfe1916b0f61f6f0e21e5ab6f232f19">00966</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#9bfe1916b0f61f6f0e21e5ab6f232f19">apopAvail</a>;
-<a name="l00967"></a>00967 
-<a name="l00972"></a><a class="code" href="classAccount.html#0bb190f15c4ee896dfe2e899f4fbdd39">00972</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0bb190f15c4ee896dfe2e899f4fbdd39">dontUseAPOP</a>;
-<a name="l00973"></a>00973 
-<a name="l00977"></a><a class="code" href="classAccount.html#1bdd2f92c1113a5300263191770621eb">00977</a>     QString <a class="code" href="classAccount.html#1bdd2f92c1113a5300263191770621eb">apopTimestamp</a>;
-<a name="l00978"></a>00978 
-<a name="l00982"></a><a class="code" href="classAccount.html#6c382c4db738ee387d9e2bab4483c7c3">00982</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#6c382c4db738ee387d9e2bab4483c7c3">allowUnsecureLogin</a>;
-<a name="l00983"></a>00983 
-<a name="l00991"></a><a class="code" href="classAccount.html#652c4cdd5cb5aff1f3b3d3948a50d5d0">00991</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#652c4cdd5cb5aff1f3b3d3948a50d5d0">filterApplied</a>;
-<a name="l00992"></a>00992 
-<a name="l00997"></a><a class="code" href="classAccount.html#506d3ee4d01ebd795d5907e66b903387">00997</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#506d3ee4d01ebd795d5907e66b903387">refreshPerformedByFilters</a>;
-<a name="l00998"></a>00998 
-<a name="l01006"></a><a class="code" href="classAccount.html#0e98300f293ea203ef258ee389d7f4b7">01006</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#0e98300f293ea203ef258ee389d7f4b7">newMails</a>;
-<a name="l01007"></a>01007 
-<a name="l01015"></a><a class="code" href="classAccount.html#eaa8c337f590e3d31e5d1a296b2830eb">01015</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#eaa8c337f590e3d31e5d1a296b2830eb">mailsToDelete</a>;
-<a name="l01016"></a>01016 
-<a name="l01023"></a><a class="code" href="classAccount.html#1a058c26db20a995d5867aabdb6845db">01023</a>     <a class="code" href="namespaceTypes.html#28b7da8de2bbe1b7a098d41242e78ab7">MailToDownloadMap_Type</a> <a class="code" href="classAccount.html#1a058c26db20a995d5867aabdb6845db">mailsToDownload</a>;
-<a name="l01024"></a>01024 
-<a name="l01032"></a><a class="code" href="classAccount.html#a1022eb311849a9596e9f7d01e2fda7f">01032</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#a1022eb311849a9596e9f7d01e2fda7f">mailsToShow</a>;
-<a name="l01033"></a>01033 
-<a name="l01038"></a><a class="code" href="classAccount.html#936a65fefffd683f9c1789c478e04bb2">01038</a>     <a class="code" href="classFilterLog.html">FilterLog</a>* <a class="code" href="classAccount.html#936a65fefffd683f9c1789c478e04bb2">fLog</a>;
-<a name="l01039"></a>01039 
-<a name="l01040"></a>01040     
-<a name="l01044"></a><a class="code" href="classAccount.html#1646821337a21296d8e42a0ba45bc12e">01044</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#1646821337a21296d8e42a0ba45bc12e">nmbDeletedMailsLastRefresh</a>;
-<a name="l01045"></a>01045 
-<a name="l01049"></a><a class="code" href="classAccount.html#897d2dd8e64ae21707e19a6cfdad86fe">01049</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#897d2dd8e64ae21707e19a6cfdad86fe">nmbMovedMailsLastRefresh</a>;
-<a name="l01050"></a>01050 
-<a name="l01054"></a><a class="code" href="classAccount.html#59b24a3b5ee342382cc74ddc7c4e34a1">01054</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#59b24a3b5ee342382cc74ddc7c4e34a1">nmbMovedMailsLastStart</a>;
-<a name="l01055"></a>01055 
-<a name="l01059"></a><a class="code" href="classAccount.html#308b89826e944c49cf6336ee4dbfe9eb">01059</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#308b89826e944c49cf6336ee4dbfe9eb">nmbIgnoredMails</a>;
-<a name="l01060"></a>01060 
-<a name="l01064"></a><a class="code" href="classAccount.html#3d98d6d000d1a4fe03c5a0acfc4c2c89">01064</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#3d98d6d000d1a4fe03c5a0acfc4c2c89">moveCounter</a>;
-<a name="l01065"></a>01065 
-<a name="l01069"></a><a class="code" href="classAccount.html#6a683c23a6cb13af08501624c1251ca3">01069</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#6a683c23a6cb13af08501624c1251ca3">nmbDeletedMailsLastStart</a>;
-<a name="l01070"></a>01070 
-<a name="l01075"></a><a class="code" href="classAccount.html#ada63b6fea658e7c5bebabdefed84023">01075</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ada63b6fea658e7c5bebabdefed84023">downloadActionsInvoked</a>;
-<a name="l01076"></a>01076 
-<a name="l01080"></a><a class="code" href="classAccount.html#622c3820f62efaa90098b46acc8649fd">01080</a>     <a class="code" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header datas of the mail to...">HeaderFilter</a> <a class="code" href="classAccount.html#622c3820f62efaa90098b46acc8649fd">headerFilter</a>;
-<a name="l01081"></a>01081 
-<a name="l01086"></a><a class="code" href="classAccount.html#5993a239656c0df398b9c6fd88eeb5b9">01086</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#5993a239656c0df398b9c6fd88eeb5b9">deletionPerformedByFilters</a>;
-<a name="l01087"></a>01087 
-<a name="l01091"></a><a class="code" href="classAccount.html#6708f147a607ff61c8af5fc4cc7f0c6b">01091</a>      QString <a class="code" href="classAccount.html#6708f147a607ff61c8af5fc4cc7f0c6b">spamMailbox</a>;
-<a name="l01092"></a>01092 
-<a name="l01096"></a><a class="code" href="classAccount.html#5a2fcde117c3a1502a7a2a558679b393">01096</a>                 <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classAccount.html#5a2fcde117c3a1502a7a2a558679b393">spamAction</a>;
-<a name="l01097"></a>01097 
-<a name="l01101"></a><a class="code" href="classAccount.html#7676e6c216669bb62666f48a33c62bc1">01101</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#7676e6c216669bb62666f48a33c62bc1">dontHandleError</a>;
-<a name="l01102"></a>01102 
-<a name="l01107"></a><a class="code" href="classAccount.html#ad81b0b66ceacb6f99bdadb3b84bf660">01107</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ad81b0b66ceacb6f99bdadb3b84bf660">informAboutErrors</a>;
-<a name="l01108"></a>01108 
-<a name="l01112"></a><a class="code" href="classAccount.html#c661f370c8ac5cf25cd095e526127ff7">01112</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#c661f370c8ac5cf25cd095e526127ff7">timeOutTime</a>;
-<a name="l01113"></a>01113 
-<a name="l01119"></a><a class="code" href="classAccount.html#0ecbfbe9dd96db2e54e858efb4773fc7">01119</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0ecbfbe9dd96db2e54e858efb4773fc7">supportsStartTLS</a>;
-<a name="l01120"></a>01120 
-<a name="l01121"></a>01121     
-<a name="l01122"></a>01122   signals:
-<a name="l01123"></a>01123 
-<a name="l01128"></a>01128     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3cab83b22634d8f6558a48d657e4b6a5">sigDeleteReady</a>( QString account );
-<a name="l01129"></a>01129 
-<a name="l01135"></a>01135     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#439f0aa2ae9ff2cf4e18a69f7bf3118c">sigShowBodiesReady</a>( QString account );
-<a name="l01136"></a>01136 
-<a name="l01140"></a>01140     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#7cd0ce85e9bd7eff2abb17c4117aafd7">sigConfigChanged</a>();
-<a name="l01141"></a>01141 
-<a name="l01145"></a>01145     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#8d73de6d525c32736f05dee3dc6249d8">sigMessageWindowOpened</a>();
-<a name="l01146"></a>01146 
-<a name="l01150"></a>01150     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#e25257fcbdf0b341b36c4299927ef8bc">sigMessageWindowClosed</a>();
-<a name="l01151"></a>01151 
-<a name="l01156"></a>01156     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#dd5b98fe2551acc4679b7c5574f70851">sigRefreshReady</a>( QString account );
-<a name="l01157"></a>01157 
-<a name="l01158"></a>01158     
-<a name="l01159"></a>01159                 
-<a name="l01160"></a>01160 };
-<a name="l01161"></a>01161 
-<a name="l01162"></a>01162 <span class="preprocessor">#endif // ACCOUNT_H</span>
+<a name="l00870"></a>00870     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#79bd9a4d8eb35366b186475941c2de2d">slotMailDownloadedForAction</a>();
+<a name="l00871"></a>00871 
+<a name="l00877"></a>00877     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#253e59ac68c6286416841d798a38bef7">slotCommitBeforeRefreshDone</a>();
+<a name="l00878"></a>00878 
+<a name="l00884"></a>00884      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4fef3a9e3b72505f6091ea3ed368276d">slotTimeout</a>();
+<a name="l00885"></a>00885 
+<a name="l00889"></a>00889      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#f1a8bd9405314c274cc24ebe96dba17f">slotStartTLSResponse</a>();
+<a name="l00890"></a>00890 
+<a name="l00891"></a>00891         <span class="keyword">private</span>:
+<a name="l00892"></a>00892                 
+<a name="l00896"></a><a class="code" href="classAccount.html#be08d97f4ba31a2483afd49376ac4fca">00896</a>                 QString name;
+<a name="l00897"></a>00897                 
+<a name="l00901"></a><a class="code" href="classAccount.html#79d8002523eb6a1a4b07e649c31a515b">00901</a>     <span class="keywordtype">bool</span> active;
+<a name="l00902"></a>00902 
+<a name="l00906"></a><a class="code" href="classAccount.html#f8863d5d638310a80fb82d47175cf3c0">00906</a>     <a class="code" href="namespaceTypes.html#a6bd0f4ca0fe97e362ec3019cdf257f9">TransferSecurity_Type</a> <a class="code" href="classAccount.html#f8863d5d638310a80fb82d47175cf3c0">transferSecurity</a>;
+<a name="l00907"></a>00907 
+<a name="l00911"></a><a class="code" href="classAccount.html#dbb4c75c5000491095659d57bf8432a5">00911</a>     KUrl <a class="code" href="classAccount.html#dbb4c75c5000491095659d57bf8432a5">url</a>;
+<a name="l00912"></a>00912 
+<a name="l00920"></a><a class="code" href="classAccount.html#269e44e39a9762652540e21e405f64c1">00920</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#269e44e39a9762652540e21e405f64c1">passwordStorage</a>;
+<a name="l00921"></a>00921 
+<a name="l00925"></a><a class="code" href="classAccount.html#8ba56d88f5a3d1eff36ba78481bf7584">00925</a>     <a class="code" href="classMailList.html">MailList</a>* <a class="code" href="classAccount.html#8ba56d88f5a3d1eff36ba78481bf7584">mails</a>;
+<a name="l00926"></a>00926 
+<a name="l00932"></a><a class="code" href="classAccount.html#de305e4671a5a01b637400b28fe0718d">00932</a>     <a class="code" href="classMailList.html">MailList</a>* <a class="code" href="classAccount.html#de305e4671a5a01b637400b28fe0718d">tempMailList</a>;
+<a name="l00933"></a>00933     
+<a name="l00934"></a>00934 
+<a name="l00938"></a><a class="code" href="classAccount.html#69994f2519a09c4b1951997fc0da143f">00938</a>     KTcpSocket* <a class="code" href="classAccount.html#69994f2519a09c4b1951997fc0da143f">socket</a>;
+<a name="l00939"></a>00939 
+<a name="l00943"></a><a class="code" href="classAccount.html#25c6a0fe23dbe020a8f1f2259b80fc7c">00943</a>     <a class="code" href="classAccountList.html">AccountList</a>* accountList;
+<a name="l00944"></a>00944 
+<a name="l00950"></a><a class="code" href="classAccount.html#019cd466572643e52dc7213d3be69c9a">00950</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#019cd466572643e52dc7213d3be69c9a">quitSent</a>;
+<a name="l00951"></a>00951 
+<a name="l00955"></a><a class="code" href="classAccount.html#6eaf3595a3dbbb5d8ebf441186543cb1">00955</a>     QTimer* <a class="code" href="classAccount.html#6eaf3595a3dbbb5d8ebf441186543cb1">timeoutTimer</a>;
+<a name="l00956"></a>00956 
+<a name="l00960"></a><a class="code" href="classAccount.html#709933c49b495528dc5a8cf55bc402ff">00960</a>     <a class="code" href="namespaceTypes.html#57c868019acd102e855ff50f6043c1b6">Types::AccountState_Type</a> <a class="code" href="classAccount.html#709933c49b495528dc5a8cf55bc402ff">state</a>;
+<a name="l00961"></a>00961 
+<a name="l00965"></a><a class="code" href="classAccount.html#9bfe1916b0f61f6f0e21e5ab6f232f19">00965</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#9bfe1916b0f61f6f0e21e5ab6f232f19">apopAvail</a>;
+<a name="l00966"></a>00966 
+<a name="l00971"></a><a class="code" href="classAccount.html#0bb190f15c4ee896dfe2e899f4fbdd39">00971</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0bb190f15c4ee896dfe2e899f4fbdd39">dontUseAPOP</a>;
+<a name="l00972"></a>00972 
+<a name="l00976"></a><a class="code" href="classAccount.html#1bdd2f92c1113a5300263191770621eb">00976</a>     QString <a class="code" href="classAccount.html#1bdd2f92c1113a5300263191770621eb">apopTimestamp</a>;
+<a name="l00977"></a>00977 
+<a name="l00981"></a><a class="code" href="classAccount.html#6c382c4db738ee387d9e2bab4483c7c3">00981</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#6c382c4db738ee387d9e2bab4483c7c3">allowUnsecureLogin</a>;
+<a name="l00982"></a>00982 
+<a name="l00990"></a><a class="code" href="classAccount.html#652c4cdd5cb5aff1f3b3d3948a50d5d0">00990</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#652c4cdd5cb5aff1f3b3d3948a50d5d0">filterApplied</a>;
+<a name="l00991"></a>00991 
+<a name="l00996"></a><a class="code" href="classAccount.html#506d3ee4d01ebd795d5907e66b903387">00996</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#506d3ee4d01ebd795d5907e66b903387">refreshPerformedByFilters</a>;
+<a name="l00997"></a>00997 
+<a name="l01005"></a><a class="code" href="classAccount.html#0e98300f293ea203ef258ee389d7f4b7">01005</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#0e98300f293ea203ef258ee389d7f4b7">newMails</a>;
+<a name="l01006"></a>01006 
+<a name="l01014"></a><a class="code" href="classAccount.html#eaa8c337f590e3d31e5d1a296b2830eb">01014</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#eaa8c337f590e3d31e5d1a296b2830eb">mailsToDelete</a>;
+<a name="l01015"></a>01015 
+<a name="l01022"></a><a class="code" href="classAccount.html#1a058c26db20a995d5867aabdb6845db">01022</a>     <a class="code" href="namespaceTypes.html#28b7da8de2bbe1b7a098d41242e78ab7">MailToDownloadMap_Type</a> <a class="code" href="classAccount.html#1a058c26db20a995d5867aabdb6845db">mailsToDownload</a>;
+<a name="l01023"></a>01023 
+<a name="l01031"></a><a class="code" href="classAccount.html#a1022eb311849a9596e9f7d01e2fda7f">01031</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#a1022eb311849a9596e9f7d01e2fda7f">mailsToShow</a>;
+<a name="l01032"></a>01032 
+<a name="l01037"></a><a class="code" href="classAccount.html#936a65fefffd683f9c1789c478e04bb2">01037</a>     <a class="code" href="classFilterLog.html">FilterLog</a>* <a class="code" href="classAccount.html#936a65fefffd683f9c1789c478e04bb2">fLog</a>;
+<a name="l01038"></a>01038 
+<a name="l01039"></a>01039     
+<a name="l01043"></a><a class="code" href="classAccount.html#1646821337a21296d8e42a0ba45bc12e">01043</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#1646821337a21296d8e42a0ba45bc12e">nmbDeletedMailsLastRefresh</a>;
+<a name="l01044"></a>01044 
+<a name="l01048"></a><a class="code" href="classAccount.html#897d2dd8e64ae21707e19a6cfdad86fe">01048</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#897d2dd8e64ae21707e19a6cfdad86fe">nmbMovedMailsLastRefresh</a>;
+<a name="l01049"></a>01049 
+<a name="l01053"></a><a class="code" href="classAccount.html#59b24a3b5ee342382cc74ddc7c4e34a1">01053</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#59b24a3b5ee342382cc74ddc7c4e34a1">nmbMovedMailsLastStart</a>;
+<a name="l01054"></a>01054 
+<a name="l01058"></a><a class="code" href="classAccount.html#308b89826e944c49cf6336ee4dbfe9eb">01058</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#308b89826e944c49cf6336ee4dbfe9eb">nmbIgnoredMails</a>;
+<a name="l01059"></a>01059 
+<a name="l01063"></a><a class="code" href="classAccount.html#3d98d6d000d1a4fe03c5a0acfc4c2c89">01063</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#3d98d6d000d1a4fe03c5a0acfc4c2c89">moveCounter</a>;
+<a name="l01064"></a>01064 
+<a name="l01068"></a><a class="code" href="classAccount.html#6a683c23a6cb13af08501624c1251ca3">01068</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#6a683c23a6cb13af08501624c1251ca3">nmbDeletedMailsLastStart</a>;
+<a name="l01069"></a>01069 
+<a name="l01074"></a><a class="code" href="classAccount.html#ada63b6fea658e7c5bebabdefed84023">01074</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ada63b6fea658e7c5bebabdefed84023">downloadActionsInvoked</a>;
+<a name="l01075"></a>01075 
+<a name="l01079"></a><a class="code" href="classAccount.html#622c3820f62efaa90098b46acc8649fd">01079</a>     <a class="code" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header datas of the mail to...">HeaderFilter</a> <a class="code" href="classAccount.html#622c3820f62efaa90098b46acc8649fd">headerFilter</a>;
+<a name="l01080"></a>01080 
+<a name="l01085"></a><a class="code" href="classAccount.html#5993a239656c0df398b9c6fd88eeb5b9">01085</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#5993a239656c0df398b9c6fd88eeb5b9">deletionPerformedByFilters</a>;
+<a name="l01086"></a>01086 
+<a name="l01090"></a><a class="code" href="classAccount.html#6708f147a607ff61c8af5fc4cc7f0c6b">01090</a>      QString <a class="code" href="classAccount.html#6708f147a607ff61c8af5fc4cc7f0c6b">spamMailbox</a>;
+<a name="l01091"></a>01091 
+<a name="l01095"></a><a class="code" href="classAccount.html#5a2fcde117c3a1502a7a2a558679b393">01095</a>                 <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classAccount.html#5a2fcde117c3a1502a7a2a558679b393">spamAction</a>;
+<a name="l01096"></a>01096 
+<a name="l01100"></a><a class="code" href="classAccount.html#7676e6c216669bb62666f48a33c62bc1">01100</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#7676e6c216669bb62666f48a33c62bc1">dontHandleError</a>;
+<a name="l01101"></a>01101 
+<a name="l01106"></a><a class="code" href="classAccount.html#ad81b0b66ceacb6f99bdadb3b84bf660">01106</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ad81b0b66ceacb6f99bdadb3b84bf660">informAboutErrors</a>;
+<a name="l01107"></a>01107 
+<a name="l01111"></a><a class="code" href="classAccount.html#c661f370c8ac5cf25cd095e526127ff7">01111</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#c661f370c8ac5cf25cd095e526127ff7">timeOutTime</a>;
+<a name="l01112"></a>01112 
+<a name="l01118"></a><a class="code" href="classAccount.html#0ecbfbe9dd96db2e54e858efb4773fc7">01118</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0ecbfbe9dd96db2e54e858efb4773fc7">supportsStartTLS</a>;
+<a name="l01119"></a>01119 
+<a name="l01120"></a>01120     
+<a name="l01121"></a>01121   signals:
+<a name="l01122"></a>01122 
+<a name="l01127"></a>01127     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3cab83b22634d8f6558a48d657e4b6a5">sigDeleteReady</a>( QString account );
+<a name="l01128"></a>01128 
+<a name="l01134"></a>01134     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#439f0aa2ae9ff2cf4e18a69f7bf3118c">sigShowBodiesReady</a>( QString account );
+<a name="l01135"></a>01135 
+<a name="l01139"></a>01139     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#7cd0ce85e9bd7eff2abb17c4117aafd7">sigConfigChanged</a>();
+<a name="l01140"></a>01140 
+<a name="l01144"></a>01144     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#8d73de6d525c32736f05dee3dc6249d8">sigMessageWindowOpened</a>();
+<a name="l01145"></a>01145 
+<a name="l01149"></a>01149     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#e25257fcbdf0b341b36c4299927ef8bc">sigMessageWindowClosed</a>();
+<a name="l01150"></a>01150 
+<a name="l01155"></a>01155     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#dd5b98fe2551acc4679b7c5574f70851">sigRefreshReady</a>( QString account );
+<a name="l01156"></a>01156 
+<a name="l01157"></a>01157     
+<a name="l01158"></a>01158                 
+<a name="l01159"></a>01159 };
+<a name="l01160"></a>01160 
+<a name="l01161"></a>01161 <span class="preprocessor">#endif // ACCOUNT_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 20 13:50:29 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:21 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

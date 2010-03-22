@@ -140,7 +140,7 @@ class FilterItemCriteria{
 
     /**
      * Compares a text list
-     * @param value Value to compare
+     * @param list list to compare
      * @return TRUE - value matches; FALSE - value doesn't match
      */
     bool checkTextList( QStringList list ) const;

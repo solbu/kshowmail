@@ -45,7 +45,6 @@ class AccountViewDelegate : public QItemDelegate
 		/**
 		 * Returns a editor widget to edit the given index
 		 * @param parent parent of the returned widget
-		 * @param option options for editor widget
 		 * @param index index which shall be handled by the editor
 		 * @return editor widget
 		 */

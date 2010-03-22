@@ -1,0 +1,1 @@
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DKdepimLibs_DIR=/usr/lib/cmake/KdepimLibs -DCMAKE_BUILD_TYPE=debug ../trunk
