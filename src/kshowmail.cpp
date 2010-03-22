@@ -22,6 +22,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	
 	//create the models for the account view and mail view
 	accountModel = new AccountViewModel( accounts, this );
+  connect( accountModel, SIGNAL( dataChanged(QModelIndex,QModelIndex) ), this, SLOT( slotConfChanged() ) );
 	mailModel = new MailViewModel( accounts, this );
 
   //create the selection models
