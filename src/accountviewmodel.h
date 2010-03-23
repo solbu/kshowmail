@@ -71,9 +71,8 @@ class AccountViewModel : public QAbstractItemModel
 		 * Overloaded from QAbstractItemModel
 		 * Because this model doesn't provide tree structured data this function just returns
 		 * an invalid index.
-		 * @param index child of the searched index
 		 */
-		virtual QModelIndex parent( const QModelIndex& index ) const;
+		virtual QModelIndex parent( const QModelIndex& ) const;
 		
 		/**
 		 * Overloaded from QAbstractItemModel
@@ -88,9 +87,8 @@ class AccountViewModel : public QAbstractItemModel
 		 * Doesn't give a parent item, because the model doesn't provide tree structured data.
 		 * The column count is equal to the number of showed account data.
 		 * Always returns 6.
-		 * @param parent parent index
 		 */
-		virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
+		virtual int columnCount ( const QModelIndex& ) const;
 		
 		/**
 		 * Overloaded from QAbstractItemModel

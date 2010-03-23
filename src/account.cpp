@@ -506,7 +506,7 @@ void Account::handleError( QString error )
 
 }
 
-QStringList Account::readfromSocket( QString charset, bool singleLine )
+QStringList Account::readfromSocket( bool singleLine )
 {
 
   QString readed;
@@ -659,7 +659,7 @@ QStringList Account::readfromSocket( QString charset, bool singleLine )
 
 void Account::slotReadFirstServerMessage()
 {
-  QStringList text = readfromSocket( NULL, true );
+  QStringList text = readfromSocket( true );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -738,7 +738,7 @@ void Account::getCapabilities()
 void Account::slotCapabilitiesResponse()
 {
   //get server answer
-  QStringList text = readfromSocket( NULL, false );
+  QStringList text = readfromSocket( false );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -858,7 +858,7 @@ void Account::getAuthMech()
 void Account::slotAuthMechResponse()
 {
   //get server answer
-  QStringList text = readfromSocket( NULL, false );
+  QStringList text = readfromSocket( false );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -960,7 +960,7 @@ void Account::finishTask()
 void Account::slotCommitResponse()
 {
   //get the response
-  QStringList response = readfromSocket( NULL, true );
+  QStringList response = readfromSocket( true );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -993,7 +993,7 @@ void Account::loginUser()
 void Account::slotLoginUserResponse()
 {
   //get the response
-  QStringList response = readfromSocket( NULL, true );
+  QStringList response = readfromSocket( true );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -1027,7 +1027,7 @@ void Account::loginPasswd()
 void Account::slotLoginPasswdResponse()
 {
   //get the response
-  QStringList response = readfromSocket( NULL, true );
+  QStringList response = readfromSocket( true );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -1091,7 +1091,7 @@ void Account::loginApop()
 void Account::slotLoginApopResponse()
 {
   //get the response
-  QStringList response = readfromSocket( NULL, true );
+  QStringList response = readfromSocket( true );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -1169,7 +1169,7 @@ void Account::getUIDList()
 void Account::slotUIDListResponse()
 {
   //get the response
-  QStringList receivedUIDs = readfromSocket( NULL, false );
+  QStringList receivedUIDs = readfromSocket( false );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -1409,7 +1409,7 @@ void Account::slotMailSizesResponse()
 {
 
   //get the response
-  QStringList receivedSizes = readfromSocket( NULL, false );
+  QStringList receivedSizes = readfromSocket( false );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -1545,7 +1545,7 @@ void Account::slotGetHeaderResponse( )
   int mailNumber = *newMails.begin();
 
   //get the response
-  QStringList header = readfromSocket( NULL, false );
+  QStringList header = readfromSocket( false );
 
   //no response from the server
   if( header.isEmpty() )
@@ -1704,7 +1704,7 @@ void Account::showNextMail()
 void Account::slotMailDeleted()
 {
   //get the response
-  QStringList answer = readfromSocket( NULL, true );
+  QStringList answer = readfromSocket( true );
 
   //no response from the server
   if( answer.isEmpty() )
@@ -1747,7 +1747,7 @@ void Account::slotMailDeleted()
 void Account::slotBodyDownloaded()
 {
   //get the response
-  QStringList answer = readfromSocket( NULL, false );
+  QStringList answer = readfromSocket( false );
 
   //no response from the server
   if( answer.isEmpty() )
@@ -1880,7 +1880,7 @@ void Account::slotMailDownloadedForAction()
 {
 
     //get the response
-  QStringList mail = readfromSocket( NULL, false );
+  QStringList mail = readfromSocket( false );
 
   //no response from the server
   if( mail.isEmpty() )
@@ -2426,7 +2426,7 @@ void Account::startTLS()
 void Account::slotStartTLSResponse()
 {
   //get server answer
-  QStringList text = readfromSocket( NULL, true );
+  QStringList text = readfromSocket( true );
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already

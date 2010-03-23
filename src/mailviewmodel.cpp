@@ -36,7 +36,7 @@ QModelIndex MailViewModel::index( int row, int column, const QModelIndex& parent
 	return createIndex( row, column );
 }
 
-QModelIndex MailViewModel::parent( const QModelIndex& index ) const
+QModelIndex MailViewModel::parent( const QModelIndex& ) const
 {
 	return QModelIndex();
 }
@@ -49,7 +49,7 @@ int MailViewModel::rowCount ( const QModelIndex & parent ) const
 	return viewMailList.size();
 }
 
-int MailViewModel::columnCount ( const QModelIndex & parent ) const
+int MailViewModel::columnCount ( const QModelIndex&  ) const
 {
 	return NUMBER_MAILVIEW_COLUMNS;
 }
@@ -140,7 +140,7 @@ QVariant MailViewModel::headerData( int section, Qt::Orientation orientation, in
 	}
 }
 
-Qt::ItemFlags MailViewModel::flags ( const QModelIndex & index ) const
+Qt::ItemFlags MailViewModel::flags ( const QModelIndex& ) const
 {
   return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }

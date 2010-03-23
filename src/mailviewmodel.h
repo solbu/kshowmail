@@ -68,9 +68,8 @@ class MailViewModel : public QAbstractItemModel
 		 * Overloaded from QAbstractItemModel
 		 * Because this model doesn't provide tree structured data this function just returns
 		 * an invalid index.
-		 * @param index child of the searched index
 		 */
-		virtual QModelIndex parent( const QModelIndex& index ) const;
+		virtual QModelIndex parent( const QModelIndex& ) const;
 		
 		/**
 		 * Overloaded from QAbstractItemModel
@@ -84,9 +83,8 @@ class MailViewModel : public QAbstractItemModel
 		 * Overloaded from QAbstractItemModel
 		 * Doesn't give a parent item, because the model doesn't provide tree structured data.
 		 * The column count is equal to the number of showed mail data
-		 * @param parent parent index
 		 */
-		virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
+		virtual int columnCount ( const QModelIndex& ) const;
 		
 		/**
 		 * Overloaded from QAbstractItemModel
@@ -113,9 +111,8 @@ class MailViewModel : public QAbstractItemModel
     /**
      * Returns the flags of the given index.
      * All items are enabled and selectable.
-     * @param index index
      */
-    virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
+    virtual Qt::ItemFlags flags ( const QModelIndex& ) const;
 
     /**
      * Emits the dataChanged signal to the views to inform they about changed data

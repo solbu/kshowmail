@@ -474,11 +474,10 @@ class Account : public QObject
 
     /**
      * Reads all data from the socket
-     * @param charset the Charset
      * @param singleLine TRUE - the response will be a single line; FALSE - the response has more lines
      * @return read text
      */
-    QStringList readfromSocket( QString charset, bool singleLine );
+    QStringList readfromSocket( bool singleLine );
 
     /**
      * Sends a command to the server

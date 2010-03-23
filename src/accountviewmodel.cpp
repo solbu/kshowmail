@@ -40,7 +40,7 @@ QModelIndex AccountViewModel::index( int row, int column, const QModelIndex& par
 	return createIndex( row, column );
 }
 
-QModelIndex AccountViewModel::parent( const QModelIndex& index ) const
+QModelIndex AccountViewModel::parent( const QModelIndex& ) const
 {
 	return QModelIndex();
 }
@@ -53,7 +53,7 @@ int AccountViewModel::rowCount ( const QModelIndex & parent ) const
 	return viewAccountList.size();
 }
 
-int AccountViewModel::columnCount ( const QModelIndex & parent ) const
+int AccountViewModel::columnCount ( const QModelIndex & ) const
 {
 	return NUMBER_ACCOUNTVIEW_COLUMNS;
 }
