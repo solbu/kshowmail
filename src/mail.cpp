@@ -16,10 +16,11 @@
 
 #include "./mail.h"
 
-Mail::Mail( long number, const QString& unid, bool isNew, QObject* parent )
+Mail::Mail( long number, const QString& unid, bool isNew, QPointer<Account> account, QObject* parent )
 	: QObject( parent )
 {
 	this->unid = unid;
+  this->acc = account;
   setNumber( number );
   setNew( isNew );
 	
@@ -343,9 +344,9 @@ QString Mail::decodeRfc2047( const QString& text ) const
   return decodedText;
 }
 
-Account* Mail::getAccount() const
+QPointer<Account> Mail::getAccount() const
 {
-  return (dynamic_cast<MailList*>( parent() ))->getAccount();
+  return acc;
 }
 
 QString Mail::getFrom() const

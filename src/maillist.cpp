@@ -20,8 +20,9 @@
 
 #include "maillist.h"
 
-MailList::MailList( QObject* parent ) : QObject( parent )
+MailList::MailList( QPointer<Account> account, QObject* parent ) : QObject( parent )
 {
+  acc = account;
 }
 
 MailList::~MailList(){
@@ -39,7 +40,7 @@ MailList::~MailList(){
 Mail* MailList::addMail( long number, const QString& unid, bool isNew )
 {
   //create the mail object
-  Mail* mail = new Mail( number, unid, isNew, this );
+  Mail* mail = new Mail( number, unid, isNew, acc, this );
 
   //append it to the list
   mails.append( mail );
@@ -220,9 +221,9 @@ int MailList::getNumberMails() const
   return mails.count();
 }
 
-Account* MailList::getAccount() const
+QPointer<Account> MailList::getAccount() const
 {
-  return dynamic_cast<Account*>( parent() );
+  return acc;
 }
 
 void MailList::applyHeaderFilter( HeaderFilter * filter, QString account, MailNumberList_Type& deleteList, MailToDownloadMap_Type& downloadList, int& nmbIgnoredMails, FilterLog* log )

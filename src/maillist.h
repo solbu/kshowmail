@@ -26,6 +26,7 @@ class MailList;
 //Qt headers
 #include <QtCore/QObject>
 #include <QDomElement>
+#include <QPointer>
 
 //KDE headers
 #include <klocale.h>
@@ -48,9 +49,10 @@ class MailList : public QObject
 
     /**
      * Constructor
+     * @param account pointer to the parent account
      * @param parent parent object
      */
-    MailList( QObject* parent );
+    MailList( QPointer<Account> account, QObject* parent );
 
     /**
      * Destructor
@@ -138,7 +140,7 @@ class MailList : public QObject
      * Returns a pointer to the account which this list holds.
      * @return account
      */
-    Account* getAccount() const;
+    QPointer<Account> getAccount() const;
 
     /**
      * Apply the filters to the mails in this list.
@@ -269,6 +271,11 @@ class MailList : public QObject
      * List of mails
      */
     QList<Mail*> mails;
+
+    /**
+     * Pointer to the parent account
+     */
+    QPointer<Account> acc;
 
 
 };

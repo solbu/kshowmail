@@ -28,6 +28,7 @@ class Mail;
 #include <QRegExp>
 #include <QTextCodec>
 #include <QDomElement>
+#include <QPointer>
 
 //KDE headers
 #include <kmime/kmime_codecs.h>
@@ -59,9 +60,10 @@ class Mail : public QObject
      * @param number number of the mail on the server
      * @param unid Unique ID of the mail
      * @param isNew TRUE - mail is new; FALSE - mail is not new
+     * @param account pointer to the parent account
 		 * @param parent parent object
 		 */
-		Mail( long number, const QString& unid, bool isNew, QObject* parent );
+		Mail( long number, const QString& unid, bool isNew, QPointer<Account> account, QObject* parent );
 		
 		/**
 		 * Destructor
@@ -180,7 +182,7 @@ class Mail : public QObject
      * Returns a pointer to the account which contains this mail.
      * @return account
      */
-    Account* getAccount() const;
+    QPointer<Account> getAccount() const;
 
     /**
      * Returns the sender address.
@@ -349,6 +351,11 @@ class Mail : public QObject
      * It will be set to True by applyHeaderFilter() if the recommend filter action is MARK.
      */
     bool markedByFilter;
+
+    /**
+     * Pointer to the parent account
+     */
+    QPointer<Account> acc;
 
 
 	protected:

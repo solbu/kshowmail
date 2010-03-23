@@ -24,7 +24,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   this->accountList = accountList;
 
   //create mail container
-  mails = new MailList( this );
+  mails = new MailList( this, this );
 
   //create TCP-Socket
   socket = new KTcpSocket( this );
@@ -34,7 +34,6 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
   connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
   connect( socket, SIGNAL( sslErrors(QList<KSslError>) ), this, SLOT( slotSSLError(QList<KSslError>) ) );
-  connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReadyRead() ) );
 
   //create timeout timer
   timeoutTimer = new QTimer( this );
@@ -200,7 +199,7 @@ void Account::refreshMailList( FilterLog* log )
   //create a new mail list
   //When the refresh has finished successfully, this will
   //replace the old mail list
-  tempMailList = new MailList( this );
+  tempMailList = new MailList( this, this );
 
   //init counter
   if( !refreshPerformedByFilters )
@@ -1302,7 +1301,7 @@ void Account::swapMailLists( )
   if( tempMailList != NULL )
     mails = tempMailList;
   else
-    mails = new MailList( this );
+    mails = new MailList( this, this );
 
   refreshPerformedByFilters = false;
 
