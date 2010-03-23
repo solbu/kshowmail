@@ -40,7 +40,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   connect( timeoutTimer, SIGNAL( timeout() ), this, SLOT( slotTimeout() ) );
 
   init();
-	
+	;;
 }
 
 Account::~Account()
