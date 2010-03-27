@@ -319,7 +319,7 @@ void ConfigFilter::slotChanged( )
 void ConfigFilter::slotOpenWhitelist( )
 {
   //open list dialog
-  SenderListDialog* dlg = new SenderListDialog( this, SenderListDialog::White );
+  QPointer<SenderListDialog> dlg = new SenderListDialog( this, SenderListDialog::White );
   dlg->exec();
 
   //delete dialog
@@ -329,7 +329,7 @@ void ConfigFilter::slotOpenWhitelist( )
 void ConfigFilter::slotOpenBlacklist( )
 {
   //open list dialog
-  SenderListDialog* dlg = new SenderListDialog( this, SenderListDialog::Black );
+  QPointer<SenderListDialog> dlg = new SenderListDialog( this, SenderListDialog::Black );
   dlg->exec();
 
   //delete dialog
@@ -377,7 +377,7 @@ void ConfigFilter::slotEdit( )
   if( item == NULL ) return;
 
   //open setup dialog
-  FilterSetupDialog* dlg = new FilterSetupDialog( this, item );
+  QPointer<FilterSetupDialog> dlg = new FilterSetupDialog( this, item );
   int res = dlg->exec();
 
   //inform application setup dialog about changes
@@ -641,12 +641,14 @@ void ConfigFilter::slotFilterActiveToggled( bool filterOn )
 
 void ConfigFilter::slotOpenMailBoxWizard( )
 {
-  MailBoxWizard wizard( this );
-  wizard.setWindowTitle( i18n( "Mailbox Select" ) );
-  int res = wizard.exec();
+  QPointer<MailBoxWizard> wizard = new MailBoxWizard( this );
+  wizard->setWindowTitle( i18n( "Mailbox Select" ) );
+  int res = wizard->exec();
 
   if( res == QDialog::Accepted )
-    txtMailbox->setText( wizard.getPath() );
+    txtMailbox->setText( wizard->getPath() );
+
+  delete wizard;
 
 }
 

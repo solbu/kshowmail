@@ -236,8 +236,10 @@ void KShowmail::slotShowHeader() {
     //create and open the window
     QString account( mail->getAccount()->getName() );
     QString subject( mail->getSubject() );
-    ShowHeaderDialog dlg( this->centralWidget(), account , subject, mail->getHeader() );
-    dialogReturnValue = dlg.exec();
+    QPointer<ShowHeaderDialog> dlg = new ShowHeaderDialog( this->centralWidget(), account , subject, mail->getHeader() );
+    dialogReturnValue = dlg->exec();
+
+    delete dlg;
   }
 }
 
@@ -342,8 +344,10 @@ void KShowmail::slotStop() {
 void KShowmail::slotShowFilterLog() {
 
   //open dialog
-  FilterLogView view( this, &fLog );
-  view.exec();
+  QPointer<FilterLogView> view = new FilterLogView( this, &fLog );
+  view->exec();
+
+  delete view;
 
   refreshFilterStatusBar();
 }
@@ -674,7 +678,7 @@ void KShowmail::slotSetupAccount() {
   Account* acc = accountModel->getAccount( selIndex );
 
   //open setup dialog
-  AccountSetupDialogContext* dlg = new AccountSetupDialogContext( this, acc->getName() );
+  QPointer<AccountSetupDialogContext> dlg = new AccountSetupDialogContext( this, acc->getName() );
   int res = dlg->exec();
 
   //inform application setup dialog about changes

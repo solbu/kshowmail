@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //Qt headers
 #include <qlayout.h>
 #include <QTreeWidget>
+#include <QPointer>
 
 //KDE headers
 #include <kcmodule.h>

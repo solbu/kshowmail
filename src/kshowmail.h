@@ -26,6 +26,7 @@ class MailViewModel;
 #include <QSortFilterProxyModel>
 #include <QList>
 #include <QStringList>
+#include <QPointer>
 
 //KDE headers
 #include <kstatusbar.h>

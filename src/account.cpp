@@ -285,10 +285,11 @@ bool Account::assertPassword( bool force )
       QApplication::restoreOverrideCursor();
 
     //show password dialog
-    KPasswordDialog pwdialog( NULL );
-    pwdialog.setPrompt( i18n( "Please type in the password for %1" ).arg( getName() ) );
-    int result = pwdialog.exec();
+    QPointer<KPasswordDialog> pwdialog = new KPasswordDialog( NULL );
+    pwdialog->setPrompt( i18n( "Please type in the password for %1" ).arg( getName() ) );
+    int result = pwdialog->exec();
 
+    
     //set waiting cursor
     QApplication::setOverrideCursor( Qt::WaitCursor );
 
@@ -297,7 +298,7 @@ bool Account::assertPassword( bool force )
     {
       //the user has clicked OK in the password dialog
       //store the password
-      setPassword( pwdialog.password() );
+      setPassword( pwdialog->password() );
 
       //save password in file or KWallet
       KConfigGroup* accountConfig = new KConfigGroup( KGlobal::config(), getName() );
@@ -315,6 +316,7 @@ bool Account::assertPassword( bool force )
       accountConfig->sync();
 
       delete accountConfig;
+      delete pwdialog;
 
       //emit configuration changed signal
       emit ( sigConfigChanged() );
@@ -322,9 +324,11 @@ bool Account::assertPassword( bool force )
       //tell we have a password
       return true;
     }
-    else
+    else {
       //the user has clicked Cancel in the password dialog; we don't have a password
+      delete pwdialog;
       return false;
+    }
   }
   else
     //we have already a password for this account
@@ -1793,8 +1797,10 @@ void Account::slotBodyDownloaded()
   emit sigMessageWindowOpened();
 
   //create and open the window
-  ShowMailDialog dlg( kapp->activeWindow(), getName(), allowHTML, tsender, tdate, tsize, tsubject, body );
-  int ret = dlg.exec();
+  QPointer<ShowMailDialog> dlg = new ShowMailDialog( kapp->activeWindow(), getName(), allowHTML, tsender, tdate, tsize, tsubject, body );
+  int ret = dlg->exec();
+
+  delete dlg;
 
 	//emit signal to notify the closing of a window
   emit sigMessageWindowClosed();

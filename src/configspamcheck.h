@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <qgroupbox.h>
 #include <qtooltip.h>
 #include <QVariantList>
+#include <QPointer>
 
 //KDE headers
 #include <kcmodule.h>

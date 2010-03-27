@@ -147,7 +147,7 @@ void ConfigAccounts::slotChanged( )
 void ConfigAccounts::slotAdd( )
 {
   //open setup dialog
-  AccountSetupDialog* dlg = new AccountSetupDialog( this, accountListView, NULL );
+  QPointer<AccountSetupDialog> dlg = new AccountSetupDialog( this, accountListView, NULL );
   int res = dlg->exec();
 
   //inform application setup dialog about changes

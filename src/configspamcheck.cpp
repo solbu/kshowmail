@@ -186,12 +186,14 @@ void ConfigSpamcheck::slotActionChanged( int index )
 
 void ConfigSpamcheck::slotOpenMailBoxWizard( )
 {
-  MailBoxWizard wizard( this );
-  wizard.setWindowTitle( i18n( "Mailbox Select" ) );
-  int res = wizard.exec();
+  QPointer<MailBoxWizard> wizard = new MailBoxWizard( this );
+  wizard->setWindowTitle( i18n( "Mailbox Select" ) );
+  int res = wizard->exec();
 
   if( res == QDialog::Accepted )
-    txtMailbox->setText( wizard.getPath() );
+    txtMailbox->setText( wizard->getPath() );
+
+  delete wizard;
 }
 
 bool ConfigSpamcheck::isSpamAssassinRunning( ) const

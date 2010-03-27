@@ -33,6 +33,7 @@ class Account;
 #include <QSslCertificate>
 #include <QThread>
 #include <QByteArray>
+#include <QPointer>
 
 //KDE headers
 #include <KConfigGroup>
