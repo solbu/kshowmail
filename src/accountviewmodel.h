@@ -30,7 +30,6 @@ class AccountList;
 #include <KDE/KLocale>
 #include <KIcon>
 #include <KStandardDirs>
-#include <KDebug>
 #include <KConfigGroup>
 
 //KShowmail headers

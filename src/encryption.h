@@ -15,6 +15,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef ENCRYPTION_H
+#define ENCRYPTION_H
+
 //Qt headers
 #include <qstring.h>
 
@@ -49,3 +52,5 @@ namespace Encryption
      */
   const QString decrypt( const QString& pass );
 }
+
+#endif
