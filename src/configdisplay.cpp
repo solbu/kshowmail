@@ -30,11 +30,11 @@ ConfigDisplay::ConfigDisplay( QWidget * parent, const QVariantList & args )
   QVBoxLayout* layMain = new QVBoxLayout( this );
 
   //group boxes
-  QGroupBox* gboxAccountlist = new QGroupBox( i18n( "Account list" ), this );
+  QGroupBox* gboxAccountlist = new QGroupBox( i18nc( "@title:group appearance options of the account view", "Account list" ), this );
   layMain->addWidget( gboxAccountlist );
-  QGroupBox* gboxMessagelist = new QGroupBox( i18n( "Mail list" ), this );
+  QGroupBox* gboxMessagelist = new QGroupBox( i18nc( "@title:group appearance options of the mail view", "Mail list" ), this );
   layMain->addWidget( gboxMessagelist );
-  QGroupBox* gboxMessageContent = new QGroupBox( i18n( "Mail content" ), this );
+  QGroupBox* gboxMessageContent = new QGroupBox( i18nc( "@title:group appearance options of the mail content view", "Mail content" ), this );
   layMain->addWidget( gboxMessageContent );
 
   //group box layouts
@@ -46,68 +46,68 @@ ConfigDisplay::ConfigDisplay( QWidget * parent, const QVariantList & args )
   gboxMessageContent->setLayout( layMessageContent );
 
   //create items
-  chkAccountlistActive = new QCheckBox( i18n( "Active" ), gboxAccountlist );
-  chkAccountlistActive->setToolTip( i18n( "To switch on/off the 'Active' column in the account list" ) );
+  chkAccountlistActive = new QCheckBox( i18nc( "@option:check show column 'active' in the account view", "Active" ), gboxAccountlist );
+  chkAccountlistActive->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Active' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistActive, 0, 0 );
 
-  chkAccountlistAccount = new QCheckBox( i18n( "Account" ), gboxAccountlist );
-  chkAccountlistAccount->setToolTip( i18n( "To switch on/off the 'Account' column in the account list" ) );
+  chkAccountlistAccount = new QCheckBox( i18nc( "@option:check show account column in the account view", "Account" ), gboxAccountlist );
+  chkAccountlistAccount->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Account' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistAccount, 0, 1 );
 
-  chkAccountlistServer = new QCheckBox( i18n( "Server" ), gboxAccountlist );
-  chkAccountlistServer->setToolTip( i18n( "To switch on/off the 'Server' column in the account list" ) );
+  chkAccountlistServer = new QCheckBox( i18nc( "@option:check show server column in the account view", "Server" ), gboxAccountlist );
+  chkAccountlistServer->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Server' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistServer, 1, 0 );
 
-  chkAccountlistUser = new QCheckBox( i18n( "User" ), gboxAccountlist );
-  chkAccountlistUser->setToolTip( i18n( "To switch on/off the 'User' column in the account list" ) );
+  chkAccountlistUser = new QCheckBox( i18nc( "@option:check show user column in the account view", "User" ), gboxAccountlist );
+  chkAccountlistUser->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'User' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistUser, 1, 1 );
 
-  chkAccountlistMessages = new QCheckBox( i18n( "Messages" ), gboxAccountlist );
-  chkAccountlistMessages->setToolTip( i18n( "To switch on/off the 'Messages' column in the account list" ) );
+  chkAccountlistMessages = new QCheckBox( i18nc( "@option:check show number of messages column in the account view", "Messages" ), gboxAccountlist );
+  chkAccountlistMessages->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Messages' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistMessages, 2, 0 );
 
-  chkAccountlistSize = new QCheckBox( i18n( "Si&ze" ), gboxAccountlist );
-  chkAccountlistSize->setToolTip( i18n( "To switch on/off the 'Size' column in the account list" ) );
+  chkAccountlistSize = new QCheckBox( i18nc( "@option:check show column about the entire size of mails in the account view", "Size" ), gboxAccountlist );
+  chkAccountlistSize->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Size' column in the account list" ) );
   layAccountlist->addWidget( chkAccountlistSize, 2, 1 );
 
-  chkMessagelistNumber = new QCheckBox( i18n( "Number" ), gboxMessagelist );
-  chkMessagelistNumber->setToolTip( i18n( "To switch on/off the 'Number' column in the message list" ) );
+  chkMessagelistNumber = new QCheckBox( i18nc( "@option:check show mail number column in the mail view", "Number" ), gboxMessagelist );
+  chkMessagelistNumber->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Number' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistNumber, 0, 0 );
 
-  chkMessagelistAccount = new QCheckBox( i18n( "Account" ), gboxMessagelist );
-  chkMessagelistAccount->setToolTip( i18n( "To switch on/off the 'Account' column in the message list" ) );
+  chkMessagelistAccount = new QCheckBox( i18nc( "@option:check show account name column in the mail view", "Account" ), gboxMessagelist );
+  chkMessagelistAccount->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Account' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistAccount, 0, 1 );
 
-  chkMessagelistFrom = new QCheckBox( i18n( "From" ), gboxMessagelist );
-  chkMessagelistFrom->setToolTip( i18n( "To switch on/off the 'From' column in the message list" ) );
+  chkMessagelistFrom = new QCheckBox( i18nc( "@option:check show sender column in the mail view", "From" ), gboxMessagelist );
+  chkMessagelistFrom->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'From' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistFrom, 1, 0 );
 
-  chkMessagelistTo = new QCheckBox( i18n( "To" ), gboxMessagelist );
-  chkMessagelistTo->setToolTip( i18n( "To switch on/off the 'To' column in the message list" ) );
+  chkMessagelistTo = new QCheckBox( i18nc( "@option:check show addressee column in mail view", "To" ), gboxMessagelist );
+  chkMessagelistTo->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'To' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistTo, 1, 1 );
 
-  chkMessagelistSubject = new QCheckBox( i18n( "Su&bject" ), gboxMessagelist );
-  chkMessagelistSubject->setToolTip( i18n( "To switch on/off the 'Subject' column in the message list" ) );
+  chkMessagelistSubject = new QCheckBox( i18nc( "@option:check show subject column in mail view", "Subject" ), gboxMessagelist );
+  chkMessagelistSubject->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Subject' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistSubject, 2, 0 );
 
-  chkMessagelistDate = new QCheckBox( i18n( "Date" ), gboxMessagelist );
-  chkMessagelistDate->setToolTip( i18n( "To switch on/off the 'Date' column in the message list" ) );
+  chkMessagelistDate = new QCheckBox( i18nc( "@option:check show send date column in the mail view", "Date" ), gboxMessagelist );
+  chkMessagelistDate->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Date' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistDate, 2, 1 );
 
-  chkMessagelistSize = new QCheckBox( i18n( "Size" ), gboxMessagelist );
-  chkMessagelistSize->setToolTip( i18n( "To switch on/off the 'Size' column in the message list" ) );
+  chkMessagelistSize = new QCheckBox( i18nc( "@option:check show mail size column in the mail view", "Size" ), gboxMessagelist );
+  chkMessagelistSize->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Size' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistSize, 3, 0 );
 
-  chkMessagelistContent = new QCheckBox( i18n( "Content" ), gboxMessagelist );
-  chkMessagelistContent->setToolTip( i18n( "To switch on/off the 'Content' column in the message list" ) );
+  chkMessagelistContent = new QCheckBox( i18nc( "@option:check show content type column in mail view", "Content" ), gboxMessagelist );
+  chkMessagelistContent->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'Content' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistContent, 3, 1 );
 
-  chkMessagelistState = new QCheckBox( i18n( "State" ), gboxMessagelist );
-  chkMessagelistState->setToolTip( i18n( "To switch on/off the 'State' column in the message list" ) );
+  chkMessagelistState = new QCheckBox( i18nc( "@option:check show state column in mail view", "State" ), gboxMessagelist );
+  chkMessagelistState->setToolTip( i18nc( "@info:tooltip", "To switch on/off the 'State' column in the message list" ) );
   layMessagelist->addWidget( chkMessagelistState, 4, 0 );
 
-  chkAllowHTML = new QCheckBox( i18n( "Allow HTML" ), gboxMessageContent );
-  chkAllowHTML->setToolTip( i18n( "To switch on/off HTML in the message view") );
+  chkAllowHTML = new QCheckBox( i18nc( "@option:check allow the mail content view to process HTML", "Allow HTML" ), gboxMessageContent );
+  chkAllowHTML->setToolTip( i18nc( "@info:tooltip", "To switch on/off HTML in the message view") );
   layMessageContent->addWidget( chkAllowHTML, 0, 0 );
 
   //connect all configuration itmes with slot changed() to notify the dialog about changes

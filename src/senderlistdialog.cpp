@@ -43,11 +43,11 @@ SenderListDialog::SenderListDialog(QWidget *parent, ListType list )
 
   //edit frame
   editFrame = new KEditListBox( wdgMain, "editFrame", true, KEditListBox::Add | KEditListBox::Remove );
-  editFrame->setTitle( i18n( "List" ) );
+  editFrame->setTitle( i18nc( "@title:window dialog to edit the black- or whitelist", "List" ) );
   if( list == White )
-    editFrame->listView()->setToolTip( i18n( "A mail whose sender is listed here will pass the filter.\nA mail will be accepted, if its From line incloses a list entry.\nE.g. a line of\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de> is accepted by the entries\nUlrich Weigelt\nulrich.weigelt@gmx.de\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de>" ) );
+    editFrame->listView()->setToolTip( i18nc( "@info/rich", "A mail whose sender is listed here will pass the filter.<nl/>A mail will be accepted, if its From line incloses a list entry.<nl/>E.g. a line of<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; is accepted by the entries<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;" ) );
   else
-    editFrame->listView()->setToolTip( i18n( "A mail whose sender is listed here will be hold up by the filter.\nA mail will be stopped, if its From line incloses a list entry.\nE.g. a line of\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de> is filtered by the entries\nUlrich Weigelt\nulrich.weigelt@gmx.de\n\"Ulrich Weigelt\" <ulrich.weigelt@gmx.de>" ) );
+    editFrame->listView()->setToolTip( i18nc( "@info:tooltip", "A mail whose sender is listed here will be hold up by the filter.<nl/>A mail will be stopped, if its From line incloses a list entry.<nl/>E.g. a line of<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; is filtered by the entries<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;" ) );
 
   layMain->addWidget( editFrame );
 
@@ -57,20 +57,20 @@ SenderListDialog::SenderListDialog(QWidget *parent, ListType list )
   //this radio buttons we just need in the blacklist
   if( list == Black )
   {
-    QGroupBox* gboxAction = new QGroupBox( i18n( "Action" ), wdgMain );
+    QGroupBox* gboxAction = new QGroupBox( i18nc( "@title:group action to execute if a blacklisted mail comes in", "Action" ), wdgMain );
     QHBoxLayout* layAction = new QHBoxLayout();
     gboxAction->setLayout( layAction );
     layMain->addWidget( gboxAction );
 
     grpAction = new QButtonGroup( NULL );
-    btnDelete = new QRadioButton( i18n( "Delete"), gboxAction );
-    btnMark = new QRadioButton( i18n( "Mark" ), gboxAction );
+    btnDelete = new QRadioButton( i18nc( "@option:radio delete a blacklisted mail", "Delete"), gboxAction );
+    btnMark = new QRadioButton( i18nc( "@option:radio mark a blacklisted mail", "Mark" ), gboxAction );
 
     grpAction->addButton( btnDelete, ID_BUTTON_FILTER_SENDERLIST_DELETE );
     grpAction->addButton( btnMark, ID_BUTTON_FILTER_SENDERLIST_MARK );
 
-    btnDelete->setToolTip( i18n( "The mails will be deleted." ) );
-    btnMark->setToolTip( i18n( "The mails will be marked." ) );
+    btnDelete->setToolTip( i18nc( "@info:tooltip", "The mails will be deleted." ) );
+    btnMark->setToolTip( i18nc( "@info:tooltip", "The mails will be marked." ) );
 
     layAction->addWidget( btnDelete );
     layAction->addWidget( btnMark );

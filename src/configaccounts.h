@@ -50,7 +50,7 @@ Q_OBJECT
     /**
      * Generic Constructor
      */
-    ConfigAccounts( QWidget *parent = 0, const QVariantList & args = QVariantList() );
+    explicit ConfigAccounts( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor

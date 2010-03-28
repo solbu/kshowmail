@@ -32,7 +32,7 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
   //account list view
   accountListView = new QTreeWidget( this );
 	accountListView->setColumnCount( 1 );
-	accountListView->setHeaderLabels( QStringList( i18n( "Name" ) ) );
+	accountListView->setHeaderLabels( QStringList( i18nc( "@title:column account name in the main view of the account config dialog", "Name" ) ) );
   accountListView->setIndentation( 0 );
 	
   layMain->addWidget( accountListView );
@@ -189,7 +189,7 @@ void ConfigAccounts::slotRemove( )
     return;
 
   //remove item
-  int result = KMessageBox::questionYesNo( this, i18n( "Do you really want to remove account %1?").arg( account->getAccountName() ) );
+  int result = KMessageBox::questionYesNo( this, i18nc( "@info", "Do you really want to remove account <resource>%1</resource>?", account->getAccountName() ) );
   if( result == KMessageBox::Yes )
   {
     delete account;

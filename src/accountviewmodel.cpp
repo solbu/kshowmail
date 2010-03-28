@@ -163,7 +163,7 @@ QVariant AccountViewModel::headerData( int section, Qt::Orientation orientation,
 
 	switch( section )
 	{
-		case 0	:	return QVariant( i18n( "Active" ) ); break;
+		case 0	:	return QVariant( i18nc( "whether the account is active or not", "Active" ) ); break;
 		case 1	:	return QVariant( i18n( "Account" ) ); break;
 		case 2	:	return QVariant( i18n( "Server" ) ); break;
 		case 3	:	return QVariant( i18n( "User" ) ); break;

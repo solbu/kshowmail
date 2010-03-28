@@ -286,7 +286,7 @@ bool Account::assertPassword( bool force )
 
     //show password dialog
     QPointer<KPasswordDialog> pwdialog = new KPasswordDialog( NULL );
-    pwdialog->setPrompt( i18n( "Please type in the password for %1" ).arg( getName() ) );
+    pwdialog->setPrompt( i18nc( "@info we need the password", "Please type in the password for <resource>%1</resource>", getName() ) );
     int result = pwdialog->exec();
 
     
@@ -398,6 +398,7 @@ void Account::initBeforeConnect()
 {
   quitSent = false;
   apopAvail = false;
+  dontUseAPOP = false;
 
   //Capability flags
   supportsStartTLS = false;
@@ -431,16 +432,16 @@ void Account::slotSocketError( KTcpSocket::Error errorCode)
   QString message;    //the error message
   switch( errorCode )
   {
-    case KTcpSocket::UnknownError              : message = i18n( "Unknown error" ); break;
-    case KTcpSocket::ConnectionRefusedError    : message = i18n( "Connection refused" ); break;
-    case KTcpSocket::HostNotFoundError         : message = QString( i18n( "Host not found: %1" ).arg( getHost() ) ); break;
-    case KTcpSocket::RemoteHostClosedError     : message = QString( i18n( "Host %1 closed" ).arg( getHost() ) ); break;
-    case KTcpSocket::SocketAccessError         : message = i18n( "Socket access error" ); break;
-    case KTcpSocket::SocketResourceError       : message = i18n( "Socket resource error" ); break;
-    case KTcpSocket::SocketTimeoutError        : message = i18n( "Socket timeout error" ); break;
-    case KTcpSocket::NetworkError              : message = i18n( "Network error" ); break;
-    case KTcpSocket::UnsupportedSocketOperationError : message = i18n( "Unsupported Socket Operation Error" ); break;
-    default                                    : message = i18n( "Unknown connection error" ); break;
+    case KTcpSocket::UnknownError              : message = i18nc( "@info error message", "Unknown error" ); break;
+    case KTcpSocket::ConnectionRefusedError    : message = i18nc( "@info error message", "Connection refused" ); break;
+    case KTcpSocket::HostNotFoundError         : message = QString( i18nc( "@info error message", "Host not found: <resource>%1</resource>", getHost() ) ); break;
+    case KTcpSocket::RemoteHostClosedError     : message = QString( i18nc( "@info error message", "Host <resource>%1</resource> closed", getHost() ) ); break;
+    case KTcpSocket::SocketAccessError         : message = i18nc( "@info error message", "Socket access error" ); break;
+    case KTcpSocket::SocketResourceError       : message = i18nc( "@info error message", "Socket resource error" ); break;
+    case KTcpSocket::SocketTimeoutError        : message = i18nc( "@info error message", "Socket timeout error" ); break;
+    case KTcpSocket::NetworkError              : message = i18nc( "@info error message", "Network error" ); break;
+    case KTcpSocket::UnsupportedSocketOperationError : message = i18nc( "@info error message", "Unsupported Socket Operation Error" ); break;
+    default                                    : message = i18nc( "@info error message", "Unknown connection error" ); break;
   }
 
 //   switch( ErrorCode ) {
@@ -488,7 +489,7 @@ void Account::handleError( QString error )
   if( informAboutErrors ) {
 
     emit sigMessageWindowOpened();
-    KMessageBox::error( NULL, i18n( "Account %1: %2" ).arg( getName() ).arg( error ) );
+    KMessageBox::error( NULL, i18nc( "@info general error message", "Account <resource>%1</resource>: %2", getName(), error ) );
     emit sigMessageWindowClosed();
   }
 
@@ -679,7 +680,7 @@ void Account::slotReadFirstServerMessage()
   {
     //it is not a greeting of a POP3 server
     //invoke error handling and close the connection
-    handleError( i18n( "%1 is not a POP3 mail server").arg( getHost() ) );
+    handleError( i18nc( "@info error message: this is not a POP3 server", "<resource>%1</resource> is not a POP3 mail server", getHost() ) );
     return;
   }
 
@@ -707,7 +708,7 @@ void Account::sendCommand( const QString& command )
   //call error handler, if the socket is not connected
   if( socket->state() != KTcpSocket::ConnectedState )
   {
-    handleError( i18n( "No connect to %1" ).arg( getHost() ) );
+    handleError( i18nc( "@info error message: connection lost", "No connect to <resource>%1</resource>", getHost() ) );
     return;
   }
 
@@ -724,7 +725,7 @@ void Account::sendCommand( const QString& command )
   //if the return value ist -1 a error is occured
   if( writtenBytes == -1 )
   {
-    handleError( i18n( "Could not send the command %1 to %2" ).arg( command ).arg( getName() ) );
+    handleError( i18nc( "@info error message: could not send a command to the server", "Could not send the command <icode>%1</icode> to <resource>%2</resource>", command, getName() ) );
     return;
   }
   
@@ -769,7 +770,7 @@ void Account::slotCapabilitiesResponse()
 		//we will finish this task here
 		if( transferSecurity == TransSecTLS && !supportsStartTLS ) {
 		
-			handleError( i18n( "No support for START-TLS" ) );
+			handleError( i18nc( "@info error message", "No support for START-TLS" ) );
 			return;
 		}
 		
@@ -902,7 +903,7 @@ void Account::slotAuthMechResponse()
     else
     {
       emit sigMessageWindowOpened();
-      KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup. Bear in mind in this case criminals could read your password!" ).arg( getName() ), i18n( "Unsafe login is not allowed") );
+      KMessageBox::sorry( NULL, i18nc( "@info Warning: the server does'nt support secure login", "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>", getName() ), i18nc( "@title:window", "Unsafe login is not allowed") );
       emit sigMessageWindowClosed();
 
       //the user has not allowed unsafe login; finish the task
@@ -978,7 +979,7 @@ void Account::slotCommitResponse()
   if( !isPositiveServerMessage( response ) )
   {
     //the server has not accepted the commit
-    handleError( i18n( "%1 has not accepted the %2 command. Error message is: %3").arg( getHost() ).arg( COMMIT ).arg( response.first() ) );
+    handleError( i18nc( "@info error message: we could not quit the POP3 session", "<resource>%1</resource> has not accepted the <icode>%2</icode> command. Error message is: <message>%3</message>", getHost(), COMMIT, response.first() ) );
     return;
   }
 
@@ -992,7 +993,7 @@ void Account::loginUser()
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotLoginUserResponse() ) );
 
   //send the command
-  sendCommand( LOGIN_USER + " " + getUser() );
+  sendCommand( LOGIN_USER + ' ' + getUser() );
 }
 
 void Account::slotLoginUserResponse()
@@ -1011,7 +1012,7 @@ void Account::slotLoginUserResponse()
   if( !isPositiveServerMessage( response ) )
   {
     //the server has not accepted the user
-    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response.first() ) ) );
+    handleError( i18nc( "@info error message", "Login has failed. Error message is: <message>%1</message>", removeStatusIndicator( response.first() ) ) );
     return;
   }
 
@@ -1026,7 +1027,7 @@ void Account::loginPasswd()
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotLoginPasswdResponse() ) );
 
   //send the command
-  sendCommand( LOGIN_PASSWD + " " + getPassword() );
+  sendCommand( LOGIN_PASSWD + ' ' + getPassword() );
 }
 
 void Account::slotLoginPasswdResponse()
@@ -1045,7 +1046,7 @@ void Account::slotLoginPasswdResponse()
   if( !isPositiveServerMessage( response ) )
   {
     //the server has not accepted the password
-    handleError( i18n( "Login has failed. Error message is: %1").arg( removeStatusIndicator( response.first() ) ) );
+    handleError( i18nc( "@info error message", "Login has failed. Error message is: <message>%1</message>", removeStatusIndicator( response.first() ) ) );
     return;
   }
 
@@ -1090,7 +1091,7 @@ void Account::loginApop()
   QString md5Digest( md5.hexDigest() );
 
   //send the command
-  sendCommand( LOGIN_APOP + " " + getUser() + " " + md5Digest );
+  sendCommand( LOGIN_APOP + ' ' + getUser() + ' ' + md5Digest );
 }
 
 void Account::slotLoginApopResponse()
@@ -1119,7 +1120,7 @@ void Account::slotLoginApopResponse()
     }
     else
     {
-      handleError( i18n( "Login has failed. Error message is: %1\nMaybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup. Bear in mind in this case criminals could read your password!").arg( removeStatusIndicator( response.first() ) ) );
+      handleError( i18nc( "@info error message", "Login has failed. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>", removeStatusIndicator( response.first() ) ) );
       return;
     }
   }
@@ -1187,14 +1188,14 @@ void Account::slotUIDListResponse()
   //no response from the server
   if( receivedUIDs.isEmpty() )
   {
-    handleError( i18n( "%1 has not sent a response after %2 command.").arg( getHost() ).arg( UID_LIST ) );
+    handleError( i18nc( "@info error messsage: no response gto from a server", "<resource>%1</resource> has not sent a response after <icode>%2</icode> command.", getHost(), UID_LIST ) );
     return;
   }
 
   //it is a negative response?
   if( !isPositiveServerMessage( receivedUIDs ) )
   {
-    handleError( i18n( "%1 doesn't support mail UID's. KShowmail can't work without this. Error message is: %2" ).arg( getName() ).arg( receivedUIDs.first() ) );
+    handleError( i18nc( "@info error message: a server doesn't support mail UIDs", "<resource>%1</resource> doesn't support mail UID's. KShowmail can't work without this. Error message is: <message>%2</message>", getName(), receivedUIDs.first() ) );
     return;
   }
 
@@ -1231,7 +1232,7 @@ void Account::slotUIDListResponse()
     //if no space was found, the line is corrupt
     if( positionOfSpace == -1 )
     {
-      handleError( i18n( "Get corrupt UID list. No spaces" ) );
+      handleError( i18nc( "@info error message", "Get corrupt UID list. No spaces" ) );
       return;
     }
     else
@@ -1244,7 +1245,7 @@ void Account::slotUIDListResponse()
       if( !isNumber )
       {
         //the first part is not a number
-        handleError( i18n( "Get corrupt UID list. No number found at begin." ) );
+        handleError( i18nc( "@info error message", "Get corrupt UID list. No number found at begin." ) );
         return;
       }
       else
@@ -1427,14 +1428,14 @@ void Account::slotMailSizesResponse()
   //no response from the server
   if( receivedSizes.isEmpty() )
   {
-    handleError( i18n( "%1 has not sent a response after %2 command.").arg( getHost() ).arg( MAIL_LIST ) );
+    handleError( i18nc( "@info error message: a server has not send a response", "<resource>%1</resource> has not sent a response after <icode>%2</icode> command.", getHost(), MAIL_LIST ) );
     return;
   }
 
   //it is a negative response?
   if( !isPositiveServerMessage( receivedSizes ) )
   {
-    handleError( i18n(  "Error while try to get the mail sizes. Message is: %1" ).arg( receivedSizes.first() ) );
+    handleError( i18nc( "@info error message: a server has not send the mail sizes", "Error while try to get the mail sizes. Message is: <message>%1</message>", receivedSizes.first() ) );
     return;
   }
 
@@ -1451,7 +1452,7 @@ void Account::slotMailSizesResponse()
   //analyze Sizes
   if( receivedSizes.isEmpty() )
   {
-    handleError( i18n(  "Error while try to get the mail sizes. All mails are disappeard." ) );
+    handleError( i18nc( "@info error message", "Error while try to get the mail sizes. All mails are disappeard." ) );
     return;
   }
 
@@ -1467,7 +1468,7 @@ void Account::slotMailSizesResponse()
     //if no space was found, the line is corrupt
     if( positionOfSpace == -1 )
     {
-      handleError( i18n( "Get corrupt size list. No spaces" ) );
+      handleError( i18nc( "@info error message", "Get corrupt size list. No spaces" ) );
       return;
     }
     else
@@ -1479,7 +1480,7 @@ void Account::slotMailSizesResponse()
       if( !isNumber )
       {
         //the first part is not a number
-        handleError( i18n( "Get corrupt UID list. No numbers at begin." ) );
+        handleError( i18nc( "@info error message", "Get corrupt size list. No numbers at begin." ) );
         return;
       }
       else
@@ -1491,7 +1492,7 @@ void Account::slotMailSizesResponse()
         if( !isNumber )
         {
           //the second part of the string is not a number
-          handleError( i18n( "Get corrupt UID list. No sizes found at end." ) );
+          handleError( i18nc( "@info error message", "Get corrupt size list. No sizes found at end." ) );
           return;
         }
         else
@@ -1541,7 +1542,7 @@ void Account::getNextHeader( )
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotGetHeaderResponse() ) );
 
   //send the command
-  sendCommand( GET_HEADER + " " + mailNumber + " 0" );
+  sendCommand( GET_HEADER + ' ' + mailNumber + " 0" );
 }
 
 void Account::slotGetHeaderResponse( )
@@ -1555,7 +1556,7 @@ void Account::slotGetHeaderResponse( )
   //no response from the server
   if( header.isEmpty() )
   {
-    handleError( i18n( "%1 has not sent the header of mail %2.").arg( getHost() ).arg( mailNumber ) );
+    handleError( i18nc( "@info error message: could not get a mail header", "<resource>%1</resource> has not sent the header of mail <numid>%2</numid>.", getHost(), mailNumber ) );
     finishTask();
     return;
   }
@@ -1563,7 +1564,7 @@ void Account::slotGetHeaderResponse( )
   //it is a negative response?
   if( !isPositiveServerMessage( header ) )
   {
-    handleError( i18n( "%1 doesn't support the TOP command. KShowmail can't work without this. Error message is: %2" ).arg( getName() ).arg( header.first() ) );
+    handleError( i18nc( "@info error message: a server doesn't know the command TOP", "<resource>%1</resource> doesn't support the TOP command. KShowmail can't work without this. Error message is: <message>%2</message>", getName(), header.first() ) );
     return;
   }
 
@@ -1685,7 +1686,7 @@ void Account::deleteNextMail( )
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailDeleted() ) );
 
   //send deletion command
-  sendCommand( DELETE + " " + QString( "%1" ).arg( mailsToDelete.first() ) );
+  sendCommand( DELETE + ' ' + QString( "%1" ).arg( mailsToDelete.first() ) );
 }
 
 void Account::showNextMail()
@@ -1702,7 +1703,7 @@ void Account::showNextMail()
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotBodyDownloaded() ) );
 
   //send download command
-  sendCommand( GET_MAIL + " " + QString( "%1" ).arg( mailsToShow.first() ) );
+  sendCommand( GET_MAIL + ' ' + QString( "%1" ).arg( mailsToShow.first() ) );
   
 }
 
@@ -1714,7 +1715,7 @@ void Account::slotMailDeleted()
   //no response from the server
   if( answer.isEmpty() )
   {
-    handleError( i18n( "%1 has not sent a answer after removing of mail %2.").arg( getHost() ).arg( mailsToDelete.first() ) );
+    handleError( i18nc( "@info error message: no server responce after we have deleted a mail", "<resource>%1</resource> has not sent a answer after removing of mail <numid>%2</numid>.", getHost(), mailsToDelete.first() ) );
     finishTask();
     return;
   }
@@ -1722,7 +1723,7 @@ void Account::slotMailDeleted()
   //it is a negative response?
   if( !isPositiveServerMessage( answer ) )
   {
-    handleError( i18n( "Error while removing mail %1 of %2: %3" ).arg( mailsToDelete.first() ).arg( getName() ).arg( answer.first() ) );
+    handleError( i18nc( "@info error message: error while removing a mail", "Error while removing mail <numid>%1</numid> of <resource>%2</resource>: <message>%3</message>", mailsToDelete.first(), getName(), answer.first() ) );
     return;
   }
 
@@ -1757,7 +1758,7 @@ void Account::slotBodyDownloaded()
   //no response from the server
   if( answer.isEmpty() )
   {
-    handleError( i18n( "%1 has not sent a answer after retrieve of mail %2.").arg( getHost() ).arg( mailsToShow.first() ) );
+    handleError( i18nc( "@info error message: we could not download a mail", "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%2</numid>.", getHost(), mailsToShow.first() ) );
     finishTask();
     return;
   }
@@ -1765,7 +1766,7 @@ void Account::slotBodyDownloaded()
   //it is a negative response?
   if( !isPositiveServerMessage( answer ) )
   {
-    handleError( i18n( "Error while downloading mail %1 of %2: %3" ).arg( mailsToShow.first() ).arg( getName() ).arg( answer.first() ) );
+    handleError( i18nc( "@info error message: we could not download a mail", "Error while downloading mail <numid>%1</numid> of <resource>%2</resource>: <message>%3</message>", mailsToShow.first(), getName(), answer.first() ) );
     return;
   }
 
@@ -1879,7 +1880,7 @@ void Account::getNextMailForDownloadActions()
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotMailDownloadedForAction() ) );
 
   //send download command
-  sendCommand( GET_MAIL + " " + QString( "%1" ).arg( mailsToDownload.begin().key() ) );
+  sendCommand( GET_MAIL + ' ' + QString( "%1" ).arg( mailsToDownload.begin().key() ) );
 
 }
 
@@ -1892,7 +1893,7 @@ void Account::slotMailDownloadedForAction()
   //no response from the server
   if( mail.isEmpty() )
   {
-    handleError( i18n( "%1 has not sent a answer after retrieve of mail %2.").arg( getHost() ).arg( mailsToShow.first() ) );
+    handleError( i18nc( "@info error message: we could not download a mail", "<resource>%1</resource> has not sent a answer after retrieve of mail <numid>%2</numid>.", getHost(), mailsToShow.first() ) );
     finishTask();
     return;
   }
@@ -1900,7 +1901,7 @@ void Account::slotMailDownloadedForAction()
   //it is a negative response?
   if( !isPositiveServerMessage( mail ) )
   {
-    handleError( i18n( "Error while downloading mail %1 of %2: %3" ).arg( mailsToShow.first() ).arg( getName() ).arg( mail.first() ) );
+    handleError( i18nc( "@info error message: we could not download a mail", "Error while downloading mail <numid>%1</numid> of <resource>%2</resource>: <message>%3</message>", mailsToShow.first(), getName(), mail.first() ) );
     return;
   }
 
@@ -2117,7 +2118,7 @@ bool Account::writeToMailBox( const QStringList& mail, const QString& box )
   if( !isMailDir( mailDir ) )
   {
     //show an error message
-    KMessageBox::error( NULL, i18n( "%1 is not a mailbox." ).arg( box ) );
+    KMessageBox::error( NULL, i18nc( "@info error message: writing a mail into a mailbox: this is not a mail box", "<filename>%1</filename> is not a mailbox.", box ) );
     return false;
   }
 
@@ -2132,7 +2133,7 @@ bool Account::writeToMailBox( const QStringList& mail, const QString& box )
   {
     //the hostname is not readable
     //show an error message and exit
-    KMessageBox::error( NULL, i18n( "Can't read the hostname of your computer. But KShowmail need it to write a mail into the mailbox." ) );
+    KMessageBox::error( NULL, i18nc( "@info error message", "Can't read the hostname of your computer. But KShowmail need it to write a mail into the mailbox." ) );
     return false;
   }
 
@@ -2140,7 +2141,7 @@ bool Account::writeToMailBox( const QStringList& mail, const QString& box )
 
   QString partCounter = QString::number( moveCounter++ );
 
-  QString uniqueName( partTime + "." + partPID + partCounter + "." + partHostname );
+  QString uniqueName( partTime + '.' + partPID + partCounter + '.' + partHostname );
 
   //build absolute path
   mailDir.cd( "tmp" );
@@ -2156,7 +2157,7 @@ bool Account::writeToMailBox( const QStringList& mail, const QString& box )
   }
   else
   {
-    KMessageBox::detailedError( NULL, i18n( "Could not file a mail to %1." ).arg( box ), file.errorString() );
+    KMessageBox::detailedError( NULL, i18nc( "@info error message: we could not write a mail into a mailbox", "Could not file a mail to <filename>%1</filename>.", box ), file.errorString() );
     return false;
   }
 
@@ -2167,7 +2168,7 @@ bool Account::writeToMailBox( const QStringList& mail, const QString& box )
 
   if( rename( absFile.toAscii(), absNewFile.toAscii() ) == -1 )
   {
-    KMessageBox::error( NULL, i18n( "Could not move a mail from %1 to %2." ).arg( absFile ).arg( absNewFile ) );
+    KMessageBox::error( NULL, i18nc( "@info error message: error during writing a mail into a mailbox", "Could not move a mail from <filename>%1</filename> to <filename>%2</filename>.", absFile, absNewFile ) );
     return false;
   }
 
@@ -2208,7 +2209,7 @@ bool Account::isSpam( QStringList mail ) const
   //check for a running spamassassin
   if( !isSpamAssassinRunning() )
   {
-    KMessageBox::information( NULL, i18n( "You want to check your mails for spam, but SpamAssassin is not running.\nKShowmail skips the spam check." ), i18n( "SpamAssassin is not running" ), "ConfigElemNoSpamAssassinRunning" );
+    KMessageBox::information( NULL, i18nc( "@info", "You want to check your mails for spam, but SpamAssassin is not running.<nl/>KShowmail skips the spam check." ), i18nc( "@title:window", "SpamAssassin is not running" ), "AccountNoSpamAssassinRunning" );
     return false;
   }
 
@@ -2311,8 +2312,8 @@ void Account::slotSSLError( const QList<KSslError>& errors ) {
   //ask the user whether he want to cancel or continue
   emit sigMessageWindowOpened();
   int answer = KMessageBox::warningContinueCancel( NULL,
-                                                   i18n( "SSL error: %1\nDo you want to continue?" ).arg( message ),
-                                                   i18n( "SSL-Error - %1" ).arg( getName() ),
+                                                   i18nc( "@info error message: general SSL error", "SSL error: <message>%1</message><nl/>Do you want to continue?", message ),
+                                                   i18nc( "@title:window", "SSL-Error - %1", getName() ),
                                                    KStandardGuiItem::cont(),
                                                    KStandardGuiItem::cancel(),
                                                    QString( "askSSLErrorContinue_%1").arg( getName() ) );
@@ -2407,7 +2408,7 @@ QList< Mail* > Account::getAllMails() const
 
 void Account::slotTimeout()
 {
-  handleError( i18n( "Timeout" ) );
+  handleError( i18nc( "@info error message", "Timeout" ) );
 }
 
 void Account::cancelTask()
@@ -2415,7 +2416,7 @@ void Account::cancelTask()
   if( state != AccountIdle ) {
 
     socket->close();
-    handleError( "Task canceled" );
+    handleError( i18nc( "@info the task was canceled by user", "Task canceled" ) );
   }
 }
 
@@ -2465,7 +2466,7 @@ void Account::slotStartTLSResponse()
       } else {
 
         emit sigMessageWindowOpened();
-        KMessageBox::sorry( NULL, i18n( "Account %1: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup. Bear in mind in this case criminals could read your password!" ).arg( getName() ), i18n( "Unsafe login is not allowed") );
+        KMessageBox::sorry( NULL, i18nc( "@info error message: this server doesn't support secure login", "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>", getName() ), i18nc( "@title:window", "Unsafe login is not allowed") );
         emit sigMessageWindowClosed();
 
         //the user has not allowed unsafe login; finish the task

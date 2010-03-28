@@ -34,7 +34,7 @@ ShowHeaderDialog::ShowHeaderDialog( QWidget * parent, QString & caption, QString
   layMain->addLayout( layMetaDatas );
 
   //create label for subject
-  QLabel* lblSubject = new QLabel( i18n( "Subject:" ), mainWidget );
+  QLabel* lblSubject = new QLabel( i18nc( "@label:textbox mail subject", "Subject:" ), mainWidget );
   layMetaDatas->addWidget( lblSubject );
 
   //create line edit for subject

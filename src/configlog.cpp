@@ -60,7 +60,7 @@ ConfigLog::ConfigLog( QWidget * parent, const QVariantList & args )
   spbDelDays->setMaximum( 999999 );
   connect( spbDelDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( spbDelDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChangeItems() ) );
-  spbDelDays->setSuffix( i18n( " Days" ) );
+  spbDelDays->setSuffix( i18nc( "@label:spinbox number of days till deletion", " Days" ) );
   spbDelDays->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layDelMailsConfigDays->addWidget( spbDelDays );
 
@@ -96,7 +96,7 @@ ConfigLog::ConfigLog( QWidget * parent, const QVariantList & args )
   spbMovDays->setMaximum( 999999 );
   connect( spbMovDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( spbMovDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChangeItems() ) );
-  spbMovDays->setSuffix( i18n( " Days" ) );
+  spbMovDays->setSuffix( i18nc( "@label:spinbox number of days till deletion", " Days" ) );
   spbMovDays->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Minimum );
   layMovMailsConfigDays->addWidget( spbMovDays );
 

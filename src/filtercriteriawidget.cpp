@@ -37,12 +37,12 @@ FilterCriteriaWidget::FilterCriteriaWidget( QWidget *parent )
 
   //Source Select
   cmbSource = new KComboBox( this );
-  cmbSource->insertItem( ID_COMBO_SOURCE_FROM, i18n( "From" ) );
-  cmbSource->insertItem( ID_COMBO_SOURCE_TO, i18n( "To" ) );
-  cmbSource->insertItem( ID_COMBO_SOURCE_SIZE, i18n( "Size (Bytes)" ) );
-  cmbSource->insertItem( ID_COMBO_SOURCE_SUBJECT, i18n( "Subject" ) );
-  cmbSource->insertItem( ID_COMBO_SOURCE_HEADER, i18n( "Header" ) );
-  cmbSource->insertItem( ID_COMBO_SOURCE_ACCOUNT, i18n( "Account" ) );
+  cmbSource->insertItem( ID_COMBO_SOURCE_FROM, i18nc( "@item:inlistbox the sender of the mail", "From" ) );
+  cmbSource->insertItem( ID_COMBO_SOURCE_TO, i18nc( "@item:inlistbox The addressee of the mail", "To" ) );
+  cmbSource->insertItem( ID_COMBO_SOURCE_SIZE, i18nc( "@item:inlistbox the mail subject", "Size (Bytes)" ) );
+  cmbSource->insertItem( ID_COMBO_SOURCE_SUBJECT, i18nc( "@item:inlistbox the mail subject", "Subject" ) );
+  cmbSource->insertItem( ID_COMBO_SOURCE_HEADER, i18nc( "@item:inlistbox the mail header", "Header" ) );
+  cmbSource->insertItem( ID_COMBO_SOURCE_ACCOUNT, i18nc( "@item:inlistbox the account which contains this mail", "Account" ) );
   layLine1->addWidget( cmbSource );
   connect( cmbSource, SIGNAL( activated( int ) ), this, SLOT( slotSetWidgets() ) );
 

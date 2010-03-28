@@ -155,7 +155,7 @@ void MailBoxWizard::addMailBoxListItem( QString boxname, QDir path )
 
   //create item
   MailBoxWizardListItem* newItem;
-  newItem = new MailBoxWizardListItem( lstMailboxes, boxnameTrans, path.absolutePath() + "/" + boxname + "/" );
+  newItem = new MailBoxWizardListItem( lstMailboxes, boxnameTrans, path.absolutePath() + '/' + boxname + '/' );
 
 
 }

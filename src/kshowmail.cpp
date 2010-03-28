@@ -123,47 +123,47 @@ void KShowmail::initActions()
 
   // action menu
   actionRefresh = actionCollection()->addAction( "refresh" );
-  actionRefresh->setText( i18n( "Refresh messages" ) );
+  actionRefresh->setText( i18nc( "@action:inmenu look for new messages", "Refresh messages" ) );
   actionRefresh->setIcon( KIcon( "view-refresh" ) );
   actionRefresh->setShortcut( Qt::Key_F5 );
   connect( actionRefresh, SIGNAL( triggered() ), this, SLOT( slotRefresh() ) );
 
   actionShowHeader = actionCollection()->addAction( "show_header" );
-  actionShowHeader->setText( i18n( "Show header of highlighted messages" ) );
+  actionShowHeader->setText( i18nc( "@action:inmenu show the headers of the selected mails", "Show header of highlighted messages" ) );
   actionShowHeader->setIcon( KIcon( "mail-mark-unread" ) );
   actionShowHeader->setShortcut( Qt::Key_F2 );
   connect( actionShowHeader, SIGNAL( triggered() ), this, SLOT( slotShowHeader() ) );
 
   actionShowMessage = actionCollection()->addAction( "show_complete" );
-  actionShowMessage->setText( i18n( "Show complete highlighted messages" ) );
+  actionShowMessage->setText( i18nc( "@action:inmenu show the body of the selected mails", "Show complete highlighted messages" ) );
   actionShowMessage->setIcon( KIcon( "mail-mark-read" ) );
   actionShowMessage->setShortcut( Qt::Key_F3 );
   connect( actionShowMessage, SIGNAL( triggered() ), this, SLOT( slotShowMessage() ) );
   
   actionDelete = actionCollection()->addAction( "delete" );
-  actionDelete->setText( i18n( "Delete highlighted messages" ) );
+  actionDelete->setText( i18nc( "@action:inmenu delete selected mails", "Delete highlighted messages" ) );
   actionDelete->setIcon( KIcon( "draw-eraser" ) );
   actionDelete->setShortcut( Qt::Key_Delete );
   connect( actionDelete, SIGNAL( triggered() ), this, SLOT( slotDelete() ) );
 
   actionStop = actionCollection()->addAction( "stop" );
-  actionStop->setText( i18n( "Stop current transfer" ) );
+  actionStop->setText( i18nc( "@action:inmenu cancle the current running task", "Stop current transfer" ) );
   actionStop->setIcon( KIcon( "dialog-cancel" ) );
   connect( actionStop, SIGNAL( triggered() ), this, SLOT( slotStop() ) );
 
   actionShowFilterLog = actionCollection()->addAction( "show_filterlog" );
-  actionShowFilterLog->setText( i18n( "Show Filter Log" ) );
+  actionShowFilterLog->setText( i18nc( "@action:inmenu open the filter log", "Show Filter Log" ) );
   actionShowFilterLog->setIcon( KIcon( "text-x-log" ) );
   actionShowFilterLog->setShortcut( Qt::Key_F4 );
   connect( actionShowFilterLog, SIGNAL( triggered() ), this, SLOT( slotShowFilterLog() ) );
 
   actionAddWhitelist = actionCollection()->addAction( "addWhitelist" );
-  actionAddWhitelist->setText( i18n( "Add sender to whitelist" ) );
+  actionAddWhitelist->setText( i18nc( "@action:inmenu add the senders of selected mails to the whitelist", "Add sender to whitelist" ) );
   actionAddWhitelist->setIcon( KIcon( "list-add-user" ) );
   connect( actionAddWhitelist, SIGNAL( triggered() ), this, SLOT( slotAddToWhitelist() ) );
   
   actionAddBlacklist = actionCollection()->addAction( "addBlacklist" );
-  actionAddBlacklist->setText( i18n( "Add sender to blacklist" ) );
+  actionAddBlacklist->setText( i18nc( "@action:inmenu add the senders of selected mails to the blacklist", "Add sender to blacklist" ) );
   actionAddBlacklist->setIcon( KIcon( "list-remove-user" ) );
   connect( actionAddBlacklist, SIGNAL( triggered() ), this, SLOT( slotAddToBlacklist() ) );
 
@@ -173,13 +173,13 @@ void KShowmail::initActions()
 
   //help menu
   KAction* actionSendFeedback = actionCollection()->addAction( "sendFeedback" );
-  actionSendFeedback->setText( i18n( "Send Feedback Mail" ) );
+  actionSendFeedback->setText( i18nc( "@action:inmenu open a dialog to send a feedback", "Send Feedback Mail" ) );
   actionSendFeedback->setIcon( KIcon( "mail-flag" ) );
   connect( actionSendFeedback, SIGNAL( triggered() ), this, SLOT( slotSendFeedbackMail() ) );
 
   //only for account context menu
   actionSetupAccount = actionCollection()->addAction( "setupAccount" );
-  actionSetupAccount->setText( i18n( "Setup this account") );
+  actionSetupAccount->setText( i18nc( "@action:inmenu setup the selected account", "Setup this account") );
   actionSetupAccount->setIcon( KIcon( "configure") );
   connect( actionSetupAccount, SIGNAL( triggered() ), this, SLOT( slotSetupAccount() ) );
 
@@ -202,7 +202,7 @@ void KShowmail::slotRefresh() {
   state = refreshing;
 
   //show message in the status bar
-  showStatusMessage( i18n( "Refreshing ..." ) );
+  showStatusMessage( i18nc( "@info:status application is getting mails from the servers", "Refreshing ..." ) );
 
   //order the tray icon to flash
   trayIcon->showLooking();
@@ -260,7 +260,7 @@ void KShowmail::slotShowMessage() {
   state = showing;
 
   //show status message
-  showStatusMessage( i18n( "Downloading ..." ) );
+  showStatusMessage( i18nc( "@info:status application is downloading mails to show", "Downloading ..." ) );
 
   //set waiting cursor
   QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -306,7 +306,7 @@ void KShowmail::slotDelete() {
     QStringList subjects = mailModel->getSelectedSubjects( mailSelectModel );
 
     //show question
-    int answer = KMessageBox::questionYesNoList( this, i18n( "Do you want to delete these mails?"), subjects, i18n( "Delete?" ) );
+    int answer = KMessageBox::questionYesNoList( this, i18nc( "@info ask for delete the mails", "Do you want to delete these mails?"), subjects, i18nc( "@title:window ask for delete the mails", "Delete?" ) );
 
     if( answer == KMessageBox::No )
       return;
@@ -317,7 +317,7 @@ void KShowmail::slotDelete() {
   state = deleting;
 
   //show status message
-  showStatusMessage( i18n( "Deleting Mail(s) ..." ) );
+  showStatusMessage( i18nc( "@info:status application is removing mails from server", "Deleting Mail(s) ..." ) );
 
   //set waiting cursor
   QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -499,7 +499,7 @@ void KShowmail::showStatusMessage( const QString& text)
 
 void KShowmail::initStatusBar()
 {
-  statusBar()->insertPermanentItem( i18n( "Ready" ), STATUSBAR_FIELD_STATE );
+  statusBar()->insertPermanentItem( i18nc( "@info:status application is idle", "Ready" ), STATUSBAR_FIELD_STATE );
   statusBar()->insertPermanentItem( "", STATUSBAR_FIELD_FILTER, 1 );
   statusBar()->setItemAlignment( STATUSBAR_FIELD_FILTER, Qt::AlignLeft | Qt::AlignVCenter );
   statusBar()->insertPermanentItem( "", STATUSBAR_FIELD_NEXT_REFRESH );
@@ -507,7 +507,7 @@ void KShowmail::initStatusBar()
 
   statusBar()->setSizeGripEnabled( true );
 
-  statusBar()->setToolTip( i18n( "Shows the number of deleted, moved or ignored mails by the filter.\nThe positions denotes:\nby last refresh / since application start / listed by the log" ) );
+  statusBar()->setToolTip( i18nc( "@info:tooltip", "Shows the number of deleted, moved or ignored mails by the filter.\nThe positions denotes:\nby last refresh / since application start / listed by the log" ) );
   statusBar()->show();
 
   refreshFilterStatusBar();
@@ -524,7 +524,7 @@ void KShowmail::slotRefreshReady()
     QApplication::restoreOverrideCursor();
 
   //show status message
-  showStatusMessage( i18n( "Ready" ) );
+  showStatusMessage( i18nc( "@info:status application is idle", "Ready" ) );
 
   //refresh view
   view->refreshViews( mailSelectModel );
@@ -537,7 +537,7 @@ void KShowmail::slotRefreshReady()
 
   //show refresh time
   QString sTime = QTime::currentTime().toString ();
-  statusBar()->changeItem( i18n( "Last Refresh: %1" ).arg( sTime ), STATUSBAR_FIELD_LAST_REFRESH );
+  statusBar()->changeItem( i18nc( "@info:status time of the last refresh", "Last Refresh: %1", sTime ), STATUSBAR_FIELD_LAST_REFRESH );
 
   //handle new mails actions
   if( accounts->getNumberNewMails() > 0 ) {
@@ -579,7 +579,7 @@ void KShowmail::slotDeletionReady( )
     QApplication::restoreOverrideCursor();
 
   //show status message
-  showStatusMessage( i18n( "Ready." ) );
+  showStatusMessage( i18nc( "@info:status application is idle", "Ready." ) );
 
   //refresh mail list
   slotRefresh();
@@ -597,7 +597,7 @@ void KShowmail::refreshFilterStatusBar( )
 
   int numberIgnored = accounts->numberIgnoredMails();
 
-  statusBar()->changeItem( i18n( "Filter: Deleted: %1/%2/%3; Moved: %4/%5/%6; Ignored: %7" ).arg( numberDeletedLastRefresh ).arg( numberDeletedSinceStart ).arg( numberDeletedLog ).arg( numberMovedLastRefresh ).arg( numberMovedSinceStart ).arg( numberMovedLog ).arg( numberIgnored ), STATUSBAR_FIELD_FILTER );
+  statusBar()->changeItem( i18nc( "@info:status numbers of filtered mails", "Filter: Deleted: %1/%2/%3; Moved: %4/%5/%6; Ignored: %7", numberDeletedLastRefresh, numberDeletedSinceStart, numberDeletedLog, numberMovedLastRefresh, numberMovedSinceStart, numberMovedLog, numberIgnored ), STATUSBAR_FIELD_FILTER );
 }
 
 void KShowmail::slotShowMessageReady( )
@@ -610,7 +610,7 @@ void KShowmail::slotShowMessageReady( )
     QApplication::restoreOverrideCursor();
 
   //show status message
-  showStatusMessage( i18n( "Ready." ) );
+  showStatusMessage( i18nc( "@info:status application is idle", "Ready." ) );
 
 
 }
@@ -732,7 +732,7 @@ void KShowmail::handleNewMails()
     //execute it
     if( command.length() > 0 ) {
 
-      QStringList parts = command.split( " ", QString::SkipEmptyParts );
+      QStringList parts = command.split( ' ', QString::SkipEmptyParts );
 
       if( command != QString::null )
       {
@@ -772,7 +772,7 @@ void KShowmail::handleNoNewMails()
 
 bool KShowmail::askCloseConfirmation()
 {
-  return KMessageBox::questionYesNo( this, i18n ("KShowmail will be closed.\nAre you sure?") ) == KMessageBox::Yes;
+  return KMessageBox::questionYesNo( this, i18nc( "@info ask for closing the application", "KShowmail will be closed.\nAre you sure?") ) == KMessageBox::Yes;
 
 }
 

@@ -128,15 +128,15 @@ QVariant MailViewModel::headerData( int section, Qt::Orientation orientation, in
 
 	switch( section )
 	{
-    case 0  : return QVariant( i18n( "State" ) ); break;
-		case 1	:	return QVariant( i18n( "Number" ) ); break;
-		case 2	:	return QVariant( i18n( "Account" ) ); break;
-		case 3	:	return QVariant( i18n( "From" ) ); break;
-		case 4	:	return QVariant( i18n( "To" ) ); break;
-		case 5	:	return QVariant( i18n( "Subject" ) ); break;
-		case 6	:	return QVariant( i18n( "Date" ) ); break;
-		case 7	:	return QVariant( i18n( "Size" ) ); break;
-		case 8	:	return QVariant( i18n( "Content" ) ); break;
+    case 0  : return QVariant( i18nc( "@title:column state of the mail", "State" ) ); break;
+		case 1	:	return QVariant( i18nc( "@title:column mail number on the server", "Number" ) ); break;
+		case 2	:	return QVariant( i18nc( "@title:column name of the account", "Account" ) ); break;
+		case 3	:	return QVariant( i18nc( "@title:column sender", "From" ) ); break;
+		case 4	:	return QVariant( i18nc( "@title:column addressee", "To" ) ); break;
+		case 5	:	return QVariant( i18nc( "@title:column mail subject", "Subject" ) ); break;
+		case 6	:	return QVariant( i18nc( "@title:column send date", "Date" ) ); break;
+		case 7	:	return QVariant( i18nc( "@title:column mail size", "Size" ) ); break;
+		case 8	:	return QVariant( i18nc( "@title:column content type", "Content" ) ); break;
 		default : return QVariant();
 	}
 }

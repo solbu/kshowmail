@@ -58,7 +58,7 @@ Q_OBJECT
      * @param parent pointer to the parent widget
      * @param log pointer to the filter log
      */
-    FilterLogView( QWidget* parent = NULL, FilterLog* log = NULL );
+    explicit FilterLogView( QWidget* parent = NULL, FilterLog* log = NULL );
 
     /**
      * Destructor

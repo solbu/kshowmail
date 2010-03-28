@@ -174,7 +174,7 @@ void ConfigSpamcheck::slotActionChanged( int index )
   switch( index )
   {
     case ID_SPAM_ACTION_BUTTONS_MOVE    : txtMailbox->setEnabled( true );
-                                          if( txtMailbox->text() == "" )
+                                          if( txtMailbox->text().isEmpty() )
                                             txtMailbox->setText( DEFAULT_FILTER_ACTION_MOVE_MAILBOX );
                                           btnMailboxWizard->setHidden( false );
                                           break;

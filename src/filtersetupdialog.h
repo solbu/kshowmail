@@ -67,7 +67,7 @@ class FilterSetupDialog : public KDialog
     * @param parent parent of the dialog
     * @param item filter to setup;
     */
-    FilterSetupDialog( QWidget* parent, FilterSetupItem* item = NULL );
+    explicit FilterSetupDialog( QWidget* parent, FilterSetupItem* item = NULL );
 
     /**
      * Destructor

@@ -27,9 +27,9 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   if( item != NULL )
   {
     if( item->getName() == DEFAULT_FILTER_NAME )
-      setCaption( i18n( "New filter" ) );
+      setCaption( i18nc( "@title:window", "New filter" ) );
     else
-      setCaption( i18n( "Edit filter" ) );
+      setCaption( i18nc( "@title:window", "Edit filter" ) );
   }
 
   //create main widget and layout
@@ -40,18 +40,18 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   //create filter name widgets
   QHBoxLayout* layName = new QHBoxLayout();
   layMain->addLayout( layName );
-  QLabel* lblName = new QLabel( i18n( "Name:" ), pgMain );
+  QLabel* lblName = new QLabel( i18nc( "@label:textbox name of the filter", "Name:" ), pgMain );
   layName->addWidget( lblName );
   txtName = new KLineEdit( pgMain );
   layName->addWidget( txtName );
 
   //create group boxes and layouts for rules and action
-  QGroupBox* gboxCriteria = new QGroupBox( i18n( "Filter Criterias" ), pgMain );
+  QGroupBox* gboxCriteria = new QGroupBox( i18nc( "@title:group", "Filter Criterias" ), pgMain );
   QVBoxLayout* layCriteria = new QVBoxLayout();
   gboxCriteria->setLayout( layCriteria );
   layMain->addWidget( gboxCriteria );
 
-  QGroupBox* gboxAction = new QGroupBox( i18n( "Filter Action" ), pgMain );
+  QGroupBox* gboxAction = new QGroupBox( i18nc( "@title:group", "Filter Action" ), pgMain );
   QHBoxLayout* layAction = new QHBoxLayout();
   gboxAction->setLayout( layAction );
   layMain->addWidget( gboxAction );
@@ -61,8 +61,8 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   layCriteria->addLayout( layLinkage );
   grpLinkage = new QButtonGroup( NULL );
 
-  QRadioButton* btnMatchAll = new QRadioButton( i18n( "Match all of the following" ), gboxCriteria );
-  QRadioButton* btnMatchAny = new QRadioButton( i18n( "Match any of the following" ), gboxCriteria );
+  QRadioButton* btnMatchAll = new QRadioButton( i18nc( "@option:radio all criterias must match", "Match all of the following" ), gboxCriteria );
+  QRadioButton* btnMatchAny = new QRadioButton( i18nc( "@option:radio just any criterias must match", "Match any of the following" ), gboxCriteria );
   grpLinkage->addButton( btnMatchAll, ID_BUTTON_LINKAGE_MATCH_ALL );
   grpLinkage->addButton( btnMatchAny, ID_BUTTON_LINKAGE_MATCH_ANY );
   layLinkage->addWidget( btnMatchAll );
@@ -83,8 +83,8 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   //buttons to add or remove criterias
   QHBoxLayout* layButtons = new QHBoxLayout();
   layCriteria->addLayout( layButtons );
-  btnAddCriteria = new KPushButton( KGuiItem( i18n( "More" ), "button_more", i18n( "Add a further criteria." ) ), gboxCriteria );
-  btnRemoveCriteria = new KPushButton( KGuiItem( i18n( "Fewer" ), "button_fewer", i18n( "Remove the last criteria." ) ), gboxCriteria );
+  btnAddCriteria = new KPushButton( KGuiItem( i18nc( "@action:button show more criterias", "More" ), "button_more", i18nc( "@info:tooltip", "Add a further criteria." ) ), gboxCriteria );
+  btnRemoveCriteria = new KPushButton( KGuiItem( i18nc( "@action:button how fewer criterias", "Fewer" ), "button_fewer", i18nc( "@info:tooltip", "Remove the last criteria." ) ), gboxCriteria );
   btnAddCriteria->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   btnRemoveCriteria->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layButtons->addWidget( btnAddCriteria );
@@ -96,16 +96,16 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   //create combobox to select action
   cmbAction = new KComboBox( gboxAction );
   layAction->addWidget( cmbAction );
-  cmbAction->setToolTip( i18n( "Choose the action for all mails which are filtered by this filter." ) );
+  cmbAction->setToolTip( i18nc( "@info:tooltip", "Choose the action for all mails which are filtered by this filter." ) );
   connect( cmbAction, SIGNAL( activated( int ) ), this, SLOT( slotActionChanged( int ) ) );
 
   //insert items
-  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_PASS, i18n( "Show" ) );
-  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_DELETE, i18n( "Delete" ) );
-  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_MARK, i18n( "Mark" ) );
-  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_MOVE, i18n( "Move" ) );
-  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_SPAMCHECK, i18n( "Spamcheck" ) );
-  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_IGNORE, i18n( "Ignore" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_PASS, i18nc( "@item:inlistbox show the filtered mail", "Show" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_DELETE, i18nc( "@item:inlistbox delete the filtered mail", "Delete" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_MARK, i18nc( "@item:inlistbox mark the filtered mail", "Mark" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_MOVE, i18nc( "@item:inlistbox write the filtered mail into a mailbox", "Move" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_SPAMCHECK, i18nc( "@item:inlistbox check the filtered mail for spam", "Spamcheck" ) );
+  cmbAction->insertItem( ID_COMBO_FILTER_ACTION_IGNORE, i18nc( "@item:inlistbox ignore the filtered mail", "Ignore" ) );
 
   //create edit line to defined the mailbox for move
   txtMailbox = new KLineEdit( gboxAction );
@@ -114,7 +114,7 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   //create wizard button to configure mailbox
   btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "tools-wizard" ), gboxAction );
   layAction->addWidget( btnMailboxWizard );
-  btnMailboxWizard->setToolTip( i18n( "Choose the mailbox" ) );
+  btnMailboxWizard->setToolTip( i18nc( "@info:tooltip", "Choose the mailbox" ) );
   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
 
   //set default action
@@ -465,7 +465,7 @@ void FilterSetupDialog::slotActionChanged( int index )
 void FilterSetupDialog::slotOpenMailBoxWizard( )
 {
   QPointer<MailBoxWizard> wizard = new MailBoxWizard( this );
-  wizard->setWindowTitle( i18n( "Mailbox Select" ) );
+  wizard->setWindowTitle( i18nc( "@title:window", "Mailbox Select" ) );
   int res = wizard->exec();
 
   if( res == QDialog::Accepted )

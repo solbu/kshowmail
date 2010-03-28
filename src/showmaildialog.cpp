@@ -38,16 +38,16 @@ ShowMailDialog::ShowMailDialog( QWidget * parent, QString caption, bool allowHTM
   layMetaDatas->addLayout( layLines );
 
   //create labels for meta data
-  QLabel* lblSender = new QLabel( i18n( "Sender:" ), mainWidget );
+  QLabel* lblSender = new QLabel( i18nc( "@label:textbox sender of the mail", "Sender:" ), mainWidget );
   layLabels->addWidget( lblSender );
 
-  QLabel* lblDate = new QLabel( i18n( "Date:" ), mainWidget );
+  QLabel* lblDate = new QLabel( i18nc( "@label:textbox send date", "Date:" ), mainWidget );
   layLabels->addWidget( lblDate );
 
-  QLabel* lblSize = new QLabel( i18n( "Size:" ), mainWidget );
+  QLabel* lblSize = new QLabel( i18nc( "@label:textbox mail size", "Size:" ), mainWidget );
   layLabels->addWidget( lblSize );
 
-  QLabel* lblSubject = new QLabel( i18n( "Subject:" ), mainWidget );
+  QLabel* lblSubject = new QLabel( i18nc( "@label:textbox mail subject", "Subject:" ), mainWidget );
   layLabels->addWidget( lblSubject );
 
   //create edit lines to show the meta data

@@ -66,7 +66,7 @@ Q_OBJECT
     /**
      * Generic constructor
      */
-    ConfigFilter( QWidget *parent = 0, const QVariantList & args = QVariantList() );
+    explicit ConfigFilter( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor

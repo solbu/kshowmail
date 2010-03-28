@@ -42,47 +42,47 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
    laySecurity->setAlignment( Qt::AlignTop );
  
    //upper items
-   QLabel* lblAccount = new QLabel( i18n( "Account:" ), pgGeneral );
+   QLabel* lblAccount = new QLabel( i18nc( "@label:textbox name of the account", "Account:" ), pgGeneral );
    txtAccount = new KLineEdit( pgGeneral );
    txtAccount->setFocus();
-   lblAccount->setToolTip( i18n( "Unique Account Name" ) );
-   txtAccount->setToolTip( i18n( "Unique Account Name" ) );
+   lblAccount->setToolTip( i18nc( "@info:tooltip", "Unique Account Name" ) );
+   txtAccount->setToolTip( i18nc( "@info:tooltip", "Unique Account Name" ) );
    layTop->addWidget( lblAccount, 0, 0 );
    layTop->addWidget( txtAccount, 0, 1 );
  
-   QLabel* lblServer = new QLabel( i18n( "Server:" ), pgGeneral );
+   QLabel* lblServer = new QLabel( i18nc( "@label:textbox server host name", "Server:" ), pgGeneral );
    txtServer = new KLineEdit( pgGeneral );
-   lblServer->setToolTip( i18n( "Server Name" ) );
-   txtServer->setToolTip( i18n( "Server Name" ) );
+   lblServer->setToolTip( i18nc( "@info:tooltip", "Server Name" ) );
+   txtServer->setToolTip( i18nc( "@info:tooltip", "Server Name" ) );
    layTop->addWidget( lblServer, 1, 0 );
    layTop->addWidget( txtServer, 1, 1 );
  
-   QLabel* lblProtocol = new QLabel( i18n( "Protocol:" ), pgGeneral );
+   QLabel* lblProtocol = new QLabel( i18nc( "@label:listbox mail fetching protocol", "Protocol:" ), pgGeneral );
    cboProtocol = new KComboBox( pgGeneral );
    cboProtocol->insertItem( 0, "POP3" );  //currently KShowmail just supports POP3
-   lblProtocol->setToolTip( i18n( "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
-   cboProtocol->setToolTip( i18n( "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
+   lblProtocol->setToolTip( i18nc( "@info:tooltip", "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
+   cboProtocol->setToolTip( i18nc( "@info:tooltip", "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
    layTop->addWidget( lblProtocol, 2, 0 );
    layTop->addWidget( cboProtocol, 2, 1 );
  
-   QLabel* lblPort = new QLabel( i18n( "Port:" ), pgGeneral );
+   QLabel* lblPort = new QLabel( i18nc( "@label:spinbox TCP port, on which the server is listening", "Port:" ), pgGeneral );
    spbPort = new QSpinBox( pgGeneral );
    spbPort->setRange( 0, 65535 );
    spbPort->setValue( DEFAULT_ACCOUNT_PORT_POP3 );
-   lblPort->setToolTip( i18n( "Port Number. Normally POP3 uses port 110." ) );
-   spbPort->setToolTip( i18n( "Port Number. Normally POP3 uses port 110." ) );
+   lblPort->setToolTip( i18nc( "@info:tooltip", "Port Number. Normally POP3 uses port 110." ) );
+   spbPort->setToolTip( i18nc( "@info:tooltip", "Port Number. Normally POP3 uses port 110." ) );
    layTop->addWidget( lblPort, 3, 0 );
    layTop->addWidget( spbPort, 3, 1 );
  
-   QLabel* lblUser = new QLabel( i18n( "User:" ), pgGeneral );
+   QLabel* lblUser = new QLabel( i18nc( "@label:textbox user name to authenticate", "User:" ), pgGeneral );
    txtUser = new KLineEdit( pgGeneral );
-   lblUser->setToolTip( i18n( "To authenticate to the mail server you need an user name." ) );
-   txtUser->setToolTip( i18n( "To authenticate to the mail server you need an user name." ) );
+   lblUser->setToolTip( i18nc( "@info:tooltip", "To authenticate to the mail server you need an user name." ) );
+   txtUser->setToolTip( i18nc( "@info:tooltip", "To authenticate to the mail server you need an user name." ) );
    layTop->addWidget( lblUser, 4, 0 );
    layTop->addWidget( txtUser, 4, 1 );
  
    //password groupbox and layouts
-   QGroupBox* gboxPassword = new QGroupBox( i18n( "Password" ), pgGeneral );
+   QGroupBox* gboxPassword = new QGroupBox( i18nc( "@title:group contains password storage options and passwort input textbox", "Password" ), pgGeneral );
    layGeneral->addWidget( gboxPassword );
  
    QVBoxLayout* layPassword = new QVBoxLayout( );
@@ -95,15 +95,15 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
    grpPasswordStorage = new QButtonGroup( NULL );
    connect( grpPasswordStorage, SIGNAL( buttonClicked( int ) ), this, SLOT( slotPasswordStorageChanged( int ) ) );
  
-   QRadioButton* btnPasswordDontSave = new QRadioButton( i18n( "Don't save" ), gboxPassword );
-   QRadioButton* btnPasswordSaveFile = new QRadioButton( i18n( "Save password "), gboxPassword );
-   QRadioButton* btnPasswordSaveKWallet = new QRadioButton( i18n( "Use KWallet" ), gboxPassword );
+   QRadioButton* btnPasswordDontSave = new QRadioButton( i18nc( "@option:radio don't save the password", "Don't save" ), gboxPassword );
+   QRadioButton* btnPasswordSaveFile = new QRadioButton( i18nc( "@option:radio save passwort in config file", "Save password "), gboxPassword );
+   QRadioButton* btnPasswordSaveKWallet = new QRadioButton( i18nc( "@option:radio use KWallet to save the password", "Use KWallet" ), gboxPassword );
    grpPasswordStorage->addButton( btnPasswordDontSave, ID_BUTTON_PASSWORD_DONT_SAVE );
    grpPasswordStorage->addButton( btnPasswordSaveFile, ID_BUTTON_PASSWORD_SAVE_FILE );
    grpPasswordStorage->addButton( btnPasswordSaveKWallet, ID_BUTTON_PASSWORD_SAVE_KWALLET );
-   btnPasswordDontSave->setToolTip( i18n( "Don't save password. KShowmail will ask you for it at first server connect." ) );
-   btnPasswordSaveFile->setToolTip( i18n( "Save password in the configuration file. Not recommended, because the password is just lightly encrypted" ) );
-   btnPasswordSaveKWallet->setToolTip( i18n( "Use KWallet to save the password. Maybe you have to type in the KWallet master password at first server connect." ) );
+   btnPasswordDontSave->setToolTip( i18nc( "@info:tooltip", "Don't save password. KShowmail will ask you for it at first server connect." ) );
+   btnPasswordSaveFile->setToolTip( i18nc( "@info:tooltip", "Save password in the configuration file. Not recommended, because the password is just lightly encrypted" ) );
+   btnPasswordSaveKWallet->setToolTip( i18nc( "@info:tooltip", "Use KWallet to save the password. Maybe you have to type in the KWallet master password at first server connect." ) );
    layPasswordStorage->addWidget( btnPasswordDontSave, 0, 0 );
    layPasswordStorage->addWidget( btnPasswordSaveFile, 0, 1 );
    layPasswordStorage->addWidget( btnPasswordSaveKWallet, 1, 0 );
@@ -123,13 +123,13 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
    QGridLayout* layActive = new QGridLayout();
    layGeneral->addLayout( layActive );
    layActive->setAlignment( Qt::AlignCenter );
-   chkActive = new QCheckBox( i18n( "Active"), pgGeneral );
-   chkActive->setToolTip( i18n( "Select it to activate this account." ) );
+   chkActive = new QCheckBox( i18nc( "@option:check to activate this account", "Active"), pgGeneral );
+   chkActive->setToolTip( i18nc( "@info:tooltip", "Select it to activate this account." ) );
    layActive->addWidget( chkActive, 0, 0 );
    chkActive->setChecked( DEFAULT_ACCOUNT_ACTIVE );
  
    //secure transfer groupbox and layouts
-   QGroupBox* gboxSecureTransfer = new QGroupBox( i18n( "Encryption" ), pgSecurity );
+   QGroupBox* gboxSecureTransfer = new QGroupBox( i18nc( "@title:group transfer encryption", "Encryption" ), pgSecurity );
    gboxSecureTransfer->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Maximum ) );
    laySecurity->addWidget( gboxSecureTransfer );
  
@@ -140,15 +140,15 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
    grpSecureTransfer = new QButtonGroup( NULL );
    connect( grpSecureTransfer, SIGNAL( buttonClicked( int ) ), this, SLOT( slotSecureTransferChanged ( int ) ) );
  
-   QRadioButton* btnSecureTransferNone = new QRadioButton( i18n( "None" ), gboxSecureTransfer );
-   QRadioButton* btnSecureTransferSSL = new QRadioButton( i18n( "SSL"), gboxSecureTransfer );
-   QRadioButton* btnSecureTransferTLS = new QRadioButton( i18n( "TLS" ), gboxSecureTransfer );
+   QRadioButton* btnSecureTransferNone = new QRadioButton( i18nc( "@option:radio encryption", "None" ), gboxSecureTransfer );
+   QRadioButton* btnSecureTransferSSL = new QRadioButton( i18nc( "@option:radio encryption", "SSL"), gboxSecureTransfer );
+   QRadioButton* btnSecureTransferTLS = new QRadioButton( i18nc( "@option:radio encryption", "TLS" ), gboxSecureTransfer );
    grpSecureTransfer->addButton( btnSecureTransferNone, ID_BUTTON_SECTRANSFER_NONE );
    grpSecureTransfer->addButton( btnSecureTransferSSL, ID_BUTTON_SECTRANSFER_SSL );
    grpSecureTransfer->addButton( btnSecureTransferTLS, ID_BUTTON_SECTRANSFER_TLS );
-   btnSecureTransferNone->setToolTip( i18n( "The download of the mail header and body will not be encrypted. Use this, if your provider doesn't make a secure transfer available." ) );
-   btnSecureTransferSSL->setToolTip( i18n( "Secure Sockets Layer (SSL), is a cryptographic protocol that provides secure communications on the Internet." ) );
-   btnSecureTransferTLS->setToolTip( i18n( "Transport Layer Security (TLS) is a cryptographic protocol that provides secure communications on the Internet. It is the successor of SSL." ) );
+   btnSecureTransferNone->setToolTip( i18nc( "@info:tooltip", "The download of the mail header and body will not be encrypted. Use this, if your provider doesn't make a secure transfer available." ) );
+   btnSecureTransferSSL->setToolTip( i18nc( "@info:tooltip", "Secure Sockets Layer (SSL), is a cryptographic protocol that provides secure communications on the Internet." ) );
+   btnSecureTransferTLS->setToolTip( i18nc( "@info:tooltip", "Transport Layer Security (TLS) is a cryptographic protocol that provides secure communications on the Internet. It is the successor of SSL." ) );
    laySecureTransfer->addWidget( btnSecureTransferNone );
    laySecureTransfer->addWidget( btnSecureTransferSSL );
    laySecureTransfer->addWidget( btnSecureTransferTLS );
@@ -157,21 +157,21 @@ AccountSetupDialog::AccountSetupDialog( QWidget* parent, QTreeWidget* view, Acco
    btnToCheck->setChecked( true );
 
   //checkbox to allow unsecure transfer
-  chkAllowUnsecureLogin = new QCheckBox( i18n( "Allow unsafe login"), pgSecurity );
-  chkAllowUnsecureLogin->setToolTip( i18n( "Select it to allow an unsafe login if necessary.\nThe password will be transmit unencrypted. Maybe someone can read it!" ) );
+  chkAllowUnsecureLogin = new QCheckBox( i18nc( "@option:check whether login without security shall be allowed", "Allow unsafe login"), pgSecurity );
+  chkAllowUnsecureLogin->setToolTip( i18nc( "@info:tooltip", "Select it to allow an unsafe login if necessary.\nThe password will be transmit unencrypted. Maybe someone can read it!" ) );
   laySecurity->addWidget( chkAllowUnsecureLogin );
   chkAllowUnsecureLogin->setChecked( DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN );
 
  
    //set pages to tab widget
-   tabs->addTab( pgGeneral, i18n( "General" ) );
-   tabs->addTab( pgSecurity, i18n( "Security" ) );
+   tabs->addTab( pgGeneral, i18nc( "@title:tab general account options", "General" ) );
+   tabs->addTab( pgSecurity, i18nc( "@title:tab account security options", "Security" ) );
  
    //set caption
    if( item == NULL )
-     setCaption( i18n( "New Account" ) );
+     setCaption( i18nc( "@title:window create new account", "New Account" ) );
    else
-     setCaption( i18n( "Edit Account" ) );
+     setCaption( i18nc( "@title:window edit account", "Edit Account" ) );
  
    //write values of the given account into the dialog items
    if( account != NULL )
@@ -204,20 +204,20 @@ void AccountSetupDialog::slotButtonClicked( int button )
   }
 
   //check for necessary values
-  if( txtAccount->text() == "" )
+  if( txtAccount->text().isEmpty() )
   {
-    KMessageBox::error( this, i18n( "Please enter an account name." ) );
+    KMessageBox::error( this, i18nc( "@info error message no account name was entered", "Please enter an account name." ) );
     return;
   }
-  if( txtServer->text() == "" )
+  if( txtServer->text().isEmpty() )
   {
-    KMessageBox::error( this, i18n( "Please enter an server." ) );
+    KMessageBox::error( this, i18nc( "@info error message: no server was entered", "Please enter an server." ) );
     return;
   }
 
-  if( txtUser->text() == "" )
+  if( txtUser->text().isEmpty() )
   {
-    KMessageBox::error( this, i18n( "Please enter an user name." ) );
+    KMessageBox::error( this, i18nc( "@info error message: no user name was entered", "Please enter an user name." ) );
     return;
   }
 
@@ -242,7 +242,7 @@ void AccountSetupDialog::slotButtonClicked( int button )
     //exit method if we have found an account with the same name
     if( !foundItems.isEmpty() )
     {
-      KMessageBox::error( this, i18n( "There is already an account named %1. Please choose another name." ).arg( txtAccount->text() ) );
+      KMessageBox::error( this, i18nc( "@info error message", "There is already an account named <resource>%1</resource>. Please choose another name.", txtAccount->text() ) );
       return;
     }
 
@@ -255,7 +255,7 @@ void AccountSetupDialog::slotButtonClicked( int button )
 
   //show a warning if the account name was changend
   if( account->getAccountName() != DEFAULT_ACCOUNT_NAME && account->getAccountName() != txtAccount->text() )
-    KMessageBox::information( this, i18n( "You have changed the account name. The account will lose all downloaded mail headers. Please perform a refresh." ) );
+    KMessageBox::information( this, i18nc( "@info info message", "You have changed the account name. The account will lose all downloaded mail headers. Please perform a refresh." ) );
 
   //set column text
   account->setText( 0, txtAccount->text() );

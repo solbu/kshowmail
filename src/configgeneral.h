@@ -51,7 +51,7 @@ Q_OBJECT
      * @param parent parent widget
      * @param args arguments
      */
-    ConfigGeneral( QWidget *parent = 0, const QVariantList & args = QVariantList() );
+    explicit ConfigGeneral( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor

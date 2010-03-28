@@ -266,13 +266,13 @@ void FilterSetupItem::updateActionColumn( )
   //build action
   switch( action )
   {
-    case CONFIG_VALUE_FILTER_ACTION_PASS      : strAction = i18n( "Show" ); break;
-    case CONFIG_VALUE_FILTER_ACTION_DELETE    : strAction = i18n( "Delete" ); break;
-    case CONFIG_VALUE_FILTER_ACTION_MARK      : strAction = i18n( "Mark" ); break;
-    case CONFIG_VALUE_FILTER_ACTION_MOVE      : strAction = i18n( "Move to %1").arg( mailbox ); break;
-    case CONFIG_VALUE_FILTER_ACTION_IGNORE    : strAction = i18n( "Ignore"); break;
-    case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK : strAction = i18n( "Check for spam" ); break;
-    default                                   : strAction = i18n( "Unknown action" ); break;
+    case CONFIG_VALUE_FILTER_ACTION_PASS      : strAction = i18nc( "@item:intable show the filtered mail in the view", "Show" ); break;
+    case CONFIG_VALUE_FILTER_ACTION_DELETE    : strAction = i18nc( "@item:intable delete the filtered mail", "Delete" ); break;
+    case CONFIG_VALUE_FILTER_ACTION_MARK      : strAction = i18nc( "@item:intable mark the filtered mail", "Mark" ); break;
+    case CONFIG_VALUE_FILTER_ACTION_MOVE      : strAction = i18nc( "@item:intable move the filtered mail into a mailbox", "Move to <resource>%1</resource>", mailbox ); break;
+    case CONFIG_VALUE_FILTER_ACTION_IGNORE    : strAction = i18nc( "@item:intable ignore the filtered mail", "Ignore"); break;
+    case CONFIG_VALUE_FILTER_ACTION_SPAMCHECK : strAction = i18nc( "@item:intable check the filtered mail for spam", "Check for spam" ); break;
+    default                                   : strAction = i18nc( "@item:intable unknown action", "Unknown action" ); break;
   }
 
   //set text

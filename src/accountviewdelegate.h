@@ -72,9 +72,8 @@ class AccountViewDelegate : public QItemDelegate
 		  * Updates the geometry of the editor widget
 			* @param editor editor widget
 			* @param option Options for the editor widget
-			* @param index data index
 			*/
-     void updateEditorGeometry( QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
+     void updateEditorGeometry( QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex& ) const;
 		 
     /**
      * Picture for a active account used by the combo box to switch the account state

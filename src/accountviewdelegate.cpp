@@ -35,8 +35,8 @@ QWidget* AccountViewDelegate::createEditor( QWidget *parent, const QStyleOptionV
 
 	//the editor is a combo box to change between active and inactive state of the account
 	KComboBox* cmbEditor = new KComboBox( parent );
-	cmbEditor->addItem( KIcon( picActive ), i18n( "active" ) );
-	cmbEditor->addItem( KIcon( picNotActive ), i18n( "inactive" ) );
+	cmbEditor->addItem( KIcon( picActive ), i18nc( "@item:inlistbox account is active", "active" ) );
+	cmbEditor->addItem( KIcon( picNotActive ), i18nc( "@item:inlistbox account is not active", "inactive" ) );
 	
 	return cmbEditor;
 	
@@ -78,7 +78,7 @@ void AccountViewDelegate::setModelData( QWidget *editor, QAbstractItemModel *mod
 	}
 }
 
-void AccountViewDelegate::updateEditorGeometry( QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index ) const
+void AccountViewDelegate::updateEditorGeometry( QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex& ) const
 {
 	editor->setGeometry( option.rect.x(), option.rect.y(), option.rect.width(), editor->minimumSizeHint().height() );
 }

@@ -67,7 +67,7 @@ Q_OBJECT
     /**
      * Generic constructor
      */
-    ConfigSpamcheck( QWidget* parent = 0, const QVariantList& args = QVariantList() );
+    explicit ConfigSpamcheck( QWidget* parent = 0, const QVariantList& args = QVariantList() );
 
     /**
      * Destructor

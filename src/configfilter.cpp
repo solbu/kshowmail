@@ -30,30 +30,30 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   QVBoxLayout* layMain = new QVBoxLayout( this );
 
   //check box to activate the filter
-  chkActivateFilter = new QCheckBox( i18n( "Activate Filter" ), this );
+  chkActivateFilter = new QCheckBox( i18nc( "@option:check", "Activate Filter" ), this );
   layMain->addWidget( chkActivateFilter );
-  chkActivateFilter->setToolTip( i18n( "Check to activate the header filter." ) );
+  chkActivateFilter->setToolTip( i18nc( "@info:tooltip", "Check to activate the header filter." ) );
   connect( chkActivateFilter, SIGNAL( toggled( bool ) ), this, SLOT( slotFilterActiveToggled( bool ) ) );
   connect( chkActivateFilter, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
   //GUI of sender lists
   //-------------------
-  gboxSenderLists = new QGroupBox( i18n( "First Check: Sender Lists" ), this );
+  gboxSenderLists = new QGroupBox( i18nc( "@title:group", "First Check: Sender Lists" ), this );
   QHBoxLayout* laySender = new QHBoxLayout();
   gboxSenderLists->setLayout( laySender );
   layMain->addWidget( gboxSenderLists );
 
   KIcon picWhiteList = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/button_whitelist.png" ) );
-  btnOpenWhitelist = new KPushButton( picWhiteList, i18n( "Whitelist"), gboxSenderLists );
-  btnOpenWhitelist->setToolTip( i18n( "Click here to edit the list of senders whose mails shall pass the filter." ) );
+  btnOpenWhitelist = new KPushButton( picWhiteList, i18nc( "@action:button opens the dialog to edit the whitelist", "Whitelist"), gboxSenderLists );
+  btnOpenWhitelist->setToolTip( i18nc( "@info:tooltip", "Click here to edit the list of senders whose mails shall pass the filter." ) );
   laySender->addWidget( btnOpenWhitelist );
   laySender->setStretchFactor( btnOpenWhitelist, 3 );
   btnOpenWhitelist->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum ) );
   connect( btnOpenWhitelist, SIGNAL( clicked() ), this, SLOT( slotOpenWhitelist() ) );
 
   KIcon picBlackList = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/button_blacklist.png" ) );
-  btnOpenBlacklist = new KPushButton( picBlackList, i18n( "Blacklist" ), gboxSenderLists );
-  btnOpenBlacklist->setToolTip( i18n( "Click here to edit the list of senders whose mails shall be deleted or marked." ) );
+  btnOpenBlacklist = new KPushButton( picBlackList, i18nc( "@action:button opens the dialog to edit the blacklist", "Blacklist" ), gboxSenderLists );
+  btnOpenBlacklist->setToolTip( i18nc( "@info:tooltip", "Click here to edit the list of senders whose mails shall be deleted or marked." ) );
   laySender->addWidget( btnOpenBlacklist );
   laySender->setStretchFactor( btnOpenBlacklist, 3 );
   btnOpenBlacklist->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum ) );
@@ -65,7 +65,7 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
 
   //GUI of filters
   //--------------
-  gboxFilters = new QGroupBox( i18n( "Second Check: Filters" ), this );
+  gboxFilters = new QGroupBox( i18nc( "@title:group", "Second Check: Filters" ), this );
   QHBoxLayout* layFilters = new QHBoxLayout();
   gboxFilters->setLayout( layFilters );
   layMain->addWidget( gboxFilters );
@@ -73,7 +73,7 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   listFilters = new QTreeWidget( gboxFilters );
   listFilters->setColumnCount( 3 );
   QStringList labels;
-  labels << i18n( "No.") << i18n( "Name" ) << i18n( "Action" );
+  labels << i18nc( "@title:column number of the filter", "No.") << i18nc( "@title:column filter name", "Name" ) << i18nc( "@title:column filter action", "Action" );
   listFilters->setHeaderLabels( labels ),
   layFilters->addWidget( listFilters );
   listFilters->setIndentation( 0 );
@@ -85,10 +85,10 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   btnAdd = new KPushButton( KStandardGuiItem::add(), gboxFilters );
   btnEdit = new KPushButton( KStandardGuiItem::configure(), gboxFilters );
   btnRemove = new KPushButton( KStandardGuiItem::remove(), gboxFilters );
-  btnMoveTop = new KPushButton( KGuiItem( "", "go-top", i18n( "Moves the selected filter at the top" ) ), gboxFilters );
-  btnMoveUp = new KPushButton( KGuiItem( "", "go-up", i18n( "Moves the selectKListViewed filter up" ) ), gboxFilters );
-  btnMoveDown = new KPushButton( KGuiItem( "", "go-down", i18n( "Moves the selected filter down" ) ), gboxFilters );
-  btnMoveBottom = new KPushButton( KGuiItem( "", "go-bottom", i18n( "Moves the selected filter at the bottm" ) ), gboxFilters );
+  btnMoveTop = new KPushButton( KGuiItem( "", "go-top", i18nc( "@info:tooltip", "Moves the selected filter at the top" ) ), gboxFilters );
+  btnMoveUp = new KPushButton( KGuiItem( "", "go-up", i18nc( "@info:tooltip", "Moves the selectKListViewed filter up" ) ), gboxFilters );
+  btnMoveDown = new KPushButton( KGuiItem( "", "go-down", i18nc( "@info:tooltip", "Moves the selected filter down" ) ), gboxFilters );
+  btnMoveBottom = new KPushButton( KGuiItem( "", "go-bottom", i18nc( "@info:tooltip", "Moves the selected filter at the bottm" ) ), gboxFilters );
   btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
   btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
   btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
@@ -115,25 +115,25 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
 
   //GUI of Others
   //-------------
-  gboxOthers = new QGroupBox( i18n( "Third Check: Action for all others" ), this );
+  gboxOthers = new QGroupBox( i18nc( "@title:group", "Third Check: Action for all others" ), this );
   QHBoxLayout* layOthers = new QHBoxLayout( );
   gboxOthers->setLayout( layOthers );
   layMain->addWidget( gboxOthers );
 
   //create combobox to select action
   cmbActionOthers = new KComboBox( gboxOthers );
-  cmbActionOthers->setToolTip( i18n( "Choose the action for all mails which are not filtered by the steps before." ) );
+  cmbActionOthers->setToolTip( i18nc( "@info:tooltip", "Choose the action for all mails which are not filtered by the steps before." ) );
   layOthers->addWidget( cmbActionOthers );
   connect( cmbActionOthers, SIGNAL( activated( int ) ), this, SLOT( slotOtherActionChanged( int ) ) );
   connect( cmbActionOthers, SIGNAL( activated( int ) ), this, SLOT( slotChanged() ) );
 
   //insert items
-  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_PASS, i18n( "Show" ) );
-  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_DELETE, i18n( "Delete" ) );
-  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_MARK, i18n( "Mark" ) );
-  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_MOVE, i18n( "Move" ) );
-  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK, i18n( "Spamcheck" ) );
-  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE, i18n( "Ignore" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_PASS, i18nc( "@item:inlistbox show the filtered mail", "Show" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_DELETE, i18nc( "@item:inlistbox delete the filtered mail", "Delete" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_MARK, i18nc( "@item:inlistbox mark the filtered mail", "Mark" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_MOVE, i18nc( "@item:inlistbox write the filtered mail into a mailbox", "Move" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK, i18nc( "@item:inlistbox check the filtered mail for spam", "Spamcheck" ) );
+  cmbActionOthers->insertItem( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE, i18nc( "@item:inlistbox ignore the filtered mail", "Ignore" ) );
 
   //create edit line to defined the mailbox for move
   txtMailbox = new KLineEdit( gboxOthers );
@@ -142,7 +142,7 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
 
   //create wizard button to configure mailbox
   btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "tools-wizard" ), gboxOthers );
-  btnMailboxWizard->setToolTip( i18n( "Choose the mailbox" ) );
+  btnMailboxWizard->setToolTip( i18nc( "@info:tooltip", "Choose the mailbox" ) );
   layOthers->addWidget( btnMailboxWizard );
   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
 
@@ -642,7 +642,7 @@ void ConfigFilter::slotFilterActiveToggled( bool filterOn )
 void ConfigFilter::slotOpenMailBoxWizard( )
 {
   QPointer<MailBoxWizard> wizard = new MailBoxWizard( this );
-  wizard->setWindowTitle( i18n( "Mailbox Select" ) );
+  wizard->setWindowTitle( i18nc( "@title:window", "Mailbox Select" ) );
   int res = wizard->exec();
 
   if( res == QDialog::Accepted )

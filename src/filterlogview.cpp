@@ -24,7 +24,7 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   this->log = log;
 
   //set caption
-  setCaption( i18n( "Filter Log View" ) );
+  setCaption( i18nc( "@title:window", "Filter Log View" ) );
 
   //main widget
   QWidget* pgMain = new QWidget( this );
@@ -35,17 +35,17 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   pgMain->setLayout( layMain );
 
   //view of deleted views
-  QLabel* lblDeletedMails = new QLabel( i18n( "Deleted Mails:"), pgMain );
+  QLabel* lblDeletedMails = new QLabel( i18nc( "@label:listbox list of deleted mails", "Deleted Mails:"), pgMain );
   layMain->addWidget( lblDeletedMails );
 
   lstViewDeleted = new QTreeWidget( pgMain );
   lstViewDeleted->setColumnCount( 4 );
 
   QStringList headersDeleted;
-  headersDeleted.append( i18n( "Date" ) );
-  headersDeleted.append( i18n( "Sender" ) );
-  headersDeleted.append( i18n( "Account" ) );
-  headersDeleted.append( i18n( "Subject" ) );
+  headersDeleted.append( i18nc( "@title:column send date", "Date" ) );
+  headersDeleted.append( i18nc( "@title:column sender of the mail", "Sender" ) );
+  headersDeleted.append( i18nc( "@title:column account name", "Account" ) );
+  headersDeleted.append( i18nc( "@title:column mail subject", "Subject" ) );
   lstViewDeleted->setHeaderLabels( headersDeleted );
 
   lstViewDeleted->setIndentation( 0 );
@@ -55,7 +55,7 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   layMain->addWidget( lstViewDeleted );
 
   KPushButton* btnClearDeleted = new KPushButton( KStandardGuiItem::clear(), pgMain );
-  btnClearDeleted->setToolTip( i18n( "Clear the list of deleted mails" ) );
+  btnClearDeleted->setToolTip( i18nc( "@info:tooltip", "Clear the list of deleted mails" ) );
   connect( btnClearDeleted, SIGNAL( clicked() ), this, SLOT( slotClearDeletedMails() ) );
   btnClearDeleted->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layMain->addWidget( btnClearDeleted );
@@ -64,25 +64,25 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   layMain->addWidget( new KSeparator( pgMain ) );
 
   //view of deleted views
-  QLabel* lblMovedMails = new QLabel( i18n( "Moved Mails:"), pgMain );
+  QLabel* lblMovedMails = new QLabel( i18nc( "@label:listbox list of moved mails (written into mailboxes)", "Moved Mails:"), pgMain );
   layMain->addWidget( lblMovedMails );
 
   lstViewMoved = new QTreeWidget( pgMain );
   lstViewMoved->setColumnCount( 5 );
 
   QStringList headersMoved;
-  headersMoved.append( i18n( "Date" ) );
-  headersMoved.append( i18n( "Sender" ) );
-  headersMoved.append( i18n( "Account" ) );
-  headersMoved.append( i18n( "Moved To" ) );
-  headersMoved.append( i18n( "Subject" ) );
+  headersMoved.append( i18nc( "@title:column send date", "Date" ) );
+  headersMoved.append( i18nc( "@title:column sender of the mail", "Sender" ) );
+  headersMoved.append( i18nc( "@title:column account name", "Account" ) );
+  headersMoved.append( i18nc( "@title:column name of the mailbox where the mail was written", "Moved To" ) );
+  headersMoved.append( i18nc( "@title:column mail subject", "Subject" ) );
   lstViewMoved->setHeaderLabels( headersMoved );
   lstViewMoved->setIndentation( 0 );
   lstViewMoved->setAllColumnsShowFocus( true );
   layMain->addWidget( lstViewMoved );
 
   KPushButton* btnClearMoved = new KPushButton( KStandardGuiItem::clear(), pgMain );
-  btnClearMoved->setToolTip( i18n( "Clear the list of moved mails" ) );
+  btnClearMoved->setToolTip( i18nc( "@info:tooltip", "Clear the list of moved mails" ) );
   connect( btnClearMoved, SIGNAL( clicked() ), this, SLOT( slotClearMovedMails() ) );
   btnClearMoved->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layMain->addWidget( btnClearMoved );

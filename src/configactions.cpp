@@ -30,8 +30,8 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
   QVBoxLayout* layMain = new QVBoxLayout( this );
 
   //two boxes to seperate the action if new mail or if no new mail
-  QGroupBox* gboxNewMails = new QGroupBox( i18n( "Action if new &mail" ), this );
-  QGroupBox* gboxNoNewMails = new QGroupBox( i18n( "Action if &no mail" ), this );
+  QGroupBox* gboxNewMails = new QGroupBox( i18nc( "@title:group", "Action if new &mail" ), this );
+  QGroupBox* gboxNoNewMails = new QGroupBox( i18nc( "@title:group", "Action if &no mail" ), this );
   layMain->addWidget( gboxNewMails );
   layMain->addWidget( gboxNoNewMails );
 
@@ -49,51 +49,51 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
 
 
   //items for the upper group box
-  chkNewMailsAlertWindow = new QCheckBox( i18n( "Show message box" ), gboxNewMails );
-  chkNewMailsAlertWindow->setToolTip( i18n( "Show message if new mail arrives" ) );
+  chkNewMailsAlertWindow = new QCheckBox( i18nc( "@option:check show message box if new mail", "Show message box" ), gboxNewMails );
+  chkNewMailsAlertWindow->setToolTip( i18nc( "@info:tooltip", "Show message if new mail arrives" ) );
   layMainNewMailsTop->addWidget( chkNewMailsAlertWindow, 0, 0 );
 
-  chkNewMailsMainWindow = new QCheckBox( i18n( "Show main window" ), gboxNewMails );
-  chkNewMailsMainWindow->setToolTip( i18n( "Show main window if new mail arrives" ) );
+  chkNewMailsMainWindow = new QCheckBox( i18nc( "@option:check show main window if new mail", "Show main window" ), gboxNewMails );
+  chkNewMailsMainWindow->setToolTip( i18nc( "@info:tooltip", "Show main window if new mail arrives" ) );
   layMainNewMailsTop->addWidget( chkNewMailsMainWindow, 0, 1 );
 
-  chkNewMailsBeep = new QCheckBox( i18n( "&Beep" ), gboxNewMails );
-  chkNewMailsBeep->setToolTip( i18n( "Beeps the internal speaker if new mail" ) );
+  chkNewMailsBeep = new QCheckBox( i18nc( "@option:check beep if new mail", "Beep" ), gboxNewMails );
+  chkNewMailsBeep->setToolTip( i18nc( "@info:tooltip", "Beeps the internal speaker if new mail" ) );
   layMainNewMailsTop->addWidget( chkNewMailsBeep, 1, 0 );
 
-  chkNewMailsSound = new QCheckBox( i18n( "Sound:" ), gboxNewMails );
-  chkNewMailsSound->setToolTip( i18n( "Plays sound if new mail" ) );
+  chkNewMailsSound = new QCheckBox( i18nc( "@option:check play sound if new mail", "Sound:" ), gboxNewMails );
+  chkNewMailsSound->setToolTip( i18nc( "@info:tooltip", "Play sound if new mail" ) );
   layMainNewMailsDown->addWidget( chkNewMailsSound, 0, 0 );
 
-  btnNewMailsPlaySound = new KPushButton( KGuiItem( QString(), QString( "media-playback-start" ), i18n( "Play the selected sound file" ), i18n( "Play the selected sound file" ) ), gboxNewMails );
+  btnNewMailsPlaySound = new KPushButton( KGuiItem( QString(), QString( "media-playback-start" ), i18nc( "@info:tooltip", "Play the selected sound file" ), i18nc( "@info:whatsthis", """Play the selected sound file" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsPlaySound, 0, 1 );
 
   txtNewMailsSound = new KLineEdit( gboxNewMails );
   layMainNewMailsDown->addWidget( txtNewMailsSound, 0, 2 );
 
-  btnNewMailsChooseSound = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Press to select sound file" ), i18n( "Press to select sound file" ) ), gboxNewMails );
+  btnNewMailsChooseSound = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18nc( "@info:tooltip", "Press to select sound file" ), i18nc( "@info:whatsthis", "Press to select sound file" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsChooseSound, 0, 3 );
 
-  chkNewMailsCommand = new QCheckBox( i18n( "Command:" ), gboxNewMails );
-  chkNewMailsCommand->setToolTip( i18n( "Starts external program if new mail" ) );
+  chkNewMailsCommand = new QCheckBox( i18nc( "@option:check execute this command if new mail", "Command:" ), gboxNewMails );
+  chkNewMailsCommand->setToolTip( i18nc( "@info:tooltip", "Starts external program if new mail" ) );
   layMainNewMailsDown->addWidget( chkNewMailsCommand, 1, 0 );
 
-  btnNewMailsExecCommand = new KPushButton( KGuiItem( QString(), QString( "system-run" ), i18n( "Start the selected program" ), i18n( "Start the selected program" ) ), gboxNewMails );
+  btnNewMailsExecCommand = new KPushButton( KGuiItem( QString(), QString( "system-run" ), i18nc( "@info:tooltip", "Start the selected program" ), i18nc( "@info:whatsthis", "Start the selected program" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsExecCommand, 1, 1 );
 
   txtNewMailsCommand = new KLineEdit( gboxNewMails );
   layMainNewMailsDown->addWidget( txtNewMailsCommand, 1, 2 );
 
-  btnNewMailsChooseCommand = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18n( "Select external command" ), i18n( "Select external command" ) ), gboxNewMails );
+  btnNewMailsChooseCommand = new KPushButton( KGuiItem( QString(), QString( "folder" ), i18nc( "@info:tooltip", "Select external command" ), i18nc( "@info:whatsthis", "Select external command" ) ), gboxNewMails );
   layMainNewMailsDown->addWidget( btnNewMailsChooseCommand, 1, 3 );
 
   //items for the lower group box
-  chkNoNewMailsMinimize = new QCheckBox( i18n( "Minimi&ze" ), gboxNoNewMails );
-  chkNoNewMailsMinimize->setToolTip( i18n( "Minimize window if no new mail" ) );
+  chkNoNewMailsMinimize = new QCheckBox( i18nc( "@option:check minimize the main window if no new mails", "Minimi&ze" ), gboxNoNewMails );
+  chkNoNewMailsMinimize->setToolTip( i18nc( "@info:tooltip", "Minimize window if no new mail" ) );
   layMainNoNewMails->addWidget( chkNoNewMailsMinimize );
 
-  chkNoNewMailsTerminate = new QCheckBox( i18n( "Terminate" ), gboxNoNewMails );
-  chkNoNewMailsTerminate->setToolTip( i18n( "Terminate kshowmail if no new mail" ) );
+  chkNoNewMailsTerminate = new QCheckBox( i18nc( "@option:check exit the application if no new mails", "Terminate" ), gboxNoNewMails );
+  chkNoNewMailsTerminate->setToolTip( i18nc( "@info:tooltip", "Terminate kshowmail if no new mail" ) );
   layMainNoNewMails->addWidget( chkNoNewMailsTerminate );
 
   //connect file choose buttons
@@ -197,7 +197,7 @@ void ConfigActions::slotChooseSound( )
   QString soundPath = stdDirs.findResource( "data", "kshowmail/sounds/" );
 
   //get start path of the file dialog
-  if( txtNewMailsSound->text() != "" )
+  if( !txtNewMailsSound->text().isEmpty() )
   {
     startPath = txtNewMailsSound->text();
   }
@@ -211,7 +211,7 @@ void ConfigActions::slotChooseSound( )
   }
 
   //open file dialog
-  QString path = KFileDialog::getOpenFileName( startPath, "*.wav *.ogg|" + i18n( "Sound files (*.wav, *.ogg)" ) + "\n*.*|" + i18n( "All files (*)" ), this, i18n("Select Sound File") );
+  QString path = KFileDialog::getOpenFileName( startPath, "*.wav *.ogg|" + i18nc( "@item:inlistbox file types showed by file dialog", "Sound files (*.wav, *.ogg)" ) + "\n*.*|" + i18nc( "@item:inlistbox file types showed by file dialog", "All files (*)" ), this, i18nc( "@title:window", "Select Sound File") );
 
   //write selected path into the edit line
   if( path != QString::null )
@@ -221,7 +221,7 @@ void ConfigActions::slotChooseSound( )
 void ConfigActions::slotChooseCommand( )
 {
   //open file dialog
-  QString path = KFileDialog::getOpenFileName( KUrl(), "", this, i18n("Select external command") );
+  QString path = KFileDialog::getOpenFileName( KUrl(), "", this, i18nc( "@title:window", "Select external command") );
 
   //write selected path into the edit line
   if( path != QString::null )
@@ -249,7 +249,7 @@ void ConfigActions::slotExecuteCommand( )
   QString path = txtNewMailsCommand->text();
 
   //split it
-  QStringList parts = path.split( " ", QString::SkipEmptyParts );
+  QStringList parts = path.split( ' ', QString::SkipEmptyParts );
 
   if( path != QString::null )
   {

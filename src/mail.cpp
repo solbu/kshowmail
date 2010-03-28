@@ -451,7 +451,7 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
   QString boundary = getBoundary();
 
   //process body subject to it is a multipart messsage or not
-  if( boundary == "" )
+  if( boundary.isEmpty() )
   {
     //the message has just one body part
 
@@ -579,7 +579,7 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
   QString joinedBody = decodedBody.join( "\n" );
 
 
-  if( encoding != "" ) {
+  if( !encoding.isEmpty() ) {
 
     //get the codec
     KMime::Codec* codec = KMime::Codec::codecForName( encoding.toAscii() );
@@ -630,7 +630,7 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
   }
 
   //apply charset
-  if( charset != "" ) {
+  if( !charset.isEmpty() ) {
 
     //get codec
     QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
@@ -643,7 +643,7 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
   }
 
   //split the body to a string list
-  decodedBody = joinedBody.split( "\n" );
+  decodedBody = joinedBody.split( '\n' );
 
 
   return decodedBody;

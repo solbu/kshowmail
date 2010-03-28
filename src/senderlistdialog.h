@@ -61,7 +61,7 @@ class SenderListDialog : public KDialog
      * @param parent parent widget
      * @param list list which shall be opened
      */
-    SenderListDialog( QWidget *parent = 0, ListType list = Black );
+    explicit SenderListDialog( QWidget *parent = 0, ListType list = Black );
 
     /**
      * Destructor

@@ -56,7 +56,7 @@ Q_OBJECT
     /**
      * Generic constructor
      */
-    ConfigLog( QWidget *parent = 0, const QVariantList & args = QVariantList() );
+    explicit ConfigLog( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**
      * Destructor
