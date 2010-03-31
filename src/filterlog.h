@@ -182,7 +182,7 @@ class FilterLog{
      * adds an entry.
      * The target list will be coose on the basis of the given filter action.
      */
-    void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString::null );
+    void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString() );
 
 };
 

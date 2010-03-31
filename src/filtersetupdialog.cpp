@@ -112,7 +112,7 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   layAction->addWidget( txtMailbox );
 
   //create wizard button to configure mailbox
-  btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "tools-wizard" ), gboxAction );
+  btnMailboxWizard= new KPushButton( KGuiItem( QString(), "tools-wizard" ), gboxAction );
   layAction->addWidget( btnMailboxWizard );
   btnMailboxWizard->setToolTip( i18nc( "@info:tooltip", "Choose the mailbox" ) );
   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );

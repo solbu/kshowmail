@@ -66,7 +66,7 @@ ConfigSpamcheck::ConfigSpamcheck( QWidget * parent, const QVariantList & args )
   connect( txtMailbox, SIGNAL( textChanged( const QString & ) ), this, SLOT( slotChanged() ) );
 
   //create wizard button to configure mailbox
-  btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "tools-wizard" ), gboxAction );
+  btnMailboxWizard= new KPushButton( KGuiItem( QString(), "tools-wizard" ), gboxAction );
   layAction->addWidget( btnMailboxWizard );
   btnMailboxWizard->setToolTip( i18n( "Choose the mailbox" ) );
   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );

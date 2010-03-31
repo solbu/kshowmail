@@ -119,7 +119,7 @@ void Account::load()
   else if( passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
     setPassword( KWalletAccess::getPassword( getName() ) );
   else
-    setPassword( QString::null );
+    setPassword( QString() );
 
   active = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
   

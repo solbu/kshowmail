@@ -312,7 +312,7 @@ void FilterSetupItem::load( )
   switch( action )
   {
     case CONFIG_VALUE_FILTER_ACTION_MOVE : setMailBox( configFilter->readEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX, DEFAULT_FILTER_ACTION_MOVE_MAILBOX ) ); break;
-    default                              : setMailBox( QString::null );
+    default                              : setMailBox( QString() );
   }
 
   //get number of criterias

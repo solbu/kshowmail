@@ -74,7 +74,7 @@ void MailBoxWizard::slotOpenDirDialog( )
   QString path = KFileDialog::getExistingDirectory( KUrl::fromPathOrUrl( oldPath ), this, i18n( "Choose the mailbox directory") );
 
   //put new or old path in the edit line
-  if( path == QString::null )
+  if( path.isEmpty() )
     txtMailDir->setText( oldPath );
   else
     txtMailDir->setText( path );
@@ -164,7 +164,7 @@ QString MailBoxWizard::getPath( )
 {
   MailBoxWizardListItem* item = (MailBoxWizardListItem*)lstMailboxes->selectedItems().first();
 
-  QString path = QString::null;
+  QString path;
   if( item != NULL )
     path = item->getPath();
 

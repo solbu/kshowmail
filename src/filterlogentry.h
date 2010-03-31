@@ -57,7 +57,7 @@ class FilterLogEntry{
      * @param subject Subject of the mail
      * @param mailbox mailbox where the mails was moved
      */
-    FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString::null );
+    FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString() );
 
     /**
      * Copy Constructor

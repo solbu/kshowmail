@@ -201,20 +201,20 @@ void ConfigActions::slotChooseSound( )
   {
     startPath = txtNewMailsSound->text();
   }
-  else if( soundPath != QString::null )
+  else if( !soundPath.isEmpty() )
   {
     startPath = soundPath;
   }
   else
   {
-    startPath = QString::null;
+    startPath.clear();
   }
 
   //open file dialog
   QString path = KFileDialog::getOpenFileName( startPath, "*.wav *.ogg|" + i18nc( "@item:inlistbox file types showed by file dialog", "Sound files (*.wav, *.ogg)" ) + "\n*.*|" + i18nc( "@item:inlistbox file types showed by file dialog", "All files (*)" ), this, i18nc( "@title:window", "Select Sound File") );
 
   //write selected path into the edit line
-  if( path != QString::null )
+  if( !path.isEmpty() )
     txtNewMailsSound->setText( path );
 }
 
@@ -224,7 +224,7 @@ void ConfigActions::slotChooseCommand( )
   QString path = KFileDialog::getOpenFileName( KUrl(), "", this, i18nc( "@title:window", "Select external command") );
 
   //write selected path into the edit line
-  if( path != QString::null )
+  if( !path.isEmpty() )
     txtNewMailsCommand->setText( path );
 }
 
@@ -232,7 +232,7 @@ void ConfigActions::slotPlaySound( )
 {
   QString path = txtNewMailsSound->text();
 
-  if( path != QString::null )
+  if( !path.isEmpty() )
   {
     Phonon::MediaObject *mediaObject = new Phonon::MediaObject( this );
     mediaObject->setCurrentSource( Phonon::MediaSource( path ) );
@@ -251,7 +251,7 @@ void ConfigActions::slotExecuteCommand( )
   //split it
   QStringList parts = path.split( ' ', QString::SkipEmptyParts );
 
-  if( path != QString::null )
+  if( !path.isEmpty() )
   {
     KProcess::execute( parts );
   }
