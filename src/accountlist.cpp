@@ -158,7 +158,7 @@ void AccountList::refreshMailLists( FilterLog* log )
   //it is important to do this in a seperate iteration because this avoids
   //race conditions
   QList<Account*>::const_iterator iter;
-  for( iter = accounts.constBegin(); iter != accounts.constEnd(); iter++ )
+  for( iter = accounts.constBegin(); iter != accounts.constEnd(); ++iter )
   {
     Account* account = *iter;
     
@@ -167,7 +167,7 @@ void AccountList::refreshMailLists( FilterLog* log )
   }
 
   //iterate over all accounts and order them to refresh the mail lists
-  for( iter = accounts.constBegin(); iter != accounts.constEnd(); iter++ )
+  for( iter = accounts.constBegin(); iter != accounts.constEnd(); ++iter )
   {
     Account* account = *iter;
 

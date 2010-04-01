@@ -29,7 +29,7 @@ bool KWalletAccess::savePassword( const QString & account, const QString & passw
 
   //get wallet name for network data
   QString name = KWallet::Wallet::NetworkWallet();
-  if( name.isEmpty() || name == QString::null )
+  if( name.isEmpty() )
   {
     KMessageBox::error( NULL, i18n( "Could not get wallet name for network datas from KWallet." ) );
     return false;
@@ -93,15 +93,15 @@ QString KWalletAccess::getPassword( const QString & account )
   if( !KWallet::Wallet::isEnabled() )
   {
     KMessageBox::error( NULL, i18n( "KWallet is not available." ) );
-    return QString::null;
+    return QString();
   }
 
   //get wallet name for network data
   QString name = KWallet::Wallet::NetworkWallet();
-  if( name.isEmpty() || name == QString::null )
+  if( name.isEmpty() )
   {
     KMessageBox::error( NULL, i18n( "Could not get wallet name for network datas from KWallet." ) );
-    return QString::null;
+    return QString();
   }
 
   //open wallet
@@ -121,7 +121,7 @@ QString KWalletAccess::getPassword( const QString & account )
   if( wallet == NULL )
   {
     KMessageBox::error( NULL, i18n( "Could not open KWallet." ) );
-    return QString::null;
+    return QString();
   }
 
   //set folder
@@ -129,7 +129,7 @@ QString KWalletAccess::getPassword( const QString & account )
   if( !setFolderSuccess )
   {
     KMessageBox::error( NULL, i18n( "Could not open folder for KShowmail in KWallet." ) );
-    return QString::null;
+    return QString();
   }
 
   //read password
@@ -139,7 +139,7 @@ QString KWalletAccess::getPassword( const QString & account )
   if( readPasswordSuccess != 0 )
   {
     KMessageBox::error( NULL, i18nc( "@info error message", "Could not get password of account <resource>%1</resource> from KWallet.", account) );
-    return QString::null;
+    return QString();
   }
 
   return password;

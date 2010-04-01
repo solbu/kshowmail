@@ -228,8 +228,8 @@ void KShowmail::slotShowHeader() {
 
   //iterate over all mails
   QListIterator<Mail*> itMails( mailList );
-  int dialogReturnValue = QDialog::Accepted;
-  while( itMails.hasNext() && dialogReturnValue == QDialog::Accepted )
+  int dialogReturnValue = KDialog::Accepted;
+  while( itMails.hasNext() && dialogReturnValue == KDialog::Accepted )
   {
     Mail* mail = itMails.next();
 
@@ -734,7 +734,7 @@ void KShowmail::handleNewMails()
 
       QStringList parts = command.split( ' ', QString::SkipEmptyParts );
 
-      if( command != QString::null )
+      if( !command.isEmpty() )
       {
         KProcess::execute( parts );
       }

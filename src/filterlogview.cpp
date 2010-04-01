@@ -90,7 +90,7 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   //now we load the content for the list views
   LogEntryList listDeletedMails = log->getDeletedMails();
   LogEntryList::iterator it;
-  for( it = listDeletedMails.begin(); it != listDeletedMails.end(); it++ )
+  for( it = listDeletedMails.begin(); it != listDeletedMails.end(); ++it )
   {
     //create a new list view item
     FilterLogViewDeletedItem* item = new FilterLogViewDeletedItem( lstViewDeleted );
@@ -98,7 +98,7 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   }
 
   LogEntryList listMovedMails = log->getMovedMails();
-  for( it = listMovedMails.begin(); it != listMovedMails.end(); it++ )
+  for( it = listMovedMails.begin(); it != listMovedMails.end(); ++it )
   {
     //create a new list view item
     FilterLogViewMovedItem* item = new FilterLogViewMovedItem( lstViewMoved );

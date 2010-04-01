@@ -195,7 +195,7 @@ void AccountSetupItem::load( )
   else if( _passwordStorage == CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET )
     _password = KWalletAccess::getPassword( getAccountName() );
   else
-    _password = QString::null;
+    _password.clear();
 
   _active = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
   _transferSecurity = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, DEFAULT_ACCOUNT_SECTRANSFER );

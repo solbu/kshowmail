@@ -273,7 +273,7 @@ void AccountSetupDialog::slotButtonClicked( int button )
   switch( grpPasswordStorage->checkedId() )
   {
     case ID_BUTTON_PASSWORD_DONT_SAVE    : account->setPasswordStorageType( CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE );
-                                           account->setPassword( QString::null );
+                                           account->setPassword( QString() );
                                            break;
     case ID_BUTTON_PASSWORD_SAVE_FILE    : account->setPasswordStorageType( CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE );
                                            account->setPassword( pass );
@@ -282,7 +282,7 @@ void AccountSetupDialog::slotButtonClicked( int button )
                                            account->setPassword( pass );
                                            break;
     default                              : account->setPasswordStorageType( -1 );
-                                           account->setPassword( QString::null );
+                                           account->setPassword( QString() );
   }
 
   account->setActive( chkActive->isChecked() );

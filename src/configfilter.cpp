@@ -141,7 +141,7 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   connect( txtMailbox, SIGNAL( textChanged( const QString & ) ), this, SLOT( slotChanged() ) );
 
   //create wizard button to configure mailbox
-  btnMailboxWizard= new KPushButton( KGuiItem( QString::null, "tools-wizard" ), gboxOthers );
+  btnMailboxWizard= new KPushButton( KGuiItem( QString(), "tools-wizard" ), gboxOthers );
   btnMailboxWizard->setToolTip( i18nc( "@info:tooltip", "Choose the mailbox" ) );
   layOthers->addWidget( btnMailboxWizard );
   connect( btnMailboxWizard, SIGNAL( clicked() ), this, SLOT( slotOpenMailBoxWizard() ) );
