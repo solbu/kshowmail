@@ -31,7 +31,7 @@ bool KWalletAccess::savePassword( const QString & account, const QString & passw
   QString name = KWallet::Wallet::NetworkWallet();
   if( name.isEmpty() )
   {
-    KMessageBox::error( NULL, i18n( "Could not get wallet name for network datas from KWallet." ) );
+    KMessageBox::error( NULL, i18n( "Could not get wallet name for network data from KWallet." ) );
     return false;
   }
 
@@ -100,7 +100,7 @@ QString KWalletAccess::getPassword( const QString & account )
   QString name = KWallet::Wallet::NetworkWallet();
   if( name.isEmpty() )
   {
-    KMessageBox::error( NULL, i18n( "Could not get wallet name for network datas from KWallet." ) );
+    KMessageBox::error( NULL, i18n( "Could not get wallet name for network data from KWallet." ) );
     return QString();
   }
 

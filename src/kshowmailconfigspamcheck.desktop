@@ -6,7 +6,7 @@ Name[es]=Análisis de spam
 Comment=Checking for Spam
 Comment[de]=Prüfung auf Spam
 Comment[es]=Analizar el spam
-Icon=kfind
+Icon=mail-mark-junk
 ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library

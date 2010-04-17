@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //KShowmail headers
 #include "kshowmail.h"
+#include "constants.h"
 
 /**
  * @short Creates a unique instance of kshowmail

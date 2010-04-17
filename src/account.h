@@ -45,6 +45,7 @@ class Account;
 #include <KApplication>
 #include <KDE/KLocale>
 #include <KMessageBox>
+#include <kde_file.h>
 
 
 //KShowmail headers
@@ -87,7 +88,7 @@ namespace POP3Constants
   static const QString CAPA_REQUEST( "CAPA" );
 
   /**
-   * Authentification mechanism request
+   * Authentication mechanism request
    */
   static const QString AUTH_REQUEST( "AUTH" );
 
@@ -469,7 +470,7 @@ class Account : public QObject
   void initBeforeConnect();
 
     /**
-     * Shows the given error, sets the state to idle and emits a ready signal if neccessary
+     * Shows the given error, sets the state to idle and emits a ready signal if necessary
      * @param error the error message
      */
     void handleError( QString error );
@@ -608,7 +609,7 @@ class Account : public QObject
 
     /**
      * Get the header of the first mail in newMails.
-     * After a succesful download this
+     * After a successful download this
      * mail will be removed from the list by slotHeaderDownloaded() and this
      * method will be invoked again.
      * If the list is empty, it will call copyHeaders() to get the known
@@ -635,7 +636,7 @@ class Account : public QObject
 
     /**
      * Deletes the first mail of MailsToDelete.
-     * After a succesful deletion this mail will be removed from the list
+     * After a successful deletion this mail will be removed from the list
      * by slotMailDeleted() and this method will be invoked again.
      * If the list is empty, it will call commitDelete.
      * @see slotMailDeleted()
@@ -645,7 +646,7 @@ class Account : public QObject
 
     /**
      * Shows the body of the first mail in MailsToShow.
-     * After a succesful download and opening of the window this
+     * After a successful download and opening of the window this
      * mail will be removed from the list by slotBodyDownloaded() and this
      * method will be invoked again.
      * If the list is empty, it will call commitDownloading().
@@ -664,7 +665,7 @@ class Account : public QObject
 
     /**
      * Gets the body of the first mail in MailsToDownload.
-     * After a succesful download and writing into the mailbox this
+     * After a successful download and writing into the mailbox this
      * mail will be removed from the list by slotMailDownloadedforDownloadActions() and this
      * method will be invoked again.
      * If the list is empty, it will call applyFilters() to continue the filtering.
@@ -707,7 +708,7 @@ class Account : public QObject
      * Writes the given mail into the mailbox.
      * @param mail the Mail
      * @param box path to the mailbox
-     * @return TRUE - Writing was succesful
+     * @return TRUE - Writing was successful
      */
     bool writeToMailBox( const QStringList& mail, const QString& box );
 
@@ -778,7 +779,7 @@ class Account : public QObject
 
     /**
      * Connected with the signal readyRead of the socket by getAuthMech().
-     * Analyzes the response and sets the authentification mechanism flags
+     * Analyzes the response and sets the authentication mechanism flags
      * of this account.
      * @see getAuthMech
      */
@@ -862,7 +863,7 @@ class Account : public QObject
      * again to get and write the next mail.
      * If the list is empty after it has removed the first item, it will call
      * applyFilters() to continue the filtering.
-     * If an error is occured the current mail will not put into MailsToDelete. And it returns
+     * If an error is occurred the current mail will not put into MailsToDelete. And it returns
      * to applyFilters() immediately.
      * @see MailsToDownload
      * @see getNextMailForDownloadActions()

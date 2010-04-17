@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Types;
 
 /**
- * @brief An Object of this class contains the datas about a deleted or moved mail.
+ * @brief An Object of this class contains the data about a deleted or moved mail.
  * These objects are stored in the lists of the filter log.
  *
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
@@ -119,7 +119,7 @@ class FilterLogEntry{
     bool operator<=( const FilterLogEntry& ent ) const;
 
     /**
-     * Prints the datas of this entry to Stdout.
+     * Prints the data of this entry to Stdout.
      */
     void print();
 

@@ -29,7 +29,7 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
   //main layout
   QVBoxLayout* layMain = new QVBoxLayout( this );
 
-  //two boxes to seperate the action if new mail or if no new mail
+  //two boxes to separate the action if new mail or if no new mail
   QGroupBox* gboxNewMails = new QGroupBox( i18nc( "@title:group", "Action if new &mail" ), this );
   QGroupBox* gboxNoNewMails = new QGroupBox( i18nc( "@title:group", "Action if &no mail" ), this );
   layMain->addWidget( gboxNewMails );

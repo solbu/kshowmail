@@ -36,7 +36,18 @@ int UniqueApp::newInstance ()
     m_pApp = new KShowmail();
   }
 
-  m_pApp->show();
+  //get the config
+  KConfigGroup* configGeneral = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_GENERAL );
+
+  //hide or show the window in order of the config
+  if( configGeneral->readEntry( CONFIG_ENTRY_START_MINIMIZED, DEFAULT_START_MINIMIZED ) ) {
+
+      m_pApp->hide();
+
+  } else {
+
+    m_pApp->show();
+  }
   
   return 0;
 }

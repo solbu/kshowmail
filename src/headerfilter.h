@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * @brief This is the mail header filter.
- * Call check() with some header datas of the mail to get the configured action for this mail.
+ * Call check() with some header data of the mail to get the configured action for this mail.
  * If the settings was changed by the config GUI you have to call load().
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */

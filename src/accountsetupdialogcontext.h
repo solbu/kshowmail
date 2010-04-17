@@ -182,7 +182,7 @@ Q_OBJECT
 
 		/**
 		 * Enables or disables the unsecure login checkbox depending on the
-		 * choosed security.
+		 * chosen security.
 		 */
 		void enableLoginCheckbox();
 

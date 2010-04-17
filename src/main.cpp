@@ -58,7 +58,7 @@ int main(int argc, char **argv)
   {
     //yes, wa can start a unique kshowmail instance
 
-    //create a new unique appliction
+    //create a new unique application
     //UniqueApp is a inherited class of KUniqueApplication
     //see uniqueapp.h
     UniqueApp* app = new UniqueApp();

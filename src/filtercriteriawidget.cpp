@@ -237,7 +237,7 @@ void FilterCriteriaWidget::slotOpenRegExpEditor( )
     KRegExpEditorInterface* editor = qobject_cast< KRegExpEditorInterface* >( editorDialog );
     if( editor == NULL )
     {
-      KMessageBox::error( this, i18n( "The Regular Expression Editor could not be initilized." ) );
+      KMessageBox::error( this, i18n( "The Regular Expression Editor could not be initialized." ) );
       return;
     }
 

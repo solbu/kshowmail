@@ -155,7 +155,7 @@ void AccountList::refreshMailLists( FilterLog* log )
 
   //inserts an item for every account which will get an order to refresh
   //its mail list. The key is the account name and the data is TRUE.
-  //it is important to do this in a seperate iteration because this avoids
+  //it is important to do this in a separate iteration because this avoids
   //race conditions
   QList<Account*>::const_iterator iter;
   for( iter = accounts.constBegin(); iter != accounts.constEnd(); ++iter )
@@ -267,7 +267,7 @@ void AccountList::deleteMails()
 
   //inserts an item for every account which will get an order to delete
   //its selected mails. The key is the account name and the data is TRUE.
-  //it is important to do this in a seperate iteration because this avoids
+  //it is important to do this in a separate iteration because this avoids
   //race conditions
   while( itAcc.hasNext() )
   {
@@ -479,7 +479,7 @@ void AccountList::showMails()
 
   //inserts an item for every account which will get an order to show
   //its selected mails. The key is the account name and the data is TRUE.
-  //it is important to do this in a seperate iteration because this avoids
+  //it is important to do this in a separate iteration because this avoids
   //race conditions
   while( itAcc.hasNext() )
   {

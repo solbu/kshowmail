@@ -454,7 +454,7 @@ void Account::slotSocketError( KTcpSocket::Error errorCode)
 //     case QAbstractSocket::SocketTimeoutError        : message = i18n( "Socket timeout error" ); break;
 //     case QAbstractSocket::DatagramTooLargeError     : message = i18n( "The datagram was larger than the operation system's limit" ); break;
 //     case QAbstractSocket::NetworkError              : message = i18n( "Network error" ); break;
-//     case QAbstractSocket::AddressInUseError         : message = i18n( "The adress is already in use." ); break;
+//     case QAbstractSocket::AddressInUseError         : message = i18n( "The address is already in use." ); break;
 //     case QAbstractSocket::SocketAddressNotAvailableError : message = i18n( "The address does not belong to the host" ); break;
 //     case QAbstractSocket::UnsupportedSocketOperationError : message = i18n( "Unsupported Socket Operation Error" ); break;
 //     case QAbstractSocket::ProxyAuthenticationRequiredError : message = i18n( "The socket is using a proxy, and the proxy requires authentication." ); break;
@@ -722,7 +722,7 @@ void Account::sendCommand( const QString& command )
   //send it
   qint64 writtenBytes = socket->write( data );
 
-  //if the return value ist -1 a error is occured
+  //if the return value ist -1 a error is occurred
   if( writtenBytes == -1 )
   {
     handleError( i18nc( "@info error message: could not send a command to the server", "Could not send the command <icode>%1</icode> to <resource>%2</resource>", command, getName() ) );
@@ -733,7 +733,7 @@ void Account::sendCommand( const QString& command )
 
 void Account::getCapabilities()
 {
-  //when the server answer is comming in, the slot slotReceiveCapabilities will be invoked
+  //when the server answer is coming in, the slot slotReceiveCapabilities will be invoked
   disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotCapabilitiesResponse() ) );
 
@@ -776,7 +776,7 @@ void Account::slotCapabilitiesResponse()
 		
   }
 
-  //get authentification mechanism
+  //get authentication mechanism
   getAuthMech();
 
 }
@@ -877,7 +877,7 @@ void Account::slotAuthMechResponse()
   //have we got capabilities?
   bool haveAuth = isPositiveServerMessage( text );
 
-  //Set some authentification flags
+  //Set some authentication flags
   if( haveAuth )
   {
     //remove status indicator and termination char
@@ -1776,7 +1776,7 @@ void Account::slotBodyDownloaded()
   removeStatusIndicator( &answer );
   removeEndOfResponseMarker( &answer );
 
-  //succesful download
+  //successful download
   //show mail
 
   //is HTML allowed?
@@ -1797,6 +1797,9 @@ void Account::slotBodyDownloaded()
 	//emit signal to notify the opening of a window
   emit sigMessageWindowOpened();
 
+  //stop timeout timer
+  timeoutTimer->stop();
+
   //create and open the window
   QPointer<ShowMailDialog> dlg = new ShowMailDialog( kapp->activeWindow(), getName(), allowHTML, tsender, tdate, tsize, tsubject, body );
   int ret = dlg->exec();
@@ -1805,6 +1808,10 @@ void Account::slotBodyDownloaded()
 
 	//emit signal to notify the closing of a window
   emit sigMessageWindowClosed();
+
+  //restart timeout timer
+  timeoutTimer->start( timeOutTime * 1000 );
+
 
   //cancel the download if desired
   if( ret == KDialog::Rejected )
@@ -1911,7 +1918,7 @@ void Account::slotMailDownloadedForAction()
   removeStatusIndicator( &mail );
   removeEndOfResponseMarker( &mail );
 
-  //succesful download
+  //successful download
 
   //do action
   MailToDownloadMap_Type::Iterator firstMail = mailsToDownload.begin();
@@ -1923,7 +1930,7 @@ void Account::slotMailDownloadedForAction()
   bool resultMove = false;    //TRUE - mail is written into the mailbox
   bool resultSpam = false;  //TRUE - mail is Spam
   bool deleteIt = false;    //TRUE - mail shall be deleted
-  bool resultAction = false;  //True - the action was succesful performed
+  bool resultAction = false;  //True - the action was successful performed
 
   switch( action )
   {
@@ -2166,7 +2173,7 @@ bool Account::writeToMailBox( const QStringList& mail, const QString& box )
   mailDir.cd( "new" );
   QString absNewFile = mailDir.filePath( uniqueName );
 
-  if( rename( absFile.toAscii(), absNewFile.toAscii() ) == -1 )
+  if( KDE::rename( absFile.toAscii(), absNewFile.toAscii() ) == -1 )
   {
     KMessageBox::error( NULL, i18nc( "@info error message: error during writing a mail into a mailbox", "Could not move a mail from <filename>%1</filename> to <filename>%2</filename>.", absFile, absNewFile ) );
     return false;

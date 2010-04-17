@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <KDebug>
 
 /**
- * @brief To edit some datas in the account view.
+ * @brief To edit some data in the account view.
  */
 class AccountViewDelegate : public QItemDelegate
 {

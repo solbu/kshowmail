@@ -25,7 +25,7 @@ ShowMailDialog::ShowMailDialog( QWidget * parent, QString caption, bool allowHTM
   setMainWidget( mainWidget );
   setCaption( caption );
 
-  //this layout seperates meta data area (date, subject, and so on) from the mail body area
+  //this layout separates meta data area (date, subject, and so on) from the mail body area
   QVBoxLayout* layMain = new QVBoxLayout();
   mainWidget->setLayout( layMain );
 

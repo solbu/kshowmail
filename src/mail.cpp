@@ -214,7 +214,7 @@ QStringList Mail::getHeader() const
 
 QString Mail::decodeRfc2047( const QString& text ) const
 {
-  //header informations can be encoded with RFC2047B or RFC2047Q
+  //header information can be encoded with RFC2047B or RFC2047Q
   //to get the right codec we have to look into the encoding string
   KMime::Codec* codec;
 
@@ -665,13 +665,13 @@ QString Mail::getBoundary( ) const
     if( boundaries.isEmpty() ) return boundary;
     QString boundLine = boundaries.first();
 
-    //get the position of the first occurance of "boundary="
+    //get the position of the first occurrence of "boundary="
     int posBoundary = boundLine.indexOf( TAG, 0, Qt::CaseInsensitive );
 
     //continue, if a boundary attribute was found
     if( posBoundary >= 0 )
     {
-      //calculate positon of the first quote
+      //calculate position of the first quote
       int posFirstQuote = posBoundary + TAG.length();
 
       //get the position of closing quote
@@ -700,7 +700,7 @@ QString Mail::getCharset( const QStringList& text ) const {
   if( charsets.isEmpty() ) return charset;
   QString charsetline = charsets.first();
 
-  //get the position of the first occurance of "charset="
+  //get the position of the first occurrence of "charset="
   int posCharset = charsetline.indexOf( TAG, 0, Qt::CaseInsensitive );
 
   //continue, if a charset attribute was found

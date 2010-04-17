@@ -60,7 +60,7 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   btnClearDeleted->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layMain->addWidget( btnClearDeleted );
 
-  //create a seperator
+  //create a separator
   layMain->addWidget( new KSeparator( pgMain ) );
 
   //view of deleted views

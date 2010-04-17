@@ -123,7 +123,7 @@ FilterAction_Type FilterItem::check( QString from, QString to, uint size, QStrin
   //return action if filter matches
   if( match )
   {
-    //set mailbox name if neccessary
+    //set mailbox name if necessary
     if( action == FActMove )
     {
       mailboxName.remove( 0, mailboxName.length() );

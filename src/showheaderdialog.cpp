@@ -25,11 +25,11 @@ ShowHeaderDialog::ShowHeaderDialog( QWidget * parent, QString & caption, QString
   setMainWidget( mainWidget );
   setCaption( caption );
 
-  //this layout seperates meta data area (subject) from the mail header area
+  //this layout separates meta data area (subject) from the mail header area
   QVBoxLayout* layMain = new QVBoxLayout( mainWidget );
   mainWidget->setLayout( layMain );
 
-  //this layout arranges the labels and lines for the meta datas
+  //this layout arranges the labels and lines for the meta data
   QHBoxLayout* layMetaDatas = new QHBoxLayout();
   layMain->addLayout( layMetaDatas );
 

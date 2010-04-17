@@ -104,12 +104,6 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //run initial refresh
   startAutomaticRefresh( true );
 
-  //minimize the window if desired
-  if( configGeneral->readEntry( CONFIG_ENTRY_START_MINIMIZED, DEFAULT_START_MINIMIZED ) ) {
-
-    showMinimized();
-  }
-
 }
 
 KShowmail::~KShowmail()
@@ -459,10 +453,10 @@ bool KShowmail::queryClose() {
     return true;
   }
 
-  //just minimize?
+  //just hide?
   if( configGeneral->readEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, DEFAULT_CLOSE_TO_TRAY ) ) {
 
-    showMinimized();
+    hide();
     return false;
   }
   
@@ -749,7 +743,8 @@ void KShowmail::handleNewMails()
 
 void KShowmail::slotShowMainWindow()
 {
-  showNormal();
+  show();
+  setWindowState( windowState() & ~Qt::WindowMinimized );
 }
 
 void KShowmail::handleNoNewMails()
@@ -760,7 +755,7 @@ void KShowmail::handleNoNewMails()
 
   if( conf->readEntry( CONFIG_ENTRY_NO_NEW_MAIL_MINIMIZE, DEFAULT_ACTION_NO_NEW_MAIL_MINIMIZE ) ) {
 
-    showMinimized();
+    hide();
   }
 
   if( conf->readEntry( CONFIG_ENTRY_NO_NEW_MAIL_TERMINATE, DEFAULT_ACTION_NO_NEW_MAIL_TERMINATE ) ) {
