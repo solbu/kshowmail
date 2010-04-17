@@ -2093,17 +2093,17 @@ void Account::saveOptions( QDomDocument& doc, QDomElement& parent )
 
 void Account::showMails()
 {
-  //check whether we have a password for this account
-  //if not, ask for it
-  //return when no password is available
-  if( !assertPassword() )
+  //return if no mails in the list
+  if( mailsToShow.empty() )
   {
     emit sigShowBodiesReady( name );
     return;
   }
 
-  //return if no mails in the list
-  if( mailsToShow.empty() )
+  //check whether we have a password for this account
+  //if not, ask for it
+  //return when no password is available
+  if( !assertPassword() )
   {
     emit sigShowBodiesReady( name );
     return;
