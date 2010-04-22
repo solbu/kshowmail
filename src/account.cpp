@@ -541,13 +541,19 @@ QStringList Account::readfromSocket( bool singleLine )
       {
         return QStringList();
       }
-      
+
 
     }
 
     //read
-    readed.append( socket->readAll() );
-    kdDebug() << getName() << ": " << readed << endl;
+    QByteArray data = socket->readAll();
+
+    //append the read data
+    if( data.size() > 0 ) {
+      readed.append( data );
+      kdDebug() << getName() << ": " << readed << endl;
+
+    }
 
     //check for end of response
     //-------------------------
