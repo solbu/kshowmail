@@ -514,7 +514,6 @@ void Account::handleError( QString error )
 
 QStringList Account::readfromSocket( bool singleLine )
 {
-
   QString readed;
   bool responseEndFound = false;  //end of a multi-line response found
 
