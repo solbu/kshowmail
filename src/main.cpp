@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kshowmail.h"
 #include "uniqueapp.h"
 
-static const char description[] = I18N_NOOP("A powerful pop3 mail checker");
+static const char description[] = I18N_NOOP("A pop3 mail checker");
 
 static const char version[] = "4.0";
 

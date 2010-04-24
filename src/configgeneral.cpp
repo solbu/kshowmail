@@ -81,8 +81,8 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   spbInitial->setMinimum( 0 );
   spbInitial->setMaximum( 99999 );
   spbInitial->setSuffix( i18n( " Seconds") );
-  spbInitial->setToolTip( i18n( "Seconds until first automatic logon (0 = no automatic)" ) );
-  lblTimerInitial->setToolTip( i18n( "Seconds until first automatic logon (0 = it refreshes immediately)" ) );
+  spbInitial->setToolTip( i18n( "Seconds until first automatic refresh (0 = it refreshes immediately)" ) );
+  lblTimerInitial->setToolTip( i18n( "Seconds until first automatic refresh (0 = it refreshes immediately)" ) );
   layAutoRefresh->addWidget( lblTimerInitial, 1, 0 );
   layAutoRefresh->addWidget( spbInitial, 1, 1 );
 
@@ -91,14 +91,14 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   spbInterval->setMinimum( 1 );
   spbInterval->setMaximum( 99999 );
   spbInterval->setSuffix( i18n( " Minutes") );
-  spbInterval->setToolTip( i18n( "Minutes between automatic logon (0 = no automatic)" ) );
-  lblTimerInterval->setToolTip( i18n( "Minutes between automatic logon (0 = no automatic)" ) );
+  spbInterval->setToolTip( i18n( "Minutes between automatic refresh (0 = no automatic)" ) );
+  lblTimerInterval->setToolTip( i18n( "Minutes between automatic refresh (0 = no automatic)" ) );
   layAutoRefresh->addWidget( lblTimerInterval, 2, 0 );
   layAutoRefresh->addWidget( spbInterval, 2, 1 );
 
 
-  chkShowConnectionErrors = new QCheckBox( i18n( "Show Connection Errors during refresh" ), gBoxServerConnect );
-  chkShowConnectionErrors->setToolTip( i18n( "If a connection error occurs during refresh (e.g. unknown server), an error message will be shown. During other actions, this error always will be shown" ) );
+  chkShowConnectionErrors = new QCheckBox( i18n( "Show Connection Errors" ), gBoxServerConnect );
+  chkShowConnectionErrors->setToolTip( i18n( "If a connection error occurs (e.g. unknown server), an error message will be shown." ) );
   layServerConnect->addWidget( chkShowConnectionErrors, 0, 0 );
 
 

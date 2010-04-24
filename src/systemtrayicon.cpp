@@ -24,7 +24,7 @@ SystemTrayIcon::SystemTrayIcon( QWidget* parent, QIcon trayIcon, KAction* action
   _icon = trayIcon;
   
   //set tool tip
-  setToolTip( i18n("KShowmail: a powerful pop3 email checker") );
+  setToolTip( i18n("KShowmail: a POP3 email checker") );
 
   //create flashing timer
   flashingTimer = new QTimer( this );
