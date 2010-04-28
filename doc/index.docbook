@@ -89,6 +89,9 @@ thanks ;-).
     <!-- Abstract about this handbook -->
 
     <abstract>
+    <para>
+      <emphasis>Unfortunately an entire handbook isn't available yet. If you want to contribute please contact me: ulrich.weigelt@gmx.de</emphasis>
+     </para>
       <para>
         &kmyapplication; is a KDE tool to watch mails on a POP3 server.
         Headers and complete mails can be viewed without loading them to the
@@ -145,6 +148,9 @@ thanks ;-).
         <listitem><para>Multiple accounts are supported.</para></listitem>
       </itemizedlist>      
     </para>
+    <para>
+      <emphasis>Unfortunately an entire handbook isn't 'available yet. If you want to contribute please contact me: ulrich.weigelt@gmx.de</emphasis>
+     </para>
 
 
   </chapter>
