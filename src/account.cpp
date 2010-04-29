@@ -1305,7 +1305,6 @@ void Account::removeEndOfResponseMarker( QStringList * response )
 void Account::swapMailLists( )
 {
   //delete old mail list
-  
   delete mails;
 
   //assign the new list
@@ -2410,12 +2409,12 @@ int Account::compare( Account* other, AccountSort_Type property ) {
 	}
 }
 
-QList< Mail* > Account::getAllMails() const
+QList<Mail> Account::getAllMails() const
 {
 	if( isActive() )
 		return mails->getAllMails();
 	else
-		return QList<Mail*>();
+		return QList<Mail>();
 }
 
 void Account::slotTimeout()

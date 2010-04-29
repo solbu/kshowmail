@@ -33,6 +33,7 @@ class AccountList;
 //KShowmail headers
 #include "accountlist.h"
 #include "mail.h"
+#include "account.h"
 
 //constants
 #define NUMBER_MAILVIEW_COLUMNS 9
@@ -136,7 +137,7 @@ class MailViewModel : public QAbstractItemModel
 		 * Returns the mail at the given index
 		 * @param index index
 		 */
-		Mail* getMail( const QModelIndex index ) const;
+		Mail getMail( const QModelIndex index ) const;
 		
 		/**
      * Returns the subjects of the selected mails.
@@ -182,7 +183,7 @@ class MailViewModel : public QAbstractItemModel
     /**
      * In this we store the pointer to the mails
      */
-    QList<Mail*> viewMailList;
+    QList<Mail> viewMailList;
 
     /**
      * Icon for a new mail

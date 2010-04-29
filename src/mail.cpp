@@ -22,12 +22,21 @@ Mail::Mail( long number, const QString& unid, bool isNew, QPointer<Account> acco
 {
 	this->unid = unid;
   this->acc = account;
+  accountName = acc->getName();
   setNumber( number );
   setNew( isNew );
 	
 	init();
 
 }
+
+Mail::Mail( const Mail& mail ): QObject ( NULL ),
+  unid( mail.unid ), subject( mail.subject ), header( mail.header ), size( mail.size ), number( mail.number ), _new( mail._new ),
+  from( mail.from ), to( mail.to ), sendDate( mail.sendDate ), contentType( mail.contentType ), markedByFilter( mail.markedByFilter ),
+  acc( mail.acc ), accountName( mail.accountName )
+{
+}
+
 
 Mail::~Mail()
 {
@@ -760,7 +769,7 @@ void Mail::writeToDeleteLog( FilterLog * log, QString account )
   log->addDeletedMail( getDateTime(), getFrom(), account, getSubject() );
 }
 
-int Mail::compare(Mail* other, MailSort_Type property)
+int Mail::compare( const Mail& other, MailSort_Type property)
 {
 
   switch( property ) {
@@ -768,7 +777,7 @@ int Mail::compare(Mail* other, MailSort_Type property)
     //compare by state
     case MailSortState : {
 
-      if( isNew() == other->isNew() ) return 0;
+      if( isNew() == other.isNew() ) return 0;
       else if( isNew() ) return 1;
       else return 0;
 
@@ -777,60 +786,97 @@ int Mail::compare(Mail* other, MailSort_Type property)
     //compary by number
     case MailSortNumber : {
 
-      if( getNumber() == other->getNumber() ) return 0;
-      else if( getNumber() > other->getNumber() ) return 1;
+      if( getNumber() == other.getNumber() ) return 0;
+      else if( getNumber() > other.getNumber() ) return 1;
       else return -1;
     }
 
     //comapre by account
     case MailSortAccount : {
 
-      return QString::localeAwareCompare( getAccount()->getName(), other->getAccount()->getName() );
+      return QString::localeAwareCompare( getAccountName(), other.getAccountName() );
     }
 
     //compare by sender
     case MailSortFrom : {
 
-      return QString::localeAwareCompare( getFrom(), other->getFrom() );
+      return QString::localeAwareCompare( getFrom(), other.getFrom() );
     }
 
     //compary by To
     case MailSortTo : {
 
-      return QString::localeAwareCompare( getTo(), other->getTo() );
+      return QString::localeAwareCompare( getTo(), other.getTo() );
     }
 
     //compare by subject
     case MailSortSubject : {
 
-      return QString::localeAwareCompare( getSubject(), other->getSubject() );
+      return QString::localeAwareCompare( getSubject(), other.getSubject() );
     }
 
     //compare by date
     case MailSortDate : {
 
-      if( getDateTime() == other->getDateTime() ) return 0;
-      else if( getDateTime() > other->getDateTime() ) return 1;
+      if( getDateTime() == other.getDateTime() ) return 0;
+      else if( getDateTime() > other.getDateTime() ) return 1;
       else return -1;
     }
 
     //compare by size
     case MailSortSize : {
 
-      if( getSize() == other->getSize() ) return 0;
-      else if( getSize() > other->getSize() ) return 1;
+      if( getSize() == other.getSize() ) return 0;
+      else if( getSize() > other.getSize() ) return 1;
       else return -1;
     }
 
     //compare by content
     case MailSortContent : {
 
-      return QString::localeAwareCompare( getContent(), other->getContent() );
+      return QString::localeAwareCompare( getContent(), other.getContent() );
     }
 
     default : {
-      return QString::localeAwareCompare( getAccount()->getName(), other->getAccount()->getName() );
+      return QString::localeAwareCompare( getAccountName(), other.getAccountName() );
     }
 
   }
+}
+
+QString Mail::getAccountName() const
+{
+  return accountName;
+}
+
+Mail& Mail::operator=( const Mail& other )
+{
+  unid = other.unid;
+
+  subject = other.subject;
+
+  header = other.header;
+
+  size = other.size;
+
+  number = other.number;
+
+  _new = other._new;
+
+  from = other.from;
+
+  to = other.to;
+
+  sendDate = other.sendDate;
+
+  contentType = other.contentType;
+
+  markedByFilter = other.markedByFilter;
+
+  acc = other.acc;
+
+  accountName = other.accountName;
+
+  return ( *this );
+
 }

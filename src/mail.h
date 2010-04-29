@@ -65,11 +65,23 @@ class Mail : public QObject
 		 * @param parent parent object
 		 */
 		Mail( long number, const QString& unid, bool isNew, QPointer<Account> account, QObject* parent );
+
+    /**
+     * Copy Constructor
+     * @param mail source mail
+     */
+    Mail( const Mail& mail );
 		
 		/**
 		 * Destructor
 		 */
 		~Mail();
+
+    /**
+     * Assign operator
+     * @param other other mail
+     */
+    Mail& operator=( const Mail& other );
 		
 		/**
 		 * Sets the size
@@ -292,7 +304,14 @@ class Mail : public QObject
      * @param other other mail
      * @param property the mail property which will be compared
      */
-    int compare( Mail* other, MailSort_Type property );
+    int compare( const Mail& other, MailSort_Type property );
+
+    /**
+     * Returns the name of the parent account.
+     * @return name of the parent account
+     * @see accountName
+     */
+    QString getAccountName() const;
 
 
 	private:
@@ -357,6 +376,11 @@ class Mail : public QObject
      * Pointer to the parent account
      */
     QPointer<Account> acc;
+
+    /**
+     * Name of the parent account
+     */
+    QString accountName;
 
 
 	protected:

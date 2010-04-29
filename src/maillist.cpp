@@ -545,10 +545,17 @@ void MailList::readStoredMails( QDomElement& parent )
   }
 }
 
-QList<Mail*> MailList::getAllMails() const
+QList<Mail> MailList::getAllMails() const
 {
-	QList<Mail*> list;
-	list.append( mails );
+	QList<Mail> list;
+  QListIterator<Mail*> it( mails );
+
+  while( it.hasNext() )
+  {
+    Mail* mail = it.next();
+
+    list.append( *mail );
+  }
 	return list;
 }
 

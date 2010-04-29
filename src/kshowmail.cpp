@@ -228,7 +228,7 @@ void KShowmail::slotShowHeader() {
     Mail* mail = itMails.next();
 
     //create and open the window
-    QString account( mail->getAccount()->getName() );
+    QString account( mail->getAccountName() );
     QString subject( mail->getSubject() );
     QPointer<ShowHeaderDialog> dlg = new ShowHeaderDialog( this->centralWidget(), account , subject, mail->getHeader() );
     dialogReturnValue = dlg->exec();

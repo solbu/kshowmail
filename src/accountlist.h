@@ -203,7 +203,7 @@ class AccountList : public QObject
 		 * Returns a list which contains the pointers to all mails.
 		 * @return all mails
 		 */
-		QList<Mail*> getAllMails() const;
+		QList<Mail> getAllMails() const;
 
     /**
      * Cancels all running tasks.

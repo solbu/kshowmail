@@ -629,9 +629,9 @@ QList< Account* > AccountList::getAllAccounts() const
   return list;
 }
 
-QList< Mail* > AccountList::getAllMails() const
+QList<Mail> AccountList::getAllMails() const
 {
-	QList<Mail*> listMails;
+	QList<Mail> listMails;
 	
 	QListIterator<Account*> itAcc( accounts );
 	while( itAcc.hasNext() ) {

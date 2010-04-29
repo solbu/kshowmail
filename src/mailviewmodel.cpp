@@ -65,7 +65,7 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
 	if( index.row() > viewMailList.size() - 1 ) return QVariant();
 
   //get the mail
-  Mail* mail = viewMailList.at( index.row() );
+  Mail mail = viewMailList.at( index.row() );
   
   //the kind of data we return is dependent on the given role
   switch( role )
@@ -75,14 +75,14 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
       switch( index.column() )
       {
         case  0 : return QVariant(); break;
-        case  1 : return QVariant( (int)mail->getNumber() ); break;
-        case  2 : return QVariant( mail->getAccount()->getName() ); break;
-        case  3 : return QVariant( mail->getFrom() ); break;
-        case  4 : return QVariant( mail->getTo() ); break;
-        case  5 : return QVariant( mail->getSubject() ); break;
-        case  6 : return QVariant( mail->getDateTime().toString( KDateTime::LocalDate ) ); break;
-        case  7 : return QVariant( mail->getSizeSuffix() ); break;
-        case  8 : return QVariant( mail->getContent() ); break;
+        case  1 : return QVariant( (int)mail.getNumber() ); break;
+        case  2 : return QVariant( mail.getAccountName() ); break;
+        case  3 : return QVariant( mail.getFrom() ); break;
+        case  4 : return QVariant( mail.getTo() ); break;
+        case  5 : return QVariant( mail.getSubject() ); break;
+        case  6 : return QVariant( mail.getDateTime().toString( KDateTime::LocalDate ) ); break;
+        case  7 : return QVariant( mail.getSizeSuffix() ); break;
+        case  8 : return QVariant( mail.getContent() ); break;
         default : return QVariant();
       }
       break;
@@ -92,7 +92,7 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
       switch( index.column() )
       {
         case 0  :
-          if( mail->isNew() )
+          if( mail.isNew() )
           {
             return QVariant( picNewMail );
           }
@@ -179,13 +179,13 @@ void MailViewModel::sort( int column, Qt::SortOrder order ) {
   }
 
   //sort the view list
-  QList<Mail*> sortedList;
+  QList<Mail> sortedList;
 
-  QListIterator<Mail*> itUnsort( viewMailList );
+  QListIterator<Mail> itUnsort( viewMailList );
   while( itUnsort.hasNext() ) {
 
     //get next account
-    Mail* mailUnsorted = itUnsort.next();
+    Mail mailUnsorted = itUnsort.next();
 
     //find a place for it in the temporary list
     if( sortedList.size() == 0 ) {
@@ -200,13 +200,13 @@ void MailViewModel::sort( int column, Qt::SortOrder order ) {
       while( indexSort < sizeSortedList && !placed ) {
 
         //get the mail in the sorted List
-        Mail* mailSorted = sortedList.at( indexSort );
+        Mail mailSorted = sortedList.at( indexSort );
 
         //is the mail from the unsorted list lesser (greater) than the mail from the sorted list insert the first one at this
         //position into the sorted list and break the searching for place
         if( order == Qt::AscendingOrder ) {
 
-          if( mailUnsorted->compare( mailSorted, prop ) <= 0 ) {
+          if( mailUnsorted.compare( mailSorted, prop ) <= 0 ) {
 
             sortedList.insert( indexSort, mailUnsorted );
             placed = true;
@@ -214,7 +214,7 @@ void MailViewModel::sort( int column, Qt::SortOrder order ) {
 
         } else {
 
-          if( mailUnsorted->compare( mailSorted, prop ) > 0 ) {
+          if( mailUnsorted.compare( mailSorted, prop ) > 0 ) {
 
             sortedList.insert( indexSort, mailUnsorted );
             placed = true;
@@ -242,7 +242,7 @@ void MailViewModel::sort()
 	sort( lastSortColumn, lastSortOrder );
 }
 
-Mail* MailViewModel::getMail(const QModelIndex index) const
+Mail MailViewModel::getMail(const QModelIndex index) const
 {
 	return viewMailList.at( index.row() );
 }
@@ -264,10 +264,10 @@ QStringList MailViewModel::getSelectedSubjects( QItemSelectionModel* selectModel
     QModelIndex index = it.next();
 
     //get mail
-    Mail* mail = getMail( index );
+    Mail mail = getMail( index );
 
     //store subject
-    subjects.append( mail->getSubject() );
+    subjects.append( mail.getSubject() );
   }
 
   return subjects;
@@ -290,10 +290,10 @@ QStringList MailViewModel::getSelectedSenders( QItemSelectionModel* selectModel 
     QModelIndex index = it.next();
 
     //get mail
-    Mail* mail = getMail( index );
+    Mail mail = getMail( index );
 
     //store subject
-    senders.append( mail->getFrom() );
+    senders.append( mail.getFrom() );
   }
 
   return senders;
@@ -314,10 +314,10 @@ QList<Mail*> MailViewModel::getSelectedMails( QItemSelectionModel* mailSelectMod
     QModelIndex index = it.next();
 
     //get mail
-    Mail* mail = getMail( index );
+    Mail mail = getMail( index );
 
     //store mail pointer
-    list.append( mail );
+    list.append( &mail );
   }
 
   return list;
@@ -333,10 +333,10 @@ QModelIndexList MailViewModel::getMarkedMails() const
     QModelIndex ix = index( i, 0 );
     
     //get mail
-    Mail* mail = getMail( ix );
+    Mail mail = getMail( ix );
 
     //add the index to the list if this mail is marked
-    if( mail->isMarkedByFilter() ) {
+    if( mail.isMarkedByFilter() ) {
 
       indexList.append( ix );
     }
