@@ -46,7 +46,7 @@ Account* AccountList::addAccount( const QString& name )
 void AccountList::print() const
 {
 	//print the accounts
-	QListIterator<Account*> iter( accounts );
+	QListIterator<QPointer<Account> > iter( accounts );
 	while( iter.hasNext() )
 	{
 		Account* acc = iter.next();
@@ -77,11 +77,11 @@ void AccountList::loadSetup()
 
   //remove deleted accounts from the account list
   //accounts are deleted, if they are in AccountList yet, but not in the list of the config file (accounts)
-  QList<Account*>::iterator iter;
+  QList<QPointer<Account> >::iterator iter;
   iter = accounts.begin();
   while( iter != accounts.end() )
   {
-    Account* accDel = *iter;
+    QPointer<Account> accDel = *iter;
     QString accName = accDel->getName();
 
     if( !accountsConfig.contains( accName ) )
@@ -131,7 +131,7 @@ void AccountList::loadSetup()
 
 bool AccountList::hasAccount( QString accountName ) const
 {
-  QListIterator<Account*> iter( accounts );
+  QListIterator<QPointer< Account> > iter( accounts );
   while( iter.hasNext() )
   {
     Account* acc = iter.next();
@@ -157,10 +157,10 @@ void AccountList::refreshMailLists( FilterLog* log )
   //its mail list. The key is the account name and the data is TRUE.
   //it is important to do this in a separate iteration because this avoids
   //race conditions
-  QList<Account*>::const_iterator iter;
+  QList<QPointer<Account> >::const_iterator iter;
   for( iter = accounts.constBegin(); iter != accounts.constEnd(); ++iter )
   {
-    Account* account = *iter;
+    QPointer<Account> account = *iter;
     
     //insert item
     accountRefreshMap.insert( account->getName(), true );
@@ -238,14 +238,14 @@ bool AccountList::keepNew( )
 
 int AccountList::getNumberMails( ) const
 {
-  QListIterator<Account*> it( accounts );   //to iterate over all accounts
+  QListIterator<QPointer<Account> > it( accounts );   //to iterate over all accounts
   int number = 0;                             //number of mails
 
   //iterate over all accounts and sum up the number of mails
   while( it.hasNext() )
   {
     //get Account
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
 
     //add number of mails of this account
     number += account->getNumberMails();
@@ -259,7 +259,7 @@ void AccountList::deleteMails()
 {
   //order the accounts to delete the mails
 
-  QListIterator<Account*> itAcc( accounts );
+  QListIterator<QPointer<Account> > itAcc( accounts );
 
   //clear the map, which contains the names of the accounts,
   //which have gotten an order to delete
@@ -272,7 +272,7 @@ void AccountList::deleteMails()
   while( itAcc.hasNext() )
   {
     //get Account
-    Account* account = itAcc.next();
+    QPointer<Account> account = itAcc.next();
     
     //insert item
     accountDeletionMap.insert( account->getName(), true );
@@ -284,7 +284,7 @@ void AccountList::deleteMails()
   while( itAcc.hasNext() )
   {
     //get Account
-    Account* account = itAcc.next();
+    QPointer<Account> account = itAcc.next();
 
     account->deleteMails();
   }
@@ -315,13 +315,13 @@ void AccountList::slotCheckDeletionState( QString account )
 
 int AccountList::numberDeletedMailsLastRefresh( )
 {
-  QListIterator<Account*> it( accounts ); //iterator for the account list
+  QListIterator<QPointer<Account> > it( accounts ); //iterator for the account list
   int number = 0;
 
   //iterate over all accounts
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
 
     number += account->numberDeletedMailsLastRefresh();
   }
@@ -331,13 +331,13 @@ int AccountList::numberDeletedMailsLastRefresh( )
 
 int AccountList::numberDeletedMailsStart( )
 {
-  QListIterator<Account*> it( accounts ); //iterator for the account list
+  QListIterator<QPointer<Account> > it( accounts ); //iterator for the account list
   int number = 0;
 
   //iterate over all accounts
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
 
 
     number += account->numberDeletedMailsStart();
@@ -349,13 +349,13 @@ int AccountList::numberDeletedMailsStart( )
 
 int AccountList::numberMovedMailsLastRefresh( )
 {
-  QListIterator<Account*> it( accounts ); //iterator for the account list
+  QListIterator<QPointer<Account> > it( accounts ); //iterator for the account list
   int number = 0;
 
   //iterate over all accounts
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
 
     number += account->numberMovedMailsLastRefresh();
   }
@@ -365,13 +365,13 @@ int AccountList::numberMovedMailsLastRefresh( )
 
 int AccountList::numberMovedMailsStart( )
 {
-  QListIterator<Account*> it( accounts ); //iterator for the account list
+  QListIterator<QPointer<Account> > it( accounts ); //iterator for the account list
   int number = 0;
 
   //iterate over all accounts
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
 
     number += account->numberMovedMailsStart();
   }
@@ -381,13 +381,13 @@ int AccountList::numberMovedMailsStart( )
 
 int AccountList::numberIgnoredMails( )
 {
-  QListIterator<Account*> it( accounts ); //iterator for the account list
+  QListIterator<QPointer<Account> > it( accounts ); //iterator for the account list
   int number = 0;
 
   //iterate over all accounts
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
 
     number += account->numberIgnoredMails();
   }
@@ -397,12 +397,12 @@ int AccountList::numberIgnoredMails( )
 
 void AccountList::refreshFilterSetup( )
 {
-  QListIterator<Account*> it( accounts ); //iterator for the account list
+  QListIterator<QPointer<Account> > it( accounts ); //iterator for the account list
 
   //iterate over all accounts
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
 
     //reload filter setup of the current account
     account->reloadFilterSettings();
@@ -423,12 +423,12 @@ void AccountList::saveOptions ()
   //the account saves its mails into this element
   //after that the element will be appended to the root element
   int i = 0;
-  QListIterator<Account*> it( accounts ); //iterator for the account list
+  QListIterator<QPointer<Account> > it( accounts ); //iterator for the account list
 
   //iterate over all accounts
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
     
     //save mails
     QDomElement accElem = doc.createElement( QString( ACCOUNT_ELEMENT ) + QString( "%1" ).arg( i++ ) );
@@ -471,7 +471,7 @@ void AccountList::showMails()
 {
   //order the accounts to delete the mails
 
-  QListIterator<Account*> itAcc( accounts );
+  QListIterator<QPointer<Account> > itAcc( accounts );
 
   //clear the map, which contains the names of the accounts,
   //which have gotten an order to show its mails
@@ -484,7 +484,7 @@ void AccountList::showMails()
   while( itAcc.hasNext() )
   {
     //get Account
-    Account* account = itAcc.next();
+    QPointer<Account> account = itAcc.next();
 
     //insert item
     AccountShowBodiesMap.insert( account->getName(), true );
@@ -496,7 +496,7 @@ void AccountList::showMails()
   while( itAcc.hasNext() )
   {
     //get Account
-    Account* account = itAcc.next();
+    QPointer<Account> account = itAcc.next();
 
     account->showMails();
   }
@@ -531,13 +531,13 @@ void AccountList::slotCheckShowBodiesState( QString account )
 
 int AccountList::getNumberNewMails( )
 {
-  QListIterator<Account*> it( accounts );   //to iterate over all accounts
+  QListIterator<QPointer<Account> > it( accounts );   //to iterate over all accounts
   int number = 0;                             //number of new mails
 
   //iterate over all accounts and sum up the number of new mails
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
     
     if( account->isActive() )
       number += account->getNumberNewMails();
@@ -605,11 +605,11 @@ void AccountList::readStoredMails( )
 
 Account* AccountList::getAccount( QString name ) const {
 
-	QListIterator<Account*> it( accounts );   //to iterate over all accounts
+	QListIterator<QPointer<Account> > it( accounts );   //to iterate over all accounts
 
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
     
     if( account->getName() == name )
       return account;
@@ -619,10 +619,10 @@ Account* AccountList::getAccount( QString name ) const {
   return NULL;
 }
 
-QList< Account* > AccountList::getAllAccounts() const
+QList<QPointer<Account> > AccountList::getAllAccounts() const
 {
 
-  QList<Account*> list;
+  QList<QPointer<Account> > list;
 
   list.append( accounts );
 

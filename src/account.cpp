@@ -46,6 +46,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
 
 Account::~Account()
 {
+	delete mails;
 }
 
 QString Account::getName() const

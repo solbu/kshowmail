@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QList>
 #include <qitemselectionmodel.h>
 #include <QFile>
+#include <QPointer>
 
 //KDE headers
 #include <KGlobal>
@@ -216,7 +217,7 @@ class AccountList : public QObject
 		/**
 		 * this list contains the account objects
 		 */
-		QList<Account*> accounts;
+		QList<QPointer<Account> > accounts;
 
     /**
      * This map is used by the methods to refresh the account mail lists.
