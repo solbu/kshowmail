@@ -633,10 +633,10 @@ QList<Mail> AccountList::getAllMails() const
 {
 	QList<Mail> listMails;
 	
-	QListIterator<Account*> itAcc( accounts );
+	QListIterator<QPointer<Account> > itAcc( accounts );
 	while( itAcc.hasNext() ) {
 	
-		Account* acc = itAcc.next();
+		QPointer<Account> acc = itAcc.next();
 		
 		listMails.append( acc->getAllMails() );
 	}
@@ -646,13 +646,28 @@ QList<Mail> AccountList::getAllMails() const
 
 void AccountList::cancelTasks()
 {
-  QListIterator<Account*> it( accounts );   //to iterate over all accounts
+  QListIterator<QPointer<Account> > it( accounts );   //to iterate over all accounts
 
   while( it.hasNext() )
   {
-    Account* account = it.next();
+    QPointer<Account> account = it.next();
     account->cancelTask();
   }
+}
 
+QList< AccountViewItem > AccountList::getAllAccountViewItems() const
+{
+  QList<AccountViewItem> listItems;
+
+  QListIterator<QPointer<Account> > itAcc( accounts );
+  while( itAcc.hasNext() ) {
+
+    QPointer<Account> acc = itAcc.next();
+
+    listItems.append( acc->getViewItem() );
+  }
+
+  return listItems;
 
 }
+

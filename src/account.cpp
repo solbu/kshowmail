@@ -2282,11 +2282,11 @@ int Account::getNumberNewMails( )
   return mails->getNumberNewMails();
 }
 
-long Account::getTotalSize() {
+long Account::getTotalSize() const {
   return mails->getTotalSize();
 }
 
-QString Account::getTotalSizeUnit() {
+QString Account::getTotalSizeUnit() const {
 
   int size = getTotalSize();
   QString strSize;
@@ -2499,3 +2499,7 @@ void Account::slotStartTLSResponse()
 
 }
 
+AccountViewItem Account::getViewItem()
+{
+  return AccountViewItem( isActive(), getName(), getHost(), getUser(), getNumberMails(), getTotalSize(), QPointer<Account>( this ) );
+}

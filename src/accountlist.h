@@ -38,6 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "corruptdataexception.h"
 #include "filterlog.h"
 #include "mail.h"
+#include "accountviewitem.h"
 
 using namespace Types;
 
@@ -96,7 +97,13 @@ class AccountList : public QObject
      * Returns a list which contains the pointers to all accounts
      * @return all accounts
      */
-    QList<Account*> getAllAccounts() const;
+    QList<QPointer<Account> > getAllAccounts() const;
+
+    /**
+     * Returns a list of account view items for all accounts
+     * @return list of account view items
+     */
+    QList<AccountViewItem> getAllAccountViewItems() const;
 
     /**
      * Returns whether the list contains a account with the given name

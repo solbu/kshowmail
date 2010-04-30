@@ -104,6 +104,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //run initial refresh
   startAutomaticRefresh( true );
 
+
 }
 
 KShowmail::~KShowmail()

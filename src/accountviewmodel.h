@@ -35,6 +35,7 @@ class AccountList;
 //KShowmail headers
 #include "accountlist.h"
 #include "account.h"
+#include "accountviewitem.h"
 
 //constants
 #define NUMBER_ACCOUNTVIEW_COLUMNS 6
@@ -164,9 +165,9 @@ class AccountViewModel : public QAbstractItemModel
 		AccountList* accounts;
 
     /**
-     * In this we store the pointer to the accounts
+     * In this we store the account view items
      */
-    QList<Account*> viewAccountList;
+    QList<AccountViewItem > viewAccountList;
 
     /**
      * Picture for a active account

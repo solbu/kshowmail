@@ -68,11 +68,9 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 
   if( index.row() > viewAccountList.size() - 1 ) return QVariant();
   
-  //get the account object
-  Account* acc = viewAccountList.at( index.row() );
+  //get the account view item
+  AccountViewItem acc = viewAccountList.at( index.row() );
 
-  //return a empty data if the pointer to the account is NULL
-  if( acc == NULL ) return QVariant();
 
   //the kind of data we return is dependent on the given role
   switch( role )
@@ -82,11 +80,11 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
       switch( index.column() )
       {
 				case 0  : return QVariant(); break;
-        case 1  : return QVariant( acc->getName() ); break;
-        case 2  : return QVariant( acc->getHost() ); break;
-        case 3  : return QVariant( acc->getUser() ); break;
-        case 4  : return QVariant( acc->getNumberMails() ); break;
-        case 5  : return QVariant( acc->getTotalSizeUnit() ); break;
+        case 1  : return QVariant( acc.getName() ); break;
+        case 2  : return QVariant( acc.getServer() ); break;
+        case 3  : return QVariant( acc.getUser() ); break;
+        case 4  : return QVariant( acc.getNumberMails() ); break;
+        case 5  : return QVariant( acc.getTotalSizeUnit() ); break;
         default : return QVariant(); break;
       }
       break;
@@ -96,7 +94,7 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
       switch( index.column() )
       {
         case 0  :
-          if( acc->isActive() )
+          if( acc.isActive() )
           {
             return QVariant( picActive );
           }
@@ -115,7 +113,7 @@ QVariant AccountViewModel::data ( const QModelIndex & index, int role ) const
 			switch( index.column() )
 			{
 				case 0 :
-					if( acc->isActive() )
+					if( acc.isActive() )
 						return QVariant( true );
 					else
 						return QVariant( false );
@@ -183,9 +181,10 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
   if( index.row() > viewAccountList.size() - 1 ) return false;
 
   //get the account object
-  Account* acc = viewAccountList.at( index.row() );
+  AccountViewItem item = viewAccountList.at( index.row() );
+  QPointer<Account> acc = item.getAccount();
   
-  if( acc == NULL ) return false;
+  if( acc.isNull() ) return false;
 	
 	//set active state of the account
 	acc->setActive( value.toBool() );
@@ -207,7 +206,7 @@ bool AccountViewModel::setData ( const QModelIndex & index, const QVariant & val
 void AccountViewModel::refresh()
 {
   viewAccountList.clear();
-  viewAccountList.append( accounts->getAllAccounts() );
+  viewAccountList.append( accounts->getAllAccountViewItems() );
 	sort();
   reset(); 
 }
@@ -234,13 +233,13 @@ void AccountViewModel::sort( int column, Qt::SortOrder order ) {
 	}
 	
   //sort the view list
-  QList<Account*> sortedList;
+  QList<AccountViewItem> sortedList;
 
-  QListIterator<Account*> itUnsort( viewAccountList );
+  QListIterator<AccountViewItem > itUnsort( viewAccountList );
   while( itUnsort.hasNext() ) {
 
     //get next account
-    Account* accUnsorted = itUnsort.next();
+    AccountViewItem accUnsorted = itUnsort.next();
 
     //find a place for it in the temporary list
     if( sortedList.size() == 0 ) {
@@ -255,13 +254,13 @@ void AccountViewModel::sort( int column, Qt::SortOrder order ) {
       while( indexSort < sizeSortedList && !placed ) {
         
         //get the Account in the sorted List
-        Account* accSorted = sortedList.at( indexSort );
+        AccountViewItem accSorted = sortedList.at( indexSort );
 
         //is the account from the unsorted list lesser (greater) than the account from the sorted list insert the first one at this
         //position into the sorted list and break the searching for place
         if( order == Qt::AscendingOrder ) {
 
-          if( accUnsorted->compare( accSorted, prop ) <= 0 ) {
+          if( accUnsorted.compare( accSorted, prop ) <= 0 ) {
 
             sortedList.insert( indexSort, accUnsorted );
             placed = true;
@@ -269,7 +268,7 @@ void AccountViewModel::sort( int column, Qt::SortOrder order ) {
 
         } else {
 
-          if( accUnsorted->compare( accSorted, prop ) > 0 ) {
+          if( accUnsorted.compare( accSorted, prop ) > 0 ) {
 
             sortedList.insert( indexSort, accUnsorted );
             placed = true;
@@ -317,5 +316,6 @@ void AccountViewModel::saveSetup()
 
 Account* AccountViewModel::getAccount(const QModelIndex index) const
 {
-	return viewAccountList.at( index.row() );
+  AccountViewItem item = viewAccountList.at( index.row() );
+	return item.getAccount();
 }

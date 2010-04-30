@@ -61,6 +61,7 @@ class Account;
 #include "filterlog.h"
 #include "showmaildialog.h"
 #include "kshowmail.h"
+#include "accountviewitem.h"
 
 /**
  * @brief Constants of the POP3 protocol
@@ -397,12 +398,12 @@ class Account : public QObject
      * Returns the total size (bytes) of all mails.
      * @return total size
      */
-    long getTotalSize();
+    long getTotalSize() const;
 
     /**
      * Returns the total size of all mails with unit.
      */
-    QString getTotalSizeUnit();
+    QString getTotalSizeUnit() const;
 		
     /**
      * Gets the stored mails.
@@ -429,6 +430,12 @@ class Account : public QObject
      * Cancels the current running task
      */
     void cancelTask();
+
+    /**
+     * Returns a appropriate view item
+     * @return view item
+     */
+    AccountViewItem getViewItem();
 
 
   protected:
