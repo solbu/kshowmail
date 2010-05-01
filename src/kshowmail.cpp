@@ -219,19 +219,19 @@ void KShowmail::slotShowHeader() {
   }
 
   //get selected Mails
-  QList<Mail*> mailList = mailModel->getSelectedMails( mailSelectModel );
+  QList<Mail> mailList = mailModel->getSelectedMails( mailSelectModel );
 
   //iterate over all mails
-  QListIterator<Mail*> itMails( mailList );
+  QListIterator<Mail> itMails( mailList );
   int dialogReturnValue = KDialog::Accepted;
   while( itMails.hasNext() && dialogReturnValue == KDialog::Accepted )
   {
-    Mail* mail = itMails.next();
+    Mail mail = itMails.next();
 
     //create and open the window
-    QString account( mail->getAccountName() );
-    QString subject( mail->getSubject() );
-    QPointer<ShowHeaderDialog> dlg = new ShowHeaderDialog( this->centralWidget(), account , subject, mail->getHeader() );
+    QString account( mail.getAccountName() );
+    QString subject( mail.getSubject() );
+    QPointer<ShowHeaderDialog> dlg = new ShowHeaderDialog( this->centralWidget(), account , subject, mail.getHeader() );
     dialogReturnValue = dlg->exec();
 
     delete dlg;
@@ -261,14 +261,14 @@ void KShowmail::slotShowMessage() {
   QApplication::setOverrideCursor( Qt::WaitCursor );
 
   //get selected Mails
-  QList<Mail*> mailsToShow = mailModel->getSelectedMails( mailSelectModel );
+  QList<Mail> mailsToShow = mailModel->getSelectedMails( mailSelectModel );
 
   //add the mails to the accounts deletion lists
-  QListIterator<Mail*> itShow( mailsToShow );
+  QListIterator<Mail> itShow( mailsToShow );
   while( itShow.hasNext() ) {
 
-    Mail* mail = itShow.next();
-    mail->getAccount()->addMailToShow( mail->getNumber() );
+    Mail mail = itShow.next();
+    mail.getAccount()->addMailToShow( mail.getNumber() );
   }
 
   accounts->showMails();
@@ -318,14 +318,20 @@ void KShowmail::slotDelete() {
   QApplication::setOverrideCursor( Qt::WaitCursor );
 
   //get selected Mails
-  QList<Mail*> mailsToDelete = mailModel->getSelectedMails( mailSelectModel );
+  QList<Mail> mailsToDelete = mailModel->getSelectedMails( mailSelectModel );
 
   //add the mails to the accounts deletion lists
-  QListIterator<Mail*> itDel( mailsToDelete );
+  QListIterator<Mail> itDel( mailsToDelete );
   while( itDel.hasNext() ) {
 
-    Mail* mail = itDel.next();
-    mail->getAccount()->addMailToDelete( mail->getNumber() );
+    Mail mail = itDel.next();
+
+    QPointer<Account> acc = mail.getAccount();
+
+    int mailNumber = mail.getNumber();
+
+    acc->addMailToDelete( mailNumber );
+    
   }
 
   accounts->deleteMails();

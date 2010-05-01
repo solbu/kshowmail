@@ -299,9 +299,9 @@ QStringList MailViewModel::getSelectedSenders( QItemSelectionModel* selectModel 
   return senders;
 }
 
-QList<Mail*> MailViewModel::getSelectedMails( QItemSelectionModel* mailSelectModel ) const
+QList<Mail> MailViewModel::getSelectedMails( QItemSelectionModel* mailSelectModel ) const
 {
-  QList<Mail*> list;  //result list
+  QList<Mail> list;  //result list
 
   //get selected rows
   QModelIndexList indexList = mailSelectModel->selectedRows();
@@ -317,7 +317,7 @@ QList<Mail*> MailViewModel::getSelectedMails( QItemSelectionModel* mailSelectMod
     Mail mail = getMail( index );
 
     //store mail pointer
-    list.append( &mail );
+    list.append( mail );
   }
 
   return list;
