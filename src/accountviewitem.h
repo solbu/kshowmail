@@ -28,7 +28,8 @@ class AccountViewItem;
 #include "account.h"
 
 /**
- * This class is used by AccountViewModel to hold a list of the accounts.<p>
+ * @brief This class is used by AccountViewModel to hold a list of the accounts
+ *
  * It can't use a list of pointers to a account because this pointers can be invalid for
  * a short time after an account was removed. When the account view refreshes in this time
  * the app crashed.
@@ -39,7 +40,7 @@ class AccountViewItem
   public:
 
     /**
-     * Contructor
+     * @brief Contructor
      * @param active <code>true</code> - the account is active; <code>false</code> - the account is not active
      * @param name Name of the account
      * @param server server
@@ -51,57 +52,57 @@ class AccountViewItem
     AccountViewItem( bool active, const QString& name, const QString& server, const QString& user, int numberMails, long totalSize, QPointer<Account> account );
 
     /**
-     * Returns whether the account is active
+     * @brief Returns whether the account is active
      * @return <code>true</code> - account is active; <code>false</code> - account isn't active
      */
     bool isActive() const;
 
     /**
-     * Returns the account name
+     * @brief Returns the account name
      * @return account name
      */
     QString getName() const;
 
     /**
-     * Returns ther server host name
+     * @brief Returns ther server host name
      * @return server host
      */
     QString getServer() const;
 
     /**
-     * Returns the user
+     * @brief Returns the user
      * @return user
      */
     QString getUser() const;
 
     /**
-     * Returns the number of mails
+     * @brief Returns the number of mails
      * @return number of mails
      */
     int getNumberMails() const;
 
     /**
-     * Returns the total size of mails with appended unit.
+     * @brief Returns the total size of mails with appended unit.
      * @return total size of mails
      */
     QString getTotalSizeUnit() const;
 
     /**
-     * Returns the total size of mails.
+     * @brief Returns the total size of mails.
      * @return total size of mails
      */
     long getTotalSize() const;
 
     /**
-     * Returns the pointer to the account
+     * @brief Returns the pointer to the account
      * @return pointer to the associated account
      */
     QPointer<Account> getAccount() const;
     
     /**
-     * Compares this account with <i>other</i> and returns an integer less than,
+     * @brief Compares this account with <em>other</em> and returns an integer less than,
      * equal to, or greater than zero if this account is less than, equal to,
-     * or greater than <i>other</i>.
+     * or greater than <em>other</em>.
      * @param other other account
      * @param property the account property which will be compared
      */
@@ -111,37 +112,37 @@ class AccountViewItem
   private:
 
     /**
-     * <code>true</code> - the account is active
+     * @brief <code>true</code> - the account is active
      */
     bool active;
 
     /**
-     * account name
+     * @brief account name
      */
     QString name;
 
     /**
-     * server
+     * @brief server
      */
     QString server;
 
     /**
-     * user
+     * @brief user
      */
     QString user;
 
     /**
-     * number of mails
+     * @brief number of mails
      */
     int numberMails;
 
     /**
-     * total size of mails, inclusive unit
+     * @brief total size of mails, inclusive unit
      */
     long totalSize;
 
     /**
-     * pointer to the account
+     * @brief pointer to the account
      */
     QPointer<Account> account;
 };

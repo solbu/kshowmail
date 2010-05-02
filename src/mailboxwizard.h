@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "mailboxwizardlistitem.h"
 
 /**
- * Wizard to configure the mailbox to which a filteres mail shall be moved.
+ * @brief Wizard to configure the mailbox to which a filteres mail shall be moved.
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
 class MailBoxWizard : public QWizard

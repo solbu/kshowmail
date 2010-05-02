@@ -60,7 +60,7 @@ using namespace Encryption;
 
 
 /**
- * @brief Dialog to setup an account.
+ * @brief Dialog to setup an account from the context menu.
  *
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
@@ -71,71 +71,71 @@ Q_OBJECT
   public:
 
     /**
-     * General constructor
+     * @brief General constructor
      * @param parent parent of the dialog
      * @param accountName name of the account to config
      */
     AccountSetupDialogContext( QWidget* parent, QString accountName );
 
     /**
-     * Destructor
+     * @brief Destructor
      */
     ~AccountSetupDialogContext();
 
   private:
 
     /**
-     * Account name
+     * @brief Account name
      */
     QString accName;
 
     /**
-     * Edit line which contains the unique account name.
+     * @brief Edit line which contains the unique account name.
      */
     KLineEdit* txtAccount;
 
     /**
-     * Edit line which contains the server name.
+     * @brief Edit line which contains the server name.
      */
     KLineEdit* txtServer;
 
     /**
-     * Combo box to choose the protocol.
+     * @brief Combo box to choose the protocol.
      */
     KComboBox* cboProtocol;
 
     /**
-     * Spinbox to choose the tcp port.
+     * @brief Spinbox to choose the tcp port.
      */
     QSpinBox* spbPort;
 
     /**
-     * Edit line which contains the user name.
+     * @brief Edit line which contains the user name.
      */
     KLineEdit* txtUser;
 
     /**
-     * Edit line which contains the password.
+     * @brief Edit line which contains the password.
      */
     KLineEdit* txtPassword;
 
     /**
-     * Check box to select whether the account is active or not.
+     * @brief Check box to select whether the account is active or not.
      */
     QCheckBox* chkActive;
 
     /**
-     * Combines the radio buttons of password storage.
+     * @brief Combines the radio buttons of password storage.
      */
     QButtonGroup* grpPasswordStorage;
 
     /**
-     * Combines the radio buttons of secure transfer.
+     * @brief Combines the radio buttons of secure transfer.
      */
     QButtonGroup* grpSecureTransfer;
 
     /**
-     * Check box to select whether unsecure login is allowed
+     * @brief Check box to select whether unsecure login is allowed
      */
     QCheckBox* chkAllowUnsecureLogin;
 
@@ -144,14 +144,16 @@ Q_OBJECT
   protected slots:
 
     /**
-     * Connected with the password button group.
+     * @brief Connected with the password button group.
+     *
      * Enabled or disabled the password edit line.
      * @param id button identifier
      */
     void slotPasswordStorageChanged( int id );
 
     /**
-     * Connected with the secure transfer button group.
+     * @brief Connected with the secure transfer button group.
+     *
      * Changes the port number.
      * @param id button identifier
      */
@@ -160,8 +162,9 @@ Q_OBJECT
   protected Q_SLOTS:
 
     /**
-     * Overwritten method of KDialog.
+     * @brief Overwritten method of KDialog.
      * Called if a button was clicked.
+     *
      * If OK was  clicked it stores the entered values into the given account item.
      * If no item was given it creates a new one.
      * @param button is the type KDialog::ButtonCode
@@ -171,17 +174,17 @@ Q_OBJECT
   protected:
 
     /**
-     * Loads the setup from the application config and fills the dialog
+     * @brief Loads the setup from the application config and fills the dialog
      */
     void load();
 
     /**
-     * Saves the setup into the application config
+     * @brief Saves the setup into the application config
      */
     void save();
 
 		/**
-		 * Enables or disables the unsecure login checkbox depending on the
+		 * @brief Enables or disables the unsecure login checkbox depending on the
 		 * chosen security.
 		 */
 		void enableLoginCheckbox();

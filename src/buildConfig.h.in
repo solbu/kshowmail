@@ -15,36 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef NEWMAILDIALOG_H
-#define NEWMAILDIALOG_H
+//This file is used to transfer settings done in the cmake config into the source code
 
-//Qt headers
-#include <QWidget>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QPixmap>
+//version number
+#define KSHOWMAIL_VERSION "@KSHOWMAIL_VERSION@"
 
-//KDE headers
-#include <kdialog.h>
-#include <KLocale>
-#include <KStandardDirs>
-#include <KDebug>
-
-/**
- * @brief Small dialog which will be shown when new mails are arrived.
- */
-class NewMailDialog : public KDialog
-{
-
-  Q_OBJECT
-
-  public:
-
-    /**
-     * Constructor
-     * @param parent parent widget
-     */
-    NewMailDialog( QWidget* parent );
-};
-
-#endif // NEWMAILDIALOG_H

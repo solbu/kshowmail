@@ -36,50 +36,71 @@
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#787ea22d8943f85640c5e830984e087a">AccountSetupDialog</a> (QWidget *parent, QTreeWidget *view, <a class="el" href="classAccountSetupItem.html">AccountSetupItem</a> *item=NULL)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">General constructor.  <a href="#787ea22d8943f85640c5e830984e087a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#780c48f1db6f4f3ecb341bd4a3077b02">~AccountSetupDialog</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#780c48f1db6f4f3ecb341bd4a3077b02"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Slots</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#9486d4b99325f0cfbe486944071f9455">slotPasswordStorageChanged</a> (int id)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with the password button group.  <a href="#9486d4b99325f0cfbe486944071f9455"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#55e7fa494770714c93e63af679e5ba32">slotSecureTransferChanged</a> (int id)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with the secure transfer button group.  <a href="#55e7fa494770714c93e63af679e5ba32"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#882bf237810895e4fd1da326b1cbb3c6">slotButtonClicked</a> (int button)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Overwritten method of KDialog. Called if a button was clicked.  <a href="#882bf237810895e4fd1da326b1cbb3c6"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#0e720a4ba82b87fbb78f12bd1c4e060f">fillDialog</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writes the values of the account into the dialog items.  <a href="#0e720a4ba82b87fbb78f12bd1c4e060f"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#6c6ef1c2373cd0b6b0113ac09e231a0d">enableLoginCheckbox</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables or disables the unsecure login checkbox depending on the chosen security.  <a href="#6c6ef1c2373cd0b6b0113ac09e231a0d"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classAccountSetupItem.html">AccountSetupItem</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#0585145e7ae4b3e22377c6ed787c9eb0">account</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">account to setup  <a href="#0585145e7ae4b3e22377c6ed787c9eb0"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QTreeWidget *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#358df67915d9a0258f003f21b667585b">listView</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">View which shows the account items.  <a href="#358df67915d9a0258f003f21b667585b"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">KLineEdit *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#498961d7111d25751b3ec2cc82d7d3f9">txtAccount</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edit line which contains the unique account name.  <a href="#498961d7111d25751b3ec2cc82d7d3f9"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">KLineEdit *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#e95956f6bffaf59934194cf7d9e332f9">txtServer</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edit line which contains the server name.  <a href="#e95956f6bffaf59934194cf7d9e332f9"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">KComboBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#ad109f88ad94c12be8f6a7f5892f8308">cboProtocol</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Combo box to choose the protocol.  <a href="#ad109f88ad94c12be8f6a7f5892f8308"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QSpinBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#830975a1e546e17563aa93f8ef2519eb">spbPort</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Spinbox to choose the tcp port.  <a href="#830975a1e546e17563aa93f8ef2519eb"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">KLineEdit *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#b27b8d090b54974dcc7816dd93b9c46c">txtUser</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edit line which contains the user name.  <a href="#b27b8d090b54974dcc7816dd93b9c46c"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">KLineEdit *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#6a3bd290a3be3074305cee9bcef00b49">txtPassword</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edit line which contains the password.  <a href="#6a3bd290a3be3074305cee9bcef00b49"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#ae0af23b1fed06d16ebb995a4cc881db">chkActive</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check box to select whether the account is active or not.  <a href="#ae0af23b1fed06d16ebb995a4cc881db"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#0a4bce4c9c385223363c5437f38830cf">grpPasswordStorage</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Combines the radio buttons of password storage.  <a href="#0a4bce4c9c385223363c5437f38830cf"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#ab4282dbb4ded7f3da8a451b60a14739">grpSecureTransfer</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Combines the radio buttons of secure transfer.  <a href="#ab4282dbb4ded7f3da8a451b60a14739"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountSetupDialog.html#b5c2efbec5245167ceadea1731ae64e7">chkAllowUnsecureLogin</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check box to select whether unsecure login is allowed.  <a href="#b5c2efbec5245167ceadea1731ae64e7"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Dialog to setup an account. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00062">62</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="787ea22d8943f85640c5e830984e087a"></a><!-- doxytag: member="AccountSetupDialog::AccountSetupDialog" ref="787ea22d8943f85640c5e830984e087a" args="(QWidget *parent, QTreeWidget *view, AccountSetupItem *item=NULL)" -->
 <div class="memitem">
@@ -113,13 +134,19 @@ Dialog to setup an account.
 <div class="memdoc">
 
 <p>
-General constructor <dl compact><dt><b>Parameters:</b></dt><dd>
+General constructor. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent of the dialog </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>view</em>&nbsp;</td><td>view which shows the items </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>account to setup; if NULL, a new item will be created </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">20</a> of file <a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="accountsetupdialog_8h-source.html#l00086">account</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00106">cboProtocol</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00126">chkActive</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00141">chkAllowUnsecureLogin</a>, <a class="el" href="constants_8h-source.html#l00112">DEFAULT_ACCOUNT_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00115">DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN</a>, <a class="el" href="constants_8h-source.html#l00110">DEFAULT_ACCOUNT_PASSWORD_STORAGE</a>, <a class="el" href="constants_8h-source.html#l00106">DEFAULT_ACCOUNT_PORT_POP3</a>, <a class="el" href="constants_8h-source.html#l00113">DEFAULT_ACCOUNT_SECTRANSFER</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00131">grpPasswordStorage</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00136">grpSecureTransfer</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00047">ID_BUTTON_PASSWORD_DONT_SAVE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00048">ID_BUTTON_PASSWORD_SAVE_FILE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00049">ID_BUTTON_PASSWORD_SAVE_KWALLET</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00053">ID_BUTTON_SECTRANSFER_NONE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00054">ID_BUTTON_SECTRANSFER_SSL</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00055">ID_BUTTON_SECTRANSFER_TLS</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00091">listView</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00186">slotPasswordStorageChanged()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00371">slotSecureTransferChanged()</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00111">spbPort</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00096">txtAccount</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00121">txtPassword</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00101">txtServer</a>, and <a class="el" href="accountsetupdialog_8h-source.html#l00116">txtUser</a>.</p>
 
 </div>
 </div><p>
@@ -139,7 +166,11 @@ General constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 <div class="memdoc">
 
 <p>
-Destructor 
+Destructor. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8cpp-source.html#l00182">182</a> of file <a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -160,11 +191,19 @@ Destructor
 <div class="memdoc">
 
 <p>
-Connected with the password button group. Enabled or disabled the password edit line. <dl compact><dt><b>Parameters:</b></dt><dd>
+Connected with the password button group. 
+<p>
+Enabled or disabled the password edit line. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>id</em>&nbsp;</td><td>button identifier </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8cpp-source.html#l00186">186</a> of file <a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="accountsetupdialog_8h-source.html#l00047">ID_BUTTON_PASSWORD_DONT_SAVE</a>, and <a class="el" href="accountsetupdialog_8h-source.html#l00121">txtPassword</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>.</p>
 
 </div>
 </div><p>
@@ -185,11 +224,19 @@ Connected with the password button group. Enabled or disabled the password edit 
 <div class="memdoc">
 
 <p>
-Connected with the secure transfer button group. Changes the port number. <dl compact><dt><b>Parameters:</b></dt><dd>
+Connected with the secure transfer button group. 
+<p>
+Changes the port number. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>id</em>&nbsp;</td><td>button identifier </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8cpp-source.html#l00371">371</a> of file <a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="constants_8h-source.html#l00106">DEFAULT_ACCOUNT_PORT_POP3</a>, <a class="el" href="constants_8h-source.html#l00107">DEFAULT_ACCOUNT_PORT_POP3SSL</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00384">enableLoginCheckbox()</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00053">ID_BUTTON_SECTRANSFER_NONE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00054">ID_BUTTON_SECTRANSFER_SSL</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00055">ID_BUTTON_SECTRANSFER_TLS</a>, and <a class="el" href="accountsetupdialog_8h-source.html#l00111">spbPort</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>.</p>
 
 </div>
 </div><p>
@@ -210,11 +257,17 @@ Connected with the secure transfer button group. Changes the port number. <dl co
 <div class="memdoc">
 
 <p>
-Overwritten method of KDialog. Called if a button was clicked. If OK was clicked it stores the entered values into the given account item. If no item was given it creates a new one. <dl compact><dt><b>Parameters:</b></dt><dd>
+Overwritten method of KDialog. Called if a button was clicked. 
+<p>
+If OK was clicked it stores the entered values into the given account item. If no item was given it creates a new one. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>button</em>&nbsp;</td><td>is the type KDialog::ButtonCode </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">197</a> of file <a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="accountsetupdialog_8h-source.html#l00086">account</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00106">cboProtocol</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00126">chkActive</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00141">chkAllowUnsecureLogin</a>, <a class="el" href="constants_8h-source.html#l00265">CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE</a>, <a class="el" href="constants_8h-source.html#l00266">CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE</a>, <a class="el" href="constants_8h-source.html#l00267">CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET</a>, <a class="el" href="constants_8h-source.html#l00268">CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE</a>, <a class="el" href="constants_8h-source.html#l00269">CONFIG_VALUE_ACCOUNT_SECTRANSFER_SSL</a>, <a class="el" href="constants_8h-source.html#l00270">CONFIG_VALUE_ACCOUNT_SECTRANSFER_TLS</a>, <a class="el" href="constants_8h-source.html#l00103">DEFAULT_ACCOUNT_NAME</a>, <a class="el" href="constants_8h-source.html#l00113">DEFAULT_ACCOUNT_SECTRANSFER</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00070">AccountSetupItem::getAccountName()</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00131">grpPasswordStorage</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00136">grpSecureTransfer</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00047">ID_BUTTON_PASSWORD_DONT_SAVE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00048">ID_BUTTON_PASSWORD_SAVE_FILE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00049">ID_BUTTON_PASSWORD_SAVE_KWALLET</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00053">ID_BUTTON_SECTRANSFER_NONE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00054">ID_BUTTON_SECTRANSFER_SSL</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00055">ID_BUTTON_SECTRANSFER_TLS</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00091">listView</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00065">AccountSetupItem::setAccountName()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00141">AccountSetupItem::setActive()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00118">AccountSetupItem::setPassword()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00128">AccountSetupItem::setPasswordStorageType()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00095">AccountSetupItem::setPort()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00085">AccountSetupItem::setProtocol()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00075">AccountSetupItem::setServer()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00205">AccountSetupItem::setTransferSecurity()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00261">AccountSetupItem::setUnsecureLoginAllowed()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00108">AccountSetupItem::setUser()</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00111">spbPort</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00096">txtAccount</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00121">txtPassword</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00101">txtServer</a>, and <a class="el" href="accountsetupdialog_8h-source.html#l00116">txtUser</a>.</p>
 
 </div>
 </div><p>
@@ -235,6 +288,14 @@ Overwritten method of KDialog. Called if a button was clicked. If OK was clicked
 
 <p>
 Writes the values of the account into the dialog items. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">304</a> of file <a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="accountsetupdialog_8h-source.html#l00086">account</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00106">cboProtocol</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00126">chkActive</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00141">chkAllowUnsecureLogin</a>, <a class="el" href="constants_8h-source.html#l00265">CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE</a>, <a class="el" href="constants_8h-source.html#l00266">CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE</a>, <a class="el" href="constants_8h-source.html#l00267">CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET</a>, <a class="el" href="constants_8h-source.html#l00268">CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE</a>, <a class="el" href="constants_8h-source.html#l00269">CONFIG_VALUE_ACCOUNT_SECTRANSFER_SSL</a>, <a class="el" href="constants_8h-source.html#l00270">CONFIG_VALUE_ACCOUNT_SECTRANSFER_TLS</a>, <a class="el" href="constants_8h-source.html#l00110">DEFAULT_ACCOUNT_PASSWORD_STORAGE</a>, <a class="el" href="constants_8h-source.html#l00106">DEFAULT_ACCOUNT_PORT_POP3</a>, <a class="el" href="constants_8h-source.html#l00113">DEFAULT_ACCOUNT_SECTRANSFER</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00384">enableLoginCheckbox()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00070">AccountSetupItem::getAccountName()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00146">AccountSetupItem::getActive()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00123">AccountSetupItem::getPassword()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00136">AccountSetupItem::getPasswordStorageType()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00103">AccountSetupItem::getPort()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00090">AccountSetupItem::getProtocol()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00080">AccountSetupItem::getServer()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00213">AccountSetupItem::getTransferSecurity()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00266">AccountSetupItem::getUnsecureLoginAllowed()</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00113">AccountSetupItem::getUser()</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00131">grpPasswordStorage</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00136">grpSecureTransfer</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00047">ID_BUTTON_PASSWORD_DONT_SAVE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00048">ID_BUTTON_PASSWORD_SAVE_FILE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00049">ID_BUTTON_PASSWORD_SAVE_KWALLET</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00053">ID_BUTTON_SECTRANSFER_NONE</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00054">ID_BUTTON_SECTRANSFER_SSL</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00055">ID_BUTTON_SECTRANSFER_TLS</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00111">spbPort</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00096">txtAccount</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00121">txtPassword</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00101">txtServer</a>, and <a class="el" href="accountsetupdialog_8h-source.html#l00116">txtUser</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6c6ef1c2373cd0b6b0113ac09e231a0d"></a><!-- doxytag: member="AccountSetupDialog::enableLoginCheckbox" ref="6c6ef1c2373cd0b6b0113ac09e231a0d" args="()" -->
@@ -253,7 +314,15 @@ Writes the values of the account into the dialog items.
 <div class="memdoc">
 
 <p>
-Enables or disables the unsecure login checkbox depending on the choosed security. 
+Enables or disables the unsecure login checkbox depending on the chosen security. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8cpp-source.html#l00384">384</a> of file <a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="accountsetupdialog_8h-source.html#l00141">chkAllowUnsecureLogin</a>, <a class="el" href="accountsetupdialog_8h-source.html#l00136">grpSecureTransfer</a>, and <a class="el" href="accountsetupdialog_8h-source.html#l00053">ID_BUTTON_SECTRANSFER_NONE</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00371">slotSecureTransferChanged()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -270,6 +339,12 @@ Enables or disables the unsecure login checkbox depending on the choosed securit
 
 <p>
 account to setup 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00086">86</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="358df67915d9a0258f003f21b667585b"></a><!-- doxytag: member="AccountSetupDialog::listView" ref="358df67915d9a0258f003f21b667585b" args="" -->
@@ -285,6 +360,12 @@ account to setup
 
 <p>
 View which shows the account items. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00091">91</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="498961d7111d25751b3ec2cc82d7d3f9"></a><!-- doxytag: member="AccountSetupDialog::txtAccount" ref="498961d7111d25751b3ec2cc82d7d3f9" args="" -->
@@ -300,6 +381,12 @@ View which shows the account items.
 
 <p>
 Edit line which contains the unique account name. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00096">96</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e95956f6bffaf59934194cf7d9e332f9"></a><!-- doxytag: member="AccountSetupDialog::txtServer" ref="e95956f6bffaf59934194cf7d9e332f9" args="" -->
@@ -315,6 +402,12 @@ Edit line which contains the unique account name.
 
 <p>
 Edit line which contains the server name. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00101">101</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="ad109f88ad94c12be8f6a7f5892f8308"></a><!-- doxytag: member="AccountSetupDialog::cboProtocol" ref="ad109f88ad94c12be8f6a7f5892f8308" args="" -->
@@ -330,6 +423,12 @@ Edit line which contains the server name.
 
 <p>
 Combo box to choose the protocol. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00106">106</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="830975a1e546e17563aa93f8ef2519eb"></a><!-- doxytag: member="AccountSetupDialog::spbPort" ref="830975a1e546e17563aa93f8ef2519eb" args="" -->
@@ -345,6 +444,12 @@ Combo box to choose the protocol.
 
 <p>
 Spinbox to choose the tcp port. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00111">111</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00371">slotSecureTransferChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b27b8d090b54974dcc7816dd93b9c46c"></a><!-- doxytag: member="AccountSetupDialog::txtUser" ref="b27b8d090b54974dcc7816dd93b9c46c" args="" -->
@@ -360,6 +465,12 @@ Spinbox to choose the tcp port.
 
 <p>
 Edit line which contains the user name. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00116">116</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6a3bd290a3be3074305cee9bcef00b49"></a><!-- doxytag: member="AccountSetupDialog::txtPassword" ref="6a3bd290a3be3074305cee9bcef00b49" args="" -->
@@ -375,6 +486,12 @@ Edit line which contains the user name.
 
 <p>
 Edit line which contains the password. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00121">121</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00186">slotPasswordStorageChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="ae0af23b1fed06d16ebb995a4cc881db"></a><!-- doxytag: member="AccountSetupDialog::chkActive" ref="ae0af23b1fed06d16ebb995a4cc881db" args="" -->
@@ -390,6 +507,12 @@ Edit line which contains the password.
 
 <p>
 Check box to select whether the account is active or not. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00126">126</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="0a4bce4c9c385223363c5437f38830cf"></a><!-- doxytag: member="AccountSetupDialog::grpPasswordStorage" ref="0a4bce4c9c385223363c5437f38830cf" args="" -->
@@ -405,6 +528,12 @@ Check box to select whether the account is active or not.
 
 <p>
 Combines the radio buttons of password storage. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00131">131</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="ab4282dbb4ded7f3da8a451b60a14739"></a><!-- doxytag: member="AccountSetupDialog::grpSecureTransfer" ref="ab4282dbb4ded7f3da8a451b60a14739" args="" -->
@@ -420,6 +549,12 @@ Combines the radio buttons of password storage.
 
 <p>
 Combines the radio buttons of secure transfer. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00136">136</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00384">enableLoginCheckbox()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b5c2efbec5245167ceadea1731ae64e7"></a><!-- doxytag: member="AccountSetupDialog::chkAllowUnsecureLogin" ref="b5c2efbec5245167ceadea1731ae64e7" args="" -->
@@ -434,13 +569,19 @@ Combines the radio buttons of secure transfer.
 <div class="memdoc">
 
 <p>
-Check box to select whether unsecure login is allowed 
+Check box to select whether unsecure login is allowed. 
+<p>
+
+<p>Definition at line <a class="el" href="accountsetupdialog_8h-source.html#l00141">141</a> of file <a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountsetupdialog_8cpp-source.html#l00020">AccountSetupDialog()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00384">enableLoginCheckbox()</a>, <a class="el" href="accountsetupdialog_8cpp-source.html#l00304">fillDialog()</a>, and <a class="el" href="accountsetupdialog_8cpp-source.html#l00197">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a><li>src/<a class="el" href="accountsetupdialog_8cpp.html">accountsetupdialog.cpp</a></ul>
+<li>src/<a class="el" href="accountsetupdialog_8h-source.html">accountsetupdialog.h</a><li>src/<a class="el" href="accountsetupdialog_8cpp-source.html">accountsetupdialog.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

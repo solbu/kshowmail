@@ -38,17 +38,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "filterlogentry.h"
 #include "constants.h"
 
+
+typedef QList<FilterLogEntry> LogEntryList;
+
 /**
  * @brief This is the log of the filters.
+ *
  * It holds two lists of entry objects (class FilterLogEntry). One for the deleted mails and the other one for
  * the moved mails.
  *
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
-
-typedef QList<FilterLogEntry> LogEntryList;
-
-
 class FilterLog{
 
 

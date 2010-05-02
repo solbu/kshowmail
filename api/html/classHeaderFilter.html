@@ -24,7 +24,7 @@
   </div>
 </div>
 <div class="contents">
-<h1>HeaderFilter Class Reference</h1><!-- doxytag: class="HeaderFilter" -->This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#55391c8f76aa829b6f84b9ff149331b5">check()</a> with some header datas of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#46c0c049254cb8c9aa1aa6946f2f4165">load()</a>.  
+<h1>HeaderFilter Class Reference</h1><!-- doxytag: class="HeaderFilter" -->This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#55391c8f76aa829b6f84b9ff149331b5">check()</a> with some header data of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#46c0c049254cb8c9aa1aa6946f2f4165">load()</a>.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>&gt;</code>
@@ -63,9 +63,11 @@
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#55391c8f76aa829b6f84b9ff149331b5">check()</a> with some header datas of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#46c0c049254cb8c9aa1aa6946f2f4165">load()</a>. 
+This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#55391c8f76aa829b6f84b9ff149331b5">check()</a> with some header data of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#46c0c049254cb8c9aa1aa6946f2f4165">load()</a>. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
+
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00043">43</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="3b0e807158cc2a6314edc1155caa04b7"></a><!-- doxytag: member="HeaderFilter::HeaderFilter" ref="3b0e807158cc2a6314edc1155caa04b7" args="()" -->
 <div class="memitem">
@@ -84,6 +86,10 @@ This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#
 
 <p>
 Constructor 
+<p>Definition at line <a class="el" href="headerfilter_8cpp-source.html#l00020">20</a> of file <a class="el" href="headerfilter_8cpp-source.html">headerfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="headerfilter_8h-source.html#l00091">config</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="301cf390f0257fe44afacaf118fa4df4"></a><!-- doxytag: member="HeaderFilter::~HeaderFilter" ref="301cf390f0257fe44afacaf118fa4df4" args="()" -->
@@ -103,6 +109,10 @@ Constructor
 
 <p>
 Destructor 
+<p>Definition at line <a class="el" href="headerfilter_8cpp-source.html#l00030">30</a> of file <a class="el" href="headerfilter_8cpp-source.html">headerfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="headerfilter_8h-source.html#l00121">filters</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -169,11 +179,17 @@ Checks the given mail header. <dl compact><dt><b>Parameters:</b></dt><dd>
     <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>Size </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>Header </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html">Account</a> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>mailboxName</em>&nbsp;</td><td>contains the mailbox name after call, if filter action is MOVE </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>recommend action </dd></dl>
+
+<p>Definition at line <a class="el" href="headerfilter_8cpp-source.html#l00041">41</a> of file <a class="el" href="headerfilter_8cpp-source.html">headerfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="headerfilter_8h-source.html#l00096">active</a>, <a class="el" href="filteritem_8cpp-source.html#l00088">FilterItem::check()</a>, <a class="el" href="senderlistfilter_8cpp-source.html#l00036">SenderListFilter::check()</a>, <a class="el" href="headerfilter_8h-source.html#l00101">defaultAction</a>, <a class="el" href="types_8h-source.html#l00083">Types::FActMove</a>, <a class="el" href="types_8h-source.html#l00086">Types::FActNone</a>, <a class="el" href="types_8h-source.html#l00080">Types::FActPass</a>, <a class="el" href="headerfilter_8h-source.html#l00121">filters</a>, <a class="el" href="headerfilter_8h-source.html#l00106">mailbox</a>, and <a class="el" href="headerfilter_8h-source.html#l00116">senderlist</a>.</p>
+
+<p>Referenced by <a class="el" href="mail_8cpp-source.html#l00403">Mail::applyHeaderFilter()</a>.</p>
 
 </div>
 </div><p>
@@ -194,6 +210,12 @@ Checks the given mail header. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>
 Loads the settings from the application config file. 
+<p>Definition at line <a class="el" href="headerfilter_8cpp-source.html#l00071">71</a> of file <a class="el" href="headerfilter_8cpp-source.html">headerfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="headerfilter_8h-source.html#l00096">active</a>, <a class="el" href="headerfilter_8h-source.html#l00091">config</a>, <a class="el" href="constants_8h-source.html#l00292">CONFIG_ENTRY_FILTER_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00310">CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS</a>, <a class="el" href="constants_8h-source.html#l00301">CONFIG_ENTRY_FILTER_OTHERS_ACTION</a>, <a class="el" href="constants_8h-source.html#l00302">CONFIG_ENTRY_FILTER_OTHERS_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00295">CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00299">CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE</a>, <a class="el" href="constants_8h-source.html#l00296">CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00297">CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00294">CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS</a>, <a class="el" href="constants_8h-source.html#l00298">CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00136">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00118">DEFAULT_FILTER_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00119">DEFAULT_FILTER_OTHERS_ACTION</a>, <a class="el" href="headerfilter_8h-source.html#l00101">defaultAction</a>, <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, <a class="el" href="types_8h-source.html#l00085">Types::FActIgnore</a>, <a class="el" href="types_8h-source.html#l00082">Types::FActMark</a>, <a class="el" href="types_8h-source.html#l00083">Types::FActMove</a>, <a class="el" href="types_8h-source.html#l00080">Types::FActPass</a>, <a class="el" href="types_8h-source.html#l00084">Types::FActSpamcheck</a>, <a class="el" href="headerfilter_8h-source.html#l00121">filters</a>, <a class="el" href="senderlistfilter_8cpp-source.html#l00051">SenderListFilter::load()</a>, <a class="el" href="headerfilter_8h-source.html#l00106">mailbox</a>, <a class="el" href="headerfilter_8h-source.html#l00111">numberFilterItems</a>, and <a class="el" href="headerfilter_8h-source.html#l00116">senderlist</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00020">HeaderFilter()</a>, and <a class="el" href="account_8cpp-source.html#l01856">Account::reloadFilterSettings()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b726693ef1f1ff8bae551edd0fee325e"></a><!-- doxytag: member="HeaderFilter::print" ref="b726693ef1f1ff8bae551edd0fee325e" args="()" -->
@@ -213,6 +235,10 @@ Loads the settings from the application config file.
 
 <p>
 Prints the settings 
+<p>Definition at line <a class="el" href="headerfilter_8cpp-source.html#l00113">113</a> of file <a class="el" href="headerfilter_8cpp-source.html">headerfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="headerfilter_8h-source.html#l00096">active</a>, <a class="el" href="headerfilter_8h-source.html#l00101">defaultAction</a>, <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, <a class="el" href="types_8h-source.html#l00085">Types::FActIgnore</a>, <a class="el" href="types_8h-source.html#l00082">Types::FActMark</a>, <a class="el" href="types_8h-source.html#l00083">Types::FActMove</a>, <a class="el" href="types_8h-source.html#l00080">Types::FActPass</a>, <a class="el" href="types_8h-source.html#l00084">Types::FActSpamcheck</a>, <a class="el" href="headerfilter_8h-source.html#l00121">filters</a>, <a class="el" href="headerfilter_8h-source.html#l00106">mailbox</a>, <a class="el" href="headerfilter_8h-source.html#l00111">numberFilterItems</a>, <a class="el" href="filteritem_8cpp-source.html#l00140">FilterItem::print()</a>, <a class="el" href="senderlistfilter_8cpp-source.html#l00085">SenderListFilter::print()</a>, and <a class="el" href="headerfilter_8h-source.html#l00116">senderlist</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="a51b13dce32e73c69f207c6de2d02a61"></a><!-- doxytag: member="HeaderFilter::isActive" ref="a51b13dce32e73c69f207c6de2d02a61" args="()" -->
@@ -233,6 +259,12 @@ Prints the settings
 <p>
 Returns the filter active state. <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - filter is active </dd></dl>
 
+<p>Definition at line <a class="el" href="headerfilter_8cpp-source.html#l00154">154</a> of file <a class="el" href="headerfilter_8cpp-source.html">headerfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="headerfilter_8h-source.html#l00096">active</a>.</p>
+
+<p>Referenced by <a class="el" href="account_8cpp-source.html#l01293">Account::swapMailLists()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -249,6 +281,10 @@ Returns the filter active state. <dl class="return" compact><dt><b>Returns:</b><
 
 <p>
 Connector to the configuration file 
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00091">91</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00020">HeaderFilter()</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="3c14bb815e8616df14a6c225fd9d4469"></a><!-- doxytag: member="HeaderFilter::active" ref="3c14bb815e8616df14a6c225fd9d4469" args="" -->
@@ -264,6 +300,10 @@ Connector to the configuration file
 
 <p>
 TRUE - filter is active 
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00096">96</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00041">check()</a>, <a class="el" href="headerfilter_8cpp-source.html#l00154">isActive()</a>, <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00113">print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="a478e4731d9465325095dd95c969d0bf"></a><!-- doxytag: member="HeaderFilter::defaultAction" ref="a478e4731d9465325095dd95c969d0bf" args="" -->
@@ -279,6 +319,10 @@ TRUE - filter is active
 
 <p>
 Default action, if no filter matches 
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00101">101</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00041">check()</a>, <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00113">print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="43b2162ede8f87c53486afc52d02eefd"></a><!-- doxytag: member="HeaderFilter::mailbox" ref="43b2162ede8f87c53486afc52d02eefd" args="" -->
@@ -294,6 +338,10 @@ Default action, if no filter matches
 
 <p>
 mailbox name if default action is MOVE 
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00106">106</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00041">check()</a>, <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00113">print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="beda72983c14c88c52d60576812ecc0b"></a><!-- doxytag: member="HeaderFilter::numberFilterItems" ref="beda72983c14c88c52d60576812ecc0b" args="" -->
@@ -309,6 +357,10 @@ mailbox name if default action is MOVE
 
 <p>
 Number of filter items 
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00111">111</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00113">print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="410392e92bb274e5df51ee74a2d7467d"></a><!-- doxytag: member="HeaderFilter::senderlist" ref="410392e92bb274e5df51ee74a2d7467d" args="" -->
@@ -324,6 +376,10 @@ Number of filter items
 
 <p>
 Black and White lists 
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00116">116</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00041">check()</a>, <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00113">print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="a5068ea2d4b2a516f5586081a0b2e696"></a><!-- doxytag: member="HeaderFilter::filters" ref="a5068ea2d4b2a516f5586081a0b2e696" args="" -->
@@ -339,12 +395,16 @@ Black and White lists
 
 <p>
 This list holds the filter items 
+<p>Definition at line <a class="el" href="headerfilter_8h-source.html#l00121">121</a> of file <a class="el" href="headerfilter_8h-source.html">headerfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00041">check()</a>, <a class="el" href="headerfilter_8cpp-source.html#l00071">load()</a>, <a class="el" href="headerfilter_8cpp-source.html#l00113">print()</a>, and <a class="el" href="headerfilter_8cpp-source.html#l00030">~HeaderFilter()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="headerfilter_8h-source.html">headerfilter.h</a><li>src/<a class="el" href="headerfilter_8cpp.html">headerfilter.cpp</a></ul>
+<li>src/<a class="el" href="headerfilter_8h-source.html">headerfilter.h</a><li>src/<a class="el" href="headerfilter_8cpp-source.html">headerfilter.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

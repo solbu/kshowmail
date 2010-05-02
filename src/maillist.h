@@ -38,6 +38,12 @@ class MailList;
 
 using namespace Types;
 
+/**
+ * @brief List of Mails.
+ *
+ * Used in class Account.
+ * @see Account
+ */
 class MailList : public QObject
 {
   Q_OBJECT
@@ -48,6 +54,7 @@ class MailList : public QObject
      * Constructor
      * @param account pointer to the parent account
      * @param parent parent object
+     * @see addMail
      */
     MailList( QPointer<Account> account, QObject* parent );
 

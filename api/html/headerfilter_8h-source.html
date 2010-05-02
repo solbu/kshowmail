@@ -14,72 +14,78 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/headerfilter.h</h1><a href="headerfilter_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
-<a name="l00002"></a>00002 <span class="comment">// C++ Interface: headerfilter</span>
-<a name="l00003"></a>00003 <span class="comment">//</span>
-<a name="l00004"></a>00004 <span class="comment">// Description:</span>
-<a name="l00005"></a>00005 <span class="comment">//</span>
-<a name="l00006"></a>00006 <span class="comment">//</span>
-<a name="l00007"></a>00007 <span class="comment">// Author: Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;, (C) 2007</span>
-<a name="l00008"></a>00008 <span class="comment">//</span>
-<a name="l00009"></a>00009 <span class="comment">// Copyright: See COPYING file that comes with this distribution</span>
-<a name="l00010"></a>00010 <span class="comment">//</span>
-<a name="l00011"></a>00011 <span class="comment">//</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#ifndef HEADERFILTER_H</span>
-<a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#define HEADERFILTER_H</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span>
-<a name="l00015"></a>00015 <span class="comment">//Qt headers</span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;qstring.h&gt;</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;qlist.h&gt;</span>
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="comment">//KDE headers</span>
-<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;kapplication.h&gt;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;kdebug.h&gt;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;kconfig.h&gt;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
+<h1>src/headerfilter.h</h1><a href="headerfilter_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
+<a name="l00003"></a>00003 <span class="comment"></span>
+<a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
+<a name="l00005"></a>00005 <span class="comment">modify it under the terms of the GNU General Public License as</span>
+<a name="l00006"></a>00006 <span class="comment">published by the Free Software Foundation; either version 2 of</span>
+<a name="l00007"></a>00007 <span class="comment">the License, or (at your option) any later version.</span>
+<a name="l00008"></a>00008 <span class="comment"></span>
+<a name="l00009"></a>00009 <span class="comment">This program is distributed in the hope that it will be useful,</span>
+<a name="l00010"></a>00010 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a name="l00011"></a>00011 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<a name="l00012"></a>00012 <span class="comment">GNU General Public License for more details.</span>
+<a name="l00013"></a>00013 <span class="comment"></span>
+<a name="l00014"></a>00014 <span class="comment">You should have received a copy of the GNU General Public License</span>
+<a name="l00015"></a>00015 <span class="comment">along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00016"></a>00016 <span class="comment">*/</span>
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="preprocessor">#ifndef HEADERFILTER_H</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span><span class="preprocessor">#define HEADERFILTER_H</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span>
+<a name="l00021"></a>00021 <span class="comment">//Qt headers</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;qstring.h&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;qlist.h&gt;</span>
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="comment">//KShowmail headers</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include "<a class="code" href="filteritem_8h.html">filteritem.h</a>"</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include "<a class="code" href="senderlistfilter_8h.html">senderlistfilter.h</a>"</span>
+<a name="l00025"></a>00025 <span class="comment">//KDE headers</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;kapplication.h&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;kdebug.h&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;kconfig.h&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
 <a name="l00030"></a>00030 
-<a name="l00037"></a><a class="code" href="classHeaderFilter.html">00037</a> <span class="keyword">class </span><a class="code" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header datas of the mail to...">HeaderFilter</a>{
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039   <span class="keyword">public</span>:
-<a name="l00040"></a>00040 
-<a name="l00044"></a>00044     <a class="code" href="classHeaderFilter.html#3b0e807158cc2a6314edc1155caa04b7">HeaderFilter</a>();
-<a name="l00045"></a>00045 
-<a name="l00049"></a>00049     <a class="code" href="classHeaderFilter.html#301cf390f0257fe44afacaf118fa4df4">~HeaderFilter</a>();
-<a name="l00050"></a>00050 
-<a name="l00062"></a>00062     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classHeaderFilter.html#55391c8f76aa829b6f84b9ff149331b5">check</a>( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString&amp; mailboxName ) <span class="keyword">const</span>;
-<a name="l00063"></a>00063 
-<a name="l00067"></a>00067     <span class="keywordtype">void</span> <a class="code" href="classHeaderFilter.html#46c0c049254cb8c9aa1aa6946f2f4165">load</a>();
-<a name="l00068"></a>00068 
-<a name="l00072"></a>00072     <span class="keywordtype">void</span> <a class="code" href="classHeaderFilter.html#b726693ef1f1ff8bae551edd0fee325e">print</a>();
-<a name="l00073"></a>00073 
-<a name="l00078"></a>00078     <span class="keywordtype">bool</span> <a class="code" href="classHeaderFilter.html#a51b13dce32e73c69f207c6de2d02a61">isActive</a>();
+<a name="l00031"></a>00031 <span class="comment">//KShowmail headers</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include "<a class="code" href="filteritem_8h.html">filteritem.h</a>"</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include "<a class="code" href="senderlistfilter_8h.html">senderlistfilter.h</a>"</span>
+<a name="l00036"></a>00036 
+<a name="l00043"></a><a class="code" href="classHeaderFilter.html">00043</a> <span class="keyword">class </span><a class="code" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header data of the mail to...">HeaderFilter</a>{
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045   <span class="keyword">public</span>:
+<a name="l00046"></a>00046 
+<a name="l00050"></a>00050     <a class="code" href="classHeaderFilter.html#3b0e807158cc2a6314edc1155caa04b7">HeaderFilter</a>();
+<a name="l00051"></a>00051 
+<a name="l00055"></a>00055     <a class="code" href="classHeaderFilter.html#301cf390f0257fe44afacaf118fa4df4">~HeaderFilter</a>();
+<a name="l00056"></a>00056 
+<a name="l00068"></a>00068     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classHeaderFilter.html#55391c8f76aa829b6f84b9ff149331b5">check</a>( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString&amp; mailboxName ) <span class="keyword">const</span>;
+<a name="l00069"></a>00069 
+<a name="l00073"></a>00073     <span class="keywordtype">void</span> <a class="code" href="classHeaderFilter.html#46c0c049254cb8c9aa1aa6946f2f4165">load</a>();
+<a name="l00074"></a>00074 
+<a name="l00078"></a>00078     <span class="keywordtype">void</span> <a class="code" href="classHeaderFilter.html#b726693ef1f1ff8bae551edd0fee325e">print</a>();
 <a name="l00079"></a>00079 
-<a name="l00080"></a>00080   <span class="keyword">private</span>:
-<a name="l00081"></a>00081 
-<a name="l00085"></a><a class="code" href="classHeaderFilter.html#794df6ace54de248314bc23ee6cd77b9">00085</a>     KSharedConfigPtr <a class="code" href="classHeaderFilter.html#794df6ace54de248314bc23ee6cd77b9">config</a>;
-<a name="l00086"></a>00086 
-<a name="l00090"></a><a class="code" href="classHeaderFilter.html#3c14bb815e8616df14a6c225fd9d4469">00090</a>     <span class="keywordtype">bool</span> <a class="code" href="classHeaderFilter.html#3c14bb815e8616df14a6c225fd9d4469">active</a>;
-<a name="l00091"></a>00091 
-<a name="l00095"></a><a class="code" href="classHeaderFilter.html#a478e4731d9465325095dd95c969d0bf">00095</a>     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classHeaderFilter.html#a478e4731d9465325095dd95c969d0bf">defaultAction</a>;
-<a name="l00096"></a>00096 
-<a name="l00100"></a><a class="code" href="classHeaderFilter.html#43b2162ede8f87c53486afc52d02eefd">00100</a>     QString <a class="code" href="classHeaderFilter.html#43b2162ede8f87c53486afc52d02eefd">mailbox</a>;
-<a name="l00101"></a>00101 
-<a name="l00105"></a><a class="code" href="classHeaderFilter.html#beda72983c14c88c52d60576812ecc0b">00105</a>     uint <a class="code" href="classHeaderFilter.html#beda72983c14c88c52d60576812ecc0b">numberFilterItems</a>;
-<a name="l00106"></a>00106 
-<a name="l00110"></a><a class="code" href="classHeaderFilter.html#410392e92bb274e5df51ee74a2d7467d">00110</a>     <a class="code" href="classSenderListFilter.html" title="This class represents both the blacklist and the whitelist. For using create an object...">SenderListFilter</a> <a class="code" href="classHeaderFilter.html#410392e92bb274e5df51ee74a2d7467d">senderlist</a>;
-<a name="l00111"></a>00111 
-<a name="l00115"></a><a class="code" href="classHeaderFilter.html#a5068ea2d4b2a516f5586081a0b2e696">00115</a>     QList&lt;FilterItem*&gt; <a class="code" href="classHeaderFilter.html#a5068ea2d4b2a516f5586081a0b2e696">filters</a>;
-<a name="l00116"></a>00116 };
+<a name="l00084"></a>00084     <span class="keywordtype">bool</span> <a class="code" href="classHeaderFilter.html#a51b13dce32e73c69f207c6de2d02a61">isActive</a>();
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086   <span class="keyword">private</span>:
+<a name="l00087"></a>00087 
+<a name="l00091"></a><a class="code" href="classHeaderFilter.html#794df6ace54de248314bc23ee6cd77b9">00091</a>     KSharedConfigPtr <a class="code" href="classHeaderFilter.html#794df6ace54de248314bc23ee6cd77b9">config</a>;
+<a name="l00092"></a>00092 
+<a name="l00096"></a><a class="code" href="classHeaderFilter.html#3c14bb815e8616df14a6c225fd9d4469">00096</a>     <span class="keywordtype">bool</span> <a class="code" href="classHeaderFilter.html#3c14bb815e8616df14a6c225fd9d4469">active</a>;
+<a name="l00097"></a>00097 
+<a name="l00101"></a><a class="code" href="classHeaderFilter.html#a478e4731d9465325095dd95c969d0bf">00101</a>     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classHeaderFilter.html#a478e4731d9465325095dd95c969d0bf">defaultAction</a>;
+<a name="l00102"></a>00102 
+<a name="l00106"></a><a class="code" href="classHeaderFilter.html#43b2162ede8f87c53486afc52d02eefd">00106</a>     QString <a class="code" href="classHeaderFilter.html#43b2162ede8f87c53486afc52d02eefd">mailbox</a>;
+<a name="l00107"></a>00107 
+<a name="l00111"></a><a class="code" href="classHeaderFilter.html#beda72983c14c88c52d60576812ecc0b">00111</a>     uint <a class="code" href="classHeaderFilter.html#beda72983c14c88c52d60576812ecc0b">numberFilterItems</a>;
+<a name="l00112"></a>00112 
+<a name="l00116"></a><a class="code" href="classHeaderFilter.html#410392e92bb274e5df51ee74a2d7467d">00116</a>     <a class="code" href="classSenderListFilter.html" title="This class represents both the blacklist and the whitelist. For using create an object...">SenderListFilter</a> <a class="code" href="classHeaderFilter.html#410392e92bb274e5df51ee74a2d7467d">senderlist</a>;
 <a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="preprocessor">#endif</span>
+<a name="l00121"></a><a class="code" href="classHeaderFilter.html#a5068ea2d4b2a516f5586081a0b2e696">00121</a>     QList&lt;FilterItem*&gt; <a class="code" href="classHeaderFilter.html#a5068ea2d4b2a516f5586081a0b2e696">filters</a>;
+<a name="l00122"></a>00122 };
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:21 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

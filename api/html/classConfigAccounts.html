@@ -69,6 +69,8 @@
 Part of the setup dialog (KShowMailApp::SetupDialog) to configure the accounts. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
+
+<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00044">44</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="e625cbb8f2b48db3b178392e6c469973"></a><!-- doxytag: member="ConfigAccounts::ConfigAccounts" ref="e625cbb8f2b48db3b178392e6c469973" args="(QWidget *parent=0, const QVariantList &amp;args=QVariantList())" -->
 <div class="memitem">
@@ -89,7 +91,7 @@ Part of the setup dialog (KShowMailApp::SetupDialog) to configure the accounts.
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
@@ -116,6 +118,8 @@ Generic Constructor
 
 <p>
 Destructor 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00068">68</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -136,6 +140,10 @@ Destructor
 
 <p>
 Overloaded method of KCModule. Sets the user interface elements to reflect the current settings stored in the config file. 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00072">72</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
+<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, <a class="el" href="configaccounts_8h-source.html#l00087">config</a>, <a class="el" href="constants_8h-source.html#l00273">CONFIG_ENTRY_ACCOUNTS_LIST</a>, <a class="el" href="constants_8h-source.html#l00272">CONFIG_GROUP_ACCOUNTS</a>, and <a class="el" href="accountsetupitem_8cpp-source.html#l00183">AccountSetupItem::load()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="47006383d0befb78e37568059a4dbd9e"></a><!-- doxytag: member="ConfigAccounts::defaults" ref="47006383d0befb78e37568059a4dbd9e" args="()" -->
@@ -155,6 +163,8 @@ Overloaded method of KCModule. Sets the user interface elements to reflect the c
 
 <p>
 Overloaded method of KCModule. Sets the user interface elements to default values. This method is called when the user clicks the "Default" button. 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00138">138</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="133eaa4daf79f86a56f07f9a27e55561"></a><!-- doxytag: member="ConfigAccounts::save" ref="133eaa4daf79f86a56f07f9a27e55561" args="()" -->
@@ -174,6 +184,10 @@ Overloaded method of KCModule. Sets the user interface elements to default value
 
 <p>
 Overloaded method of KCModule. Stores the config information as shown in the user interface in the config file. Is called when the user clicks "Apply" or "Ok". 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00090">90</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
+<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, <a class="el" href="configaccounts_8h-source.html#l00087">config</a>, <a class="el" href="constants_8h-source.html#l00273">CONFIG_ENTRY_ACCOUNTS_LIST</a>, <a class="el" href="constants_8h-source.html#l00272">CONFIG_GROUP_ACCOUNTS</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00070">AccountSetupItem::getAccountName()</a>, and <a class="el" href="accountsetupitem_8cpp-source.html#l00151">AccountSetupItem::save()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="fa71a146968c6f082748dfdb1ba723e6"></a><!-- doxytag: member="ConfigAccounts::slotChanged" ref="fa71a146968c6f082748dfdb1ba723e6" args="()" -->
@@ -193,6 +207,10 @@ Overloaded method of KCModule. Stores the config information as shown in the use
 
 <p>
 Connected with the configuration items. Calls the slot changed() of KCModule to notify the dialog about the change. 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00142">142</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="configaccounts_8cpp-source.html#l00147">slotAdd()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00161">slotEdit()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00182">slotRemove()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="65e9575c6bdcabdb1efa53aa47bf8609"></a><!-- doxytag: member="ConfigAccounts::slotAdd" ref="65e9575c6bdcabdb1efa53aa47bf8609" args="()" -->
@@ -212,6 +230,10 @@ Connected with the configuration items. Calls the slot changed() of KCModule to 
 
 <p>
 Connected with button btnAdd. Opens the account setup dialog with an account item pointer of NULL. If the user has clicked OK, the dialog will create a new account item with the entered values and adds it to the list view. 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00147">147</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
+<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00142">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b33abfd05c9338ae3a2631d752ed1930"></a><!-- doxytag: member="ConfigAccounts::slotEdit" ref="b33abfd05c9338ae3a2631d752ed1930" args="()" -->
@@ -231,6 +253,10 @@ Connected with button btnAdd. Opens the account setup dialog with an account ite
 
 <p>
 Connected with button btnEdit. Opens the account setup with the selected account item. 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00161">161</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
+<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00142">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="f07a29dd20dfdf9e585f68e7241cb3e9"></a><!-- doxytag: member="ConfigAccounts::slotRemove" ref="f07a29dd20dfdf9e585f68e7241cb3e9" args="()" -->
@@ -250,6 +276,10 @@ Connected with button btnEdit. Opens the account setup with the selected account
 
 <p>
 Connected with button btnRemove. Removes the selected item. 
+<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00182">182</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
+
+<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00070">AccountSetupItem::getAccountName()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00142">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -266,6 +296,10 @@ Connected with button btnRemove. Removes the selected item.
 
 <p>
 Connector to the configuration file 
+<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00087">87</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configaccounts_8cpp-source.html#l00072">load()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00090">save()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="a41e0fbc468a3f668b85d8fb0cba42b9"></a><!-- doxytag: member="ConfigAccounts::accountListView" ref="a41e0fbc468a3f668b85d8fb0cba42b9" args="" -->
@@ -280,7 +314,11 @@ Connector to the configuration file
 <div class="memdoc">
 
 <p>
-<a class="el" href="classAccount.html">Account</a> List View 
+<a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> List View 
+<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00092">92</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configaccounts_8cpp-source.html#l00072">load()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00090">save()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00147">slotAdd()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00161">slotEdit()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00182">slotRemove()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="0c5ebb039f7347640a58c5ee57098779"></a><!-- doxytag: member="ConfigAccounts::btnAdd" ref="0c5ebb039f7347640a58c5ee57098779" args="" -->
@@ -296,6 +334,8 @@ Connector to the configuration file
 
 <p>
 Button to add a new account 
+<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00097">97</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="95cd2f5c99c1d91560b46ced9d9d1fbf"></a><!-- doxytag: member="ConfigAccounts::btnEdit" ref="95cd2f5c99c1d91560b46ced9d9d1fbf" args="" -->
@@ -311,6 +351,8 @@ Button to add a new account
 
 <p>
 Button to edit an account 
+<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00102">102</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="52e23250590a8ad13e1992898a23e635"></a><!-- doxytag: member="ConfigAccounts::btnRemove" ref="52e23250590a8ad13e1992898a23e635" args="" -->
@@ -326,12 +368,14 @@ Button to edit an account
 
 <p>
 Button to remove an account 
+<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00107">107</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="configaccounts_8h-source.html">configaccounts.h</a><li>src/<a class="el" href="configaccounts_8cpp.html">configaccounts.cpp</a></ul>
+<li>src/<a class="el" href="configaccounts_8h-source.html">configaccounts.h</a><li>src/<a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

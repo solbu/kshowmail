@@ -34,6 +34,11 @@ class AccountViewModel;
 #include "mailviewmodel.h"
 #include "accountviewdelegate.h"
 
+/**
+ * @brief Main view of KShowmail.
+ *
+ * It contains the account view and the mail view.
+ */
 class KShowmailView : public QSplitter
 {
 	Q_OBJECT

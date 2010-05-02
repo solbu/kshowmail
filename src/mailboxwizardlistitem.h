@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QTreeWidget>
 
 /**
- * This is a list item in the mailbox list of the mailbox wizard
+ * @brief This is a list item in the mailbox list of the mailbox wizard
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
 class MailBoxWizardListItem : public QTreeWidgetItem

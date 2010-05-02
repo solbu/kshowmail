@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Types;
 
 /**
- * This is a filter item. It contains a list of criterias (class FilterItemCriteria).
+ * @brief This is a filter item. It contains a list of criterias (class FilterItemCriteria).
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */
 class FilterItem{

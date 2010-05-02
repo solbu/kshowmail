@@ -61,6 +61,8 @@
 This class represents both the blacklist and the whitelist. For using create an object of it and call <a class="el" href="classSenderListFilter.html#cd54522f12bc731e41e14abf9660f151">check()</a> to test a sender address. You have to call <a class="el" href="classSenderListFilter.html#6e7a4477291793511c385bdd30c349f1">load()</a> after the settings in the config file was changed. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
+
+<p>Definition at line <a class="el" href="senderlistfilter_8h-source.html#l00044">44</a> of file <a class="el" href="senderlistfilter_8h-source.html">senderlistfilter.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="c8c2cae468e5071c4e57c9380b197712"></a><!-- doxytag: member="SenderListFilter::SenderListFilter" ref="c8c2cae468e5071c4e57c9380b197712" args="()" -->
 <div class="memitem">
@@ -79,6 +81,10 @@ This class represents both the blacklist and the whitelist. For using create an 
 
 <p>
 Constructor 
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp-source.html#l00020">20</a> of file <a class="el" href="senderlistfilter_8cpp-source.html">senderlistfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="senderlistfilter_8h-source.html#l00080">config</a>, and <a class="el" href="senderlistfilter_8cpp-source.html#l00051">load()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="ea24007a926fd8e8027ce69350ada9b5"></a><!-- doxytag: member="SenderListFilter::~SenderListFilter" ref="ea24007a926fd8e8027ce69350ada9b5" args="()" -->
@@ -98,6 +104,8 @@ Constructor
 
 <p>
 Destructor 
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp-source.html#l00032">32</a> of file <a class="el" href="senderlistfilter_8cpp-source.html">senderlistfilter.cpp</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -125,6 +133,12 @@ Checks the given sender whether it is listed in the blacklist or whitelist. <dl 
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>appointed action (FActPass, FActDelete, FActMark, FActNone) </dd></dl>
 
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp-source.html#l00036">36</a> of file <a class="el" href="senderlistfilter_8cpp-source.html">senderlistfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="senderlistfilter_8h-source.html#l00085">blacklist</a>, <a class="el" href="senderlistfilter_8h-source.html#l00095">blacklistAction</a>, <a class="el" href="types_8h-source.html#l00086">Types::FActNone</a>, <a class="el" href="types_8h-source.html#l00080">Types::FActPass</a>, <a class="el" href="senderlistfilter_8cpp-source.html#l00069">search()</a>, and <a class="el" href="senderlistfilter_8h-source.html#l00090">whitelist</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00041">HeaderFilter::check()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6e7a4477291793511c385bdd30c349f1"></a><!-- doxytag: member="SenderListFilter::load" ref="6e7a4477291793511c385bdd30c349f1" args="()" -->
@@ -144,6 +158,12 @@ Checks the given sender whether it is listed in the blacklist or whitelist. <dl 
 
 <p>
 Loads the setup from the application config file. 
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp-source.html#l00051">51</a> of file <a class="el" href="senderlistfilter_8cpp-source.html">senderlistfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="senderlistfilter_8h-source.html#l00085">blacklist</a>, <a class="el" href="senderlistfilter_8h-source.html#l00095">blacklistAction</a>, <a class="el" href="senderlistfilter_8h-source.html#l00080">config</a>, <a class="el" href="constants_8h-source.html#l00308">CONFIG_ENTRY_FILTER_BLACKLIST</a>, <a class="el" href="constants_8h-source.html#l00307">CONFIG_ENTRY_FILTER_BLACKLIST_ACTION</a>, <a class="el" href="constants_8h-source.html#l00309">CONFIG_ENTRY_FILTER_WHITELIST</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00304">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00305">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00121">DEFAULT_FILTER_BLACKLIST_ACTION</a>, <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, <a class="el" href="types_8h-source.html#l00082">Types::FActMark</a>, and <a class="el" href="senderlistfilter_8h-source.html#l00090">whitelist</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00071">HeaderFilter::load()</a>, and <a class="el" href="senderlistfilter_8cpp-source.html#l00020">SenderListFilter()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="bfd7364f08f06d471c38e5e366bc07d6"></a><!-- doxytag: member="SenderListFilter::print" ref="bfd7364f08f06d471c38e5e366bc07d6" args="()" -->
@@ -163,6 +183,12 @@ Loads the setup from the application config file.
 
 <p>
 Prints the settings. 
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp-source.html#l00085">85</a> of file <a class="el" href="senderlistfilter_8cpp-source.html">senderlistfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="senderlistfilter_8h-source.html#l00085">blacklist</a>, <a class="el" href="senderlistfilter_8h-source.html#l00095">blacklistAction</a>, <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, <a class="el" href="types_8h-source.html#l00082">Types::FActMark</a>, and <a class="el" href="senderlistfilter_8h-source.html#l00090">whitelist</a>.</p>
+
+<p>Referenced by <a class="el" href="headerfilter_8cpp-source.html#l00113">HeaderFilter::print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="df8a4549d9ab8d4cfc361fc3778d1ca7"></a><!-- doxytag: member="SenderListFilter::search" ref="df8a4549d9ab8d4cfc361fc3778d1ca7" args="(QStringList list, QString sender) const " -->
@@ -201,6 +227,10 @@ This sender strings will cause a return value of TRUE: "Ulrich Weigelt" &lt;<a h
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - the given sender name is listed. FALSE - is not listed </dd></dl>
 
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp-source.html#l00069">69</a> of file <a class="el" href="senderlistfilter_8cpp-source.html">senderlistfilter.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="senderlistfilter_8cpp-source.html#l00036">check()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -217,6 +247,10 @@ This sender strings will cause a return value of TRUE: "Ulrich Weigelt" &lt;<a h
 
 <p>
 Connector to the configuration file 
+<p>Definition at line <a class="el" href="senderlistfilter_8h-source.html#l00080">80</a> of file <a class="el" href="senderlistfilter_8h-source.html">senderlistfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="senderlistfilter_8cpp-source.html#l00051">load()</a>, and <a class="el" href="senderlistfilter_8cpp-source.html#l00020">SenderListFilter()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="18cefb81d2ba5d663f3c5d26d098265b"></a><!-- doxytag: member="SenderListFilter::blacklist" ref="18cefb81d2ba5d663f3c5d26d098265b" args="" -->
@@ -232,6 +266,10 @@ Connector to the configuration file
 
 <p>
 blacklisted addresses 
+<p>Definition at line <a class="el" href="senderlistfilter_8h-source.html#l00085">85</a> of file <a class="el" href="senderlistfilter_8h-source.html">senderlistfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="senderlistfilter_8cpp-source.html#l00036">check()</a>, <a class="el" href="senderlistfilter_8cpp-source.html#l00051">load()</a>, and <a class="el" href="senderlistfilter_8cpp-source.html#l00085">print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="8228445f3526a626d3531587c1ba1d29"></a><!-- doxytag: member="SenderListFilter::whitelist" ref="8228445f3526a626d3531587c1ba1d29" args="" -->
@@ -247,6 +285,10 @@ blacklisted addresses
 
 <p>
 whitelisted addresses 
+<p>Definition at line <a class="el" href="senderlistfilter_8h-source.html#l00090">90</a> of file <a class="el" href="senderlistfilter_8h-source.html">senderlistfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="senderlistfilter_8cpp-source.html#l00036">check()</a>, <a class="el" href="senderlistfilter_8cpp-source.html#l00051">load()</a>, and <a class="el" href="senderlistfilter_8cpp-source.html#l00085">print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="bbde9560d26d88cd90b7adcdf9622240"></a><!-- doxytag: member="SenderListFilter::blacklistAction" ref="bbde9560d26d88cd90b7adcdf9622240" args="" -->
@@ -262,12 +304,16 @@ whitelisted addresses
 
 <p>
 appointed action of the blacklist. 
+<p>Definition at line <a class="el" href="senderlistfilter_8h-source.html#l00095">95</a> of file <a class="el" href="senderlistfilter_8h-source.html">senderlistfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="senderlistfilter_8cpp-source.html#l00036">check()</a>, <a class="el" href="senderlistfilter_8cpp-source.html#l00051">load()</a>, and <a class="el" href="senderlistfilter_8cpp-source.html#l00085">print()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="senderlistfilter_8h-source.html">senderlistfilter.h</a><li>src/<a class="el" href="senderlistfilter_8cpp.html">senderlistfilter.cpp</a></ul>
+<li>src/<a class="el" href="senderlistfilter_8h-source.html">senderlistfilter.h</a><li>src/<a class="el" href="senderlistfilter_8cpp-source.html">senderlistfilter.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

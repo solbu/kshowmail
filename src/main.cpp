@@ -26,10 +26,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //KShowmail headers
 #include "kshowmail.h"
 #include "uniqueapp.h"
+#include "buildConfig.h"
 
 static const char description[] = I18N_NOOP("A pop3 mail checker");
 
-static const char version[] = "4.0";
+//the version number is defined in cmake via buildConfig.h.in
+static const char version[] = KSHOWMAIL_VERSION;
+
+/**
+ * @mainpage
+ * This is the API documentation of %KShowmail.
+ * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
+ */
 
 int main(int argc, char **argv)
 {

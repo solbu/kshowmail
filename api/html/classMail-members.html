@@ -26,13 +26,16 @@
 <div class="contents">
 <h1>Mail Member List</h1>This is the complete list of members for <a class="el" href="classMail.html">Mail</a>, including all inherited members.<p><table>
   <tr class="memlist"><td><a class="el" href="classMail.html#a055c9a6e8f8a8f1432d121bcd50871b">_new</a></td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#2976b0ec09d6f59995f4ef08fe05ab73">acc</a></td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#ff80d2262a601daa4db464c27b8dba27">accountName</a></td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#75a86126042d3cb4859dc90d92d8286d">applyHeaderFilter</a>(HeaderFilter *filter, QString account, QString &amp;mailbox, FilterLog *log=NULL)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classMail.html#56ee63de9801c2c9f86959b8eeb065bb">compare</a>(Mail *other, MailSort_Type property)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#71e23bd54ea79915fdfe8404c8bce1a1">compare</a>(const Mail &amp;other, MailSort_Type property)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#424e0d906f50ddbcdd68213d3b8d3b0c">contentType</a></td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#2d002302c55289db64089361d9804cf1">decodeMailBody</a>(const QStringList &amp;body, bool preferHTML) const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#d502ece96360c816794cb608d6d2ab50">decodeRfc2047</a>(const QString &amp;text) const </td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#50d03592bc5577d13bb6ad55cd134e3a">from</a></td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classMail.html#301d8a5b01429b32c603dfa24cdb1429">getAccount</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#2ea71e1eaa573e7c337ce3358706351e">getAccount</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#8c004c2ed9d8c8a5761f359685a73956">getAccountName</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#260d3e1a6a0f7d983f01ad8326cc758b">getBoundary</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#744bd61d3237be271e28437bc4aa3243">getCharset</a>(const QStringList &amp;text) const </td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#4bde1075aad259f138efc31f456e71d0">getCharsetFromHeader</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
@@ -52,9 +55,11 @@
   <tr class="memlist"><td><a class="el" href="classMail.html#9bb87f1b7fab8c9ff396d48c530dd40a">init</a>()</td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#fd413f7ab35370632cf2efdff34ec6e1">isMarkedByFilter</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#140fb3f90375e82c44c5bdde4cda767d">isNew</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classMail.html#d19d6f597c659bde174270dfe7c4aa12">Mail</a>(long number, const QString &amp;unid, bool isNew, QObject *parent)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#84fac1066d771b5ac24e5e943bc61599">Mail</a>(long number, const QString &amp;unid, bool isNew, QPointer&lt; Account &gt; account, QObject *parent)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#8107826556acbb3aa88693e3906c8896">Mail</a>(const Mail &amp;mail)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#3d88ed5f20b6fd757e2c6dfa266fac02">markedByFilter</a></td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#72531c2f3f016021c4dc362f33703c2d">number</a></td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classMail.html#48e081c8b392a9046eb3dac7ac691e82">operator=</a>(const Mail &amp;other)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#6f8bc30354479bab239c1d0675552b8a">print</a>() const </td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#83b979d63e95e35b4c8ee20ac533ac3d">save</a>(QDomDocument &amp;doc, QDomElement &amp;parent)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#c3089fc2f8355d94f3feb36394ec614e">scanBodyPart</a>(const QStringList &amp;part, const QString &amp;item) const </td><td><a class="el" href="classMail.html">Mail</a></td><td><code> [protected]</code></td></tr>
@@ -78,7 +83,7 @@
   <tr class="memlist"><td><a class="el" href="classMail.html#f12fe5432e54e0ea962bb9d274827c29">writeToMoveLog</a>(FilterLog *log, QString account, QString mailbox)</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classMail.html#7f59d642ff71033500e1fac06ce9b3b1">~Mail</a>()</td><td><a class="el" href="classMail.html">Mail</a></td><td></td></tr>
 </table></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

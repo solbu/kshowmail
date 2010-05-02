@@ -15,50 +15,52 @@
     </ul>
   </div>
 <h1>src/uniqueapp.h</h1><a href="uniqueapp_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
-<a name="l00002"></a>00002 <span class="comment">   This library is free software; you can redistribute it and/or</span>
-<a name="l00003"></a>00003 <span class="comment">   modify it under the terms of the GNU Library General Public</span>
-<a name="l00004"></a>00004 <span class="comment">   License version 2 as published by the Free Software Foundation.</span>
-<a name="l00005"></a>00005 <span class="comment"></span>
-<a name="l00006"></a>00006 <span class="comment">   This library is distributed in the hope that it will be useful,</span>
-<a name="l00007"></a>00007 <span class="comment">   but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00008"></a>00008 <span class="comment">   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</span>
-<a name="l00009"></a>00009 <span class="comment">   Library General Public License for more details.</span>
-<a name="l00010"></a>00010 <span class="comment"></span>
-<a name="l00011"></a>00011 <span class="comment">   You should have received a copy of the GNU Library General Public License</span>
-<a name="l00012"></a>00012 <span class="comment">   along with this library; see the file COPYING.LIB.  If not, write to</span>
-<a name="l00013"></a>00013 <span class="comment">   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,</span>
-<a name="l00014"></a>00014 <span class="comment">   Boston, MA 02110-1301, USA.</span>
-<a name="l00015"></a>00015 <span class="comment">*/</span>
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="preprocessor">#ifndef UNIQUEAPP_H</span>
-<a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#define UNIQUEAPP_H</span>
-<a name="l00019"></a>00019 <span class="preprocessor"></span>
-<a name="l00020"></a>00020 <span class="comment">//KDE headers</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;kuniqueapplication.h&gt;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;kcmdlineargs.h&gt;</span>
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="comment">//KShowmail headers</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include "<a class="code" href="kshowmail_8h.html">kshowmail.h</a>"</span>
-<a name="l00026"></a>00026 
-<a name="l00032"></a><a class="code" href="classUniqueApp.html">00032</a> <span class="keyword">class </span><a class="code" href="classUniqueApp.html" title="Creates a unique instance of kshowmail.">UniqueApp</a> : <span class="keyword">public</span> KUniqueApplication
-<a name="l00033"></a>00033 {
-<a name="l00034"></a>00034   <span class="keyword">public</span>:
-<a name="l00035"></a>00035     
-<a name="l00039"></a>00039   <a class="code" href="classUniqueApp.html#ecfa67080f62f6ec776089de43e920ba">UniqueApp</a>();
-<a name="l00040"></a>00040 
-<a name="l00044"></a>00044   <a class="code" href="classUniqueApp.html#c0f5a87150f0c1a09ada9996fba1ffa2">~UniqueApp</a>();
-<a name="l00045"></a>00045 
-<a name="l00049"></a>00049   <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classUniqueApp.html#41127093415c53fea5560a51a83d0dde">newInstance</a>();
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">private</span>:
+<a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
+<a name="l00003"></a>00003 <span class="comment"></span>
+<a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
+<a name="l00005"></a>00005 <span class="comment">modify it under the terms of the GNU General Public License as</span>
+<a name="l00006"></a>00006 <span class="comment">published by the Free Software Foundation; either version 2 of</span>
+<a name="l00007"></a>00007 <span class="comment">the License, or (at your option) any later version.</span>
+<a name="l00008"></a>00008 <span class="comment"></span>
+<a name="l00009"></a>00009 <span class="comment">This program is distributed in the hope that it will be useful,</span>
+<a name="l00010"></a>00010 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a name="l00011"></a>00011 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<a name="l00012"></a>00012 <span class="comment">GNU General Public License for more details.</span>
+<a name="l00013"></a>00013 <span class="comment"></span>
+<a name="l00014"></a>00014 <span class="comment">You should have received a copy of the GNU General Public License</span>
+<a name="l00015"></a>00015 <span class="comment">along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00016"></a>00016 <span class="comment">*/</span>
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="preprocessor">#ifndef UNIQUEAPP_H</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span><span class="preprocessor">#define UNIQUEAPP_H</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span>
+<a name="l00021"></a>00021 <span class="comment">//KDE headers</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;kuniqueapplication.h&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;kcmdlineargs.h&gt;</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="comment">//KShowmail headers</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include "<a class="code" href="kshowmail_8h.html">kshowmail.h</a>"</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00028"></a>00028 
+<a name="l00034"></a><a class="code" href="classUniqueApp.html">00034</a> <span class="keyword">class </span><a class="code" href="classUniqueApp.html" title="Creates a unique instance of kshowmail.">UniqueApp</a> : <span class="keyword">public</span> KUniqueApplication
+<a name="l00035"></a>00035 {
+<a name="l00036"></a>00036   <span class="keyword">public</span>:
+<a name="l00037"></a>00037     
+<a name="l00041"></a>00041   <a class="code" href="classUniqueApp.html#ecfa67080f62f6ec776089de43e920ba">UniqueApp</a>();
+<a name="l00042"></a>00042 
+<a name="l00046"></a>00046   <a class="code" href="classUniqueApp.html#c0f5a87150f0c1a09ada9996fba1ffa2">~UniqueApp</a>();
+<a name="l00047"></a>00047 
+<a name="l00051"></a>00051   <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classUniqueApp.html#41127093415c53fea5560a51a83d0dde">newInstance</a>();
+<a name="l00052"></a>00052 
 <a name="l00053"></a>00053 
-<a name="l00057"></a><a class="code" href="classUniqueApp.html#defca28ef8c307375cf00544cd68df09">00057</a>   <a class="code" href="classKShowmail.html" title="main class">KShowmail</a>* <a class="code" href="classUniqueApp.html#defca28ef8c307375cf00544cd68df09">m_pApp</a>;
-<a name="l00058"></a>00058 };
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="preprocessor">#endif // UNIQUEAPP_H</span>
+<a name="l00054"></a>00054 <span class="keyword">private</span>:
+<a name="l00055"></a>00055 
+<a name="l00059"></a><a class="code" href="classUniqueApp.html#defca28ef8c307375cf00544cd68df09">00059</a>   <a class="code" href="classKShowmail.html" title="main class">KShowmail</a>* <a class="code" href="classUniqueApp.html#defca28ef8c307375cf00544cd68df09">m_pApp</a>;
+<a name="l00060"></a>00060 };
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="preprocessor">#endif // UNIQUEAPP_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:21 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

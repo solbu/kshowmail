@@ -196,7 +196,7 @@ Q_OBJECT
   private slots:
 
    /**
-    * Connected with the configuration items.
+    * @brief Connected with the configuration items.
     * Calls the slot changed() of KCModule to notify the dialog about the change.
     */
     void slotChanged();

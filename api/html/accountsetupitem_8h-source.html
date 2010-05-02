@@ -14,130 +14,136 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/accountsetupitem.h</h1><a href="accountsetupitem_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
-<a name="l00002"></a>00002 <span class="comment">// C++ Interface: accountsetupitem</span>
-<a name="l00003"></a>00003 <span class="comment">//</span>
-<a name="l00004"></a>00004 <span class="comment">// Description:</span>
-<a name="l00005"></a>00005 <span class="comment">//</span>
-<a name="l00006"></a>00006 <span class="comment">//</span>
-<a name="l00007"></a>00007 <span class="comment">// Author: Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;, (C) 2007</span>
-<a name="l00008"></a>00008 <span class="comment">//</span>
-<a name="l00009"></a>00009 <span class="comment">// Copyright: See COPYING file that comes with this distribution</span>
-<a name="l00010"></a>00010 <span class="comment">//</span>
-<a name="l00011"></a>00011 <span class="comment">//</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#ifndef ACCOUNTSETUPITEM_H</span>
-<a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#define ACCOUNTSETUPITEM_H</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span>
-<a name="l00015"></a>00015 <span class="comment">//Qt headers</span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;QTreeWidgetItem&gt;</span>
+<h1>src/accountsetupitem.h</h1><a href="accountsetupitem_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
+<a name="l00003"></a>00003 <span class="comment"></span>
+<a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
+<a name="l00005"></a>00005 <span class="comment">modify it under the terms of the GNU General Public License as</span>
+<a name="l00006"></a>00006 <span class="comment">published by the Free Software Foundation; either version 2 of</span>
+<a name="l00007"></a>00007 <span class="comment">the License, or (at your option) any later version.</span>
+<a name="l00008"></a>00008 <span class="comment"></span>
+<a name="l00009"></a>00009 <span class="comment">This program is distributed in the hope that it will be useful,</span>
+<a name="l00010"></a>00010 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a name="l00011"></a>00011 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<a name="l00012"></a>00012 <span class="comment">GNU General Public License for more details.</span>
+<a name="l00013"></a>00013 <span class="comment"></span>
+<a name="l00014"></a>00014 <span class="comment">You should have received a copy of the GNU General Public License</span>
+<a name="l00015"></a>00015 <span class="comment">along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="comment">//KDE headers</span>
-<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;KListWidget&gt;</span>
-<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;KStandardDirs&gt;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;kconfig.h&gt;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;kurl.h&gt;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
-<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;KDebug&gt;</span>
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="comment">//KShowmail headers</span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include "<a class="code" href="encryption_8h.html">encryption.h</a>"</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include "<a class="code" href="kwalletaccess_8h.html">kwalletaccess.h</a>"</span>
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="keyword">using namespace </span>Encryption;
-<a name="l00032"></a>00032 
-<a name="l00037"></a><a class="code" href="classAccountSetupItem.html">00037</a> <span class="keyword">class </span><a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a> : <span class="keyword">public</span> QTreeWidgetItem
-<a name="l00038"></a>00038 {
-<a name="l00039"></a>00039   <span class="keyword">public</span>:
-<a name="l00040"></a>00040 
-<a name="l00045"></a>00045     <a class="code" href="classAccountSetupItem.html#491ca40f1f96fe8327afceace3eb3829">AccountSetupItem</a>( QTreeWidget* parent );
+<a name="l00018"></a>00018 <span class="preprocessor">#ifndef ACCOUNTSETUPITEM_H</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span><span class="preprocessor">#define ACCOUNTSETUPITEM_H</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span>
+<a name="l00021"></a>00021 <span class="comment">//Qt headers</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;QTreeWidgetItem&gt;</span>
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 <span class="comment">//KDE headers</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;KListWidget&gt;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;KStandardDirs&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;kconfig.h&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;kurl.h&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;KDebug&gt;</span>
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 <span class="comment">//KShowmail headers</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include "<a class="code" href="encryption_8h.html">encryption.h</a>"</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include "<a class="code" href="kwalletaccess_8h.html">kwalletaccess.h</a>"</span>
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 <span class="keyword">using namespace </span>Encryption;
+<a name="l00038"></a>00038 
+<a name="l00043"></a><a class="code" href="classAccountSetupItem.html">00043</a> <span class="keyword">class </span><a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a> : <span class="keyword">public</span> QTreeWidgetItem
+<a name="l00044"></a>00044 {
+<a name="l00045"></a>00045   <span class="keyword">public</span>:
 <a name="l00046"></a>00046 
-<a name="l00052"></a>00052     <a class="code" href="classAccountSetupItem.html#491ca40f1f96fe8327afceace3eb3829">AccountSetupItem</a>( QTreeWidget* parent, <span class="keyword">const</span> QString&amp; name );
-<a name="l00053"></a>00053 
-<a name="l00057"></a>00057     <a class="code" href="classAccountSetupItem.html#d62bafb61f526698b43f867fbd93ca05">~AccountSetupItem</a>();
-<a name="l00058"></a>00058 
-<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#fe048b33e97e2505dbb62c8ad8fed515">setAccountName</a>( <span class="keyword">const</span> QString&amp; name );
+<a name="l00051"></a>00051     <a class="code" href="classAccountSetupItem.html#491ca40f1f96fe8327afceace3eb3829" title="Constructor.">AccountSetupItem</a>( QTreeWidget* parent );
+<a name="l00052"></a>00052 
+<a name="l00058"></a>00058     <a class="code" href="classAccountSetupItem.html#491ca40f1f96fe8327afceace3eb3829" title="Constructor.">AccountSetupItem</a>( QTreeWidget* parent, <span class="keyword">const</span> QString&amp; name );
+<a name="l00059"></a>00059 
+<a name="l00063"></a>00063     <a class="code" href="classAccountSetupItem.html#d62bafb61f526698b43f867fbd93ca05" title="Destructor.">~AccountSetupItem</a>();
 <a name="l00064"></a>00064 
-<a name="l00069"></a>00069     QString <a class="code" href="classAccountSetupItem.html#abde4873503264d043f80426b3953431">getAccountName</a>() <span class="keyword">const</span>;
+<a name="l00069"></a>00069     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#fe048b33e97e2505dbb62c8ad8fed515" title="Sets account name.">setAccountName</a>( <span class="keyword">const</span> QString&amp; name );
 <a name="l00070"></a>00070 
-<a name="l00075"></a>00075     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#055a3b09f97a42f8c93e358b6eb5f5c8">setServer</a>( <span class="keyword">const</span> QString&amp; server );
+<a name="l00075"></a>00075     QString <a class="code" href="classAccountSetupItem.html#abde4873503264d043f80426b3953431" title="Returns the account name.">getAccountName</a>() <span class="keyword">const</span>;
 <a name="l00076"></a>00076 
-<a name="l00081"></a>00081     QString <a class="code" href="classAccountSetupItem.html#20269b7bcbf7c1b438b6f65610578485">getServer</a>() <span class="keyword">const</span>;
+<a name="l00081"></a>00081     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#055a3b09f97a42f8c93e358b6eb5f5c8" title="Sets the server.">setServer</a>( <span class="keyword">const</span> QString&amp; server );
 <a name="l00082"></a>00082 
-<a name="l00087"></a>00087     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#ce26f8a7edb166a697d618032806f0ed">setProtocol</a>( <span class="keyword">const</span> QString&amp; protocol );
+<a name="l00087"></a>00087     QString <a class="code" href="classAccountSetupItem.html#20269b7bcbf7c1b438b6f65610578485" title="Returns the server.">getServer</a>() <span class="keyword">const</span>;
 <a name="l00088"></a>00088 
-<a name="l00093"></a>00093     QString <a class="code" href="classAccountSetupItem.html#731e273b3ce34fc27f70f966fb43dad3">getProtocol</a>() <span class="keyword">const</span>;
+<a name="l00093"></a>00093     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#ce26f8a7edb166a697d618032806f0ed" title="Sets the protocol.">setProtocol</a>( <span class="keyword">const</span> QString&amp; protocol );
 <a name="l00094"></a>00094 
-<a name="l00099"></a>00099     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#f4f27bc4dd16fe7cf0159b068b2aa620">setPort</a>( <span class="keywordtype">int</span> port );
+<a name="l00099"></a>00099     QString <a class="code" href="classAccountSetupItem.html#731e273b3ce34fc27f70f966fb43dad3" title="Returns the protocol.">getProtocol</a>() <span class="keyword">const</span>;
 <a name="l00100"></a>00100 
-<a name="l00105"></a>00105     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#b58e3e92a99641157e3645d2833555b3">getPort</a>() <span class="keyword">const</span>;
+<a name="l00105"></a>00105     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#f4f27bc4dd16fe7cf0159b068b2aa620" title="Sets the port number.">setPort</a>( <span class="keywordtype">int</span> port );
 <a name="l00106"></a>00106 
-<a name="l00111"></a>00111     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#3bfebeaedf54f4882a6568d17f0b194f">setUser</a>( <span class="keyword">const</span> QString&amp; user );
+<a name="l00111"></a>00111     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#b58e3e92a99641157e3645d2833555b3" title="Returns the port number.">getPort</a>() <span class="keyword">const</span>;
 <a name="l00112"></a>00112 
-<a name="l00117"></a>00117     QString <a class="code" href="classAccountSetupItem.html#19bc7fa714f52c194053d1a1fb63390c">getUser</a>() <span class="keyword">const</span>;
+<a name="l00117"></a>00117     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#3bfebeaedf54f4882a6568d17f0b194f" title="Sets the user name.">setUser</a>( <span class="keyword">const</span> QString&amp; user );
 <a name="l00118"></a>00118 
-<a name="l00123"></a>00123     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#8a8decbbdebead74d3b649ddf7e33087">setPassword</a>( <span class="keyword">const</span> QString&amp; password );
+<a name="l00123"></a>00123     QString <a class="code" href="classAccountSetupItem.html#19bc7fa714f52c194053d1a1fb63390c" title="Returns the user name.">getUser</a>() <span class="keyword">const</span>;
 <a name="l00124"></a>00124 
-<a name="l00129"></a>00129     QString <a class="code" href="classAccountSetupItem.html#75105c083b34743dc2346f0e45539650">getPassword</a>() <span class="keyword">const</span>;
+<a name="l00129"></a>00129     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#8a8decbbdebead74d3b649ddf7e33087" title="Sets the password.">setPassword</a>( <span class="keyword">const</span> QString&amp; password );
 <a name="l00130"></a>00130 
-<a name="l00136"></a>00136     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#252f1a25f9486630d3b574b13f72de02">setPasswordStorageType</a>( <span class="keywordtype">int</span> type );
-<a name="l00137"></a>00137 
-<a name="l00143"></a>00143     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#2b6d1d250fc9778e0ac12f83359f3fbe">getPasswordStorageType</a>() <span class="keyword">const</span>;
+<a name="l00135"></a>00135     QString <a class="code" href="classAccountSetupItem.html#75105c083b34743dc2346f0e45539650" title="Returns the password.">getPassword</a>() <span class="keyword">const</span>;
+<a name="l00136"></a>00136 
+<a name="l00143"></a>00143     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#252f1a25f9486630d3b574b13f72de02" title="Sets the password storage type.">setPasswordStorageType</a>( <span class="keywordtype">int</span> type );
 <a name="l00144"></a>00144 
-<a name="l00149"></a>00149     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#aee9d4fd988fdc351a1f303e96231478">setActive</a>( <span class="keywordtype">bool</span> active );
-<a name="l00150"></a>00150 
-<a name="l00156"></a>00156     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#7e6c8ad7f73f0277da1871b690161d75">getActive</a>() <span class="keyword">const</span>;
-<a name="l00157"></a>00157 
-<a name="l00163"></a>00163     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#e9bcf9e4ab7d3d81afa0e3d4a28c4dd7">setTransferSecurity</a>( <span class="keywordtype">int</span> type );
-<a name="l00164"></a>00164 
-<a name="l00170"></a>00170     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#1829735ab740b06726ecdea416ca2241">getTransferSecurity</a>() <span class="keyword">const</span>;
-<a name="l00171"></a>00171 
-<a name="l00176"></a>00176     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#c3f35ad17229249c5bd4eb66448e7dfb">save</a>() <span class="keyword">const</span>;
-<a name="l00177"></a>00177 
-<a name="l00181"></a>00181     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#5c4884393afc3498c2e7f2184e47d50e">load</a>();
-<a name="l00182"></a>00182 
-<a name="l00186"></a>00186     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#4dbb45cdd46a0669ed3094bfaa67c45c">print</a>();
-<a name="l00187"></a>00187 
-<a name="l00192"></a>00192     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#c7d273845d8dedfdccb49a06261edd24">setUnsecureLoginAllowed</a>( <span class="keywordtype">bool</span> allowed );
+<a name="l00151"></a>00151     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#2b6d1d250fc9778e0ac12f83359f3fbe" title="Returns the password storage type.">getPasswordStorageType</a>() <span class="keyword">const</span>;
+<a name="l00152"></a>00152 
+<a name="l00157"></a>00157     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#aee9d4fd988fdc351a1f303e96231478" title="Sets whether the account is active.">setActive</a>( <span class="keywordtype">bool</span> active );
+<a name="l00158"></a>00158 
+<a name="l00164"></a>00164     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#7e6c8ad7f73f0277da1871b690161d75" title="Returns whether the account is active.">getActive</a>() <span class="keyword">const</span>;
+<a name="l00165"></a>00165 
+<a name="l00172"></a>00172     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#e9bcf9e4ab7d3d81afa0e3d4a28c4dd7" title="Sets the transfer security.">setTransferSecurity</a>( <span class="keywordtype">int</span> type );
+<a name="l00173"></a>00173 
+<a name="l00180"></a>00180     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#1829735ab740b06726ecdea416ca2241" title="Returns the transfer security.">getTransferSecurity</a>() <span class="keyword">const</span>;
+<a name="l00181"></a>00181 
+<a name="l00187"></a>00187     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#c3f35ad17229249c5bd4eb66448e7dfb" title="Saves this account into applications config.">save</a>() <span class="keyword">const</span>;
+<a name="l00188"></a>00188 
+<a name="l00192"></a>00192     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#5c4884393afc3498c2e7f2184e47d50e" title="Loads the options of this account from the application config.">load</a>();
 <a name="l00193"></a>00193 
-<a name="l00198"></a>00198     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#a75c7796a93ef4f73fdcd9267c54195c">getUnsecureLoginAllowed</a>() <span class="keyword">const</span>;
-<a name="l00199"></a>00199 
-<a name="l00200"></a>00200     
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202   <span class="keyword">private</span>:
-<a name="l00203"></a>00203 
-<a name="l00207"></a><a class="code" href="classAccountSetupItem.html#2a00a183cfa9cda70f20f6680fcfe060">00207</a>     KSharedConfigPtr <a class="code" href="classAccountSetupItem.html#2a00a183cfa9cda70f20f6680fcfe060">config</a>;
-<a name="l00208"></a>00208 
-<a name="l00212"></a><a class="code" href="classAccountSetupItem.html#6f42afbe7a05c1d431c99fe9de2544cf">00212</a>     QString <a class="code" href="classAccountSetupItem.html#6f42afbe7a05c1d431c99fe9de2544cf">_account</a>;
-<a name="l00213"></a>00213 
-<a name="l00217"></a><a class="code" href="classAccountSetupItem.html#63330ee312d151d983c2c6d7599c1f7a">00217</a>     QString <a class="code" href="classAccountSetupItem.html#63330ee312d151d983c2c6d7599c1f7a">_server</a>;
-<a name="l00218"></a>00218 
-<a name="l00222"></a><a class="code" href="classAccountSetupItem.html#0a8ebdb7e6a0fe7f8d2087e76886e83f">00222</a>     QString <a class="code" href="classAccountSetupItem.html#0a8ebdb7e6a0fe7f8d2087e76886e83f">_protocol</a>;
-<a name="l00223"></a>00223 
-<a name="l00227"></a><a class="code" href="classAccountSetupItem.html#09655b292b183798d38134f6239904a9">00227</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#09655b292b183798d38134f6239904a9">_port</a>;
-<a name="l00228"></a>00228 
-<a name="l00232"></a><a class="code" href="classAccountSetupItem.html#a5d1dc044834b57ed6cb965f1b566d18">00232</a>     QString <a class="code" href="classAccountSetupItem.html#a5d1dc044834b57ed6cb965f1b566d18">_user</a>;
-<a name="l00233"></a>00233 
-<a name="l00237"></a><a class="code" href="classAccountSetupItem.html#8ccb6320dbfbdcc84c9153d44cbc7f53">00237</a>     QString <a class="code" href="classAccountSetupItem.html#8ccb6320dbfbdcc84c9153d44cbc7f53">_password</a>;
-<a name="l00238"></a>00238 
-<a name="l00242"></a><a class="code" href="classAccountSetupItem.html#08984a59b3a03b9ac919da388f9b4d77">00242</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#08984a59b3a03b9ac919da388f9b4d77">_active</a>;
-<a name="l00243"></a>00243 
-<a name="l00248"></a><a class="code" href="classAccountSetupItem.html#cc3d0e67733b2651627ced562a78493d">00248</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#cc3d0e67733b2651627ced562a78493d">_passwordStorage</a>;
+<a name="l00197"></a>00197     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#4dbb45cdd46a0669ed3094bfaa67c45c" title="Prints the account settings to stdout.">print</a>();
+<a name="l00198"></a>00198 
+<a name="l00203"></a>00203     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#c7d273845d8dedfdccb49a06261edd24" title="Sets whether an unsecure login is allowed.">setUnsecureLoginAllowed</a>( <span class="keywordtype">bool</span> allowed );
+<a name="l00204"></a>00204 
+<a name="l00209"></a>00209     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#a75c7796a93ef4f73fdcd9267c54195c" title="Return whether an unsecure login is allowed.">getUnsecureLoginAllowed</a>() <span class="keyword">const</span>;
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211     
+<a name="l00212"></a>00212 
+<a name="l00213"></a>00213   <span class="keyword">private</span>:
+<a name="l00214"></a>00214 
+<a name="l00218"></a><a class="code" href="classAccountSetupItem.html#2a00a183cfa9cda70f20f6680fcfe060">00218</a>     KSharedConfigPtr <a class="code" href="classAccountSetupItem.html#2a00a183cfa9cda70f20f6680fcfe060" title="Connector to the configuration file.">config</a>;
+<a name="l00219"></a>00219 
+<a name="l00223"></a><a class="code" href="classAccountSetupItem.html#6f42afbe7a05c1d431c99fe9de2544cf">00223</a>     QString <a class="code" href="classAccountSetupItem.html#6f42afbe7a05c1d431c99fe9de2544cf" title="Account name.">_account</a>;
+<a name="l00224"></a>00224 
+<a name="l00228"></a><a class="code" href="classAccountSetupItem.html#63330ee312d151d983c2c6d7599c1f7a">00228</a>     QString <a class="code" href="classAccountSetupItem.html#63330ee312d151d983c2c6d7599c1f7a" title="Server.">_server</a>;
+<a name="l00229"></a>00229 
+<a name="l00233"></a><a class="code" href="classAccountSetupItem.html#0a8ebdb7e6a0fe7f8d2087e76886e83f">00233</a>     QString <a class="code" href="classAccountSetupItem.html#0a8ebdb7e6a0fe7f8d2087e76886e83f" title="Protocol.">_protocol</a>;
+<a name="l00234"></a>00234 
+<a name="l00238"></a><a class="code" href="classAccountSetupItem.html#09655b292b183798d38134f6239904a9">00238</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#09655b292b183798d38134f6239904a9" title="Port.">_port</a>;
+<a name="l00239"></a>00239 
+<a name="l00243"></a><a class="code" href="classAccountSetupItem.html#a5d1dc044834b57ed6cb965f1b566d18">00243</a>     QString <a class="code" href="classAccountSetupItem.html#a5d1dc044834b57ed6cb965f1b566d18" title="User Name.">_user</a>;
+<a name="l00244"></a>00244 
+<a name="l00248"></a><a class="code" href="classAccountSetupItem.html#8ccb6320dbfbdcc84c9153d44cbc7f53">00248</a>     QString <a class="code" href="classAccountSetupItem.html#8ccb6320dbfbdcc84c9153d44cbc7f53" title="Password.">_password</a>;
 <a name="l00249"></a>00249 
-<a name="l00254"></a><a class="code" href="classAccountSetupItem.html#a2efe33199e3634f32d700331e8c6402">00254</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#a2efe33199e3634f32d700331e8c6402">_transferSecurity</a>;
-<a name="l00255"></a>00255 
-<a name="l00259"></a><a class="code" href="classAccountSetupItem.html#08adfdd7fe279e82a2484113cd6c2161">00259</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#08adfdd7fe279e82a2484113cd6c2161">_allowUnsecureLogin</a>;
-<a name="l00260"></a>00260 
-<a name="l00261"></a>00261     
-<a name="l00262"></a>00262   <span class="keyword">protected</span>:
-<a name="l00263"></a>00263 
-<a name="l00267"></a>00267     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#30efbf35bc42ed0ff5e13d42a2eac442">init</a>();
+<a name="l00253"></a><a class="code" href="classAccountSetupItem.html#08984a59b3a03b9ac919da388f9b4d77">00253</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#08984a59b3a03b9ac919da388f9b4d77" title="TRUE - account is active.">_active</a>;
+<a name="l00254"></a>00254 
+<a name="l00260"></a><a class="code" href="classAccountSetupItem.html#cc3d0e67733b2651627ced562a78493d">00260</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#cc3d0e67733b2651627ced562a78493d" title="password storage type">_passwordStorage</a>;
+<a name="l00261"></a>00261 
+<a name="l00267"></a><a class="code" href="classAccountSetupItem.html#a2efe33199e3634f32d700331e8c6402">00267</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#a2efe33199e3634f32d700331e8c6402" title="transfer security">_transferSecurity</a>;
 <a name="l00268"></a>00268 
-<a name="l00269"></a>00269 };
-<a name="l00270"></a>00270 
-<a name="l00271"></a>00271 <span class="preprocessor">#endif</span>
+<a name="l00272"></a><a class="code" href="classAccountSetupItem.html#08adfdd7fe279e82a2484113cd6c2161">00272</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#08adfdd7fe279e82a2484113cd6c2161" title="TRUE - unsafe login is allowed if a secure login failed.">_allowUnsecureLogin</a>;
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274     
+<a name="l00275"></a>00275   <span class="keyword">protected</span>:
+<a name="l00276"></a>00276 
+<a name="l00280"></a>00280     <span class="keywordtype">void</span> <a class="code" href="classAccountSetupItem.html#30efbf35bc42ed0ff5e13d42a2eac442" title="Initializes the object.">init</a>();
+<a name="l00281"></a>00281 
+<a name="l00282"></a>00282 };
+<a name="l00283"></a>00283 
+<a name="l00284"></a>00284 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:21 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

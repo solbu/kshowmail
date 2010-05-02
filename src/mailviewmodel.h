@@ -38,6 +38,9 @@ class AccountList;
 //constants
 #define NUMBER_MAILVIEW_COLUMNS 9
 
+/**
+ * @brief Model for the mail view.
+ */
 class MailViewModel : public QAbstractItemModel
 {
 	Q_OBJECT

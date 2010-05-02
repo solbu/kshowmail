@@ -1,5 +1,13 @@
 project(kshowmail)
 
+# version number
+set (KSHOWMAIL_VERSION 4.0)
+
+#configure a header file to pass some of the CMake settings to the source code
+configure_file(
+  "${PROJECT_SOURCE_DIR}/src/buildConfig.h.in"
+  "${PROJECT_SOURCE_DIR}/src/buildConfig.h"
+)
 
 find_package(KDE4 REQUIRED)
 find_package(KdepimLibs REQUIRED)

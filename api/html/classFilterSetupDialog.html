@@ -84,6 +84,8 @@
 Dialog to setup a filter. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
+
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00059">59</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="3829d1e56808f77fa4c53ca85eaad417"></a><!-- doxytag: member="FilterSetupDialog::FilterSetupDialog" ref="3829d1e56808f77fa4c53ca85eaad417" args="(QWidget *parent, FilterSetupItem *item=NULL)" -->
 <div class="memitem">
@@ -104,7 +106,7 @@ Dialog to setup a filter.
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
@@ -117,6 +119,10 @@ General constructor <dl compact><dt><b>Parameters:</b></dt><dd>
     <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>filter to setup; </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">20</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="filtersetupdialog_8h-source.html#l00112">btnAddCriteria</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00132">btnMailboxWizard</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00117">btnRemoveCriteria</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00122">cmbAction</a>, <a class="el" href="constants_8h-source.html#l00348">CONFIG_VALUE_FILTER_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00352">CONFIG_VALUE_FILTER_ACTION_IGNORE</a>, <a class="el" href="constants_8h-source.html#l00349">CONFIG_VALUE_FILTER_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00350">CONFIG_VALUE_FILTER_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00347">CONFIG_VALUE_FILTER_ACTION_PASS</a>, <a class="el" href="constants_8h-source.html#l00351">CONFIG_VALUE_FILTER_ACTION_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00323">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL</a>, <a class="el" href="constants_8h-source.html#l00324">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY</a>, <a class="el" href="constants_8h-source.html#l00134">DEFAULT_FILTER_ACTION</a>, <a class="el" href="constants_8h-source.html#l00124">DEFAULT_FILTER_CRITERIA_LINKAGE</a>, <a class="el" href="constants_8h-source.html#l00123">DEFAULT_FILTER_NAME</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00082">filter</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00064">FilterSetupItem::getName()</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00097">grpLinkage</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00022">ID_BUTTON_LINKAGE_MATCH_ALL</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00023">ID_BUTTON_LINKAGE_MATCH_ANY</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00049">ID_COMBO_FILTER_ACTION_DELETE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00053">ID_COMBO_FILTER_ACTION_IGNORE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00050">ID_COMBO_FILTER_ACTION_MARK</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00051">ID_COMBO_FILTER_ACTION_MOVE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00048">ID_COMBO_FILTER_ACTION_PASS</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00052">ID_COMBO_FILTER_ACTION_SPAMCHECK</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00107">layCriteriasHolding</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00451">slotActionChanged()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">slotAddCriteriaWidget()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00465">slotOpenMailBoxWizard()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00272">slotRemoveCriteriaWidget()</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00127">txtMailbox</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00092">txtName</a>, and <a class="el" href="filtersetupdialog_8h-source.html#l00102">wdgCriteriasHolding</a>.</p>
 
 </div>
 </div><p>
@@ -137,6 +143,8 @@ General constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>
 Destructor 
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00147">147</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -157,6 +165,12 @@ Destructor
 
 <p>
 Writes the values of the given filter into the dialog items. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">151</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="filtersetupdialog_8cpp-source.html#l00310">addCriteriaWidget()</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00122">cmbAction</a>, <a class="el" href="constants_8h-source.html#l00348">CONFIG_VALUE_FILTER_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00352">CONFIG_VALUE_FILTER_ACTION_IGNORE</a>, <a class="el" href="constants_8h-source.html#l00349">CONFIG_VALUE_FILTER_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00350">CONFIG_VALUE_FILTER_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00347">CONFIG_VALUE_FILTER_ACTION_PASS</a>, <a class="el" href="constants_8h-source.html#l00351">CONFIG_VALUE_FILTER_ACTION_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00323">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL</a>, <a class="el" href="constants_8h-source.html#l00324">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY</a>, <a class="el" href="constants_8h-source.html#l00331">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00326">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a>, <a class="el" href="constants_8h-source.html#l00330">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>, <a class="el" href="constants_8h-source.html#l00328">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>, <a class="el" href="constants_8h-source.html#l00329">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00327">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a>, <a class="el" href="constants_8h-source.html#l00134">DEFAULT_FILTER_ACTION</a>, <a class="el" href="constants_8h-source.html#l00124">DEFAULT_FILTER_CRITERIA_LINKAGE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00082">filter</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00218">FilterSetupItem::getAction()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00213">FilterSetupItem::getCriteriaLinkage()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00231">FilterSetupItem::getCriteriaList()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00223">FilterSetupItem::getMailBox()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00064">FilterSetupItem::getName()</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00097">grpLinkage</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00022">ID_BUTTON_LINKAGE_MATCH_ALL</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00023">ID_BUTTON_LINKAGE_MATCH_ANY</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00049">ID_COMBO_FILTER_ACTION_DELETE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00053">ID_COMBO_FILTER_ACTION_IGNORE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00050">ID_COMBO_FILTER_ACTION_MARK</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00051">ID_COMBO_FILTER_ACTION_MOVE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00048">ID_COMBO_FILTER_ACTION_PASS</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00052">ID_COMBO_FILTER_ACTION_SPAMCHECK</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00451">slotActionChanged()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">slotAddCriteriaWidget()</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00127">txtMailbox</a>, and <a class="el" href="filtersetupdialog_8h-source.html#l00092">txtName</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="fa448720691406559aa6abf252a17fce"></a><!-- doxytag: member="FilterSetupDialog::addCriteriaWidget" ref="fa448720691406559aa6abf252a17fce" args="(int source, int condition, uint value)" -->
@@ -198,6 +212,12 @@ Adds a criteria widget dialog with values for numeric comparison. <dl compact><d
     <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison value </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00310">310</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="constants_8h-source.html#l00340">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00342">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER</a>, <a class="el" href="constants_8h-source.html#l00343">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00344">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS</a>, <a class="el" href="constants_8h-source.html#l00345">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00341">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00328">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00259">FilterCriteriaWidget::setNumCriteria()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">slotAddCriteriaWidget()</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>.</p>
 
 </div>
 </div><p>
@@ -248,6 +268,10 @@ Adds a criteria widget dialog with values for text comparison. <dl compact><dt><
   </table>
 </dl>
 
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00337">337</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="constants_8h-source.html#l00333">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00335">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00334">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00336">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00338">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00337">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00331">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00326">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a>, <a class="el" href="constants_8h-source.html#l00330">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>, <a class="el" href="constants_8h-source.html#l00329">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00327">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00291">FilterCriteriaWidget::setTextCriteria()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00327">FilterCriteriaWidget::setTextListCriteria()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">slotAddCriteriaWidget()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="380545201cee2eb5c66206d4c42e533c"></a><!-- doxytag: member="FilterSetupDialog::slotButtonClicked" ref="380545201cee2eb5c66206d4c42e533c" args="(int button)" -->
@@ -272,6 +296,10 @@ Overwritten method of KDialog. Called if a button is clocked clicked. Stores the
     <tr><td valign="top"></td><td valign="top"><em>button</em>&nbsp;</td><td>clicked button </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00376">376</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="filtersetupdialog_8h-source.html#l00122">cmbAction</a>, <a class="el" href="constants_8h-source.html#l00348">CONFIG_VALUE_FILTER_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00352">CONFIG_VALUE_FILTER_ACTION_IGNORE</a>, <a class="el" href="constants_8h-source.html#l00349">CONFIG_VALUE_FILTER_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00350">CONFIG_VALUE_FILTER_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00347">CONFIG_VALUE_FILTER_ACTION_PASS</a>, <a class="el" href="constants_8h-source.html#l00351">CONFIG_VALUE_FILTER_ACTION_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00323">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL</a>, <a class="el" href="constants_8h-source.html#l00324">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY</a>, <a class="el" href="constants_8h-source.html#l00134">DEFAULT_FILTER_ACTION</a>, <a class="el" href="constants_8h-source.html#l00124">DEFAULT_FILTER_CRITERIA_LINKAGE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00082">filter</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00066">FILTER_CRITERIA_WIDGET_NAME</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00097">grpLinkage</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00022">ID_BUTTON_LINKAGE_MATCH_ALL</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00023">ID_BUTTON_LINKAGE_MATCH_ANY</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00049">ID_COMBO_FILTER_ACTION_DELETE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00053">ID_COMBO_FILTER_ACTION_IGNORE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00050">ID_COMBO_FILTER_ACTION_MARK</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00051">ID_COMBO_FILTER_ACTION_MOVE</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00048">ID_COMBO_FILTER_ACTION_PASS</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00052">ID_COMBO_FILTER_ACTION_SPAMCHECK</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00077">FilterSetupItem::setAction()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00184">FilterSetupItem::setCriteriaLinkage()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00200">FilterSetupItem::setCriteriaList()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00205">FilterSetupItem::setMailBox()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00056">FilterSetupItem::setName()</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00127">txtMailbox</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00092">txtName</a>, and <a class="el" href="filtersetupdialog_8h-source.html#l00102">wdgCriteriasHolding</a>.</p>
 
 </div>
 </div><p>
@@ -298,6 +326,12 @@ Connected with combobox cmbAction. Enables or disables additional widgets for ac
   </table>
 </dl>
 
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00451">451</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="filtersetupdialog_8h-source.html#l00132">btnMailboxWizard</a>, <a class="el" href="constants_8h-source.html#l00136">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00051">ID_COMBO_FILTER_ACTION_MOVE</a>, and <a class="el" href="filtersetupdialog_8h-source.html#l00127">txtMailbox</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="98a07d641dade7d09ba3515042c5c78b"></a><!-- doxytag: member="FilterSetupDialog::slotAddCriteriaWidget" ref="98a07d641dade7d09ba3515042c5c78b" args="()" -->
@@ -318,6 +352,12 @@ Connected with combobox cmbAction. Enables or disables additional widgets for ac
 <p>
 Adds a empty critera dialog widget. <dl class="return" compact><dt><b>Returns:</b></dt><dd>Pointer to the new widget </dd></dl>
 
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">250</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="filtersetupdialog_8h-source.html#l00117">btnRemoveCriteria</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00107">layCriteriasHolding</a>, and <a class="el" href="filtersetupdialog_8h-source.html#l00102">wdgCriteriasHolding</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00310">addCriteriaWidget()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="f6692fef3f675c8a1081e20c0b8e605c"></a><!-- doxytag: member="FilterSetupDialog::slotRemoveCriteriaWidget" ref="f6692fef3f675c8a1081e20c0b8e605c" args="()" -->
@@ -337,6 +377,12 @@ Adds a empty critera dialog widget. <dl class="return" compact><dt><b>Returns:</
 
 <p>
 Removes the last criteria dialog widget. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00272">272</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="filtersetupdialog_8h-source.html#l00117">btnRemoveCriteria</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00066">FILTER_CRITERIA_WIDGET_NAME</a>, <a class="el" href="filtersetupdialog_8h-source.html#l00107">layCriteriasHolding</a>, and <a class="el" href="filtersetupdialog_8h-source.html#l00102">wdgCriteriasHolding</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e6c0ae87d1774f8e198d4a9b224fd03c"></a><!-- doxytag: member="FilterSetupDialog::slotOpenMailBoxWizard" ref="e6c0ae87d1774f8e198d4a9b224fd03c" args="()" -->
@@ -356,6 +402,12 @@ Removes the last criteria dialog widget.
 
 <p>
 Connected with button btnMailboxWizard. Opens a wizard to configure the mailbox 
+<p>Definition at line <a class="el" href="filtersetupdialog_8cpp-source.html#l00465">465</a> of file <a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a>.</p>
+
+<p>References <a class="el" href="filtersetupdialog_8h-source.html#l00127">txtMailbox</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -372,6 +424,10 @@ Connected with button btnMailboxWizard. Opens a wizard to configure the mailbox
 
 <p>
 filter to setup 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00082">82</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00376">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="061025fec9e194e15790ef7b9c6e0eb5"></a><!-- doxytag: member="FilterSetupDialog::listView" ref="061025fec9e194e15790ef7b9c6e0eb5" args="" -->
@@ -387,6 +443,8 @@ filter to setup
 
 <p>
 View which shows the filter items. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00087">87</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b459c7092f81c673b8c9be73160e7c0c"></a><!-- doxytag: member="FilterSetupDialog::txtName" ref="b459c7092f81c673b8c9be73160e7c0c" args="" -->
@@ -402,6 +460,10 @@ View which shows the filter items.
 
 <p>
 Contains the filter name. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00092">92</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00376">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="76bada4b71bbb9938c4ff1727104d3fc"></a><!-- doxytag: member="FilterSetupDialog::grpLinkage" ref="76bada4b71bbb9938c4ff1727104d3fc" args="" -->
@@ -417,6 +479,10 @@ Contains the filter name.
 
 <p>
 Combines the radio buttons to select the kind of linkage between the criterias. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00097">97</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00376">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="22690117339c27887269ac061d567b29"></a><!-- doxytag: member="FilterSetupDialog::wdgCriteriasHolding" ref="22690117339c27887269ac061d567b29" args="" -->
@@ -432,6 +498,10 @@ Combines the radio buttons to select the kind of linkage between the criterias.
 
 <p>
 This widget holds one ore more filter criteria dialogs (class <a class="el" href="classFilterCriteriaWidget.html" title="Part of the filter setup dialog (class FilterSetupDialog) to show a criteria of the...">FilterCriteriaWidget</a>). 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00102">102</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">slotAddCriteriaWidget()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00376">slotButtonClicked()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00272">slotRemoveCriteriaWidget()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="789ab5bd9a7692be0553a49f048e0404"></a><!-- doxytag: member="FilterSetupDialog::layCriteriasHolding" ref="789ab5bd9a7692be0553a49f048e0404" args="" -->
@@ -447,6 +517,10 @@ This widget holds one ore more filter criteria dialogs (class <a class="el" href
 
 <p>
 Layout for wdgCriterias. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00107">107</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">slotAddCriteriaWidget()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00272">slotRemoveCriteriaWidget()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="483e48b31515d4092ff732909d04e70f"></a><!-- doxytag: member="FilterSetupDialog::btnAddCriteria" ref="483e48b31515d4092ff732909d04e70f" args="" -->
@@ -462,6 +536,10 @@ Layout for wdgCriterias.
 
 <p>
 Button to add a criteria dialog. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00112">112</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="dd3a087c23bd8792411f377a0d93f924"></a><!-- doxytag: member="FilterSetupDialog::btnRemoveCriteria" ref="dd3a087c23bd8792411f377a0d93f924" args="" -->
@@ -477,6 +555,10 @@ Button to add a criteria dialog.
 
 <p>
 Button to remove the last criteria. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00117">117</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00250">slotAddCriteriaWidget()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00272">slotRemoveCriteriaWidget()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="299b83408156afea479e156d64b28208"></a><!-- doxytag: member="FilterSetupDialog::cmbAction" ref="299b83408156afea479e156d64b28208" args="" -->
@@ -492,6 +574,10 @@ Button to remove the last criteria.
 
 <p>
 Combobox to select the action. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00122">122</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00376">slotButtonClicked()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="7df1f80c7ebe025e5b6cd259e7a979a6"></a><!-- doxytag: member="FilterSetupDialog::txtMailbox" ref="7df1f80c7ebe025e5b6cd259e7a979a6" args="" -->
@@ -507,6 +593,10 @@ Combobox to select the action.
 
 <p>
 If selected, the mails will be moved to the mailbox which is written in this edit line. 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00127">127</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00151">fillDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00451">slotActionChanged()</a>, <a class="el" href="filtersetupdialog_8cpp-source.html#l00376">slotButtonClicked()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00465">slotOpenMailBoxWizard()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="be7549b4b90d586b05236dd9077703c2"></a><!-- doxytag: member="FilterSetupDialog::btnMailboxWizard" ref="be7549b4b90d586b05236dd9077703c2" args="" -->
@@ -522,12 +612,16 @@ If selected, the mails will be moved to the mailbox which is written in this edi
 
 <p>
 This button opens a wizard which will help to get the right mailbox 
+<p>Definition at line <a class="el" href="filtersetupdialog_8h-source.html#l00132">132</a> of file <a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a>.</p>
+
+<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00020">FilterSetupDialog()</a>, and <a class="el" href="filtersetupdialog_8cpp-source.html#l00451">slotActionChanged()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a><li>src/<a class="el" href="filtersetupdialog_8cpp.html">filtersetupdialog.cpp</a></ul>
+<li>src/<a class="el" href="filtersetupdialog_8h-source.html">filtersetupdialog.h</a><li>src/<a class="el" href="filtersetupdialog_8cpp-source.html">filtersetupdialog.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

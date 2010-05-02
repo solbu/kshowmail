@@ -52,6 +52,7 @@
 <tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigFilter.html#e626fc3ce1c6e341587bbbcf3c611d72">slotChanged</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with the configuration items. Calls the slot changed() of KCModule to notify the dialog about the change.  <a href="#e626fc3ce1c6e341587bbbcf3c611d72"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigFilter.html#da34005d02ab687ac31936c260a909eb">slotOpenWhitelist</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigFilter.html#59985cf246e5cb913338cdde10750759">slotOpenBlacklist</a> ()</td></tr>
@@ -120,6 +121,8 @@
 Part of the setup dialog (KShowMailApp::SetupDialog) to configure the filter. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
+
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00060">60</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="75e9a63054a4fb74f19bf82c9ff236d8"></a><!-- doxytag: member="ConfigFilter::ConfigFilter" ref="75e9a63054a4fb74f19bf82c9ff236d8" args="(QWidget *parent=0, const QVariantList &amp;args=QVariantList())" -->
 <div class="memitem">
@@ -140,7 +143,7 @@ Part of the setup dialog (KShowMailApp::SetupDialog) to configure the filter.
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
@@ -167,6 +170,8 @@ Generic constructor
 
 <p>
 Destructor 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00175">175</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -187,6 +192,10 @@ Destructor
 
 <p>
 Overloaded method of KCModule. Sets the user interface elements to reflect the current settings stored in the config file. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00179">179</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00108">chkActivateFilter</a>, <a class="el" href="configfilter_8h-source.html#l00178">cmbActionOthers</a>, <a class="el" href="configfilter_8h-source.html#l00103">config</a>, <a class="el" href="constants_8h-source.html#l00292">CONFIG_ENTRY_FILTER_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00310">CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS</a>, <a class="el" href="constants_8h-source.html#l00301">CONFIG_ENTRY_FILTER_OTHERS_ACTION</a>, <a class="el" href="constants_8h-source.html#l00302">CONFIG_ENTRY_FILTER_OTHERS_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00295">CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00299">CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE</a>, <a class="el" href="constants_8h-source.html#l00296">CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00297">CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00294">CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS</a>, <a class="el" href="constants_8h-source.html#l00298">CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00136">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00118">DEFAULT_FILTER_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00119">DEFAULT_FILTER_OTHERS_ACTION</a>, <a class="el" href="configfilter_8h-source.html#l00049">ID_COMBO_FILTER_OTHERS_ACTION_DELETE</a>, <a class="el" href="configfilter_8h-source.html#l00053">ID_COMBO_FILTER_OTHERS_ACTION_IGNORE</a>, <a class="el" href="configfilter_8h-source.html#l00050">ID_COMBO_FILTER_OTHERS_ACTION_MARK</a>, <a class="el" href="configfilter_8h-source.html#l00051">ID_COMBO_FILTER_OTHERS_ACTION_MOVE</a>, <a class="el" href="configfilter_8h-source.html#l00048">ID_COMBO_FILTER_OTHERS_ACTION_PASS</a>, <a class="el" href="configfilter_8h-source.html#l00052">ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK</a>, <a class="el" href="configfilter_8h-source.html#l00194">lastFilterNumber</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00282">FilterSetupItem::load()</a>, <a class="el" href="configfilter_8cpp-source.html#l00635">slotFilterActiveToggled()</a>, <a class="el" href="configfilter_8cpp-source.html#l00423">slotOtherActionChanged()</a>, and <a class="el" href="configfilter_8h-source.html#l00183">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b810d016d9fbb0cf1e860ab22c0b4ac3"></a><!-- doxytag: member="ConfigFilter::defaults" ref="b810d016d9fbb0cf1e860ab22c0b4ac3" args="()" -->
@@ -206,6 +215,10 @@ Overloaded method of KCModule. Sets the user interface elements to reflect the c
 
 <p>
 Overloaded method of KCModule. Sets the user interface elements to default values. This method is called when the user clicks the "Default" button. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00229">229</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00108">chkActivateFilter</a>, <a class="el" href="configfilter_8h-source.html#l00178">cmbActionOthers</a>, <a class="el" href="constants_8h-source.html#l00295">CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00299">CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE</a>, <a class="el" href="constants_8h-source.html#l00296">CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00297">CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00294">CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS</a>, <a class="el" href="constants_8h-source.html#l00298">CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00136">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00118">DEFAULT_FILTER_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00119">DEFAULT_FILTER_OTHERS_ACTION</a>, <a class="el" href="configfilter_8h-source.html#l00049">ID_COMBO_FILTER_OTHERS_ACTION_DELETE</a>, <a class="el" href="configfilter_8h-source.html#l00053">ID_COMBO_FILTER_OTHERS_ACTION_IGNORE</a>, <a class="el" href="configfilter_8h-source.html#l00050">ID_COMBO_FILTER_OTHERS_ACTION_MARK</a>, <a class="el" href="configfilter_8h-source.html#l00051">ID_COMBO_FILTER_OTHERS_ACTION_MOVE</a>, <a class="el" href="configfilter_8h-source.html#l00048">ID_COMBO_FILTER_OTHERS_ACTION_PASS</a>, <a class="el" href="configfilter_8h-source.html#l00052">ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK</a>, <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>, <a class="el" href="configfilter_8cpp-source.html#l00635">slotFilterActiveToggled()</a>, <a class="el" href="configfilter_8cpp-source.html#l00423">slotOtherActionChanged()</a>, and <a class="el" href="configfilter_8h-source.html#l00183">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="12d47bcad1116876e8d957dabc1739e7"></a><!-- doxytag: member="ConfigFilter::save" ref="12d47bcad1116876e8d957dabc1739e7" args="()" -->
@@ -225,6 +238,10 @@ Overloaded method of KCModule. Sets the user interface elements to default value
 
 <p>
 Overloaded method of KCModule. Stores the config information as shown in the user interface in the config file. Is called when the user clicks "Apply" or "Ok". 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00255">255</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00108">chkActivateFilter</a>, <a class="el" href="configfilter_8h-source.html#l00178">cmbActionOthers</a>, <a class="el" href="configfilter_8h-source.html#l00103">config</a>, <a class="el" href="constants_8h-source.html#l00292">CONFIG_ENTRY_FILTER_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00310">CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS</a>, <a class="el" href="constants_8h-source.html#l00301">CONFIG_ENTRY_FILTER_OTHERS_ACTION</a>, <a class="el" href="constants_8h-source.html#l00302">CONFIG_ENTRY_FILTER_OTHERS_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00295">CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00299">CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE</a>, <a class="el" href="constants_8h-source.html#l00296">CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00297">CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00294">CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS</a>, <a class="el" href="constants_8h-source.html#l00298">CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00119">DEFAULT_FILTER_OTHERS_ACTION</a>, <a class="el" href="configfilter_8h-source.html#l00049">ID_COMBO_FILTER_OTHERS_ACTION_DELETE</a>, <a class="el" href="configfilter_8h-source.html#l00053">ID_COMBO_FILTER_OTHERS_ACTION_IGNORE</a>, <a class="el" href="configfilter_8h-source.html#l00050">ID_COMBO_FILTER_OTHERS_ACTION_MARK</a>, <a class="el" href="configfilter_8h-source.html#l00051">ID_COMBO_FILTER_OTHERS_ACTION_MOVE</a>, <a class="el" href="configfilter_8h-source.html#l00048">ID_COMBO_FILTER_OTHERS_ACTION_PASS</a>, <a class="el" href="configfilter_8h-source.html#l00052">ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK</a>, <a class="el" href="configfilter_8h-source.html#l00194">lastFilterNumber</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, and <a class="el" href="configfilter_8h-source.html#l00183">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e626fc3ce1c6e341587bbbcf3c611d72"></a><!-- doxytag: member="ConfigFilter::slotChanged" ref="e626fc3ce1c6e341587bbbcf3c611d72" args="()" -->
@@ -244,6 +261,12 @@ Overloaded method of KCModule. Stores the config information as shown in the use
 
 <p>
 Connected with the configuration items. Calls the slot changed() of KCModule to notify the dialog about the change. 
+<p>
+
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00314">314</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00229">defaults()</a>, <a class="el" href="configfilter_8cpp-source.html#l00339">slotAdd()</a>, <a class="el" href="configfilter_8cpp-source.html#l00368">slotEdit()</a>, <a class="el" href="configfilter_8cpp-source.html#l00503">slotMoveBottom()</a>, <a class="el" href="configfilter_8cpp-source.html#l00572">slotMoveDown()</a>, <a class="el" href="configfilter_8cpp-source.html#l00457">slotMoveTop()</a>, <a class="el" href="configfilter_8cpp-source.html#l00536">slotMoveUp()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00392">slotRemove()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="da34005d02ab687ac31936c260a909eb"></a><!-- doxytag: member="ConfigFilter::slotOpenWhitelist" ref="da34005d02ab687ac31936c260a909eb" args="()" -->
@@ -263,6 +286,10 @@ Connected with the configuration items. Calls the slot changed() of KCModule to 
 
 <p>
 Connected with the button btnOpenWhitelist. Creates and opens a dialog to edit the whitelist. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00319">319</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="senderlistdialog_8h-source.html#l00057">SenderListDialog::White</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="59985cf246e5cb913338cdde10750759"></a><!-- doxytag: member="ConfigFilter::slotOpenBlacklist" ref="59985cf246e5cb913338cdde10750759" args="()" -->
@@ -282,6 +309,10 @@ Connected with the button btnOpenWhitelist. Creates and opens a dialog to edit t
 
 <p>
 Connected with the button btnOpenBlacklist. Creates and opens a dialog to edit the blacklist. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00329">329</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="senderlistdialog_8h-source.html#l00057">SenderListDialog::Black</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="7d39cb7b4d25de5dd7f5dc2cae9fc2d3"></a><!-- doxytag: member="ConfigFilter::slotAdd" ref="7d39cb7b4d25de5dd7f5dc2cae9fc2d3" args="()" -->
@@ -301,6 +332,10 @@ Connected with the button btnOpenBlacklist. Creates and opens a dialog to edit t
 
 <p>
 Connected with button btnAdd. Opens the account setup dialog with an account item pointer of NULL. If the user has clicked OK, the dialog will create a new account item with the entered values and adds it to the list view. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00339">339</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00194">lastFilterNumber</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, and <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="49e5fe216ba80e4c006e74e5a4e94db1"></a><!-- doxytag: member="ConfigFilter::slotEdit" ref="49e5fe216ba80e4c006e74e5a4e94db1" args="()" -->
@@ -320,6 +355,10 @@ Connected with button btnAdd. Opens the account setup dialog with an account ite
 
 <p>
 Connected with button btnEdit. Opens the account setup with the selected account item. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00368">368</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, and <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e164faaa56958a3ec5a59eae5dc1b40a"></a><!-- doxytag: member="ConfigFilter::slotRemove" ref="e164faaa56958a3ec5a59eae5dc1b40a" args="()" -->
@@ -339,6 +378,10 @@ Connected with button btnEdit. Opens the account setup with the selected account
 
 <p>
 Connected with button btnRemove. Removes the selected item. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00392">392</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8cpp-source.html#l00437">decreaseNumbers()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00236">FilterSetupItem::getNumber()</a>, <a class="el" href="configfilter_8h-source.html#l00194">lastFilterNumber</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, and <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="24fc66c44faed7d415fc71b5ee0c0435"></a><!-- doxytag: member="ConfigFilter::slotOtherActionChanged" ref="24fc66c44faed7d415fc71b5ee0c0435" args="(int index)" -->
@@ -364,6 +407,12 @@ Connected with combobox cmbActionOthers. Enables or disables additional widgets 
   </table>
 </dl>
 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00423">423</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00188">btnMailboxWizard</a>, <a class="el" href="constants_8h-source.html#l00136">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a>, <a class="el" href="configfilter_8h-source.html#l00051">ID_COMBO_FILTER_OTHERS_ACTION_MOVE</a>, and <a class="el" href="configfilter_8h-source.html#l00183">txtMailbox</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00229">defaults()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b0134250b85a1e8eeb0a6c0e7a5375a9"></a><!-- doxytag: member="ConfigFilter::slotMoveTop" ref="b0134250b85a1e8eeb0a6c0e7a5375a9" args="()" -->
@@ -383,6 +432,10 @@ Connected with combobox cmbActionOthers. Enables or disables additional widgets 
 
 <p>
 Connected with button btnMoveTop. Moves the selected filter item at the top of the list, i.e. the number of this item will be the least one. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00457">457</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8cpp-source.html#l00437">decreaseNumbers()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00236">FilterSetupItem::getNumber()</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00069">FilterSetupItem::setNumber()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="3e2709df5fb1849733c7b6c6a2b7fb10"></a><!-- doxytag: member="ConfigFilter::slotMoveBottom" ref="3e2709df5fb1849733c7b6c6a2b7fb10" args="()" -->
@@ -402,6 +455,10 @@ Connected with button btnMoveTop. Moves the selected filter item at the top of t
 
 <p>
 Connected with button btnMoveBottom. Moves the selected filter item at the bottom of the list, i.e. the number of this item will be the greatest one. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00503">503</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8cpp-source.html#l00437">decreaseNumbers()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00236">FilterSetupItem::getNumber()</a>, <a class="el" href="configfilter_8h-source.html#l00194">lastFilterNumber</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00069">FilterSetupItem::setNumber()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6419ef19b91c6b2466242f8ead6169a4"></a><!-- doxytag: member="ConfigFilter::slotMoveUp" ref="6419ef19b91c6b2466242f8ead6169a4" args="()" -->
@@ -421,6 +478,10 @@ Connected with button btnMoveBottom. Moves the selected filter item at the botto
 
 <p>
 Connected with button btnMoveUp. Moves the selected filter item up, i.e. the number of this item will be decreased. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00536">536</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8cpp-source.html#l00607">getFilterItem()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00236">FilterSetupItem::getNumber()</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00069">FilterSetupItem::setNumber()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="dee742eae6c7fc7dbe5153ffee084dc5"></a><!-- doxytag: member="ConfigFilter::slotMoveDown" ref="dee742eae6c7fc7dbe5153ffee084dc5" args="()" -->
@@ -440,6 +501,10 @@ Connected with button btnMoveUp. Moves the selected filter item up, i.e. the num
 
 <p>
 Connected with button btnMoveDown. Moves the selected filter item down, i.e. the number of this item will be increased. 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00572">572</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8cpp-source.html#l00607">getFilterItem()</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00236">FilterSetupItem::getNumber()</a>, <a class="el" href="configfilter_8h-source.html#l00194">lastFilterNumber</a>, <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>, <a class="el" href="filtersetupitem_8cpp-source.html#l00069">FilterSetupItem::setNumber()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00314">slotChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="3d5ae5822e55949318ba40732e0218ac"></a><!-- doxytag: member="ConfigFilter::slotFilterActiveToggled" ref="3d5ae5822e55949318ba40732e0218ac" args="(bool filterOn)" -->
@@ -465,6 +530,12 @@ Connected with chkActivateFilter, signal toggled(). Enabled or disabled the othe
   </table>
 </dl>
 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00635">635</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00118">gboxFilters</a>, <a class="el" href="configfilter_8h-source.html#l00123">gboxOthers</a>, and <a class="el" href="configfilter_8h-source.html#l00113">gboxSenderLists</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00229">defaults()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6cf6533d0ba8a0e3741a68a8b886f930"></a><!-- doxytag: member="ConfigFilter::slotOpenMailBoxWizard" ref="6cf6533d0ba8a0e3741a68a8b886f930" args="()" -->
@@ -484,6 +555,10 @@ Connected with chkActivateFilter, signal toggled(). Enabled or disabled the othe
 
 <p>
 Connected with button btnMailboxWizard. Opens a wizard to configure the mailbox 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00642">642</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00183">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6c99096068ac50e26094464120dcaeea"></a><!-- doxytag: member="ConfigFilter::decreaseNumbers" ref="6c99096068ac50e26094464120dcaeea" args="(uint number)" -->
@@ -508,6 +583,12 @@ Decrease the numbers of these filter setup items whose number is greater than or
     <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>start number of renumbering </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00437">437</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00503">slotMoveBottom()</a>, <a class="el" href="configfilter_8cpp-source.html#l00457">slotMoveTop()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00392">slotRemove()</a>.</p>
 
 </div>
 </div><p>
@@ -535,6 +616,12 @@ Returns the pointer to the filter setup item with number num. Returns 0 if no it
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>pointer to the found item </dd></dl>
 
+<p>Definition at line <a class="el" href="configfilter_8cpp-source.html#l00607">607</a> of file <a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a>.</p>
+
+<p>References <a class="el" href="configfilter_8h-source.html#l00138">listFilters</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00572">slotMoveDown()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00536">slotMoveUp()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -551,6 +638,10 @@ Returns the pointer to the filter setup item with number num. Returns 0 if no it
 
 <p>
 Connector to the configuration file 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00103">103</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00255">save()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="c2a415bbf59e3e3849a646e2175a14dd"></a><!-- doxytag: member="ConfigFilter::chkActivateFilter" ref="c2a415bbf59e3e3849a646e2175a14dd" args="" -->
@@ -566,6 +657,10 @@ Connector to the configuration file
 
 <p>
 Check box to activate the filter 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00108">108</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00229">defaults()</a>, <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00255">save()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6bd47c0c00e8345a568864fe9e6df0f1"></a><!-- doxytag: member="ConfigFilter::gboxSenderLists" ref="6bd47c0c00e8345a568864fe9e6df0f1" args="" -->
@@ -581,6 +676,10 @@ Check box to activate the filter
 
 <p>
 Group box for sender lists. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00113">113</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00635">slotFilterActiveToggled()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="451fc7c1f8d5e9f47a5c9578ef90fdd8"></a><!-- doxytag: member="ConfigFilter::gboxFilters" ref="451fc7c1f8d5e9f47a5c9578ef90fdd8" args="" -->
@@ -596,6 +695,10 @@ Group box for sender lists.
 
 <p>
 Group box for filter items. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00118">118</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00635">slotFilterActiveToggled()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="d143d33466899d1e6bf47ac9f81e5095"></a><!-- doxytag: member="ConfigFilter::gboxOthers" ref="d143d33466899d1e6bf47ac9f81e5095" args="" -->
@@ -611,6 +714,10 @@ Group box for filter items.
 
 <p>
 Group box for other action. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00123">123</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00635">slotFilterActiveToggled()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="7174045c4556a9561c4973b9ef939242"></a><!-- doxytag: member="ConfigFilter::btnOpenBlacklist" ref="7174045c4556a9561c4973b9ef939242" args="" -->
@@ -626,6 +733,8 @@ Group box for other action.
 
 <p>
 Button to open the Blacklist. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00128">128</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="5f2657065bc7241093ea3cfc1a8992bc"></a><!-- doxytag: member="ConfigFilter::btnOpenWhitelist" ref="5f2657065bc7241093ea3cfc1a8992bc" args="" -->
@@ -641,6 +750,8 @@ Button to open the Blacklist.
 
 <p>
 Button to open the Whitelist. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00133">133</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="8174f96980ed8fc03b1fac178e476570"></a><!-- doxytag: member="ConfigFilter::listFilters" ref="8174f96980ed8fc03b1fac178e476570" args="" -->
@@ -656,6 +767,10 @@ Button to open the Whitelist.
 
 <p>
 List of filters 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00138">138</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00437">decreaseNumbers()</a>, <a class="el" href="configfilter_8cpp-source.html#l00607">getFilterItem()</a>, <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>, <a class="el" href="configfilter_8cpp-source.html#l00255">save()</a>, <a class="el" href="configfilter_8cpp-source.html#l00339">slotAdd()</a>, <a class="el" href="configfilter_8cpp-source.html#l00368">slotEdit()</a>, <a class="el" href="configfilter_8cpp-source.html#l00503">slotMoveBottom()</a>, <a class="el" href="configfilter_8cpp-source.html#l00572">slotMoveDown()</a>, <a class="el" href="configfilter_8cpp-source.html#l00457">slotMoveTop()</a>, <a class="el" href="configfilter_8cpp-source.html#l00536">slotMoveUp()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00392">slotRemove()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="3936c764c0a6152232e13f5a25b55ab6"></a><!-- doxytag: member="ConfigFilter::btnMoveTop" ref="3936c764c0a6152232e13f5a25b55ab6" args="" -->
@@ -671,6 +786,8 @@ List of filters
 
 <p>
 Button to move a filter at top. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00143">143</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="1f56ae436a4df8ae216e19f1b9ecbf95"></a><!-- doxytag: member="ConfigFilter::btnMoveBottom" ref="1f56ae436a4df8ae216e19f1b9ecbf95" args="" -->
@@ -686,6 +803,8 @@ Button to move a filter at top.
 
 <p>
 Button to move a filter at bottom. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00148">148</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="f6f460803a19cd2e1b5f56cb9f5a7d0a"></a><!-- doxytag: member="ConfigFilter::btnMoveUp" ref="f6f460803a19cd2e1b5f56cb9f5a7d0a" args="" -->
@@ -701,6 +820,8 @@ Button to move a filter at bottom.
 
 <p>
 Button to move a filter up. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00153">153</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6d50c434a5c67d23785cf70a4958f536"></a><!-- doxytag: member="ConfigFilter::btnMoveDown" ref="6d50c434a5c67d23785cf70a4958f536" args="" -->
@@ -716,6 +837,8 @@ Button to move a filter up.
 
 <p>
 Button to move a filter down. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00158">158</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="d82b8fe7bca580c1c86361be2d998a29"></a><!-- doxytag: member="ConfigFilter::btnAdd" ref="d82b8fe7bca580c1c86361be2d998a29" args="" -->
@@ -731,6 +854,8 @@ Button to move a filter down.
 
 <p>
 Button to add a new filter. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00163">163</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e1763aa712de4ef72f045eeadc8af472"></a><!-- doxytag: member="ConfigFilter::btnEdit" ref="e1763aa712de4ef72f045eeadc8af472" args="" -->
@@ -746,6 +871,8 @@ Button to add a new filter.
 
 <p>
 Button to edit a filter. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00168">168</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="a07c7a7e15ccdf67f08d074e81ba4376"></a><!-- doxytag: member="ConfigFilter::btnRemove" ref="a07c7a7e15ccdf67f08d074e81ba4376" args="" -->
@@ -761,6 +888,8 @@ Button to edit a filter.
 
 <p>
 Button to remove a filter. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00173">173</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="c98a570d959fda8ecf0ae3abf6c6045b"></a><!-- doxytag: member="ConfigFilter::cmbActionOthers" ref="c98a570d959fda8ecf0ae3abf6c6045b" args="" -->
@@ -776,6 +905,10 @@ Button to remove a filter.
 
 <p>
 Combobox to select the action for the rest of mails. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00178">178</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00229">defaults()</a>, <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00255">save()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="045b3617514d7c505a5641eec11ce7ca"></a><!-- doxytag: member="ConfigFilter::txtMailbox" ref="045b3617514d7c505a5641eec11ce7ca" args="" -->
@@ -791,6 +924,10 @@ Combobox to select the action for the rest of mails.
 
 <p>
 If selected, the other mails will be moved to the mailbox which is written in this edit line. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00183">183</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00229">defaults()</a>, <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>, <a class="el" href="configfilter_8cpp-source.html#l00255">save()</a>, <a class="el" href="configfilter_8cpp-source.html#l00642">slotOpenMailBoxWizard()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00423">slotOtherActionChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e44fc384a0fa34800b713b726cb67b39"></a><!-- doxytag: member="ConfigFilter::btnMailboxWizard" ref="e44fc384a0fa34800b713b726cb67b39" args="" -->
@@ -806,6 +943,10 @@ If selected, the other mails will be moved to the mailbox which is written in th
 
 <p>
 This button opens a wizard which will help to get the right mailbox 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00188">188</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00423">slotOtherActionChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="f0a12d142f8edbe554c9ce48e0fcf781"></a><!-- doxytag: member="ConfigFilter::lastFilterNumber" ref="f0a12d142f8edbe554c9ce48e0fcf781" args="" -->
@@ -821,12 +962,16 @@ This button opens a wizard which will help to get the right mailbox
 
 <p>
 The last assigned number of a filter setup item. It is set to zero by the constructor. Therefore the first filter number is 1. 
+<p>Definition at line <a class="el" href="configfilter_8h-source.html#l00194">194</a> of file <a class="el" href="configfilter_8h-source.html">configfilter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configfilter_8cpp-source.html#l00179">load()</a>, <a class="el" href="configfilter_8cpp-source.html#l00255">save()</a>, <a class="el" href="configfilter_8cpp-source.html#l00339">slotAdd()</a>, <a class="el" href="configfilter_8cpp-source.html#l00503">slotMoveBottom()</a>, <a class="el" href="configfilter_8cpp-source.html#l00572">slotMoveDown()</a>, and <a class="el" href="configfilter_8cpp-source.html#l00392">slotRemove()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="configfilter_8h-source.html">configfilter.h</a><li>src/<a class="el" href="configfilter_8cpp.html">configfilter.cpp</a></ul>
+<li>src/<a class="el" href="configfilter_8h-source.html">configfilter.h</a><li>src/<a class="el" href="configfilter_8cpp-source.html">configfilter.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

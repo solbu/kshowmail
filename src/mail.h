@@ -46,7 +46,7 @@ using namespace std;
 #define HEADER_SEPARATOR "§$%&"
 
 /**
- * This class represents a mail
+ * @brief This class represents a mail
  */
 class Mail : public QObject
 {

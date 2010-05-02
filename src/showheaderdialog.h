@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "constants.h"
 
 /**
- * Used in ShowRecordElem to show the mail header.
+ * @brief Used in ShowRecordElem to show the mail header.
  *
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
  */

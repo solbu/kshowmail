@@ -74,6 +74,8 @@
 Part of the setup dialog (KShowMailApp::SetupDialog) to configure the spam check. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
+
+<p>Definition at line <a class="el" href="configspamcheck_8h-source.html#l00060">60</a> of file <a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="4ea554914013caae0040479bbd326f5f"></a><!-- doxytag: member="ConfigSpamcheck::ConfigSpamcheck" ref="4ea554914013caae0040479bbd326f5f" args="(QWidget *parent=0, const QVariantList &amp;args=QVariantList())" -->
 <div class="memitem">
@@ -94,7 +96,7 @@ Part of the setup dialog (KShowMailApp::SetupDialog) to configure the spam check
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
@@ -121,6 +123,8 @@ Generic constructor
 
 <p>
 Destructor 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00095">95</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -141,6 +145,10 @@ Destructor
 
 <p>
 Overloaded method of KCModule. Sets the user interface elements to reflect the current settings stored in the config file. 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00099">99</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>References <a class="el" href="configspamcheck_8h-source.html#l00114">cmbAction</a>, <a class="el" href="configspamcheck_8h-source.html#l00104">config</a>, <a class="el" href="constants_8h-source.html#l00357">CONFIG_ENTRY_SPAMCHECK_ACTION</a>, <a class="el" href="constants_8h-source.html#l00358">CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00355">CONFIG_GROUP_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00360">CONFIG_VALUE_SPAMCHECK_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00361">CONFIG_VALUE_SPAMCHECK_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00362">CONFIG_VALUE_SPAMCHECK_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00139">DEFAULT_SPAMCHECK_ACTION</a>, <a class="el" href="constants_8h-source.html#l00141">DEFAULT_SPAMCHECK_ACTION_MOVE_MAILBOX</a>, <a class="el" href="configspamcheck_8h-source.html#l00051">ID_SPAM_ACTION_BUTTONS_DELETE</a>, <a class="el" href="configspamcheck_8h-source.html#l00052">ID_SPAM_ACTION_BUTTONS_MARK</a>, <a class="el" href="configspamcheck_8h-source.html#l00053">ID_SPAM_ACTION_BUTTONS_MOVE</a>, <a class="el" href="configspamcheck_8cpp-source.html#l00172">slotActionChanged()</a>, and <a class="el" href="configspamcheck_8h-source.html#l00119">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="8f6770c57e60f881c7b9e9184c808056"></a><!-- doxytag: member="ConfigSpamcheck::defaults" ref="8f6770c57e60f881c7b9e9184c808056" args="()" -->
@@ -160,6 +168,10 @@ Overloaded method of KCModule. Sets the user interface elements to reflect the c
 
 <p>
 Overloaded method of KCModule. Sets the user interface elements to default values. This method is called when the user clicks the "Default" button. 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00121">121</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>References <a class="el" href="configspamcheck_8h-source.html#l00114">cmbAction</a>, <a class="el" href="constants_8h-source.html#l00360">CONFIG_VALUE_SPAMCHECK_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00361">CONFIG_VALUE_SPAMCHECK_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00362">CONFIG_VALUE_SPAMCHECK_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00139">DEFAULT_SPAMCHECK_ACTION</a>, <a class="el" href="constants_8h-source.html#l00141">DEFAULT_SPAMCHECK_ACTION_MOVE_MAILBOX</a>, <a class="el" href="configspamcheck_8h-source.html#l00051">ID_SPAM_ACTION_BUTTONS_DELETE</a>, <a class="el" href="configspamcheck_8h-source.html#l00052">ID_SPAM_ACTION_BUTTONS_MARK</a>, <a class="el" href="configspamcheck_8h-source.html#l00053">ID_SPAM_ACTION_BUTTONS_MOVE</a>, <a class="el" href="configspamcheck_8cpp-source.html#l00172">slotActionChanged()</a>, <a class="el" href="configspamcheck_8cpp-source.html#l00167">slotChanged()</a>, and <a class="el" href="configspamcheck_8h-source.html#l00119">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e555baf30dd3251d594e6c4a74779b9b"></a><!-- doxytag: member="ConfigSpamcheck::save" ref="e555baf30dd3251d594e6c4a74779b9b" args="()" -->
@@ -179,6 +191,10 @@ Overloaded method of KCModule. Sets the user interface elements to default value
 
 <p>
 Overloaded method of KCModule. Stores the config information as shown in the user interface in the config file. Is called when the user clicks "Apply" or "Ok". 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00141">141</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>References <a class="el" href="configspamcheck_8h-source.html#l00114">cmbAction</a>, <a class="el" href="configspamcheck_8h-source.html#l00104">config</a>, <a class="el" href="constants_8h-source.html#l00357">CONFIG_ENTRY_SPAMCHECK_ACTION</a>, <a class="el" href="constants_8h-source.html#l00358">CONFIG_ENTRY_SPAMCHECK_MOVE_MAILBOX</a>, <a class="el" href="constants_8h-source.html#l00355">CONFIG_GROUP_SPAMCHECK</a>, <a class="el" href="constants_8h-source.html#l00360">CONFIG_VALUE_SPAMCHECK_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00361">CONFIG_VALUE_SPAMCHECK_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00362">CONFIG_VALUE_SPAMCHECK_ACTION_MOVE</a>, <a class="el" href="constants_8h-source.html#l00139">DEFAULT_SPAMCHECK_ACTION</a>, <a class="el" href="configspamcheck_8h-source.html#l00051">ID_SPAM_ACTION_BUTTONS_DELETE</a>, <a class="el" href="configspamcheck_8h-source.html#l00052">ID_SPAM_ACTION_BUTTONS_MARK</a>, <a class="el" href="configspamcheck_8h-source.html#l00053">ID_SPAM_ACTION_BUTTONS_MOVE</a>, and <a class="el" href="configspamcheck_8h-source.html#l00119">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e7de028106aee69e97efaed1e50fa9f4"></a><!-- doxytag: member="ConfigSpamcheck::slotChanged" ref="e7de028106aee69e97efaed1e50fa9f4" args="()" -->
@@ -198,6 +214,10 @@ Overloaded method of KCModule. Stores the config information as shown in the use
 
 <p>
 Connected with the configuration items. Calls the slot changed() of KCModule to notify the dialog about the change. 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00167">167</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00121">defaults()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="ece01b6f93801b759c6cf6f9c2b09bfc"></a><!-- doxytag: member="ConfigSpamcheck::slotActionChanged" ref="ece01b6f93801b759c6cf6f9c2b09bfc" args="(int index)" -->
@@ -223,6 +243,12 @@ Connected with combobox cmbAction. Enables or disables additional widgets for ac
   </table>
 </dl>
 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00172">172</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>References <a class="el" href="configspamcheck_8h-source.html#l00124">btnMailboxWizard</a>, <a class="el" href="constants_8h-source.html#l00136">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a>, <a class="el" href="configspamcheck_8h-source.html#l00053">ID_SPAM_ACTION_BUTTONS_MOVE</a>, and <a class="el" href="configspamcheck_8h-source.html#l00119">txtMailbox</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00121">defaults()</a>, and <a class="el" href="configspamcheck_8cpp-source.html#l00099">load()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6404817f0dc00495b94cbffba3b5cc28"></a><!-- doxytag: member="ConfigSpamcheck::slotOpenMailBoxWizard" ref="6404817f0dc00495b94cbffba3b5cc28" args="()" -->
@@ -242,6 +268,10 @@ Connected with combobox cmbAction. Enables or disables additional widgets for ac
 
 <p>
 Connected with button btnMailboxWizard. Opens a wizard to configure the mailbox 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00187">187</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>References <a class="el" href="configspamcheck_8h-source.html#l00119">txtMailbox</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6881f1416363077e03ca4a3e63d77738"></a><!-- doxytag: member="ConfigSpamcheck::slotTestSpamAssassin" ref="6881f1416363077e03ca4a3e63d77738" args="()" -->
@@ -261,6 +291,10 @@ Connected with button btnMailboxWizard. Opens a wizard to configure the mailbox
 
 <p>
 Connected with btnTest. Tests whether SpamAssassin is running and shows a message box containing the result. Enables or disables the action widgets. 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00224">224</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>References <a class="el" href="configspamcheck_8h-source.html#l00129">gboxAction</a>, and <a class="el" href="configspamcheck_8cpp-source.html#l00199">isSpamAssassinRunning()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="5713b35d8e7f5f3cc0e0d7627f9e7232"></a><!-- doxytag: member="ConfigSpamcheck::isSpamAssassinRunning" ref="5713b35d8e7f5f3cc0e0d7627f9e7232" args="() const " -->
@@ -281,6 +315,12 @@ Connected with btnTest. Tests whether SpamAssassin is running and shows a messag
 <p>
 Looks for a running spamd daemon of SpamAssassin. <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - SpamAssassin is running </dd></dl>
 
+<p>Definition at line <a class="el" href="configspamcheck_8cpp-source.html#l00199">199</a> of file <a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a>.</p>
+
+<p>References <a class="el" href="constants_8h-source.html#l00383">NAME_SPAMASSASSIN_DAEMON</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00224">slotTestSpamAssassin()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
@@ -297,6 +337,10 @@ Looks for a running spamd daemon of SpamAssassin. <dl class="return" compact><dt
 
 <p>
 Connector to the configuration file 
+<p>Definition at line <a class="el" href="configspamcheck_8h-source.html#l00104">104</a> of file <a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00099">load()</a>, and <a class="el" href="configspamcheck_8cpp-source.html#l00141">save()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="d4a40e236a30b5338df427377f6c4c75"></a><!-- doxytag: member="ConfigSpamcheck::btnTest" ref="d4a40e236a30b5338df427377f6c4c75" args="" -->
@@ -312,6 +356,8 @@ Connector to the configuration file
 
 <p>
 Button to test for a running SpamAssassin 
+<p>Definition at line <a class="el" href="configspamcheck_8h-source.html#l00109">109</a> of file <a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="061d393ca53e544cc648af30cf0b9a35"></a><!-- doxytag: member="ConfigSpamcheck::cmbAction" ref="061d393ca53e544cc648af30cf0b9a35" args="" -->
@@ -327,6 +373,10 @@ Button to test for a running SpamAssassin
 
 <p>
 Combobox to select the action for spam. 
+<p>Definition at line <a class="el" href="configspamcheck_8h-source.html#l00114">114</a> of file <a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00121">defaults()</a>, <a class="el" href="configspamcheck_8cpp-source.html#l00099">load()</a>, and <a class="el" href="configspamcheck_8cpp-source.html#l00141">save()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="0fe2f958fd8956b9c843ea3c75230b82"></a><!-- doxytag: member="ConfigSpamcheck::txtMailbox" ref="0fe2f958fd8956b9c843ea3c75230b82" args="" -->
@@ -342,6 +392,10 @@ Combobox to select the action for spam.
 
 <p>
 If selected, the spam mails will be moved to the mailbox which is written in this edit line. 
+<p>Definition at line <a class="el" href="configspamcheck_8h-source.html#l00119">119</a> of file <a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00121">defaults()</a>, <a class="el" href="configspamcheck_8cpp-source.html#l00099">load()</a>, <a class="el" href="configspamcheck_8cpp-source.html#l00141">save()</a>, <a class="el" href="configspamcheck_8cpp-source.html#l00172">slotActionChanged()</a>, and <a class="el" href="configspamcheck_8cpp-source.html#l00187">slotOpenMailBoxWizard()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="79c1b7b26c94e7fa9353f478b67aad36"></a><!-- doxytag: member="ConfigSpamcheck::btnMailboxWizard" ref="79c1b7b26c94e7fa9353f478b67aad36" args="" -->
@@ -357,6 +411,10 @@ If selected, the spam mails will be moved to the mailbox which is written in thi
 
 <p>
 This button opens a wizard which will help to get the right mailbox 
+<p>Definition at line <a class="el" href="configspamcheck_8h-source.html#l00124">124</a> of file <a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00172">slotActionChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="c0bc8473323ec5c9edbaf8cee5cdabb0"></a><!-- doxytag: member="ConfigSpamcheck::gboxAction" ref="c0bc8473323ec5c9edbaf8cee5cdabb0" args="" -->
@@ -372,12 +430,16 @@ This button opens a wizard which will help to get the right mailbox
 
 <p>
 Contains the widgets of action configuration. 
+<p>Definition at line <a class="el" href="configspamcheck_8h-source.html#l00129">129</a> of file <a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a>.</p>
+
+<p>Referenced by <a class="el" href="configspamcheck_8cpp-source.html#l00224">slotTestSpamAssassin()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a><li>src/<a class="el" href="configspamcheck_8cpp.html">configspamcheck.cpp</a></ul>
+<li>src/<a class="el" href="configspamcheck_8h-source.html">configspamcheck.h</a><li>src/<a class="el" href="configspamcheck_8cpp-source.html">configspamcheck.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "constants.h"
 
 /**
- * This dialog is used in ConfigElem to show a downloaded mail.
+ * @brief This dialog is used in ConfigElem to show a downloaded mail.
  *
  * @author Ulrich Weigelt <ulrich.weigelt@gmx.de>
 */

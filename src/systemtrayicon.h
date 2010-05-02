@@ -32,6 +32,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <KGlobalSettings>
 #include <kaction.h>
 
+/**
+ * @brief This shows the small icon in the system tray.
+ */
 class SystemTrayIcon : public KSystemTrayIcon
 {
   Q_OBJECT

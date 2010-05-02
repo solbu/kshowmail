@@ -40,6 +40,9 @@ class AccountList;
 //constants
 #define NUMBER_ACCOUNTVIEW_COLUMNS 6
 
+/**
+ * @brief Model for the account view.
+ */
 class AccountViewModel : public QAbstractItemModel
 {
 	Q_OBJECT
@@ -47,19 +50,20 @@ class AccountViewModel : public QAbstractItemModel
 	public:
 		
 		/**
-		 * Constructor
+		 * @brief Constructor
 		 * @param accounts pointer to the account list
 		 * @param parent parent object
 		 */
 		AccountViewModel( AccountList* accounts, QObject* parent );
 		
 		/**
-		 * Destructor
+		 * @brief Destructor
 		 */
 		~AccountViewModel();
 		
 		/**
-		 * Returns the index of the account data in this model specified by the given row, column.
+		 * @brief Returns the index of the account data in this model specified by the given row, column.
+     *
 		 * The parent index is not used.
 		 * Overloaded from QAbstractItemModel
 		 * @param row Row
@@ -69,14 +73,16 @@ class AccountViewModel : public QAbstractItemModel
 		virtual QModelIndex index( int row, int column, const QModelIndex& parent ) const;
 		
 		/**
-		 * Overloaded from QAbstractItemModel
+		 * @brief Overloaded from QAbstractItemModel
+     *
 		 * Because this model doesn't provide tree structured data this function just returns
 		 * an invalid index.
 		 */
 		virtual QModelIndex parent( const QModelIndex& ) const;
 		
 		/**
-		 * Overloaded from QAbstractItemModel
+		 * @brief Overloaded from QAbstractItemModel
+     *
 		 * Doesn't give a parent item, because the model doesn't provide tree structured data
 		 * The row count is equal to the number of accounts.
 		 * @param parent parent index
@@ -84,7 +90,8 @@ class AccountViewModel : public QAbstractItemModel
 		virtual int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
 		
 		/**
-		 * Overloaded from QAbstractItemModel
+		 * @brief Overloaded from QAbstractItemModel
+     *
 		 * Doesn't give a parent item, because the model doesn't provide tree structured data.
 		 * The column count is equal to the number of showed account data.
 		 * Always returns 6.
@@ -92,7 +99,8 @@ class AccountViewModel : public QAbstractItemModel
 		virtual int columnCount ( const QModelIndex& ) const;
 		
 		/**
-		 * Overloaded from QAbstractItemModel
+		 * @brief Overloaded from QAbstractItemModel
+     *
 		 * Returns the data of the given index.
 		 * @param index the index
 		 * @param role the role
@@ -100,7 +108,8 @@ class AccountViewModel : public QAbstractItemModel
 		virtual QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
 		
 		/**
-		 * Overloaded from QAbstractItemModel
+		 * @brief Overloaded from QAbstractItemModel
+     *
 		 * It returns true if the given index is invalid because a invalid index is the root index.
      * All content is a child of the root index.
      * If the index is valid it always returns false because no data has a child.
@@ -108,13 +117,14 @@ class AccountViewModel : public QAbstractItemModel
 		virtual bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
 		
 		/**
-		 * Returns the flags of the given index
+		 * @brief Returns the flags of the given index
+     *
 		 * @param index index
 		 */
 		virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
 		
 		/**
-		 * Returns the header text of the given section
+		 * @brief Returns the header text of the given section
 		 * @param section header section
 		 * @param orientation orientation of the header; just returns the horizontal orientation
 		 * @param role display role
@@ -122,7 +132,7 @@ class AccountViewModel : public QAbstractItemModel
 		QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
 
 		/**
-		 * Assign the given value to the account property described by the given index
+		 * @brief Assign the given value to the account property described by the given index
 		 * @param index index
 		 * @param value value
 		 * @param role role
@@ -130,29 +140,29 @@ class AccountViewModel : public QAbstractItemModel
 		bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 
     /**
-     * Emits the dataChanged signal to the views to inform they about changed data
+     * @brief Emits the dataChanged signal to the views to inform they about changed data
      */
     void refresh();
     
     /**
-		 * Sorts the model by column in the given order.
+		 * @brief Sorts the model by column in the given order.
 		 * @param column column to sort
 		 * @param order sort order
 		 */
 		void sort( int column, Qt::SortOrder order = Qt::AscendingOrder );
 		
 		/**
-		 * Sorts the model by the last sort properties.
+		 * @brief Sorts the model by the last sort properties.
 		 */
 		void sort();
 		
 		/**
-		 * Saves the setup
+		 * @brief Saves the setup
 		 */
 		void saveSetup();
 		
 		/**
-		 * Returns the account at the given index
+		 * @brief Returns the account at the given index
 		 * @param index index
 		 */
 		Account* getAccount( const QModelIndex index ) const;
@@ -160,34 +170,36 @@ class AccountViewModel : public QAbstractItemModel
 	private:
 		
 		/**
-		 * Pointer to the account list
+		 * @brief Pointer to the account list
 		 */
 		AccountList* accounts;
 
     /**
-     * In this we store the account view items
+     * @brief In this we store the account view items
      */
     QList<AccountViewItem > viewAccountList;
 
     /**
-     * Picture for a active account
+     * @brief Picture for a active account
+     *
      * Set by the constructor
      */
     KIcon picActive;
 
     /**
-     * Picture for a inactive account
+     * @brief Picture for a inactive account
+     *
      * Set by the constructor
      */
     KIcon picNotActive;
 		
 		/**
-		 * Last sort order
+		 * @brief Last sort order
 		 */
 		Qt::SortOrder lastSortOrder;
 		
 		/**
-		 * last sort column
+		 * @brief last sort column
 		 */
 		int lastSortColumn;
 

@@ -24,7 +24,10 @@
   </div>
 </div>
 <div class="contents">
-<h1>AccountList Class Reference</h1><!-- doxytag: class="AccountList" --><code>#include &lt;<a class="el" href="accountlist_8h-source.html">accountlist.h</a>&gt;</code>
+<h1>AccountList Class Reference</h1><!-- doxytag: class="AccountList" -->Contains the accounts.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="accountlist_8h-source.html">accountlist.h</a>&gt;</code>
 <p>
 
 <p>
@@ -33,95 +36,144 @@
 <tr><td colspan="2"><br><h2>Signals</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#7b2e97450a8e7f0050c85cac1ce84172">sigRefreshReady</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Will be emitted, when all accounts have refreshed their mail list.  <a href="#7b2e97450a8e7f0050c85cac1ce84172"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#f099094844ba8c38d4ac6fa176f77bb7">sigMessageWindowOpened</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Will be emitted by slotMessageWindowOpened when an account has opened a window to show a mail.  <a href="#f099094844ba8c38d4ac6fa176f77bb7"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#7fd9a79c3df80532678880fe344f9a72">sigAllMessageWindowsClosed</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Will be emitted by slotMessageWindowClosed when all accounts have closed their windows to show mails.  <a href="#7fd9a79c3df80532678880fe344f9a72"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#47ef23052081600bfd25291f57b17bc0">sigDeleteReady</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Will be emitted when all selected mails are deleted.  <a href="#47ef23052081600bfd25291f57b17bc0"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#fee253d1f8dd735457703f0ef356d060">sigShowBodiesReady</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Will be emitted when all selected mails are shown.  <a href="#fee253d1f8dd735457703f0ef356d060"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#e4ea3d4e0d47f7fe6469c7f7ebc709e2">AccountList</a> (QObject *parent)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#e4ea3d4e0d47f7fe6469c7f7ebc709e2"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#77acd32be8700d21271e8802d87e2b15">~AccountList</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#77acd32be8700d21271e8802d87e2b15"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classAccount.html">Account</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#85f9343fb7c03ff75c6f530f8aff14ba">addAccount</a> (const QString &amp;name)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates an account and append it to the list.  <a href="#85f9343fb7c03ff75c6f530f8aff14ba"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#179dd79cb870aef9dfa378edf113eeaa">print</a> () const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prints the accounts to stdout.  <a href="#179dd79cb870aef9dfa378edf113eeaa"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#c18d3bbc1d72429ccd076fa9620957fd">numberAccounts</a> () const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of accounts.  <a href="#c18d3bbc1d72429ccd076fa9620957fd"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classAccount.html">Account</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#44bee57bdbfe30b8c77e9f4a0fcc2919">getAccount</a> (int index) const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the account object at the given index position.  <a href="#44bee57bdbfe30b8c77e9f4a0fcc2919"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classAccount.html">Account</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#8c607a01e78a5713d34b3607235c02fa">getAccount</a> (QString name) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classAccount.html">Account</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#8eb4d674d89780ce3c947641352c0e36">getAllAccounts</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the account with the given name.  <a href="#8c607a01e78a5713d34b3607235c02fa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#ee860fe31e2d44e0305b5a64d08b65ff">getAllAccounts</a> () const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a list which contains the pointers to all accounts.  <a href="#ee860fe31e2d44e0305b5a64d08b65ff"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classAccountViewItem.html">AccountViewItem</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#5f61b195aa0ad327ed4c98581f4e451a">getAllAccountViewItems</a> () const </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a list of account view items for all accounts.  <a href="#5f61b195aa0ad327ed4c98581f4e451a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#d2b1bed117cc62f18ff51972997e5efb">hasAccount</a> (QString accountName) const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns whether the list contains a account with the given name.  <a href="#d2b1bed117cc62f18ff51972997e5efb"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#3b537bb7496775633baea7a7883887e8">loadSetup</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loads the setup.  <a href="#3b537bb7496775633baea7a7883887e8"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#e3916b0d80e6abf86f7d0f490dcdae6f">refreshMailLists</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Orders the accounts to refresh the mails.  <a href="#e3916b0d80e6abf86f7d0f490dcdae6f"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#06371e04940e07f1564ded483a17a679">keepNew</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns whether all new mails will keep new status until the app is closed.  <a href="#06371e04940e07f1564ded483a17a679"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#07f8a4d5405d729978aa07a19f128490">getNumberMails</a> () const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of mails.  <a href="#07f8a4d5405d729978aa07a19f128490"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#788f2bec1516b82c63442ffc973c8b8a">deleteMails</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deletes all mails from the servers and the mail lists.  <a href="#788f2bec1516b82c63442ffc973c8b8a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#cf7cfad488e1ac267f92a6f019a42ff1">numberDeletedMailsLastRefresh</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of deleted mails by last refresh.  <a href="#cf7cfad488e1ac267f92a6f019a42ff1"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#71535be533836b6c78ac1afbf57d7b25">numberDeletedMailsStart</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of deleted mails since start.  <a href="#71535be533836b6c78ac1afbf57d7b25"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#798ed9bf7ac4a7b0077dacf02c266910">numberMovedMailsLastRefresh</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of moved mails by last refresh.  <a href="#798ed9bf7ac4a7b0077dacf02c266910"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#4f50bb7f9be751cf679a4a7fad4ba5dd">numberMovedMailsStart</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of moved mails since start.  <a href="#4f50bb7f9be751cf679a4a7fad4ba5dd"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#5cf966a6e04357b40d603acf01c197bb">numberIgnoredMails</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of ignored mails by last refresh.  <a href="#5cf966a6e04357b40d603acf01c197bb"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#8e9d416110489272bac5ddc0d5d99f53">refreshFilterSetup</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reloads the filter settings.  <a href="#8e9d416110489272bac5ddc0d5d99f53"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#aad584a0b5619febc9e828111d437fc8">saveOptions</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Saves the current mails data and the account setups.  <a href="#aad584a0b5619febc9e828111d437fc8"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#8768960572c7ab07f837b516df7d8ee2">showMails</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Downloads and shows the selected mails.  <a href="#8768960572c7ab07f837b516df7d8ee2"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#08607afc2f311dc608c50332a5754688">getNumberNewMails</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of new mails.  <a href="#08607afc2f311dc608c50332a5754688"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#e0543346609ca7dd22c460d652195af3">readStoredMails</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classMail.html">Mail</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#a4f95a6543b643d223c49b616ec63c5e">getAllMails</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads stored mails data.  <a href="#e0543346609ca7dd22c460d652195af3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classMail.html">Mail</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#581c8c35c5ba97984bb424a4bc8eb93c">getAllMails</a> () const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a list which contains the pointers to all mails.  <a href="#581c8c35c5ba97984bb424a4bc8eb93c"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#a84e36a260afda13dfccb03d0a54fe5f">cancelTasks</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Cancels all running tasks.  <a href="#a84e36a260afda13dfccb03d0a54fe5f"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Slots</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#156feb76af252138d8e48921b19cc4fe">slotCheckRefreshState</a> (QString account)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with signal sigRefreshReady of all accounts.  <a href="#156feb76af252138d8e48921b19cc4fe"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#45f1118ee63809f781df080907a2cb9e">slotMessageWindowOpened</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with signal sigMessageWindowOpened of all accounts.  <a href="#45f1118ee63809f781df080907a2cb9e"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#5b03b69aed08ce2fba941a1982e89363">slotMessageWindowClosed</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with signal sigMessageWindowClosed of all accounts.  <a href="#5b03b69aed08ce2fba941a1982e89363"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#08645fab692c2b80d4dcbfdbfd8ef51c">slotCheckDeletionState</a> (QString account)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with signal sigDeleteReady of all accounts.  <a href="#08645fab692c2b80d4dcbfdbfd8ef51c"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#52aa8ff2a2c52f834553493d70ff98b1">slotCheckShowBodiesState</a> (QString account)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Connected with signal sigShowBodiesReady of all accounts.  <a href="#52aa8ff2a2c52f834553493d70ff98b1"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#b995fcc4081691e3c259a5a6b288c39e">init</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">initializes this  <a href="#b995fcc4081691e3c259a5a6b288c39e"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classAccount.html">Account</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#1fc7c3f504c052c2d5efc1c4abb74ab2">accounts</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#23d96450b1d3b622668eccb79b2356cc">accounts</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">this list contains the account objects  <a href="#23d96450b1d3b622668eccb79b2356cc"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">AccountTaskMap_Type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#307c6db42d9ccfe8f20ed0b1d15cad13">accountRefreshMap</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This map is used by the methods to refresh the account mail lists.  <a href="#307c6db42d9ccfe8f20ed0b1d15cad13"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">AccountTaskMap_Type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#ba1f0921c815de29c9faceb30500b146">accountDeletionMap</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This map is used by the delete methods.  <a href="#ba1f0921c815de29c9faceb30500b146"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">AccountTaskMap_Type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#aa373efa89a6b8d997e93fba491875bb">AccountShowBodiesMap</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This map is used by the methods to show the mail body.  <a href="#aa373efa89a6b8d997e93fba491875bb"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#f8ae80fdf8b04745f0ca4bd29da6f6eb">ctrOpenMessageWindows</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Number of windows, which have been opened by the accounts to show mails.  <a href="#f8ae80fdf8b04745f0ca4bd29da6f6eb"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountList.html#53937bef45faabd70b3584b3003f6d5f">keepMailsNew</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TRUE - mails keep new until termination.  <a href="#53937bef45faabd70b3584b3003f6d5f"></a><br></td></tr>
 </table>
+<hr><a name="_details"></a><h2>Detailed Description</h2>
+Contains the accounts. 
+<p>Definition at line <a class="el" href="accountlist_8h-source.html#l00050">50</a> of file <a class="el" href="accountlist_8h-source.html">accountlist.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="e4ea3d4e0d47f7fe6469c7f7ebc709e2"></a><!-- doxytag: member="AccountList::AccountList" ref="e4ea3d4e0d47f7fe6469c7f7ebc709e2" args="(QObject *parent)" -->
 <div class="memitem">
@@ -140,11 +192,17 @@
 <div class="memdoc">
 
 <p>
-Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
+Constructor. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent object </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00020">20</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8cpp-source.html#l00203">init()</a>.</p>
 
 </div>
 </div><p>
@@ -164,7 +222,11 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 <div class="memdoc">
 
 <p>
-Destructor 
+Destructor. 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00026">26</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -185,12 +247,20 @@ Destructor
 <div class="memdoc">
 
 <p>
-Creates an account and append it to the list <dl compact><dt><b>Parameters:</b></dt><dd>
+Creates an account and append it to the list. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>account name </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>pointer to the added account </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00028">28</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>, <a class="el" href="classAccountList.html#47ef23052081600bfd25291f57b17bc0">sigDeleteReady()</a>, <a class="el" href="classAccountList.html#f099094844ba8c38d4ac6fa176f77bb7">sigMessageWindowOpened()</a>, <a class="el" href="classAccountList.html#7b2e97450a8e7f0050c85cac1ce84172">sigRefreshReady()</a>, <a class="el" href="classAccountList.html#fee253d1f8dd735457703f0ef356d060">sigShowBodiesReady()</a>, <a class="el" href="accountlist_8cpp-source.html#l00295">slotCheckDeletionState()</a>, <a class="el" href="accountlist_8cpp-source.html#l00178">slotCheckRefreshState()</a>, <a class="el" href="accountlist_8cpp-source.html#l00507">slotCheckShowBodiesState()</a>, <a class="el" href="accountlist_8cpp-source.html#l00221">slotMessageWindowClosed()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00209">slotMessageWindowOpened()</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00072">loadSetup()</a>.</p>
 
 </div>
 </div><p>
@@ -210,7 +280,13 @@ Creates an account and append it to the list <dl compact><dt><b>Parameters:</b><
 <div class="memdoc">
 
 <p>
-Prints the accounts to stdout 
+Prints the accounts to stdout. 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00046">46</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>, and <a class="el" href="account_8cpp-source.html#l00057">Account::print()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="c18d3bbc1d72429ccd076fa9620957fd"></a><!-- doxytag: member="AccountList::numberAccounts" ref="c18d3bbc1d72429ccd076fa9620957fd" args="() const " -->
@@ -229,7 +305,13 @@ Prints the accounts to stdout
 <div class="memdoc">
 
 <p>
-Returns the number of accounts <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of accounts </dd></dl>
+Returns the number of accounts. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of accounts </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00058">58</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
 
 </div>
 </div><p>
@@ -250,12 +332,20 @@ Returns the number of accounts <dl class="return" compact><dt><b>Returns:</b></d
 <div class="memdoc">
 
 <p>
-Returns a pointer to the account object at the given index position <dl compact><dt><b>Parameters:</b></dt><dd>
+Returns a pointer to the account object at the given index position. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>the index </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>pointer to the requested account </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00063">63</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00550">readStoredMails()</a>.</p>
 
 </div>
 </div><p>
@@ -276,21 +366,27 @@ Returns a pointer to the account object at the given index position <dl compact>
 <div class="memdoc">
 
 <p>
-Returns the account with the given name. <dl compact><dt><b>Parameters:</b></dt><dd>
+Returns the account with the given name. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>account name </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>requested account; NULL if no account found </dd></dl>
 
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00606">606</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
 </div>
 </div><p>
-<a class="anchor" name="8eb4d674d89780ce3c947641352c0e36"></a><!-- doxytag: member="AccountList::getAllAccounts" ref="8eb4d674d89780ce3c947641352c0e36" args="() const " -->
+<a class="anchor" name="ee860fe31e2d44e0305b5a64d08b65ff"></a><!-- doxytag: member="AccountList::getAllAccounts" ref="ee860fe31e2d44e0305b5a64d08b65ff" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt; <a class="el" href="classAccount.html">Account</a> * &gt; AccountList::getAllAccounts           </td>
+          <td class="memname">QList&lt; QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt; &gt; AccountList::getAllAccounts           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -301,7 +397,41 @@ Returns the account with the given name. <dl compact><dt><b>Parameters:</b></dt>
 <div class="memdoc">
 
 <p>
-Returns a list which contains the pointers to all accounts <dl class="return" compact><dt><b>Returns:</b></dt><dd>all accounts </dd></dl>
+Returns a list which contains the pointers to all accounts. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>all accounts </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00622">622</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5f61b195aa0ad327ed4c98581f4e451a"></a><!-- doxytag: member="AccountList::getAllAccountViewItems" ref="5f61b195aa0ad327ed4c98581f4e451a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="classAccountViewItem.html">AccountViewItem</a> &gt; AccountList::getAllAccountViewItems           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Returns a list of account view items for all accounts. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>list of account view items </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00658">658</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="accountviewmodel_8cpp-source.html#l00206">AccountViewModel::refresh()</a>.</p>
 
 </div>
 </div><p>
@@ -322,13 +452,21 @@ Returns a list which contains the pointers to all accounts <dl class="return" co
 <div class="memdoc">
 
 <p>
-Returns whether the list contains a account with the given name <dl compact><dt><b>Parameters:</b></dt><dd>
+Returns whether the list contains a account with the given name. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>accountName</em>&nbsp;</td><td>name of the wanted account </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - the account is in the list <p>
 FALSE - the account is not in the list </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00132">132</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>, and <a class="el" href="account_8cpp-source.html#l00052">Account::getName()</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00072">loadSetup()</a>.</p>
 
 </div>
 </div><p>
@@ -348,7 +486,15 @@ FALSE - the account is not in the list </dd></dl>
 <div class="memdoc">
 
 <p>
-Loads the setup 
+Loads the setup. 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00072">72</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>, <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>, <a class="el" href="constants_8h-source.html#l00273">CONFIG_ENTRY_ACCOUNTS_LIST</a>, <a class="el" href="constants_8h-source.html#l00203">CONFIG_ENTRY_KEEP_NEW</a>, <a class="el" href="constants_8h-source.html#l00272">CONFIG_GROUP_ACCOUNTS</a>, <a class="el" href="constants_8h-source.html#l00197">CONFIG_GROUP_GENERAL</a>, <a class="el" href="constants_8h-source.html#l00045">DEFAULT_KEEP_NEW</a>, <a class="el" href="accountlist_8cpp-source.html#l00132">hasAccount()</a>, <a class="el" href="accountlist_8h-source.html#l00291">keepMailsNew</a>, <a class="el" href="account_8cpp-source.html#l00108">Account::load()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00398">refreshFilterSetup()</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00020">KShowmail::KShowmail()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00480">KShowmail::slotConfChanged()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="e3916b0d80e6abf86f7d0f490dcdae6f"></a><!-- doxytag: member="AccountList::refreshMailLists" ref="e3916b0d80e6abf86f7d0f490dcdae6f" args="(FilterLog *log)" -->
@@ -368,11 +514,19 @@ Loads the setup
 <div class="memdoc">
 
 <p>
-Orders the accounts to refresh the mails. When the refresh is done, the signal refreshReady will be emitted. <dl compact><dt><b>Parameters:</b></dt><dd>
+Orders the accounts to refresh the mails. 
+<p>
+When the refresh is done, the signal refreshReady will be emitted. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the filter log </td></tr>
   </table>
 </dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00143">143</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00249">accountRefreshMap</a>, <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>, <a class="el" href="account_8cpp-source.html#l00173">Account::refreshMailList()</a>, and <a class="el" href="classAccountList.html#7b2e97450a8e7f0050c85cac1ce84172">sigRefreshReady()</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00185">KShowmail::slotRefresh()</a>.</p>
 
 </div>
 </div><p>
@@ -392,8 +546,16 @@ Orders the accounts to refresh the mails. When the refresh is done, the signal r
 <div class="memdoc">
 
 <p>
-Returns whether all new mails will keep new status until the app is closed. <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - mails keep new status at next refresh <p>
+Returns whether all new mails will keep new status until the app is closed. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - mails keep new status at next refresh <p>
 FALSE - mails don't keep new status at next refresh </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00234">234</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00291">keepMailsNew</a>.</p>
+
+<p>Referenced by <a class="el" href="account_8cpp-source.html#l01173">Account::slotUIDListResponse()</a>.</p>
 
 </div>
 </div><p>
@@ -413,7 +575,15 @@ FALSE - mails don't keep new status at next refresh </dd></dl>
 <div class="memdoc">
 
 <p>
-Returns the number of mails. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of mails </dd></dl>
+Returns the number of mails. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of mails </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00239">239</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00518">KShowmail::slotRefreshReady()</a>.</p>
 
 </div>
 </div><p>
@@ -433,9 +603,16 @@ Returns the number of mails. <dl class="return" compact><dt><b>Returns:</b></dt>
 <div class="memdoc">
 
 <p>
-Deletes all mails from the servers and the mail lists.<p>
-You need to call <a class="el" href="classAccount.html#579de7a59aa8886b80b5f15dd5c658ad">Account::addMailToDelete()</a> before.<p>
+Deletes all mails from the servers and the mail lists. 
+<p>
+You need to call <a class="el" href="classAccount.html#579de7a59aa8886b80b5f15dd5c658ad" title="Adds a mail number to the list of mails to delete.">Account::addMailToDelete()</a> before.<p>
 This just starts the deletion and returns after then. When all accounts are ready the signal sigDeleteReady will be emitted. 
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00258">258</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00263">accountDeletionMap</a>, and <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00279">KShowmail::slotDelete()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="cf7cfad488e1ac267f92a6f019a42ff1"></a><!-- doxytag: member="AccountList::numberDeletedMailsLastRefresh" ref="cf7cfad488e1ac267f92a6f019a42ff1" args="()" -->
@@ -454,7 +631,15 @@ This just starts the deletion and returns after then. When all accounts are read
 <div class="memdoc">
 
 <p>
-Returns the number of deleted mails by last refresh. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of deleted mails by last refresh </dd></dl>
+Returns the number of deleted mails by last refresh. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of deleted mails by last refresh </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00316">316</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00589">KShowmail::refreshFilterStatusBar()</a>.</p>
 
 </div>
 </div><p>
@@ -474,7 +659,15 @@ Returns the number of deleted mails by last refresh. <dl class="return" compact>
 <div class="memdoc">
 
 <p>
-Returns the number of deleted mails since start. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of deleted mails since start </dd></dl>
+Returns the number of deleted mails since start. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of deleted mails since start </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00332">332</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00589">KShowmail::refreshFilterStatusBar()</a>.</p>
 
 </div>
 </div><p>
@@ -494,7 +687,15 @@ Returns the number of deleted mails since start. <dl class="return" compact><dt>
 <div class="memdoc">
 
 <p>
-Returns the number of moved mails by last refresh. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of moved mails by last refresh </dd></dl>
+Returns the number of moved mails by last refresh. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of moved mails by last refresh </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00350">350</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00589">KShowmail::refreshFilterStatusBar()</a>.</p>
 
 </div>
 </div><p>
@@ -514,7 +715,15 @@ Returns the number of moved mails by last refresh. <dl class="return" compact><d
 <div class="memdoc">
 
 <p>
-Returns the number of moved mails since start. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of moved mails since start </dd></dl>
+Returns the number of moved mails since start. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of moved mails since start </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00366">366</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00589">KShowmail::refreshFilterStatusBar()</a>.</p>
 
 </div>
 </div><p>
@@ -534,7 +743,15 @@ Returns the number of moved mails since start. <dl class="return" compact><dt><b
 <div class="memdoc">
 
 <p>
-Returns the number of ignored mails by last refresh. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of ignored mails by last refresh </dd></dl>
+Returns the number of ignored mails by last refresh. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of ignored mails by last refresh </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00382">382</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00589">KShowmail::refreshFilterStatusBar()</a>.</p>
 
 </div>
 </div><p>
@@ -554,7 +771,15 @@ Returns the number of ignored mails by last refresh. <dl class="return" compact>
 <div class="memdoc">
 
 <p>
-Reloads the filter settings 
+Reloads the filter settings. 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00398">398</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00072">loadSetup()</a>, <a class="el" href="kshowmail_8cpp-source.html#l00356">KShowmail::slotAddToBlacklist()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00380">KShowmail::slotAddToWhitelist()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="aad584a0b5619febc9e828111d437fc8"></a><!-- doxytag: member="AccountList::saveOptions" ref="aad584a0b5619febc9e828111d437fc8" args="()" -->
@@ -573,7 +798,15 @@ Reloads the filter settings
 <div class="memdoc">
 
 <p>
-Saves the current mails data and the account setups. The mails data will be saved into an XML file (kshowmail.xml). The account setups will be saved into the application config file (kshowmailrc). 
+Saves the current mails data and the account setups. 
+<p>
+The mails data will be saved into an XML file (kshowmail.xml). The account setups will be saved into the application config file (kshowmailrc). 
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00414">414</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="constants_8h-source.html#l00160">ACCOUNT_ELEMENT</a>, <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>, <a class="el" href="constants_8h-source.html#l00157">MAIL_FILE</a>, and <a class="el" href="constants_8h-source.html#l00159">ROOT_ELEMENT</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00450">KShowmail::queryClose()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="8768960572c7ab07f837b516df7d8ee2"></a><!-- doxytag: member="AccountList::showMails" ref="8768960572c7ab07f837b516df7d8ee2" args="()" -->
@@ -592,7 +825,15 @@ Saves the current mails data and the account setups. The mails data will be save
 <div class="memdoc">
 
 <p>
-Downloads and shows the selected mails. You need to call <a class="el" href="classAccount.html#4faa5a19ff8a2d370b04ae99f098aa27">Account::addMailToShow()</a> before.
+Downloads and shows the selected mails. 
+<p>
+You need to call <a class="el" href="classAccount.html#4faa5a19ff8a2d370b04ae99f098aa27" title="Adds a mail number to the list of mails to show.">Account::addMailToShow()</a> before. 
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00470">470</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>, and <a class="el" href="accountlist_8h-source.html#l00277">AccountShowBodiesMap</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00241">KShowmail::slotShowMessage()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="08607afc2f311dc608c50332a5754688"></a><!-- doxytag: member="AccountList::getNumberNewMails" ref="08607afc2f311dc608c50332a5754688" args="()" -->
@@ -611,7 +852,15 @@ Downloads and shows the selected mails. You need to call <a class="el" href="cla
 <div class="memdoc">
 
 <p>
-Returns the number of new mails. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of new mails </dd></dl>
+Returns the number of new mails. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>number of new mails </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00532">532</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00518">KShowmail::slotRefreshReady()</a>.</p>
 
 </div>
 </div><p>
@@ -631,15 +880,21 @@ Returns the number of new mails. <dl class="return" compact><dt><b>Returns:</b><
 <div class="memdoc">
 
 <p>
-Reads stored mails data. At every setup saving (e.g. at exit) the mails data will be stored into the file kshowmail.xml. At application start we read this file to identify mails which are not new at first refresh. 
+Reads stored mails data. 
+<p>
+At every setup saving (e.g. at exit) the mails data will be stored into the file kshowmail.xml. At application start we read this file to identify mails which are not new at first refresh. 
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00550">550</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="constants_8h-source.html#l00161">ATTRIBUTE_ACCOUNT_NAME</a>, <a class="el" href="accountlist_8cpp-source.html#l00063">getAccount()</a>, <a class="el" href="constants_8h-source.html#l00157">MAIL_FILE</a>, <a class="el" href="constants_8h-source.html#l00158">MAIL_FILE_DOCTYPE</a>, <a class="el" href="account_8cpp-source.html#l02340">Account::readStoredMails()</a>, and <a class="el" href="constants_8h-source.html#l00159">ROOT_ELEMENT</a>.</p>
+
 </div>
 </div><p>
-<a class="anchor" name="a4f95a6543b643d223c49b616ec63c5e"></a><!-- doxytag: member="AccountList::getAllMails" ref="a4f95a6543b643d223c49b616ec63c5e" args="() const " -->
+<a class="anchor" name="581c8c35c5ba97984bb424a4bc8eb93c"></a><!-- doxytag: member="AccountList::getAllMails" ref="581c8c35c5ba97984bb424a4bc8eb93c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt; <a class="el" href="classMail.html">Mail</a> * &gt; AccountList::getAllMails           </td>
+          <td class="memname">QList&lt; <a class="el" href="classMail.html">Mail</a> &gt; AccountList::getAllMails           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -650,7 +905,15 @@ Reads stored mails data. At every setup saving (e.g. at exit) the mails data wil
 <div class="memdoc">
 
 <p>
-Returns a list which contains the pointers to all mails. <dl class="return" compact><dt><b>Returns:</b></dt><dd>all mails </dd></dl>
+Returns a list which contains the pointers to all mails. 
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>all mails </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00632">632</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00149">MailViewModel::refresh()</a>.</p>
 
 </div>
 </div><p>
@@ -671,6 +934,14 @@ Returns a list which contains the pointers to all mails. <dl class="return" comp
 
 <p>
 Cancels all running tasks. 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00647">647</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00235">accounts</a>.</p>
+
+<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00341">KShowmail::slotStop()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="b995fcc4081691e3c259a5a6b288c39e"></a><!-- doxytag: member="AccountList::init" ref="b995fcc4081691e3c259a5a6b288c39e" args="()" -->
@@ -690,6 +961,14 @@ Cancels all running tasks.
 
 <p>
 initializes this 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00203">203</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00286">ctrOpenMessageWindows</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00020">AccountList()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="156feb76af252138d8e48921b19cc4fe"></a><!-- doxytag: member="AccountList::slotCheckRefreshState" ref="156feb76af252138d8e48921b19cc4fe" args="(QString account)" -->
@@ -709,12 +988,20 @@ initializes this
 <div class="memdoc">
 
 <p>
-Connected with signal sigRefreshReady of all accounts. When an account has sent this signal its appropriate item in AccountRefreshMap will set to FALSE. When all accounts have refreshed their mail list it will emit signal sigRefreshReady. <dl compact><dt><b>Parameters:</b></dt><dd>
+Connected with signal sigRefreshReady of all accounts. 
+<p>
+When an account has sent this signal its appropriate item in AccountRefreshMap will set to FALSE. When all accounts have refreshed their mail list it will emit signal sigRefreshReady. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account which has emitted the signal </td></tr>
   </table>
 </dl>
 <dl class="see" compact><dt><b>See also:</b></dt><dd>AccountRefreshMap </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00178">178</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00249">accountRefreshMap</a>, and <a class="el" href="classAccountList.html#7b2e97450a8e7f0050c85cac1ce84172">sigRefreshReady()</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>.</p>
 
 </div>
 </div><p>
@@ -734,8 +1021,16 @@ Connected with signal sigRefreshReady of all accounts. When an account has sent 
 <div class="memdoc">
 
 <p>
-Connected with signal sigMessageWindowOpened of all accounts. When an account has sent this signal the counter ctrOpenMessageWindows will be incremented. When the counter was incremented from zero (the first window was opened) the signal sigMessageWindowOpened will be emitted. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#f8ae80fdf8b04745f0ca4bd29da6f6eb">ctrOpenMessageWindows</a> <p>
-<a class="el" href="classAccountList.html#f099094844ba8c38d4ac6fa176f77bb7">sigMessageWindowOpened</a> </dd></dl>
+Connected with signal sigMessageWindowOpened of all accounts. 
+<p>
+When an account has sent this signal the counter ctrOpenMessageWindows will be incremented. When the counter was incremented from zero (the first window was opened) the signal sigMessageWindowOpened will be emitted. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#f8ae80fdf8b04745f0ca4bd29da6f6eb" title="Number of windows, which have been opened by the accounts to show mails.">ctrOpenMessageWindows</a> <p>
+<a class="el" href="classAccountList.html#f099094844ba8c38d4ac6fa176f77bb7" title="Will be emitted by slotMessageWindowOpened when an account has opened a window to...">sigMessageWindowOpened</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00209">209</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00286">ctrOpenMessageWindows</a>, and <a class="el" href="classAccountList.html#f099094844ba8c38d4ac6fa176f77bb7">sigMessageWindowOpened()</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>.</p>
 
 </div>
 </div><p>
@@ -755,8 +1050,16 @@ Connected with signal sigMessageWindowOpened of all accounts. When an account ha
 <div class="memdoc">
 
 <p>
-Connected with signal sigMessageWindowClosed of all accounts. When an account has sent this signal the counter ctrOpenMessageWindows will be decremented. When the counter has reached zero the signal sigAllMessageWindowsClosed will be emitted. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#f8ae80fdf8b04745f0ca4bd29da6f6eb">ctrOpenMessageWindows</a> <p>
-<a class="el" href="classAccountList.html#7fd9a79c3df80532678880fe344f9a72">sigAllMessageWindowsClosed</a> </dd></dl>
+Connected with signal sigMessageWindowClosed of all accounts. 
+<p>
+When an account has sent this signal the counter ctrOpenMessageWindows will be decremented. When the counter has reached zero the signal sigAllMessageWindowsClosed will be emitted. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#f8ae80fdf8b04745f0ca4bd29da6f6eb" title="Number of windows, which have been opened by the accounts to show mails.">ctrOpenMessageWindows</a> <p>
+<a class="el" href="classAccountList.html#7fd9a79c3df80532678880fe344f9a72" title="Will be emitted by slotMessageWindowClosed when all accounts have closed their windows...">sigAllMessageWindowsClosed</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00221">221</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00286">ctrOpenMessageWindows</a>, and <a class="el" href="classAccountList.html#7fd9a79c3df80532678880fe344f9a72">sigAllMessageWindowsClosed()</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>.</p>
 
 </div>
 </div><p>
@@ -777,12 +1080,20 @@ Connected with signal sigMessageWindowClosed of all accounts. When an account ha
 <div class="memdoc">
 
 <p>
-Connected with signal sigDeleteReady of all accounts. When an account has sent this signal its appropriate item in AccountDeletionMap will set to FALSE. When all accounts have done the deletion it will emit signal sigDeleteReady. <dl compact><dt><b>Parameters:</b></dt><dd>
+Connected with signal sigDeleteReady of all accounts. 
+<p>
+When an account has sent this signal its appropriate item in AccountDeletionMap will set to FALSE. When all accounts have done the deletion it will emit signal sigDeleteReady. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account which has emitted the signal </td></tr>
   </table>
 </dl>
 <dl class="see" compact><dt><b>See also:</b></dt><dd>AccountDeletionMap </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00295">295</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00263">accountDeletionMap</a>, and <a class="el" href="classAccountList.html#47ef23052081600bfd25291f57b17bc0">sigDeleteReady()</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>.</p>
 
 </div>
 </div><p>
@@ -803,12 +1114,20 @@ Connected with signal sigDeleteReady of all accounts. When an account has sent t
 <div class="memdoc">
 
 <p>
-Connected with signal sigShowBodiesReady of all accounts. When an account has sent this signal its appropriate item in AccountShowBodiesMap will set to FALSE. When all accounts have shown the mail it will emit signal sigShowBodiesReady. <dl compact><dt><b>Parameters:</b></dt><dd>
+Connected with signal sigShowBodiesReady of all accounts. 
+<p>
+When an account has sent this signal its appropriate item in AccountShowBodiesMap will set to FALSE. When all accounts have shown the mail it will emit signal sigShowBodiesReady. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account which has emitted the signal </td></tr>
   </table>
 </dl>
-<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#aa373efa89a6b8d997e93fba491875bb">AccountShowBodiesMap</a> </dd></dl>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#aa373efa89a6b8d997e93fba491875bb" title="This map is used by the methods to show the mail body.">AccountShowBodiesMap</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8cpp-source.html#l00507">507</a> of file <a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a>.</p>
+
+<p>References <a class="el" href="accountlist_8h-source.html#l00277">AccountShowBodiesMap</a>, <a class="el" href="accountlist_8h-source.html#l00286">ctrOpenMessageWindows</a>, and <a class="el" href="classAccountList.html#fee253d1f8dd735457703f0ef356d060">sigShowBodiesReady()</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>.</p>
 
 </div>
 </div><p>
@@ -829,6 +1148,10 @@ Connected with signal sigShowBodiesReady of all accounts. When an account has se
 
 <p>
 Will be emitted, when all accounts have refreshed their mail list. 
+<p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>, <a class="el" href="accountlist_8cpp-source.html#l00143">refreshMailLists()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00178">slotCheckRefreshState()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="f099094844ba8c38d4ac6fa176f77bb7"></a><!-- doxytag: member="AccountList::sigMessageWindowOpened" ref="f099094844ba8c38d4ac6fa176f77bb7" args="()" -->
@@ -847,7 +1170,11 @@ Will be emitted, when all accounts have refreshed their mail list.
 <div class="memdoc">
 
 <p>
-Will be emitted by slotMessageWindowOpened when an account has opened a window to show a mail. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#45f1118ee63809f781df080907a2cb9e">slotMessageWindowOpened</a> </dd></dl>
+Will be emitted by slotMessageWindowOpened when an account has opened a window to show a mail. 
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#45f1118ee63809f781df080907a2cb9e" title="Connected with signal sigMessageWindowOpened of all accounts.">slotMessageWindowOpened</a> </dd></dl>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00209">slotMessageWindowOpened()</a>.</p>
 
 </div>
 </div><p>
@@ -867,7 +1194,11 @@ Will be emitted by slotMessageWindowOpened when an account has opened a window t
 <div class="memdoc">
 
 <p>
-Will be emitted by slotMessageWindowClosed when all accounts have closed their windows to show mails. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#5b03b69aed08ce2fba941a1982e89363">slotMessageWindowClosed</a> </dd></dl>
+Will be emitted by slotMessageWindowClosed when all accounts have closed their windows to show mails. 
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#5b03b69aed08ce2fba941a1982e89363" title="Connected with signal sigMessageWindowClosed of all accounts.">slotMessageWindowClosed</a> </dd></dl>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00221">slotMessageWindowClosed()</a>.</p>
 
 </div>
 </div><p>
@@ -888,6 +1219,10 @@ Will be emitted by slotMessageWindowClosed when all accounts have closed their w
 
 <p>
 Will be emitted when all selected mails are deleted. 
+<p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00295">slotCheckDeletionState()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="fee253d1f8dd735457703f0ef356d060"></a><!-- doxytag: member="AccountList::sigShowBodiesReady" ref="fee253d1f8dd735457703f0ef356d060" args="()" -->
@@ -907,15 +1242,19 @@ Will be emitted when all selected mails are deleted.
 
 <p>
 Will be emitted when all selected mails are shown. 
+<p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00507">slotCheckShowBodiesState()</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="1fc7c3f504c052c2d5efc1c4abb74ab2"></a><!-- doxytag: member="AccountList::accounts" ref="1fc7c3f504c052c2d5efc1c4abb74ab2" args="" -->
+<a class="anchor" name="23d96450b1d3b622668eccb79b2356cc"></a><!-- doxytag: member="AccountList::accounts" ref="23d96450b1d3b622668eccb79b2356cc" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt;<a class="el" href="classAccount.html">Account</a>*&gt; <a class="el" href="classAccountList.html#1fc7c3f504c052c2d5efc1c4abb74ab2">AccountList::accounts</a><code> [private]</code>          </td>
+          <td class="memname">QList&lt;QPointer&lt;<a class="el" href="classAccount.html">Account</a>&gt; &gt; <a class="el" href="classAccountList.html#23d96450b1d3b622668eccb79b2356cc">AccountList::accounts</a><code> [private]</code>          </td>
         </tr>
       </table>
 </div>
@@ -923,6 +1262,12 @@ Will be emitted when all selected mails are shown.
 
 <p>
 this list contains the account objects 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8h-source.html#l00235">235</a> of file <a class="el" href="accountlist_8h-source.html">accountlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00028">addAccount()</a>, <a class="el" href="accountlist_8cpp-source.html#l00647">cancelTasks()</a>, <a class="el" href="accountlist_8cpp-source.html#l00258">deleteMails()</a>, <a class="el" href="accountlist_8cpp-source.html#l00063">getAccount()</a>, <a class="el" href="accountlist_8cpp-source.html#l00622">getAllAccounts()</a>, <a class="el" href="accountlist_8cpp-source.html#l00658">getAllAccountViewItems()</a>, <a class="el" href="accountlist_8cpp-source.html#l00632">getAllMails()</a>, <a class="el" href="accountlist_8cpp-source.html#l00239">getNumberMails()</a>, <a class="el" href="accountlist_8cpp-source.html#l00532">getNumberNewMails()</a>, <a class="el" href="accountlist_8cpp-source.html#l00132">hasAccount()</a>, <a class="el" href="accountlist_8cpp-source.html#l00072">loadSetup()</a>, <a class="el" href="accountlist_8cpp-source.html#l00058">numberAccounts()</a>, <a class="el" href="accountlist_8cpp-source.html#l00316">numberDeletedMailsLastRefresh()</a>, <a class="el" href="accountlist_8cpp-source.html#l00332">numberDeletedMailsStart()</a>, <a class="el" href="accountlist_8cpp-source.html#l00382">numberIgnoredMails()</a>, <a class="el" href="accountlist_8cpp-source.html#l00350">numberMovedMailsLastRefresh()</a>, <a class="el" href="accountlist_8cpp-source.html#l00366">numberMovedMailsStart()</a>, <a class="el" href="accountlist_8cpp-source.html#l00046">print()</a>, <a class="el" href="accountlist_8cpp-source.html#l00398">refreshFilterSetup()</a>, <a class="el" href="accountlist_8cpp-source.html#l00143">refreshMailLists()</a>, <a class="el" href="accountlist_8cpp-source.html#l00414">saveOptions()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00470">showMails()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="307c6db42d9ccfe8f20ed0b1d15cad13"></a><!-- doxytag: member="AccountList::accountRefreshMap" ref="307c6db42d9ccfe8f20ed0b1d15cad13" args="" -->
@@ -937,8 +1282,14 @@ this list contains the account objects
 <div class="memdoc">
 
 <p>
-This map is used by the methods to refresh the account mail lists. <a class="el" href="classAccountList.html#e3916b0d80e6abf86f7d0f490dcdae6f">refreshMailLists()</a> clears it and after that inserts for every account an item. The Key ist the account name and the data is TRUE. When <a class="el" href="classAccountList.html#156feb76af252138d8e48921b19cc4fe">slotCheckRefreshState()</a> is invoked by a signal sent by an account, this slot will set the appropriate item data to FALSE. If the data of all items are set to FALSE, the method will know all accounts have refreshed their mail list and will emit sigRefreshReady. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#e3916b0d80e6abf86f7d0f490dcdae6f">refreshMailLists()</a> <p>
-<a class="el" href="classAccountList.html#156feb76af252138d8e48921b19cc4fe">slotCheckRefreshState()</a> </dd></dl>
+This map is used by the methods to refresh the account mail lists. 
+<p>
+<a class="el" href="classAccountList.html#e3916b0d80e6abf86f7d0f490dcdae6f" title="Orders the accounts to refresh the mails.">refreshMailLists()</a> clears it and after that inserts for every account an item. The Key ist the account name and the data is TRUE. When <a class="el" href="classAccountList.html#156feb76af252138d8e48921b19cc4fe" title="Connected with signal sigRefreshReady of all accounts.">slotCheckRefreshState()</a> is invoked by a signal sent by an account, this slot will set the appropriate item data to FALSE. If the data of all items are set to FALSE, the method will know all accounts have refreshed their mail list and will emit sigRefreshReady. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#e3916b0d80e6abf86f7d0f490dcdae6f" title="Orders the accounts to refresh the mails.">refreshMailLists()</a> <p>
+<a class="el" href="classAccountList.html#156feb76af252138d8e48921b19cc4fe" title="Connected with signal sigRefreshReady of all accounts.">slotCheckRefreshState()</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8h-source.html#l00249">249</a> of file <a class="el" href="accountlist_8h-source.html">accountlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00143">refreshMailLists()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00178">slotCheckRefreshState()</a>.</p>
 
 </div>
 </div><p>
@@ -954,8 +1305,14 @@ This map is used by the methods to refresh the account mail lists. <a class="el"
 <div class="memdoc">
 
 <p>
-This map is used by the delete methods. deleteSelectedMails() clears it and after that inserts for every account an item. The Key is the account name and the data is TRUE. When <a class="el" href="classAccountList.html#08645fab692c2b80d4dcbfdbfd8ef51c">slotCheckDeletionState()</a> is invoked by a signal sent by an account, this slot will set the appropriate item data to FALSE. If the data of all items are set to FALSE, the method will know all accounts have ended the deletion and will emit sigDeleteReady. <dl class="see" compact><dt><b>See also:</b></dt><dd>deleteSelectedMails() <p>
-<a class="el" href="classAccountList.html#08645fab692c2b80d4dcbfdbfd8ef51c">slotCheckDeletionState()</a> </dd></dl>
+This map is used by the delete methods. 
+<p>
+deleteSelectedMails() clears it and after that inserts for every account an item. The Key is the account name and the data is TRUE. When <a class="el" href="classAccountList.html#08645fab692c2b80d4dcbfdbfd8ef51c" title="Connected with signal sigDeleteReady of all accounts.">slotCheckDeletionState()</a> is invoked by a signal sent by an account, this slot will set the appropriate item data to FALSE. If the data of all items are set to FALSE, the method will know all accounts have ended the deletion and will emit sigDeleteReady. <dl class="see" compact><dt><b>See also:</b></dt><dd>deleteSelectedMails() <p>
+<a class="el" href="classAccountList.html#08645fab692c2b80d4dcbfdbfd8ef51c" title="Connected with signal sigDeleteReady of all accounts.">slotCheckDeletionState()</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8h-source.html#l00263">263</a> of file <a class="el" href="accountlist_8h-source.html">accountlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00258">deleteMails()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00295">slotCheckDeletionState()</a>.</p>
 
 </div>
 </div><p>
@@ -971,8 +1328,14 @@ This map is used by the delete methods. deleteSelectedMails() clears it and afte
 <div class="memdoc">
 
 <p>
-This map is used by the methods to show the mail body. showSelectedMails() clears it and after that inserts for every account an item. The Key is the account name and the data is TRUE. When <a class="el" href="classAccountList.html#52aa8ff2a2c52f834553493d70ff98b1">slotCheckShowBodiesState()</a> is invoked by a signal sent by an account, this slot will set the appropriate item data to FALSE. If the data of all items are set to FALSE, the method will know all accounts have shown the mail body and will emit sigShowBodiesReady. <dl class="see" compact><dt><b>See also:</b></dt><dd>showSelectedMails() <p>
-<a class="el" href="classAccountList.html#52aa8ff2a2c52f834553493d70ff98b1">slotCheckShowBodiesState()</a> </dd></dl>
+This map is used by the methods to show the mail body. 
+<p>
+showSelectedMails() clears it and after that inserts for every account an item. The Key is the account name and the data is TRUE. When <a class="el" href="classAccountList.html#52aa8ff2a2c52f834553493d70ff98b1" title="Connected with signal sigShowBodiesReady of all accounts.">slotCheckShowBodiesState()</a> is invoked by a signal sent by an account, this slot will set the appropriate item data to FALSE. If the data of all items are set to FALSE, the method will know all accounts have shown the mail body and will emit sigShowBodiesReady. <dl class="see" compact><dt><b>See also:</b></dt><dd>showSelectedMails() <p>
+<a class="el" href="classAccountList.html#52aa8ff2a2c52f834553493d70ff98b1" title="Connected with signal sigShowBodiesReady of all accounts.">slotCheckShowBodiesState()</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8h-source.html#l00277">277</a> of file <a class="el" href="accountlist_8h-source.html">accountlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00470">showMails()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00507">slotCheckShowBodiesState()</a>.</p>
 
 </div>
 </div><p>
@@ -988,8 +1351,14 @@ This map is used by the methods to show the mail body. showSelectedMails() clear
 <div class="memdoc">
 
 <p>
-Number of windows, which have been opened by the accounts to show mails. Used by <a class="el" href="classAccountList.html#45f1118ee63809f781df080907a2cb9e">slotMessageWindowOpened()</a> and <a class="el" href="classAccountList.html#5b03b69aed08ce2fba941a1982e89363">slotMessageWindowClosed()</a>. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#45f1118ee63809f781df080907a2cb9e">slotMessageWindowOpened</a> <p>
-<a class="el" href="classAccountList.html#5b03b69aed08ce2fba941a1982e89363">slotMessageWindowClosed</a> </dd></dl>
+Number of windows, which have been opened by the accounts to show mails. 
+<p>
+Used by <a class="el" href="classAccountList.html#45f1118ee63809f781df080907a2cb9e" title="Connected with signal sigMessageWindowOpened of all accounts.">slotMessageWindowOpened()</a> and <a class="el" href="classAccountList.html#5b03b69aed08ce2fba941a1982e89363" title="Connected with signal sigMessageWindowClosed of all accounts.">slotMessageWindowClosed()</a>. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classAccountList.html#45f1118ee63809f781df080907a2cb9e" title="Connected with signal sigMessageWindowOpened of all accounts.">slotMessageWindowOpened</a> <p>
+<a class="el" href="classAccountList.html#5b03b69aed08ce2fba941a1982e89363" title="Connected with signal sigMessageWindowClosed of all accounts.">slotMessageWindowClosed</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="accountlist_8h-source.html#l00286">286</a> of file <a class="el" href="accountlist_8h-source.html">accountlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00203">init()</a>, <a class="el" href="accountlist_8cpp-source.html#l00507">slotCheckShowBodiesState()</a>, <a class="el" href="accountlist_8cpp-source.html#l00221">slotMessageWindowClosed()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00209">slotMessageWindowOpened()</a>.</p>
 
 </div>
 </div><p>
@@ -1005,13 +1374,19 @@ Number of windows, which have been opened by the accounts to show mails. Used by
 <div class="memdoc">
 
 <p>
-TRUE - mails keep new until termination 
+TRUE - mails keep new until termination. 
+<p>
+
+<p>Definition at line <a class="el" href="accountlist_8h-source.html#l00291">291</a> of file <a class="el" href="accountlist_8h-source.html">accountlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="accountlist_8cpp-source.html#l00234">keepNew()</a>, and <a class="el" href="accountlist_8cpp-source.html#l00072">loadSetup()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="accountlist_8h-source.html">accountlist.h</a><li>src/<a class="el" href="accountlist_8cpp.html">accountlist.cpp</a></ul>
+<li>src/<a class="el" href="accountlist_8h-source.html">accountlist.h</a><li>src/<a class="el" href="accountlist_8cpp-source.html">accountlist.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 22 18:30:22 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

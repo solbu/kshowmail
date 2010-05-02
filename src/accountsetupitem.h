@@ -45,160 +45,165 @@ class AccountSetupItem : public QTreeWidgetItem
   public:
 
     /**
-     * Constructor
+     * @brief Constructor
      * @param parent the list view
      */
     AccountSetupItem( QTreeWidget* parent );
 
     /**
-     * Constructor
+     * @brief Constructor
      * @param parent the list view
      * @param name account name
      */
     AccountSetupItem( QTreeWidget* parent, const QString& name );
 
     /**
-     * Destructor
+     * @brief Destructor
      */
     ~AccountSetupItem();
 
     /**
-     * Sets account name
+     * @brief Sets account name
      * @param name account name
      */
     void setAccountName( const QString& name );
 
     /**
-     * Returns the account name.
+     * @brief Returns the account name.
      * @return account name
      */
     QString getAccountName() const;
 
     /**
-     * Sets the server.
+     * @brief Sets the server.
      * @param server server
      */
     void setServer( const QString& server );
 
     /**
-     * Returns the server.
+     * @brief Returns the server.
      * @return server
      */
     QString getServer() const;
 
     /**
-     * Sets the protocol.
+     * @brief Sets the protocol.
      * @param protocol protocol
      */
     void setProtocol( const QString& protocol );
 
     /**
-     * Returns the protocol.
+     * @brief Returns the protocol.
      * @return protocol
      */
     QString getProtocol() const;
 
     /**
-     * Sets the port number.
+     * @brief Sets the port number.
      * @param port port number
      */
     void setPort( int port );
 
     /**
-     * Returns the port number.
+     * @brief Returns the port number.
      * @return port number (0..65535)
      */
     int getPort() const;
 
     /**
-     * Sets the user name.
+     * @brief Sets the user name.
      * @param user user name
      */
     void setUser( const QString& user );
 
     /**
-     * Returns the user name.
+     * @brief Returns the user name.
      * @return user name
      */
     QString getUser() const;
 
     /**
-     * Sets the password.
+     * @brief Sets the password.
      * @param password password
      */
     void setPassword( const QString& password );
 
     /**
-     * Returns the password.
+     * @brief Returns the password.
      * @return password
      */
     QString getPassword() const;
 
     /**
-     * Sets the password storage type.
+     * @brief Sets the password storage type.
+     *
      * See constants.h for valid values
      * @param type password storage type (CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE, CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE or CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_KWALLET)
      */
     void setPasswordStorageType( int type );
 
     /**
-     * Returns the password storage type.
+     * @brief Returns the password storage type.
+     *
      * See constants.h for valid values (CONFIG_VALUE_ACCOUNT_PASSWORD_...)
      * @return storage type
      */
     int getPasswordStorageType() const;
 
     /**
-     * Sets whether the account is active.
+     * @brief Sets whether the account is active.
      * @param active TRUE - account is active; FALSE - account is not active
      */
     void setActive( bool active );
 
     /**
-     * Returns whether the account is active.
+     * @brief Returns whether the account is active.
      * @return TRUE - account is active
      * @return FALSE - account is not active
      */
     bool getActive() const;
 
     /**
-     * Sets the transfer security.
+     * @brief Sets the transfer security.
+     * 
      * See constants.h for valid values.
      * @param type transfer security type (CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE, CONFIG_VALUE_ACCOUNT_SECTRANSFER_SSL, CONFIG_VALUE_ACCOUNT_SECTRANSFER_TLS)
      */
     void setTransferSecurity( int type );
 
     /**
-     * Returns the transfer security.
+     * @brief Returns the transfer security.
+     *
      * seee constants.h for valid values (CONFIG_VALUE_ACCOUNT_SECTRANSFER_...)
      * @return transfer security
      */
     int getTransferSecurity() const;
 
     /**
-     * Saves this account into applications config.
+     * @brief Saves this account into applications config.
+     *
      * All values are placed in a group called like the account name.
      */
     void save() const;
 
     /**
-     * Loads the options of this account from the application config.
+     * @brief Loads the options of this account from the application config.
      */
     void load();
 
     /**
-     * Prints the account settings to stdout
+     * @brief Prints the account settings to stdout
      */
     void print();
 
     /**
-     * Sets whether an unsecure login is allowed
+     * @brief Sets whether an unsecure login is allowed
      * @param allowed TRUE - unsecure login is allowd
      */
     void setUnsecureLoginAllowed( bool allowed );
 
     /**
-     * Return whether an unsecure login is allowed.
+     * @brief Return whether an unsecure login is allowed.
      * @return TRUE - unsecure login is allowed
      */
     bool getUnsecureLoginAllowed() const;
@@ -208,59 +213,61 @@ class AccountSetupItem : public QTreeWidgetItem
   private:
 
     /**
-     * Connector to the configuration file
+     * @brief Connector to the configuration file
      */
     KSharedConfigPtr config;
 
     /**
-     * Account name
+     * @brief Account name
      */
     QString _account;
 
     /**
-     * Server
+     * @brief Server
      */
     QString _server;
 
     /**
-     * Protocol
+     * @brief Protocol
      */
     QString _protocol;
 
     /**
-     * Port
+     * @brief Port
      */
     int _port;
 
     /**
-     * User Name
+     * @brief User Name
      */
     QString _user;
 
     /**
-     * Password
+     * @brief Password
      */
     QString _password;
 
     /**
-     * TRUE - account is active
+     * @brief TRUE - account is active
      */
     bool _active;
 
     /**
-     * password storage type
+     * @brief password storage type
+     *
      * Values are defined in constants.h (CONFIG_VALUE_ACCOUNT_PASSWORD_...)
      */
     int _passwordStorage;
 
     /**
-     * transfer security
+     * @brief transfer security
+     *
      * Values are defined in constants.h (CONFIG_VALUE_ACCOUNT_SECTRANSFER_...)
      */
     int _transferSecurity;
 
     /**
-     * TRUE - unsafe login is allowed if a secure login failed
+     * @brief TRUE - unsafe login is allowed if a secure login failed
      */
     bool _allowUnsecureLogin;
 
@@ -268,7 +275,7 @@ class AccountSetupItem : public QTreeWidgetItem
   protected:
 
     /**
-     * Initializes the object.
+     * @brief Initializes the object.
      */
     void init();
 

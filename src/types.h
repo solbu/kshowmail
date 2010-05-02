@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace std;
 
 /**
- * All special types for KShowMail.
+ * @brief All special types for KShowMail.
  */
 namespace Types
 {
@@ -87,7 +87,7 @@ namespace Types
      };
 
      /**
-      * This struct is for use in MailToDownloadMap_Type and holds some parameters about the mail for
+      * @brief This struct is for use in MailToDownloadMap_Type and holds some parameters about the mail for
       * downloading.
       */
      struct DownloadActionParams_Type
@@ -97,13 +97,13 @@ namespace Types
      };
 
      /**
-      * This map is used by ConfigElem and ShowRecord to hold a list of mail numbers which shall be downloaded for
+      * @brief This map is used by ConfigElem and ShowRecord to hold a list of mail numbers which shall be downloaded for
       * some filter actions; at time for moving and spam check
       */
      typedef QMap<int, DownloadActionParams_Type> MailToDownloadMap_Type;
 
     /**
-     * Contains all values of a filter criteria.
+     * @brief Contains all values of a filter criteria.
      */
      struct FilterCriteria_Type
      {
