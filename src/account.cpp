@@ -548,7 +548,7 @@ QStringList Account::readfromSocket( bool singleLine )
       if( transferSecurity == TransSecSSL || transferSecurity == TransSecTLS ) {
 
         dontHandleError = true;
-        if( !socket->waitForReadyRead( 1000 ) ) {
+        if( !socket->waitForReadyRead( 500 ) ) {
 
           QByteArray toWrite( "NOOP\n" );
           socket->write( toWrite );
