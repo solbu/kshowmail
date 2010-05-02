@@ -528,7 +528,8 @@ QStringList Account::readfromSocket( bool singleLine )
   endOfMultiLine.append( END_MULTILINE_RESPONSE );
   endOfMultiLine.append( lineTerm );
 
-	//read all bytes until we have get the line end of a single line response
+
+  //read all bytes until we have get the line end of a single line response
 	//or the end line of a multiline response
   while( !responseEndFound ) {
 
@@ -536,11 +537,39 @@ QStringList Account::readfromSocket( bool singleLine )
     if( socket->bytesAvailable() == 0 ) {
 
       kdDebug() << getName() << ": Warte auf Bytes" << endl;
-      kdDebug() << "State of " << getName() << ": " << socket->state() << endl;
-      if( !socket->waitForReadyRead() )
-      {
-        return QStringList();
+
+      //this is a workaround for SSL
+      //sometimes there isn't the whole response available at once
+      //In this case a waitForReadyRead() is hanging until timeout.
+      //Therefore we send a NOOP to the server. This released the missing bytes
+      //from the sockt. But the problem is, the response of the NOOP is now in front
+      //of the response caused by the next command. Therefore removeStatusIndicator()
+      //must remove all status lines.
+      if( transferSecurity == TransSecSSL || transferSecurity == TransSecTLS ) {
+
+        dontHandleError = true;
+        if( !socket->waitForReadyRead( 1000 ) ) {
+
+          QByteArray toWrite( "NOOP\n" );
+          socket->write( toWrite );
+
+          dontHandleError = false;
+          if( !socket->waitForReadyRead() ) {
+
+            return QStringList();
+          }
+
+        }
+        dontHandleError = false;
+
+      } else {
+
+        if( !socket->waitForReadyRead() )
+        {
+          return QStringList();
+        }
       }
+
 
 
     }
@@ -589,6 +618,7 @@ QStringList Account::readfromSocket( bool singleLine )
 
     response.removeLast();
   }
+
   
   return response;
   
@@ -767,7 +797,8 @@ void Account::slotCapabilitiesResponse()
   if( haveCapa )
   {
     //remove status indicator and termination char
-    clearMessage( text );
+    removeStatusIndicator( &text );
+    removeEndOfResponseMarker( &text );
 
     //has STARTTLS?
     supportsStartTLS = text.contains( CAPA_RESPONSE_STLS, Qt::CaseInsensitive );
@@ -814,49 +845,6 @@ bool Account::isPositiveServerMessage( QStringList& message ) const
   return false;
 }
 
-void Account::clearMessage( QStringList& message )
-{
-
-  //return, if the message is empty
-  if( message.isEmpty() ) return;
-  
-  //get the first line
-  QString firstLine = message.first();
-
-  //remove the status indicator
-  if( firstLine.startsWith( RESPONSE_POSITIVE ) )
-  {
-    firstLine.remove( 0, RESPONSE_POSITIVE.length() );
-    
-  } else if ( firstLine.startsWith( RESPONSE_NEGATIVE ) ){
-
-    firstLine.remove( 0, RESPONSE_NEGATIVE.length() );
-  }
-
-  //remove spaces at start
-  firstLine = firstLine.trimmed();
-
-  //if the firstLine is empty now, we remove it
-  //otherwise we replace it with the processed line
-  if( firstLine.isEmpty() )
-  {
-    message.removeFirst();
-  }
-  else
-  {
-    message.replace( 0, firstLine );
-  }
-
-  if( !message.isEmpty() )
-  {
-    //remove termination line
-    if( message.last() == END_MULTILINE_RESPONSE )
-    {
-      message.removeLast();
-    }
-  }
-}
-
 void Account::getAuthMech()
 {
   //connect the signal readyRead of the socket with the response handle methode
@@ -887,7 +875,8 @@ void Account::slotAuthMechResponse()
   if( haveAuth )
   {
     //remove status indicator and termination char
-    clearMessage( text );
+    removeStatusIndicator( &text );
+    removeEndOfResponseMarker( &text );
   }
 
   //if the STARTTLS is supported, we start this now
@@ -1151,10 +1140,13 @@ void Account::removeStatusIndicator( QStringList* response )
   QString firstLine = response->first();
 
   //is it an indicator?
-  if( firstLine.startsWith( RESPONSE_POSITIVE ) || firstLine.startsWith( RESPONSE_NEGATIVE ) )
+  //see the infos about the SSL workaround in readFromSocket()
+  while( firstLine.startsWith( RESPONSE_POSITIVE ) || firstLine.startsWith( RESPONSE_NEGATIVE ) )
   {
     //Yes, it is. Zack und weg!
     response->pop_front();
+
+    firstLine = response->first();
   }
 }
 
@@ -1180,6 +1172,8 @@ void Account::getUIDList()
 
 void Account::slotUIDListResponse()
 {
+  kdDebug() << "slotUIDListRespones" << endl;
+  
   //get the response
   QStringList receivedUIDs = readfromSocket( false );
 
@@ -1188,13 +1182,6 @@ void Account::slotUIDListResponse()
   if( receivedUIDs.isEmpty() )
   {
     finishTask();
-    return;
-  }
-
-  //no response from the server
-  if( receivedUIDs.isEmpty() )
-  {
-    handleError( i18nc( "@info error messsage: no response gto from a server", "<resource>%1</resource> has not sent a response after <icode>%2</icode> command.", getHost(), UID_LIST ) );
     return;
   }
 

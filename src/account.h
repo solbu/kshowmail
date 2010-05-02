@@ -22,6 +22,7 @@ class Account;
 
 //C++ headers
 #include <iostream>
+#include <unistd.h>
 
 //Qt header
 #include <QObject>
@@ -514,13 +515,6 @@ class Account : public QObject
      * @return TRUE - positive answer; FALSE - negative answer
      */
     bool isPositiveServerMessage( QStringList& message ) const;
-
-    /**
-     * Removes status indicator and termination char from a server message
-     * @param message server message
-     * @return the cleared server message
-     */
-    void clearMessage( QStringList& message );
 
     /**
      * Sends the command to get the authentication mechanism of this server.
@@ -1045,7 +1039,6 @@ class Account : public QObject
      */
     FilterLog* fLog;
 
-    
     /**
      * Number of deleted mails by last refresh.
      */
