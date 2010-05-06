@@ -27,14 +27,6 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   //create mail container
   mails = new MailList( this, this );
 
-  //create TCP-Socket
-  socket = new KTcpSocket( this );
-
-  //connect the socket with the slots
-  connect( socket, SIGNAL( error( KTcpSocket::Error ) ), this, SLOT( slotSocketError( KTcpSocket::Error ) ) );
-  connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
-  connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
-  connect( socket, SIGNAL( sslErrors(QList<KSslError>) ), this, SLOT( slotSSLError(QList<KSslError>) ) );
 
   //create timeout timer
   timeoutTimer = new QTimer( this );
@@ -357,11 +349,16 @@ int Account::getPasswordStorage( ) const
 
 void Account::doConnect()
 {
- //break, if there is already a connection
+ //if there is already a connection, close it
+ if( !socket.isNull() ) {
+
   if( socket->state() != KTcpSocket::UnconnectedState )
   {
     closeConnection();
   }
+
+ }
+
 
   initBeforeConnect();
 
@@ -392,6 +389,8 @@ void Account::closeConnection()
   {
     kdDebug() << "Close Connection: " << getName() << endl;
 
+    socket->disconnectFromHost();
+    
     //we try to close up to 5 times
     int nrTry = 0;
     while( nrTry < 5 && socket->state() != KTcpSocket::UnconnectedState ) {
@@ -403,19 +402,41 @@ void Account::closeConnection()
 
 void Account::initBeforeConnect()
 {
+
+  //we instance a new socket because sometimes the old doesn't disconnect correctly
+  if( !socket.isNull() ) {
+
+    disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+    disconnect( socket, SIGNAL( error() ), 0, 0 );
+    disconnect( socket, SIGNAL( connected() ), 0, 0 );
+    disconnect( socket, SIGNAL( hostFound() ), 0, 0 );
+    disconnect( socket, SIGNAL( sslErrors(QList<KSslError>)), 0, 0 );
+
+    delete socket;
+  } 
+
+  //create TCP-Socket
+  socket = new KTcpSocket( this );
+
+  //connect the socket with the slots
+  connect( socket, SIGNAL( error( KTcpSocket::Error ) ), this, SLOT( slotSocketError( KTcpSocket::Error ) ) );
+  connect( socket, SIGNAL( connected() ), this, SLOT( slotConnected() ) );
+  connect( socket, SIGNAL( hostFound() ), this, SLOT( slotHostFound() ) );
+  connect( socket, SIGNAL( sslErrors(QList<KSslError>) ), this, SLOT( slotSSLError(QList<KSslError>) ) );
+
+  //init some flags
   quitSent = false;
   apopAvail = false;
   dontUseAPOP = false;
-
-  //Capability flags
-  supportsStartTLS = false;
 
   downloadActionsInvoked = false;
   deletionPerformedByFilters = false;
   filterApplied = false;
 
-
   dontHandleError = false;
+
+  //init capability flags
+  supportsStartTLS = false;
 
   //start timeout timer
   timeoutTimer->start( timeOutTime * 1000 );

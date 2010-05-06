@@ -482,6 +482,8 @@ class Account : public QObject
 
   /**
    * @brief Initiates the account to do a connect.
+   *
+   * It also creates the socket.
    */
   void initBeforeConnect();
 
@@ -969,7 +971,7 @@ class Account : public QObject
     /**
      * @brief The socket. Handles all server operations
      */
-    KTcpSocket* socket;
+    QPointer<KTcpSocket> socket;
 
     /**
      * @brief Pointer to the account list object
