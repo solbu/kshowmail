@@ -391,7 +391,13 @@ void Account::closeConnection()
   if( socket->state() != KTcpSocket::UnconnectedState && socket->state() != KTcpSocket::ClosingState )
   {
     kdDebug() << "Close Connection: " << getName() << endl;
-    socket->close();
+
+    //we try to close up to 5 times
+    int nrTry = 0;
+    while( nrTry < 5 && socket->state() != KTcpSocket::UnconnectedState ) {
+      socket->close();
+      nrTry++;
+    }
   }
 }
 
