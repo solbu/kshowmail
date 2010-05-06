@@ -894,6 +894,11 @@ void Account::slotAuthMechResponse()
 
     startTLS();
     return;
+
+  } else if( transferSecurity == TransSecSSL ) {
+
+    loginUser();
+    return;
     
   } else if( apopAvail && !dontUseAPOP )
     loginApop();
