@@ -39,6 +39,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
 Account::~Account()
 {
 	delete mails;
+  if( !socket.isNull() ) delete socket;
 }
 
 QString Account::getName() const
