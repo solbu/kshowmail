@@ -105,6 +105,10 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
     item->setValues( (*it).getDate(), (*it).getSender(), (*it).getAccount(), (*it).getMailbox(), (*it).getSubject() );
   }
 
+  //set sorting
+  lstViewDeleted->setSortingEnabled( true );
+  lstViewMoved->setSortingEnabled( true );
+
   //get application config object (kshowmailrc)
   config = KGlobal::config();
 
