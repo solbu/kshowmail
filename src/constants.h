@@ -219,6 +219,7 @@ namespace Constants
 
   #define CONFIG_GROUP_VIEW                "View"
   #define CONFIG_ENTRY_VIEW_USE_HTML       "useHTML"
+  #define CONFIG_ENTRY_VIEW_MAIN_WINDOW_SPLITTER "MainWindowSplitter"
   
   #define CONFIG_VALUE_SORT_ORDER_ASCENDING				"asc"
   #define CONFIG_VALUE_SORT_ORDER_DESCENDING      "desc"

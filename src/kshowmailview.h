@@ -109,6 +109,11 @@ class KShowmailView : public QSplitter
 		 * Account view model
 		 */
 		AccountViewModel* accountModel;
+
+    /**
+     * The view splitter
+     */
+    QSplitter* splitter;
 };
 
 #endif // KSHOWMAILVIEW_H

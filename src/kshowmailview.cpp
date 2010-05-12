@@ -22,7 +22,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 {
 	
 	//Split the view into two parts
-	QSplitter* splitter = new QSplitter( Qt::Vertical, this );
+	splitter = new QSplitter( Qt::Vertical, this );
 
 	//create account view
 	viewAccounts = new QTreeView( splitter );
@@ -49,6 +49,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
 	this->accountModel = accountModel;
 	
 	loadSetup();
+
 
 }
 
@@ -77,6 +78,7 @@ void KShowmailView::saveSetup() {
 	//get config objects
 	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
 	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
+  KConfigGroup* configView = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
 	
 	//save the column widths
   if( !viewAccounts->isColumnHidden( 0 ) )
@@ -124,7 +126,9 @@ void KShowmailView::saveSetup() {
 
   if( !viewMails->isColumnHidden( 8 ) )
     configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, viewMails->columnWidth( 8 ) );
-	
+
+  //save position of the splitter
+  configView->writeEntry( CONFIG_ENTRY_VIEW_MAIN_WINDOW_SPLITTER, splitter->saveState() );
 	
 	//save models setup
 	accountModel->saveSetup();
@@ -132,14 +136,19 @@ void KShowmailView::saveSetup() {
 	
 	configAcc->sync();
 	configMail->sync();
-	
+  configView->sync();
+
+  delete configAcc;
+  delete configMail;
+  delete configView;
 }
 
 void KShowmailView::loadSetup() {
 
-//get config object for the account list
+  //get config objects
 	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
 	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
+  KConfigGroup* configView = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
 	
 	viewAccounts->setColumnWidth( 0, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, DEFAULT_WIDTH_ACCOUNT_ACTIVE ) );
 	viewAccounts->setColumnWidth( 1, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT, DEFAULT_WIDTH_ACCOUNT_ACCOUNT ) );
@@ -199,10 +208,14 @@ void KShowmailView::loadSetup() {
 	
 		viewMails->sortByColumn( sortColumnMail, Qt::AscendingOrder );
 	}
+
+	//load splitter state
+  splitter->restoreState( configView->readEntry( CONFIG_ENTRY_VIEW_MAIN_WINDOW_SPLITTER, QByteArray() ) );
 	
 	delete confSort;
 	delete configAcc;
 	delete configMail;
+  delete configView;
 	
 }
 
