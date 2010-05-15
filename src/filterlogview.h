@@ -18,10 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef FILTERLOGVIEW_H
 #define FILTERLOGVIEW_H
 
-//config group
-#define CONFIG_GROUP "FilterLogViewSettings"
-
-
 //Qt headers
 #include <qlabel.h>
 #include <qlayout.h>
@@ -35,12 +31,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kstdguiitem.h>
 #include <kseparator.h>
 
-
-
 //KShowmail headers
 #include "filterlog.h"
 #include "filterlogviewmovedmodel.h"
 #include "filterlogviewdeletedmodel.h"
+#include "constants.h"
 
 /**
  * @brief This dialog box shows the filter log.
@@ -64,6 +59,18 @@ Q_OBJECT
      * Destructor
      */
     ~FilterLogView();
+
+  protected :
+
+    /**
+     * @brief saves the setup
+     */
+    void saveSetup();
+
+    /**
+     * @brief loads the setup
+     */
+    void loadSetup();
 
   private:
 
@@ -91,11 +98,6 @@ Q_OBJECT
      * Model for the view of moved mails
      */
     FilterLogViewMovedModel* modelMoved;
-
-    /**
-     * Connector to the configuration file
-     */
-    KSharedConfigPtr config;
 
 
   private slots:

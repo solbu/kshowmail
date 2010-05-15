@@ -99,6 +99,19 @@ namespace Constants
   #define DEFAULT_WIDTH_MESSAGE_CONTENT   80
   #define DEFAULT_WIDTH_MESSAGE_STATE     50
 
+  //default column widthes of the log view
+  #define DEFAULT_WIDTH_LOGVIEW_DELETED_DATE 80
+  #define DEFAULT_WIDTH_LOGVIEW_DELETED_FROM 80
+  #define DEFAULT_WIDTH_LOGVIEW_DELETED_SUBJECT 80
+  #define DEFAULT_WIDTH_LOGVIEW_DELETED_ACCOUNT 80
+  #define DEFAULT_WIDTH_LOGVIEW_MOVED_DATE 80
+  #define DEFAULT_WIDTH_LOGVIEW_MOVED_FROM 80
+  #define DEFAULT_WIDTH_LOGVIEW_MOVED_SUBJECT 80
+  #define DEFAULT_WIDTH_LOGVIEW_MOVED_ACCOUNT 80
+  #define DEFAULT_WIDTH_LOGVIEW_MOVED_MAILBOX 80
+
+  
+
   //account defaults
   #define DEFAULT_ACCOUNT_NAME ""
   #define DEFAULT_ACCOUNT_SERVER ""
@@ -373,6 +386,19 @@ namespace Constants
 
   #define CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT     "exit"
   #define CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS  "days"
+
+  //Log view
+  #define CONFIG_GROUP_LOGVIEW                        "LogView"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE     "WidthLogViewDeletedDate"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT  "WidthLogViewDeletedSubject"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT  "WidthLogViewDeletedAccount"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_FROM     "WidthLogViewDeletedFrom"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_DATE       "WidthLogViewMovedDate"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_SUBJECT    "WidthLogViewMovedSubject"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_ACCOUNT    "WidthLogViewMovedAccount"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_FROM       "WidthLogViewMovedFrom"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_MAILBOX    "WidthLogViewMovedMailbox"
+  
 
   //Status Bar
   #define STATUSBAR_FIELD_STATE         1

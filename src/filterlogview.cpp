@@ -71,12 +71,13 @@ FilterLogView::FilterLogView( QWidget *parent, FilterLog* log )
   btnClearMoved->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layMain->addWidget( btnClearMoved );
 
-  //get application config object (kshowmailrc)
-  config = KGlobal::config();
 
   //restore Dialog Size
-  KConfigGroup configWindowSettings( config, CONFIG_GROUP );
+  KConfigGroup configWindowSettings( KGlobal::config(), CONFIG_GROUP_LOGVIEW );
   restoreDialogSize( configWindowSettings );
+
+  //load setup
+  loadSetup();
 }
 
 
@@ -100,10 +101,51 @@ void FilterLogView::slotClearMovedMails( )
 void FilterLogView::slotButtonClicked( int button )
 {
   //save dialog size
-  KConfigGroup configWindowSettings( config, CONFIG_GROUP );
+  KConfigGroup configWindowSettings( KGlobal::config(), CONFIG_GROUP_LOGVIEW );
   saveDialogSize( configWindowSettings );
+
+  //save setup
+  saveSetup();
 
   KDialog::slotButtonClicked( button );
 }
+
+void FilterLogView::saveSetup()
+{
+  KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_LOGVIEW );
+
+  //save column widthes
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE, viewDeleted->columnWidth( 0 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_FROM, viewDeleted->columnWidth( 1 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT, viewDeleted->columnWidth( 2 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT, viewDeleted->columnWidth( 3 ) );
+
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_DATE, viewMoved->columnWidth( 0 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_FROM, viewMoved->columnWidth( 1 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_ACCOUNT, viewMoved->columnWidth( 2 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_MAILBOX, viewMoved->columnWidth( 3 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_SUBJECT, viewMoved->columnWidth( 4 ) );
+
+  conf->sync();
+  
+}
+
+void FilterLogView::loadSetup()
+{
+  KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_LOGVIEW );
+
+  //load column widthes
+  viewDeleted->setColumnWidth( 0, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE, DEFAULT_WIDTH_LOGVIEW_DELETED_DATE ) );
+  viewDeleted->setColumnWidth( 1, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_FROM, DEFAULT_WIDTH_LOGVIEW_DELETED_FROM ) );
+  viewDeleted->setColumnWidth( 2, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT, DEFAULT_WIDTH_LOGVIEW_DELETED_ACCOUNT ) );
+  viewDeleted->setColumnWidth( 3, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT, DEFAULT_WIDTH_LOGVIEW_DELETED_SUBJECT ) );
+
+  viewMoved->setColumnWidth( 0, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_DATE, DEFAULT_WIDTH_LOGVIEW_MOVED_DATE ) );
+  viewMoved->setColumnWidth( 1, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_FROM, DEFAULT_WIDTH_LOGVIEW_MOVED_FROM ) );
+  viewMoved->setColumnWidth( 2, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_ACCOUNT, DEFAULT_WIDTH_LOGVIEW_MOVED_ACCOUNT ) );
+  viewMoved->setColumnWidth( 3, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_MAILBOX, DEFAULT_WIDTH_LOGVIEW_MOVED_MAILBOX ) );
+  viewMoved->setColumnWidth( 4, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_SUBJECT, DEFAULT_WIDTH_LOGVIEW_MOVED_SUBJECT ) );
+}
+
 
 #include "filterlogview.moc"
