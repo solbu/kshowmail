@@ -4,9 +4,11 @@ Type=Service
 Name=Actions
 Name[de]=Aktionen
 Name[es]=Acciones
+NAme[it]=Azioni
 Comment=actions
 Comment[de]=Aktionen
 Comment[es]=Acciones
+Comment[it]=Azioni
 Icon=media-playback-start
 ServiceTypes=KCModule
 

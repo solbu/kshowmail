@@ -3,9 +3,11 @@ Type=Service
 Name=Filter
 Name[de]=Filter
 Name[es]=Filtro
+Name[it]=Filtri
 Comment=Filter
 Comment[de]=Filter
 Comment[es]=Filtro
+Comment[it]=Filtri
 Icon=view-filter
 ServiceTypes=KCModule
 

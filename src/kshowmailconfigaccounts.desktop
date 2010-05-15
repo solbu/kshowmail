@@ -4,9 +4,11 @@ Type=Service
 Name=Accounts
 Name[de]=Konten
 Name[es]=Cuentas
+Name[it]=Account
 Comment=Accounts
 Comment[de]=Konten
 Comment[es]=Cuentas
+Comment[it]=Account
 Icon=network-workgroup
 ServiceTypes=KCModule
 

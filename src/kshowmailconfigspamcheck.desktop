@@ -3,9 +3,11 @@ Type=Service
 Name=Spam Checking
 Name[de]=Spam-Prüfung
 Name[es]=Análisis de spam
+Name[it]=Controllo Spam
 Comment=Checking for Spam
 Comment[de]=Prüfung auf Spam
 Comment[es]=Analizar el spam
+Comment[it]=Controllo Spam
 Icon=mail-mark-junk
 ServiceTypes=KCModule
 
