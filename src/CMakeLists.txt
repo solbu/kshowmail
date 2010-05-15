@@ -1,22 +1,20 @@
 set(kshowmail_SRCS
    kshowmail.cpp
-	 kshowmailview.cpp
-	 accountlist.cpp
+   kshowmailview.cpp
+   accountlist.cpp
    main.cpp
    uniqueapp.cpp
-	 accountviewmodel.cpp
-	 mailviewmodel.cpp
-	 mail.cpp
-	 account.cpp
-	 accountviewdelegate.cpp
+   accountviewmodel.cpp
+   mailviewmodel.cpp
+   mail.cpp
+   account.cpp
+   accountviewdelegate.cpp
    encryption.cpp
    kwalletaccess.cpp
    maillist.cpp
    exception.cpp
    corruptdataexception.cpp
    filterlogentry.cpp
-   filterlogviewdeleteditem.cpp
-   filterlogviewmoveditem.cpp
    filterlogview.cpp
    filterlog.cpp
    headerfilter.cpp
@@ -29,6 +27,8 @@ set(kshowmail_SRCS
    accountsetupdialogcontext.cpp
    newmaildialog.cpp
    accountviewitem.cpp
+   filterlogviewdeletedmodel.cpp
+   filterlogviewmovedmodel.cpp
  )
 
 #enable exceptions
@@ -47,8 +47,8 @@ set( CONFIGACCOUNTS_SRCS
      encryption.cpp
      kwalletaccess.cpp
      accountsetupdialog.cpp
-		  )
-		 
+      )
+     
 kde4_add_plugin(kcm_kshowmailconfigaccounts ${CONFIGACCOUNTS_SRCS} )
 target_link_libraries(kcm_kshowmailconfigaccounts  ${KDE4_KDEUI_LIBS})
 
@@ -92,10 +92,10 @@ kde4_add_plugin( kcm_kshowmailconfiggeneral ${CONFIGGENERAL_SRCS} )
 target_link_libraries( kcm_kshowmailconfiggeneral ${KDE4_KDEUI_LIBS} )
 
 set( CONFIGSPAMCHECK_SRCS
-		 configspamcheck.cpp
+     configspamcheck.cpp
      mailboxwizard.cpp
      mailboxwizardlistitem.cpp
-	 )
+   )
 kde4_add_plugin( kcm_kshowmailconfigspamcheck ${CONFIGSPAMCHECK_SRCS} )
 target_link_libraries( kcm_kshowmailconfigspamcheck ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} )
 
@@ -111,7 +111,7 @@ install(FILES
   kshowmailconfiggeneral.desktop
   kshowmailconfigfilter.desktop
   kshowmailconfiglog.desktop
-	kshowmailconfigspamcheck.desktop
+  kshowmailconfigspamcheck.desktop
   DESTINATION ${SERVICES_INSTALL_DIR}
 )
 

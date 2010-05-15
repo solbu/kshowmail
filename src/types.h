@@ -170,6 +170,21 @@ namespace Types
 			MailSortContent			/**<sort by content type*/
 		};
 
+    /**
+     * @brief Log view sorting
+     *
+     * The members of this enum represent the columns of the log view list which shall be sorted.
+     */
+    enum LogViewSort {
+
+      LogViewSortDate,    /**<sort by date*/
+      LogViewSortFrom,    /**<sort by sender*/
+      LogViewSortAccount, /**<sort by account*/
+      LogViewSortSubject, /**<sort by subject*/
+      LogViewSortMailbox  /**<sort by mailbox*/
+    };
+     
+
 }
 
 #endif

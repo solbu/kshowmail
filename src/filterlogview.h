@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <QTreeWidget>
+#include <QTreeView>
 
 //KDE headers
 #include <KDialog>
@@ -39,8 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //KShowmail headers
 #include "filterlog.h"
-#include "filterlogviewdeleteditem.h"
-#include "filterlogviewmoveditem.h"
+#include "filterlogviewmovedmodel.h"
+#include "filterlogviewdeletedmodel.h"
 
 /**
  * @brief This dialog box shows the filter log.
@@ -75,12 +75,22 @@ Q_OBJECT
     /**
      * List view of deleted mails
      */
-    QTreeWidget* lstViewDeleted;
+    QTreeView* viewDeleted;
 
+    /**
+     * Model for the view of deleted mails
+     */
+    FilterLogViewDeletedModel* modelDeleted;
+    
     /**
      * List view of moved mails
      */
-    QTreeWidget* lstViewMoved;
+    QTreeView* viewMoved;
+
+    /**
+     * Model for the view of moved mails
+     */
+    FilterLogViewMovedModel* modelMoved;
 
     /**
      * Connector to the configuration file

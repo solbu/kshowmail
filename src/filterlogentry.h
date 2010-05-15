@@ -139,31 +139,40 @@ class FilterLogEntry{
      * Returns the date and time of send
      * @return send date and time
      */
-    KDateTime getDate();
+    KDateTime getDate() const;
 
     /**
      * Returns the sender.
      * @return Sender
      */
-    QString getSender();
+    QString getSender() const;
 
     /**
      * Returns the account.
      * @return Account
      */
-    QString getAccount();
+    QString getAccount() const;
 
     /**
      * Returns the subject
      * @return Subject
      */
-    QString getSubject();
+    QString getSubject() const;
 
     /**
      * Returns the mailbox
      * @return mailbox
      */
-    QString getMailbox();
+    QString getMailbox() const;
+
+    /**
+     * @brief Compares this entry with <em>other</em> and returns an integer less than,
+     * equal to, or greater than zero if this entry is less than, equal to,
+     * or greater than <em>other</em>.
+     * @param other other entry
+     * @param property the entry property which will be compared
+     */
+    int compare( const FilterLogEntry& other, LogViewSort property ) const;
 
   private:
 

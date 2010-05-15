@@ -123,27 +123,70 @@ void FilterLogEntry::save( QDomDocument& doc, QDomElement& parent )
   parent.appendChild( elem );
 }
 
-KDateTime FilterLogEntry::getDate( )
+KDateTime FilterLogEntry::getDate( ) const
 {
   return sentDateTime;
 }
 
-QString FilterLogEntry::getSender( )
+QString FilterLogEntry::getSender( ) const
 {
   return sender;
 }
 
-QString FilterLogEntry::getAccount( )
+QString FilterLogEntry::getAccount( ) const
 {
   return account;
 }
 
-QString FilterLogEntry::getSubject( )
+QString FilterLogEntry::getSubject( ) const
 {
   return subject;
 }
 
-QString FilterLogEntry::getMailbox( )
+QString FilterLogEntry::getMailbox( ) const
 {
   return mailbox;
+}
+
+int FilterLogEntry::compare( const FilterLogEntry& other, LogViewSort property ) const
+{
+  switch( property ) {
+
+    case( LogViewSortDate ) : {
+
+      if( getDate() == other.getDate() ) return 0;
+      else if( getDate() > other.getDate() ) return 1;
+      else return -1;
+      
+    }
+
+    case( LogViewSortFrom ) : {
+
+      return QString::localeAwareCompare( getSender(), other.getSender() );
+    }
+
+    case( LogViewSortAccount ) : {
+
+      return QString::localeAwareCompare( getAccount(), other.getAccount() );
+    }
+
+    case( LogViewSortSubject ) : {
+
+      return QString::localeAwareCompare( getSubject(), other.getSubject() );
+    }
+
+    case( LogViewSortMailbox ) : {
+
+      return QString::localeAwareCompare( getMailbox(), other.getMailbox() );
+    }
+
+    default : {
+
+      if( getDate() == other.getDate() ) return 0;
+      else if( getDate() > other.getDate() ) return 1;
+      else return -1;
+
+    }
+
+  }
 }
