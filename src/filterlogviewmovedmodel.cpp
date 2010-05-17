@@ -202,3 +202,23 @@ void FilterLogViewMovedModel::refresh()
   reset();
 }
 
+void FilterLogViewMovedModel::saveSetup()
+{
+  KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
+
+  conf->writeEntry( CONFIG_ENTRY_SORT_COLUMN_LOGVIEW_MOVED, lastSortColumn );
+
+  if( lastSortOrder == Qt::AscendingOrder ) {
+
+    conf->writeEntry( CONFIG_ENTRY_SORT_ORDER_LOGVIEW_MOVED, CONFIG_VALUE_SORT_ORDER_ASCENDING );
+
+  } else {
+
+    conf->writeEntry( CONFIG_ENTRY_SORT_ORDER_LOGVIEW_MOVED, CONFIG_VALUE_SORT_ORDER_DESCENDING );
+  }
+
+  conf->sync();
+
+
+}
+

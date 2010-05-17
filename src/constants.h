@@ -81,6 +81,8 @@ namespace Constants
   #define DEFAULT_SORT_ORDER         "asc"
   #define DEFAULT_SORT_COLUMN_ACCOUNT 1
   #define DEFAULT_SORT_COLUMN_MESSAGE 2
+  #define DEFAULT_SORT_COLUMN_LOGVIEW_DELETED 0
+  #define DEFAULT_SORT_COLUMN_LOGVIEW_MOVED 0
 
   //default column widthes
   #define DEFAULT_WIDTH_ACCOUNT_ACTIVE    50
@@ -398,6 +400,10 @@ namespace Constants
   #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_ACCOUNT    "WidthLogViewMovedAccount"
   #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_FROM       "WidthLogViewMovedFrom"
   #define CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_MAILBOX    "WidthLogViewMovedMailbox"
+  #define CONFIG_ENTRY_SORT_COLUMN_LOGVIEW_DELETED    "sortColumnLogViewDeleted"
+  #define CONFIG_ENTRY_SORT_COLUMN_LOGVIEW_MOVED      "sortColumnLogViewMoved"
+  #define CONFIG_ENTRY_SORT_ORDER_LOGVIEW_DELETED     "sortOrderLogViewDeleted"
+  #define CONFIG_ENTRY_SORT_ORDER_LOGVIEW_MOVED       "sortOrderLogViewMoved"
   
 
   //Status Bar

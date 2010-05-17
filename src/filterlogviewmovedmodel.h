@@ -113,6 +113,12 @@ class FilterLogViewMovedModel : public QAbstractItemModel
      */
     void refresh();
 
+    /**
+     * Saves the setup
+     */
+    void saveSetup();
+    
+
   private:
 
     /**

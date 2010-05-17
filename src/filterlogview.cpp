@@ -127,6 +127,10 @@ void FilterLogView::saveSetup()
   conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_SUBJECT, viewMoved->columnWidth( 4 ) );
 
   conf->sync();
+
+  //save the model setup
+  modelDeleted->saveSetup();
+  modelMoved->saveSetup();
   
 }
 
@@ -145,6 +149,32 @@ void FilterLogView::loadSetup()
   viewMoved->setColumnWidth( 2, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_ACCOUNT, DEFAULT_WIDTH_LOGVIEW_MOVED_ACCOUNT ) );
   viewMoved->setColumnWidth( 3, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_MAILBOX, DEFAULT_WIDTH_LOGVIEW_MOVED_MAILBOX ) );
   viewMoved->setColumnWidth( 4, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_SUBJECT, DEFAULT_WIDTH_LOGVIEW_MOVED_SUBJECT ) );
+
+  //load sorting
+  KConfigGroup* confSort = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
+
+  QString strSortOrderDel = confSort->readEntry( CONFIG_ENTRY_SORT_ORDER_LOGVIEW_DELETED, DEFAULT_SORT_ORDER );
+  int sortColumnDel = confSort->readEntry( CONFIG_ENTRY_SORT_COLUMN_LOGVIEW_DELETED, DEFAULT_SORT_COLUMN_LOGVIEW_DELETED );
+  if( strSortOrderDel == CONFIG_VALUE_SORT_ORDER_DESCENDING ) {
+
+    viewDeleted->sortByColumn( sortColumnDel, Qt::DescendingOrder );
+
+  } else {
+
+    viewDeleted->sortByColumn( sortColumnDel, Qt::AscendingOrder );
+  }
+
+  QString strSortOderMov = confSort->readEntry( CONFIG_ENTRY_SORT_ORDER_LOGVIEW_MOVED, DEFAULT_SORT_ORDER );
+  int sortColumnMov = confSort->readEntry( CONFIG_ENTRY_SORT_COLUMN_LOGVIEW_MOVED, DEFAULT_SORT_COLUMN_LOGVIEW_MOVED );
+  if( strSortOderMov == CONFIG_VALUE_SORT_ORDER_DESCENDING ) {
+
+    viewMoved->sortByColumn( sortColumnMov, Qt::DescendingOrder );
+
+  } else {
+
+    viewMoved->sortByColumn( sortColumnMov, Qt::AscendingOrder );
+  }
+
 }
 
 

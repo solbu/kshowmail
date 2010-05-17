@@ -113,6 +113,12 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * @brief Reloads the data from the log
      */
     void refresh();
+
+    /**
+     * Saves the setup
+     */
+    void saveSetup();
+    
     
   private:
 

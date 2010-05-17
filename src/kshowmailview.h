@@ -33,6 +33,7 @@ class AccountViewModel;
 #include "accountviewmodel.h"
 #include "mailviewmodel.h"
 #include "accountviewdelegate.h"
+#include "constants.h"
 
 /**
  * @brief Main view of KShowmail.
