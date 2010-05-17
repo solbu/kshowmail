@@ -564,8 +564,6 @@ QStringList Account::readfromSocket( bool singleLine )
 		//wait for new bytes
     if( socket->bytesAvailable() == 0 ) {
 
-      kdDebug() << getName() << ": Warte auf Bytes" << endl;
-
       //this is a workaround for SSL
       //sometimes there isn't the whole response available at once
       //In this case a waitForReadyRead() is hanging until timeout.
@@ -608,7 +606,6 @@ QStringList Account::readfromSocket( bool singleLine )
     //append the read data
     if( data.size() > 0 ) {
       readed.append( data );
-      kdDebug() << getName() << ": " << readed << endl;
 
     }
 
@@ -650,80 +647,6 @@ QStringList Account::readfromSocket( bool singleLine )
   
   return response;
   
-//   QTextStream socketStream( socket ); //to read from socket
-//   QStringList serverResponse; //buffer for the server response
-// 
-// 
-//   //set charset if known
-//   if( !charset.isNull() && charset.length() != 0 )
-//   {
-//     QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
-//     if( codec == NULL )
-//     {
-//       kdDebug() << "No codec found for " << charset << endl;
-//     }
-//     else
-//     {
-//       socketStream.setCodec( codec );
-//     }
-//     
-//   }
-// 
-//   //read from socket
-//   bool responseEndFound = false;  //end of a multi-line response found
-// 
-//   //loop until the last line is read
-//   //the last line is either a single point or a -ERR at first
-//   while( !responseEndFound )
-//   {
-// 
-//     if( socketStream.atEnd() ) {
-// 
-//       if( !socket->waitForReadyRead() ) {
-// 
-//         handleError( i18n( "Timeout") );
-//         return QStringList();
-// 
-//       }
-// 
-//     }
-//     //get line
-//     QString line = socketStream.readLine();
-//     kdDebug() << line << endl;
-// 
-// //     if( line.isNull() )
-// //     {
-// //       if( !socket->waitForReadyRead() )
-// //       {
-// //         handleError( i18n( "Timeout" ) );
-// //         return QStringList();
-// //       }
-// // 
-// //        line = socketStream.readLine();
-// //       
-// //     }
-// 
-//     //check for a negative response
-//     if( isNegativeResponse( line ) )
-//     {
-//       serverResponse.append( line );
-//       responseEndFound = true;
-//     }
-//     //check for response end with the point
-//     else if( line == END_MULTILINE_RESPONSE )
-//     {
-//       responseEndFound = true;
-//     }
-//     //it is a normal data line
-//     else
-//     {
-//       serverResponse.append( line );
-//       //break the loop if we anticipate single line
-//       if( singleLine ) responseEndFound = true;
-//     }
-//   }
-//
-//  return serverResponse;
 
 }
 
