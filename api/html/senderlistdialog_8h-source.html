@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/senderlistdialog.h</h1><a href="senderlistdialog_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/senderlistdialog.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -50,11 +50,11 @@
 <a name="l00034"></a>00034 <span class="preprocessor">#include &lt;kconfig.h&gt;</span>
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036 <span class="comment">//KShowmail headers</span>
-<a name="l00037"></a>00037 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#include "constants.h"</span>
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="comment">//Button IDs</span>
-<a name="l00040"></a><a class="code" href="senderlistdialog_8h.html#9b2542878cca0ecf6e63f4f4d0347e9d">00040</a> <span class="preprocessor">#define ID_BUTTON_FILTER_SENDERLIST_DELETE 1</span>
-<a name="l00041"></a><a class="code" href="senderlistdialog_8h.html#f5a04f8c178014009b48360c15bed775">00041</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_FILTER_SENDERLIST_MARK   2</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#define ID_BUTTON_FILTER_SENDERLIST_DELETE 1</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_FILTER_SENDERLIST_MARK   2</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00047"></a><a class="code" href="classSenderListDialog.html">00047</a> <span class="keyword">class </span><a class="code" href="classSenderListDialog.html" title="This is a dialog to edit the blacklist and whitelist. It is used by the class ConfigFilter...">SenderListDialog</a> : <span class="keyword">public</span> KDialog
 <a name="l00048"></a>00048 {
@@ -63,40 +63,40 @@
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052   <span class="keyword">public</span>:
 <a name="l00053"></a>00053 
-<a name="l00057"></a><a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbdbf415ba2058ae881749abaf7d6590aea">00057</a>     <span class="keyword">enum</span> <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> { <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a>, <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbdbf415ba2058ae881749abaf7d6590aea">White</a> };
+<a name="l00057"></a><a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">00057</a>     <span class="keyword">enum</span> <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> { Black, White };
 <a name="l00058"></a>00058 
-<a name="l00064"></a>00064     <span class="keyword">explicit</span> <a class="code" href="classSenderListDialog.html#68dd3061106115f221e60f3ac4692a63">SenderListDialog</a>( QWidget *parent = 0, <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> <a class="code" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a> = <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a> );
+<a name="l00064"></a>00064     <span class="keyword">explicit</span> <a class="code" href="classSenderListDialog.html#68dd3061106115f221e60f3ac4692a63">SenderListDialog</a>( QWidget *parent = 0, <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> list = Black );
 <a name="l00065"></a>00065 
 <a name="l00069"></a>00069     <a class="code" href="classSenderListDialog.html#c4ca6fdc2ea66a934317314c0363e593">~SenderListDialog</a>();
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071   <span class="keyword">private</span>:
 <a name="l00072"></a>00072 
-<a name="l00076"></a><a class="code" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">00076</a>     <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> <a class="code" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a>;
+<a name="l00076"></a>00076     <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> list;
 <a name="l00077"></a>00077 
-<a name="l00081"></a><a class="code" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">00081</a>     KSharedConfigPtr <a class="code" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">config</a>;
+<a name="l00081"></a>00081     KSharedConfigPtr config;
 <a name="l00082"></a>00082 
-<a name="l00086"></a><a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">00086</a>     KEditListBox* <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>;
+<a name="l00086"></a>00086     KEditListBox* editFrame;
 <a name="l00087"></a>00087 
-<a name="l00091"></a><a class="code" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">00091</a>     QButtonGroup* <a class="code" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">grpAction</a>;
+<a name="l00091"></a>00091     QButtonGroup* grpAction;
 <a name="l00092"></a>00092 
-<a name="l00096"></a><a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">00096</a>     QRadioButton* <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a>;
+<a name="l00096"></a>00096     QRadioButton* btnDelete;
 <a name="l00097"></a>00097 
-<a name="l00101"></a><a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">00101</a>     QRadioButton* <a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a>;
+<a name="l00101"></a>00101     QRadioButton* btnMark;
 <a name="l00102"></a>00102 
-<a name="l00106"></a>00106     <span class="keywordtype">void</span> <a class="code" href="classSenderListDialog.html#39e2ca207baff2b5bf0e49478eed7840">fillDialog</a>();
+<a name="l00106"></a>00106     <span class="keywordtype">void</span> fillDialog();
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108   <span class="keyword">private</span> slots:
 <a name="l00109"></a>00109 
-<a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="classSenderListDialog.html#da37743f702d27fe1e0764fdce0b5902">slotSort</a>();
+<a name="l00114"></a>00114     <span class="keywordtype">void</span> slotSort();
 <a name="l00115"></a>00115 
-<a name="l00123"></a>00123     <span class="keywordtype">void</span> <a class="code" href="classSenderListDialog.html#0f087209007f9d25b3faf6a9bf79c02f">slotButtonClicked</a>( <span class="keywordtype">int</span> button );
+<a name="l00123"></a>00123     <span class="keywordtype">void</span> slotButtonClicked( <span class="keywordtype">int</span> button );
 <a name="l00124"></a>00124 
 <a name="l00125"></a>00125 
 <a name="l00126"></a>00126 };
 <a name="l00127"></a>00127 
 <a name="l00128"></a>00128 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -46,30 +46,6 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="structTypes_1_1FilterCriteria__Type.html">FilterCriteria_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#94ee5d41a12b725ea56328acaa9c87cf">getValues</a> ()</td></tr>
 
-<tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#9c9afe0acdd319ecfd750819d34183b4">slotSetWidgets</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#eec4bd9e62c068658d9973abed97cf9d">slotOpenRegExpEditor</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KComboBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a60915511ddf8072f4fb8b23e1a1c1aa">cmbSource</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KComboBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#757183597ee7613f518ea7a0e6dc3c86">cmbConditionText</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KComboBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#1e1d23b4417ab528e255feea24046af0">cmbConditionTextList</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KComboBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#7bcb4db13575d312986ee56b18149256">cmbConditionNum</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KLineEdit *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#671a9c2738e3354a780cd4620170ef8f">txtCompValueText</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KIntNumInput *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#3f6c902e9c9d95e7bfd5844b7d989da2">spbCompValueNum</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#464ed7fa31017e93ecb38f4dd86472f5">chkCaseSensitive</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KPushButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#41299a8b2eca0903834c110ce0b25384">btnOpenRegExpEditor</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#c995d48264457868fb297126f4b18b7c">kRegExpEditorAvailable</a></td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Part of the filter setup dialog (class <a class="el" href="classFilterSetupDialog.html" title="Dialog to setup a filter.">FilterSetupDialog</a>) to show a criteria of the selected filter. 
@@ -95,10 +71,13 @@ Part of the filter setup dialog (class <a class="el" href="classFilterSetupDialo
 <div class="memdoc">
 
 <p>
-Constructor 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">21</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
+Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent widget </td></tr>
+  </table>
+</dl>
 
-<p>References <a class="el" href="filtercriteriawidget_8h-source.html#l00163">btnOpenRegExpEditor</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00158">chkCaseSensitive</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00143">cmbConditionNum</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00133">cmbConditionText</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00138">cmbConditionTextList</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00128">cmbSource</a>, <a class="el" href="constants_8h-source.html#l00340">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00342">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER</a>, <a class="el" href="constants_8h-source.html#l00343">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00344">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS</a>, <a class="el" href="constants_8h-source.html#l00345">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00341">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00333">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00335">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00334">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00336">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00338">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00337">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00331">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00326">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a>, <a class="el" href="constants_8h-source.html#l00330">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>, <a class="el" href="constants_8h-source.html#l00328">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>, <a class="el" href="constants_8h-source.html#l00329">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00327">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a>, <a class="el" href="constants_8h-source.html#l00133">DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE</a>, <a class="el" href="constants_8h-source.html#l00130">DEFAULT_FILTER_CRITERIA_COND_NUM</a>, <a class="el" href="constants_8h-source.html#l00128">DEFAULT_FILTER_CRITERIA_COND_TEXT</a>, <a class="el" href="constants_8h-source.html#l00132">DEFAULT_FILTER_CRITERIA_SIZE</a>, <a class="el" href="constants_8h-source.html#l00126">DEFAULT_FILTER_CRITERIA_SOURCE</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00066">FILTER_CRITERIA_WIDGET_NAME</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00059">ID_COMBO_COND_NUM_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00061">ID_COMBO_COND_NUM_GREATER</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00062">ID_COMBO_COND_NUM_GREATER_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00063">ID_COMBO_COND_NUM_LESS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00064">ID_COMBO_COND_NUM_LESS_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00060">ID_COMBO_COND_NUM_NOT_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00052">ID_COMBO_COND_TEXT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00054">ID_COMBO_COND_TEXT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00053">ID_COMBO_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00055">ID_COMBO_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00057">ID_COMBO_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00056">ID_COMBO_COND_TEXT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00050">ID_COMBO_SOURCE_ACCOUNT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00045">ID_COMBO_SOURCE_FROM</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00049">ID_COMBO_SOURCE_HEADER</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00047">ID_COMBO_SOURCE_SIZE</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00048">ID_COMBO_SOURCE_SUBJECT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00046">ID_COMBO_SOURCE_TO</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00168">kRegExpEditorAvailable</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00230">slotOpenRegExpEditor()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00153">spbCompValueNum</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00148">txtCompValueText</a>, and <a class="el" href="constants_8h-source.html#l00192">WIDTH_FILTER_TEXT_VALUE_LINE</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">21</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -158,17 +137,13 @@ Destructor
 <p>
 Sets the values of a numeric criteria. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h-source.html">constants.h</a> for valid values) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h-source.html">constants.h</a> for valid values) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison value </td></tr>
   </table>
 </dl>
 
 <p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00259">259</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
-
-<p>References <a class="el" href="filtercriteriawidget_8h-source.html#l00143">cmbConditionNum</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00128">cmbSource</a>, <a class="el" href="constants_8h-source.html#l00340">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00342">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER</a>, <a class="el" href="constants_8h-source.html#l00343">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00344">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS</a>, <a class="el" href="constants_8h-source.html#l00345">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00341">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00328">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00059">ID_COMBO_COND_NUM_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00061">ID_COMBO_COND_NUM_GREATER</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00062">ID_COMBO_COND_NUM_GREATER_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00063">ID_COMBO_COND_NUM_LESS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00064">ID_COMBO_COND_NUM_LESS_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00060">ID_COMBO_COND_NUM_NOT_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00047">ID_COMBO_SOURCE_SIZE</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>, and <a class="el" href="filtercriteriawidget_8h-source.html#l00153">spbCompValueNum</a>.</p>
-
-<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00310">FilterSetupDialog::addCriteriaWidget()</a>.</p>
 
 </div>
 </div><p>
@@ -212,18 +187,14 @@ Sets the values of a numeric criteria. <dl compact><dt><b>Parameters:</b></dt><d
 <p>
 Sets the values of a text criteria. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h-source.html">constants.h</a> for valid values) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h-source.html">constants.h</a> for valid values) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison string </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>cs</em>&nbsp;</td><td>TRUE - comparison is case sensitive; FALSE - comparison is not case sensitive </td></tr>
   </table>
 </dl>
 
 <p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00291">291</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
-
-<p>References <a class="el" href="filtercriteriawidget_8h-source.html#l00158">chkCaseSensitive</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00133">cmbConditionText</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00128">cmbSource</a>, <a class="el" href="constants_8h-source.html#l00333">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00335">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00334">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00336">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00338">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00337">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00331">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00326">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a>, <a class="el" href="constants_8h-source.html#l00329">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00327">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00052">ID_COMBO_COND_TEXT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00054">ID_COMBO_COND_TEXT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00053">ID_COMBO_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00055">ID_COMBO_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00057">ID_COMBO_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00056">ID_COMBO_COND_TEXT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00050">ID_COMBO_SOURCE_ACCOUNT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00045">ID_COMBO_SOURCE_FROM</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00048">ID_COMBO_SOURCE_SUBJECT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00046">ID_COMBO_SOURCE_TO</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>, and <a class="el" href="filtercriteriawidget_8h-source.html#l00148">txtCompValueText</a>.</p>
-
-<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00337">FilterSetupDialog::addCriteriaWidget()</a>.</p>
 
 </div>
 </div><p>
@@ -267,18 +238,14 @@ Sets the values of a text criteria. <dl compact><dt><b>Parameters:</b></dt><dd>
 <p>
 Sets the values of a text list criteria. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h-source.html">constants.h</a> for valid values) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h-source.html">constants.h</a> for valid values) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison string </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>cs</em>&nbsp;</td><td>TRUE - comparison is case sensitive; FALSE - comparison is not case sensitive </td></tr>
   </table>
 </dl>
 
 <p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00327">327</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
-
-<p>References <a class="el" href="filtercriteriawidget_8h-source.html#l00158">chkCaseSensitive</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00138">cmbConditionTextList</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00128">cmbSource</a>, <a class="el" href="constants_8h-source.html#l00333">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00335">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00334">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00336">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00338">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00337">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00330">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00052">ID_COMBO_COND_TEXT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00054">ID_COMBO_COND_TEXT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00053">ID_COMBO_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00055">ID_COMBO_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00057">ID_COMBO_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00056">ID_COMBO_COND_TEXT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00049">ID_COMBO_SOURCE_HEADER</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>, and <a class="el" href="filtercriteriawidget_8h-source.html#l00148">txtCompValueText</a>.</p>
-
-<p>Referenced by <a class="el" href="filtersetupdialog_8cpp-source.html#l00337">FilterSetupDialog::addCriteriaWidget()</a>.</p>
 
 </div>
 </div><p>
@@ -302,236 +269,12 @@ Returns the values of the criteria. <dl class="return" compact><dt><b>Returns:</
 
 <p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">360</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
 
-<p>References <a class="el" href="filtercriteriawidget_8h-source.html#l00158">chkCaseSensitive</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00143">cmbConditionNum</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00133">cmbConditionText</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00138">cmbConditionTextList</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00128">cmbSource</a>, <a class="el" href="types_8h-source.html#l00111">Types::FilterCriteria_Type::condition</a>, <a class="el" href="constants_8h-source.html#l00340">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00342">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER</a>, <a class="el" href="constants_8h-source.html#l00343">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00344">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS</a>, <a class="el" href="constants_8h-source.html#l00345">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00341">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL</a>, <a class="el" href="constants_8h-source.html#l00333">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00335">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00334">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="constants_8h-source.html#l00336">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="constants_8h-source.html#l00338">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00337">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a>, <a class="el" href="constants_8h-source.html#l00331">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00326">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a>, <a class="el" href="constants_8h-source.html#l00330">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>, <a class="el" href="constants_8h-source.html#l00328">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>, <a class="el" href="constants_8h-source.html#l00329">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00327">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a>, <a class="el" href="types_8h-source.html#l00114">Types::FilterCriteria_Type::cs</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00059">ID_COMBO_COND_NUM_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00061">ID_COMBO_COND_NUM_GREATER</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00062">ID_COMBO_COND_NUM_GREATER_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00063">ID_COMBO_COND_NUM_LESS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00064">ID_COMBO_COND_NUM_LESS_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00060">ID_COMBO_COND_NUM_NOT_EQUAL</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00052">ID_COMBO_COND_TEXT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00054">ID_COMBO_COND_TEXT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00053">ID_COMBO_COND_TEXT_NOT_CONTAINS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00055">ID_COMBO_COND_TEXT_NOT_EQUALS</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00057">ID_COMBO_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00056">ID_COMBO_COND_TEXT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00050">ID_COMBO_SOURCE_ACCOUNT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00045">ID_COMBO_SOURCE_FROM</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00049">ID_COMBO_SOURCE_HEADER</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00047">ID_COMBO_SOURCE_SIZE</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00048">ID_COMBO_SOURCE_SUBJECT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00046">ID_COMBO_SOURCE_TO</a>, <a class="el" href="types_8h-source.html#l00112">Types::FilterCriteria_Type::numValue</a>, <a class="el" href="types_8h-source.html#l00110">Types::FilterCriteria_Type::source</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00153">spbCompValueNum</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00148">txtCompValueText</a>, and <a class="el" href="types_8h-source.html#l00113">Types::FilterCriteria_Type::txtValue</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="9c9afe0acdd319ecfd750819d34183b4"></a><!-- doxytag: member="FilterCriteriaWidget::slotSetWidgets" ref="9c9afe0acdd319ecfd750819d34183b4" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FilterCriteriaWidget::slotSetWidgets           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with combobox cmbSource. Hides or shows the widgets dependent on the criteria source (text or numeric). 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">159</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
-
-<p>References <a class="el" href="filtercriteriawidget_8h-source.html#l00163">btnOpenRegExpEditor</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00158">chkCaseSensitive</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00143">cmbConditionNum</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00133">cmbConditionText</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00138">cmbConditionTextList</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00128">cmbSource</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00057">ID_COMBO_COND_TEXT_NOT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00056">ID_COMBO_COND_TEXT_REGEXPR</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00050">ID_COMBO_SOURCE_ACCOUNT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00045">ID_COMBO_SOURCE_FROM</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00049">ID_COMBO_SOURCE_HEADER</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00047">ID_COMBO_SOURCE_SIZE</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00048">ID_COMBO_SOURCE_SUBJECT</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00046">ID_COMBO_SOURCE_TO</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00168">kRegExpEditorAvailable</a>, <a class="el" href="filtercriteriawidget_8h-source.html#l00153">spbCompValueNum</a>, and <a class="el" href="filtercriteriawidget_8h-source.html#l00148">txtCompValueText</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00259">setNumCriteria()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00291">setTextCriteria()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00327">setTextListCriteria()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="eec4bd9e62c068658d9973abed97cf9d"></a><!-- doxytag: member="FilterCriteriaWidget::slotOpenRegExpEditor" ref="eec4bd9e62c068658d9973abed97cf9d" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FilterCriteriaWidget::slotOpenRegExpEditor           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Opens the editor for regular expressions. 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp-source.html#l00230">230</a> of file <a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a>.</p>
-
-<p>References <a class="el" href="filtercriteriawidget_8h-source.html#l00148">txtCompValueText</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="a60915511ddf8072f4fb8b23e1a1c1aa"></a><!-- doxytag: member="FilterCriteriaWidget::cmbSource" ref="a60915511ddf8072f4fb8b23e1a1c1aa" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KComboBox* <a class="el" href="classFilterCriteriaWidget.html#a60915511ddf8072f4fb8b23e1a1c1aa">FilterCriteriaWidget::cmbSource</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Combobox to select the source of the criteria. 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00128">128</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">getValues()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00259">setNumCriteria()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00291">setTextCriteria()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00327">setTextListCriteria()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="757183597ee7613f518ea7a0e6dc3c86"></a><!-- doxytag: member="FilterCriteriaWidget::cmbConditionText" ref="757183597ee7613f518ea7a0e6dc3c86" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KComboBox* <a class="el" href="classFilterCriteriaWidget.html#757183597ee7613f518ea7a0e6dc3c86">FilterCriteriaWidget::cmbConditionText</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Combobox to select the condition of a text source (From, To, ...) 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00133">133</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">getValues()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00291">setTextCriteria()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="1e1d23b4417ab528e255feea24046af0"></a><!-- doxytag: member="FilterCriteriaWidget::cmbConditionTextList" ref="1e1d23b4417ab528e255feea24046af0" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KComboBox* <a class="el" href="classFilterCriteriaWidget.html#1e1d23b4417ab528e255feea24046af0">FilterCriteriaWidget::cmbConditionTextList</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Combobox to select the condition of a text list source (Header) 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00138">138</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">getValues()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00327">setTextListCriteria()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="7bcb4db13575d312986ee56b18149256"></a><!-- doxytag: member="FilterCriteriaWidget::cmbConditionNum" ref="7bcb4db13575d312986ee56b18149256" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KComboBox* <a class="el" href="classFilterCriteriaWidget.html#7bcb4db13575d312986ee56b18149256">FilterCriteriaWidget::cmbConditionNum</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Combobox to select the condition of a numeric source (Size, ...) 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00143">143</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">getValues()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00259">setNumCriteria()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="671a9c2738e3354a780cd4620170ef8f"></a><!-- doxytag: member="FilterCriteriaWidget::txtCompValueText" ref="671a9c2738e3354a780cd4620170ef8f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KLineEdit* <a class="el" href="classFilterCriteriaWidget.html#671a9c2738e3354a780cd4620170ef8f">FilterCriteriaWidget::txtCompValueText</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Line for a text comparative value. 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00148">148</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">getValues()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00291">setTextCriteria()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00327">setTextListCriteria()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00230">slotOpenRegExpEditor()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="3f6c902e9c9d95e7bfd5844b7d989da2"></a><!-- doxytag: member="FilterCriteriaWidget::spbCompValueNum" ref="3f6c902e9c9d95e7bfd5844b7d989da2" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KIntNumInput* <a class="el" href="classFilterCriteriaWidget.html#3f6c902e9c9d95e7bfd5844b7d989da2">FilterCriteriaWidget::spbCompValueNum</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Spin Box for a numeric comparative value. 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00153">153</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">getValues()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00259">setNumCriteria()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="464ed7fa31017e93ecb38f4dd86472f5"></a><!-- doxytag: member="FilterCriteriaWidget::chkCaseSensitive" ref="464ed7fa31017e93ecb38f4dd86472f5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QCheckBox* <a class="el" href="classFilterCriteriaWidget.html#464ed7fa31017e93ecb38f4dd86472f5">FilterCriteriaWidget::chkCaseSensitive</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Checkbox to select case sensitive. 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00158">158</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00360">getValues()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00291">setTextCriteria()</a>, <a class="el" href="filtercriteriawidget_8cpp-source.html#l00327">setTextListCriteria()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="41299a8b2eca0903834c110ce0b25384"></a><!-- doxytag: member="FilterCriteriaWidget::btnOpenRegExpEditor" ref="41299a8b2eca0903834c110ce0b25384" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KPushButton* <a class="el" href="classFilterCriteriaWidget.html#41299a8b2eca0903834c110ce0b25384">FilterCriteriaWidget::btnOpenRegExpEditor</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Button to open the regular expression editor. 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00163">163</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="c995d48264457868fb297126f4b18b7c"></a><!-- doxytag: member="FilterCriteriaWidget::kRegExpEditorAvailable" ref="c995d48264457868fb297126f4b18b7c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="classFilterCriteriaWidget.html#c995d48264457868fb297126f4b18b7c">FilterCriteriaWidget::kRegExpEditorAvailable</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-TRUE - KRegExpEditor is installed and available. 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h-source.html#l00168">168</a> of file <a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filtercriteriawidget_8cpp-source.html#l00021">FilterCriteriaWidget()</a>, and <a class="el" href="filtercriteriawidget_8cpp-source.html#l00159">slotSetWidgets()</a>.</p>
-
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="filtercriteriawidget_8h-source.html">filtercriteriawidget.h</a><li>src/<a class="el" href="filtercriteriawidget_8cpp-source.html">filtercriteriawidget.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

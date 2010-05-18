@@ -66,6 +66,8 @@ Q_OBJECT
   public:
     /**
      * Generic constructor
+     * @param parent parent widget
+     * @param args arguments
      */
     explicit ConfigSpamcheck( QWidget* parent = 0, const QVariantList& args = QVariantList() );
 

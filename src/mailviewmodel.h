@@ -100,8 +100,10 @@ class MailViewModel : public QAbstractItemModel
 		QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
 		
 		/**
-		 * Overloaded from QAbstractItemModel
+		 * @brief Overloaded from QAbstractItemModel
+     *
 		 * Because this model doesn't provides tree structured data, this methode always returns false
+     * @param parent parent index
 		 */
 		bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
 		

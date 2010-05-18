@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/filteritemcriteria.cpp</h1><a href="filteritemcriteria_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/filteritemcriteria.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -31,70 +31,70 @@
 <a name="l00015"></a>00015 <span class="comment">along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="preprocessor">#include "<a class="code" href="filteritemcriteria_8h.html">filteritemcriteria.h</a>"</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include "filteritemcriteria.h"</span>
 <a name="l00019"></a>00019 
 <a name="l00020"></a><a class="code" href="classFilterItemCriteria.html#d8690ae893d9297e1196aacff7f73da5">00020</a> <a class="code" href="classFilterItemCriteria.html#d8690ae893d9297e1196aacff7f73da5">FilterItemCriteria::FilterItemCriteria</a>( uint FilterNr, uint CritNr )
 <a name="l00021"></a>00021 {
 <a name="l00022"></a>00022   <span class="comment">//save numbers</span>
-<a name="l00023"></a>00023   <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> = FilterNr;
-<a name="l00024"></a>00024   <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> = CritNr;
+<a name="l00023"></a>00023   FilterNumber = FilterNr;
+<a name="l00024"></a>00024   CriteriaNumber = CritNr;
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026   <span class="comment">//get setup</span>
 <a name="l00027"></a>00027   <span class="comment">//---------</span>
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029   <span class="comment">//set group</span>
-<a name="l00030"></a>00030   KConfigGroup* config = <span class="keyword">new</span> KConfigGroup( KGlobal::config(), QString( <span class="stringliteral">"%1%2"</span> ).arg( <a class="code" href="constants_8h.html#3980b28063773c4ff90dfc5290c40ace">CONFIG_GROUP_FILTER</a> ).arg( FilterNr ) );
+<a name="l00030"></a>00030   KConfigGroup* config = <span class="keyword">new</span> KConfigGroup( KGlobal::config(), QString( <span class="stringliteral">"%1%2"</span> ).arg( CONFIG_GROUP_FILTER ).arg( FilterNr ) );
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032   <span class="comment">//get source</span>
-<a name="l00033"></a>00033   <span class="keywordflow">switch</span>( config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( <a class="code" href="constants_8h.html#3ff6181c4e85488685f990fb38a6c395">CONFIG_ENTRY_FILTER_CRITERIA_SOURCE</a> ).arg( CritNr ), <a class="code" href="constants_8h.html#49432e7ac56ae1686c7e61e1977d069c">DEFAULT_FILTER_CRITERIA_SOURCE</a> ) )
+<a name="l00033"></a>00033   <span class="keywordflow">switch</span>( config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_SOURCE ) )
 <a name="l00034"></a>00034   {
-<a name="l00035"></a>00035     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#07ec2b9550b81fb0c8d5178a0c8310af">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a>       : <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> = <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf071973546869a90879c8438a73685e34be230">SrcFrom</a>; <span class="keywordflow">break</span>;
-<a name="l00036"></a>00036     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#634864651eb3087845890b35daa307a5">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a>         : <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> = <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719774586baa1ff23d5fb8909435fdfc1212">SrcTo</a>; <span class="keywordflow">break</span>;
-<a name="l00037"></a>00037     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#a3f15bee0b2066a2009fbb2a701b0b01">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a>    : <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> = <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197a75f15cd45c66787fa46bd7ef217b4c1">SrcSubject</a>; <span class="keywordflow">break</span>;
-<a name="l00038"></a>00038     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#319aea6dde5e028ced09e921914dd16f">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>       : <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> = <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a>; <span class="keywordflow">break</span>;
-<a name="l00039"></a>00039     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#ccc149c3618fe09c84023617ea1f3261">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>     : <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> = <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197c2a2be36517155d1d073e0e5753750c4">SrcHeader</a>; <span class="keywordflow">break</span>;
-<a name="l00040"></a>00040     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#60992807765887b7cbd53d6dfa5302e3">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>    : <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> = <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197531c79a9e1f854cc7fa5ec0eca01ba83">SrcAccount</a>; <span class="keywordflow">break</span>;
-<a name="l00041"></a>00041     <span class="keywordflow">default</span>                                             : <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> = <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf071973546869a90879c8438a73685e34be230">SrcFrom</a>; <span class="keywordflow">break</span>;
+<a name="l00035"></a>00035     <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM       : source = SrcFrom; <span class="keywordflow">break</span>;
+<a name="l00036"></a>00036     <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO         : source = SrcTo; <span class="keywordflow">break</span>;
+<a name="l00037"></a>00037     <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT    : source = SrcSubject; <span class="keywordflow">break</span>;
+<a name="l00038"></a>00038     <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE       : source = SrcSize; <span class="keywordflow">break</span>;
+<a name="l00039"></a>00039     <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER     : source = SrcHeader; <span class="keywordflow">break</span>;
+<a name="l00040"></a>00040     <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT    : source = SrcAccount; <span class="keywordflow">break</span>;
+<a name="l00041"></a>00041     <span class="keywordflow">default</span>                                             : source = SrcFrom; <span class="keywordflow">break</span>;
 <a name="l00042"></a>00042   }
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044   <span class="comment">//get condition</span>
-<a name="l00045"></a>00045   <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> == <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a> )
+<a name="l00045"></a>00045   <span class="keywordflow">if</span>( source == SrcSize )
 <a name="l00046"></a>00046   {
-<a name="l00047"></a>00047     <span class="keywordflow">switch</span>( config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( <a class="code" href="constants_8h.html#8a1e84b6d2d082ec63c4c07291151f17">CONFIG_ENTRY_FILTER_CRITERIA_CONDITION</a> ).arg( CritNr ), <a class="code" href="constants_8h.html#cb20386e8c04963ef7ca0435fedf807f">DEFAULT_FILTER_CRITERIA_COND_NUM</a> ) )
+<a name="l00047"></a>00047     <span class="keywordflow">switch</span>( config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_COND_NUM ) )
 <a name="l00048"></a>00048     {
-<a name="l00049"></a>00049       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#76fe82b410658a0bb492316c92a56d85">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL</a>          : <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> = <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defdd52ce87f5916ede0169efbc666b82732">NumCondEqual</a>; <span class="keywordflow">break</span>;
-<a name="l00050"></a>00050       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#fdb2bf8fe032cef6ae4072495f4f72d9">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL</a>      : <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> = <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd46b6c8165139e41263bcb3b7b45673e5">NumCondNotEqual</a>; <span class="keywordflow">break</span>;
-<a name="l00051"></a>00051       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#b99914e8f94bb1bf48319b0db24b7250">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER</a>        : <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> = <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defda933b7c9612f9ecf1a78be6f2dcd4656">NumCondGreater</a>; <span class="keywordflow">break</span>;
-<a name="l00052"></a>00052       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#d702d49be58a997e276161f126abf375">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL</a>  : <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> = <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd96c80ff56805962b07d78576454a2cb5">NumCondGreaterEqual</a>; <span class="keywordflow">break</span>;
-<a name="l00053"></a>00053       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#7b36b049326f59ec6b42bfa2ecfe0eb1">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS</a>           : <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> = <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd87f12a8ca405ea04e7004317b37bc8c3">NumCondLess</a>; <span class="keywordflow">break</span>;
-<a name="l00054"></a>00054       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#a3f70df369d4ccbf44ee6165913b00ef">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL</a>     : <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> = <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd0d470e0e945cb1a9075c96bfeab6a58a">NumCondLessEqual</a>; <span class="keywordflow">break</span>;
-<a name="l00055"></a>00055       <span class="keywordflow">default</span>                                                   : <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> = <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defda933b7c9612f9ecf1a78be6f2dcd4656">NumCondGreater</a>; <span class="keywordflow">break</span>;
+<a name="l00049"></a>00049       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL          : numCondition = NumCondEqual; <span class="keywordflow">break</span>;
+<a name="l00050"></a>00050       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL      : numCondition = NumCondNotEqual; <span class="keywordflow">break</span>;
+<a name="l00051"></a>00051       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER        : numCondition = NumCondGreater; <span class="keywordflow">break</span>;
+<a name="l00052"></a>00052       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL  : numCondition = NumCondGreaterEqual; <span class="keywordflow">break</span>;
+<a name="l00053"></a>00053       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS           : numCondition = NumCondLess; <span class="keywordflow">break</span>;
+<a name="l00054"></a>00054       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL     : numCondition = NumCondLessEqual; <span class="keywordflow">break</span>;
+<a name="l00055"></a>00055       <span class="keywordflow">default</span>                                                   : numCondition = NumCondGreater; <span class="keywordflow">break</span>;
 <a name="l00056"></a>00056     }
 <a name="l00057"></a>00057   }
 <a name="l00058"></a>00058   <span class="keywordflow">else</span>
 <a name="l00059"></a>00059   {
-<a name="l00060"></a>00060     <span class="keywordflow">switch</span>( config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( <a class="code" href="constants_8h.html#8a1e84b6d2d082ec63c4c07291151f17">CONFIG_ENTRY_FILTER_CRITERIA_CONDITION</a> ).arg( CritNr ), <a class="code" href="constants_8h.html#656445c84109ef8b367bd4928b410fa9">DEFAULT_FILTER_CRITERIA_COND_TEXT</a> ) )
+<a name="l00060"></a>00060     <span class="keywordflow">switch</span>( config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_COND_TEXT ) )
 <a name="l00061"></a>00061     {
-<a name="l00062"></a>00062       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#267d2734621cf8acedb29967859e9290">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a>      : <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> = <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f25059f8d1fe4c30496210da5fa1a72f9">TxtCondContains</a>; <span class="keywordflow">break</span>;
-<a name="l00063"></a>00063       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#6acea62e3b02c102d3633b4d22a813ee">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a>  : <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> = <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fdb51576913f4df976410b4c8d2851696">TxtCondNotContains</a>; <span class="keywordflow">break</span>;
-<a name="l00064"></a>00064       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#a18504a90ae646ad38db31ee3c99ac8c">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a>        : <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> = <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fb3ec0aa8185f2ca796e477b825f8296e">TxtCondEqual</a>; <span class="keywordflow">break</span>;
-<a name="l00065"></a>00065       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#37aa21515d2250c1467fb39ad4902dc6">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a>    : <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> = <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f17ff814248fa95cd4615ed68a138bd2b">TxtCondNotEqual</a>; <span class="keywordflow">break</span>;
-<a name="l00066"></a>00066       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#579ab7b1404eb79f9a2044be694e3ed6">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a>       : <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> = <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f266b5347283171204842440a1dd7dcec">TxtCondRegExpr</a>; <span class="keywordflow">break</span>;
-<a name="l00067"></a>00067       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#957e42b9813a543f5a22a9801f9fc409">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a>   : <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> = <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f58cea83345a15b02b9260a45069fda7e">TxtCondNotRegExpr</a>; <span class="keywordflow">break</span>;
-<a name="l00068"></a>00068       <span class="keywordflow">default</span>                                                   : <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> = <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f25059f8d1fe4c30496210da5fa1a72f9">TxtCondContains</a>; <span class="keywordflow">break</span>;
+<a name="l00062"></a>00062       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS      : txtCondition = TxtCondContains; <span class="keywordflow">break</span>;
+<a name="l00063"></a>00063       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS  : txtCondition = TxtCondNotContains; <span class="keywordflow">break</span>;
+<a name="l00064"></a>00064       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS        : txtCondition = TxtCondEqual; <span class="keywordflow">break</span>;
+<a name="l00065"></a>00065       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS    : txtCondition = TxtCondNotEqual; <span class="keywordflow">break</span>;
+<a name="l00066"></a>00066       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR       : txtCondition = TxtCondRegExpr; <span class="keywordflow">break</span>;
+<a name="l00067"></a>00067       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR   : txtCondition = TxtCondNotRegExpr; <span class="keywordflow">break</span>;
+<a name="l00068"></a>00068       <span class="keywordflow">default</span>                                                   : txtCondition = TxtCondContains; <span class="keywordflow">break</span>;
 <a name="l00069"></a>00069     }
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071     <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> = config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( <a class="code" href="constants_8h.html#df889c1b87feae7359262a116a9e8de1">CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE</a> ).arg( CritNr ), <a class="code" href="constants_8h.html#828e9df6c43e0fae404b24b3f5642cd3">DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE</a> );
+<a name="l00071"></a>00071     cs = config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( CritNr ), DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE );
 <a name="l00072"></a>00072   }
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074   <span class="comment">//get Value</span>
-<a name="l00075"></a>00075   <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> == <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a> )
+<a name="l00075"></a>00075   <span class="keywordflow">if</span>( source == SrcSize )
 <a name="l00076"></a>00076   {
-<a name="l00077"></a>00077     <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> = config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( <a class="code" href="constants_8h.html#d5c833e2dea46274dd4e70f2b6bbe6c5">CONFIG_ENTRY_FILTER_CRITERIA_VALUE</a> ).arg( CritNr ), 0 );
+<a name="l00077"></a>00077     numValue = config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( CritNr ), 0 );
 <a name="l00078"></a>00078   }
 <a name="l00079"></a>00079   <span class="keywordflow">else</span>
 <a name="l00080"></a>00080   {
-<a name="l00081"></a>00081     <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> = config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( <a class="code" href="constants_8h.html#d5c833e2dea46274dd4e70f2b6bbe6c5">CONFIG_ENTRY_FILTER_CRITERIA_VALUE</a> ).arg( CritNr ) );
+<a name="l00081"></a>00081     txtValue = config-&gt;readEntry( QString( <span class="stringliteral">"%1%2"</span> ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( CritNr ) );
 <a name="l00082"></a>00082   }
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084 }
@@ -105,14 +105,14 @@
 <a name="l00089"></a>00089 
 <a name="l00090"></a><a class="code" href="classFilterItemCriteria.html#529b872c550c6481aa2d93c9aded181e">00090</a> <span class="keywordtype">bool</span> <a class="code" href="classFilterItemCriteria.html#529b872c550c6481aa2d93c9aded181e">FilterItemCriteria::check</a>( QString from, QString to, uint size, QString subject, QStringList header, QString account )<span class="keyword"> const</span>
 <a name="l00091"></a>00091 <span class="keyword"></span>{
-<a name="l00092"></a>00092   <span class="keywordflow">switch</span>( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> )
+<a name="l00092"></a>00092   <span class="keywordflow">switch</span>( source )
 <a name="l00093"></a>00093   {
-<a name="l00094"></a>00094     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf071973546869a90879c8438a73685e34be230">SrcFrom</a>    : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( from ); <span class="keywordflow">break</span>;
-<a name="l00095"></a>00095     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719774586baa1ff23d5fb8909435fdfc1212">SrcTo</a>      : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( to ); <span class="keywordflow">break</span>;
-<a name="l00096"></a>00096     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197c2a2be36517155d1d073e0e5753750c4">SrcHeader</a>  : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#7d62020b7deadea60b6fed0600e37c43">checkTextList</a>( header ); <span class="keywordflow">break</span>;
-<a name="l00097"></a>00097     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a>    : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#05e73e8f3fd5078473b25fa80670ce2a">checkNum</a>( size ); <span class="keywordflow">break</span>;
-<a name="l00098"></a>00098     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197a75f15cd45c66787fa46bd7ef217b4c1">SrcSubject</a> : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( subject ); <span class="keywordflow">break</span>;
-<a name="l00099"></a>00099     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197531c79a9e1f854cc7fa5ec0eca01ba83">SrcAccount</a> : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( account ); <span class="keywordflow">break</span>;
+<a name="l00094"></a>00094     <span class="keywordflow">case</span> SrcFrom    : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( from ); <span class="keywordflow">break</span>;
+<a name="l00095"></a>00095     <span class="keywordflow">case</span> SrcTo      : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( to ); <span class="keywordflow">break</span>;
+<a name="l00096"></a>00096     <span class="keywordflow">case</span> SrcHeader  : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#7d62020b7deadea60b6fed0600e37c43">checkTextList</a>( header ); <span class="keywordflow">break</span>;
+<a name="l00097"></a>00097     <span class="keywordflow">case</span> SrcSize    : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#05e73e8f3fd5078473b25fa80670ce2a">checkNum</a>( size ); <span class="keywordflow">break</span>;
+<a name="l00098"></a>00098     <span class="keywordflow">case</span> SrcSubject : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( subject ); <span class="keywordflow">break</span>;
+<a name="l00099"></a>00099     <span class="keywordflow">case</span> SrcAccount : <span class="keywordflow">return</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">checkText</a>( account ); <span class="keywordflow">break</span>;
 <a name="l00100"></a>00100     <span class="keywordflow">default</span>         : <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00101"></a>00101   }
 <a name="l00102"></a>00102 
@@ -123,48 +123,48 @@
 <a name="l00107"></a><a class="code" href="classFilterItemCriteria.html#7d62020b7deadea60b6fed0600e37c43">00107</a> <span class="keywordtype">bool</span> <a class="code" href="classFilterItemCriteria.html#7d62020b7deadea60b6fed0600e37c43">FilterItemCriteria::checkTextList</a>( QStringList list )<span class="keyword"> const</span>
 <a name="l00108"></a>00108 <span class="keyword"></span>{
 <a name="l00109"></a>00109   <span class="comment">//return false if the source is not the header</span>
-<a name="l00110"></a>00110   <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> != <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197c2a2be36517155d1d073e0e5753750c4">SrcHeader</a> )
+<a name="l00110"></a>00110   <span class="keywordflow">if</span>( source != SrcHeader )
 <a name="l00111"></a>00111   {
-<a name="l00112"></a>00112     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkTextList: The source is not the header. (Filter "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
+<a name="l00112"></a>00112     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkTextList: The source is not the header. (Filter "</span> &lt;&lt; FilterNumber &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; CriteriaNumber &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
 <a name="l00113"></a>00113     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00114"></a>00114   }
 <a name="l00115"></a>00115 
 <a name="l00116"></a>00116   <span class="comment">//return false if given value is not valid</span>
 <a name="l00117"></a>00117   <span class="keywordflow">if</span>( list.isEmpty() )
 <a name="l00118"></a>00118   {
-<a name="l00119"></a>00119     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkTextList: The given value is empty. (Filter "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
+<a name="l00119"></a>00119     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkTextList: The given value is empty. (Filter "</span> &lt;&lt; FilterNumber &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; CriteriaNumber &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
 <a name="l00120"></a>00120     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00121"></a>00121   }
 <a name="l00122"></a>00122 
 <a name="l00123"></a>00123   <span class="comment">//return false if the value of this criteria is empty</span>
-<a name="l00124"></a>00124   <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>.isEmpty() || <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>.isNull() )
+<a name="l00124"></a>00124   <span class="keywordflow">if</span>( txtValue.isEmpty() || txtValue.isNull() )
 <a name="l00125"></a>00125   {
-<a name="l00126"></a>00126     kdWarning() &lt;&lt; <span class="stringliteral">"There is no value for Filter "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> &lt;&lt; <span class="stringliteral">"/Criteria "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> &lt;&lt; endl;
+<a name="l00126"></a>00126     kdWarning() &lt;&lt; <span class="stringliteral">"There is no value for Filter "</span> &lt;&lt; FilterNumber &lt;&lt; <span class="stringliteral">"/Criteria "</span> &lt;&lt; CriteriaNumber &lt;&lt; endl;
 <a name="l00127"></a>00127   }
 <a name="l00128"></a>00128 
-<a name="l00129"></a>00129   <span class="keywordflow">switch</span>( <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> )
+<a name="l00129"></a>00129   <span class="keywordflow">switch</span>( txtCondition )
 <a name="l00130"></a>00130   {
-<a name="l00131"></a>00131     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f25059f8d1fe4c30496210da5fa1a72f9">TxtCondContains</a>    : {
-<a name="l00132"></a>00132                                 QStringList result = list.filter( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>, <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> ? Qt::CaseSensitive : Qt::CaseInsensitive );
+<a name="l00131"></a>00131     <span class="keywordflow">case</span> TxtCondContains    : {
+<a name="l00132"></a>00132                                 QStringList result = list.filter( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
 <a name="l00133"></a>00133                                 <span class="keywordflow">return</span> !result.isEmpty();
 <a name="l00134"></a>00134                               }
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fdb51576913f4df976410b4c8d2851696">TxtCondNotContains</a> : {
-<a name="l00137"></a>00137                                 QStringList result = list.filter( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>, <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> ? Qt::CaseSensitive : Qt::CaseInsensitive );
+<a name="l00136"></a>00136     <span class="keywordflow">case</span> TxtCondNotContains : {
+<a name="l00137"></a>00137                                 QStringList result = list.filter( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
 <a name="l00138"></a>00138                                 <span class="keywordflow">return</span> result.isEmpty();
 <a name="l00139"></a>00139                               }
 <a name="l00140"></a>00140 
-<a name="l00141"></a>00141     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fb3ec0aa8185f2ca796e477b825f8296e">TxtCondEqual</a>       : <span class="keywordflow">return</span> list.contains( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>, <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> ? Qt::CaseSensitive : Qt::CaseInsensitive );
+<a name="l00141"></a>00141     <span class="keywordflow">case</span> TxtCondEqual       : <span class="keywordflow">return</span> list.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
 <a name="l00142"></a>00142 
-<a name="l00143"></a>00143     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f17ff814248fa95cd4615ed68a138bd2b">TxtCondNotEqual</a>    : <span class="keywordflow">return</span> !list.contains( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>, <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> ? Qt::CaseSensitive : Qt::CaseInsensitive );
+<a name="l00143"></a>00143     <span class="keywordflow">case</span> TxtCondNotEqual    : <span class="keywordflow">return</span> !list.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive );
 <a name="l00144"></a>00144 
-<a name="l00145"></a>00145     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f266b5347283171204842440a1dd7dcec">TxtCondRegExpr</a>     : {
-<a name="l00146"></a>00146                                 QStringList result = list.filter( QRegExp( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) );
+<a name="l00145"></a>00145     <span class="keywordflow">case</span> TxtCondRegExpr     : {
+<a name="l00146"></a>00146                                 QStringList result = list.filter( QRegExp( txtValue ) );
 <a name="l00147"></a>00147                                 <span class="keywordflow">return</span> !result.isEmpty();
 <a name="l00148"></a>00148                               }
 <a name="l00149"></a>00149                               
-<a name="l00150"></a>00150     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f58cea83345a15b02b9260a45069fda7e">TxtCondNotRegExpr</a>  : {
-<a name="l00151"></a>00151                                 QStringList result = list.filter( QRegExp( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) );
+<a name="l00150"></a>00150     <span class="keywordflow">case</span> TxtCondNotRegExpr  : {
+<a name="l00151"></a>00151                                 QStringList result = list.filter( QRegExp( txtValue ) );
 <a name="l00152"></a>00152                                 <span class="keywordflow">return</span> result.isEmpty();
 <a name="l00153"></a>00153                               }
 <a name="l00154"></a>00154                               
@@ -177,50 +177,50 @@
 <a name="l00161"></a><a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">00161</a> <span class="keywordtype">bool</span> <a class="code" href="classFilterItemCriteria.html#306353a47e1b67cbd19a803390ab3eec">FilterItemCriteria::checkText</a>( QString value )<span class="keyword"> const</span>
 <a name="l00162"></a>00162 <span class="keyword"></span>{
 <a name="l00163"></a>00163   <span class="comment">//return false if the source is not text</span>
-<a name="l00164"></a>00164   <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> != <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf071973546869a90879c8438a73685e34be230">SrcFrom</a> &amp;&amp; <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> != <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719774586baa1ff23d5fb8909435fdfc1212">SrcTo</a> &amp;&amp; <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> != <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197a75f15cd45c66787fa46bd7ef217b4c1">SrcSubject</a> &amp;&amp; <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> != <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197531c79a9e1f854cc7fa5ec0eca01ba83">SrcAccount</a> )
+<a name="l00164"></a>00164   <span class="keywordflow">if</span>( source != SrcFrom &amp;&amp; source != SrcTo &amp;&amp; source != SrcSubject &amp;&amp; source != SrcAccount )
 <a name="l00165"></a>00165   {
-<a name="l00166"></a>00166     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkText: The source is not text. (Filter "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
+<a name="l00166"></a>00166     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkText: The source is not text. (Filter "</span> &lt;&lt; FilterNumber &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; CriteriaNumber &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
 <a name="l00167"></a>00167     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00168"></a>00168   }
 <a name="l00169"></a>00169 
 <a name="l00170"></a>00170   <span class="comment">//return false if given value is not valid</span>
 <a name="l00171"></a>00171   <span class="keywordflow">if</span>( value.isNull() || value.isEmpty() )
 <a name="l00172"></a>00172   {
-<a name="l00173"></a>00173     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkText: The given value is empty or null. (Filter "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
+<a name="l00173"></a>00173     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkText: The given value is empty or null. (Filter "</span> &lt;&lt; FilterNumber &lt;&lt; <span class="stringliteral">", Criteria "</span> &lt;&lt; CriteriaNumber &lt;&lt; <span class="stringliteral">")"</span> &lt;&lt; endl;
 <a name="l00174"></a>00174     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00175"></a>00175   }
 <a name="l00176"></a>00176 
 <a name="l00177"></a>00177   <span class="comment">//return false if the value of this criteria is an empty string</span>
-<a name="l00178"></a>00178   <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>.isEmpty() || <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>.isNull() )
+<a name="l00178"></a>00178   <span class="keywordflow">if</span>( txtValue.isEmpty() || txtValue.isNull() )
 <a name="l00179"></a>00179   {
-<a name="l00180"></a>00180     kdWarning() &lt;&lt; <span class="stringliteral">"There is no value for Filter "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> &lt;&lt; <span class="stringliteral">"/Criteria "</span> &lt;&lt; <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> &lt;&lt; endl;
+<a name="l00180"></a>00180     kdWarning() &lt;&lt; <span class="stringliteral">"There is no value for Filter "</span> &lt;&lt; FilterNumber &lt;&lt; <span class="stringliteral">"/Criteria "</span> &lt;&lt; CriteriaNumber &lt;&lt; endl;
 <a name="l00181"></a>00181   }
 <a name="l00182"></a>00182 
-<a name="l00183"></a>00183   <span class="keywordflow">switch</span>( <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> )
+<a name="l00183"></a>00183   <span class="keywordflow">switch</span>( txtCondition )
 <a name="l00184"></a>00184   {
-<a name="l00185"></a>00185     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f25059f8d1fe4c30496210da5fa1a72f9">TxtCondContains</a>        : <span class="keywordflow">return</span> value.contains( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>, <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> ? Qt::CaseSensitive : Qt::CaseInsensitive ); <span class="keywordflow">break</span>;
+<a name="l00185"></a>00185     <span class="keywordflow">case</span> TxtCondContains        : <span class="keywordflow">return</span> value.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive ); <span class="keywordflow">break</span>;
 <a name="l00186"></a>00186 
-<a name="l00187"></a>00187     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fdb51576913f4df976410b4c8d2851696">TxtCondNotContains</a>     : <span class="keywordflow">return</span> !value.contains( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>, <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> ? Qt::CaseSensitive : Qt::CaseInsensitive ); <span class="keywordflow">break</span>;
+<a name="l00187"></a>00187     <span class="keywordflow">case</span> TxtCondNotContains     : <span class="keywordflow">return</span> !value.contains( txtValue, cs ? Qt::CaseSensitive : Qt::CaseInsensitive ); <span class="keywordflow">break</span>;
 <a name="l00188"></a>00188 
-<a name="l00189"></a>00189     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fb3ec0aa8185f2ca796e477b825f8296e">TxtCondEqual</a>           : <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> )
+<a name="l00189"></a>00189     <span class="keywordflow">case</span> TxtCondEqual           : <span class="keywordflow">if</span>( cs )
 <a name="l00190"></a>00190                                   {
-<a name="l00191"></a>00191                                     <span class="keywordflow">return</span> value.localeAwareCompare( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) == 0;
+<a name="l00191"></a>00191                                     <span class="keywordflow">return</span> value.localeAwareCompare( txtValue ) == 0;
 <a name="l00192"></a>00192                                   }
 <a name="l00193"></a>00193                                   <span class="keywordflow">else</span>
 <a name="l00194"></a>00194                                   {
-<a name="l00195"></a>00195                                     <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>.toUpper(), value.toUpper() ) == 0;
+<a name="l00195"></a>00195                                     <span class="keywordflow">return</span> QString::localeAwareCompare( txtValue.toUpper(), value.toUpper() ) == 0;
 <a name="l00196"></a>00196                                   }
 <a name="l00197"></a>00197                                   <span class="keywordflow">break</span>;
 <a name="l00198"></a>00198 
-<a name="l00199"></a>00199     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f17ff814248fa95cd4615ed68a138bd2b">TxtCondNotEqual</a>        : <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> )
-<a name="l00200"></a>00200                                     <span class="keywordflow">return</span> value.localeAwareCompare( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) != 0;
+<a name="l00199"></a>00199     <span class="keywordflow">case</span> TxtCondNotEqual        : <span class="keywordflow">if</span>( cs )
+<a name="l00200"></a>00200                                     <span class="keywordflow">return</span> value.localeAwareCompare( txtValue ) != 0;
 <a name="l00201"></a>00201                                   <span class="keywordflow">else</span>
-<a name="l00202"></a>00202                                     <span class="keywordflow">return</span> value.localeAwareCompare( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>.toUpper(), value.toUpper() ) != 0;
+<a name="l00202"></a>00202                                     <span class="keywordflow">return</span> value.localeAwareCompare( txtValue.toUpper(), value.toUpper() ) != 0;
 <a name="l00203"></a>00203                                   <span class="keywordflow">break</span>;
 <a name="l00204"></a>00204 
-<a name="l00205"></a>00205     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f266b5347283171204842440a1dd7dcec">TxtCondRegExpr</a>         : <span class="keywordflow">return</span> value.indexOf( QRegExp( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ) != -1; <span class="keywordflow">break</span>;
+<a name="l00205"></a>00205     <span class="keywordflow">case</span> TxtCondRegExpr         : <span class="keywordflow">return</span> value.indexOf( QRegExp( txtValue ) ) != -1; <span class="keywordflow">break</span>;
 <a name="l00206"></a>00206 
-<a name="l00207"></a>00207     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f58cea83345a15b02b9260a45069fda7e">TxtCondNotRegExpr</a>      : <span class="keywordflow">return</span> value.indexOf( QRegExp( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ) == -1; <span class="keywordflow">break</span>;
+<a name="l00207"></a>00207     <span class="keywordflow">case</span> TxtCondNotRegExpr      : <span class="keywordflow">return</span> value.indexOf( QRegExp( txtValue ) ) == -1; <span class="keywordflow">break</span>;
 <a name="l00208"></a>00208 
 <a name="l00209"></a>00209     <span class="keywordflow">default</span>                     : <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00210"></a>00210   }
@@ -232,20 +232,20 @@
 <a name="l00216"></a><a class="code" href="classFilterItemCriteria.html#05e73e8f3fd5078473b25fa80670ce2a">00216</a> <span class="keywordtype">bool</span> <a class="code" href="classFilterItemCriteria.html#05e73e8f3fd5078473b25fa80670ce2a">FilterItemCriteria::checkNum</a>( uint value )<span class="keyword"> const</span>
 <a name="l00217"></a>00217 <span class="keyword"></span>{
 <a name="l00218"></a>00218   <span class="comment">//return false if the source is not numeric</span>
-<a name="l00219"></a>00219   <span class="keywordflow">if</span> ( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> != <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a> )
+<a name="l00219"></a>00219   <span class="keywordflow">if</span> ( source != SrcSize )
 <a name="l00220"></a>00220   {
 <a name="l00221"></a>00221     kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkNum: The source is not numeric."</span> &lt;&lt; endl;
 <a name="l00222"></a>00222     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00223"></a>00223   }
 <a name="l00224"></a>00224 
-<a name="l00225"></a>00225   <span class="keywordflow">switch</span>( <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> )
+<a name="l00225"></a>00225   <span class="keywordflow">switch</span>( numCondition )
 <a name="l00226"></a>00226   {
-<a name="l00227"></a>00227     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defdd52ce87f5916ede0169efbc666b82732">NumCondEqual</a>         : <span class="keywordflow">return</span> value == <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a>; <span class="keywordflow">break</span>;
-<a name="l00228"></a>00228     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd46b6c8165139e41263bcb3b7b45673e5">NumCondNotEqual</a>      : <span class="keywordflow">return</span> value != <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a>; <span class="keywordflow">break</span>;
-<a name="l00229"></a>00229     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defda933b7c9612f9ecf1a78be6f2dcd4656">NumCondGreater</a>       : <span class="keywordflow">return</span> value &gt; <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a>; <span class="keywordflow">break</span>;
-<a name="l00230"></a>00230     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd96c80ff56805962b07d78576454a2cb5">NumCondGreaterEqual</a>  : <span class="keywordflow">return</span> value &gt;= numValue; <span class="keywordflow">break</span>;
-<a name="l00231"></a>00231     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd87f12a8ca405ea04e7004317b37bc8c3">NumCondLess</a>          : <span class="keywordflow">return</span> value &lt; numValue; <span class="keywordflow">break</span>;
-<a name="l00232"></a>00232     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd0d470e0e945cb1a9075c96bfeab6a58a">NumCondLessEqual</a>     : <span class="keywordflow">return</span> value &lt;= numValue; <span class="keywordflow">break</span>;
+<a name="l00227"></a>00227     <span class="keywordflow">case</span> NumCondEqual         : <span class="keywordflow">return</span> value == numValue; <span class="keywordflow">break</span>;
+<a name="l00228"></a>00228     <span class="keywordflow">case</span> NumCondNotEqual      : <span class="keywordflow">return</span> value != numValue; <span class="keywordflow">break</span>;
+<a name="l00229"></a>00229     <span class="keywordflow">case</span> NumCondGreater       : <span class="keywordflow">return</span> value &gt; numValue; <span class="keywordflow">break</span>;
+<a name="l00230"></a>00230     <span class="keywordflow">case</span> NumCondGreaterEqual  : <span class="keywordflow">return</span> value &gt;= numValue; <span class="keywordflow">break</span>;
+<a name="l00231"></a>00231     <span class="keywordflow">case</span> NumCondLess          : <span class="keywordflow">return</span> value &lt; numValue; <span class="keywordflow">break</span>;
+<a name="l00232"></a>00232     <span class="keywordflow">case</span> NumCondLessEqual     : <span class="keywordflow">return</span> value &lt;= numValue; <span class="keywordflow">break</span>;
 <a name="l00233"></a>00233     <span class="keywordflow">default</span>                   : kdError() &lt;&lt; <span class="stringliteral">"FilterItemCriteria::checkNum: Unknown numeric condiction. Return false."</span> &lt;&lt; endl;
 <a name="l00234"></a>00234   }
 <a name="l00235"></a>00235 
@@ -257,50 +257,50 @@
 <a name="l00241"></a>00241 <span class="keyword"></span>{
 <a name="l00242"></a>00242   QString output;
 <a name="l00243"></a>00243 
-<a name="l00244"></a>00244   output.append( QString( <span class="stringliteral">"Criteria %1 of Filter %2: Source: "</span> ).arg( <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a> ).arg( <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a> ) );
+<a name="l00244"></a>00244   output.append( QString( <span class="stringliteral">"Criteria %1 of Filter %2: Source: "</span> ).arg( CriteriaNumber ).arg( FilterNumber ) );
 <a name="l00245"></a>00245 
-<a name="l00246"></a>00246   <span class="keywordflow">switch</span>( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> )
+<a name="l00246"></a>00246   <span class="keywordflow">switch</span>( source )
 <a name="l00247"></a>00247   {
-<a name="l00248"></a>00248     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf071973546869a90879c8438a73685e34be230">SrcFrom</a>      : output.append( <span class="stringliteral">"From"</span> ); <span class="keywordflow">break</span>;
-<a name="l00249"></a>00249     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719774586baa1ff23d5fb8909435fdfc1212">SrcTo</a>        : output.append( <span class="stringliteral">"To"</span> ); <span class="keywordflow">break</span>;
-<a name="l00250"></a>00250     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197531c79a9e1f854cc7fa5ec0eca01ba83">SrcAccount</a>   : output.append( <span class="stringliteral">"Account"</span> ); <span class="keywordflow">break</span>;
-<a name="l00251"></a>00251     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197c2a2be36517155d1d073e0e5753750c4">SrcHeader</a>    : output.append( <span class="stringliteral">"Header"</span> ); <span class="keywordflow">break</span>;
-<a name="l00252"></a>00252     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a>      : output.append( <span class="stringliteral">"Size"</span> ); <span class="keywordflow">break</span>;
-<a name="l00253"></a>00253     <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197a75f15cd45c66787fa46bd7ef217b4c1">SrcSubject</a>   : output.append( <span class="stringliteral">"Subject"</span> ); <span class="keywordflow">break</span>;
+<a name="l00248"></a>00248     <span class="keywordflow">case</span> SrcFrom      : output.append( <span class="stringliteral">"From"</span> ); <span class="keywordflow">break</span>;
+<a name="l00249"></a>00249     <span class="keywordflow">case</span> SrcTo        : output.append( <span class="stringliteral">"To"</span> ); <span class="keywordflow">break</span>;
+<a name="l00250"></a>00250     <span class="keywordflow">case</span> SrcAccount   : output.append( <span class="stringliteral">"Account"</span> ); <span class="keywordflow">break</span>;
+<a name="l00251"></a>00251     <span class="keywordflow">case</span> SrcHeader    : output.append( <span class="stringliteral">"Header"</span> ); <span class="keywordflow">break</span>;
+<a name="l00252"></a>00252     <span class="keywordflow">case</span> SrcSize      : output.append( <span class="stringliteral">"Size"</span> ); <span class="keywordflow">break</span>;
+<a name="l00253"></a>00253     <span class="keywordflow">case</span> SrcSubject   : output.append( <span class="stringliteral">"Subject"</span> ); <span class="keywordflow">break</span>;
 <a name="l00254"></a>00254     <span class="keywordflow">default</span>           : output.append( <span class="stringliteral">"unknown"</span> ); <span class="keywordflow">break</span>;
 <a name="l00255"></a>00255   }
 <a name="l00256"></a>00256 
 <a name="l00257"></a>00257   output.append( <span class="stringliteral">"; Condition: "</span> );
 <a name="l00258"></a>00258 
-<a name="l00259"></a>00259   <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a> == <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a> )
+<a name="l00259"></a>00259   <span class="keywordflow">if</span>( source == SrcSize )
 <a name="l00260"></a>00260   {
-<a name="l00261"></a>00261     <span class="keywordflow">switch</span>( <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a> )
+<a name="l00261"></a>00261     <span class="keywordflow">switch</span>( numCondition )
 <a name="l00262"></a>00262     {
-<a name="l00263"></a>00263       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defdd52ce87f5916ede0169efbc666b82732">NumCondEqual</a>         : output.append( QString( <span class="stringliteral">"equals %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00264"></a>00264       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defda933b7c9612f9ecf1a78be6f2dcd4656">NumCondGreater</a>       : output.append( QString( <span class="stringliteral">"greater than %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00265"></a>00265       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd96c80ff56805962b07d78576454a2cb5">NumCondGreaterEqual</a>  : output.append( QString( <span class="stringliteral">"greater than or equals %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00266"></a>00266       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd87f12a8ca405ea04e7004317b37bc8c3">NumCondLess</a>          : output.append( QString( <span class="stringliteral">"less than %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00267"></a>00267       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd0d470e0e945cb1a9075c96bfeab6a58a">NumCondLessEqual</a>     : output.append( QString( <span class="stringliteral">"less than or equals %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00268"></a>00268       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd46b6c8165139e41263bcb3b7b45673e5">NumCondNotEqual</a>      : output.append( QString( <span class="stringliteral">"not equals %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00269"></a>00269       <span class="keywordflow">default</span>                   : output.append( QString( <span class="stringliteral">"unknown; Value: %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a> ) ); <span class="keywordflow">break</span>;
+<a name="l00263"></a>00263       <span class="keywordflow">case</span> NumCondEqual         : output.append( QString( <span class="stringliteral">"equals %1"</span> ).arg( numValue ) ); <span class="keywordflow">break</span>;
+<a name="l00264"></a>00264       <span class="keywordflow">case</span> NumCondGreater       : output.append( QString( <span class="stringliteral">"greater than %1"</span> ).arg( numValue ) ); <span class="keywordflow">break</span>;
+<a name="l00265"></a>00265       <span class="keywordflow">case</span> NumCondGreaterEqual  : output.append( QString( <span class="stringliteral">"greater than or equals %1"</span> ).arg( numValue ) ); <span class="keywordflow">break</span>;
+<a name="l00266"></a>00266       <span class="keywordflow">case</span> NumCondLess          : output.append( QString( <span class="stringliteral">"less than %1"</span> ).arg( numValue ) ); <span class="keywordflow">break</span>;
+<a name="l00267"></a>00267       <span class="keywordflow">case</span> NumCondLessEqual     : output.append( QString( <span class="stringliteral">"less than or equals %1"</span> ).arg( numValue ) ); <span class="keywordflow">break</span>;
+<a name="l00268"></a>00268       <span class="keywordflow">case</span> NumCondNotEqual      : output.append( QString( <span class="stringliteral">"not equals %1"</span> ).arg( numValue ) ); <span class="keywordflow">break</span>;
+<a name="l00269"></a>00269       <span class="keywordflow">default</span>                   : output.append( QString( <span class="stringliteral">"unknown; Value: %1"</span> ).arg( numValue ) ); <span class="keywordflow">break</span>;
 <a name="l00270"></a>00270     }
 <a name="l00271"></a>00271   }
 <a name="l00272"></a>00272   <span class="keywordflow">else</span>
 <a name="l00273"></a>00273   {
-<a name="l00274"></a>00274     <span class="keywordflow">switch</span>( <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> )
+<a name="l00274"></a>00274     <span class="keywordflow">switch</span>( txtCondition )
 <a name="l00275"></a>00275     {
-<a name="l00276"></a>00276       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f25059f8d1fe4c30496210da5fa1a72f9">TxtCondContains</a>    : output.append( QString( <span class="stringliteral">"contains %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00277"></a>00277       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fb3ec0aa8185f2ca796e477b825f8296e">TxtCondEqual</a>       : output.append( QString( <span class="stringliteral">"equals %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00278"></a>00278       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fdb51576913f4df976410b4c8d2851696">TxtCondNotContains</a> : output.append( QString( <span class="stringliteral">"not contains %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00279"></a>00279       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f17ff814248fa95cd4615ed68a138bd2b">TxtCondNotEqual</a>    : output.append( QString( <span class="stringliteral">"not equals %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00280"></a>00280       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f266b5347283171204842440a1dd7dcec">TxtCondRegExpr</a>     : output.append( QString( <span class="stringliteral">"matches to regular expression %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00281"></a>00281       <span class="keywordflow">case</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f58cea83345a15b02b9260a45069fda7e">TxtCondNotRegExpr</a>  : output.append( QString( <span class="stringliteral">"doesn't match to regular expression %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00282"></a>00282       <span class="keywordflow">default</span>                 : output.append( QString( <span class="stringliteral">"unknown; Value: %1"</span> ).arg( <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a> ) ); <span class="keywordflow">break</span>;
+<a name="l00276"></a>00276       <span class="keywordflow">case</span> TxtCondContains    : output.append( QString( <span class="stringliteral">"contains %1"</span> ).arg( txtValue ) ); <span class="keywordflow">break</span>;
+<a name="l00277"></a>00277       <span class="keywordflow">case</span> TxtCondEqual       : output.append( QString( <span class="stringliteral">"equals %1"</span> ).arg( txtValue ) ); <span class="keywordflow">break</span>;
+<a name="l00278"></a>00278       <span class="keywordflow">case</span> TxtCondNotContains : output.append( QString( <span class="stringliteral">"not contains %1"</span> ).arg( txtValue ) ); <span class="keywordflow">break</span>;
+<a name="l00279"></a>00279       <span class="keywordflow">case</span> TxtCondNotEqual    : output.append( QString( <span class="stringliteral">"not equals %1"</span> ).arg( txtValue ) ); <span class="keywordflow">break</span>;
+<a name="l00280"></a>00280       <span class="keywordflow">case</span> TxtCondRegExpr     : output.append( QString( <span class="stringliteral">"matches to regular expression %1"</span> ).arg( txtValue ) ); <span class="keywordflow">break</span>;
+<a name="l00281"></a>00281       <span class="keywordflow">case</span> TxtCondNotRegExpr  : output.append( QString( <span class="stringliteral">"doesn't match to regular expression %1"</span> ).arg( txtValue ) ); <span class="keywordflow">break</span>;
+<a name="l00282"></a>00282       <span class="keywordflow">default</span>                 : output.append( QString( <span class="stringliteral">"unknown; Value: %1"</span> ).arg( txtValue ) ); <span class="keywordflow">break</span>;
 <a name="l00283"></a>00283     }
 <a name="l00284"></a>00284 
-<a name="l00285"></a>00285     <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> != <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f266b5347283171204842440a1dd7dcec">TxtCondRegExpr</a> &amp;&amp; <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a> != <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f58cea83345a15b02b9260a45069fda7e">TxtCondNotRegExpr</a> )
+<a name="l00285"></a>00285     <span class="keywordflow">if</span>( txtCondition != TxtCondRegExpr &amp;&amp; txtCondition != TxtCondNotRegExpr )
 <a name="l00286"></a>00286     {
-<a name="l00287"></a>00287       <span class="keywordflow">if</span>( <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a> )
+<a name="l00287"></a>00287       <span class="keywordflow">if</span>( cs )
 <a name="l00288"></a>00288         output.append( <span class="stringliteral">" (case sensitive)"</span> );
 <a name="l00289"></a>00289       <span class="keywordflow">else</span>
 <a name="l00290"></a>00290         output.append( <span class="stringliteral">" (not case sensitive)"</span> );
@@ -313,7 +313,7 @@
 <a name="l00297"></a>00297 
 <a name="l00298"></a>00298 
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

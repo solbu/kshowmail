@@ -39,10 +39,11 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">typedef QMap&lt; QString, bool &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTypes.html#ca963e9ff87e4dfc99a0123af22c0346">AccountTaskMap_Type</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef QMap&lt; int, <br>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="28b7da8de2bbe1b7a098d41242e78ab7"></a><!-- doxytag: member="Types::MailToDownloadMap_Type" ref="28b7da8de2bbe1b7a098d41242e78ab7" args="" -->
+typedef QMap&lt; int, <br>
 <a class="el" href="structTypes_1_1DownloadActionParams__Type.html">DownloadActionParams_Type</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTypes.html#28b7da8de2bbe1b7a098d41242e78ab7">MailToDownloadMap_Type</a></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This map is used by ConfigElem and ShowRecord to hold a list of mail numbers which shall be downloaded for some filter actions; at time for moving and spam check.  <a href="#28b7da8de2bbe1b7a098d41242e78ab7"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This map is used by ConfigElem and ShowRecord to hold a list of mail numbers which shall be downloaded for some filter actions; at time for moving and spam check. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">typedef list&lt; <a class="el" href="structTypes_1_1FilterCriteria__Type.html">FilterCriteria_Type</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTypes.html#2eaafd5612933c2e6ab8dd15593969a2">FilterCriteriaList_Type</a></td></tr>
 
 <tr><td colspan="2"><br><h2>Enumerations</h2></td></tr>
@@ -110,6 +111,17 @@
 <br>
  }</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea">LogViewSort</a> { <br>
+&nbsp;&nbsp;<a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea30c3bbcea234c0b4a16dd73676b596f5">LogViewSortDate</a>, 
+<a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea01dcf1d47731b4c08ef2fa8c1b5ad41a">LogViewSortFrom</a>, 
+<a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cead981be565c6ab0434338b0815785550a">LogViewSortAccount</a>, 
+<a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea4492e48a00774eb47c00e77324704137">LogViewSortSubject</a>, 
+<br>
+&nbsp;&nbsp;<a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795ceaea108fda2a18234d835ebc1a328757ad">LogViewSortMailbox</a>
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Log view sorting.  <a href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea">More...</a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 All special types for KShowMail. <hr><h2>Typedef Documentation</h2>
@@ -161,25 +173,6 @@ List of filter criterias.
 <p>
 List of mail numbers. It is a QValueList of integers. 
 <p>Definition at line <a class="el" href="types_8h-source.html#l00066">66</a> of file <a class="el" href="types_8h-source.html">types.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="28b7da8de2bbe1b7a098d41242e78ab7"></a><!-- doxytag: member="Types::MailToDownloadMap_Type" ref="28b7da8de2bbe1b7a098d41242e78ab7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef QMap&lt;int, <a class="el" href="structTypes_1_1DownloadActionParams__Type.html">DownloadActionParams_Type</a>&gt; <a class="el" href="namespaceTypes.html#28b7da8de2bbe1b7a098d41242e78ab7">Types::MailToDownloadMap_Type</a>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-This map is used by ConfigElem and ShowRecord to hold a list of mail numbers which shall be downloaded for some filter actions; at time for moving and spam check. 
-<p>
-
-<p>Definition at line <a class="el" href="types_8h-source.html#l00103">103</a> of file <a class="el" href="types_8h-source.html">types.h</a>.</p>
 
 </div>
 </div><p>
@@ -279,6 +272,39 @@ The mail doesn't match up with the filter. Perform the next one. </td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="types_8h-source.html#l00078">78</a> of file <a class="el" href="types_8h-source.html">types.h</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="186cbce5608fe9683d74b24bf8795cea"></a><!-- doxytag: member="Types::LogViewSort" ref="186cbce5608fe9683d74b24bf8795cea" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea">Types::LogViewSort</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Log view sorting. 
+<p>
+The members of this enum represent the columns of the log view list which shall be sorted. <dl compact><dt><b>Enumerator: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" name="186cbce5608fe9683d74b24bf8795cea30c3bbcea234c0b4a16dd73676b596f5"></a><!-- doxytag: member="LogViewSortDate" ref="186cbce5608fe9683d74b24bf8795cea30c3bbcea234c0b4a16dd73676b596f5" args="" -->LogViewSortDate</em>&nbsp;</td><td>
+sort by date </td></tr>
+<tr><td valign="top"><em><a class="anchor" name="186cbce5608fe9683d74b24bf8795cea01dcf1d47731b4c08ef2fa8c1b5ad41a"></a><!-- doxytag: member="LogViewSortFrom" ref="186cbce5608fe9683d74b24bf8795cea01dcf1d47731b4c08ef2fa8c1b5ad41a" args="" -->LogViewSortFrom</em>&nbsp;</td><td>
+sort by sender </td></tr>
+<tr><td valign="top"><em><a class="anchor" name="186cbce5608fe9683d74b24bf8795cead981be565c6ab0434338b0815785550a"></a><!-- doxytag: member="LogViewSortAccount" ref="186cbce5608fe9683d74b24bf8795cead981be565c6ab0434338b0815785550a" args="" -->LogViewSortAccount</em>&nbsp;</td><td>
+sort by account </td></tr>
+<tr><td valign="top"><em><a class="anchor" name="186cbce5608fe9683d74b24bf8795cea4492e48a00774eb47c00e77324704137"></a><!-- doxytag: member="LogViewSortSubject" ref="186cbce5608fe9683d74b24bf8795cea4492e48a00774eb47c00e77324704137" args="" -->LogViewSortSubject</em>&nbsp;</td><td>
+sort by subject </td></tr>
+<tr><td valign="top"><em><a class="anchor" name="186cbce5608fe9683d74b24bf8795ceaea108fda2a18234d835ebc1a328757ad"></a><!-- doxytag: member="LogViewSortMailbox" ref="186cbce5608fe9683d74b24bf8795ceaea108fda2a18234d835ebc1a328757ad" args="" -->LogViewSortMailbox</em>&nbsp;</td><td>
+sort by mailbox </td></tr>
+</table>
+</dl>
+
+<p>Definition at line <a class="el" href="types_8h-source.html#l00178">178</a> of file <a class="el" href="types_8h-source.html">types.h</a>.</p>
 
 </div>
 </div><p>
@@ -408,7 +434,7 @@ use TLS </td></tr>
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

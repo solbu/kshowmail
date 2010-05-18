@@ -36,7 +36,7 @@
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#2fa09bcc0a3631b5a8b0cf18f5291081">FilterLogEntry</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#8443104147dd93f806140b0d545c1933">FilterLogEntry</a> (<a class="el" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, const KDateTime &amp;dateTime, const QString &amp;<a class="el" href="classFilterLogEntry.html#beb4991508455d61c59cbb6ef6766b32">sender</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#712d167a9ba886be14ca9ad1bc8341f7">account</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#be167b5503f62f90b0dc560a1e5b1558">subject</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#d149fca2f4561be04dae1b8eabfdae58">mailbox</a>=QString())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#8443104147dd93f806140b0d545c1933">FilterLogEntry</a> (<a class="el" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString())</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#f137f54e07ca4d26e1574d1839353d40">FilterLogEntry</a> (const <a class="el" href="classFilterLogEntry.html">FilterLogEntry</a> &amp;ent)</td></tr>
 
@@ -62,29 +62,20 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#477f7486122545541e940233bb1da15d">save</a> (QDomDocument &amp;doc, QDomElement &amp;parent)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KDateTime&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#d358ff3ae59651a54d01e205f614db72">getDate</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stores the entry into the given DOM document as child of the given DOM element.  <a href="#477f7486122545541e940233bb1da15d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">KDateTime&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#d0d2a00f2da98a26fbb9c6647e3bbce2">getDate</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#49c10c324ea3cf38d39162500edf17e0">getSender</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#859da042bf6d4ba013f6306e121e4e88">getSender</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#0de03b81ac29a2605b26d1a5a6ec7f72">getAccount</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#18cde550a84c1e5978d4f1293775d205">getAccount</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#24d80bc83ec5286153fb8cad0f89a088">getSubject</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#6b3387780bcc217346d1a3020aeb02f3">getSubject</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#247808d8a49002029d759d089abbcdab">getMailbox</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#c96efc78c81d14c500b3cdf3b65ec08b">getMailbox</a> () const </td></tr>
 
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#491ab294e7c012aaf2ecefbd5a40467a">act</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#b9f7bf969120a2bf6c771d14c9611987">compare</a> (const <a class="el" href="classFilterLogEntry.html">FilterLogEntry</a> &amp;other, <a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea">LogViewSort</a> property) const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KDateTime&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#6404afef93e9ad46baedcf45c28ffcbf">sentDateTime</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#beb4991508455d61c59cbb6ef6766b32">sender</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#712d167a9ba886be14ca9ad1bc8341f7">account</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#be167b5503f62f90b0dc560a1e5b1558">subject</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#d149fca2f4561be04dae1b8eabfdae58">mailbox</a></td></tr>
-
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares this entry with <em>other</em> and returns an integer less than, equal to, or greater than zero if this entry is less than, equal to, or greater than <em>other</em>.  <a href="#b9f7bf969120a2bf6c771d14c9611987"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 An Object of this class contains the data about a deleted or moved mail. These objects are stored in the lists of the filter log. 
@@ -111,8 +102,6 @@ An Object of this class contains the data about a deleted or moved mail. These o
 <p>
 Default constructor 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00020">20</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00173">act</a>, <a class="el" href="types_8h-source.html#l00086">Types::FActNone</a>, and <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
 
 </div>
 </div><p>
@@ -206,8 +195,6 @@ Copy Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00054">54</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00188">account</a>, <a class="el" href="filterlogentry_8h-source.html#l00173">act</a>, <a class="el" href="filterlogentry_8h-source.html#l00198">mailbox</a>, <a class="el" href="filterlogentry_8h-source.html#l00183">sender</a>, <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>, and <a class="el" href="filterlogentry_8h-source.html#l00193">subject</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="f1e1205386c56c99067ccc4966d6bdb2"></a><!-- doxytag: member="FilterLogEntry::~FilterLogEntry" ref="f1e1205386c56c99067ccc4966d6bdb2" args="()" -->
@@ -257,8 +244,6 @@ Assignment operator <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00064">64</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00188">account</a>, <a class="el" href="filterlogentry_8h-source.html#l00173">act</a>, <a class="el" href="filterlogentry_8h-source.html#l00198">mailbox</a>, <a class="el" href="filterlogentry_8h-source.html#l00183">sender</a>, <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>, and <a class="el" href="filterlogentry_8h-source.html#l00193">subject</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="5978f4ce852fb5e97202709a61da3774"></a><!-- doxytag: member="FilterLogEntry::operator==" ref="5978f4ce852fb5e97202709a61da3774" args="(const FilterLogEntry &amp;ent) const " -->
@@ -286,8 +271,6 @@ Compares this entry with the given entry <dl compact><dt><b>Parameters:</b></dt>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is equal to te time of the given entry. </dd></dl>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00083">83</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
 
 </div>
 </div><p>
@@ -317,8 +300,6 @@ Compares this entry with the given entry <dl compact><dt><b>Parameters:</b></dt>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00088">88</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="f0b16d3b07982796fc8fb15e5411cb48"></a><!-- doxytag: member="FilterLogEntry::operator&gt;" ref="f0b16d3b07982796fc8fb15e5411cb48" args="(const FilterLogEntry &amp;ent) const " -->
@@ -346,8 +327,6 @@ Compares this entry with the given entry <dl compact><dt><b>Parameters:</b></dt>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is later than the time of the given entry. </dd></dl>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00093">93</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
 
 </div>
 </div><p>
@@ -377,8 +356,6 @@ Compares this entry with the given entry <dl compact><dt><b>Parameters:</b></dt>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00098">98</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="96a298fcbc6aadac1d545a9ecf7ce3de"></a><!-- doxytag: member="FilterLogEntry::operator&lt;" ref="96a298fcbc6aadac1d545a9ecf7ce3de" args="(const FilterLogEntry &amp;ent) const " -->
@@ -406,8 +383,6 @@ Compares this entry with the given entry <dl compact><dt><b>Parameters:</b></dt>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is earlier than the time of the given entry. </dd></dl>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00103">103</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
 
 </div>
 </div><p>
@@ -437,8 +412,6 @@ Compares this entry with the given entry <dl compact><dt><b>Parameters:</b></dt>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00108">108</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="3927475a7c99c03377f535b8cf0c027e"></a><!-- doxytag: member="FilterLogEntry::print" ref="3927475a7c99c03377f535b8cf0c027e" args="()" -->
@@ -459,10 +432,6 @@ Compares this entry with the given entry <dl compact><dt><b>Parameters:</b></dt>
 <p>
 Prints the data of this entry to Stdout. 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00037">37</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00188">account</a>, <a class="el" href="filterlogentry_8h-source.html#l00173">act</a>, <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, <a class="el" href="types_8h-source.html#l00082">Types::FActMark</a>, <a class="el" href="types_8h-source.html#l00083">Types::FActMove</a>, <a class="el" href="types_8h-source.html#l00086">Types::FActNone</a>, <a class="el" href="types_8h-source.html#l00080">Types::FActPass</a>, <a class="el" href="types_8h-source.html#l00084">Types::FActSpamcheck</a>, <a class="el" href="filterlogentry_8h-source.html#l00198">mailbox</a>, <a class="el" href="filterlogentry_8h-source.html#l00183">sender</a>, <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>, and <a class="el" href="filterlogentry_8h-source.html#l00193">subject</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00049">FilterLog::addEntry()</a>.</p>
 
 </div>
 </div><p>
@@ -491,8 +460,6 @@ Returns whether the mail of this entry is older than the given number of days. <
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>TRUE - the mail is older than the given date </dd></dl>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00078">78</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
 
 </div>
 </div><p>
@@ -523,13 +490,19 @@ Returns whether the mail of this entry is older than the given number of days. <
 
 <p>
 Stores the entry into the given DOM document as child of the given DOM element. 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00113">113</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>DOM document </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent element </td></tr>
+  </table>
+</dl>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00188">account</a>, <a class="el" href="constants_8h-source.html#l00177">LOG_ENTRY_ATTRIBUTE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00175">LOG_ENTRY_ATTRIBUTE_DATETIME</a>, <a class="el" href="constants_8h-source.html#l00176">LOG_ENTRY_ATTRIBUTE_SENDER</a>, <a class="el" href="constants_8h-source.html#l00178">LOG_ENTRY_ATTRIBUTE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00174">LOG_ENTRY_ELEMENT</a>, <a class="el" href="filterlogentry_8h-source.html#l00183">sender</a>, <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>, and <a class="el" href="filterlogentry_8h-source.html#l00193">subject</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00113">113</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="d358ff3ae59651a54d01e205f614db72"></a><!-- doxytag: member="FilterLogEntry::getDate" ref="d358ff3ae59651a54d01e205f614db72" args="()" -->
+<a class="anchor" name="d0d2a00f2da98a26fbb9c6647e3bbce2"></a><!-- doxytag: member="FilterLogEntry::getDate" ref="d0d2a00f2da98a26fbb9c6647e3bbce2" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -538,7 +511,7 @@ Stores the entry into the given DOM document as child of the given DOM element.
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -549,11 +522,9 @@ Returns the date and time of send <dl class="return" compact><dt><b>Returns:</b>
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00126">126</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00178">sentDateTime</a>.</p>
-
 </div>
 </div><p>
-<a class="anchor" name="49c10c324ea3cf38d39162500edf17e0"></a><!-- doxytag: member="FilterLogEntry::getSender" ref="49c10c324ea3cf38d39162500edf17e0" args="()" -->
+<a class="anchor" name="859da042bf6d4ba013f6306e121e4e88"></a><!-- doxytag: member="FilterLogEntry::getSender" ref="859da042bf6d4ba013f6306e121e4e88" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -562,7 +533,7 @@ Returns the date and time of send <dl class="return" compact><dt><b>Returns:</b>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -573,11 +544,9 @@ Returns the sender. <dl class="return" compact><dt><b>Returns:</b></dt><dd>Sende
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00131">131</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00183">sender</a>.</p>
-
 </div>
 </div><p>
-<a class="anchor" name="0de03b81ac29a2605b26d1a5a6ec7f72"></a><!-- doxytag: member="FilterLogEntry::getAccount" ref="0de03b81ac29a2605b26d1a5a6ec7f72" args="()" -->
+<a class="anchor" name="18cde550a84c1e5978d4f1293775d205"></a><!-- doxytag: member="FilterLogEntry::getAccount" ref="18cde550a84c1e5978d4f1293775d205" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -586,7 +555,7 @@ Returns the sender. <dl class="return" compact><dt><b>Returns:</b></dt><dd>Sende
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -597,11 +566,9 @@ Returns the account. <dl class="return" compact><dt><b>Returns:</b></dt><dd><a c
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00136">136</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00188">account</a>.</p>
-
 </div>
 </div><p>
-<a class="anchor" name="24d80bc83ec5286153fb8cad0f89a088"></a><!-- doxytag: member="FilterLogEntry::getSubject" ref="24d80bc83ec5286153fb8cad0f89a088" args="()" -->
+<a class="anchor" name="6b3387780bcc217346d1a3020aeb02f3"></a><!-- doxytag: member="FilterLogEntry::getSubject" ref="6b3387780bcc217346d1a3020aeb02f3" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -610,7 +577,7 @@ Returns the account. <dl class="return" compact><dt><b>Returns:</b></dt><dd><a c
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -621,11 +588,9 @@ Returns the subject <dl class="return" compact><dt><b>Returns:</b></dt><dd>Subje
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00141">141</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00193">subject</a>.</p>
-
 </div>
 </div><p>
-<a class="anchor" name="247808d8a49002029d759d089abbcdab"></a><!-- doxytag: member="FilterLogEntry::getMailbox" ref="247808d8a49002029d759d089abbcdab" args="()" -->
+<a class="anchor" name="c96efc78c81d14c500b3cdf3b65ec08b"></a><!-- doxytag: member="FilterLogEntry::getMailbox" ref="c96efc78c81d14c500b3cdf3b65ec08b" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -634,7 +599,7 @@ Returns the subject <dl class="return" compact><dt><b>Returns:</b></dt><dd>Subje
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -645,129 +610,51 @@ Returns the mailbox <dl class="return" compact><dt><b>Returns:</b></dt><dd>mailb
 
 <p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00146">146</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogentry_8h-source.html#l00198">mailbox</a>.</p>
-
 </div>
 </div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="491ab294e7c012aaf2ecefbd5a40467a"></a><!-- doxytag: member="FilterLogEntry::act" ref="491ab294e7c012aaf2ecefbd5a40467a" args="" -->
+<a class="anchor" name="b9f7bf969120a2bf6c771d14c9611987"></a><!-- doxytag: member="FilterLogEntry::compare" ref="b9f7bf969120a2bf6c771d14c9611987" args="(const FilterLogEntry &amp;other, LogViewSort property) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="el" href="classFilterLogEntry.html#491ab294e7c012aaf2ecefbd5a40467a">FilterLogEntry::act</a><code> [private]</code>          </td>
+          <td class="memname">int FilterLogEntry::compare           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classFilterLogEntry.html">FilterLogEntry</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>other</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea">LogViewSort</a>&nbsp;</td>
+          <td class="paramname"> <em>property</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-executed action 
-<p>Definition at line <a class="el" href="filterlogentry_8h-source.html#l00173">173</a> of file <a class="el" href="filterlogentry_8h-source.html">filterlogentry.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogentry_8cpp-source.html#l00020">FilterLogEntry()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00064">operator=()</a>, and <a class="el" href="filterlogentry_8cpp-source.html#l00037">print()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="6404afef93e9ad46baedcf45c28ffcbf"></a><!-- doxytag: member="FilterLogEntry::sentDateTime" ref="6404afef93e9ad46baedcf45c28ffcbf" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KDateTime <a class="el" href="classFilterLogEntry.html#6404afef93e9ad46baedcf45c28ffcbf">FilterLogEntry::sentDateTime</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
+Compares this entry with <em>other</em> and returns an integer less than, equal to, or greater than zero if this entry is less than, equal to, or greater than <em>other</em>. 
 <p>
-Delivery date and time 
-<p>Definition at line <a class="el" href="filterlogentry_8h-source.html#l00178">178</a> of file <a class="el" href="filterlogentry_8h-source.html">filterlogentry.h</a>.</p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>other entry </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>property</em>&nbsp;</td><td>the entry property which will be compared </td></tr>
+  </table>
+</dl>
 
-<p>Referenced by <a class="el" href="filterlogentry_8cpp-source.html#l00020">FilterLogEntry()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00126">getDate()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00078">isOlder()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00088">operator!=()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00103">operator&lt;()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00108">operator&lt;=()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00064">operator=()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00083">operator==()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00093">operator&gt;()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00098">operator&gt;=()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00037">print()</a>, and <a class="el" href="filterlogentry_8cpp-source.html#l00113">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="beb4991508455d61c59cbb6ef6766b32"></a><!-- doxytag: member="FilterLogEntry::sender" ref="beb4991508455d61c59cbb6ef6766b32" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="classFilterLogEntry.html#beb4991508455d61c59cbb6ef6766b32">FilterLogEntry::sender</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Sender 
-<p>Definition at line <a class="el" href="filterlogentry_8h-source.html#l00183">183</a> of file <a class="el" href="filterlogentry_8h-source.html">filterlogentry.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogentry_8cpp-source.html#l00054">FilterLogEntry()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00131">getSender()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00064">operator=()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00037">print()</a>, and <a class="el" href="filterlogentry_8cpp-source.html#l00113">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="712d167a9ba886be14ca9ad1bc8341f7"></a><!-- doxytag: member="FilterLogEntry::account" ref="712d167a9ba886be14ca9ad1bc8341f7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="classFilterLogEntry.html#712d167a9ba886be14ca9ad1bc8341f7">FilterLogEntry::account</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-<a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> 
-<p>Definition at line <a class="el" href="filterlogentry_8h-source.html#l00188">188</a> of file <a class="el" href="filterlogentry_8h-source.html">filterlogentry.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogentry_8cpp-source.html#l00054">FilterLogEntry()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00136">getAccount()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00064">operator=()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00037">print()</a>, and <a class="el" href="filterlogentry_8cpp-source.html#l00113">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="be167b5503f62f90b0dc560a1e5b1558"></a><!-- doxytag: member="FilterLogEntry::subject" ref="be167b5503f62f90b0dc560a1e5b1558" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="classFilterLogEntry.html#be167b5503f62f90b0dc560a1e5b1558">FilterLogEntry::subject</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Subject 
-<p>Definition at line <a class="el" href="filterlogentry_8h-source.html#l00193">193</a> of file <a class="el" href="filterlogentry_8h-source.html">filterlogentry.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogentry_8cpp-source.html#l00054">FilterLogEntry()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00141">getSubject()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00064">operator=()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00037">print()</a>, and <a class="el" href="filterlogentry_8cpp-source.html#l00113">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="d149fca2f4561be04dae1b8eabfdae58"></a><!-- doxytag: member="FilterLogEntry::mailbox" ref="d149fca2f4561be04dae1b8eabfdae58" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="classFilterLogEntry.html#d149fca2f4561be04dae1b8eabfdae58">FilterLogEntry::mailbox</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-mailbox if the mails was moved 
-<p>Definition at line <a class="el" href="filterlogentry_8h-source.html#l00198">198</a> of file <a class="el" href="filterlogentry_8h-source.html">filterlogentry.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogentry_8cpp-source.html#l00054">FilterLogEntry()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00146">getMailbox()</a>, <a class="el" href="filterlogentry_8cpp-source.html#l00064">operator=()</a>, and <a class="el" href="filterlogentry_8cpp-source.html#l00037">print()</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp-source.html#l00151">151</a> of file <a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="filterlogentry_8h-source.html">filterlogentry.h</a><li>src/<a class="el" href="filterlogentry_8cpp-source.html">filterlogentry.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

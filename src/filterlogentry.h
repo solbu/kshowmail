@@ -131,7 +131,9 @@ class FilterLogEntry{
     bool isOlder( uint days );
 
     /**
-     * Stores the entry into the given DOM document as child of the given DOM element.
+     * @brief Stores the entry into the given DOM document as child of the given DOM element.
+     * @param doc DOM document
+     * @param parent parent element
      */
     void save( QDomDocument& doc, QDomElement& parent );
 

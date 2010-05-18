@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/maillist.h</h1><a href="maillist_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/maillist.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -45,12 +45,12 @@
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;klocale.h&gt;</span>
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 <span class="comment">//KShowmail headers</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include "<a class="code" href="mail_8h.html">mail.h</a>"</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00034"></a>00034 <span class="preprocessor">#include "<a class="code" href="corruptdataexception_8h.html">corruptdataexception.h</a>"</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include "<a class="code" href="account_8h.html">account.h</a>"</span>
-<a name="l00036"></a>00036 <span class="preprocessor">#include "<a class="code" href="headerfilter_8h.html">headerfilter.h</a>"</span>
-<a name="l00037"></a>00037 <span class="preprocessor">#include "<a class="code" href="filterlog_8h.html">filterlog.h</a>"</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "mail.h"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "types.h"</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include "corruptdataexception.h"</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include "account.h"</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include "headerfilter.h"</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#include "filterlog.h"</span>
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="keyword">using namespace </span>Types;
 <a name="l00040"></a>00040 
@@ -122,16 +122,16 @@
 <a name="l00271"></a>00271 
 <a name="l00272"></a>00272   <span class="keyword">private</span>:
 <a name="l00273"></a>00273 
-<a name="l00277"></a><a class="code" href="classMailList.html#fd84fc8f0655853051cd10c4a92d6588">00277</a>     QList&lt;Mail*&gt; <a class="code" href="classMailList.html#fd84fc8f0655853051cd10c4a92d6588">mails</a>;
+<a name="l00277"></a>00277     QList&lt;Mail*&gt; mails;
 <a name="l00278"></a>00278 
-<a name="l00282"></a><a class="code" href="classMailList.html#acd96a42ae00d3223cc71dd71563c778">00282</a>     QPointer&lt;Account&gt; <a class="code" href="classMailList.html#acd96a42ae00d3223cc71dd71563c778">acc</a>;
+<a name="l00282"></a>00282     QPointer&lt;Account&gt; acc;
 <a name="l00283"></a>00283 
 <a name="l00284"></a>00284 
 <a name="l00285"></a>00285 };
 <a name="l00286"></a>00286 
 <a name="l00287"></a>00287 <span class="preprocessor">#endif // MAILLIST_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

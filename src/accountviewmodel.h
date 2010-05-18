@@ -113,6 +113,7 @@ class AccountViewModel : public QAbstractItemModel
 		 * It returns true if the given index is invalid because a invalid index is the root index.
      * All content is a child of the root index.
      * If the index is valid it always returns false because no data has a child.
+     * @param parent parent index
 		 */
 		virtual bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
 		

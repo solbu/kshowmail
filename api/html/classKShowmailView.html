@@ -34,7 +34,7 @@
 <a href="classKShowmailView-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#75a8c494b509460d7040c1782f32bdc1">KShowmailView</a> (<a class="el" href="classAccountViewModel.html">AccountViewModel</a> *<a class="el" href="classKShowmailView.html#989f8034fb569a11f9d82622f55dd04f">accountModel</a>, <a class="el" href="classMailViewModel.html">MailViewModel</a> *<a class="el" href="classKShowmailView.html#6fcf2456f32a938b2183c9f2926984bf">mailModel</a>, QItemSelectionModel *mailSelectModel, QItemSelectionModel *accountSelectModel, QWidget *parent=0)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#75a8c494b509460d7040c1782f32bdc1">KShowmailView</a> (<a class="el" href="classAccountViewModel.html">AccountViewModel</a> *accountModel, <a class="el" href="classMailViewModel.html">MailViewModel</a> *mailModel, QItemSelectionModel *mailSelectModel, QItemSelectionModel *accountSelectModel, QWidget *parent=0)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#cc6221c1caa46a5d2f20169a5434e622">~KShowmailView</a> ()</td></tr>
 
@@ -48,21 +48,12 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#879bcfefd73c3be7296ec40daa0cd8ff">addActionToMailList</a> (KAction *action)</td></tr>
 
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QTreeView *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#f487c4f449dbae16952d4bf1f0bdbdd6">viewAccounts</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QTreeView *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#3f6fb8031f874b16d28e6b4024ec30c7">viewMails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classMailViewModel.html">MailViewModel</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#6fcf2456f32a938b2183c9f2926984bf">mailModel</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classAccountViewModel.html">AccountViewModel</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKShowmailView.html#989f8034fb569a11f9d82622f55dd04f">accountModel</a></td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Main view of <a class="el" href="classKShowmail.html" title="main class">KShowmail</a>. 
 <p>
 It contains the account view and the mail view. 
-<p>Definition at line <a class="el" href="kshowmailview_8h-source.html#l00042">42</a> of file <a class="el" href="kshowmailview_8h-source.html">kshowmailview.h</a>.</p>
+<p>Definition at line <a class="el" href="kshowmailview_8h-source.html#l00043">43</a> of file <a class="el" href="kshowmailview_8h-source.html">kshowmailview.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="75a8c494b509460d7040c1782f32bdc1"></a><!-- doxytag: member="KShowmailView::KShowmailView" ref="75a8c494b509460d7040c1782f32bdc1" args="(AccountViewModel *accountModel, MailViewModel *mailModel, QItemSelectionModel *mailSelectModel, QItemSelectionModel *accountSelectModel, QWidget *parent=0)" -->
 <div class="memitem">
@@ -120,8 +111,6 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00021">21</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
 
-<p>References <a class="el" href="kshowmailview_8cpp-source.html#l00138">loadSetup()</a>, <a class="el" href="kshowmailview_8h-source.html#l00096">viewAccounts</a>, and <a class="el" href="kshowmailview_8h-source.html#l00101">viewMails</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="cc6221c1caa46a5d2f20169a5434e622"></a><!-- doxytag: member="KShowmailView::~KShowmailView" ref="cc6221c1caa46a5d2f20169a5434e622" args="()" -->
@@ -141,7 +130,7 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>
 Destructor 
-<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00055">55</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00056">56</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -169,11 +158,7 @@ Refreshes the account and mail view. Marks filtered mails. <dl compact><dt><b>Pa
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00057">57</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
-
-<p>References <a class="el" href="kshowmailview_8h-source.html#l00111">accountModel</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00326">MailViewModel::getMarkedMails()</a>, <a class="el" href="kshowmailview_8h-source.html#l00106">mailModel</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00149">MailViewModel::refresh()</a>, <a class="el" href="accountviewmodel_8cpp-source.html#l00206">AccountViewModel::refresh()</a>, <a class="el" href="kshowmailview_8h-source.html#l00096">viewAccounts</a>, and <a class="el" href="kshowmailview_8h-source.html#l00101">viewMails</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00020">KShowmail::KShowmail()</a>, <a class="el" href="kshowmail_8cpp-source.html#l00480">KShowmail::slotConfChanged()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00518">KShowmail::slotRefreshReady()</a>.</p>
+<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00058">58</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -194,11 +179,7 @@ Refreshes the account and mail view. Marks filtered mails. <dl compact><dt><b>Pa
 
 <p>
 Saves the column widths 
-<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00075">75</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
-
-<p>References <a class="el" href="kshowmailview_8h-source.html#l00111">accountModel</a>, <a class="el" href="constants_8h-source.html#l00234">CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00233">CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00237">CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES</a>, <a class="el" href="constants_8h-source.html#l00235">CONFIG_ENTRY_WIDTH_ACCOUNT_SERVER</a>, <a class="el" href="constants_8h-source.html#l00238">CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE</a>, <a class="el" href="constants_8h-source.html#l00236">CONFIG_ENTRY_WIDTH_ACCOUNT_USER</a>, <a class="el" href="constants_8h-source.html#l00254">CONFIG_ENTRY_WIDTH_MESSAGE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00260">CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT</a>, <a class="el" href="constants_8h-source.html#l00258">CONFIG_ENTRY_WIDTH_MESSAGE_DATE</a>, <a class="el" href="constants_8h-source.html#l00255">CONFIG_ENTRY_WIDTH_MESSAGE_FROM</a>, <a class="el" href="constants_8h-source.html#l00253">CONFIG_ENTRY_WIDTH_MESSAGE_NUMBER</a>, <a class="el" href="constants_8h-source.html#l00259">CONFIG_ENTRY_WIDTH_MESSAGE_SIZE</a>, <a class="el" href="constants_8h-source.html#l00261">CONFIG_ENTRY_WIDTH_MESSAGE_STATE</a>, <a class="el" href="constants_8h-source.html#l00257">CONFIG_ENTRY_WIDTH_MESSAGE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00256">CONFIG_ENTRY_WIDTH_MESSAGE_TO</a>, <a class="el" href="constants_8h-source.html#l00226">CONFIG_GROUP_ACCOUNT_LIST</a>, <a class="el" href="constants_8h-source.html#l00243">CONFIG_GROUP_MESSAGE_LIST</a>, <a class="el" href="kshowmailview_8h-source.html#l00106">mailModel</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00348">MailViewModel::saveSetup()</a>, <a class="el" href="accountviewmodel_8cpp-source.html#l00299">AccountViewModel::saveSetup()</a>, <a class="el" href="kshowmailview_8h-source.html#l00096">viewAccounts</a>, and <a class="el" href="kshowmailview_8h-source.html#l00101">viewMails</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00450">KShowmail::queryClose()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00403">KShowmail::slotSetup()</a>.</p>
+<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00076">76</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -219,11 +200,7 @@ Saves the column widths
 
 <p>
 Loads and sets the column widths 
-<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00138">138</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
-
-<p>References <a class="el" href="constants_8h-source.html#l00228">CONFIG_ENTRY_DISPLAY_ACCOUNT_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00227">CONFIG_ENTRY_DISPLAY_ACCOUNT_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00231">CONFIG_ENTRY_DISPLAY_ACCOUNT_MESSAGES</a>, <a class="el" href="constants_8h-source.html#l00229">CONFIG_ENTRY_DISPLAY_ACCOUNT_SERVER</a>, <a class="el" href="constants_8h-source.html#l00232">CONFIG_ENTRY_DISPLAY_ACCOUNT_SIZE</a>, <a class="el" href="constants_8h-source.html#l00230">CONFIG_ENTRY_DISPLAY_ACCOUNT_USER</a>, <a class="el" href="constants_8h-source.html#l00245">CONFIG_ENTRY_DISPLAY_MESSAGE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00251">CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT</a>, <a class="el" href="constants_8h-source.html#l00249">CONFIG_ENTRY_DISPLAY_MESSAGE_DATE</a>, <a class="el" href="constants_8h-source.html#l00246">CONFIG_ENTRY_DISPLAY_MESSAGE_FROM</a>, <a class="el" href="constants_8h-source.html#l00244">CONFIG_ENTRY_DISPLAY_MESSAGE_NUMBER</a>, <a class="el" href="constants_8h-source.html#l00250">CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE</a>, <a class="el" href="constants_8h-source.html#l00252">CONFIG_ENTRY_DISPLAY_MESSAGE_STATE</a>, <a class="el" href="constants_8h-source.html#l00248">CONFIG_ENTRY_DISPLAY_MESSAGE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00247">CONFIG_ENTRY_DISPLAY_MESSAGE_TO</a>, <a class="el" href="constants_8h-source.html#l00239">CONFIG_ENTRY_SORT_COLUMN_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00262">CONFIG_ENTRY_SORT_COLUMN_MESSAGE</a>, <a class="el" href="constants_8h-source.html#l00240">CONFIG_ENTRY_SORT_ORDER_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00263">CONFIG_ENTRY_SORT_ORDER_MESSAGE</a>, <a class="el" href="constants_8h-source.html#l00234">CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00233">CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00237">CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES</a>, <a class="el" href="constants_8h-source.html#l00235">CONFIG_ENTRY_WIDTH_ACCOUNT_SERVER</a>, <a class="el" href="constants_8h-source.html#l00238">CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE</a>, <a class="el" href="constants_8h-source.html#l00236">CONFIG_ENTRY_WIDTH_ACCOUNT_USER</a>, <a class="el" href="constants_8h-source.html#l00254">CONFIG_ENTRY_WIDTH_MESSAGE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00260">CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT</a>, <a class="el" href="constants_8h-source.html#l00258">CONFIG_ENTRY_WIDTH_MESSAGE_DATE</a>, <a class="el" href="constants_8h-source.html#l00255">CONFIG_ENTRY_WIDTH_MESSAGE_FROM</a>, <a class="el" href="constants_8h-source.html#l00253">CONFIG_ENTRY_WIDTH_MESSAGE_NUMBER</a>, <a class="el" href="constants_8h-source.html#l00259">CONFIG_ENTRY_WIDTH_MESSAGE_SIZE</a>, <a class="el" href="constants_8h-source.html#l00261">CONFIG_ENTRY_WIDTH_MESSAGE_STATE</a>, <a class="el" href="constants_8h-source.html#l00257">CONFIG_ENTRY_WIDTH_MESSAGE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00256">CONFIG_ENTRY_WIDTH_MESSAGE_TO</a>, <a class="el" href="constants_8h-source.html#l00226">CONFIG_GROUP_ACCOUNT_LIST</a>, <a class="el" href="constants_8h-source.html#l00243">CONFIG_GROUP_MESSAGE_LIST</a>, <a class="el" href="constants_8h-source.html#l00220">CONFIG_GROUP_VIEW</a>, <a class="el" href="constants_8h-source.html#l00224">CONFIG_VALUE_SORT_ORDER_DESCENDING</a>, <a class="el" href="constants_8h-source.html#l00064">DEFAULT_DISPLAY_ACCOUNT_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00063">DEFAULT_DISPLAY_ACCOUNT_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00067">DEFAULT_DISPLAY_ACCOUNT_MESSAGES</a>, <a class="el" href="constants_8h-source.html#l00065">DEFAULT_DISPLAY_ACCOUNT_SERVER</a>, <a class="el" href="constants_8h-source.html#l00068">DEFAULT_DISPLAY_ACCOUNT_SIZE</a>, <a class="el" href="constants_8h-source.html#l00066">DEFAULT_DISPLAY_ACCOUNT_USER</a>, <a class="el" href="constants_8h-source.html#l00077">DEFAULT_DISPLAY_MESSAGE_STATE</a>, <a class="el" href="constants_8h-source.html#l00082">DEFAULT_SORT_COLUMN_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00083">DEFAULT_SORT_COLUMN_MESSAGE</a>, <a class="el" href="constants_8h-source.html#l00081">DEFAULT_SORT_ORDER</a>, <a class="el" href="constants_8h-source.html#l00087">DEFAULT_WIDTH_ACCOUNT_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00086">DEFAULT_WIDTH_ACCOUNT_ACTIVE</a>, <a class="el" href="constants_8h-source.html#l00090">DEFAULT_WIDTH_ACCOUNT_MESSAGES</a>, <a class="el" href="constants_8h-source.html#l00088">DEFAULT_WIDTH_ACCOUNT_SERVER</a>, <a class="el" href="constants_8h-source.html#l00091">DEFAULT_WIDTH_ACCOUNT_SIZE</a>, <a class="el" href="constants_8h-source.html#l00089">DEFAULT_WIDTH_ACCOUNT_USER</a>, <a class="el" href="constants_8h-source.html#l00093">DEFAULT_WIDTH_MESSAGE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00099">DEFAULT_WIDTH_MESSAGE_CONTENT</a>, <a class="el" href="constants_8h-source.html#l00097">DEFAULT_WIDTH_MESSAGE_DATE</a>, <a class="el" href="constants_8h-source.html#l00094">DEFAULT_WIDTH_MESSAGE_FROM</a>, <a class="el" href="constants_8h-source.html#l00092">DEFAULT_WIDTH_MESSAGE_NUMBER</a>, <a class="el" href="constants_8h-source.html#l00098">DEFAULT_WIDTH_MESSAGE_SIZE</a>, <a class="el" href="constants_8h-source.html#l00100">DEFAULT_WIDTH_MESSAGE_STATE</a>, <a class="el" href="constants_8h-source.html#l00096">DEFAULT_WIDTH_MESSAGE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00095">DEFAULT_WIDTH_MESSAGE_TO</a>, <a class="el" href="kshowmailview_8h-source.html#l00096">viewAccounts</a>, and <a class="el" href="kshowmailview_8h-source.html#l00101">viewMails</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00020">KShowmail::KShowmail()</a>, <a class="el" href="kshowmailview_8cpp-source.html#l00021">KShowmailView()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00480">KShowmail::slotConfChanged()</a>.</p>
+<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00146">146</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -250,11 +227,7 @@ Adds an action to the account view context menu <dl compact><dt><b>Parameters:</
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00209">209</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
-
-<p>References <a class="el" href="kshowmailview_8h-source.html#l00096">viewAccounts</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00020">KShowmail::KShowmail()</a>.</p>
+<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00222">222</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
 
 </div>
 </div><p>
@@ -281,95 +254,14 @@ Adds an action to the mail view context menu <dl compact><dt><b>Parameters:</b><
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00215">215</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
-
-<p>References <a class="el" href="kshowmailview_8h-source.html#l00101">viewMails</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00020">KShowmail::KShowmail()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="f487c4f449dbae16952d4bf1f0bdbdd6"></a><!-- doxytag: member="KShowmailView::viewAccounts" ref="f487c4f449dbae16952d4bf1f0bdbdd6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QTreeView* <a class="el" href="classKShowmailView.html#f487c4f449dbae16952d4bf1f0bdbdd6">KShowmailView::viewAccounts</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-account list 
-<p>Definition at line <a class="el" href="kshowmailview_8h-source.html#l00096">96</a> of file <a class="el" href="kshowmailview_8h-source.html">kshowmailview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmailview_8cpp-source.html#l00209">addActionToAccountList()</a>, <a class="el" href="kshowmailview_8cpp-source.html#l00021">KShowmailView()</a>, <a class="el" href="kshowmailview_8cpp-source.html#l00138">loadSetup()</a>, <a class="el" href="kshowmailview_8cpp-source.html#l00057">refreshViews()</a>, and <a class="el" href="kshowmailview_8cpp-source.html#l00075">saveSetup()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="3f6fb8031f874b16d28e6b4024ec30c7"></a><!-- doxytag: member="KShowmailView::viewMails" ref="3f6fb8031f874b16d28e6b4024ec30c7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QTreeView* <a class="el" href="classKShowmailView.html#3f6fb8031f874b16d28e6b4024ec30c7">KShowmailView::viewMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-mail list 
-<p>Definition at line <a class="el" href="kshowmailview_8h-source.html#l00101">101</a> of file <a class="el" href="kshowmailview_8h-source.html">kshowmailview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmailview_8cpp-source.html#l00215">addActionToMailList()</a>, <a class="el" href="kshowmailview_8cpp-source.html#l00021">KShowmailView()</a>, <a class="el" href="kshowmailview_8cpp-source.html#l00138">loadSetup()</a>, <a class="el" href="kshowmailview_8cpp-source.html#l00057">refreshViews()</a>, and <a class="el" href="kshowmailview_8cpp-source.html#l00075">saveSetup()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="6fcf2456f32a938b2183c9f2926984bf"></a><!-- doxytag: member="KShowmailView::mailModel" ref="6fcf2456f32a938b2183c9f2926984bf" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMailViewModel.html">MailViewModel</a>* <a class="el" href="classKShowmailView.html#6fcf2456f32a938b2183c9f2926984bf">KShowmailView::mailModel</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-<a class="el" href="classMail.html" title="This class represents a mail.">Mail</a> view model 
-<p>Definition at line <a class="el" href="kshowmailview_8h-source.html#l00106">106</a> of file <a class="el" href="kshowmailview_8h-source.html">kshowmailview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmailview_8cpp-source.html#l00057">refreshViews()</a>, and <a class="el" href="kshowmailview_8cpp-source.html#l00075">saveSetup()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="989f8034fb569a11f9d82622f55dd04f"></a><!-- doxytag: member="KShowmailView::accountModel" ref="989f8034fb569a11f9d82622f55dd04f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classAccountViewModel.html">AccountViewModel</a>* <a class="el" href="classKShowmailView.html#989f8034fb569a11f9d82622f55dd04f">KShowmailView::accountModel</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-<a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> view model 
-<p>Definition at line <a class="el" href="kshowmailview_8h-source.html#l00111">111</a> of file <a class="el" href="kshowmailview_8h-source.html">kshowmailview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmailview_8cpp-source.html#l00057">refreshViews()</a>, and <a class="el" href="kshowmailview_8cpp-source.html#l00075">saveSetup()</a>.</p>
+<p>Definition at line <a class="el" href="kshowmailview_8cpp-source.html#l00228">228</a> of file <a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="kshowmailview_8h-source.html">kshowmailview.h</a><li>src/<a class="el" href="kshowmailview_8cpp-source.html">kshowmailview.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

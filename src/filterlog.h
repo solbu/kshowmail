@@ -179,8 +179,15 @@ class FilterLog{
   protected:
 
     /**
-     * adds an entry.
+     * @brief Adds an entry.
+     *
      * The target list will be coose on the basis of the given filter action.
+     * @param action the performed action
+     * @param dateTime send time of the mail
+     * @param sender sender of the mail
+     * @param account account
+     * @param subject mail subject
+     * @param mailbox mailbox if the mail was moved
      */
     void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString() );
 

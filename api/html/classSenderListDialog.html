@@ -34,35 +34,14 @@
 <a href="classSenderListDialog-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> { <a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a>, 
-<a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbdbf415ba2058ae881749abaf7d6590aea">White</a>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> { <b>Black</b>, 
+<b>White</b>
  }</td></tr>
 
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#68dd3061106115f221e60f3ac4692a63">SenderListDialog</a> (QWidget *parent=0, <a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> <a class="el" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a>=Black)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#68dd3061106115f221e60f3ac4692a63">SenderListDialog</a> (QWidget *parent=0, <a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> list=Black)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#c4ca6fdc2ea66a934317314c0363e593">~SenderListDialog</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#da37743f702d27fe1e0764fdce0b5902">slotSort</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#0f087209007f9d25b3faf6a9bf79c02f">slotButtonClicked</a> (int button)</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#39e2ca207baff2b5bf0e49478eed7840">fillDialog</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KSharedConfigPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">config</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KEditListBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">grpAction</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -84,15 +63,7 @@ This is a dialog to edit the blacklist and whitelist. It is used by the class <a
 <div class="memdoc">
 
 <p>
-Type of list. <dl compact><dt><b>Enumerator: </b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" name="c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b"></a><!-- doxytag: member="Black" ref="c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b" args="" -->Black</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" name="c9198349954e23bb42c0d5a6c573fbbdbf415ba2058ae881749abaf7d6590aea"></a><!-- doxytag: member="White" ref="c9198349954e23bb42c0d5a6c573fbbdbf415ba2058ae881749abaf7d6590aea" args="" -->White</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dl>
-
+Type of list. 
 <p>Definition at line <a class="el" href="senderlistdialog_8h-source.html#l00057">57</a> of file <a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a>.</p>
 
 </div>
@@ -133,8 +104,6 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="senderlistdialog_8cpp-source.html#l00021">21</a> of file <a class="el" href="senderlistdialog_8cpp-source.html">senderlistdialog.cpp</a>.</p>
 
-<p>References <a class="el" href="senderlistdialog_8h-source.html#l00057">Black</a>, <a class="el" href="senderlistdialog_8h-source.html#l00096">btnDelete</a>, <a class="el" href="senderlistdialog_8h-source.html#l00101">btnMark</a>, <a class="el" href="senderlistdialog_8h-source.html#l00081">config</a>, <a class="el" href="constants_8h-source.html#l00304">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00305">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00121">DEFAULT_FILTER_BLACKLIST_ACTION</a>, <a class="el" href="senderlistdialog_8h-source.html#l00086">editFrame</a>, <a class="el" href="senderlistdialog_8cpp-source.html#l00141">fillDialog()</a>, <a class="el" href="senderlistdialog_8h-source.html#l00091">grpAction</a>, <a class="el" href="senderlistdialog_8h-source.html#l00040">ID_BUTTON_FILTER_SENDERLIST_DELETE</a>, <a class="el" href="senderlistdialog_8h-source.html#l00041">ID_BUTTON_FILTER_SENDERLIST_MARK</a>, <a class="el" href="senderlistdialog_8cpp-source.html#l00098">slotSort()</a>, and <a class="el" href="senderlistdialog_8h-source.html#l00057">White</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="c4ca6fdc2ea66a934317314c0363e593"></a><!-- doxytag: member="SenderListDialog::~SenderListDialog" ref="c4ca6fdc2ea66a934317314c0363e593" args="()" -->
@@ -158,205 +127,10 @@ Destructor
 
 </div>
 </div><p>
-<hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="39e2ca207baff2b5bf0e49478eed7840"></a><!-- doxytag: member="SenderListDialog::fillDialog" ref="39e2ca207baff2b5bf0e49478eed7840" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SenderListDialog::fillDialog           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Reads the entries for the dialog from the config file fill them in it. 
-<p>Definition at line <a class="el" href="senderlistdialog_8cpp-source.html#l00141">141</a> of file <a class="el" href="senderlistdialog_8cpp-source.html">senderlistdialog.cpp</a>.</p>
-
-<p>References <a class="el" href="senderlistdialog_8h-source.html#l00057">Black</a>, <a class="el" href="senderlistdialog_8h-source.html#l00096">btnDelete</a>, <a class="el" href="senderlistdialog_8h-source.html#l00101">btnMark</a>, <a class="el" href="senderlistdialog_8h-source.html#l00081">config</a>, <a class="el" href="constants_8h-source.html#l00308">CONFIG_ENTRY_FILTER_BLACKLIST</a>, <a class="el" href="constants_8h-source.html#l00307">CONFIG_ENTRY_FILTER_BLACKLIST_ACTION</a>, <a class="el" href="constants_8h-source.html#l00309">CONFIG_ENTRY_FILTER_WHITELIST</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00304">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00305">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00121">DEFAULT_FILTER_BLACKLIST_ACTION</a>, <a class="el" href="senderlistdialog_8h-source.html#l00086">editFrame</a>, and <a class="el" href="senderlistdialog_8h-source.html#l00076">list</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00021">SenderListDialog()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="da37743f702d27fe1e0764fdce0b5902"></a><!-- doxytag: member="SenderListDialog::slotSort" ref="da37743f702d27fe1e0764fdce0b5902" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SenderListDialog::slotSort           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with add button of the edit frame. Sorts the content of the list box. 
-<p>Definition at line <a class="el" href="senderlistdialog_8cpp-source.html#l00098">98</a> of file <a class="el" href="senderlistdialog_8cpp-source.html">senderlistdialog.cpp</a>.</p>
-
-<p>References <a class="el" href="senderlistdialog_8h-source.html#l00086">editFrame</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00021">SenderListDialog()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="0f087209007f9d25b3faf6a9bf79c02f"></a><!-- doxytag: member="SenderListDialog::slotButtonClicked" ref="0f087209007f9d25b3faf6a9bf79c02f" args="(int button)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SenderListDialog::slotButtonClicked           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>button</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Overwritten method of KDialogBase. Activated when the button <code>button</code> is clicked. If OK was clicked, it will stores the entered values. After then it invokes <code>slotButtonClicked</code>of KDialogBase. <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>button</em>&nbsp;</td><td>clicked button; is the type KDialog::ButtonCode </td></tr>
-  </table>
-</dl>
-
-<p>Definition at line <a class="el" href="senderlistdialog_8cpp-source.html#l00103">103</a> of file <a class="el" href="senderlistdialog_8cpp-source.html">senderlistdialog.cpp</a>.</p>
-
-<p>References <a class="el" href="senderlistdialog_8h-source.html#l00057">Black</a>, <a class="el" href="senderlistdialog_8h-source.html#l00081">config</a>, <a class="el" href="constants_8h-source.html#l00308">CONFIG_ENTRY_FILTER_BLACKLIST</a>, <a class="el" href="constants_8h-source.html#l00307">CONFIG_ENTRY_FILTER_BLACKLIST_ACTION</a>, <a class="el" href="constants_8h-source.html#l00309">CONFIG_ENTRY_FILTER_WHITELIST</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00304">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a>, <a class="el" href="constants_8h-source.html#l00305">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK</a>, <a class="el" href="constants_8h-source.html#l00121">DEFAULT_FILTER_BLACKLIST_ACTION</a>, <a class="el" href="senderlistdialog_8h-source.html#l00086">editFrame</a>, <a class="el" href="senderlistdialog_8h-source.html#l00091">grpAction</a>, <a class="el" href="senderlistdialog_8h-source.html#l00040">ID_BUTTON_FILTER_SENDERLIST_DELETE</a>, <a class="el" href="senderlistdialog_8h-source.html#l00041">ID_BUTTON_FILTER_SENDERLIST_MARK</a>, and <a class="el" href="senderlistdialog_8h-source.html#l00076">list</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="b863a1f45be38d67f64cedb4c74ff631"></a><!-- doxytag: member="SenderListDialog::list" ref="b863a1f45be38d67f64cedb4c74ff631" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> <a class="el" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">SenderListDialog::list</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-list which shall be opened 
-<p>Definition at line <a class="el" href="senderlistdialog_8h-source.html#l00076">76</a> of file <a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00141">fillDialog()</a>, and <a class="el" href="senderlistdialog_8cpp-source.html#l00103">slotButtonClicked()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="255be8e773f6965b0b10ada0c9306857"></a><!-- doxytag: member="SenderListDialog::config" ref="255be8e773f6965b0b10ada0c9306857" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KSharedConfigPtr <a class="el" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">SenderListDialog::config</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Application Config Object 
-<p>Definition at line <a class="el" href="senderlistdialog_8h-source.html#l00081">81</a> of file <a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00141">fillDialog()</a>, <a class="el" href="senderlistdialog_8cpp-source.html#l00021">SenderListDialog()</a>, and <a class="el" href="senderlistdialog_8cpp-source.html#l00103">slotButtonClicked()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="7f8fa42344ee9f096043916a94a09f14"></a><!-- doxytag: member="SenderListDialog::editFrame" ref="7f8fa42344ee9f096043916a94a09f14" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KEditListBox* <a class="el" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">SenderListDialog::editFrame</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Edit Frame 
-<p>Definition at line <a class="el" href="senderlistdialog_8h-source.html#l00086">86</a> of file <a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00141">fillDialog()</a>, <a class="el" href="senderlistdialog_8cpp-source.html#l00021">SenderListDialog()</a>, <a class="el" href="senderlistdialog_8cpp-source.html#l00103">slotButtonClicked()</a>, and <a class="el" href="senderlistdialog_8cpp-source.html#l00098">slotSort()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="36f568e6c034e8e3ce8918a1b36f3c4d"></a><!-- doxytag: member="SenderListDialog::grpAction" ref="36f568e6c034e8e3ce8918a1b36f3c4d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QButtonGroup* <a class="el" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">SenderListDialog::grpAction</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Combines the action radio buttons for the blacklist. 
-<p>Definition at line <a class="el" href="senderlistdialog_8h-source.html#l00091">91</a> of file <a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00021">SenderListDialog()</a>, and <a class="el" href="senderlistdialog_8cpp-source.html#l00103">slotButtonClicked()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="e08110baf1aef3b1da1c9ae5bc3a3eac"></a><!-- doxytag: member="SenderListDialog::btnDelete" ref="e08110baf1aef3b1da1c9ae5bc3a3eac" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QRadioButton* <a class="el" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">SenderListDialog::btnDelete</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Radio button to delete filtered mails 
-<p>Definition at line <a class="el" href="senderlistdialog_8h-source.html#l00096">96</a> of file <a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00141">fillDialog()</a>, and <a class="el" href="senderlistdialog_8cpp-source.html#l00021">SenderListDialog()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="f2dc45bbebef7bd4c75d229cac55d4c6"></a><!-- doxytag: member="SenderListDialog::btnMark" ref="f2dc45bbebef7bd4c75d229cac55d4c6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QRadioButton* <a class="el" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">SenderListDialog::btnMark</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Radio button to mark filtered mails 
-<p>Definition at line <a class="el" href="senderlistdialog_8h-source.html#l00101">101</a> of file <a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="senderlistdialog_8cpp-source.html#l00141">fillDialog()</a>, and <a class="el" href="senderlistdialog_8cpp-source.html#l00021">SenderListDialog()</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="senderlistdialog_8h-source.html">senderlistdialog.h</a><li>src/<a class="el" href="senderlistdialog_8cpp-source.html">senderlistdialog.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

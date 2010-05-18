@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/account.h</h1><a href="account_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/account.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -66,53 +66,53 @@
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052 <span class="comment">//KShowmail headers</span>
-<a name="l00053"></a>00053 <span class="preprocessor">#include "<a class="code" href="mail_8h.html">mail.h</a>"</span>
-<a name="l00054"></a>00054 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00055"></a>00055 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00056"></a>00056 <span class="preprocessor">#include "<a class="code" href="encryption_8h.html">encryption.h</a>"</span>
-<a name="l00057"></a>00057 <span class="preprocessor">#include "<a class="code" href="kwalletaccess_8h.html">kwalletaccess.h</a>"</span>
-<a name="l00058"></a>00058 <span class="preprocessor">#include "<a class="code" href="maillist_8h.html">maillist.h</a>"</span>
-<a name="l00059"></a>00059 <span class="preprocessor">#include "<a class="code" href="accountlist_8h.html">accountlist.h</a>"</span>
-<a name="l00060"></a>00060 <span class="preprocessor">#include "<a class="code" href="corruptdataexception_8h.html">corruptdataexception.h</a>"</span>
-<a name="l00061"></a>00061 <span class="preprocessor">#include "<a class="code" href="headerfilter_8h.html">headerfilter.h</a>"</span>
-<a name="l00062"></a>00062 <span class="preprocessor">#include "<a class="code" href="filterlog_8h.html">filterlog.h</a>"</span>
-<a name="l00063"></a>00063 <span class="preprocessor">#include "<a class="code" href="showmaildialog_8h.html">showmaildialog.h</a>"</span>
-<a name="l00064"></a>00064 <span class="preprocessor">#include "<a class="code" href="kshowmail_8h.html">kshowmail.h</a>"</span>
-<a name="l00065"></a>00065 <span class="preprocessor">#include "<a class="code" href="accountviewitem_8h.html">accountviewitem.h</a>"</span>
+<a name="l00053"></a>00053 <span class="preprocessor">#include "mail.h"</span>
+<a name="l00054"></a>00054 <span class="preprocessor">#include "types.h"</span>
+<a name="l00055"></a>00055 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00056"></a>00056 <span class="preprocessor">#include "encryption.h"</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#include "kwalletaccess.h"</span>
+<a name="l00058"></a>00058 <span class="preprocessor">#include "maillist.h"</span>
+<a name="l00059"></a>00059 <span class="preprocessor">#include "accountlist.h"</span>
+<a name="l00060"></a>00060 <span class="preprocessor">#include "corruptdataexception.h"</span>
+<a name="l00061"></a>00061 <span class="preprocessor">#include "headerfilter.h"</span>
+<a name="l00062"></a>00062 <span class="preprocessor">#include "filterlog.h"</span>
+<a name="l00063"></a>00063 <span class="preprocessor">#include "showmaildialog.h"</span>
+<a name="l00064"></a>00064 <span class="preprocessor">#include "kshowmail.h"</span>
+<a name="l00065"></a>00065 <span class="preprocessor">#include "accountviewitem.h"</span>
 <a name="l00066"></a>00066 
 <a name="l00070"></a><a class="code" href="namespacePOP3Constants.html">00070</a> <span class="keyword">namespace </span>POP3Constants
 <a name="l00071"></a>00071 {
-<a name="l00075"></a>00075   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#abc46cf0d940c74879ad8feff98fd304" title="positive server response">RESPONSE_POSITIVE</a>( <span class="stringliteral">"+OK"</span> );
+<a name="l00075"></a>00075   <span class="keyword">static</span> <span class="keyword">const</span> QString RESPONSE_POSITIVE( <span class="stringliteral">"+OK"</span> );
 <a name="l00076"></a>00076 
-<a name="l00080"></a>00080   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#571f2093c4001811ffcfb5a4ea48c953" title="negative server response">RESPONSE_NEGATIVE</a>( <span class="stringliteral">"-ERR"</span> );
+<a name="l00080"></a>00080   <span class="keyword">static</span> <span class="keyword">const</span> QString RESPONSE_NEGATIVE( <span class="stringliteral">"-ERR"</span> );
 <a name="l00081"></a>00081 
-<a name="l00085"></a>00085   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#7a3b20dab90257e5a4a466f1fd529f5e" title="End of multi-line response.">END_MULTILINE_RESPONSE</a>( <span class="stringliteral">"."</span> );
+<a name="l00085"></a>00085   <span class="keyword">static</span> <span class="keyword">const</span> QString END_MULTILINE_RESPONSE( <span class="stringliteral">"."</span> );
 <a name="l00086"></a>00086 
-<a name="l00090"></a>00090   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#ff0d052bcbcfb3fdaead78a71dc86c17" title="Capabilities request.">CAPA_REQUEST</a>( <span class="stringliteral">"CAPA"</span> );
+<a name="l00090"></a>00090   <span class="keyword">static</span> <span class="keyword">const</span> QString CAPA_REQUEST( <span class="stringliteral">"CAPA"</span> );
 <a name="l00091"></a>00091 
-<a name="l00095"></a>00095   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#28eb3b75c64ee9633989a739cc1e2e9c" title="Authentication mechanism request.">AUTH_REQUEST</a>( <span class="stringliteral">"AUTH"</span> );
+<a name="l00095"></a>00095   <span class="keyword">static</span> <span class="keyword">const</span> QString AUTH_REQUEST( <span class="stringliteral">"AUTH"</span> );
 <a name="l00096"></a>00096 
-<a name="l00100"></a>00100   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#fcbd56c4167ce3dcadf34603e4d55902" title="Capabilities response STLS available.">CAPA_RESPONSE_STLS</a>( <span class="stringliteral">"STLS"</span> );
+<a name="l00100"></a>00100   <span class="keyword">static</span> <span class="keyword">const</span> QString CAPA_RESPONSE_STLS( <span class="stringliteral">"STLS"</span> );
 <a name="l00101"></a>00101 
-<a name="l00105"></a>00105   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#00ac5e29ad83cad15ab6862eb5c30e04" title="command for start TLS">START_TLS</a>( <span class="stringliteral">"STLS"</span> );
+<a name="l00105"></a>00105   <span class="keyword">static</span> <span class="keyword">const</span> QString START_TLS( <span class="stringliteral">"STLS"</span> );
 <a name="l00106"></a>00106 
-<a name="l00110"></a>00110   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#4037c7e462cda551b024d2a80e88a03c" title="Commit command.">COMMIT</a>( <span class="stringliteral">"QUIT"</span> );
+<a name="l00110"></a>00110   <span class="keyword">static</span> <span class="keyword">const</span> QString COMMIT( <span class="stringliteral">"QUIT"</span> );
 <a name="l00111"></a>00111 
-<a name="l00115"></a>00115   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#d23ad7619def7057b8a73bdcb5178f67" title="Sends the username for login.">LOGIN_USER</a>( <span class="stringliteral">"USER"</span> );
+<a name="l00115"></a>00115   <span class="keyword">static</span> <span class="keyword">const</span> QString LOGIN_USER( <span class="stringliteral">"USER"</span> );
 <a name="l00116"></a>00116 
-<a name="l00120"></a>00120   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#1d83835d2f1219fdf83ca0a33ba7b5c9" title="Sends the password for login.">LOGIN_PASSWD</a>( <span class="stringliteral">"PASS"</span> );
+<a name="l00120"></a>00120   <span class="keyword">static</span> <span class="keyword">const</span> QString LOGIN_PASSWD( <span class="stringliteral">"PASS"</span> );
 <a name="l00121"></a>00121 
-<a name="l00125"></a>00125   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#9bf55ed1520c35d315c223d8ec4eaf9a" title="Command for login using APOP.">LOGIN_APOP</a>( <span class="stringliteral">"APOP"</span> );
+<a name="l00125"></a>00125   <span class="keyword">static</span> <span class="keyword">const</span> QString LOGIN_APOP( <span class="stringliteral">"APOP"</span> );
 <a name="l00126"></a>00126 
-<a name="l00130"></a>00130   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#6fc21f231ccd4c203c81c11cac5ec4e7" title="Command to get the UID list.">UID_LIST</a>( <span class="stringliteral">"UIDL"</span> );
+<a name="l00130"></a>00130   <span class="keyword">static</span> <span class="keyword">const</span> QString UID_LIST( <span class="stringliteral">"UIDL"</span> );
 <a name="l00131"></a>00131 
-<a name="l00135"></a>00135   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#eb070bd42cc5c21bc35b4654562f9023" title="Command to get a list of mail numbers and sizes.">MAIL_LIST</a>( <span class="stringliteral">"LIST"</span> );
+<a name="l00135"></a>00135   <span class="keyword">static</span> <span class="keyword">const</span> QString MAIL_LIST( <span class="stringliteral">"LIST"</span> );
 <a name="l00136"></a>00136 
-<a name="l00140"></a>00140   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#9d5807732593ba65c5b828610112499f" title="This command gets the header of a mail.">GET_HEADER</a>( <span class="stringliteral">"TOP"</span> );
+<a name="l00140"></a>00140   <span class="keyword">static</span> <span class="keyword">const</span> QString GET_HEADER( <span class="stringliteral">"TOP"</span> );
 <a name="l00141"></a>00141 
-<a name="l00145"></a>00145   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#0da5a4344ace51b4df2b2ec56d73f3b8" title="Deletes a mail.">DELETE</a>( <span class="stringliteral">"DELE"</span> );
+<a name="l00145"></a>00145   <span class="keyword">static</span> <span class="keyword">const</span> QString DELETE( <span class="stringliteral">"DELE"</span> );
 <a name="l00146"></a>00146 
-<a name="l00150"></a>00150   <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="namespacePOP3Constants.html#754f5d787e6f45fe50badaa5e75f44b8" title="Get a mail.">GET_MAIL</a>( <span class="stringliteral">"RETR"</span> );
+<a name="l00150"></a>00150   <span class="keyword">static</span> <span class="keyword">const</span> QString GET_MAIL( <span class="stringliteral">"RETR"</span> );
 <a name="l00151"></a>00151 }
 <a name="l00152"></a>00152 
 <a name="l00153"></a>00153 <span class="keyword">using namespace </span>POP3Constants;
@@ -130,7 +130,7 @@
 <a name="l00168"></a>00168 
 <a name="l00169"></a>00169   <span class="keyword">public</span>:
 <a name="l00170"></a>00170 
-<a name="l00177"></a>00177                 <a class="code" href="classAccount.html#2752691cf63243f069a2d54af9490a4f" title="Constructor.">Account</a>( QString <a class="code" href="classAccount.html#be08d97f4ba31a2483afd49376ac4fca" title="Name of this account.">name</a>, <a class="code" href="classAccountList.html" title="Contains the accounts.">AccountList</a>* <a class="code" href="classAccount.html#25c6a0fe23dbe020a8f1f2259b80fc7c" title="Pointer to the account list object.">accountList</a>, QObject* parent );
+<a name="l00177"></a>00177                 <a class="code" href="classAccount.html#2752691cf63243f069a2d54af9490a4f" title="Constructor.">Account</a>( QString name, <a class="code" href="classAccountList.html" title="Contains the accounts.">AccountList</a>* accountList, QObject* parent );
 <a name="l00178"></a>00178                 
 <a name="l00182"></a>00182                 <a class="code" href="classAccount.html#569c9ef0e42b9157690b4ceb646daba8" title="Destructor.">~Account</a>();
 <a name="l00183"></a>00183                 
@@ -140,7 +140,7 @@
 <a name="l00194"></a>00194                 
 <a name="l00199"></a>00199     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() <span class="keyword">const</span>;
 <a name="l00200"></a>00200 
-<a name="l00205"></a>00205     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#225062bfeff1d13ce642aee7dd1f78f9" title="Sets the account active.">setActive</a>( <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#79d8002523eb6a1a4b07e649c31a515b" title="TRUE - account is active; FALSE - account is not active.">active</a> );
+<a name="l00205"></a>00205     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#225062bfeff1d13ce642aee7dd1f78f9" title="Sets the account active.">setActive</a>( <span class="keywordtype">bool</span> active );
 <a name="l00206"></a>00206 
 <a name="l00210"></a>00210     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a1505f2632d15863c100a348fb2c2aff" title="Loads the options of this account from the application config.">load</a>();
 <a name="l00211"></a>00211 
@@ -227,220 +227,220 @@
 <a name="l00477"></a>00477 
 <a name="l00481"></a>00481   <span class="keywordtype">void</span> <a class="code" href="classAccount.html#0749ea248a667fdfae3e959a69a95e71" title="Closes the connection.">closeConnection</a>();
 <a name="l00482"></a>00482 
-<a name="l00486"></a>00486   <span class="keywordtype">void</span> <a class="code" href="classAccount.html#45d2138dc750d5051af965b6ed1446a6" title="Initiates the account to do a connect.">initBeforeConnect</a>();
-<a name="l00487"></a>00487 
-<a name="l00492"></a>00492     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( QString error );
-<a name="l00493"></a>00493 
-<a name="l00499"></a>00499     QStringList <a class="code" href="classAccount.html#dc967ce6b695510e9d892078cb202fbe" title="Reads all data from the socket.">readfromSocket</a>( <span class="keywordtype">bool</span> singleLine );
-<a name="l00500"></a>00500 
-<a name="l00505"></a>00505     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <span class="keyword">const</span> QString&amp; command );
-<a name="l00506"></a>00506 
-<a name="l00512"></a>00512     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#17a525665a18958356f8e443319f4765" title="Gets the capabilities from the server. Sends the CAPA-command connect the socket...">getCapabilities</a>();
-<a name="l00513"></a>00513     
-<a name="l00518"></a>00518     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a57194c111d0e58461a514c6aeaf877c" title="Prints the a text received from the server to stdout.">printServerMessage</a>( QStringList&amp; text ) <span class="keyword">const</span>;
-<a name="l00519"></a>00519 
-<a name="l00525"></a>00525     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#8862a31f946ddc6296ef8c987c83fad2" title="Returns whether the server answer is positive or negative.">isPositiveServerMessage</a>( QStringList&amp; message ) <span class="keyword">const</span>;
-<a name="l00526"></a>00526 
-<a name="l00535"></a>00535     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#77773a99fa905e7863bae9a03af805c7" title="Sends the command to get the authentication mechanism of this server.">getAuthMech</a>();
-<a name="l00536"></a>00536 
-<a name="l00544"></a>00544     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#09984d1dc320c8a697f1cf80667b0047" title="Sends the commit command to end the session.">commit</a>();
-<a name="l00545"></a>00545 
-<a name="l00555"></a>00555     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
-<a name="l00556"></a>00556 
-<a name="l00563"></a>00563     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#841597d36acd8d9d2ac4120cfde72588" title="Sends the login name.">loginUser</a>();
-<a name="l00564"></a>00564 
-<a name="l00571"></a>00571     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#5c3d449ad762ab9c18ed08070ba243b7" title="Sends the password for login.">loginPasswd</a>();
-<a name="l00572"></a>00572 
-<a name="l00579"></a>00579     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#84ec89cb9027a490ab4054be24892581" title="Initiates a login using APOP.">loginApop</a>();
-<a name="l00580"></a>00580 
-<a name="l00586"></a>00586     QString <a class="code" href="classAccount.html#c181e1d361210773f12333b37e6c62d8" title="Removes the status indicator from a single line server message.">removeStatusIndicator</a>( <span class="keyword">const</span> QString&amp; message );
-<a name="l00587"></a>00587 
-<a name="l00592"></a>00592     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#c181e1d361210773f12333b37e6c62d8" title="Removes the status indicator from a single line server message.">removeStatusIndicator</a>( QStringList* response );
-<a name="l00593"></a>00593 
-<a name="l00598"></a>00598     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#45463e9090bd0eaf8631ece426b9b7a6" title="If the last line of the server response is the end of response marker, this methode...">removeEndOfResponseMarker</a>( QStringList* response );
-<a name="l00599"></a>00599 
-<a name="l00606"></a>00606     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ac02cf510db738e3159bcdc710bdf86c" title="Sends the UIDL command to get a list of the mail UID&amp;#39;s.">getUIDList</a>();
-<a name="l00607"></a>00607 
-<a name="l00613"></a>00613     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4550cb81d9373a72944ccfd4249ae84b" title="Copies the pointer to the temporary list to the mail list.">swapMailLists</a>();
-<a name="l00614"></a>00614 
-<a name="l00621"></a>00621     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#60067c36f35ff08c2751a3380ee22f33" title="Sends the LIST command to get a list of mail sizes.">getMailSizes</a>();
-<a name="l00622"></a>00622 
-<a name="l00626"></a>00626     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#9dfc81002bdd7cccbcc9ac36dadcf480" title="Gets the headers of the new mails from the server.">getHeaders</a>();
-<a name="l00627"></a>00627 
-<a name="l00639"></a>00639     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#fc44e7ca09f2168d7264ccd300a96a59" title="Get the header of the first mail in newMails.">getNextHeader</a>();
-<a name="l00640"></a>00640 
-<a name="l00647"></a>00647     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#e366d344d27b9c7a9811e3e4a316f3ab" title="Returns whether the given string is a negative server response.">isNegativeResponse</a>( <span class="keyword">const</span> QString&amp; response );
-<a name="l00648"></a>00648 
-<a name="l00654"></a>00654     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#652e8c299cf24560c1eaefcb3a543909" title="Copies the known headers of the old mails from the old mail list to the new one.">copyHeaders</a>();
-<a name="l00655"></a>00655 
-<a name="l00665"></a>00665     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#cbdca339255a96063b2008ccf48a381b" title="Deletes the first mail of MailsToDelete.">deleteNextMail</a>();
-<a name="l00666"></a>00666 
-<a name="l00677"></a>00677     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#6f20cd9c1da4a940f7e14105650018ca" title="Shows the body of the first mail in MailsToShow.">showNextMail</a>();
-<a name="l00678"></a>00678 
-<a name="l00686"></a>00686     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#33e2fb6a87b117d22c4fcf86e2826832" title="Does all filter actions for which we have to download the mails.">doDownloadActions</a>();
-<a name="l00687"></a>00687 
-<a name="l00698"></a>00698     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">getNextMailForDownloadActions</a>();
-<a name="l00699"></a>00699 
-<a name="l00709"></a>00709     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#270bb12b57d54965436e0e2572a8b993" title="If there are mails to delete by filters applyFilters will call the regular deletion...">applyFiltersDeleted</a>();
-<a name="l00710"></a>00710 
-<a name="l00717"></a>00717     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#e419a2147d73f7447f996b8ad9c5e173" title="Send a commit and restart the refresh cycle.">commitBeforeRefresh</a>();
-<a name="l00718"></a>00718 
-<a name="l00731"></a>00731     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ccdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
-<a name="l00732"></a>00732 
-<a name="l00739"></a>00739     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#d7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">writeToMailBox</a>( <span class="keyword">const</span> QStringList&amp; mail, <span class="keyword">const</span> QString&amp; box );
-<a name="l00740"></a>00740 
-<a name="l00746"></a>00746     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#6995176992472513598b2cc93be40e79" title="Returns whether the given directory is a maildir directory.">isMailDir</a>( <span class="keyword">const</span> QDir&amp; path );
-<a name="l00747"></a>00747 
-<a name="l00753"></a>00753     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#309e2098c05fba9b4303b24008459574" title="Forwards the given mail to SpamAssassin and returns the test result.">isSpam</a>( QStringList mail ) <span class="keyword">const</span>;
-<a name="l00754"></a>00754 
-<a name="l00759"></a>00759     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0f5b60a29afcb519404b365d9f4bb88d" title="Looks for a running spamd daemon of SpamAssassin.">isSpamAssassinRunning</a>() <span class="keyword">const</span>;
-<a name="l00760"></a>00760 
-<a name="l00764"></a>00764     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#2d192a810474d780611c095b9f971fbe" title="Invites the server to crypt using TLS (STARTTLS).">startTLS</a>();
-<a name="l00765"></a>00765 
-<a name="l00766"></a>00766 
-<a name="l00767"></a>00767   <span class="keyword">protected</span> slots:
+<a name="l00488"></a>00488   <span class="keywordtype">void</span> <a class="code" href="classAccount.html#45d2138dc750d5051af965b6ed1446a6" title="Initiates the account to do a connect.">initBeforeConnect</a>();
+<a name="l00489"></a>00489 
+<a name="l00494"></a>00494     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( QString error );
+<a name="l00495"></a>00495 
+<a name="l00501"></a>00501     QStringList <a class="code" href="classAccount.html#dc967ce6b695510e9d892078cb202fbe" title="Reads all data from the socket.">readfromSocket</a>( <span class="keywordtype">bool</span> singleLine );
+<a name="l00502"></a>00502 
+<a name="l00507"></a>00507     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <span class="keyword">const</span> QString&amp; command );
+<a name="l00508"></a>00508 
+<a name="l00514"></a>00514     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#17a525665a18958356f8e443319f4765" title="Gets the capabilities from the server. Sends the CAPA-command connect the socket...">getCapabilities</a>();
+<a name="l00515"></a>00515     
+<a name="l00520"></a>00520     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a57194c111d0e58461a514c6aeaf877c" title="Prints the a text received from the server to stdout.">printServerMessage</a>( QStringList&amp; text ) <span class="keyword">const</span>;
+<a name="l00521"></a>00521 
+<a name="l00527"></a>00527     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#8862a31f946ddc6296ef8c987c83fad2" title="Returns whether the server answer is positive or negative.">isPositiveServerMessage</a>( QStringList&amp; message ) <span class="keyword">const</span>;
+<a name="l00528"></a>00528 
+<a name="l00537"></a>00537     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#77773a99fa905e7863bae9a03af805c7" title="Sends the command to get the authentication mechanism of this server.">getAuthMech</a>();
+<a name="l00538"></a>00538 
+<a name="l00546"></a>00546     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#09984d1dc320c8a697f1cf80667b0047" title="Sends the commit command to end the session.">commit</a>();
+<a name="l00547"></a>00547 
+<a name="l00557"></a>00557     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
+<a name="l00558"></a>00558 
+<a name="l00565"></a>00565     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#841597d36acd8d9d2ac4120cfde72588" title="Sends the login name.">loginUser</a>();
+<a name="l00566"></a>00566 
+<a name="l00573"></a>00573     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#5c3d449ad762ab9c18ed08070ba243b7" title="Sends the password for login.">loginPasswd</a>();
+<a name="l00574"></a>00574 
+<a name="l00581"></a>00581     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#84ec89cb9027a490ab4054be24892581" title="Initiates a login using APOP.">loginApop</a>();
+<a name="l00582"></a>00582 
+<a name="l00588"></a>00588     QString <a class="code" href="classAccount.html#c181e1d361210773f12333b37e6c62d8" title="Removes the status indicator from a single line server message.">removeStatusIndicator</a>( <span class="keyword">const</span> QString&amp; message );
+<a name="l00589"></a>00589 
+<a name="l00594"></a>00594     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#c181e1d361210773f12333b37e6c62d8" title="Removes the status indicator from a single line server message.">removeStatusIndicator</a>( QStringList* response );
+<a name="l00595"></a>00595 
+<a name="l00600"></a>00600     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#45463e9090bd0eaf8631ece426b9b7a6" title="If the last line of the server response is the end of response marker, this methode...">removeEndOfResponseMarker</a>( QStringList* response );
+<a name="l00601"></a>00601 
+<a name="l00608"></a>00608     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ac02cf510db738e3159bcdc710bdf86c" title="Sends the UIDL command to get a list of the mail UID&amp;#39;s.">getUIDList</a>();
+<a name="l00609"></a>00609 
+<a name="l00615"></a>00615     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4550cb81d9373a72944ccfd4249ae84b" title="Copies the pointer to the temporary list to the mail list.">swapMailLists</a>();
+<a name="l00616"></a>00616 
+<a name="l00623"></a>00623     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#60067c36f35ff08c2751a3380ee22f33" title="Sends the LIST command to get a list of mail sizes.">getMailSizes</a>();
+<a name="l00624"></a>00624 
+<a name="l00628"></a>00628     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#9dfc81002bdd7cccbcc9ac36dadcf480" title="Gets the headers of the new mails from the server.">getHeaders</a>();
+<a name="l00629"></a>00629 
+<a name="l00641"></a>00641     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#fc44e7ca09f2168d7264ccd300a96a59" title="Get the header of the first mail in newMails.">getNextHeader</a>();
+<a name="l00642"></a>00642 
+<a name="l00649"></a>00649     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#e366d344d27b9c7a9811e3e4a316f3ab" title="Returns whether the given string is a negative server response.">isNegativeResponse</a>( <span class="keyword">const</span> QString&amp; response );
+<a name="l00650"></a>00650 
+<a name="l00656"></a>00656     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#652e8c299cf24560c1eaefcb3a543909" title="Copies the known headers of the old mails from the old mail list to the new one.">copyHeaders</a>();
+<a name="l00657"></a>00657 
+<a name="l00667"></a>00667     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#cbdca339255a96063b2008ccf48a381b" title="Deletes the first mail of MailsToDelete.">deleteNextMail</a>();
+<a name="l00668"></a>00668 
+<a name="l00679"></a>00679     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#6f20cd9c1da4a940f7e14105650018ca" title="Shows the body of the first mail in MailsToShow.">showNextMail</a>();
+<a name="l00680"></a>00680 
+<a name="l00688"></a>00688     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#33e2fb6a87b117d22c4fcf86e2826832" title="Does all filter actions for which we have to download the mails.">doDownloadActions</a>();
+<a name="l00689"></a>00689 
+<a name="l00700"></a>00700     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">getNextMailForDownloadActions</a>();
+<a name="l00701"></a>00701 
+<a name="l00711"></a>00711     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#270bb12b57d54965436e0e2572a8b993" title="If there are mails to delete by filters applyFilters will call the regular deletion...">applyFiltersDeleted</a>();
+<a name="l00712"></a>00712 
+<a name="l00719"></a>00719     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#e419a2147d73f7447f996b8ad9c5e173" title="Send a commit and restart the refresh cycle.">commitBeforeRefresh</a>();
+<a name="l00720"></a>00720 
+<a name="l00733"></a>00733     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ccdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
+<a name="l00734"></a>00734 
+<a name="l00741"></a>00741     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#d7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">writeToMailBox</a>( <span class="keyword">const</span> QStringList&amp; mail, <span class="keyword">const</span> QString&amp; box );
+<a name="l00742"></a>00742 
+<a name="l00748"></a>00748     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#6995176992472513598b2cc93be40e79" title="Returns whether the given directory is a maildir directory.">isMailDir</a>( <span class="keyword">const</span> QDir&amp; path );
+<a name="l00749"></a>00749 
+<a name="l00755"></a>00755     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#309e2098c05fba9b4303b24008459574" title="Forwards the given mail to SpamAssassin and returns the test result.">isSpam</a>( QStringList mail ) <span class="keyword">const</span>;
+<a name="l00756"></a>00756 
+<a name="l00761"></a>00761     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0f5b60a29afcb519404b365d9f4bb88d" title="Looks for a running spamd daemon of SpamAssassin.">isSpamAssassinRunning</a>() <span class="keyword">const</span>;
+<a name="l00762"></a>00762 
+<a name="l00766"></a>00766     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#2d192a810474d780611c095b9f971fbe" title="Invites the server to crypt using TLS (STARTTLS).">startTLS</a>();
+<a name="l00767"></a>00767 
 <a name="l00768"></a>00768 
-<a name="l00773"></a>00773    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#cbf99bb52d6ef767e4bae9a6467b8d0b" title="Connected with signal connected of the socket. Will be invoked after the socket has...">slotConnected</a>();
-<a name="l00774"></a>00774 
-<a name="l00779"></a>00779    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ec737aff73ff822140d285306731d8da" title="Connected with signal hostFound of the socket. Will be invoked after the socket has...">slotHostFound</a>();
-<a name="l00780"></a>00780 
-<a name="l00786"></a>00786    <span class="keywordtype">void</span> <a class="code" href="classAccount.html#0b11bee7c841aaa8237dccdfccdbe222" title="Connected with signal error of the socket. Will be invoked, when an socket error...">slotSocketError</a>( KTcpSocket::Error errorCode );
-<a name="l00787"></a>00787 
-<a name="l00793"></a>00793    <span class="keywordtype">void</span> <a class="code" href="classAccount.html#09ea69c48d1dae107c40e37688e51a76" title="Connected with signale sslErrors of the socket.">slotSSLError</a>( <span class="keyword">const</span> QList&lt;KSslError&gt;&amp; errors );
-<a name="l00794"></a>00794 
-<a name="l00798"></a>00798     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#de79a3c594f9949a65f790ea23f42a96" title="Reads the first message send by server.">slotReadFirstServerMessage</a>();
-<a name="l00799"></a>00799 
-<a name="l00804"></a>00804     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ac2bb97707718206933ea07b5509d12d" title="Reads the capabilities from the server.">slotCapabilitiesResponse</a>();
-<a name="l00805"></a>00805 
-<a name="l00812"></a>00812     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#1fef639e30bdc576f503c6ad36ff1979" title="Connected with the signal readyRead of the socket by getAuthMech(). Analyzes the...">slotAuthMechResponse</a>();
-<a name="l00813"></a>00813 
-<a name="l00819"></a>00819     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#5b9adf87eb6f6b59f0833cf73f39d192" title="Connected with signal readyRead of the socket by commit(). Analyzes the commit response...">slotCommitResponse</a>();
-<a name="l00820"></a>00820 
-<a name="l00825"></a>00825     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ee5caad7e81a79293e5a943df3734a6e" title="Received the response of the USER command during login.">slotLoginUserResponse</a>();
-<a name="l00826"></a>00826 
-<a name="l00831"></a>00831     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#0acff9707e4266fa4ef0cbc37b178a60" title="Received the response of the PASS command during login.">slotLoginPasswdResponse</a>();
-<a name="l00832"></a>00832 
-<a name="l00837"></a>00837     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3ec1a6378b131ab2805497cbe38d4a85" title="Receives the response of a login using APOP.">slotLoginApopResponse</a>();
-<a name="l00838"></a>00838 
-<a name="l00843"></a>00843     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#9cfc603fe799645989348ad08613622a" title="Reiceves the response of the UIDL command, which gets the UID&amp;#39;s of the mails...">slotUIDListResponse</a>();
-<a name="l00844"></a>00844 
-<a name="l00850"></a>00850     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4afa5d0ff8c39557dd3bdee77f2fc54a" title="Receives the response of the LIST command, which gets the numbers and sizes of the...">slotMailSizesResponse</a>();
-<a name="l00851"></a>00851 
-<a name="l00861"></a>00861     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#7f0f8a08101becb92122a4dd381c7257" title="Receives the header requested by getNextHeader().">slotGetHeaderResponse</a>();
-<a name="l00862"></a>00862 
-<a name="l00873"></a>00873     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#431e196680791d9fb84c7d8ab540b24c" title="Removes the deleted mail from the internal mail list (m_pshowrecord).">slotMailDeleted</a>();
-<a name="l00874"></a>00874 
-<a name="l00886"></a>00886     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4e09a9c0aa29b2e3f2d1474fd90c7ae0" title="Opens a window (class ShowMailDialog) with the downloaded mail body.">slotBodyDownloaded</a>();
-<a name="l00887"></a>00887 
-<a name="l00902"></a>00902     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#79bd9a4d8eb35366b186475941c2de2d" title="Downloads a mail to write it into a mailbox or do a spam check.">slotMailDownloadedForAction</a>();
-<a name="l00903"></a>00903 
-<a name="l00909"></a>00909     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#253e59ac68c6286416841d798a38bef7" title="Restarts a second refresh cycle after a deletion performed by the filter.">slotCommitBeforeRefreshDone</a>();
-<a name="l00910"></a>00910 
-<a name="l00917"></a>00917      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4fef3a9e3b72505f6091ea3ed368276d" title="Connected with the timeout timer.">slotTimeout</a>();
-<a name="l00918"></a>00918 
-<a name="l00922"></a>00922      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#f1a8bd9405314c274cc24ebe96dba17f" title="Receives the response of the STLS command.">slotStartTLSResponse</a>();
-<a name="l00923"></a>00923 
-<a name="l00924"></a>00924         <span class="keyword">private</span>:
-<a name="l00925"></a>00925                 
-<a name="l00929"></a><a class="code" href="classAccount.html#be08d97f4ba31a2483afd49376ac4fca">00929</a>                 QString name;
-<a name="l00930"></a>00930                 
-<a name="l00934"></a><a class="code" href="classAccount.html#79d8002523eb6a1a4b07e649c31a515b">00934</a>     <span class="keywordtype">bool</span> active;
-<a name="l00935"></a>00935 
-<a name="l00939"></a><a class="code" href="classAccount.html#f8863d5d638310a80fb82d47175cf3c0">00939</a>     <a class="code" href="namespaceTypes.html#a6bd0f4ca0fe97e362ec3019cdf257f9">TransferSecurity_Type</a> <a class="code" href="classAccount.html#f8863d5d638310a80fb82d47175cf3c0" title="Type of the transfer security.">transferSecurity</a>;
-<a name="l00940"></a>00940 
-<a name="l00944"></a><a class="code" href="classAccount.html#dbb4c75c5000491095659d57bf8432a5">00944</a>     KUrl <a class="code" href="classAccount.html#dbb4c75c5000491095659d57bf8432a5" title="Uniform Resource Locator of the account on the mail server.">url</a>;
-<a name="l00945"></a>00945 
-<a name="l00954"></a><a class="code" href="classAccount.html#269e44e39a9762652540e21e405f64c1">00954</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#269e44e39a9762652540e21e405f64c1" title="Type of password storage.">passwordStorage</a>;
-<a name="l00955"></a>00955 
-<a name="l00959"></a><a class="code" href="classAccount.html#8ba56d88f5a3d1eff36ba78481bf7584">00959</a>     <a class="code" href="classMailList.html" title="List of Mails.">MailList</a>* <a class="code" href="classAccount.html#8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>;
-<a name="l00960"></a>00960 
-<a name="l00966"></a><a class="code" href="classAccount.html#de305e4671a5a01b637400b28fe0718d">00966</a>     <a class="code" href="classMailList.html" title="List of Mails.">MailList</a>* <a class="code" href="classAccount.html#de305e4671a5a01b637400b28fe0718d" title="While refreshing, this mail list instance will be used to build a new mail list....">tempMailList</a>;
-<a name="l00967"></a>00967     
-<a name="l00968"></a>00968 
-<a name="l00972"></a><a class="code" href="classAccount.html#69994f2519a09c4b1951997fc0da143f">00972</a>     KTcpSocket* <a class="code" href="classAccount.html#69994f2519a09c4b1951997fc0da143f" title="The socket. Handles all server operations.">socket</a>;
-<a name="l00973"></a>00973 
-<a name="l00977"></a><a class="code" href="classAccount.html#25c6a0fe23dbe020a8f1f2259b80fc7c">00977</a>     <a class="code" href="classAccountList.html" title="Contains the accounts.">AccountList</a>* accountList;
-<a name="l00978"></a>00978 
-<a name="l00985"></a><a class="code" href="classAccount.html#019cd466572643e52dc7213d3be69c9a">00985</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#019cd466572643e52dc7213d3be69c9a" title="TRUE - the QUIT command was sent to the server. Normally set by the commit methode...">quitSent</a>;
-<a name="l00986"></a>00986 
-<a name="l00990"></a><a class="code" href="classAccount.html#6eaf3595a3dbbb5d8ebf441186543cb1">00990</a>     QTimer* <a class="code" href="classAccount.html#6eaf3595a3dbbb5d8ebf441186543cb1" title="This timer kills a running operation after the preset time.">timeoutTimer</a>;
-<a name="l00991"></a>00991 
-<a name="l00995"></a><a class="code" href="classAccount.html#709933c49b495528dc5a8cf55bc402ff">00995</a>     <a class="code" href="namespaceTypes.html#57c868019acd102e855ff50f6043c1b6">Types::AccountState_Type</a> <a class="code" href="classAccount.html#709933c49b495528dc5a8cf55bc402ff" title="State of the account.">state</a>;
-<a name="l00996"></a>00996 
-<a name="l01000"></a><a class="code" href="classAccount.html#9bfe1916b0f61f6f0e21e5ab6f232f19">01000</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#9bfe1916b0f61f6f0e21e5ab6f232f19" title="APOP available.">apopAvail</a>;
-<a name="l01001"></a>01001 
-<a name="l01007"></a><a class="code" href="classAccount.html#0bb190f15c4ee896dfe2e899f4fbdd39">01007</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0bb190f15c4ee896dfe2e899f4fbdd39" title="Is set to TRUE by slotLoginAPOPResponse if the first login with APOP is failed.">dontUseAPOP</a>;
-<a name="l01008"></a>01008 
-<a name="l01012"></a><a class="code" href="classAccount.html#1bdd2f92c1113a5300263191770621eb">01012</a>     QString <a class="code" href="classAccount.html#1bdd2f92c1113a5300263191770621eb" title="Timestamp for APOP sent with the server greeting.">apopTimestamp</a>;
-<a name="l01013"></a>01013 
-<a name="l01017"></a><a class="code" href="classAccount.html#6c382c4db738ee387d9e2bab4483c7c3">01017</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#6c382c4db738ee387d9e2bab4483c7c3" title="TRUE - unsafe login is allowed if a secure login failed.">allowUnsecureLogin</a>;
-<a name="l01018"></a>01018 
-<a name="l01027"></a><a class="code" href="classAccount.html#652c4cdd5cb5aff1f3b3d3948a50d5d0">01027</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#652c4cdd5cb5aff1f3b3d3948a50d5d0" title="This is a flag whether the filters was applied during a refresh cycle.">filterApplied</a>;
-<a name="l01028"></a>01028 
-<a name="l01034"></a><a class="code" href="classAccount.html#506d3ee4d01ebd795d5907e66b903387">01034</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#506d3ee4d01ebd795d5907e66b903387" title="This flag is set by applyFiltersDeleted() to indicate the refresh cycle is the second...">refreshPerformedByFilters</a>;
-<a name="l01035"></a>01035 
-<a name="l01044"></a><a class="code" href="classAccount.html#0e98300f293ea203ef258ee389d7f4b7">01044</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#0e98300f293ea203ef258ee389d7f4b7" title="Contains the numbers of new mails.">newMails</a>;
-<a name="l01045"></a>01045 
-<a name="l01054"></a><a class="code" href="classAccount.html#eaa8c337f590e3d31e5d1a296b2830eb">01054</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#eaa8c337f590e3d31e5d1a296b2830eb" title="Contains the numbers of mails which will be deleted.">mailsToDelete</a>;
-<a name="l01055"></a>01055 
-<a name="l01063"></a><a class="code" href="classAccount.html#1a058c26db20a995d5867aabdb6845db">01063</a>     <a class="code" href="namespaceTypes.html#28b7da8de2bbe1b7a098d41242e78ab7" title="This map is used by ConfigElem and ShowRecord to hold a list of mail numbers which...">MailToDownloadMap_Type</a> <a class="code" href="classAccount.html#1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>;
-<a name="l01064"></a>01064 
-<a name="l01073"></a><a class="code" href="classAccount.html#a1022eb311849a9596e9f7d01e2fda7f">01073</a>     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> <a class="code" href="classAccount.html#a1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>;
-<a name="l01074"></a>01074 
-<a name="l01080"></a><a class="code" href="classAccount.html#936a65fefffd683f9c1789c478e04bb2">01080</a>     <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* <a class="code" href="classAccount.html#936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a>;
-<a name="l01081"></a>01081 
-<a name="l01085"></a><a class="code" href="classAccount.html#1646821337a21296d8e42a0ba45bc12e">01085</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#1646821337a21296d8e42a0ba45bc12e" title="Number of deleted mails by last refresh.">nmbDeletedMailsLastRefresh</a>;
-<a name="l01086"></a>01086 
-<a name="l01090"></a><a class="code" href="classAccount.html#897d2dd8e64ae21707e19a6cfdad86fe">01090</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#897d2dd8e64ae21707e19a6cfdad86fe" title="Number of moved mails by last refresh.">nmbMovedMailsLastRefresh</a>;
-<a name="l01091"></a>01091 
-<a name="l01095"></a><a class="code" href="classAccount.html#59b24a3b5ee342382cc74ddc7c4e34a1">01095</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#59b24a3b5ee342382cc74ddc7c4e34a1" title="Number of moved mails since start.">nmbMovedMailsLastStart</a>;
-<a name="l01096"></a>01096 
-<a name="l01100"></a><a class="code" href="classAccount.html#308b89826e944c49cf6336ee4dbfe9eb">01100</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#308b89826e944c49cf6336ee4dbfe9eb" title="Number of ignored mails by last refresh.">nmbIgnoredMails</a>;
-<a name="l01101"></a>01101 
-<a name="l01105"></a><a class="code" href="classAccount.html#3d98d6d000d1a4fe03c5a0acfc4c2c89">01105</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#3d98d6d000d1a4fe03c5a0acfc4c2c89" title="Counter for moving to create an unique file name.">moveCounter</a>;
-<a name="l01106"></a>01106 
-<a name="l01110"></a><a class="code" href="classAccount.html#6a683c23a6cb13af08501624c1251ca3">01110</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#6a683c23a6cb13af08501624c1251ca3" title="Number of deleted mails since start.">nmbDeletedMailsLastStart</a>;
-<a name="l01111"></a>01111 
-<a name="l01117"></a><a class="code" href="classAccount.html#ada63b6fea658e7c5bebabdefed84023">01117</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ada63b6fea658e7c5bebabdefed84023" title="This flag is set to TRUE by applyFilters() to indicate the mailbodies are downloading...">downloadActionsInvoked</a>;
-<a name="l01118"></a>01118 
-<a name="l01122"></a><a class="code" href="classAccount.html#622c3820f62efaa90098b46acc8649fd">01122</a>     <a class="code" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header data of the mail to...">HeaderFilter</a> <a class="code" href="classAccount.html#622c3820f62efaa90098b46acc8649fd" title="Every account has is own header filter instance.">headerFilter</a>;
-<a name="l01123"></a>01123 
-<a name="l01129"></a><a class="code" href="classAccount.html#5993a239656c0df398b9c6fd88eeb5b9">01129</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#5993a239656c0df398b9c6fd88eeb5b9" title="This flag is set by applyFilters() to indicate the deletion cycle is performed by...">deletionPerformedByFilters</a>;
-<a name="l01130"></a>01130 
-<a name="l01134"></a><a class="code" href="classAccount.html#6708f147a607ff61c8af5fc4cc7f0c6b">01134</a>      QString <a class="code" href="classAccount.html#6708f147a607ff61c8af5fc4cc7f0c6b" title="Mailbox for Spam, if configured.">spamMailbox</a>;
-<a name="l01135"></a>01135 
-<a name="l01139"></a><a class="code" href="classAccount.html#5a2fcde117c3a1502a7a2a558679b393">01139</a>                 <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classAccount.html#5a2fcde117c3a1502a7a2a558679b393" title="Action which shall be done, if the mail is Spam.">spamAction</a>;
-<a name="l01140"></a>01140 
-<a name="l01144"></a><a class="code" href="classAccount.html#7676e6c216669bb62666f48a33c62bc1">01144</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#7676e6c216669bb62666f48a33c62bc1" title="TRUE - the error will not be handled by slotSocketError.">dontHandleError</a>;
-<a name="l01145"></a>01145 
-<a name="l01151"></a><a class="code" href="classAccount.html#ad81b0b66ceacb6f99bdadb3b84bf660">01151</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ad81b0b66ceacb6f99bdadb3b84bf660" title="TRUE - informs the user about connection errors.">informAboutErrors</a>;
-<a name="l01152"></a>01152 
-<a name="l01156"></a><a class="code" href="classAccount.html#c661f370c8ac5cf25cd095e526127ff7">01156</a>     <span class="keywordtype">int</span> <a class="code" href="classAccount.html#c661f370c8ac5cf25cd095e526127ff7" title="Seconds to Timeout.">timeOutTime</a>;
-<a name="l01157"></a>01157 
-<a name="l01164"></a><a class="code" href="classAccount.html#0ecbfbe9dd96db2e54e858efb4773fc7">01164</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#0ecbfbe9dd96db2e54e858efb4773fc7" title="TRUE - the server supports StartTLS.">supportsStartTLS</a>;
-<a name="l01165"></a>01165 
-<a name="l01166"></a>01166     
-<a name="l01167"></a>01167   signals:
-<a name="l01168"></a>01168 
-<a name="l01173"></a>01173     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3cab83b22634d8f6558a48d657e4b6a5" title="Will be emitted when all selected mails are deleted.">sigDeleteReady</a>( QString account );
-<a name="l01174"></a>01174 
-<a name="l01180"></a>01180     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#439f0aa2ae9ff2cf4e18a69f7bf3118c" title="Will be emitted when the bodies of all selected mails are downloaded and shown.">sigShowBodiesReady</a>( QString account );
-<a name="l01181"></a>01181 
-<a name="l01185"></a>01185     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#7cd0ce85e9bd7eff2abb17c4117aafd7" title="Will be emitted when the settings have been changed.">sigConfigChanged</a>();
-<a name="l01186"></a>01186 
-<a name="l01190"></a>01190     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
-<a name="l01191"></a>01191 
-<a name="l01195"></a>01195     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#e25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
-<a name="l01196"></a>01196 
-<a name="l01201"></a>01201     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#dd5b98fe2551acc4679b7c5574f70851" title="Will be emitted, when the mail list was refreshed.">sigRefreshReady</a>( QString account );
-<a name="l01202"></a>01202 
-<a name="l01203"></a>01203     
-<a name="l01204"></a>01204                 
-<a name="l01205"></a>01205 };
-<a name="l01206"></a>01206 
-<a name="l01207"></a>01207 <span class="preprocessor">#endif // ACCOUNT_H</span>
+<a name="l00769"></a>00769   <span class="keyword">protected</span> slots:
+<a name="l00770"></a>00770 
+<a name="l00775"></a>00775    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#cbf99bb52d6ef767e4bae9a6467b8d0b" title="Connected with signal connected of the socket. Will be invoked after the socket has...">slotConnected</a>();
+<a name="l00776"></a>00776 
+<a name="l00781"></a>00781    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ec737aff73ff822140d285306731d8da" title="Connected with signal hostFound of the socket. Will be invoked after the socket has...">slotHostFound</a>();
+<a name="l00782"></a>00782 
+<a name="l00788"></a>00788    <span class="keywordtype">void</span> <a class="code" href="classAccount.html#0b11bee7c841aaa8237dccdfccdbe222" title="Connected with signal error of the socket. Will be invoked, when an socket error...">slotSocketError</a>( KTcpSocket::Error errorCode );
+<a name="l00789"></a>00789 
+<a name="l00795"></a>00795    <span class="keywordtype">void</span> <a class="code" href="classAccount.html#09ea69c48d1dae107c40e37688e51a76" title="Connected with signale sslErrors of the socket.">slotSSLError</a>( <span class="keyword">const</span> QList&lt;KSslError&gt;&amp; errors );
+<a name="l00796"></a>00796 
+<a name="l00800"></a>00800     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#de79a3c594f9949a65f790ea23f42a96" title="Reads the first message send by server.">slotReadFirstServerMessage</a>();
+<a name="l00801"></a>00801 
+<a name="l00806"></a>00806     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ac2bb97707718206933ea07b5509d12d" title="Reads the capabilities from the server.">slotCapabilitiesResponse</a>();
+<a name="l00807"></a>00807 
+<a name="l00814"></a>00814     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#1fef639e30bdc576f503c6ad36ff1979" title="Connected with the signal readyRead of the socket by getAuthMech(). Analyzes the...">slotAuthMechResponse</a>();
+<a name="l00815"></a>00815 
+<a name="l00821"></a>00821     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#5b9adf87eb6f6b59f0833cf73f39d192" title="Connected with signal readyRead of the socket by commit(). Analyzes the commit response...">slotCommitResponse</a>();
+<a name="l00822"></a>00822 
+<a name="l00827"></a>00827     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ee5caad7e81a79293e5a943df3734a6e" title="Received the response of the USER command during login.">slotLoginUserResponse</a>();
+<a name="l00828"></a>00828 
+<a name="l00833"></a>00833     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#0acff9707e4266fa4ef0cbc37b178a60" title="Received the response of the PASS command during login.">slotLoginPasswdResponse</a>();
+<a name="l00834"></a>00834 
+<a name="l00839"></a>00839     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3ec1a6378b131ab2805497cbe38d4a85" title="Receives the response of a login using APOP.">slotLoginApopResponse</a>();
+<a name="l00840"></a>00840 
+<a name="l00845"></a>00845     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#9cfc603fe799645989348ad08613622a" title="Reiceves the response of the UIDL command, which gets the UID&amp;#39;s of the mails...">slotUIDListResponse</a>();
+<a name="l00846"></a>00846 
+<a name="l00852"></a>00852     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4afa5d0ff8c39557dd3bdee77f2fc54a" title="Receives the response of the LIST command, which gets the numbers and sizes of the...">slotMailSizesResponse</a>();
+<a name="l00853"></a>00853 
+<a name="l00863"></a>00863     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#7f0f8a08101becb92122a4dd381c7257" title="Receives the header requested by getNextHeader().">slotGetHeaderResponse</a>();
+<a name="l00864"></a>00864 
+<a name="l00875"></a>00875     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#431e196680791d9fb84c7d8ab540b24c" title="Removes the deleted mail from the internal mail list (m_pshowrecord).">slotMailDeleted</a>();
+<a name="l00876"></a>00876 
+<a name="l00888"></a>00888     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4e09a9c0aa29b2e3f2d1474fd90c7ae0" title="Opens a window (class ShowMailDialog) with the downloaded mail body.">slotBodyDownloaded</a>();
+<a name="l00889"></a>00889 
+<a name="l00904"></a>00904     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#79bd9a4d8eb35366b186475941c2de2d" title="Downloads a mail to write it into a mailbox or do a spam check.">slotMailDownloadedForAction</a>();
+<a name="l00905"></a>00905 
+<a name="l00911"></a>00911     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#253e59ac68c6286416841d798a38bef7" title="Restarts a second refresh cycle after a deletion performed by the filter.">slotCommitBeforeRefreshDone</a>();
+<a name="l00912"></a>00912 
+<a name="l00919"></a>00919      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#4fef3a9e3b72505f6091ea3ed368276d" title="Connected with the timeout timer.">slotTimeout</a>();
+<a name="l00920"></a>00920 
+<a name="l00924"></a>00924      <span class="keywordtype">void</span> <a class="code" href="classAccount.html#f1a8bd9405314c274cc24ebe96dba17f" title="Receives the response of the STLS command.">slotStartTLSResponse</a>();
+<a name="l00925"></a>00925 
+<a name="l00926"></a>00926         <span class="keyword">private</span>:
+<a name="l00927"></a>00927                 
+<a name="l00931"></a>00931                 QString name;
+<a name="l00932"></a>00932                 
+<a name="l00936"></a>00936     <span class="keywordtype">bool</span> active;
+<a name="l00937"></a>00937 
+<a name="l00941"></a>00941     <a class="code" href="namespaceTypes.html#a6bd0f4ca0fe97e362ec3019cdf257f9">TransferSecurity_Type</a> transferSecurity;
+<a name="l00942"></a>00942 
+<a name="l00946"></a>00946     KUrl url;
+<a name="l00947"></a>00947 
+<a name="l00956"></a>00956     <span class="keywordtype">int</span> passwordStorage;
+<a name="l00957"></a>00957 
+<a name="l00961"></a>00961     <a class="code" href="classMailList.html" title="List of Mails.">MailList</a>* mails;
+<a name="l00962"></a>00962 
+<a name="l00968"></a>00968     <a class="code" href="classMailList.html" title="List of Mails.">MailList</a>* tempMailList;
+<a name="l00969"></a>00969     
+<a name="l00970"></a>00970 
+<a name="l00974"></a>00974     QPointer&lt;KTcpSocket&gt; socket;
+<a name="l00975"></a>00975 
+<a name="l00979"></a>00979     <a class="code" href="classAccountList.html" title="Contains the accounts.">AccountList</a>* accountList;
+<a name="l00980"></a>00980 
+<a name="l00987"></a>00987     <span class="keywordtype">bool</span> quitSent;
+<a name="l00988"></a>00988 
+<a name="l00992"></a>00992     QTimer* timeoutTimer;
+<a name="l00993"></a>00993 
+<a name="l00997"></a>00997     <a class="code" href="namespaceTypes.html#57c868019acd102e855ff50f6043c1b6">Types::AccountState_Type</a> state;
+<a name="l00998"></a>00998 
+<a name="l01002"></a>01002     <span class="keywordtype">bool</span> apopAvail;
+<a name="l01003"></a>01003 
+<a name="l01009"></a>01009     <span class="keywordtype">bool</span> dontUseAPOP;
+<a name="l01010"></a>01010 
+<a name="l01014"></a>01014     QString apopTimestamp;
+<a name="l01015"></a>01015 
+<a name="l01019"></a>01019     <span class="keywordtype">bool</span> allowUnsecureLogin;
+<a name="l01020"></a>01020 
+<a name="l01029"></a>01029     <span class="keywordtype">bool</span> filterApplied;
+<a name="l01030"></a>01030 
+<a name="l01036"></a>01036     <span class="keywordtype">bool</span> refreshPerformedByFilters;
+<a name="l01037"></a>01037 
+<a name="l01046"></a>01046     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> newMails;
+<a name="l01047"></a>01047 
+<a name="l01056"></a>01056     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> mailsToDelete;
+<a name="l01057"></a>01057 
+<a name="l01065"></a>01065     <a class="code" href="namespaceTypes.html#28b7da8de2bbe1b7a098d41242e78ab7" title="This map is used by ConfigElem and ShowRecord to hold a list of mail numbers which...">MailToDownloadMap_Type</a> mailsToDownload;
+<a name="l01066"></a>01066 
+<a name="l01075"></a>01075     <a class="code" href="namespaceTypes.html#ac1ff60f074fc9df2e93a720076af3a6">MailNumberList_Type</a> mailsToShow;
+<a name="l01076"></a>01076 
+<a name="l01082"></a>01082     <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* fLog;
+<a name="l01083"></a>01083 
+<a name="l01087"></a>01087     <span class="keywordtype">int</span> nmbDeletedMailsLastRefresh;
+<a name="l01088"></a>01088 
+<a name="l01092"></a>01092     <span class="keywordtype">int</span> nmbMovedMailsLastRefresh;
+<a name="l01093"></a>01093 
+<a name="l01097"></a>01097     <span class="keywordtype">int</span> nmbMovedMailsLastStart;
+<a name="l01098"></a>01098 
+<a name="l01102"></a>01102     <span class="keywordtype">int</span> nmbIgnoredMails;
+<a name="l01103"></a>01103 
+<a name="l01107"></a>01107     <span class="keywordtype">int</span> moveCounter;
+<a name="l01108"></a>01108 
+<a name="l01112"></a>01112     <span class="keywordtype">int</span> nmbDeletedMailsLastStart;
+<a name="l01113"></a>01113 
+<a name="l01119"></a>01119     <span class="keywordtype">bool</span> downloadActionsInvoked;
+<a name="l01120"></a>01120 
+<a name="l01124"></a>01124     <a class="code" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header data of the mail to...">HeaderFilter</a> headerFilter;
+<a name="l01125"></a>01125 
+<a name="l01131"></a>01131     <span class="keywordtype">bool</span> deletionPerformedByFilters;
+<a name="l01132"></a>01132 
+<a name="l01136"></a>01136      QString spamMailbox;
+<a name="l01137"></a>01137 
+<a name="l01141"></a>01141                 <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> spamAction;
+<a name="l01142"></a>01142 
+<a name="l01146"></a>01146     <span class="keywordtype">bool</span> dontHandleError;
+<a name="l01147"></a>01147 
+<a name="l01153"></a>01153     <span class="keywordtype">bool</span> informAboutErrors;
+<a name="l01154"></a>01154 
+<a name="l01158"></a>01158     <span class="keywordtype">int</span> timeOutTime;
+<a name="l01159"></a>01159 
+<a name="l01166"></a>01166     <span class="keywordtype">bool</span> supportsStartTLS;
+<a name="l01167"></a>01167 
+<a name="l01168"></a>01168     
+<a name="l01169"></a>01169   signals:
+<a name="l01170"></a>01170 
+<a name="l01175"></a>01175     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#3cab83b22634d8f6558a48d657e4b6a5" title="Will be emitted when all selected mails are deleted.">sigDeleteReady</a>( QString account );
+<a name="l01176"></a>01176 
+<a name="l01182"></a>01182     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#439f0aa2ae9ff2cf4e18a69f7bf3118c" title="Will be emitted when the bodies of all selected mails are downloaded and shown.">sigShowBodiesReady</a>( QString account );
+<a name="l01183"></a>01183 
+<a name="l01187"></a>01187     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#7cd0ce85e9bd7eff2abb17c4117aafd7" title="Will be emitted when the settings have been changed.">sigConfigChanged</a>();
+<a name="l01188"></a>01188 
+<a name="l01192"></a>01192     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
+<a name="l01193"></a>01193 
+<a name="l01197"></a>01197     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#e25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
+<a name="l01198"></a>01198 
+<a name="l01203"></a>01203     <span class="keywordtype">void</span> <a class="code" href="classAccount.html#dd5b98fe2551acc4679b7c5574f70851" title="Will be emitted, when the mail list was refreshed.">sigRefreshReady</a>( QString account );
+<a name="l01204"></a>01204 
+<a name="l01205"></a>01205     
+<a name="l01206"></a>01206                 
+<a name="l01207"></a>01207 };
+<a name="l01208"></a>01208 
+<a name="l01209"></a>01209 <span class="preprocessor">#endif // ACCOUNT_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

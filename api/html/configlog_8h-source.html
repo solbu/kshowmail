@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/configlog.h</h1><a href="configlog_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/configlog.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -35,8 +35,8 @@
 <a name="l00019"></a>00019 <span class="preprocessor"></span><span class="preprocessor">#define CONFIGLOG_H</span>
 <a name="l00020"></a>00020 <span class="preprocessor"></span>
 <a name="l00021"></a>00021 <span class="comment">//button IDs</span>
-<a name="l00022"></a><a class="code" href="configlog_8h.html#4e6ec8442d0fc422f3451c6daa644862">00022</a> <span class="preprocessor">#define ID_BUTTON_REMOVE_AT_EXIT    1</span>
-<a name="l00023"></a><a class="code" href="configlog_8h.html#183ddd8bbad04ce61d819ef6aded8f3c">00023</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_REMOVE_AFTER_DAYS 2</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#define ID_BUTTON_REMOVE_AT_EXIT    1</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_REMOVE_AFTER_DAYS 2</span>
 <a name="l00024"></a>00024 <span class="preprocessor"></span>
 <a name="l00025"></a>00025 <span class="comment">//qt headers</span>
 <a name="l00026"></a>00026 <span class="preprocessor">#include &lt;qlayout.h&gt;</span>
@@ -56,7 +56,7 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#include &lt;kconfiggroup.h&gt;</span>
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 <span class="comment">//Kshowmail headers</span>
-<a name="l00043"></a>00043 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include "constants.h"</span>
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 
 <a name="l00050"></a><a class="code" href="classConfigLog.html">00050</a> <span class="keyword">class </span><a class="code" href="classConfigLog.html" title="Part of the setup dialog (KShowMailApp::SetupDialog) to configure the log.">ConfigLog</a> : <span class="keyword">public</span> KCModule
@@ -65,50 +65,50 @@
 <a name="l00053"></a>00053 
 <a name="l00054"></a>00054   <span class="keyword">public</span>:
 <a name="l00055"></a>00055 
-<a name="l00059"></a>00059     <span class="keyword">explicit</span> <a class="code" href="classConfigLog.html#52a7e6a3cc143f2dad689a500d9c786c">ConfigLog</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
-<a name="l00060"></a>00060 
-<a name="l00064"></a>00064     <a class="code" href="classConfigLog.html#2c32d0d5a4d622e3e8713ab4fff63e02">~ConfigLog</a>();
-<a name="l00065"></a>00065 
-<a name="l00071"></a>00071     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#7bb8c33f397d117161d1b5899c49ff0a">load</a>();
-<a name="l00072"></a>00072 
-<a name="l00078"></a>00078     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#bcdb1171b0163de70904cd6e3ec72a32">defaults</a>();
-<a name="l00079"></a>00079 
-<a name="l00086"></a>00086     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#ffcf14fa9d7f3061da2f6b688cb9745d">save</a>();
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088   <span class="keyword">private</span>:
+<a name="l00061"></a>00061     <span class="keyword">explicit</span> <a class="code" href="classConfigLog.html#52a7e6a3cc143f2dad689a500d9c786c">ConfigLog</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
+<a name="l00062"></a>00062 
+<a name="l00066"></a>00066     <a class="code" href="classConfigLog.html#2c32d0d5a4d622e3e8713ab4fff63e02">~ConfigLog</a>();
+<a name="l00067"></a>00067 
+<a name="l00073"></a>00073     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#7bb8c33f397d117161d1b5899c49ff0a">load</a>();
+<a name="l00074"></a>00074 
+<a name="l00080"></a>00080     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#bcdb1171b0163de70904cd6e3ec72a32">defaults</a>();
+<a name="l00081"></a>00081 
+<a name="l00088"></a>00088     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#ffcf14fa9d7f3061da2f6b688cb9745d">save</a>();
 <a name="l00089"></a>00089 
-<a name="l00093"></a><a class="code" href="classConfigLog.html#7dc8aa3ce845787d9a29f19696ee5230">00093</a>     KSharedConfigPtr <a class="code" href="classConfigLog.html#7dc8aa3ce845787d9a29f19696ee5230">config</a>;
-<a name="l00094"></a>00094 
-<a name="l00098"></a><a class="code" href="classConfigLog.html#b8fff5d7cbb30185227c702e1b679be6">00098</a>   QCheckBox* <a class="code" href="classConfigLog.html#b8fff5d7cbb30185227c702e1b679be6">chkLogDeletedMails</a>;
-<a name="l00099"></a>00099 
-<a name="l00103"></a><a class="code" href="classConfigLog.html#dc2656eee036eb7da225edf63b73f2d1">00103</a>   QCheckBox* <a class="code" href="classConfigLog.html#dc2656eee036eb7da225edf63b73f2d1">chkLogMovedMails</a>;
-<a name="l00104"></a>00104 
-<a name="l00108"></a><a class="code" href="classConfigLog.html#f4cc144f6621754512201ecf04f4b39c">00108</a>   QButtonGroup* <a class="code" href="classConfigLog.html#f4cc144f6621754512201ecf04f4b39c">grpDelMailsRemove</a>;
-<a name="l00109"></a>00109 
-<a name="l00113"></a><a class="code" href="classConfigLog.html#0b5c4ed624ecf618bbe0d2d4f0b174fa">00113</a>   QButtonGroup* <a class="code" href="classConfigLog.html#0b5c4ed624ecf618bbe0d2d4f0b174fa">grpMovMailsRemove</a>;
-<a name="l00114"></a>00114 
-<a name="l00118"></a><a class="code" href="classConfigLog.html#822c19a03e5f27b2dd7e3fde36931a3e">00118</a>   QSpinBox* <a class="code" href="classConfigLog.html#822c19a03e5f27b2dd7e3fde36931a3e">spbDelDays</a>;
-<a name="l00119"></a>00119 
-<a name="l00123"></a><a class="code" href="classConfigLog.html#665686b7be964c5769b83075a2eb614c">00123</a>   QSpinBox* <a class="code" href="classConfigLog.html#665686b7be964c5769b83075a2eb614c">spbMovDays</a>;
-<a name="l00124"></a>00124 
-<a name="l00128"></a><a class="code" href="classConfigLog.html#68ebd0dad2255583411429bd5e953d4b">00128</a>   QRadioButton* <a class="code" href="classConfigLog.html#68ebd0dad2255583411429bd5e953d4b">btnDelMailsRemoveExit</a>;
-<a name="l00129"></a>00129 
-<a name="l00133"></a><a class="code" href="classConfigLog.html#fce2bf2c6b740bf60db4c1d3eb006689">00133</a>   QRadioButton* <a class="code" href="classConfigLog.html#fce2bf2c6b740bf60db4c1d3eb006689">btnDelMailsRemoveDays</a>;
-<a name="l00134"></a>00134 
-<a name="l00138"></a><a class="code" href="classConfigLog.html#c8a6cb4285aa777d4c6b4207e598f680">00138</a>   QRadioButton* <a class="code" href="classConfigLog.html#c8a6cb4285aa777d4c6b4207e598f680">btnMovMailsRemoveExit</a>;
-<a name="l00139"></a>00139 
-<a name="l00143"></a><a class="code" href="classConfigLog.html#84301947e00f41cff17fa0dabdac23da">00143</a>   QRadioButton* <a class="code" href="classConfigLog.html#84301947e00f41cff17fa0dabdac23da">btnMovMailsRemoveDays</a>;
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145   <span class="keyword">private</span> slots:
+<a name="l00090"></a>00090   <span class="keyword">private</span>:
+<a name="l00091"></a>00091 
+<a name="l00095"></a>00095     KSharedConfigPtr config;
+<a name="l00096"></a>00096 
+<a name="l00100"></a>00100   QCheckBox* chkLogDeletedMails;
+<a name="l00101"></a>00101 
+<a name="l00105"></a>00105   QCheckBox* chkLogMovedMails;
+<a name="l00106"></a>00106 
+<a name="l00110"></a>00110   QButtonGroup* grpDelMailsRemove;
+<a name="l00111"></a>00111 
+<a name="l00115"></a>00115   QButtonGroup* grpMovMailsRemove;
+<a name="l00116"></a>00116 
+<a name="l00120"></a>00120   QSpinBox* spbDelDays;
+<a name="l00121"></a>00121 
+<a name="l00125"></a>00125   QSpinBox* spbMovDays;
+<a name="l00126"></a>00126 
+<a name="l00130"></a>00130   QRadioButton* btnDelMailsRemoveExit;
+<a name="l00131"></a>00131 
+<a name="l00135"></a>00135   QRadioButton* btnDelMailsRemoveDays;
+<a name="l00136"></a>00136 
+<a name="l00140"></a>00140   QRadioButton* btnMovMailsRemoveExit;
+<a name="l00141"></a>00141 
+<a name="l00145"></a>00145   QRadioButton* btnMovMailsRemoveDays;
 <a name="l00146"></a>00146 
-<a name="l00151"></a>00151     <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#3687b473ec2512d023a3323fe555637e">slotChanged</a>();
-<a name="l00152"></a>00152 
-<a name="l00157"></a>00157   <span class="keywordtype">void</span> <a class="code" href="classConfigLog.html#3a2f475fdec72a03bc657d11524d60aa">slotChangeItems</a>();
-<a name="l00158"></a>00158 };
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160 <span class="preprocessor">#endif</span>
+<a name="l00147"></a>00147   <span class="keyword">private</span> slots:
+<a name="l00148"></a>00148 
+<a name="l00153"></a>00153     <span class="keywordtype">void</span> slotChanged();
+<a name="l00154"></a>00154 
+<a name="l00159"></a>00159   <span class="keywordtype">void</span> slotChangeItems();
+<a name="l00160"></a>00160 };
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

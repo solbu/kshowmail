@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/accountviewitem.cpp</h1><a href="accountviewitem_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/accountviewitem.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">    &lt;one line to give the program's name and a brief idea of what it does.&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">    Copyright (C) &lt;year&gt;  &lt;name of author&gt;</span>
 <a name="l00004"></a>00004 <span class="comment"></span>
@@ -34,7 +34,7 @@
 <a name="l00018"></a>00018 <span class="comment"></span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="preprocessor">#include "<a class="code" href="accountviewitem_8h.html">accountviewitem.h</a>"</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include "accountviewitem.h"</span>
 <a name="l00022"></a>00022 
 <a name="l00023"></a><a class="code" href="classAccountViewItem.html#73245e113bb2b43d12b71b5f7fab418c">00023</a> <a class="code" href="classAccountViewItem.html#73245e113bb2b43d12b71b5f7fab418c" title="Contructor.">AccountViewItem::AccountViewItem</a>( <span class="keywordtype">bool</span> active, <span class="keyword">const</span> QString&amp; name, <span class="keyword">const</span> QString&amp; server, <span class="keyword">const</span> QString&amp; user, <span class="keywordtype">int</span> numberMails, <span class="keywordtype">long</span> totalSize, QPointer&lt;Account&gt; account )
 <a name="l00024"></a>00024   : active( active ), name( name ), server( server ), user( user ), numberMails( numberMails ), totalSize( totalSize ), account( account )
@@ -43,46 +43,46 @@
 <a name="l00027"></a>00027 
 <a name="l00028"></a><a class="code" href="classAccountViewItem.html#25ffe110c6e8e3e09cc77d4f48ae0b77">00028</a> <span class="keywordtype">bool</span> <a class="code" href="classAccountViewItem.html#25ffe110c6e8e3e09cc77d4f48ae0b77" title="Returns whether the account is active.">AccountViewItem::isActive</a>()<span class="keyword"> const</span>
 <a name="l00029"></a>00029 <span class="keyword"></span>{
-<a name="l00030"></a>00030   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html#a3b2b5cc5f84080cbfbb1e5221a8f5ad" title="true - the account is active">active</a>;
+<a name="l00030"></a>00030   <span class="keywordflow">return</span> active;
 <a name="l00031"></a>00031 }
 <a name="l00032"></a>00032 
 <a name="l00033"></a><a class="code" href="classAccountViewItem.html#f9be5c4ce2ce7ffed128689d20638a0f">00033</a> QString <a class="code" href="classAccountViewItem.html#f9be5c4ce2ce7ffed128689d20638a0f" title="Returns the account name.">AccountViewItem::getName</a>()<span class="keyword"> const</span>
 <a name="l00034"></a>00034 <span class="keyword"></span>{
-<a name="l00035"></a>00035   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html#dc57967853daf57237cbbeea1b266f54" title="account name">name</a>;
+<a name="l00035"></a>00035   <span class="keywordflow">return</span> name;
 <a name="l00036"></a>00036 }
 <a name="l00037"></a>00037 
 <a name="l00038"></a><a class="code" href="classAccountViewItem.html#3feedcf3fd8cc9133b19f9f35edf5a82">00038</a> QString <a class="code" href="classAccountViewItem.html#3feedcf3fd8cc9133b19f9f35edf5a82" title="Returns ther server host name.">AccountViewItem::getServer</a>()<span class="keyword"> const</span>
 <a name="l00039"></a>00039 <span class="keyword"></span>{
-<a name="l00040"></a>00040   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html#a6c8379d8c339169a3ddad5f1d147f7f" title="server">server</a>;
+<a name="l00040"></a>00040   <span class="keywordflow">return</span> server;
 <a name="l00041"></a>00041 }
 <a name="l00042"></a>00042 
 <a name="l00043"></a><a class="code" href="classAccountViewItem.html#ddda86004b33ed3fa5c41fc37f4ef32a">00043</a> QPointer&lt; Account &gt; <a class="code" href="classAccountViewItem.html#ddda86004b33ed3fa5c41fc37f4ef32a" title="Returns the pointer to the account.">AccountViewItem::getAccount</a>()<span class="keyword"> const</span>
 <a name="l00044"></a>00044 <span class="keyword"></span>{
-<a name="l00045"></a>00045   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html#610193d9f11c5c77362c983bbd2fa241" title="pointer to the account">account</a>;
+<a name="l00045"></a>00045   <span class="keywordflow">return</span> account;
 <a name="l00046"></a>00046 }
 <a name="l00047"></a>00047 
 <a name="l00048"></a><a class="code" href="classAccountViewItem.html#afae0fce14567425e60465b9553eeeaa">00048</a> <span class="keywordtype">int</span> <a class="code" href="classAccountViewItem.html#afae0fce14567425e60465b9553eeeaa" title="Returns the number of mails.">AccountViewItem::getNumberMails</a>()<span class="keyword"> const</span>
 <a name="l00049"></a>00049 <span class="keyword"></span>{
-<a name="l00050"></a>00050   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html#1cf2b02ad6727b1667751e187d3cf813" title="number of mails">numberMails</a>;
+<a name="l00050"></a>00050   <span class="keywordflow">return</span> numberMails;
 <a name="l00051"></a>00051 }
 <a name="l00052"></a>00052 
 <a name="l00053"></a><a class="code" href="classAccountViewItem.html#ed644e9f1560f1e220a69ed2e6b0522e">00053</a> QString <a class="code" href="classAccountViewItem.html#ed644e9f1560f1e220a69ed2e6b0522e" title="Returns the total size of mails with appended unit.">AccountViewItem::getTotalSizeUnit</a>()<span class="keyword"> const</span>
 <a name="l00054"></a>00054 <span class="keyword"></span>{
 <a name="l00055"></a>00055   QString strSize;
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057   <span class="keywordflow">if</span>( <a class="code" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7" title="total size of mails, inclusive unit">totalSize</a> &gt;= 1024 * 1024 )
+<a name="l00057"></a>00057   <span class="keywordflow">if</span>( totalSize &gt;= 1024 * 1024 )
 <a name="l00058"></a>00058   {
 <a name="l00059"></a>00059     <span class="comment">//prefix is mega</span>
-<a name="l00060"></a>00060     strSize = QString( <span class="stringliteral">"%L1M"</span> ).arg( ( (<span class="keywordtype">double</span>)<a class="code" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7" title="total size of mails, inclusive unit">totalSize</a> / ( 1024 * 1024 ) ), 0, <span class="charliteral">'f'</span>, 1 );
+<a name="l00060"></a>00060     strSize = QString( <span class="stringliteral">"%L1M"</span> ).arg( ( (<span class="keywordtype">double</span>)totalSize / ( 1024 * 1024 ) ), 0, <span class="charliteral">'f'</span>, 1 );
 <a name="l00061"></a>00061   }
-<a name="l00062"></a>00062   <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7" title="total size of mails, inclusive unit">totalSize</a> &gt;= 1024 )
+<a name="l00062"></a>00062   <span class="keywordflow">else</span> <span class="keywordflow">if</span>( totalSize &gt;= 1024 )
 <a name="l00063"></a>00063   {
 <a name="l00064"></a>00064     <span class="comment">//prefix is kilo</span>
-<a name="l00065"></a>00065     strSize = QString( <span class="stringliteral">"%L1K"</span> ).arg( ( (<span class="keywordtype">double</span>)<a class="code" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7" title="total size of mails, inclusive unit">totalSize</a> / 1024 ), 0, <span class="charliteral">'f'</span>, 1 );
+<a name="l00065"></a>00065     strSize = QString( <span class="stringliteral">"%L1K"</span> ).arg( ( (<span class="keywordtype">double</span>)totalSize / 1024 ), 0, <span class="charliteral">'f'</span>, 1 );
 <a name="l00066"></a>00066   }
 <a name="l00067"></a>00067   <span class="keywordflow">else</span>
 <a name="l00068"></a>00068     <span class="comment">//no prefix</span>
-<a name="l00069"></a>00069     strSize = QString( <span class="stringliteral">"%L1"</span> ).arg( <a class="code" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7" title="total size of mails, inclusive unit">totalSize</a> );
+<a name="l00069"></a>00069     strSize = QString( <span class="stringliteral">"%L1"</span> ).arg( totalSize );
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071   <span class="keywordflow">return</span> strSize;
 <a name="l00072"></a>00072 
@@ -90,7 +90,7 @@
 <a name="l00074"></a>00074 
 <a name="l00075"></a><a class="code" href="classAccountViewItem.html#e79904e3a705c1b40a4dc2804c115f70">00075</a> QString <a class="code" href="classAccountViewItem.html#e79904e3a705c1b40a4dc2804c115f70" title="Returns the user.">AccountViewItem::getUser</a>()<span class="keyword"> const</span>
 <a name="l00076"></a>00076 <span class="keyword"></span>{
-<a name="l00077"></a>00077   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html#5f4523cbcd27ef3369dea12ac52be20f" title="user">user</a>;
+<a name="l00077"></a>00077   <span class="keywordflow">return</span> user;
 <a name="l00078"></a>00078 }
 <a name="l00079"></a>00079 
 <a name="l00080"></a><a class="code" href="classAccountViewItem.html#2f59f4411252a287cb8cc86107c428f7">00080</a> <span class="keywordtype">int</span> <a class="code" href="classAccountViewItem.html#2f59f4411252a287cb8cc86107c428f7" title="Compares this account with other and returns an integer less than, equal to, or greater...">AccountViewItem::compare</a>(<span class="keyword">const</span> <a class="code" href="classAccountViewItem.html" title="This class is used by AccountViewModel to hold a list of the accounts.">AccountViewItem</a>&amp; other, <a class="code" href="namespaceTypes.html#61f06b1f5058c3d5ae515b2398a83e1f">AccountSort_Type</a> property)
@@ -150,10 +150,10 @@
 <a name="l00134"></a>00134 
 <a name="l00135"></a><a class="code" href="classAccountViewItem.html#94e3300a0c5ceb5fabe919e50ae6e37b">00135</a> <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classAccountViewItem.html#94e3300a0c5ceb5fabe919e50ae6e37b" title="Returns the total size of mails.">AccountViewItem::getTotalSize</a>()<span class="keyword"> const</span>
 <a name="l00136"></a>00136 <span class="keyword"></span>{
-<a name="l00137"></a>00137   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7" title="total size of mails, inclusive unit">totalSize</a>;
+<a name="l00137"></a>00137   <span class="keywordflow">return</span> totalSize;
 <a name="l00138"></a>00138 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/mailviewmodel.cpp</h1><a href="mailviewmodel_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/mailviewmodel.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -31,14 +31,14 @@
 <a name="l00015"></a>00015 <span class="comment">along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="preprocessor">#include "<a class="code" href="mailviewmodel_8h.html">./mailviewmodel.h</a>"</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include "./mailviewmodel.h"</span>
 <a name="l00019"></a>00019 
 <a name="l00020"></a><a class="code" href="classMailViewModel.html#e5ad0a648d207c07cc3c23e22a94dbdd">00020</a> <a class="code" href="classMailViewModel.html#e5ad0a648d207c07cc3c23e22a94dbdd">MailViewModel::MailViewModel</a>( <a class="code" href="classAccountList.html" title="Contains the accounts.">AccountList</a>* accounts, QObject* parent ) : QAbstractItemModel( parent )
 <a name="l00021"></a>00021 {
 <a name="l00022"></a>00022   this-&gt;accounts = accounts;
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024   <span class="comment">//load pictures</span>
-<a name="l00025"></a>00025   <a class="code" href="classMailViewModel.html#8042cd0d62311bea6f252b0741dc2cb5">picNewMail</a> = KIcon( KStandardDirs::locate( <span class="stringliteral">"data"</span>, <span class="stringliteral">"kshowmail/pics/mail-unread-new.png"</span> ) );
+<a name="l00025"></a>00025   picNewMail = KIcon( KStandardDirs::locate( <span class="stringliteral">"data"</span>, <span class="stringliteral">"kshowmail/pics/mail-unread-new.png"</span> ) );
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 }
 <a name="l00028"></a>00028 
@@ -63,12 +63,12 @@
 <a name="l00047"></a>00047         <span class="comment">//return 0, if the parent is valid</span>
 <a name="l00048"></a>00048         <span class="keywordflow">if</span>( parent.isValid() ) <span class="keywordflow">return</span> 0;
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050         <span class="keywordflow">return</span> <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.size();
+<a name="l00050"></a>00050         <span class="keywordflow">return</span> viewMailList.size();
 <a name="l00051"></a>00051 }
 <a name="l00052"></a>00052 
 <a name="l00053"></a><a class="code" href="classMailViewModel.html#9b15615a9ac3126682f5e60055bee0c9">00053</a> <span class="keywordtype">int</span> <a class="code" href="classMailViewModel.html#9b15615a9ac3126682f5e60055bee0c9">MailViewModel::columnCount</a> ( <span class="keyword">const</span> QModelIndex&amp;  )<span class="keyword"> const</span>
 <a name="l00054"></a>00054 <span class="keyword"></span>{
-<a name="l00055"></a>00055         <span class="keywordflow">return</span> <a class="code" href="mailviewmodel_8h.html#3d4595621f58a886ec6ceab9f7ae6955">NUMBER_MAILVIEW_COLUMNS</a>;
+<a name="l00055"></a>00055         <span class="keywordflow">return</span> NUMBER_MAILVIEW_COLUMNS;
 <a name="l00056"></a>00056 }
 <a name="l00057"></a>00057 
 <a name="l00058"></a><a class="code" href="classMailViewModel.html#4d139f783f4f9df913ece1ae2cfa8ae7">00058</a> QVariant <a class="code" href="classMailViewModel.html#4d139f783f4f9df913ece1ae2cfa8ae7">MailViewModel::data</a> ( <span class="keyword">const</span> QModelIndex &amp; <a class="code" href="classMailViewModel.html#93a85152d9aeae06545589812fb1cd89">index</a>, <span class="keywordtype">int</span> role )<span class="keyword"> const</span>
@@ -76,12 +76,12 @@
 <a name="l00060"></a>00060         <span class="comment">//return a empty data if the index is invalid</span>
 <a name="l00061"></a>00061         <span class="keywordflow">if</span>( !index.isValid() ) <span class="keywordflow">return</span> QVariant();
 <a name="l00062"></a>00062         
-<a name="l00063"></a>00063         <span class="keywordflow">if</span>( index.row() &gt;= <a class="code" href="classMailViewModel.html#c15b030dedd4b5fdb95495fbe5901a67">rowCount</a>() || index.column() &gt; <a class="code" href="mailviewmodel_8h.html#3d4595621f58a886ec6ceab9f7ae6955">NUMBER_MAILVIEW_COLUMNS</a> - 1 ) <span class="keywordflow">return</span> QVariant();
+<a name="l00063"></a>00063         <span class="keywordflow">if</span>( index.row() &gt;= <a class="code" href="classMailViewModel.html#c15b030dedd4b5fdb95495fbe5901a67">rowCount</a>() || index.column() &gt; NUMBER_MAILVIEW_COLUMNS - 1 ) <span class="keywordflow">return</span> QVariant();
 <a name="l00064"></a>00064         
-<a name="l00065"></a>00065         <span class="keywordflow">if</span>( index.row() &gt; <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.size() - 1 ) <span class="keywordflow">return</span> QVariant();
+<a name="l00065"></a>00065         <span class="keywordflow">if</span>( index.row() &gt; viewMailList.size() - 1 ) <span class="keywordflow">return</span> QVariant();
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067   <span class="comment">//get the mail</span>
-<a name="l00068"></a>00068   <a class="code" href="classMail.html" title="This class represents a mail.">Mail</a> mail = <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.at( index.row() );
+<a name="l00068"></a>00068   <a class="code" href="classMail.html" title="This class represents a mail.">Mail</a> mail = viewMailList.at( index.row() );
 <a name="l00069"></a>00069   
 <a name="l00070"></a>00070   <span class="comment">//the kind of data we return is dependent on the given role</span>
 <a name="l00071"></a>00071   <span class="keywordflow">switch</span>( role )
@@ -110,7 +110,7 @@
 <a name="l00094"></a>00094         <span class="keywordflow">case</span> 0  :
 <a name="l00095"></a>00095           <span class="keywordflow">if</span>( mail.<a class="code" href="classMail.html#140fb3f90375e82c44c5bdde4cda767d">isNew</a>() )
 <a name="l00096"></a>00096           {
-<a name="l00097"></a>00097             <span class="keywordflow">return</span> QVariant( <a class="code" href="classMailViewModel.html#8042cd0d62311bea6f252b0741dc2cb5">picNewMail</a> );
+<a name="l00097"></a>00097             <span class="keywordflow">return</span> QVariant( picNewMail );
 <a name="l00098"></a>00098           }
 <a name="l00099"></a>00099           <span class="keywordflow">else</span>
 <a name="l00100"></a>00100           {
@@ -127,7 +127,7 @@
 <a name="l00111"></a>00111         <span class="keywordflow">return</span> QVariant();
 <a name="l00112"></a>00112 }
 <a name="l00113"></a>00113 
-<a name="l00114"></a><a class="code" href="classMailViewModel.html#f0ee32dd1a5e1868ff02556786e3a995">00114</a> <span class="keywordtype">bool</span> <a class="code" href="classMailViewModel.html#f0ee32dd1a5e1868ff02556786e3a995">MailViewModel::hasChildren</a> ( <span class="keyword">const</span> QModelIndex &amp; <a class="code" href="classMailViewModel.html#7a34a720a834c4ec7da12d87d5bc46ca">parent</a> )<span class="keyword"> const</span>
+<a name="l00114"></a><a class="code" href="classMailViewModel.html#f0ee32dd1a5e1868ff02556786e3a995">00114</a> <span class="keywordtype">bool</span> <a class="code" href="classMailViewModel.html#f0ee32dd1a5e1868ff02556786e3a995" title="Overloaded from QAbstractItemModel.">MailViewModel::hasChildren</a> ( <span class="keyword">const</span> QModelIndex &amp; <a class="code" href="classMailViewModel.html#7a34a720a834c4ec7da12d87d5bc46ca">parent</a> )<span class="keyword"> const</span>
 <a name="l00115"></a>00115 <span class="keyword"></span>{
 <a name="l00116"></a>00116   <span class="comment">//it is the root index</span>
 <a name="l00117"></a>00117   <span class="keywordflow">if</span>( !parent.isValid() ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
@@ -164,8 +164,8 @@
 <a name="l00148"></a>00148 
 <a name="l00149"></a><a class="code" href="classMailViewModel.html#0dd73821ac4db903bdc2d4ff3f13cfc1">00149</a> <span class="keywordtype">void</span> <a class="code" href="classMailViewModel.html#0dd73821ac4db903bdc2d4ff3f13cfc1">MailViewModel::refresh</a>()
 <a name="l00150"></a>00150 {
-<a name="l00151"></a>00151         <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.clear();
-<a name="l00152"></a>00152         <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.append( <a class="code" href="classMailViewModel.html#4a2212a120f12f29a0c56369cff831ca">accounts</a>-&gt;<a class="code" href="classAccountList.html#581c8c35c5ba97984bb424a4bc8eb93c" title="Returns a list which contains the pointers to all mails.">getAllMails</a>() );
+<a name="l00151"></a>00151         viewMailList.clear();
+<a name="l00152"></a>00152         viewMailList.append( accounts-&gt;<a class="code" href="classAccountList.html#581c8c35c5ba97984bb424a4bc8eb93c" title="Returns a list which contains the pointers to all mails.">getAllMails</a>() );
 <a name="l00153"></a>00153         <a class="code" href="classMailViewModel.html#15c2c845746af630ddf2136463749cee">sort</a>(); 
 <a name="l00154"></a>00154   reset();
 <a name="l00155"></a>00155 }
@@ -173,10 +173,10 @@
 <a name="l00157"></a><a class="code" href="classMailViewModel.html#0d1cb14b1d1f1ba318565d5d0f3fafba">00157</a> <span class="keywordtype">void</span> <a class="code" href="classMailViewModel.html#15c2c845746af630ddf2136463749cee">MailViewModel::sort</a>( <span class="keywordtype">int</span> column, Qt::SortOrder order ) {
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159   <span class="comment">//save last sort properties</span>
-<a name="l00160"></a>00160   <a class="code" href="classMailViewModel.html#ef5afebec79e45c5fe7064fc9d025573">lastSortOrder</a> = order;
-<a name="l00161"></a>00161   <a class="code" href="classMailViewModel.html#4e5e6cb723d6722e895d70bf954d8e4b">lastSortColumn</a> = column;
+<a name="l00160"></a>00160   lastSortOrder = order;
+<a name="l00161"></a>00161   lastSortColumn = column;
 <a name="l00162"></a>00162 
-<a name="l00163"></a>00163   <span class="keywordflow">if</span>( <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.empty() ) <span class="keywordflow">return</span>;
+<a name="l00163"></a>00163   <span class="keywordflow">if</span>( viewMailList.empty() ) <span class="keywordflow">return</span>;
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165 
 <a name="l00166"></a>00166   <a class="code" href="namespaceTypes.html#a41eee3cc91221a60a8252f4a31da4c1">MailSort_Type</a> prop;
@@ -197,7 +197,7 @@
 <a name="l00181"></a>00181   <span class="comment">//sort the view list</span>
 <a name="l00182"></a>00182   QList&lt;Mail&gt; sortedList;
 <a name="l00183"></a>00183 
-<a name="l00184"></a>00184   QListIterator&lt;Mail&gt; itUnsort( <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a> );
+<a name="l00184"></a>00184   QListIterator&lt;Mail&gt; itUnsort( viewMailList );
 <a name="l00185"></a>00185   <span class="keywordflow">while</span>( itUnsort.hasNext() ) {
 <a name="l00186"></a>00186 
 <a name="l00187"></a>00187     <span class="comment">//get next account</span>
@@ -247,20 +247,20 @@
 <a name="l00231"></a>00231   }
 <a name="l00232"></a>00232 
 <a name="l00233"></a>00233   <span class="comment">//switch the lists</span>
-<a name="l00234"></a>00234   <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.clear();
-<a name="l00235"></a>00235   <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.append( sortedList );
+<a name="l00234"></a>00234   viewMailList.clear();
+<a name="l00235"></a>00235   viewMailList.append( sortedList );
 <a name="l00236"></a>00236 
 <a name="l00237"></a>00237         reset();
 <a name="l00238"></a>00238 }
 <a name="l00239"></a>00239 
 <a name="l00240"></a><a class="code" href="classMailViewModel.html#15c2c845746af630ddf2136463749cee">00240</a> <span class="keywordtype">void</span> <a class="code" href="classMailViewModel.html#15c2c845746af630ddf2136463749cee">MailViewModel::sort</a>()
 <a name="l00241"></a>00241 {
-<a name="l00242"></a>00242         <a class="code" href="classMailViewModel.html#15c2c845746af630ddf2136463749cee">sort</a>( <a class="code" href="classMailViewModel.html#4e5e6cb723d6722e895d70bf954d8e4b">lastSortColumn</a>, <a class="code" href="classMailViewModel.html#ef5afebec79e45c5fe7064fc9d025573">lastSortOrder</a> );
+<a name="l00242"></a>00242         <a class="code" href="classMailViewModel.html#15c2c845746af630ddf2136463749cee">sort</a>( lastSortColumn, lastSortOrder );
 <a name="l00243"></a>00243 }
 <a name="l00244"></a>00244 
 <a name="l00245"></a><a class="code" href="classMailViewModel.html#9032204188da3168e9ea7ebe1c42afce">00245</a> <a class="code" href="classMail.html" title="This class represents a mail.">Mail</a> <a class="code" href="classMailViewModel.html#9032204188da3168e9ea7ebe1c42afce">MailViewModel::getMail</a>(<span class="keyword">const</span> QModelIndex <a class="code" href="classMailViewModel.html#93a85152d9aeae06545589812fb1cd89">index</a>)<span class="keyword"> const</span>
 <a name="l00246"></a>00246 <span class="keyword"></span>{
-<a name="l00247"></a>00247         <span class="keywordflow">return</span> <a class="code" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a>.at( index.row() );
+<a name="l00247"></a>00247         <span class="keywordflow">return</span> viewMailList.at( index.row() );
 <a name="l00248"></a>00248 }
 <a name="l00249"></a>00249 
 <a name="l00250"></a><a class="code" href="classMailViewModel.html#bf38cb9ba22d82e77c0ce6f27461d01f">00250</a> QStringList <a class="code" href="classMailViewModel.html#bf38cb9ba22d82e77c0ce6f27461d01f">MailViewModel::getSelectedSubjects</a>( QItemSelectionModel* selectModel )<span class="keyword"> const</span>
@@ -363,24 +363,24 @@
 <a name="l00347"></a>00347 
 <a name="l00348"></a><a class="code" href="classMailViewModel.html#e6f7ff7235c508b16dcaf3a35542fbea">00348</a> <span class="keywordtype">void</span> <a class="code" href="classMailViewModel.html#e6f7ff7235c508b16dcaf3a35542fbea">MailViewModel::saveSetup</a>()
 <a name="l00349"></a>00349 {
-<a name="l00350"></a>00350   KConfigGroup* conf = <span class="keyword">new</span> KConfigGroup( KGlobal::config(), <a class="code" href="constants_8h.html#e9b75aa801aff3243abca49d17b50323">CONFIG_GROUP_VIEW</a> );
+<a name="l00350"></a>00350   KConfigGroup* conf = <span class="keyword">new</span> KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
 <a name="l00351"></a>00351 
-<a name="l00352"></a>00352   conf-&gt;writeEntry( <a class="code" href="constants_8h.html#331813b5c66ae6754e3ae93d62cb652f">CONFIG_ENTRY_SORT_COLUMN_MESSAGE</a>, <a class="code" href="classMailViewModel.html#4e5e6cb723d6722e895d70bf954d8e4b">lastSortColumn</a> );
+<a name="l00352"></a>00352   conf-&gt;writeEntry( CONFIG_ENTRY_SORT_COLUMN_MESSAGE, lastSortColumn );
 <a name="l00353"></a>00353 
-<a name="l00354"></a>00354   <span class="keywordflow">if</span>( <a class="code" href="classMailViewModel.html#ef5afebec79e45c5fe7064fc9d025573">lastSortOrder</a> == Qt::AscendingOrder ) {
+<a name="l00354"></a>00354   <span class="keywordflow">if</span>( lastSortOrder == Qt::AscendingOrder ) {
 <a name="l00355"></a>00355 
-<a name="l00356"></a>00356     conf-&gt;writeEntry( <a class="code" href="constants_8h.html#1ef385c98b6d719e7b2c6e1d9d9bf686">CONFIG_ENTRY_SORT_ORDER_MESSAGE</a>, <a class="code" href="constants_8h.html#47c0527ae4886aad3494a24ab3c85a1a">CONFIG_VALUE_SORT_ORDER_ASCENDING</a> );
+<a name="l00356"></a>00356     conf-&gt;writeEntry( CONFIG_ENTRY_SORT_ORDER_MESSAGE, CONFIG_VALUE_SORT_ORDER_ASCENDING );
 <a name="l00357"></a>00357 
 <a name="l00358"></a>00358   } <span class="keywordflow">else</span> {
 <a name="l00359"></a>00359 
-<a name="l00360"></a>00360     conf-&gt;writeEntry( <a class="code" href="constants_8h.html#1ef385c98b6d719e7b2c6e1d9d9bf686">CONFIG_ENTRY_SORT_ORDER_MESSAGE</a>, <a class="code" href="constants_8h.html#68f1b8b98a0868540cf76e753107f887">CONFIG_VALUE_SORT_ORDER_DESCENDING</a> );
+<a name="l00360"></a>00360     conf-&gt;writeEntry( CONFIG_ENTRY_SORT_ORDER_MESSAGE, CONFIG_VALUE_SORT_ORDER_DESCENDING );
 <a name="l00361"></a>00361   }
 <a name="l00362"></a>00362 
 <a name="l00363"></a>00363   conf-&gt;sync();
 <a name="l00364"></a>00364 }
 <a name="l00365"></a>00365 
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

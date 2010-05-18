@@ -65,6 +65,8 @@ Q_OBJECT
 
     /**
      * Generic constructor
+     * @param parent parent widget
+     * @param args arguments
      */
     explicit ConfigFilter( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 

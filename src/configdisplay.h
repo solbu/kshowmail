@@ -47,6 +47,8 @@ Q_OBJECT
   public:
     /**
      * Generic Constructor
+     * @param parent parent widget
+     * @param args arguments
      */
     explicit ConfigDisplay( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 

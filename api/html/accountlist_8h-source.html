@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/accountlist.h</h1><a href="accountlist_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/accountlist.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -48,13 +48,13 @@
 <a name="l00032"></a>00032 <span class="preprocessor">#include &lt;KConfig&gt;</span>
 <a name="l00033"></a>00033 
 <a name="l00034"></a>00034 <span class="comment">//KShowmail headers</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include "<a class="code" href="account_8h.html">account.h</a>"</span>
-<a name="l00036"></a>00036 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00037"></a>00037 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00038"></a>00038 <span class="preprocessor">#include "<a class="code" href="corruptdataexception_8h.html">corruptdataexception.h</a>"</span>
-<a name="l00039"></a>00039 <span class="preprocessor">#include "<a class="code" href="filterlog_8h.html">filterlog.h</a>"</span>
-<a name="l00040"></a>00040 <span class="preprocessor">#include "<a class="code" href="mail_8h.html">mail.h</a>"</span>
-<a name="l00041"></a>00041 <span class="preprocessor">#include "<a class="code" href="accountviewitem_8h.html">accountviewitem.h</a>"</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include "account.h"</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#include "types.h"</span>
+<a name="l00038"></a>00038 <span class="preprocessor">#include "corruptdataexception.h"</span>
+<a name="l00039"></a>00039 <span class="preprocessor">#include "filterlog.h"</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#include "mail.h"</span>
+<a name="l00041"></a>00041 <span class="preprocessor">#include "accountviewitem.h"</span>
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="keyword">using namespace </span>Types;
 <a name="l00044"></a>00044 
@@ -123,17 +123,17 @@
 <a name="l00229"></a>00229     
 <a name="l00230"></a>00230         <span class="keyword">private</span>:
 <a name="l00231"></a>00231                 
-<a name="l00235"></a><a class="code" href="classAccountList.html#23d96450b1d3b622668eccb79b2356cc">00235</a>                 QList&lt;QPointer&lt;Account&gt; &gt; <a class="code" href="classAccountList.html#23d96450b1d3b622668eccb79b2356cc" title="this list contains the account objects">accounts</a>;
+<a name="l00235"></a>00235                 QList&lt;QPointer&lt;Account&gt; &gt; accounts;
 <a name="l00236"></a>00236 
-<a name="l00249"></a><a class="code" href="classAccountList.html#307c6db42d9ccfe8f20ed0b1d15cad13">00249</a>     <a class="code" href="namespaceTypes.html#ca963e9ff87e4dfc99a0123af22c0346">AccountTaskMap_Type</a> <a class="code" href="classAccountList.html#307c6db42d9ccfe8f20ed0b1d15cad13" title="This map is used by the methods to refresh the account mail lists.">accountRefreshMap</a>;
+<a name="l00249"></a>00249     <a class="code" href="namespaceTypes.html#ca963e9ff87e4dfc99a0123af22c0346">AccountTaskMap_Type</a> accountRefreshMap;
 <a name="l00250"></a>00250 
-<a name="l00263"></a><a class="code" href="classAccountList.html#ba1f0921c815de29c9faceb30500b146">00263</a>     <a class="code" href="namespaceTypes.html#ca963e9ff87e4dfc99a0123af22c0346">AccountTaskMap_Type</a> <a class="code" href="classAccountList.html#ba1f0921c815de29c9faceb30500b146" title="This map is used by the delete methods.">accountDeletionMap</a>;
+<a name="l00263"></a>00263     <a class="code" href="namespaceTypes.html#ca963e9ff87e4dfc99a0123af22c0346">AccountTaskMap_Type</a> accountDeletionMap;
 <a name="l00264"></a>00264 
-<a name="l00277"></a><a class="code" href="classAccountList.html#aa373efa89a6b8d997e93fba491875bb">00277</a>     <a class="code" href="namespaceTypes.html#ca963e9ff87e4dfc99a0123af22c0346">AccountTaskMap_Type</a> <a class="code" href="classAccountList.html#aa373efa89a6b8d997e93fba491875bb" title="This map is used by the methods to show the mail body.">AccountShowBodiesMap</a>;
+<a name="l00277"></a>00277     <a class="code" href="namespaceTypes.html#ca963e9ff87e4dfc99a0123af22c0346">AccountTaskMap_Type</a> AccountShowBodiesMap;
 <a name="l00278"></a>00278 
-<a name="l00286"></a><a class="code" href="classAccountList.html#f8ae80fdf8b04745f0ca4bd29da6f6eb">00286</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountList.html#f8ae80fdf8b04745f0ca4bd29da6f6eb" title="Number of windows, which have been opened by the accounts to show mails.">ctrOpenMessageWindows</a>;
+<a name="l00286"></a>00286     <span class="keywordtype">int</span> ctrOpenMessageWindows;
 <a name="l00287"></a>00287 
-<a name="l00291"></a><a class="code" href="classAccountList.html#53937bef45faabd70b3584b3003f6d5f">00291</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccountList.html#53937bef45faabd70b3584b3003f6d5f" title="TRUE - mails keep new until termination.">keepMailsNew</a>;
+<a name="l00291"></a>00291     <span class="keywordtype">bool</span> keepMailsNew;
 <a name="l00292"></a>00292     
 <a name="l00293"></a>00293 
 <a name="l00294"></a>00294   <span class="keyword">protected</span>:
@@ -172,7 +172,7 @@
 <a name="l00399"></a>00399 
 <a name="l00400"></a>00400 <span class="preprocessor">#endif // ACCOUNTLIST_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

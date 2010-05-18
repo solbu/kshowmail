@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/filteritem.h</h1><a href="filteritem_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/filteritem.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -45,9 +45,9 @@
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 <span class="comment">//KShowmail headers</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include "<a class="code" href="filteritemcriteria_8h.html">filteritemcriteria.h</a>"</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00034"></a>00034 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "filteritemcriteria.h"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include "types.h"</span>
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036 <span class="keyword">using namespace </span>Types;
 <a name="l00037"></a>00037 
@@ -65,28 +65,28 @@
 <a name="l00075"></a>00075 
 <a name="l00076"></a>00076   <span class="keyword">private</span>:
 <a name="l00077"></a>00077 
-<a name="l00081"></a><a class="code" href="classFilterItem.html#e07d4e7e638f61271be8f0565603d6f9">00081</a>     KSharedConfigPtr <a class="code" href="classFilterItem.html#e07d4e7e638f61271be8f0565603d6f9">config</a>;
+<a name="l00081"></a>00081     KSharedConfigPtr config;
 <a name="l00082"></a>00082 
-<a name="l00086"></a><a class="code" href="classFilterItem.html#2292114dc6b344e155e66caffb1312da">00086</a>     uint <a class="code" href="classFilterItem.html#2292114dc6b344e155e66caffb1312da">filterNumber</a>;
+<a name="l00086"></a>00086     uint filterNumber;
 <a name="l00087"></a>00087 
-<a name="l00091"></a><a class="code" href="classFilterItem.html#a4efa18b6c783ac9fbc8c483ea833d3b">00091</a>     QString <a class="code" href="classFilterItem.html#a4efa18b6c783ac9fbc8c483ea833d3b">name</a>;
+<a name="l00091"></a>00091     QString name;
 <a name="l00092"></a>00092 
-<a name="l00096"></a><a class="code" href="classFilterItem.html#1969f5a9e293ee5c434b6c1e5ef5b316">00096</a>     uint <a class="code" href="classFilterItem.html#1969f5a9e293ee5c434b6c1e5ef5b316">numberCriterias</a>;
+<a name="l00096"></a>00096     uint numberCriterias;
 <a name="l00097"></a>00097 
-<a name="l00101"></a><a class="code" href="classFilterItem.html#58b18d2ee6b00081df0b962224aca74910c7570abaf0aabd42082bdf961aa274">00101</a>     <span class="keyword">enum</span> <a class="code" href="classFilterItem.html#58b18d2ee6b00081df0b962224aca749">Linkage_Type</a>{ <a class="code" href="classFilterItem.html#58b18d2ee6b00081df0b962224aca7499c5079e590cae0aa11aa30bbfa5661e1">LinkAll</a>, <a class="code" href="classFilterItem.html#58b18d2ee6b00081df0b962224aca74910c7570abaf0aabd42082bdf961aa274">LinkAny</a> };
+<a name="l00101"></a>00101     <span class="keyword">enum</span> Linkage_Type{ LinkAll, LinkAny };
 <a name="l00102"></a>00102 
-<a name="l00106"></a><a class="code" href="classFilterItem.html#4ae978390328da87b9fdf5af6b355eb7">00106</a>     <a class="code" href="classFilterItem.html#58b18d2ee6b00081df0b962224aca749">Linkage_Type</a> <a class="code" href="classFilterItem.html#4ae978390328da87b9fdf5af6b355eb7">linkage</a>;
+<a name="l00106"></a>00106     Linkage_Type linkage;
 <a name="l00107"></a>00107 
-<a name="l00111"></a><a class="code" href="classFilterItem.html#d64fa3d718d8c849dfe6dff9d3e595b3">00111</a>     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classFilterItem.html#d64fa3d718d8c849dfe6dff9d3e595b3">action</a>;
+<a name="l00111"></a>00111     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action;
 <a name="l00112"></a>00112 
-<a name="l00116"></a><a class="code" href="classFilterItem.html#ea3dbfdeae33818b9dde1486995bbb13">00116</a>     QString <a class="code" href="classFilterItem.html#ea3dbfdeae33818b9dde1486995bbb13">mailbox</a>;
+<a name="l00116"></a>00116     QString mailbox;
 <a name="l00117"></a>00117 
-<a name="l00121"></a><a class="code" href="classFilterItem.html#d850798309edb8d61f917771a96e4add">00121</a>     QList&lt;FilterItemCriteria*&gt; <a class="code" href="classFilterItem.html#d850798309edb8d61f917771a96e4add">criterias</a>;
+<a name="l00121"></a>00121     QList&lt;FilterItemCriteria*&gt; criterias;
 <a name="l00122"></a>00122 };
 <a name="l00123"></a>00123 
 <a name="l00124"></a>00124 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

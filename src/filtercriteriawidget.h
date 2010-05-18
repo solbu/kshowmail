@@ -80,6 +80,7 @@ Q_OBJECT
 
     /**
      * Constructor
+     * @param parent parent widget
      */
     FilterCriteriaWidget( QWidget *parent = 0 );
 

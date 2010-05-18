@@ -94,11 +94,6 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classMail.html">Mail</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#1d40081c4893d5cc7931faf213f5a368">getAllMails</a> () const </td></tr>
 
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classMail.html">Mail</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#fd84fc8f0655853051cd10c4a92d6588">mails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#acd96a42ae00d3223cc71dd71563c778">acc</a></td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 List of Mails. 
@@ -143,8 +138,6 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00020">20</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="maillist_8h-source.html#l00282">acc</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="8521019b3a22391db0f11f809c133dd7"></a><!-- doxytag: member="MailList::~MailList" ref="8521019b3a22391db0f11f809c133dd7" args="()" -->
@@ -165,8 +158,6 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 <p>
 Destructor 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00025">25</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
 
 </div>
 </div><p>
@@ -214,10 +205,6 @@ Creates a mail object and adds it to the list <dl compact><dt><b>Parameters:</b>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00037">37</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="maillist_8h-source.html#l00282">acc</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="maillist_8cpp-source.html#l00515">readStoredMails()</a>, and <a class="el" href="account_8cpp-source.html#l01173">Account::slotUIDListResponse()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="fc917b27bed48bdd437c46f81557b699"></a><!-- doxytag: member="MailList::print" ref="fc917b27bed48bdd437c46f81557b699" args="() const " -->
@@ -238,10 +225,6 @@ Creates a mail object and adds it to the list <dl compact><dt><b>Parameters:</b>
 <p>
 Prints all data of this mail list to stdout 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00048">48</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00050">Mail::print()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l00057">Account::print()</a>.</p>
 
 </div>
 </div><p>
@@ -272,10 +255,6 @@ FALSE - mail is not in the list </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00059">59</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00068">Mail::getUNID()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01173">Account::slotUIDListResponse()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="c3b2a9f2414fd8c3583b47dfa12fa13d"></a><!-- doxytag: member="MailList::isNew" ref="c3b2a9f2414fd8c3583b47dfa12fa13d" args="(QString uid) const " -->
@@ -304,10 +283,6 @@ Returns whether the given mail is new. <dl compact><dt><b>Parameters:</b></dt><d
 FALSE - mail is not new or mail doesn't exist </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00078">78</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00068">Mail::getUNID()</a>, <a class="el" href="mail_8cpp-source.html#l00099">Mail::isNew()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01173">Account::slotUIDListResponse()</a>.</p>
 
 </div>
 </div><p>
@@ -346,10 +321,6 @@ Sets the size of a mail. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00100">100</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00045">Mail::setSize()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01406">Account::slotMailSizesResponse()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="ad9c41b6c6c025ef48f99675f858163d"></a><!-- doxytag: member="MailList::getNewMails" ref="ad9c41b6c6c025ef48f99675f858163d" args="()" -->
@@ -371,10 +342,6 @@ Sets the size of a mail. <dl compact><dt><b>Parameters:</b></dt><dd>
 Returns the numbers of mails which are marked as new. <dl class="return" compact><dt><b>Returns:</b></dt><dd>numbers of the new mails </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00119">119</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="mail_8cpp-source.html#l00099">Mail::isNew()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01504">Account::getHeaders()</a>.</p>
 
 </div>
 </div><p>
@@ -413,10 +380,6 @@ Sets the header of the given mail. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00138">138</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00104">Mail::setHeader()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01592">Account::copyHeaders()</a>, and <a class="el" href="account_8cpp-source.html#l01540">Account::slotGetHeaderResponse()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="bf495fab60dcf9443b3a3bef64581d0b"></a><!-- doxytag: member="MailList::setHeader" ref="bf495fab60dcf9443b3a3bef64581d0b" args="(QString unid, QStringList header)" -->
@@ -454,8 +417,6 @@ Sets the header of the mail with the given UID. <dl compact><dt><b>Parameters:</
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00198">198</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00068">Mail::getUNID()</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00104">Mail::setHeader()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="8de5a395485ac8684dc5fa1a6b9987a2"></a><!-- doxytag: member="MailList::getUIDsOfOldMails" ref="8de5a395485ac8684dc5fa1a6b9987a2" args="()" -->
@@ -477,10 +438,6 @@ Sets the header of the mail with the given UID. <dl compact><dt><b>Parameters:</
 Returns a list of the UIDs of all old mails. <dl class="return" compact><dt><b>Returns:</b></dt><dd>UIDs of all old mails </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00158">158</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00068">Mail::getUNID()</a>, <a class="el" href="mail_8cpp-source.html#l00099">Mail::isNew()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01592">Account::copyHeaders()</a>.</p>
 
 </div>
 </div><p>
@@ -515,10 +472,6 @@ Returns the header of the mail with the given UID. <dl compact><dt><b>Parameters
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00177">177</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00219">Mail::getHeader()</a>, <a class="el" href="mail_8cpp-source.html#l00068">Mail::getUNID()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01592">Account::copyHeaders()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="e7d69009db2a2e823ef46d3fa9d7e479"></a><!-- doxytag: member="MailList::getNumberMails" ref="e7d69009db2a2e823ef46d3fa9d7e479" args="() const " -->
@@ -541,10 +494,6 @@ Returns the number of mails. <dl class="return" compact><dt><b>Returns:</b></dt>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00216">216</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01617">Account::getNumberMails()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="56d75cb2c38da41eaafcdddc40afc43a"></a><!-- doxytag: member="MailList::getAccount" ref="56d75cb2c38da41eaafcdddc40afc43a" args="() const " -->
@@ -566,8 +515,6 @@ Returns the number of mails. <dl class="return" compact><dt><b>Returns:</b></dt>
 Returns a pointer to the account which this list holds. <dl class="return" compact><dt><b>Returns:</b></dt><dd>account </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00221">221</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="maillist_8h-source.html#l00282">acc</a>.</p>
 
 </div>
 </div><p>
@@ -634,10 +581,6 @@ Apply the filters to the mails in this list. <dl compact><dt><b>Parameters:</b><
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00226">226</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="types_8h-source.html#l00095">Types::DownloadActionParams_Type::action</a>, <a class="el" href="mail_8cpp-source.html#l00403">Mail::applyHeaderFilter()</a>, <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, <a class="el" href="types_8h-source.html#l00085">Types::FActIgnore</a>, <a class="el" href="types_8h-source.html#l00083">Types::FActMove</a>, <a class="el" href="types_8h-source.html#l00084">Types::FActSpamcheck</a>, <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="types_8h-source.html#l00096">Types::DownloadActionParams_Type::mailbox</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="maillist_8cpp-source.html#l00267">removeMail()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01329">Account::applyFilters()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="d27446833398b41b4222c864cbe1a413"></a><!-- doxytag: member="MailList::removeMail" ref="d27446833398b41b4222c864cbe1a413" args="(int number)" -->
@@ -664,10 +607,6 @@ Removes the mail which has the given number. <dl compact><dt><b>Parameters:</b><
 </dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00267">267</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="maillist_8cpp-source.html#l00226">applyHeaderFilter()</a>.</p>
 
 </div>
 </div><p>
@@ -706,10 +645,6 @@ Saves all stored mails into the given DOM document inside the given account elem
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00282">282</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00422">Mail::save()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l02072">Account::saveOptions()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="c3bbb8fe67ae11ba51b063afc45d0548"></a><!-- doxytag: member="MailList::getSenderOf" ref="c3bbb8fe67ae11ba51b063afc45d0548" args="(int number) const " -->
@@ -737,10 +672,6 @@ Returns the sender of the mail with the given number. <dl compact><dt><b>Paramet
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>sender </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00294">294</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00362">Mail::getFrom()</a>, <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01745">Account::slotBodyDownloaded()</a>.</p>
 
 </div>
 </div><p>
@@ -770,10 +701,6 @@ Returns the date of sent of the mail with the given number. <dl compact><dt><b>P
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00315">315</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00393">Mail::getDateTime()</a>, <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01745">Account::slotBodyDownloaded()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="fcbf8c09f6d5f17ed46f3b6ccaa181c5"></a><!-- doxytag: member="MailList::getSizeOf" ref="fcbf8c09f6d5f17ed46f3b6ccaa181c5" args="(int number) const " -->
@@ -801,10 +728,6 @@ Returns the size of the mail with the given number. <dl compact><dt><b>Parameter
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>size </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00337">337</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="mail_8cpp-source.html#l00372">Mail::getSizeSuffix()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01745">Account::slotBodyDownloaded()</a>.</p>
 
 </div>
 </div><p>
@@ -834,10 +757,6 @@ Returns the subject of the mail with the given number. <dl compact><dt><b>Parame
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00359">359</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="mail_8cpp-source.html#l00063">Mail::getSubject()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01745">Account::slotBodyDownloaded()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="c2b7faf31aa428f892f81543c9f7b054"></a><!-- doxytag: member="MailList::getCharsetFromHeaderOf" ref="c2b7faf31aa428f892f81543c9f7b054" args="(int number) const " -->
@@ -865,8 +784,6 @@ Returns the charset of the mail with the given number. <dl compact><dt><b>Parame
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>charset </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00381">381</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00697">Mail::getCharsetFromHeader()</a>, <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
 
 </div>
 </div><p>
@@ -912,10 +829,6 @@ Decodes the given mail body by the appropriate mail object. The mail object has 
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>decoded mail body </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00403">403</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00451">Mail::decodeMailBody()</a>, <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01745">Account::slotBodyDownloaded()</a>.</p>
 
 </div>
 </div><p>
@@ -968,10 +881,6 @@ Writes the mail into the Move Log. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00425">425</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00757">Mail::writeToMoveLog()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01886">Account::slotMailDownloadedForAction()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="5843e955ca33b2c269a89153cc554db9"></a><!-- doxytag: member="MailList::writeToDeleteLog" ref="5843e955ca33b2c269a89153cc554db9" args="(FilterLog *log, int number, QString account)" -->
@@ -1016,10 +925,6 @@ Writes the mail into the Delete Log. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00463">463</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00767">Mail::writeToDeleteLog()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01886">Account::slotMailDownloadedForAction()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="ff18a93326b5361deb2a1cafbfc86f23"></a><!-- doxytag: member="MailList::setMarkAtNextViewRefresh" ref="ff18a93326b5361deb2a1cafbfc86f23" args="(int number)" -->
@@ -1047,10 +952,6 @@ The given mail will be marked at the next view refresh. <dl compact><dt><b>Param
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00444">444</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, and <a class="el" href="mail_8cpp-source.html#l00762">Mail::setMarkAtNextViewRefresh()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l01886">Account::slotMailDownloadedForAction()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="7ccfa7d16852b8b02227e48aaee130f0"></a><!-- doxytag: member="MailList::getNumberNewMails" ref="7ccfa7d16852b8b02227e48aaee130f0" args="()" -->
@@ -1073,10 +974,6 @@ Returns the number of new mails. <dl class="return" compact><dt><b>Returns:</b><
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00482">482</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00099">Mail::isNew()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l02267">Account::getNumberNewMails()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="9e83869411ab50e5a9076510bc308206"></a><!-- doxytag: member="MailList::getTotalSize" ref="9e83869411ab50e5a9076510bc308206" args="()" -->
@@ -1098,10 +995,6 @@ Returns the number of new mails. <dl class="return" compact><dt><b>Returns:</b><
 Returns the total size (bytes) of all mails. <dl class="return" compact><dt><b>Returns:</b></dt><dd>total size </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00499">499</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00073">Mail::getSize()</a>, and <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l02272">Account::getTotalSize()</a>.</p>
 
 </div>
 </div><p>
@@ -1130,10 +1023,6 @@ Reads out all mails stored inside the given account element, creates objects fro
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00515">515</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="maillist_8cpp-source.html#l00037">addMail()</a>, <a class="el" href="constants_8h-source.html#l00164">ATTRIBUTE_MAIL_NUMBER</a>, <a class="el" href="constants_8h-source.html#l00163">ATTRIBUTE_MAIL_SIZE</a>, <a class="el" href="constants_8h-source.html#l00162">ATTRIBUTE_MAIL_UID</a>, <a class="el" href="mail_8h-source.html#l00046">HEADER_SEPARATOR</a>, <a class="el" href="constants_8h-source.html#l00165">ITEM_MAIL_HEADER</a>, <a class="el" href="maillist_8h-source.html#l00277">mails</a>, <a class="el" href="mail_8cpp-source.html#l00104">Mail::setHeader()</a>, and <a class="el" href="mail_8cpp-source.html#l00045">Mail::setSize()</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l02340">Account::readStoredMails()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="1d40081c4893d5cc7931faf213f5a368"></a><!-- doxytag: member="MailList::getAllMails" ref="1d40081c4893d5cc7931faf213f5a368" args="() const " -->
@@ -1156,55 +1045,12 @@ Returns a list which contains the pointers to all mails. <dl class="return" comp
 
 <p>Definition at line <a class="el" href="maillist_8cpp-source.html#l00548">548</a> of file <a class="el" href="maillist_8cpp-source.html">maillist.cpp</a>.</p>
 
-<p>References <a class="el" href="maillist_8h-source.html#l00277">mails</a>.</p>
-
-<p>Referenced by <a class="el" href="account_8cpp-source.html#l02400">Account::getAllMails()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="fd84fc8f0655853051cd10c4a92d6588"></a><!-- doxytag: member="MailList::mails" ref="fd84fc8f0655853051cd10c4a92d6588" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QList&lt;<a class="el" href="classMail.html">Mail</a>*&gt; <a class="el" href="classMailList.html#fd84fc8f0655853051cd10c4a92d6588">MailList::mails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-List of mails 
-<p>Definition at line <a class="el" href="maillist_8h-source.html#l00277">277</a> of file <a class="el" href="maillist_8h-source.html">maillist.h</a>.</p>
-
-<p>Referenced by <a class="el" href="maillist_8cpp-source.html#l00037">addMail()</a>, <a class="el" href="maillist_8cpp-source.html#l00226">applyHeaderFilter()</a>, <a class="el" href="maillist_8cpp-source.html#l00403">decodeMailBody()</a>, <a class="el" href="maillist_8cpp-source.html#l00548">getAllMails()</a>, <a class="el" href="maillist_8cpp-source.html#l00381">getCharsetFromHeaderOf()</a>, <a class="el" href="maillist_8cpp-source.html#l00315">getDateOf()</a>, <a class="el" href="maillist_8cpp-source.html#l00177">getHeaderOf()</a>, <a class="el" href="maillist_8cpp-source.html#l00119">getNewMails()</a>, <a class="el" href="maillist_8cpp-source.html#l00216">getNumberMails()</a>, <a class="el" href="maillist_8cpp-source.html#l00482">getNumberNewMails()</a>, <a class="el" href="maillist_8cpp-source.html#l00294">getSenderOf()</a>, <a class="el" href="maillist_8cpp-source.html#l00337">getSizeOf()</a>, <a class="el" href="maillist_8cpp-source.html#l00359">getSubjectOf()</a>, <a class="el" href="maillist_8cpp-source.html#l00499">getTotalSize()</a>, <a class="el" href="maillist_8cpp-source.html#l00158">getUIDsOfOldMails()</a>, <a class="el" href="maillist_8cpp-source.html#l00059">hasMail()</a>, <a class="el" href="maillist_8cpp-source.html#l00078">isNew()</a>, <a class="el" href="maillist_8cpp-source.html#l00048">print()</a>, <a class="el" href="maillist_8cpp-source.html#l00515">readStoredMails()</a>, <a class="el" href="maillist_8cpp-source.html#l00267">removeMail()</a>, <a class="el" href="maillist_8cpp-source.html#l00282">saveMails()</a>, <a class="el" href="maillist_8cpp-source.html#l00138">setHeader()</a>, <a class="el" href="maillist_8cpp-source.html#l00444">setMarkAtNextViewRefresh()</a>, <a class="el" href="maillist_8cpp-source.html#l00100">setSize()</a>, <a class="el" href="maillist_8cpp-source.html#l00463">writeToDeleteLog()</a>, <a class="el" href="maillist_8cpp-source.html#l00425">writeToMoveLog()</a>, and <a class="el" href="maillist_8cpp-source.html#l00025">~MailList()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="acd96a42ae00d3223cc71dd71563c778"></a><!-- doxytag: member="MailList::acc" ref="acd96a42ae00d3223cc71dd71563c778" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QPointer&lt;<a class="el" href="classAccount.html">Account</a>&gt; <a class="el" href="classMailList.html#acd96a42ae00d3223cc71dd71563c778">MailList::acc</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Pointer to the parent account 
-<p>Definition at line <a class="el" href="maillist_8h-source.html#l00282">282</a> of file <a class="el" href="maillist_8h-source.html">maillist.h</a>.</p>
-
-<p>Referenced by <a class="el" href="maillist_8cpp-source.html#l00037">addMail()</a>, <a class="el" href="maillist_8cpp-source.html#l00221">getAccount()</a>, and <a class="el" href="maillist_8cpp-source.html#l00020">MailList()</a>.</p>
-
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="maillist_8h-source.html">maillist.h</a><li>src/<a class="el" href="maillist_8cpp-source.html">maillist.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

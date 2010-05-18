@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/filteritemcriteria.h</h1><a href="filteritemcriteria_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/filteritemcriteria.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -45,8 +45,8 @@
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 <span class="comment">//Kshowmail headers</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "types.h"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "constants.h"</span>
 <a name="l00034"></a>00034 
 <a name="l00041"></a><a class="code" href="classFilterItemCriteria.html">00041</a> <span class="keyword">class </span><a class="code" href="classFilterItemCriteria.html" title="This is a criteria of a filter item. For using create an object and call check()...">FilterItemCriteria</a>{
 <a name="l00042"></a>00042 
@@ -62,27 +62,27 @@
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074   <span class="keyword">private</span>:
 <a name="l00075"></a>00075 
-<a name="l00079"></a><a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719774586baa1ff23d5fb8909435fdfc1212">00079</a>     <span class="keyword">enum</span> <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197">Source_Type</a>{ <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf071973546869a90879c8438a73685e34be230">SrcFrom</a>, <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719774586baa1ff23d5fb8909435fdfc1212">SrcTo</a>, <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf0719743ba45454a4328cd3f33a22fd75d03f1">SrcSize</a>, <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197a75f15cd45c66787fa46bd7ef217b4c1">SrcSubject</a>, <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197c2a2be36517155d1d073e0e5753750c4">SrcHeader</a>, <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197531c79a9e1f854cc7fa5ec0eca01ba83">SrcAccount</a> };
+<a name="l00079"></a>00079     <span class="keyword">enum</span> Source_Type{ SrcFrom, SrcTo, SrcSize, SrcSubject, SrcHeader, SrcAccount };
 <a name="l00080"></a>00080 
-<a name="l00084"></a><a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">00084</a>     <a class="code" href="classFilterItemCriteria.html#38b0ef8defd3f52091da4594adf07197">Source_Type</a> <a class="code" href="classFilterItemCriteria.html#84551b9f69ec91321d5e121b74ecb1d5">source</a>;
+<a name="l00084"></a>00084     Source_Type source;
 <a name="l00085"></a>00085 
-<a name="l00089"></a><a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f266b5347283171204842440a1dd7dcec">00089</a>     <span class="keyword">enum</span> <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f">TextCondition_Type</a>{ <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f25059f8d1fe4c30496210da5fa1a72f9">TxtCondContains</a>, <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fdb51576913f4df976410b4c8d2851696">TxtCondNotContains</a>, <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6fb3ec0aa8185f2ca796e477b825f8296e">TxtCondEqual</a>, <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f17ff814248fa95cd4615ed68a138bd2b">TxtCondNotEqual</a>, <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f266b5347283171204842440a1dd7dcec">TxtCondRegExpr</a>, <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f58cea83345a15b02b9260a45069fda7e">TxtCondNotRegExpr</a> };
+<a name="l00089"></a>00089     <span class="keyword">enum</span> TextCondition_Type{ TxtCondContains, TxtCondNotContains, TxtCondEqual, TxtCondNotEqual, TxtCondRegExpr, TxtCondNotRegExpr };
 <a name="l00090"></a>00090 
-<a name="l00094"></a><a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd46b6c8165139e41263bcb3b7b45673e5">00094</a>     <span class="keyword">enum</span> <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd">NumCondition_Type</a>{ <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defdd52ce87f5916ede0169efbc666b82732">NumCondEqual</a>, <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd46b6c8165139e41263bcb3b7b45673e5">NumCondNotEqual</a>, <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defda933b7c9612f9ecf1a78be6f2dcd4656">NumCondGreater</a>, <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd96c80ff56805962b07d78576454a2cb5">NumCondGreaterEqual</a>, <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd87f12a8ca405ea04e7004317b37bc8c3">NumCondLess</a>, <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd0d470e0e945cb1a9075c96bfeab6a58a">NumCondLessEqual</a> };
+<a name="l00094"></a>00094     <span class="keyword">enum</span> NumCondition_Type{ NumCondEqual, NumCondNotEqual, NumCondGreater, NumCondGreaterEqual, NumCondLess, NumCondLessEqual };
 <a name="l00095"></a>00095 
-<a name="l00099"></a><a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">00099</a>     <a class="code" href="classFilterItemCriteria.html#15bb04dea0adb17e34e280a82eb6be6f">TextCondition_Type</a> <a class="code" href="classFilterItemCriteria.html#80db831c80f48e867ea0de4514155c30">txtCondition</a>;
+<a name="l00099"></a>00099     TextCondition_Type txtCondition;
 <a name="l00100"></a>00100 
-<a name="l00104"></a><a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">00104</a>     <a class="code" href="classFilterItemCriteria.html#a9f75c7e50d2de22a6fc88a68098defd">NumCondition_Type</a> <a class="code" href="classFilterItemCriteria.html#a3f9b4630d4cf432443fa5b3750d08b8">numCondition</a>;
+<a name="l00104"></a>00104     NumCondition_Type numCondition;
 <a name="l00105"></a>00105 
-<a name="l00109"></a><a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">00109</a>     QString <a class="code" href="classFilterItemCriteria.html#48530ea0b4d0b3bf4999086ead3d35be">txtValue</a>;
+<a name="l00109"></a>00109     QString txtValue;
 <a name="l00110"></a>00110 
-<a name="l00114"></a><a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">00114</a>     uint <a class="code" href="classFilterItemCriteria.html#012ce0d8a878020829f6f025727f0c8a">numValue</a>;
+<a name="l00114"></a>00114     uint numValue;
 <a name="l00115"></a>00115 
-<a name="l00119"></a><a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">00119</a>     <span class="keywordtype">bool</span> <a class="code" href="classFilterItemCriteria.html#fa6f1c20d76baab1c5f70fe5855f226f">cs</a>;
+<a name="l00119"></a>00119     <span class="keywordtype">bool</span> cs;
 <a name="l00120"></a>00120 
-<a name="l00124"></a><a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">00124</a>     uint <a class="code" href="classFilterItemCriteria.html#78884aac2946432f15243db889239e61">FilterNumber</a>;
+<a name="l00124"></a>00124     uint FilterNumber;
 <a name="l00125"></a>00125 
-<a name="l00129"></a><a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">00129</a>     uint <a class="code" href="classFilterItemCriteria.html#0ea75bbf1425b38eb134a1d86085f044">CriteriaNumber</a>;
+<a name="l00129"></a>00129     uint CriteriaNumber;
 <a name="l00130"></a>00130 
 <a name="l00131"></a>00131   <span class="keyword">protected</span>:
 <a name="l00132"></a>00132 
@@ -95,7 +95,7 @@
 <a name="l00154"></a>00154 
 <a name="l00155"></a>00155 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

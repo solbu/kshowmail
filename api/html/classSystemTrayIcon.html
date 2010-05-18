@@ -48,13 +48,6 @@
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemTrayIcon.html#f6a80e460287714aee38e51d63dc6b5c">drawLooking</a> ()</td></tr>
 
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QIcon&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemTrayIcon.html#9be808146018c474f74a2705591975d6">_icon</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QTimer *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemTrayIcon.html#ca193493dc42c933afb3477eb7cb8f13">flashingTimer</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemTrayIcon.html#10efcc2f0d33ff41fbf596fd15327c1f">flasherFlag</a></td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 This shows the small icon in the system tray. 
@@ -102,8 +95,6 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="systemtrayicon_8cpp-source.html#l00021">21</a> of file <a class="el" href="systemtrayicon_8cpp-source.html">systemtrayicon.cpp</a>.</p>
 
-<p>References <a class="el" href="systemtrayicon_8h-source.html#l00074">_icon</a>, <a class="el" href="systemtrayicon_8h-source.html#l00079">flashingTimer</a>, and <a class="el" href="systemtrayicon_8cpp-source.html#l00118">slotFlash()</a>.</p>
-
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -142,10 +133,6 @@ Draws the given number on the icon. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="systemtrayicon_8cpp-source.html#l00039">39</a> of file <a class="el" href="systemtrayicon_8cpp-source.html">systemtrayicon.cpp</a>.</p>
 
-<p>References <a class="el" href="systemtrayicon_8h-source.html#l00074">_icon</a>, and <a class="el" href="systemtrayicon_8h-source.html#l00079">flashingTimer</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00518">KShowmail::slotRefreshReady()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="06cae1bd35dd5fa52f0830e7c777c77a"></a><!-- doxytag: member="SystemTrayIcon::clear" ref="06cae1bd35dd5fa52f0830e7c777c77a" args="()" -->
@@ -166,8 +153,6 @@ Draws the given number on the icon. <dl compact><dt><b>Parameters:</b></dt><dd>
 <p>
 Clears the number from the icon 
 <p>Definition at line <a class="el" href="systemtrayicon_8cpp-source.html#l00070">70</a> of file <a class="el" href="systemtrayicon_8cpp-source.html">systemtrayicon.cpp</a>.</p>
-
-<p>References <a class="el" href="systemtrayicon_8h-source.html#l00079">flashingTimer</a>.</p>
 
 </div>
 </div><p>
@@ -190,10 +175,6 @@ Clears the number from the icon
 Shows a flashing question mark 
 <p>Definition at line <a class="el" href="systemtrayicon_8cpp-source.html#l00077">77</a> of file <a class="el" href="systemtrayicon_8cpp-source.html">systemtrayicon.cpp</a>.</p>
 
-<p>References <a class="el" href="systemtrayicon_8cpp-source.html#l00093">drawLooking()</a>, <a class="el" href="systemtrayicon_8h-source.html#l00085">flasherFlag</a>, and <a class="el" href="systemtrayicon_8h-source.html#l00079">flashingTimer</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00185">KShowmail::slotRefresh()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="f6a80e460287714aee38e51d63dc6b5c"></a><!-- doxytag: member="SystemTrayIcon::drawLooking" ref="f6a80e460287714aee38e51d63dc6b5c" args="()" -->
@@ -215,10 +196,6 @@ Shows a flashing question mark
 Draws a question mark 
 <p>Definition at line <a class="el" href="systemtrayicon_8cpp-source.html#l00093">93</a> of file <a class="el" href="systemtrayicon_8cpp-source.html">systemtrayicon.cpp</a>.</p>
 
-<p>References <a class="el" href="systemtrayicon_8h-source.html#l00074">_icon</a>.</p>
-
-<p>Referenced by <a class="el" href="systemtrayicon_8cpp-source.html#l00077">showLooking()</a>, and <a class="el" href="systemtrayicon_8cpp-source.html#l00118">slotFlash()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="316925ee7d45a8f70becdbd6391556c7"></a><!-- doxytag: member="SystemTrayIcon::slotFlash" ref="316925ee7d45a8f70becdbd6391556c7" args="()" -->
@@ -237,80 +214,17 @@ Draws a question mark
 <div class="memdoc">
 
 <p>
-Receives the timer event and depending on flasherFlag it calls <a class="el" href="classSystemTrayIcon.html#f6a80e460287714aee38e51d63dc6b5c">drawLooking()</a> or clears the icon. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classSystemTrayIcon.html#10efcc2f0d33ff41fbf596fd15327c1f">flasherFlag</a> <p>
+Receives the timer event and depending on flasherFlag it calls <a class="el" href="classSystemTrayIcon.html#f6a80e460287714aee38e51d63dc6b5c">drawLooking()</a> or clears the icon. <dl class="see" compact><dt><b>See also:</b></dt><dd>flasherFlag <p>
 <a class="el" href="classSystemTrayIcon.html#f6a80e460287714aee38e51d63dc6b5c">drawLooking</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="systemtrayicon_8cpp-source.html#l00118">118</a> of file <a class="el" href="systemtrayicon_8cpp-source.html">systemtrayicon.cpp</a>.</p>
-
-<p>References <a class="el" href="systemtrayicon_8h-source.html#l00074">_icon</a>, <a class="el" href="systemtrayicon_8cpp-source.html#l00093">drawLooking()</a>, and <a class="el" href="systemtrayicon_8h-source.html#l00085">flasherFlag</a>.</p>
-
-<p>Referenced by <a class="el" href="systemtrayicon_8cpp-source.html#l00021">SystemTrayIcon()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="9be808146018c474f74a2705591975d6"></a><!-- doxytag: member="SystemTrayIcon::_icon" ref="9be808146018c474f74a2705591975d6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QIcon <a class="el" href="classSystemTrayIcon.html#9be808146018c474f74a2705591975d6">SystemTrayIcon::_icon</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-the icon 
-<p>Definition at line <a class="el" href="systemtrayicon_8h-source.html#l00074">74</a> of file <a class="el" href="systemtrayicon_8h-source.html">systemtrayicon.h</a>.</p>
-
-<p>Referenced by <a class="el" href="systemtrayicon_8cpp-source.html#l00093">drawLooking()</a>, <a class="el" href="systemtrayicon_8cpp-source.html#l00039">drawNumber()</a>, <a class="el" href="systemtrayicon_8cpp-source.html#l00118">slotFlash()</a>, and <a class="el" href="systemtrayicon_8cpp-source.html#l00021">SystemTrayIcon()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="ca193493dc42c933afb3477eb7cb8f13"></a><!-- doxytag: member="SystemTrayIcon::flashingTimer" ref="ca193493dc42c933afb3477eb7cb8f13" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QTimer* <a class="el" href="classSystemTrayIcon.html#ca193493dc42c933afb3477eb7cb8f13">SystemTrayIcon::flashingTimer</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Timer to animate the ? 
-<p>Definition at line <a class="el" href="systemtrayicon_8h-source.html#l00079">79</a> of file <a class="el" href="systemtrayicon_8h-source.html">systemtrayicon.h</a>.</p>
-
-<p>Referenced by <a class="el" href="systemtrayicon_8cpp-source.html#l00070">clear()</a>, <a class="el" href="systemtrayicon_8cpp-source.html#l00039">drawNumber()</a>, <a class="el" href="systemtrayicon_8cpp-source.html#l00077">showLooking()</a>, and <a class="el" href="systemtrayicon_8cpp-source.html#l00021">SystemTrayIcon()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="10efcc2f0d33ff41fbf596fd15327c1f"></a><!-- doxytag: member="SystemTrayIcon::flasherFlag" ref="10efcc2f0d33ff41fbf596fd15327c1f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="classSystemTrayIcon.html#10efcc2f0d33ff41fbf596fd15327c1f">SystemTrayIcon::flasherFlag</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-auxiliary flag for the flasher<p>
-TRUE - question mark is on; FALSE - question mark is off 
-<p>Definition at line <a class="el" href="systemtrayicon_8h-source.html#l00085">85</a> of file <a class="el" href="systemtrayicon_8h-source.html">systemtrayicon.h</a>.</p>
-
-<p>Referenced by <a class="el" href="systemtrayicon_8cpp-source.html#l00077">showLooking()</a>, and <a class="el" href="systemtrayicon_8cpp-source.html#l00118">slotFlash()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="systemtrayicon_8h-source.html">systemtrayicon.h</a><li>src/<a class="el" href="systemtrayicon_8cpp-source.html">systemtrayicon.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

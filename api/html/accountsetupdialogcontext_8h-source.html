@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/accountsetupdialogcontext.h</h1><a href="accountsetupdialogcontext_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/accountsetupdialogcontext.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -57,20 +57,20 @@
 <a name="l00041"></a>00041 <span class="preprocessor">#include &lt;KConfig&gt;</span>
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="comment">//KShowmail headers</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include "<a class="code" href="encryption_8h.html">encryption.h</a>"</span>
-<a name="l00046"></a>00046 <span class="preprocessor">#include "<a class="code" href="kwalletaccess_8h.html">kwalletaccess.h</a>"</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include "encryption.h"</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include "kwalletaccess.h"</span>
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <span class="comment">//radio button IDs</span>
-<a name="l00049"></a><a class="code" href="accountsetupdialogcontext_8h.html#be096056a674c86942df35ae88683434">00049</a> <span class="preprocessor">#define ID_BUTTON_PASSWORD_DONT_SAVE 1</span>
-<a name="l00050"></a><a class="code" href="accountsetupdialogcontext_8h.html#9638724c33aa14f0d538a7e4423e470b">00050</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_PASSWORD_SAVE_FILE 2</span>
-<a name="l00051"></a><a class="code" href="accountsetupdialogcontext_8h.html#77714157b4c78706e8a5bb4baf36692e">00051</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_PASSWORD_SAVE_KWALLET 3</span>
-<a name="l00052"></a><a class="code" href="accountsetupdialogcontext_8h.html#f019b2688ba98eabbe519528e08e8a3f">00052</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECLOGIN_NONE 1</span>
-<a name="l00053"></a><a class="code" href="accountsetupdialogcontext_8h.html#d06081dbbddcd8906f776cb51a1b86d7">00053</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECLOGIN_APOP 2</span>
-<a name="l00054"></a><a class="code" href="accountsetupdialogcontext_8h.html#e10ffb05e2e9354fe339b6bee90335e7">00054</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECLOGIN_SASL 3</span>
-<a name="l00055"></a><a class="code" href="accountsetupdialogcontext_8h.html#799ff84b8069a4c98a54017050cb32be">00055</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECTRANSFER_NONE 1</span>
-<a name="l00056"></a><a class="code" href="accountsetupdialogcontext_8h.html#5728cd8d1587a93dcdb7bcabed849b07">00056</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECTRANSFER_SSL 2</span>
-<a name="l00057"></a><a class="code" href="accountsetupdialogcontext_8h.html#10a546734fbc31e9f983a31c566ca584">00057</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECTRANSFER_TLS 3</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#define ID_BUTTON_PASSWORD_DONT_SAVE 1</span>
+<a name="l00050"></a>00050 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_PASSWORD_SAVE_FILE 2</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_PASSWORD_SAVE_KWALLET 3</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECLOGIN_NONE 1</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECLOGIN_APOP 2</span>
+<a name="l00054"></a>00054 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECLOGIN_SASL 3</span>
+<a name="l00055"></a>00055 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECTRANSFER_NONE 1</span>
+<a name="l00056"></a>00056 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECTRANSFER_SSL 2</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span><span class="preprocessor">#define ID_BUTTON_SECTRANSFER_TLS 3</span>
 <a name="l00058"></a>00058 <span class="preprocessor"></span>
 <a name="l00059"></a>00059 <span class="keyword">using namespace </span>Encryption;
 <a name="l00060"></a>00060 
@@ -87,27 +87,27 @@
 <a name="l00084"></a>00084 
 <a name="l00085"></a>00085   <span class="keyword">private</span>:
 <a name="l00086"></a>00086 
-<a name="l00090"></a><a class="code" href="classAccountSetupDialogContext.html#b21a4b6046d6ee95f1fe5e7398f52e5b">00090</a>     QString <a class="code" href="classAccountSetupDialogContext.html#b21a4b6046d6ee95f1fe5e7398f52e5b" title="Account name.">accName</a>;
+<a name="l00090"></a>00090     QString accName;
 <a name="l00091"></a>00091 
-<a name="l00095"></a><a class="code" href="classAccountSetupDialogContext.html#1dae25ad88d385a9cea356722d392da3">00095</a>     KLineEdit* <a class="code" href="classAccountSetupDialogContext.html#1dae25ad88d385a9cea356722d392da3" title="Edit line which contains the unique account name.">txtAccount</a>;
+<a name="l00095"></a>00095     KLineEdit* txtAccount;
 <a name="l00096"></a>00096 
-<a name="l00100"></a><a class="code" href="classAccountSetupDialogContext.html#2fe571a831ed3fe7475911ce75235383">00100</a>     KLineEdit* <a class="code" href="classAccountSetupDialogContext.html#2fe571a831ed3fe7475911ce75235383" title="Edit line which contains the server name.">txtServer</a>;
+<a name="l00100"></a>00100     KLineEdit* txtServer;
 <a name="l00101"></a>00101 
-<a name="l00105"></a><a class="code" href="classAccountSetupDialogContext.html#e77d241f7c7fb4d3157c52bbe2de6315">00105</a>     KComboBox* <a class="code" href="classAccountSetupDialogContext.html#e77d241f7c7fb4d3157c52bbe2de6315" title="Combo box to choose the protocol.">cboProtocol</a>;
+<a name="l00105"></a>00105     KComboBox* cboProtocol;
 <a name="l00106"></a>00106 
-<a name="l00110"></a><a class="code" href="classAccountSetupDialogContext.html#65266686d61d7532dbc83c6bc09a6b36">00110</a>     QSpinBox* <a class="code" href="classAccountSetupDialogContext.html#65266686d61d7532dbc83c6bc09a6b36" title="Spinbox to choose the tcp port.">spbPort</a>;
+<a name="l00110"></a>00110     QSpinBox* spbPort;
 <a name="l00111"></a>00111 
-<a name="l00115"></a><a class="code" href="classAccountSetupDialogContext.html#68b901a676d00e47c8f1c2f2fadf7672">00115</a>     KLineEdit* <a class="code" href="classAccountSetupDialogContext.html#68b901a676d00e47c8f1c2f2fadf7672" title="Edit line which contains the user name.">txtUser</a>;
+<a name="l00115"></a>00115     KLineEdit* txtUser;
 <a name="l00116"></a>00116 
-<a name="l00120"></a><a class="code" href="classAccountSetupDialogContext.html#7ca31edaeca45268396ed5af63bf9ad4">00120</a>     KLineEdit* <a class="code" href="classAccountSetupDialogContext.html#7ca31edaeca45268396ed5af63bf9ad4" title="Edit line which contains the password.">txtPassword</a>;
+<a name="l00120"></a>00120     KLineEdit* txtPassword;
 <a name="l00121"></a>00121 
-<a name="l00125"></a><a class="code" href="classAccountSetupDialogContext.html#1618b5af9c1651a6099e1bbf911bd6b0">00125</a>     QCheckBox* <a class="code" href="classAccountSetupDialogContext.html#1618b5af9c1651a6099e1bbf911bd6b0" title="Check box to select whether the account is active or not.">chkActive</a>;
+<a name="l00125"></a>00125     QCheckBox* chkActive;
 <a name="l00126"></a>00126 
-<a name="l00130"></a><a class="code" href="classAccountSetupDialogContext.html#e92c0a4cab8c9dba4e0f9bdb95c8cccf">00130</a>     QButtonGroup* <a class="code" href="classAccountSetupDialogContext.html#e92c0a4cab8c9dba4e0f9bdb95c8cccf" title="Combines the radio buttons of password storage.">grpPasswordStorage</a>;
+<a name="l00130"></a>00130     QButtonGroup* grpPasswordStorage;
 <a name="l00131"></a>00131 
-<a name="l00135"></a><a class="code" href="classAccountSetupDialogContext.html#c71bd568999aa9b92a781ca27d5a3cb1">00135</a>     QButtonGroup* <a class="code" href="classAccountSetupDialogContext.html#c71bd568999aa9b92a781ca27d5a3cb1" title="Combines the radio buttons of secure transfer.">grpSecureTransfer</a>;
+<a name="l00135"></a>00135     QButtonGroup* grpSecureTransfer;
 <a name="l00136"></a>00136 
-<a name="l00140"></a><a class="code" href="classAccountSetupDialogContext.html#22dcbb82cc915214c1cd2cc5fac5910b">00140</a>     QCheckBox* <a class="code" href="classAccountSetupDialogContext.html#22dcbb82cc915214c1cd2cc5fac5910b" title="Check box to select whether unsecure login is allowed.">chkAllowUnsecureLogin</a>;
+<a name="l00140"></a>00140     QCheckBox* chkAllowUnsecureLogin;
 <a name="l00141"></a>00141 
 <a name="l00142"></a>00142     
 <a name="l00143"></a>00143 
@@ -134,7 +134,7 @@
 <a name="l00194"></a>00194 
 <a name="l00195"></a>00195 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

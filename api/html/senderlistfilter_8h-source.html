@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/senderlistfilter.h</h1><a href="senderlistfilter_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/senderlistfilter.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -45,8 +45,8 @@
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 <span class="comment">//Kshowmail headers</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "types.h"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "constants.h"</span>
 <a name="l00034"></a>00034 
 <a name="l00035"></a>00035 <span class="keyword">using namespace </span>Types;
 <a name="l00036"></a>00036 
@@ -66,13 +66,13 @@
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075   <span class="keyword">private</span>:
 <a name="l00076"></a>00076 
-<a name="l00080"></a><a class="code" href="classSenderListFilter.html#e2bcf2e8fea57752c304ce121e6c6dce">00080</a>     KSharedConfigPtr <a class="code" href="classSenderListFilter.html#e2bcf2e8fea57752c304ce121e6c6dce">config</a>;
+<a name="l00080"></a>00080     KSharedConfigPtr config;
 <a name="l00081"></a>00081 
-<a name="l00085"></a><a class="code" href="classSenderListFilter.html#18cefb81d2ba5d663f3c5d26d098265b">00085</a>     QStringList <a class="code" href="classSenderListFilter.html#18cefb81d2ba5d663f3c5d26d098265b">blacklist</a>;
+<a name="l00085"></a>00085     QStringList blacklist;
 <a name="l00086"></a>00086 
-<a name="l00090"></a><a class="code" href="classSenderListFilter.html#8228445f3526a626d3531587c1ba1d29">00090</a>     QStringList <a class="code" href="classSenderListFilter.html#8228445f3526a626d3531587c1ba1d29">whitelist</a>;
+<a name="l00090"></a>00090     QStringList whitelist;
 <a name="l00091"></a>00091 
-<a name="l00095"></a><a class="code" href="classSenderListFilter.html#bbde9560d26d88cd90b7adcdf9622240">00095</a>     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classSenderListFilter.html#bbde9560d26d88cd90b7adcdf9622240">blacklistAction</a>;
+<a name="l00095"></a>00095     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> blacklistAction;
 <a name="l00096"></a>00096 
 <a name="l00097"></a>00097   <span class="keyword">protected</span>:
 <a name="l00098"></a>00098 
@@ -81,7 +81,7 @@
 <a name="l00119"></a>00119 
 <a name="l00120"></a>00120 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

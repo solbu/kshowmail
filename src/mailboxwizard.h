@@ -56,7 +56,8 @@ class MailBoxWizard : public QWizard
   public:
 
     /**
-     * Constructor
+     * @brief Constructor
+     * @param parent parent widget
      */
     MailBoxWizard( QWidget* parent = 0 );
 

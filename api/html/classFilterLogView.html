@@ -34,33 +34,26 @@
 <a href="classFilterLogView-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#a47fc385ab40dad5555b2c237ad0c8f9">FilterLogView</a> (QWidget *parent=NULL, <a class="el" href="classFilterLog.html">FilterLog</a> *<a class="el" href="classFilterLogView.html#328b7d4165c9c35fb3ea97b8e08e64c1">log</a>=NULL)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#a47fc385ab40dad5555b2c237ad0c8f9">FilterLogView</a> (QWidget *parent=NULL, <a class="el" href="classFilterLog.html">FilterLog</a> *log=NULL)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#39949389eff6158027896ae9aa090c02">~FilterLogView</a> ()</td></tr>
 
-<tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#e04e903ee8397ac726181a7e9376f8b1">slotClearDeletedMails</a> ()</td></tr>
+<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3842a75a838e8bd16a0d67c69ef9ac5c"></a><!-- doxytag: member="FilterLogView::saveSetup" ref="3842a75a838e8bd16a0d67c69ef9ac5c" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#3842a75a838e8bd16a0d67c69ef9ac5c">saveSetup</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#37a6adfc6e0b1610e0d87421fe1d9218">slotClearMovedMails</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">saves the setup <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f45d20106bd85f233266aab079b66b78"></a><!-- doxytag: member="FilterLogView::loadSetup" ref="f45d20106bd85f233266aab079b66b78" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#f45d20106bd85f233266aab079b66b78">loadSetup</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#303fce46b8db3c482f23e9f7923fc925">slotButtonClicked</a> (int button)</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classFilterLog.html">FilterLog</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#328b7d4165c9c35fb3ea97b8e08e64c1">log</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QTreeWidget *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#2c06d8c516c74c233cdd92bad1c5a770">lstViewDeleted</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QTreeWidget *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#58ad3e2099e1d304bf7f7231df8225ab">lstViewMoved</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KSharedConfigPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogView.html#34275229c5329754f3f12b45a9048b25">config</a></td></tr>
-
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">loads the setup <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 This dialog box shows the filter log. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogview_8h-source.html#l00049">49</a> of file <a class="el" href="filterlogview_8h-source.html">filterlogview.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogview_8h-source.html#l00044">44</a> of file <a class="el" href="filterlogview_8h-source.html">filterlogview.h</a>.</p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="a47fc385ab40dad5555b2c237ad0c8f9"></a><!-- doxytag: member="FilterLogView::FilterLogView" ref="a47fc385ab40dad5555b2c237ad0c8f9" args="(QWidget *parent=NULL, FilterLog *log=NULL)" -->
 <div class="memitem">
@@ -97,8 +90,6 @@ General constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="filterlogview_8cpp-source.html#l00020">20</a> of file <a class="el" href="filterlogview_8cpp-source.html">filterlogview.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlogview_8h-source.html#l00088">config</a>, <a class="el" href="filterlogview_8h-source.html#l00022">CONFIG_GROUP</a>, <a class="el" href="filterlog_8cpp-source.html#l00191">FilterLog::getDeletedMails()</a>, <a class="el" href="filterlog_8cpp-source.html#l00196">FilterLog::getMovedMails()</a>, <a class="el" href="filterlogview_8h-source.html#l00078">lstViewDeleted</a>, <a class="el" href="filterlogview_8h-source.html#l00083">lstViewMoved</a>, <a class="el" href="filterlogviewmoveditem_8cpp-source.html#l00030">FilterLogViewMovedItem::setValues()</a>, <a class="el" href="filterlogviewdeleteditem_8cpp-source.html#l00030">FilterLogViewDeletedItem::setValues()</a>, <a class="el" href="filterlogview_8cpp-source.html#l00121">slotClearDeletedMails()</a>, and <a class="el" href="filterlogview_8cpp-source.html#l00128">slotClearMovedMails()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="39949389eff6158027896ae9aa090c02"></a><!-- doxytag: member="FilterLogView::~FilterLogView" ref="39949389eff6158027896ae9aa090c02" args="()" -->
@@ -118,172 +109,14 @@ General constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>
 Destructor 
-<p>Definition at line <a class="el" href="filterlogview_8cpp-source.html#l00117">117</a> of file <a class="el" href="filterlogview_8cpp-source.html">filterlogview.cpp</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="e04e903ee8397ac726181a7e9376f8b1"></a><!-- doxytag: member="FilterLogView::slotClearDeletedMails" ref="e04e903ee8397ac726181a7e9376f8b1" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FilterLogView::slotClearDeletedMails           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Clears the list of deleted mails. 
-<p>Definition at line <a class="el" href="filterlogview_8cpp-source.html#l00121">121</a> of file <a class="el" href="filterlogview_8cpp-source.html">filterlogview.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8cpp-source.html#l00084">FilterLog::clearDeletedMailsLog()</a>, <a class="el" href="filterlogview_8h-source.html#l00073">log</a>, and <a class="el" href="filterlogview_8h-source.html#l00078">lstViewDeleted</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00020">FilterLogView()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="37a6adfc6e0b1610e0d87421fe1d9218"></a><!-- doxytag: member="FilterLogView::slotClearMovedMails" ref="37a6adfc6e0b1610e0d87421fe1d9218" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FilterLogView::slotClearMovedMails           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Clears th elist of moved mails. 
-<p>Definition at line <a class="el" href="filterlogview_8cpp-source.html#l00128">128</a> of file <a class="el" href="filterlogview_8cpp-source.html">filterlogview.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8cpp-source.html#l00089">FilterLog::clearMovedMailsLog()</a>, <a class="el" href="filterlogview_8h-source.html#l00073">log</a>, and <a class="el" href="filterlogview_8h-source.html#l00083">lstViewMoved</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00020">FilterLogView()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="303fce46b8db3c482f23e9f7923fc925"></a><!-- doxytag: member="FilterLogView::slotButtonClicked" ref="303fce46b8db3c482f23e9f7923fc925" args="(int button)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FilterLogView::slotButtonClicked           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>button</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, virtual, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Overloaded from KDialog.<p>
-Activated when the button <code>button</code> is clicked. <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>button</em>&nbsp;</td><td>clocked button </td></tr>
-  </table>
-</dl>
-
-<p>Definition at line <a class="el" href="filterlogview_8cpp-source.html#l00134">134</a> of file <a class="el" href="filterlogview_8cpp-source.html">filterlogview.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlogview_8h-source.html#l00088">config</a>, and <a class="el" href="filterlogview_8h-source.html#l00022">CONFIG_GROUP</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="328b7d4165c9c35fb3ea97b8e08e64c1"></a><!-- doxytag: member="FilterLogView::log" ref="328b7d4165c9c35fb3ea97b8e08e64c1" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classFilterLog.html">FilterLog</a>* <a class="el" href="classFilterLogView.html#328b7d4165c9c35fb3ea97b8e08e64c1">FilterLogView::log</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Pointer to the filter log. 
-<p>Definition at line <a class="el" href="filterlogview_8h-source.html#l00073">73</a> of file <a class="el" href="filterlogview_8h-source.html">filterlogview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00121">slotClearDeletedMails()</a>, and <a class="el" href="filterlogview_8cpp-source.html#l00128">slotClearMovedMails()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="2c06d8c516c74c233cdd92bad1c5a770"></a><!-- doxytag: member="FilterLogView::lstViewDeleted" ref="2c06d8c516c74c233cdd92bad1c5a770" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QTreeWidget* <a class="el" href="classFilterLogView.html#2c06d8c516c74c233cdd92bad1c5a770">FilterLogView::lstViewDeleted</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-List view of deleted mails 
-<p>Definition at line <a class="el" href="filterlogview_8h-source.html#l00078">78</a> of file <a class="el" href="filterlogview_8h-source.html">filterlogview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00020">FilterLogView()</a>, and <a class="el" href="filterlogview_8cpp-source.html#l00121">slotClearDeletedMails()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="58ad3e2099e1d304bf7f7231df8225ab"></a><!-- doxytag: member="FilterLogView::lstViewMoved" ref="58ad3e2099e1d304bf7f7231df8225ab" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QTreeWidget* <a class="el" href="classFilterLogView.html#58ad3e2099e1d304bf7f7231df8225ab">FilterLogView::lstViewMoved</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-List view of moved mails 
-<p>Definition at line <a class="el" href="filterlogview_8h-source.html#l00083">83</a> of file <a class="el" href="filterlogview_8h-source.html">filterlogview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00020">FilterLogView()</a>, and <a class="el" href="filterlogview_8cpp-source.html#l00128">slotClearMovedMails()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="34275229c5329754f3f12b45a9048b25"></a><!-- doxytag: member="FilterLogView::config" ref="34275229c5329754f3f12b45a9048b25" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KSharedConfigPtr <a class="el" href="classFilterLogView.html#34275229c5329754f3f12b45a9048b25">FilterLogView::config</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connector to the configuration file 
-<p>Definition at line <a class="el" href="filterlogview_8h-source.html#l00088">88</a> of file <a class="el" href="filterlogview_8h-source.html">filterlogview.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00020">FilterLogView()</a>, and <a class="el" href="filterlogview_8cpp-source.html#l00134">slotButtonClicked()</a>.</p>
+<p>Definition at line <a class="el" href="filterlogview_8cpp-source.html#l00084">84</a> of file <a class="el" href="filterlogview_8cpp-source.html">filterlogview.cpp</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="filterlogview_8h-source.html">filterlogview.h</a><li>src/<a class="el" href="filterlogview_8cpp-source.html">filterlogview.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

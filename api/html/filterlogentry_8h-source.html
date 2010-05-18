@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/filterlogentry.h</h1><a href="filterlogentry_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/filterlogentry.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -43,8 +43,8 @@
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;KDateTime&gt;</span>
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029 <span class="comment">//KShowmail headers</span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00031"></a>00031 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include "types.h"</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include "constants.h"</span>
 <a name="l00032"></a>00032 
 <a name="l00033"></a>00033 <span class="keyword">using namespace </span>Types;
 <a name="l00034"></a>00034 
@@ -54,7 +54,7 @@
 <a name="l00045"></a>00045 
 <a name="l00049"></a>00049     <a class="code" href="classFilterLogEntry.html#2fa09bcc0a3631b5a8b0cf18f5291081">FilterLogEntry</a>();
 <a name="l00050"></a>00050 
-<a name="l00060"></a>00060     <a class="code" href="classFilterLogEntry.html#2fa09bcc0a3631b5a8b0cf18f5291081">FilterLogEntry</a>( <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, <span class="keyword">const</span> KDateTime&amp; dateTime, <span class="keyword">const</span> QString&amp; <a class="code" href="classFilterLogEntry.html#beb4991508455d61c59cbb6ef6766b32">sender</a>, <span class="keyword">const</span> QString&amp; <a class="code" href="classFilterLogEntry.html#712d167a9ba886be14ca9ad1bc8341f7">account</a>, <span class="keyword">const</span> QString&amp; <a class="code" href="classFilterLogEntry.html#be167b5503f62f90b0dc560a1e5b1558">subject</a>, <span class="keyword">const</span> QString&amp; <a class="code" href="classFilterLogEntry.html#d149fca2f4561be04dae1b8eabfdae58">mailbox</a> = QString() );
+<a name="l00060"></a>00060     <a class="code" href="classFilterLogEntry.html#2fa09bcc0a3631b5a8b0cf18f5291081">FilterLogEntry</a>( <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, <span class="keyword">const</span> KDateTime&amp; dateTime, <span class="keyword">const</span> QString&amp; sender, <span class="keyword">const</span> QString&amp; account, <span class="keyword">const</span> QString&amp; subject, <span class="keyword">const</span> QString&amp; mailbox = QString() );
 <a name="l00061"></a>00061 
 <a name="l00066"></a>00066     <a class="code" href="classFilterLogEntry.html#2fa09bcc0a3631b5a8b0cf18f5291081">FilterLogEntry</a>( <span class="keyword">const</span> <a class="code" href="classFilterLogEntry.html" title="An Object of this class contains the data about a deleted or moved mail. These objects...">FilterLogEntry</a>&amp; ent );
 <a name="l00067"></a>00067 
@@ -78,37 +78,39 @@
 <a name="l00125"></a>00125 
 <a name="l00131"></a>00131     <span class="keywordtype">bool</span> <a class="code" href="classFilterLogEntry.html#5d099ea50c7c6c451af2a3b05c97dad6">isOlder</a>( uint days );
 <a name="l00132"></a>00132 
-<a name="l00136"></a>00136     <span class="keywordtype">void</span> <a class="code" href="classFilterLogEntry.html#477f7486122545541e940233bb1da15d">save</a>( QDomDocument&amp; doc, QDomElement&amp; parent );
-<a name="l00137"></a>00137 
-<a name="l00142"></a>00142     KDateTime <a class="code" href="classFilterLogEntry.html#d358ff3ae59651a54d01e205f614db72">getDate</a>();
-<a name="l00143"></a>00143 
-<a name="l00148"></a>00148     QString <a class="code" href="classFilterLogEntry.html#49c10c324ea3cf38d39162500edf17e0">getSender</a>();
-<a name="l00149"></a>00149 
-<a name="l00154"></a>00154     QString <a class="code" href="classFilterLogEntry.html#0de03b81ac29a2605b26d1a5a6ec7f72">getAccount</a>();
-<a name="l00155"></a>00155 
-<a name="l00160"></a>00160     QString <a class="code" href="classFilterLogEntry.html#24d80bc83ec5286153fb8cad0f89a088">getSubject</a>();
-<a name="l00161"></a>00161 
-<a name="l00166"></a>00166     QString <a class="code" href="classFilterLogEntry.html#247808d8a49002029d759d089abbcdab">getMailbox</a>();
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168   <span class="keyword">private</span>:
+<a name="l00138"></a>00138     <span class="keywordtype">void</span> <a class="code" href="classFilterLogEntry.html#477f7486122545541e940233bb1da15d" title="Stores the entry into the given DOM document as child of the given DOM element.">save</a>( QDomDocument&amp; doc, QDomElement&amp; parent );
+<a name="l00139"></a>00139 
+<a name="l00144"></a>00144     KDateTime <a class="code" href="classFilterLogEntry.html#d0d2a00f2da98a26fbb9c6647e3bbce2">getDate</a>() <span class="keyword">const</span>;
+<a name="l00145"></a>00145 
+<a name="l00150"></a>00150     QString <a class="code" href="classFilterLogEntry.html#859da042bf6d4ba013f6306e121e4e88">getSender</a>() <span class="keyword">const</span>;
+<a name="l00151"></a>00151 
+<a name="l00156"></a>00156     QString <a class="code" href="classFilterLogEntry.html#18cde550a84c1e5978d4f1293775d205">getAccount</a>() <span class="keyword">const</span>;
+<a name="l00157"></a>00157 
+<a name="l00162"></a>00162     QString <a class="code" href="classFilterLogEntry.html#6b3387780bcc217346d1a3020aeb02f3">getSubject</a>() <span class="keyword">const</span>;
+<a name="l00163"></a>00163 
+<a name="l00168"></a>00168     QString <a class="code" href="classFilterLogEntry.html#c96efc78c81d14c500b3cdf3b65ec08b">getMailbox</a>() <span class="keyword">const</span>;
 <a name="l00169"></a>00169 
-<a name="l00173"></a><a class="code" href="classFilterLogEntry.html#491ab294e7c012aaf2ecefbd5a40467a">00173</a>     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classFilterLogEntry.html#491ab294e7c012aaf2ecefbd5a40467a">act</a>;
-<a name="l00174"></a>00174 
-<a name="l00178"></a><a class="code" href="classFilterLogEntry.html#6404afef93e9ad46baedcf45c28ffcbf">00178</a>     KDateTime <a class="code" href="classFilterLogEntry.html#6404afef93e9ad46baedcf45c28ffcbf">sentDateTime</a>;
-<a name="l00179"></a>00179 
-<a name="l00183"></a><a class="code" href="classFilterLogEntry.html#beb4991508455d61c59cbb6ef6766b32">00183</a>     QString sender;
-<a name="l00184"></a>00184 
-<a name="l00188"></a><a class="code" href="classFilterLogEntry.html#712d167a9ba886be14ca9ad1bc8341f7">00188</a>     QString account;
-<a name="l00189"></a>00189 
-<a name="l00193"></a><a class="code" href="classFilterLogEntry.html#be167b5503f62f90b0dc560a1e5b1558">00193</a>     QString subject;
-<a name="l00194"></a>00194 
-<a name="l00198"></a><a class="code" href="classFilterLogEntry.html#d149fca2f4561be04dae1b8eabfdae58">00198</a>     QString <a class="code" href="classFilterLogEntry.html#d149fca2f4561be04dae1b8eabfdae58">mailbox</a>;
-<a name="l00199"></a>00199 
-<a name="l00200"></a>00200 };
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202 <span class="preprocessor">#endif</span>
+<a name="l00177"></a>00177     <span class="keywordtype">int</span> <a class="code" href="classFilterLogEntry.html#b9f7bf969120a2bf6c771d14c9611987" title="Compares this entry with other and returns an integer less than, equal to, or greater...">compare</a>( <span class="keyword">const</span> <a class="code" href="classFilterLogEntry.html" title="An Object of this class contains the data about a deleted or moved mail. These objects...">FilterLogEntry</a>&amp; other, <a class="code" href="namespaceTypes.html#186cbce5608fe9683d74b24bf8795cea" title="Log view sorting.">LogViewSort</a> property ) <span class="keyword">const</span>;
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179   <span class="keyword">private</span>:
+<a name="l00180"></a>00180 
+<a name="l00184"></a>00184     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> act;
+<a name="l00185"></a>00185 
+<a name="l00189"></a>00189     KDateTime sentDateTime;
+<a name="l00190"></a>00190 
+<a name="l00194"></a>00194     QString sender;
+<a name="l00195"></a>00195 
+<a name="l00199"></a>00199     QString account;
+<a name="l00200"></a>00200 
+<a name="l00204"></a>00204     QString subject;
+<a name="l00205"></a>00205 
+<a name="l00209"></a>00209     QString mailbox;
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 };
+<a name="l00212"></a>00212 
+<a name="l00213"></a>00213 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

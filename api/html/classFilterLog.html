@@ -52,9 +52,9 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#697346428446166f7fe4b5d387095d3a">load</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a3bfe9859901d08f26613fa92b1c92d7">getDeletedMails</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">LogEntryList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a3bfe9859901d08f26613fa92b1c92d7">getDeletedMails</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#4535da60ad21f8cf819bf1b293a930f4">getMovedMails</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">LogEntryList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#4535da60ad21f8cf819bf1b293a930f4">getMovedMails</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#38b93bd89be1c76c88bd33d3222bbe92">loadSetup</a> ()</td></tr>
 
@@ -65,26 +65,7 @@
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#8e332a583eba75f49e895f0cea42304c">addEntry</a> (<a class="el" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString())</td></tr>
 
-<tr><td colspan="2"><br><h2>Private Types</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classFilterLog.html#7a5dfed7513657cdac5537729ac2f14b417033d64ee8a4b460e74cf60c7e949b">exit</a>, 
-<a class="el" href="classFilterLog.html#7a5dfed7513657cdac5537729ac2f14b516fcb3bdc67d933b239de1eda23df9d">days</a>
- }</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KSharedConfigPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#afb4f521b50b870dc0b10ad0beafa25e">config</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#fda049847515829b1e403cd2adee4e02">listDeletedMails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#5179ab13c32aa6eb7857267869010d89">listMovedMails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#69bc71567187d7dc15fda6eb8f1d2979">logDeletedMails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#d9a377c3856846908684babf5cb6d9bd">logMovedMails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">enum FilterLog:: { ... } &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#2a17bd37938071ec9e5fdb07ed21e1ee">deletedMailsStorageMode</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#c2c77f4f69224d4128d538f6949a72e8">daysStoreDeletedMails</a></td></tr>
-
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds an entry.  <a href="#8e332a583eba75f49e895f0cea42304c"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 This is the log of the filters. 
@@ -93,32 +74,6 @@ It holds two lists of entry objects (class <a class="el" href="classFilterLogEnt
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
 
 <p>Definition at line <a class="el" href="filterlog_8h-source.html#l00052">52</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-<hr><h2>Member Enumeration Documentation</h2>
-<a class="anchor" name="7a5dfed7513657cdac5537729ac2f14b"></a><!-- doxytag: member="FilterLog::@0" ref="7a5dfed7513657cdac5537729ac2f14b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">anonymous enum<code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-exit - hold log of deleted mails until application exit days - hold log some days <dl compact><dt><b>Enumerator: </b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" name="7a5dfed7513657cdac5537729ac2f14b417033d64ee8a4b460e74cf60c7e949b"></a><!-- doxytag: member="exit" ref="7a5dfed7513657cdac5537729ac2f14b417033d64ee8a4b460e74cf60c7e949b" args="" -->exit</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" name="7a5dfed7513657cdac5537729ac2f14b516fcb3bdc67d933b239de1eda23df9d"></a><!-- doxytag: member="days" ref="7a5dfed7513657cdac5537729ac2f14b516fcb3bdc67d933b239de1eda23df9d" args="" -->days</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dl>
-
-<p>Definition at line <a class="el" href="filterlog_8h-source.html#l00172">172</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-
-</div>
-</div><p>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="5e4dc0320e613fa0884c20597e2f801d"></a><!-- doxytag: member="FilterLog::FilterLog" ref="5e4dc0320e613fa0884c20597e2f801d" args="()" -->
 <div class="memitem">
@@ -138,8 +93,6 @@ exit - hold log of deleted mails until application exit days - hold log some day
 <p>
 Default constructor 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00020">20</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8h-source.html#l00146">config</a>, <a class="el" href="filterlog_8cpp-source.html#l00138">load()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00201">loadSetup()</a>.</p>
 
 </div>
 </div><p>
@@ -214,10 +167,6 @@ Adds an entry about a deleted mail. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00037">37</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlog_8cpp-source.html#l00049">addEntry()</a>, <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, and <a class="el" href="filterlog_8h-source.html#l00161">logDeletedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="mail_8cpp-source.html#l00403">Mail::applyHeaderFilter()</a>, <a class="el" href="filterlog_8cpp-source.html#l00138">load()</a>, and <a class="el" href="mail_8cpp-source.html#l00767">Mail::writeToDeleteLog()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="f00b6ab0172a919fd92aa4f92d018f2f"></a><!-- doxytag: member="FilterLog::addMovedMail" ref="f00b6ab0172a919fd92aa4f92d018f2f" args="(const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox)" -->
@@ -276,10 +225,6 @@ Adds an entry about a moved mail. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00043">43</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlog_8cpp-source.html#l00049">addEntry()</a>, <a class="el" href="types_8h-source.html#l00083">Types::FActMove</a>, and <a class="el" href="filterlog_8h-source.html#l00166">logMovedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="mail_8cpp-source.html#l00403">Mail::applyHeaderFilter()</a>, and <a class="el" href="mail_8cpp-source.html#l00757">Mail::writeToMoveLog()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="852b7d3cc47c7c6a2130dbd7765176c2"></a><!-- doxytag: member="FilterLog::print" ref="852b7d3cc47c7c6a2130dbd7765176c2" args="()" -->
@@ -300,8 +245,6 @@ Adds an entry about a moved mail. <dl compact><dt><b>Parameters:</b></dt><dd>
 <p>
 Prints the log state. 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00065">65</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8h-source.html#l00151">listDeletedMails</a>, and <a class="el" href="filterlog_8h-source.html#l00156">listMovedMails</a>.</p>
 
 </div>
 </div><p>
@@ -324,10 +267,6 @@ Prints the log state.
 Clears the log of deleted mails. 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00084">84</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlog_8h-source.html#l00151">listDeletedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00121">FilterLogView::slotClearDeletedMails()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="ada8a65c0ff35e777127dff2977644b4"></a><!-- doxytag: member="FilterLog::clearMovedMailsLog" ref="ada8a65c0ff35e777127dff2977644b4" args="()" -->
@@ -348,10 +287,6 @@ Clears the log of deleted mails.
 <p>
 Clears the log of moved mails. 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00089">89</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8h-source.html#l00156">listMovedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00128">FilterLogView::slotClearMovedMails()</a>.</p>
 
 </div>
 </div><p>
@@ -374,10 +309,6 @@ Clears the log of moved mails.
 Saved the log of deleted mails as XML document. 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00094">94</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlog_8h-source.html#l00177">daysStoreDeletedMails</a>, <a class="el" href="classFilterLog.html#2a17bd37938071ec9e5fdb07ed21e1ee">deletedMailsStorageMode</a>, <a class="el" href="filterlog_8h-source.html#l00172">exit</a>, <a class="el" href="filterlog_8h-source.html#l00151">listDeletedMails</a>, <a class="el" href="constants_8h-source.html#l00172">LOG_DOCTYPE</a>, <a class="el" href="constants_8h-source.html#l00171">LOG_FILE</a>, and <a class="el" href="constants_8h-source.html#l00173">LOG_ROOT_ELEMENT</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00450">KShowmail::queryClose()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="697346428446166f7fe4b5d387095d3a"></a><!-- doxytag: member="FilterLog::load" ref="697346428446166f7fe4b5d387095d3a" args="()" -->
@@ -399,10 +330,6 @@ Saved the log of deleted mails as XML document.
 Loads the log of deleted mails from the XML document and get settings. 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00138">138</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlog_8cpp-source.html#l00037">addDeletedMail()</a>, <a class="el" href="filterlog_8h-source.html#l00177">daysStoreDeletedMails</a>, <a class="el" href="constants_8h-source.html#l00172">LOG_DOCTYPE</a>, <a class="el" href="constants_8h-source.html#l00177">LOG_ENTRY_ATTRIBUTE_ACCOUNT</a>, <a class="el" href="constants_8h-source.html#l00175">LOG_ENTRY_ATTRIBUTE_DATETIME</a>, <a class="el" href="constants_8h-source.html#l00176">LOG_ENTRY_ATTRIBUTE_SENDER</a>, <a class="el" href="constants_8h-source.html#l00178">LOG_ENTRY_ATTRIBUTE_SUBJECT</a>, <a class="el" href="constants_8h-source.html#l00174">LOG_ENTRY_ELEMENT</a>, <a class="el" href="constants_8h-source.html#l00171">LOG_FILE</a>, and <a class="el" href="constants_8h-source.html#l00173">LOG_ROOT_ELEMENT</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00020">FilterLog()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="a3bfe9859901d08f26613fa92b1c92d7"></a><!-- doxytag: member="FilterLog::getDeletedMails" ref="a3bfe9859901d08f26613fa92b1c92d7" args="()" -->
@@ -410,7 +337,7 @@ Loads the log of deleted mails from the XML document and get settings.
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a> FilterLog::getDeletedMails           </td>
+          <td class="memname">LogEntryList FilterLog::getDeletedMails           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -425,10 +352,6 @@ Returns a copy of the list of deleted mails. <dl class="return" compact><dt><b>R
 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00191">191</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlog_8h-source.html#l00151">listDeletedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00020">FilterLogView::FilterLogView()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="4535da60ad21f8cf819bf1b293a930f4"></a><!-- doxytag: member="FilterLog::getMovedMails" ref="4535da60ad21f8cf819bf1b293a930f4" args="()" -->
@@ -436,7 +359,7 @@ Returns a copy of the list of deleted mails. <dl class="return" compact><dt><b>R
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a> FilterLog::getMovedMails           </td>
+          <td class="memname">LogEntryList FilterLog::getMovedMails           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -450,10 +373,6 @@ Returns a copy of the list of deleted mails. <dl class="return" compact><dt><b>R
 Retruns a copy of the list of moved mails. <dl class="return" compact><dt><b>Returns:</b></dt><dd>copy of the moved mails list </dd></dl>
 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00196">196</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8h-source.html#l00156">listMovedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlogview_8cpp-source.html#l00020">FilterLogView::FilterLogView()</a>.</p>
 
 </div>
 </div><p>
@@ -475,10 +394,6 @@ Retruns a copy of the list of moved mails. <dl class="return" compact><dt><b>Ret
 <p>
 Loads the settings 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00201">201</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8h-source.html#l00146">config</a>, <a class="el" href="constants_8h-source.html#l00370">CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00366">CONFIG_ENTRY_LOG_LOG_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00367">CONFIG_ENTRY_LOG_LOG_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00368">CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00365">CONFIG_GROUP_LOG</a>, <a class="el" href="constants_8h-source.html#l00374">CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS</a>, <a class="el" href="constants_8h-source.html#l00373">CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT</a>, <a class="el" href="filterlog_8h-source.html#l00172">days</a>, <a class="el" href="filterlog_8h-source.html#l00177">daysStoreDeletedMails</a>, <a class="el" href="constants_8h-source.html#l00151">DEFAULT_LOG_HOLDDAYS_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00145">DEFAULT_LOG_LOG_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00146">DEFAULT_LOG_LOG_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00148">DEFAULT_LOG_REMOVE_DELETED_MAILS</a>, <a class="el" href="classFilterLog.html#2a17bd37938071ec9e5fdb07ed21e1ee">deletedMailsStorageMode</a>, <a class="el" href="filterlog_8h-source.html#l00172">exit</a>, <a class="el" href="filterlog_8h-source.html#l00161">logDeletedMails</a>, and <a class="el" href="filterlog_8h-source.html#l00166">logMovedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00020">FilterLog()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00480">KShowmail::slotConfChanged()</a>.</p>
 
 </div>
 </div><p>
@@ -502,10 +417,6 @@ Returns the number of logged deleted mails. <dl class="return" compact><dt><b>Re
 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00230">230</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
 
-<p>References <a class="el" href="filterlog_8h-source.html#l00151">listDeletedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00589">KShowmail::refreshFilterStatusBar()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="ae150f073ac6a47a00b56e88b71cbe5f"></a><!-- doxytag: member="FilterLog::numberMovedMails" ref="ae150f073ac6a47a00b56e88b71cbe5f" args="()" -->
@@ -527,10 +438,6 @@ Returns the number of logged deleted mails. <dl class="return" compact><dt><b>Re
 Returns the number of logged moved mails. <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of logged moved mails </dd></dl>
 
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00235">235</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
-
-<p>References <a class="el" href="filterlog_8h-source.html#l00156">listMovedMails</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00589">KShowmail::refreshFilterStatusBar()</a>.</p>
 
 </div>
 </div><p>
@@ -584,151 +491,27 @@ Returns the number of logged moved mails. <dl class="return" compact><dt><b>Retu
 <div class="memdoc">
 
 <p>
-adds an entry. The target list will be coose on the basis of the given filter action. 
+Adds an entry. 
+<p>
+The target list will be coose on the basis of the given filter action. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td>the performed action </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>send time of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>account </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>mail subject </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>mailbox if the mail was moved </td></tr>
+  </table>
+</dl>
+
 <p>Definition at line <a class="el" href="filterlog_8cpp-source.html#l00049">49</a> of file <a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a>.</p>
-
-<p>References <a class="el" href="types_8h-source.html#l00081">Types::FActDelete</a>, <a class="el" href="types_8h-source.html#l00083">Types::FActMove</a>, <a class="el" href="filterlog_8h-source.html#l00151">listDeletedMails</a>, <a class="el" href="filterlog_8h-source.html#l00156">listMovedMails</a>, and <a class="el" href="filterlogentry_8cpp-source.html#l00037">FilterLogEntry::print()</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00037">addDeletedMail()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00043">addMovedMail()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="afb4f521b50b870dc0b10ad0beafa25e"></a><!-- doxytag: member="FilterLog::config" ref="afb4f521b50b870dc0b10ad0beafa25e" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KSharedConfigPtr <a class="el" href="classFilterLog.html#afb4f521b50b870dc0b10ad0beafa25e">FilterLog::config</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connector to the configuration file 
-<p>Definition at line <a class="el" href="filterlog_8h-source.html#l00146">146</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00020">FilterLog()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00201">loadSetup()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="fda049847515829b1e403cd2adee4e02"></a><!-- doxytag: member="FilterLog::listDeletedMails" ref="fda049847515829b1e403cd2adee4e02" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a> <a class="el" href="classFilterLog.html#fda049847515829b1e403cd2adee4e02">FilterLog::listDeletedMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-List of entries about deleted mails. 
-<p>Definition at line <a class="el" href="filterlog_8h-source.html#l00151">151</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00049">addEntry()</a>, <a class="el" href="filterlog_8cpp-source.html#l00084">clearDeletedMailsLog()</a>, <a class="el" href="filterlog_8cpp-source.html#l00191">getDeletedMails()</a>, <a class="el" href="filterlog_8cpp-source.html#l00230">numberDeletedMails()</a>, <a class="el" href="filterlog_8cpp-source.html#l00065">print()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00094">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="5179ab13c32aa6eb7857267869010d89"></a><!-- doxytag: member="FilterLog::listMovedMails" ref="5179ab13c32aa6eb7857267869010d89" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="filterlog_8h.html#bd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a> <a class="el" href="classFilterLog.html#5179ab13c32aa6eb7857267869010d89">FilterLog::listMovedMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-List of entries about moved mails. 
-<p>Definition at line <a class="el" href="filterlog_8h-source.html#l00156">156</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00049">addEntry()</a>, <a class="el" href="filterlog_8cpp-source.html#l00089">clearMovedMailsLog()</a>, <a class="el" href="filterlog_8cpp-source.html#l00196">getMovedMails()</a>, <a class="el" href="filterlog_8cpp-source.html#l00235">numberMovedMails()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00065">print()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="69bc71567187d7dc15fda6eb8f1d2979"></a><!-- doxytag: member="FilterLog::logDeletedMails" ref="69bc71567187d7dc15fda6eb8f1d2979" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="classFilterLog.html#69bc71567187d7dc15fda6eb8f1d2979">FilterLog::logDeletedMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-TRUE - the log accepts orders to log deleted mails 
-<p>Definition at line <a class="el" href="filterlog_8h-source.html#l00161">161</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00037">addDeletedMail()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00201">loadSetup()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="d9a377c3856846908684babf5cb6d9bd"></a><!-- doxytag: member="FilterLog::logMovedMails" ref="d9a377c3856846908684babf5cb6d9bd" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="classFilterLog.html#d9a377c3856846908684babf5cb6d9bd">FilterLog::logMovedMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-TRUE - the log accepts orders to log moved mails 
-<p>Definition at line <a class="el" href="filterlog_8h-source.html#l00166">166</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00043">addMovedMail()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00201">loadSetup()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="2a17bd37938071ec9e5fdb07ed21e1ee"></a><!-- doxytag: member="FilterLog::deletedMailsStorageMode" ref="2a17bd37938071ec9e5fdb07ed21e1ee" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum { ... }   <a class="el" href="classFilterLog.html#2a17bd37938071ec9e5fdb07ed21e1ee">FilterLog::deletedMailsStorageMode</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-exit - hold log of deleted mails until application exit days - hold log some days 
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00201">loadSetup()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00094">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="c2c77f4f69224d4128d538f6949a72e8"></a><!-- doxytag: member="FilterLog::daysStoreDeletedMails" ref="c2c77f4f69224d4128d538f6949a72e8" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int <a class="el" href="classFilterLog.html#c2c77f4f69224d4128d538f6949a72e8">FilterLog::daysStoreDeletedMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Time (days) a entry of a deleted mail will be stored. 
-<p>Definition at line <a class="el" href="filterlog_8h-source.html#l00177">177</a> of file <a class="el" href="filterlog_8h-source.html">filterlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="filterlog_8cpp-source.html#l00138">load()</a>, <a class="el" href="filterlog_8cpp-source.html#l00201">loadSetup()</a>, and <a class="el" href="filterlog_8cpp-source.html#l00094">save()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="filterlog_8h-source.html">filterlog.h</a><li>src/<a class="el" href="filterlog_8cpp-source.html">filterlog.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

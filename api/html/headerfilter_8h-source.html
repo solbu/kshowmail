@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/headerfilter.h</h1><a href="headerfilter_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/headerfilter.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -45,10 +45,10 @@
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 <span class="comment">//KShowmail headers</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00034"></a>00034 <span class="preprocessor">#include "<a class="code" href="filteritem_8h.html">filteritem.h</a>"</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include "<a class="code" href="senderlistfilter_8h.html">senderlistfilter.h</a>"</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "types.h"</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include "filteritem.h"</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include "senderlistfilter.h"</span>
 <a name="l00036"></a>00036 
 <a name="l00043"></a><a class="code" href="classHeaderFilter.html">00043</a> <span class="keyword">class </span><a class="code" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header data of the mail to...">HeaderFilter</a>{
 <a name="l00044"></a>00044 
@@ -68,24 +68,24 @@
 <a name="l00085"></a>00085 
 <a name="l00086"></a>00086   <span class="keyword">private</span>:
 <a name="l00087"></a>00087 
-<a name="l00091"></a><a class="code" href="classHeaderFilter.html#794df6ace54de248314bc23ee6cd77b9">00091</a>     KSharedConfigPtr <a class="code" href="classHeaderFilter.html#794df6ace54de248314bc23ee6cd77b9">config</a>;
+<a name="l00091"></a>00091     KSharedConfigPtr config;
 <a name="l00092"></a>00092 
-<a name="l00096"></a><a class="code" href="classHeaderFilter.html#3c14bb815e8616df14a6c225fd9d4469">00096</a>     <span class="keywordtype">bool</span> <a class="code" href="classHeaderFilter.html#3c14bb815e8616df14a6c225fd9d4469">active</a>;
+<a name="l00096"></a>00096     <span class="keywordtype">bool</span> active;
 <a name="l00097"></a>00097 
-<a name="l00101"></a><a class="code" href="classHeaderFilter.html#a478e4731d9465325095dd95c969d0bf">00101</a>     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> <a class="code" href="classHeaderFilter.html#a478e4731d9465325095dd95c969d0bf">defaultAction</a>;
+<a name="l00101"></a>00101     <a class="code" href="namespaceTypes.html#ce032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> defaultAction;
 <a name="l00102"></a>00102 
-<a name="l00106"></a><a class="code" href="classHeaderFilter.html#43b2162ede8f87c53486afc52d02eefd">00106</a>     QString <a class="code" href="classHeaderFilter.html#43b2162ede8f87c53486afc52d02eefd">mailbox</a>;
+<a name="l00106"></a>00106     QString mailbox;
 <a name="l00107"></a>00107 
-<a name="l00111"></a><a class="code" href="classHeaderFilter.html#beda72983c14c88c52d60576812ecc0b">00111</a>     uint <a class="code" href="classHeaderFilter.html#beda72983c14c88c52d60576812ecc0b">numberFilterItems</a>;
+<a name="l00111"></a>00111     uint numberFilterItems;
 <a name="l00112"></a>00112 
-<a name="l00116"></a><a class="code" href="classHeaderFilter.html#410392e92bb274e5df51ee74a2d7467d">00116</a>     <a class="code" href="classSenderListFilter.html" title="This class represents both the blacklist and the whitelist. For using create an object...">SenderListFilter</a> <a class="code" href="classHeaderFilter.html#410392e92bb274e5df51ee74a2d7467d">senderlist</a>;
+<a name="l00116"></a>00116     <a class="code" href="classSenderListFilter.html" title="This class represents both the blacklist and the whitelist. For using create an object...">SenderListFilter</a> senderlist;
 <a name="l00117"></a>00117 
-<a name="l00121"></a><a class="code" href="classHeaderFilter.html#a5068ea2d4b2a516f5586081a0b2e696">00121</a>     QList&lt;FilterItem*&gt; <a class="code" href="classHeaderFilter.html#a5068ea2d4b2a516f5586081a0b2e696">filters</a>;
+<a name="l00121"></a>00121     QList&lt;FilterItem*&gt; filters;
 <a name="l00122"></a>00122 };
 <a name="l00123"></a>00123 
 <a name="l00124"></a>00124 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

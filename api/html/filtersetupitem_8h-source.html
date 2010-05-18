@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/filtersetupitem.h</h1><a href="filtersetupitem_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/filtersetupitem.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -45,8 +45,8 @@
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 <span class="comment">//KShowmail headers</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "types.h"</span>
 <a name="l00034"></a>00034 
 <a name="l00035"></a>00035 <span class="keyword">using namespace </span>Types;
 <a name="l00036"></a>00036 
@@ -55,7 +55,7 @@
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044   <span class="keyword">public</span>:
 <a name="l00045"></a>00045 
-<a name="l00049"></a><a class="code" href="classFilterSetupItem.html#75976f4e0a1067acd189088152f6ef39">00049</a>     <span class="keyword">enum</span> <a class="code" href="classFilterSetupItem.html#75976f4e0a1067acd189088152f6ef39">Column</a>{ <a class="code" href="classFilterSetupItem.html#75976f4e0a1067acd189088152f6ef396583dc2e072390f780d608a3783b21de">ColNumber</a> = 0, <a class="code" href="classFilterSetupItem.html#75976f4e0a1067acd189088152f6ef3922db8b3152e9d77300d025bc5710f2b1">ColName</a> = 1, <a class="code" href="classFilterSetupItem.html#75976f4e0a1067acd189088152f6ef39f4bcf75b077a12755ff0819d8d4b5ede">ColAction</a> = 2 };
+<a name="l00049"></a><a class="code" href="classFilterSetupItem.html#75976f4e0a1067acd189088152f6ef39">00049</a>     <span class="keyword">enum</span> <a class="code" href="classFilterSetupItem.html#75976f4e0a1067acd189088152f6ef39">Column</a>{ ColNumber = 0, ColName = 1, ColAction = 2 };
 <a name="l00050"></a>00050 
 <a name="l00055"></a>00055     <a class="code" href="classFilterSetupItem.html#906a279ac1c540dad3faa3a287e1228d">FilterSetupItem</a>( QTreeWidget* parent );
 <a name="l00056"></a>00056 
@@ -63,27 +63,27 @@
 <a name="l00063"></a>00063 
 <a name="l00067"></a>00067     <a class="code" href="classFilterSetupItem.html#a70931ebe41f5e3c6ed398cdcfd98dd9">~FilterSetupItem</a>();
 <a name="l00068"></a>00068 
-<a name="l00075"></a>00075     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#96a7ddb3233d77a63e8470cc3dbe1137">setName</a>( QString <a class="code" href="classFilterSetupItem.html#44954c10512354340c8bc878414d4a54">name</a> );
+<a name="l00075"></a>00075     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#96a7ddb3233d77a63e8470cc3dbe1137">setName</a>( QString name );
 <a name="l00076"></a>00076 
 <a name="l00083"></a>00083     QString <a class="code" href="classFilterSetupItem.html#4f310b0e2cd6bdde235706162c5e0490">getName</a>() <span class="keyword">const</span>;
 <a name="l00084"></a>00084 
-<a name="l00091"></a>00091     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#27f7dc687959944c6197ec4d71ec95af">setNumber</a>( uint <a class="code" href="classFilterSetupItem.html#09a730b72395838d679ac848ba9cbd54">number</a> );
+<a name="l00091"></a>00091     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#27f7dc687959944c6197ec4d71ec95af">setNumber</a>( uint number );
 <a name="l00092"></a>00092 
 <a name="l00099"></a>00099     uint <a class="code" href="classFilterSetupItem.html#6944be2a730423a6041c35041986955e">getNumber</a>() <span class="keyword">const</span>;
 <a name="l00100"></a>00100 
-<a name="l00107"></a>00107     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#6f1b035725692bce5172bbb73afd8413">setAction</a>( <span class="keywordtype">int</span> <a class="code" href="classFilterSetupItem.html#546a1bdc65a76a246d7d1d5209942b38">action</a> );
+<a name="l00107"></a>00107     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#6f1b035725692bce5172bbb73afd8413">setAction</a>( <span class="keywordtype">int</span> action );
 <a name="l00108"></a>00108 
 <a name="l00116"></a>00116     <span class="keywordtype">int</span> <a class="code" href="classFilterSetupItem.html#306e6ad4588cf2a8b8231d48c4b6dd2c">getAction</a>() <span class="keyword">const</span>;
 <a name="l00117"></a>00117 
-<a name="l00124"></a>00124     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#8b97e85703485c71fd374d7938cdf3f2">setMailBox</a>( QString <a class="code" href="classFilterSetupItem.html#bcea8cc88e4c5f51a732c61b46308172">mailbox</a> );
+<a name="l00124"></a>00124     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#8b97e85703485c71fd374d7938cdf3f2">setMailBox</a>( QString mailbox );
 <a name="l00125"></a>00125 
 <a name="l00132"></a>00132     QString <a class="code" href="classFilterSetupItem.html#347f05741b20cf17bdc9ad7086b41adb">getMailBox</a>() <span class="keyword">const</span>;
 <a name="l00133"></a>00133 
-<a name="l00140"></a>00140     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#d8449dc1e448170fb0f1504e9d4b29f5">setCriteriaLinkage</a>( <span class="keywordtype">int</span> <a class="code" href="classFilterSetupItem.html#2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> );
+<a name="l00140"></a>00140     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#d8449dc1e448170fb0f1504e9d4b29f5">setCriteriaLinkage</a>( <span class="keywordtype">int</span> linkage );
 <a name="l00141"></a>00141 
 <a name="l00149"></a>00149     <span class="keywordtype">int</span> <a class="code" href="classFilterSetupItem.html#bc88b480a9a2dd165dfd53bb40470d52">getCriteriaLinkage</a>() <span class="keyword">const</span>;
 <a name="l00150"></a>00150 
-<a name="l00158"></a>00158     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#abe5397880f91e8fb8587e016e4bfb25">setCriteriaList</a>( <a class="code" href="namespaceTypes.html#2eaafd5612933c2e6ab8dd15593969a2">FilterCriteriaList_Type</a> list );
+<a name="l00158"></a>00158     <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#abe5397880f91e8fb8587e016e4bfb25">setCriteriaList</a>( FilterCriteriaList_Type list );
 <a name="l00159"></a>00159 
 <a name="l00167"></a>00167     <a class="code" href="namespaceTypes.html#2eaafd5612933c2e6ab8dd15593969a2">FilterCriteriaList_Type</a> <a class="code" href="classFilterSetupItem.html#12731c7cbdd221900856887c737930a8">getCriteriaList</a>() <span class="keyword">const</span>;
 <a name="l00168"></a>00168 
@@ -96,19 +96,19 @@
 <a name="l00190"></a>00190 
 <a name="l00191"></a>00191   <span class="keyword">private</span>:
 <a name="l00192"></a>00192 
-<a name="l00196"></a><a class="code" href="classFilterSetupItem.html#44954c10512354340c8bc878414d4a54">00196</a>     QString <a class="code" href="classFilterSetupItem.html#44954c10512354340c8bc878414d4a54">name</a>;
+<a name="l00196"></a>00196     QString name;
 <a name="l00197"></a>00197 
-<a name="l00201"></a><a class="code" href="classFilterSetupItem.html#f587f3ebf4a2f115c428579b712aa48b">00201</a>     KSharedConfigPtr <a class="code" href="classFilterSetupItem.html#f587f3ebf4a2f115c428579b712aa48b">config</a>;
+<a name="l00201"></a>00201     KSharedConfigPtr config;
 <a name="l00202"></a>00202 
-<a name="l00206"></a><a class="code" href="classFilterSetupItem.html#6bdbcb472bdb9f1bc1bd0d45836b2cbf">00206</a>     <a class="code" href="namespaceTypes.html#2eaafd5612933c2e6ab8dd15593969a2">FilterCriteriaList_Type</a> <a class="code" href="classFilterSetupItem.html#6bdbcb472bdb9f1bc1bd0d45836b2cbf">criteriaList</a>;
+<a name="l00206"></a>00206     <a class="code" href="namespaceTypes.html#2eaafd5612933c2e6ab8dd15593969a2">FilterCriteriaList_Type</a> criteriaList;
 <a name="l00207"></a>00207 
-<a name="l00212"></a><a class="code" href="classFilterSetupItem.html#546a1bdc65a76a246d7d1d5209942b38">00212</a>     <span class="keywordtype">int</span> <a class="code" href="classFilterSetupItem.html#546a1bdc65a76a246d7d1d5209942b38">action</a>;
+<a name="l00212"></a>00212     <span class="keywordtype">int</span> action;
 <a name="l00213"></a>00213 
-<a name="l00217"></a><a class="code" href="classFilterSetupItem.html#bcea8cc88e4c5f51a732c61b46308172">00217</a>     QString <a class="code" href="classFilterSetupItem.html#bcea8cc88e4c5f51a732c61b46308172">mailbox</a>;
+<a name="l00217"></a>00217     QString mailbox;
 <a name="l00218"></a>00218 
-<a name="l00223"></a><a class="code" href="classFilterSetupItem.html#09a730b72395838d679ac848ba9cbd54">00223</a>     uint <a class="code" href="classFilterSetupItem.html#09a730b72395838d679ac848ba9cbd54">number</a>;
+<a name="l00223"></a>00223     uint number;
 <a name="l00224"></a>00224 
-<a name="l00229"></a><a class="code" href="classFilterSetupItem.html#2db8d7fafdb2a784b6e9d9bc62fba4bf">00229</a>     <span class="keywordtype">int</span> <a class="code" href="classFilterSetupItem.html#2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a>;
+<a name="l00229"></a>00229     <span class="keywordtype">int</span> linkage;
 <a name="l00230"></a>00230 
 <a name="l00231"></a>00231   <span class="keyword">protected</span>:
 <a name="l00232"></a>00232 
@@ -123,7 +123,7 @@
 <a name="l00247"></a>00247 
 <a name="l00248"></a>00248 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

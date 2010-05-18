@@ -29,7 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NUMBER_VIEWMOVED_COLUMNS 5
 
 
-
+/**
+ * @brief Model for the log view of moved mails.
+ */
 class FilterLogViewMovedModel : public QAbstractItemModel
 {
 

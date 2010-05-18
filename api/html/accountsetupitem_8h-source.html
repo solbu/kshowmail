@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/accountsetupitem.h</h1><a href="accountsetupitem_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/accountsetupitem.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -46,9 +46,9 @@
 <a name="l00030"></a>00030 <span class="preprocessor">#include &lt;KDebug&gt;</span>
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032 <span class="comment">//KShowmail headers</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00034"></a>00034 <span class="preprocessor">#include "<a class="code" href="encryption_8h.html">encryption.h</a>"</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include "<a class="code" href="kwalletaccess_8h.html">kwalletaccess.h</a>"</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include "encryption.h"</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include "kwalletaccess.h"</span>
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 <span class="keyword">using namespace </span>Encryption;
 <a name="l00038"></a>00038 
@@ -112,27 +112,27 @@
 <a name="l00212"></a>00212 
 <a name="l00213"></a>00213   <span class="keyword">private</span>:
 <a name="l00214"></a>00214 
-<a name="l00218"></a><a class="code" href="classAccountSetupItem.html#2a00a183cfa9cda70f20f6680fcfe060">00218</a>     KSharedConfigPtr <a class="code" href="classAccountSetupItem.html#2a00a183cfa9cda70f20f6680fcfe060" title="Connector to the configuration file.">config</a>;
+<a name="l00218"></a>00218     KSharedConfigPtr config;
 <a name="l00219"></a>00219 
-<a name="l00223"></a><a class="code" href="classAccountSetupItem.html#6f42afbe7a05c1d431c99fe9de2544cf">00223</a>     QString <a class="code" href="classAccountSetupItem.html#6f42afbe7a05c1d431c99fe9de2544cf" title="Account name.">_account</a>;
+<a name="l00223"></a>00223     QString _account;
 <a name="l00224"></a>00224 
-<a name="l00228"></a><a class="code" href="classAccountSetupItem.html#63330ee312d151d983c2c6d7599c1f7a">00228</a>     QString <a class="code" href="classAccountSetupItem.html#63330ee312d151d983c2c6d7599c1f7a" title="Server.">_server</a>;
+<a name="l00228"></a>00228     QString _server;
 <a name="l00229"></a>00229 
-<a name="l00233"></a><a class="code" href="classAccountSetupItem.html#0a8ebdb7e6a0fe7f8d2087e76886e83f">00233</a>     QString <a class="code" href="classAccountSetupItem.html#0a8ebdb7e6a0fe7f8d2087e76886e83f" title="Protocol.">_protocol</a>;
+<a name="l00233"></a>00233     QString _protocol;
 <a name="l00234"></a>00234 
-<a name="l00238"></a><a class="code" href="classAccountSetupItem.html#09655b292b183798d38134f6239904a9">00238</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#09655b292b183798d38134f6239904a9" title="Port.">_port</a>;
+<a name="l00238"></a>00238     <span class="keywordtype">int</span> _port;
 <a name="l00239"></a>00239 
-<a name="l00243"></a><a class="code" href="classAccountSetupItem.html#a5d1dc044834b57ed6cb965f1b566d18">00243</a>     QString <a class="code" href="classAccountSetupItem.html#a5d1dc044834b57ed6cb965f1b566d18" title="User Name.">_user</a>;
+<a name="l00243"></a>00243     QString _user;
 <a name="l00244"></a>00244 
-<a name="l00248"></a><a class="code" href="classAccountSetupItem.html#8ccb6320dbfbdcc84c9153d44cbc7f53">00248</a>     QString <a class="code" href="classAccountSetupItem.html#8ccb6320dbfbdcc84c9153d44cbc7f53" title="Password.">_password</a>;
+<a name="l00248"></a>00248     QString _password;
 <a name="l00249"></a>00249 
-<a name="l00253"></a><a class="code" href="classAccountSetupItem.html#08984a59b3a03b9ac919da388f9b4d77">00253</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#08984a59b3a03b9ac919da388f9b4d77" title="TRUE - account is active.">_active</a>;
+<a name="l00253"></a>00253     <span class="keywordtype">bool</span> _active;
 <a name="l00254"></a>00254 
-<a name="l00260"></a><a class="code" href="classAccountSetupItem.html#cc3d0e67733b2651627ced562a78493d">00260</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#cc3d0e67733b2651627ced562a78493d" title="password storage type">_passwordStorage</a>;
+<a name="l00260"></a>00260     <span class="keywordtype">int</span> _passwordStorage;
 <a name="l00261"></a>00261 
-<a name="l00267"></a><a class="code" href="classAccountSetupItem.html#a2efe33199e3634f32d700331e8c6402">00267</a>     <span class="keywordtype">int</span> <a class="code" href="classAccountSetupItem.html#a2efe33199e3634f32d700331e8c6402" title="transfer security">_transferSecurity</a>;
+<a name="l00267"></a>00267     <span class="keywordtype">int</span> _transferSecurity;
 <a name="l00268"></a>00268 
-<a name="l00272"></a><a class="code" href="classAccountSetupItem.html#08adfdd7fe279e82a2484113cd6c2161">00272</a>     <span class="keywordtype">bool</span> <a class="code" href="classAccountSetupItem.html#08adfdd7fe279e82a2484113cd6c2161" title="TRUE - unsafe login is allowed if a secure login failed.">_allowUnsecureLogin</a>;
+<a name="l00272"></a>00272     <span class="keywordtype">bool</span> _allowUnsecureLogin;
 <a name="l00273"></a>00273 
 <a name="l00274"></a>00274     
 <a name="l00275"></a>00275   <span class="keyword">protected</span>:
@@ -143,7 +143,7 @@
 <a name="l00283"></a>00283 
 <a name="l00284"></a>00284 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -34,7 +34,7 @@
 <a href="classAccountViewItem-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#73245e113bb2b43d12b71b5f7fab418c">AccountViewItem</a> (bool <a class="el" href="classAccountViewItem.html#a3b2b5cc5f84080cbfbb1e5221a8f5ad">active</a>, const QString &amp;<a class="el" href="classAccountViewItem.html#dc57967853daf57237cbbeea1b266f54">name</a>, const QString &amp;<a class="el" href="classAccountViewItem.html#a6c8379d8c339169a3ddad5f1d147f7f">server</a>, const QString &amp;<a class="el" href="classAccountViewItem.html#5f4523cbcd27ef3369dea12ac52be20f">user</a>, int <a class="el" href="classAccountViewItem.html#1cf2b02ad6727b1667751e187d3cf813">numberMails</a>, long <a class="el" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7">totalSize</a>, QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt; <a class="el" href="classAccountViewItem.html#610193d9f11c5c77362c983bbd2fa241">account</a>)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#73245e113bb2b43d12b71b5f7fab418c">AccountViewItem</a> (bool active, const QString &amp;name, const QString &amp;server, const QString &amp;user, int numberMails, long totalSize, QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt; account)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Contructor.  <a href="#73245e113bb2b43d12b71b5f7fab418c"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#25ffe110c6e8e3e09cc77d4f48ae0b77">isActive</a> () const </td></tr>
@@ -64,28 +64,6 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#2f59f4411252a287cb8cc86107c428f7">compare</a> (const <a class="el" href="classAccountViewItem.html">AccountViewItem</a> &amp;other, <a class="el" href="namespaceTypes.html#61f06b1f5058c3d5ae515b2398a83e1f">AccountSort_Type</a> property)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares this account with <em>other</em> and returns an integer less than, equal to, or greater than zero if this account is less than, equal to, or greater than <em>other</em>.  <a href="#2f59f4411252a287cb8cc86107c428f7"></a><br></td></tr>
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#a3b2b5cc5f84080cbfbb1e5221a8f5ad">active</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><code>true</code> - the account is active  <a href="#a3b2b5cc5f84080cbfbb1e5221a8f5ad"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#dc57967853daf57237cbbeea1b266f54">name</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">account name  <a href="#dc57967853daf57237cbbeea1b266f54"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#a6c8379d8c339169a3ddad5f1d147f7f">server</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">server  <a href="#a6c8379d8c339169a3ddad5f1d147f7f"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#5f4523cbcd27ef3369dea12ac52be20f">user</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">user  <a href="#5f4523cbcd27ef3369dea12ac52be20f"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#1cf2b02ad6727b1667751e187d3cf813">numberMails</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">number of mails  <a href="#1cf2b02ad6727b1667751e187d3cf813"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7">totalSize</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">total size of mails, inclusive unit  <a href="#8e4100387891a83a1b4b8077bd66fcd7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccountViewItem.html#610193d9f11c5c77362c983bbd2fa241">account</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">pointer to the account  <a href="#610193d9f11c5c77362c983bbd2fa241"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 This class is used by <a class="el" href="classAccountViewModel.html" title="Model for the account view.">AccountViewModel</a> to hold a list of the accounts. 
@@ -190,10 +168,6 @@ Returns whether the account is active.
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00028">28</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
 
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00117">active</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00080">compare()</a>, and <a class="el" href="accountviewmodel_8cpp-source.html#l00062">AccountViewModel::data()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="f9be5c4ce2ce7ffed128689d20638a0f"></a><!-- doxytag: member="AccountViewItem::getName" ref="f9be5c4ce2ce7ffed128689d20638a0f" args="() const " -->
@@ -217,10 +191,6 @@ Returns the account name.
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>account name </dd></dl>
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00033">33</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
-
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00122">name</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00080">compare()</a>, and <a class="el" href="accountviewmodel_8cpp-source.html#l00062">AccountViewModel::data()</a>.</p>
 
 </div>
 </div><p>
@@ -246,10 +216,6 @@ Returns ther server host name.
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00038">38</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
 
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00127">server</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00080">compare()</a>, and <a class="el" href="accountviewmodel_8cpp-source.html#l00062">AccountViewModel::data()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="e79904e3a705c1b40a4dc2804c115f70"></a><!-- doxytag: member="AccountViewItem::getUser" ref="e79904e3a705c1b40a4dc2804c115f70" args="() const " -->
@@ -273,10 +239,6 @@ Returns the user.
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>user </dd></dl>
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00075">75</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
-
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00132">user</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00080">compare()</a>, and <a class="el" href="accountviewmodel_8cpp-source.html#l00062">AccountViewModel::data()</a>.</p>
 
 </div>
 </div><p>
@@ -302,10 +264,6 @@ Returns the number of mails.
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00048">48</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
 
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00137">numberMails</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00080">compare()</a>, and <a class="el" href="accountviewmodel_8cpp-source.html#l00062">AccountViewModel::data()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="ed644e9f1560f1e220a69ed2e6b0522e"></a><!-- doxytag: member="AccountViewItem::getTotalSizeUnit" ref="ed644e9f1560f1e220a69ed2e6b0522e" args="() const " -->
@@ -329,10 +287,6 @@ Returns the total size of mails with appended unit.
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>total size of mails </dd></dl>
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00053">53</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
-
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00142">totalSize</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewmodel_8cpp-source.html#l00062">AccountViewModel::data()</a>.</p>
 
 </div>
 </div><p>
@@ -358,10 +312,6 @@ Returns the total size of mails.
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00135">135</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
 
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00142">totalSize</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00080">compare()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="ddda86004b33ed3fa5c41fc37f4ef32a"></a><!-- doxytag: member="AccountViewItem::getAccount" ref="ddda86004b33ed3fa5c41fc37f4ef32a" args="() const " -->
@@ -385,10 +335,6 @@ Returns the pointer to the account.
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>pointer to the associated account </dd></dl>
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00043">43</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
-
-<p>References <a class="el" href="accountviewitem_8h-source.html#l00147">account</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewmodel_8cpp-source.html#l00317">AccountViewModel::getAccount()</a>, and <a class="el" href="accountviewmodel_8cpp-source.html#l00174">AccountViewModel::setData()</a>.</p>
 
 </div>
 </div><p>
@@ -429,164 +375,12 @@ Compares this account with <em>other</em> and returns an integer less than, equa
 
 <p>Definition at line <a class="el" href="accountviewitem_8cpp-source.html#l00080">80</a> of file <a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a>.</p>
 
-<p>References <a class="el" href="types_8h-source.html#l00148">Types::AccSortActive</a>, <a class="el" href="types_8h-source.html#l00149">Types::AccSortName</a>, <a class="el" href="types_8h-source.html#l00152">Types::AccSortNrMess</a>, <a class="el" href="types_8h-source.html#l00150">Types::AccSortServer</a>, <a class="el" href="types_8h-source.html#l00153">Types::AccSortSize</a>, <a class="el" href="types_8h-source.html#l00151">Types::AccSortUser</a>, <a class="el" href="accountviewitem_8cpp-source.html#l00033">getName()</a>, <a class="el" href="accountviewitem_8cpp-source.html#l00048">getNumberMails()</a>, <a class="el" href="accountviewitem_8cpp-source.html#l00038">getServer()</a>, <a class="el" href="accountviewitem_8cpp-source.html#l00135">getTotalSize()</a>, <a class="el" href="accountviewitem_8cpp-source.html#l00075">getUser()</a>, and <a class="el" href="accountviewitem_8cpp-source.html#l00028">isActive()</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewmodel_8cpp-source.html#l00214">AccountViewModel::sort()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="a3b2b5cc5f84080cbfbb1e5221a8f5ad"></a><!-- doxytag: member="AccountViewItem::active" ref="a3b2b5cc5f84080cbfbb1e5221a8f5ad" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="classAccountViewItem.html#a3b2b5cc5f84080cbfbb1e5221a8f5ad">AccountViewItem::active</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-<code>true</code> - the account is active 
-<p>
-
-<p>Definition at line <a class="el" href="accountviewitem_8h-source.html#l00117">117</a> of file <a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00028">isActive()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="dc57967853daf57237cbbeea1b266f54"></a><!-- doxytag: member="AccountViewItem::name" ref="dc57967853daf57237cbbeea1b266f54" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="classAccountViewItem.html#dc57967853daf57237cbbeea1b266f54">AccountViewItem::name</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-account name 
-<p>
-
-<p>Definition at line <a class="el" href="accountviewitem_8h-source.html#l00122">122</a> of file <a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00033">getName()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="a6c8379d8c339169a3ddad5f1d147f7f"></a><!-- doxytag: member="AccountViewItem::server" ref="a6c8379d8c339169a3ddad5f1d147f7f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="classAccountViewItem.html#a6c8379d8c339169a3ddad5f1d147f7f">AccountViewItem::server</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-server 
-<p>
-
-<p>Definition at line <a class="el" href="accountviewitem_8h-source.html#l00127">127</a> of file <a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00038">getServer()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="5f4523cbcd27ef3369dea12ac52be20f"></a><!-- doxytag: member="AccountViewItem::user" ref="5f4523cbcd27ef3369dea12ac52be20f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString <a class="el" href="classAccountViewItem.html#5f4523cbcd27ef3369dea12ac52be20f">AccountViewItem::user</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-user 
-<p>
-
-<p>Definition at line <a class="el" href="accountviewitem_8h-source.html#l00132">132</a> of file <a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00075">getUser()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="1cf2b02ad6727b1667751e187d3cf813"></a><!-- doxytag: member="AccountViewItem::numberMails" ref="1cf2b02ad6727b1667751e187d3cf813" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="classAccountViewItem.html#1cf2b02ad6727b1667751e187d3cf813">AccountViewItem::numberMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-number of mails 
-<p>
-
-<p>Definition at line <a class="el" href="accountviewitem_8h-source.html#l00137">137</a> of file <a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00048">getNumberMails()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="8e4100387891a83a1b4b8077bd66fcd7"></a><!-- doxytag: member="AccountViewItem::totalSize" ref="8e4100387891a83a1b4b8077bd66fcd7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">long <a class="el" href="classAccountViewItem.html#8e4100387891a83a1b4b8077bd66fcd7">AccountViewItem::totalSize</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-total size of mails, inclusive unit 
-<p>
-
-<p>Definition at line <a class="el" href="accountviewitem_8h-source.html#l00142">142</a> of file <a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00135">getTotalSize()</a>, and <a class="el" href="accountviewitem_8cpp-source.html#l00053">getTotalSizeUnit()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="610193d9f11c5c77362c983bbd2fa241"></a><!-- doxytag: member="AccountViewItem::account" ref="610193d9f11c5c77362c983bbd2fa241" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QPointer&lt;<a class="el" href="classAccount.html">Account</a>&gt; <a class="el" href="classAccountViewItem.html#610193d9f11c5c77362c983bbd2fa241">AccountViewItem::account</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-pointer to the account 
-<p>
-
-<p>Definition at line <a class="el" href="accountviewitem_8h-source.html#l00147">147</a> of file <a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a>.</p>
-
-<p>Referenced by <a class="el" href="accountviewitem_8cpp-source.html#l00043">getAccount()</a>.</p>
-
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="accountviewitem_8h-source.html">accountviewitem.h</a><li>src/<a class="el" href="accountviewitem_8cpp-source.html">accountviewitem.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

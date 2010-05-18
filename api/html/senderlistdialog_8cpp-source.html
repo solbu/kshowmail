@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/senderlistdialog.cpp</h1><a href="senderlistdialog_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/senderlistdialog.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -31,7 +31,7 @@
 <a name="l00015"></a>00015 <span class="comment">along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="preprocessor">#include "<a class="code" href="senderlistdialog_8h.html">senderlistdialog.h</a>"</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include "senderlistdialog.h"</span>
 <a name="l00019"></a>00019 <span class="preprocessor">#include &lt;qlistview.h&gt;</span>
 <a name="l00020"></a>00020 
 <a name="l00021"></a><a class="code" href="classSenderListDialog.html#68dd3061106115f221e60f3ac4692a63">00021</a> <a class="code" href="classSenderListDialog.html#68dd3061106115f221e60f3ac4692a63">SenderListDialog::SenderListDialog</a>(QWidget *parent, <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd">ListType</a> list )
@@ -41,10 +41,10 @@
 <a name="l00025"></a>00025   this-&gt;list = list;
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027   <span class="comment">//get application config object (kshowmailrc)</span>
-<a name="l00028"></a>00028   <a class="code" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">config</a> = KGlobal::config();
+<a name="l00028"></a>00028   config = KGlobal::config();
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030   <span class="comment">//set caption</span>
-<a name="l00031"></a>00031   <span class="keywordflow">if</span>( list == <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbdbf415ba2058ae881749abaf7d6590aea">White</a> )
+<a name="l00031"></a>00031   <span class="keywordflow">if</span>( list == White )
 <a name="l00032"></a>00032     setCaption( <span class="stringliteral">"Whitelist"</span> );
 <a name="l00033"></a>00033   <span class="keywordflow">else</span>
 <a name="l00034"></a>00034     setCaption( <span class="stringliteral">"Blacklist"</span> );
@@ -58,52 +58,52 @@
 <a name="l00042"></a>00042   QVBoxLayout* layMain = <span class="keyword">new</span> QVBoxLayout( wdgMain );
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044   <span class="comment">//edit frame</span>
-<a name="l00045"></a>00045   <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a> = <span class="keyword">new</span> KEditListBox( wdgMain, <span class="stringliteral">"editFrame"</span>, <span class="keyword">true</span>, KEditListBox::Add | KEditListBox::Remove );
-<a name="l00046"></a>00046   <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;setTitle( i18nc( <span class="stringliteral">"@title:window dialog to edit the black- or whitelist"</span>, <span class="stringliteral">"List"</span> ) );
-<a name="l00047"></a>00047   <span class="keywordflow">if</span>( list == <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbdbf415ba2058ae881749abaf7d6590aea">White</a> )
-<a name="l00048"></a>00048     <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;listView()-&gt;setToolTip( i18nc( <span class="stringliteral">"@info/rich"</span>, <span class="stringliteral">"A mail whose sender is listed here will pass the filter.&lt;nl/&gt;A mail will be accepted, if its From line incloses a list entry.&lt;nl/&gt;E.g. a line of&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt; is accepted by the entries&lt;nl/&gt;Ulrich Weigelt&lt;nl/&gt;ulrich.weigelt@gmx.de&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt;"</span> ) );
+<a name="l00045"></a>00045   editFrame = <span class="keyword">new</span> KEditListBox( wdgMain, <span class="stringliteral">"editFrame"</span>, <span class="keyword">true</span>, KEditListBox::Add | KEditListBox::Remove );
+<a name="l00046"></a>00046   editFrame-&gt;setTitle( i18nc( <span class="stringliteral">"@title:window dialog to edit the black- or whitelist"</span>, <span class="stringliteral">"List"</span> ) );
+<a name="l00047"></a>00047   <span class="keywordflow">if</span>( list == White )
+<a name="l00048"></a>00048     editFrame-&gt;listView()-&gt;setToolTip( i18nc( <span class="stringliteral">"@info/rich"</span>, <span class="stringliteral">"A mail whose sender is listed here will pass the filter.&lt;nl/&gt;A mail will be accepted, if its From line incloses a list entry.&lt;nl/&gt;E.g. a line of&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt; is accepted by the entries&lt;nl/&gt;Ulrich Weigelt&lt;nl/&gt;ulrich.weigelt@gmx.de&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt;"</span> ) );
 <a name="l00049"></a>00049   <span class="keywordflow">else</span>
-<a name="l00050"></a>00050     <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;listView()-&gt;setToolTip( i18nc( <span class="stringliteral">"@info:tooltip"</span>, <span class="stringliteral">"A mail whose sender is listed here will be hold up by the filter.&lt;nl/&gt;A mail will be stopped, if its From line incloses a list entry.&lt;nl/&gt;E.g. a line of&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt; is filtered by the entries&lt;nl/&gt;Ulrich Weigelt&lt;nl/&gt;ulrich.weigelt@gmx.de&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt;"</span> ) );
+<a name="l00050"></a>00050     editFrame-&gt;listView()-&gt;setToolTip( i18nc( <span class="stringliteral">"@info:tooltip"</span>, <span class="stringliteral">"A mail whose sender is listed here will be hold up by the filter.&lt;nl/&gt;A mail will be stopped, if its From line incloses a list entry.&lt;nl/&gt;E.g. a line of&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt; is filtered by the entries&lt;nl/&gt;Ulrich Weigelt&lt;nl/&gt;ulrich.weigelt@gmx.de&lt;nl/&gt;&amp;quot;Ulrich Weigelt&amp;quot; &amp;lt;ulrich.weigelt@gmx.de&amp;gt;"</span> ) );
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052   layMain-&gt;addWidget( <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a> );
+<a name="l00052"></a>00052   layMain-&gt;addWidget( editFrame );
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054   connect( <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;addButton(), SIGNAL( clicked() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classSenderListDialog.html#da37743f702d27fe1e0764fdce0b5902">slotSort</a>() ) );
-<a name="l00055"></a>00055   connect( <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;lineEdit(), SIGNAL( returnPressed( <span class="keyword">const</span> QString &amp; ) ), <span class="keyword">this</span>, SLOT( <a class="code" href="classSenderListDialog.html#da37743f702d27fe1e0764fdce0b5902">slotSort</a>() ) );
+<a name="l00054"></a>00054   connect( editFrame-&gt;addButton(), SIGNAL( clicked() ), <span class="keyword">this</span>, SLOT( slotSort() ) );
+<a name="l00055"></a>00055   connect( editFrame-&gt;lineEdit(), SIGNAL( returnPressed( <span class="keyword">const</span> QString &amp; ) ), <span class="keyword">this</span>, SLOT( slotSort() ) );
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057   <span class="comment">//this radio buttons we just need in the blacklist</span>
-<a name="l00058"></a>00058   <span class="keywordflow">if</span>( list == <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a> )
+<a name="l00058"></a>00058   <span class="keywordflow">if</span>( list == Black )
 <a name="l00059"></a>00059   {
 <a name="l00060"></a>00060     QGroupBox* gboxAction = <span class="keyword">new</span> QGroupBox( i18nc( <span class="stringliteral">"@title:group action to execute if a blacklisted mail comes in"</span>, <span class="stringliteral">"Action"</span> ), wdgMain );
 <a name="l00061"></a>00061     QHBoxLayout* layAction = <span class="keyword">new</span> QHBoxLayout();
 <a name="l00062"></a>00062     gboxAction-&gt;setLayout( layAction );
 <a name="l00063"></a>00063     layMain-&gt;addWidget( gboxAction );
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065     <a class="code" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">grpAction</a> = <span class="keyword">new</span> QButtonGroup( NULL );
-<a name="l00066"></a>00066     <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a> = <span class="keyword">new</span> QRadioButton( i18nc( <span class="stringliteral">"@option:radio delete a blacklisted mail"</span>, <span class="stringliteral">"Delete"</span>), gboxAction );
-<a name="l00067"></a>00067     <a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a> = <span class="keyword">new</span> QRadioButton( i18nc( <span class="stringliteral">"@option:radio mark a blacklisted mail"</span>, <span class="stringliteral">"Mark"</span> ), gboxAction );
+<a name="l00065"></a>00065     grpAction = <span class="keyword">new</span> QButtonGroup( NULL );
+<a name="l00066"></a>00066     btnDelete = <span class="keyword">new</span> QRadioButton( i18nc( <span class="stringliteral">"@option:radio delete a blacklisted mail"</span>, <span class="stringliteral">"Delete"</span>), gboxAction );
+<a name="l00067"></a>00067     btnMark = <span class="keyword">new</span> QRadioButton( i18nc( <span class="stringliteral">"@option:radio mark a blacklisted mail"</span>, <span class="stringliteral">"Mark"</span> ), gboxAction );
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069     <a class="code" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">grpAction</a>-&gt;addButton( <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a>, <a class="code" href="senderlistdialog_8h.html#9b2542878cca0ecf6e63f4f4d0347e9d">ID_BUTTON_FILTER_SENDERLIST_DELETE</a> );
-<a name="l00070"></a>00070     <a class="code" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">grpAction</a>-&gt;addButton( <a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a>, <a class="code" href="senderlistdialog_8h.html#f5a04f8c178014009b48360c15bed775">ID_BUTTON_FILTER_SENDERLIST_MARK</a> );
+<a name="l00069"></a>00069     grpAction-&gt;addButton( btnDelete, ID_BUTTON_FILTER_SENDERLIST_DELETE );
+<a name="l00070"></a>00070     grpAction-&gt;addButton( btnMark, ID_BUTTON_FILTER_SENDERLIST_MARK );
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072     <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a>-&gt;setToolTip( i18nc( <span class="stringliteral">"@info:tooltip"</span>, <span class="stringliteral">"The mails will be deleted."</span> ) );
-<a name="l00073"></a>00073     <a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a>-&gt;setToolTip( i18nc( <span class="stringliteral">"@info:tooltip"</span>, <span class="stringliteral">"The mails will be marked."</span> ) );
+<a name="l00072"></a>00072     btnDelete-&gt;setToolTip( i18nc( <span class="stringliteral">"@info:tooltip"</span>, <span class="stringliteral">"The mails will be deleted."</span> ) );
+<a name="l00073"></a>00073     btnMark-&gt;setToolTip( i18nc( <span class="stringliteral">"@info:tooltip"</span>, <span class="stringliteral">"The mails will be marked."</span> ) );
 <a name="l00074"></a>00074 
-<a name="l00075"></a>00075     layAction-&gt;addWidget( <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a> );
-<a name="l00076"></a>00076     layAction-&gt;addWidget( <a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a> );
+<a name="l00075"></a>00075     layAction-&gt;addWidget( btnDelete );
+<a name="l00076"></a>00076     layAction-&gt;addWidget( btnMark );
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078     <span class="comment">//set default</span>
-<a name="l00079"></a>00079     <span class="keywordflow">switch</span>( <a class="code" href="constants_8h.html#5f3887befa8332d70e0a88a075cbdaa0">DEFAULT_FILTER_BLACKLIST_ACTION</a> )
+<a name="l00079"></a>00079     <span class="keywordflow">switch</span>( DEFAULT_FILTER_BLACKLIST_ACTION )
 <a name="l00080"></a>00080     {
-<a name="l00081"></a>00081       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#0b12174742efea23c3bb8c20a174bb71">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a>  : <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a>-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
-<a name="l00082"></a>00082       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#6fda4fb6896ba62599318c30dfcd2b17">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK</a>    : <a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a>-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
-<a name="l00083"></a>00083       <span class="keywordflow">default</span>                                           : <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a>-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
+<a name="l00081"></a>00081       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE  : btnDelete-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
+<a name="l00082"></a>00082       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK    : btnMark-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
+<a name="l00083"></a>00083       <span class="keywordflow">default</span>                                           : btnDelete-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
 <a name="l00084"></a>00084     }
 <a name="l00085"></a>00085   }
 <a name="l00086"></a>00086   <span class="comment">//set size</span>
 <a name="l00087"></a>00087   setGeometry( 50, 50, (<span class="keywordtype">int</span>)( this-&gt;width() / 2 ), this-&gt;height() );
 <a name="l00088"></a>00088 
 <a name="l00089"></a>00089   <span class="comment">//get values</span>
-<a name="l00090"></a>00090   <a class="code" href="classSenderListDialog.html#39e2ca207baff2b5bf0e49478eed7840">fillDialog</a>();
+<a name="l00090"></a>00090   fillDialog();
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093 
@@ -111,40 +111,40 @@
 <a name="l00095"></a>00095 {
 <a name="l00096"></a>00096 }
 <a name="l00097"></a>00097 
-<a name="l00098"></a><a class="code" href="classSenderListDialog.html#da37743f702d27fe1e0764fdce0b5902">00098</a> <span class="keywordtype">void</span> <a class="code" href="classSenderListDialog.html#da37743f702d27fe1e0764fdce0b5902">SenderListDialog::slotSort</a>( )
+<a name="l00098"></a>00098 <span class="keywordtype">void</span> SenderListDialog::slotSort( )
 <a name="l00099"></a>00099 {
-<a name="l00100"></a>00100   <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;listView()-&gt;model()-&gt;sort( 0 );
+<a name="l00100"></a>00100   editFrame-&gt;listView()-&gt;model()-&gt;sort( 0 );
 <a name="l00101"></a>00101 }
 <a name="l00102"></a>00102 
-<a name="l00103"></a><a class="code" href="classSenderListDialog.html#0f087209007f9d25b3faf6a9bf79c02f">00103</a> <span class="keywordtype">void</span> <a class="code" href="classSenderListDialog.html#0f087209007f9d25b3faf6a9bf79c02f">SenderListDialog::slotButtonClicked</a>( <span class="keywordtype">int</span> button )
+<a name="l00103"></a>00103 <span class="keywordtype">void</span> SenderListDialog::slotButtonClicked( <span class="keywordtype">int</span> button )
 <a name="l00104"></a>00104 {
 <a name="l00105"></a>00105   <span class="keywordflow">if</span>( button == KDialog::Ok )
 <a name="l00106"></a>00106   {
 <a name="l00107"></a>00107     <span class="comment">//set config group</span>
-<a name="l00108"></a>00108     KConfigGroup* configList = <span class="keyword">new</span> KConfigGroup( <a class="code" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">config</a>, <a class="code" href="constants_8h.html#3980b28063773c4ff90dfc5290c40ace">CONFIG_GROUP_FILTER</a> );
+<a name="l00108"></a>00108     KConfigGroup* configList = <span class="keyword">new</span> KConfigGroup( config, CONFIG_GROUP_FILTER );
 <a name="l00109"></a>00109 
 <a name="l00110"></a>00110     <span class="comment">//save the list of senders</span>
-<a name="l00111"></a>00111     <span class="keywordflow">if</span>( <a class="code" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a> == <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a> )
-<a name="l00112"></a>00112       configList-&gt;writeEntry( <a class="code" href="constants_8h.html#6e7df542c34283265c4fe6a93c9fe7bf">CONFIG_ENTRY_FILTER_BLACKLIST</a>, <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;items() );
+<a name="l00111"></a>00111     <span class="keywordflow">if</span>( list == Black )
+<a name="l00112"></a>00112       configList-&gt;writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST, editFrame-&gt;items() );
 <a name="l00113"></a>00113     <span class="keywordflow">else</span>
-<a name="l00114"></a>00114       configList-&gt;writeEntry( <a class="code" href="constants_8h.html#9d18ebad48590195ecac6314d21cb63e">CONFIG_ENTRY_FILTER_WHITELIST</a>, <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;items() );
+<a name="l00114"></a>00114       configList-&gt;writeEntry( CONFIG_ENTRY_FILTER_WHITELIST, editFrame-&gt;items() );
 <a name="l00115"></a>00115 
 <a name="l00116"></a>00116     <span class="comment">//save blacklist action</span>
-<a name="l00117"></a>00117     <span class="keywordflow">if</span>( <a class="code" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a> == <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a> )
+<a name="l00117"></a>00117     <span class="keywordflow">if</span>( list == Black )
 <a name="l00118"></a>00118     {
-<a name="l00119"></a>00119     <span class="keywordtype">int</span> action = <a class="code" href="classSenderListDialog.html#36f568e6c034e8e3ce8918a1b36f3c4d">grpAction</a>-&gt;checkedId();
-<a name="l00120"></a>00120     <span class="keywordflow">if</span>( action != <a class="code" href="senderlistdialog_8h.html#9b2542878cca0ecf6e63f4f4d0347e9d">ID_BUTTON_FILTER_SENDERLIST_DELETE</a> &amp;&amp; action != <a class="code" href="senderlistdialog_8h.html#f5a04f8c178014009b48360c15bed775">ID_BUTTON_FILTER_SENDERLIST_MARK</a> )
-<a name="l00121"></a>00121       action = <a class="code" href="constants_8h.html#5f3887befa8332d70e0a88a075cbdaa0">DEFAULT_FILTER_BLACKLIST_ACTION</a>;
+<a name="l00119"></a>00119     <span class="keywordtype">int</span> action = grpAction-&gt;checkedId();
+<a name="l00120"></a>00120     <span class="keywordflow">if</span>( action != ID_BUTTON_FILTER_SENDERLIST_DELETE &amp;&amp; action != ID_BUTTON_FILTER_SENDERLIST_MARK )
+<a name="l00121"></a>00121       action = DEFAULT_FILTER_BLACKLIST_ACTION;
 <a name="l00122"></a>00122 
 <a name="l00123"></a>00123       <span class="keywordflow">switch</span>( action )
 <a name="l00124"></a>00124       {
-<a name="l00125"></a>00125         <span class="keywordflow">case</span> <a class="code" href="senderlistdialog_8h.html#9b2542878cca0ecf6e63f4f4d0347e9d">ID_BUTTON_FILTER_SENDERLIST_DELETE</a>   : configList-&gt;writeEntry( <a class="code" href="constants_8h.html#e1ed7065dc1a236c192be768db91e0c2">CONFIG_ENTRY_FILTER_BLACKLIST_ACTION</a>, <a class="code" href="constants_8h.html#0b12174742efea23c3bb8c20a174bb71">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a> ); <span class="keywordflow">break</span>;
-<a name="l00126"></a>00126         <span class="keywordflow">case</span> <a class="code" href="senderlistdialog_8h.html#f5a04f8c178014009b48360c15bed775">ID_BUTTON_FILTER_SENDERLIST_MARK</a>     : configList-&gt;writeEntry( <a class="code" href="constants_8h.html#e1ed7065dc1a236c192be768db91e0c2">CONFIG_ENTRY_FILTER_BLACKLIST_ACTION</a>, <a class="code" href="constants_8h.html#6fda4fb6896ba62599318c30dfcd2b17">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK</a> ); <span class="keywordflow">break</span>;
-<a name="l00127"></a>00127         <span class="keywordflow">default</span>                                   : configList-&gt;writeEntry( <a class="code" href="constants_8h.html#e1ed7065dc1a236c192be768db91e0c2">CONFIG_ENTRY_FILTER_BLACKLIST_ACTION</a>, <a class="code" href="constants_8h.html#0b12174742efea23c3bb8c20a174bb71">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a> ); <span class="keywordflow">break</span>;
+<a name="l00125"></a>00125         <span class="keywordflow">case</span> ID_BUTTON_FILTER_SENDERLIST_DELETE   : configList-&gt;writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE ); <span class="keywordflow">break</span>;
+<a name="l00126"></a>00126         <span class="keywordflow">case</span> ID_BUTTON_FILTER_SENDERLIST_MARK     : configList-&gt;writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK ); <span class="keywordflow">break</span>;
+<a name="l00127"></a>00127         <span class="keywordflow">default</span>                                   : configList-&gt;writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE ); <span class="keywordflow">break</span>;
 <a name="l00128"></a>00128       }
 <a name="l00129"></a>00129     }
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131     <a class="code" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">config</a>-&gt;sync();
+<a name="l00131"></a>00131     config-&gt;sync();
 <a name="l00132"></a>00132 
 <a name="l00133"></a>00133     <span class="keyword">delete</span> configList;
 <a name="l00134"></a>00134 }
@@ -154,25 +154,25 @@
 <a name="l00138"></a>00138 
 <a name="l00139"></a>00139 }
 <a name="l00140"></a>00140 
-<a name="l00141"></a><a class="code" href="classSenderListDialog.html#39e2ca207baff2b5bf0e49478eed7840">00141</a> <span class="keywordtype">void</span> <a class="code" href="classSenderListDialog.html#39e2ca207baff2b5bf0e49478eed7840">SenderListDialog::fillDialog</a>( )
+<a name="l00141"></a>00141 <span class="keywordtype">void</span> SenderListDialog::fillDialog( )
 <a name="l00142"></a>00142 {
 <a name="l00143"></a>00143   <span class="comment">//set config group</span>
-<a name="l00144"></a>00144   KConfigGroup* configList = <span class="keyword">new</span> KConfigGroup( <a class="code" href="classSenderListDialog.html#255be8e773f6965b0b10ada0c9306857">config</a>, <a class="code" href="constants_8h.html#3980b28063773c4ff90dfc5290c40ace">CONFIG_GROUP_FILTER</a> );
+<a name="l00144"></a>00144   KConfigGroup* configList = <span class="keyword">new</span> KConfigGroup( config, CONFIG_GROUP_FILTER );
 <a name="l00145"></a>00145 
 <a name="l00146"></a>00146   <span class="comment">//get list of senders</span>
-<a name="l00147"></a>00147   <span class="keywordflow">if</span>( <a class="code" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a> == <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a> )
-<a name="l00148"></a>00148     <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;setItems( configList-&gt;readEntry( <a class="code" href="constants_8h.html#6e7df542c34283265c4fe6a93c9fe7bf">CONFIG_ENTRY_FILTER_BLACKLIST</a>, QStringList() ) );
+<a name="l00147"></a>00147   <span class="keywordflow">if</span>( list == Black )
+<a name="l00148"></a>00148     editFrame-&gt;setItems( configList-&gt;readEntry( CONFIG_ENTRY_FILTER_BLACKLIST, QStringList() ) );
 <a name="l00149"></a>00149   <span class="keywordflow">else</span>
-<a name="l00150"></a>00150     <a class="code" href="classSenderListDialog.html#7f8fa42344ee9f096043916a94a09f14">editFrame</a>-&gt;setItems( configList-&gt;readEntry( <a class="code" href="constants_8h.html#9d18ebad48590195ecac6314d21cb63e">CONFIG_ENTRY_FILTER_WHITELIST</a>, QStringList() ) );
+<a name="l00150"></a>00150     editFrame-&gt;setItems( configList-&gt;readEntry( CONFIG_ENTRY_FILTER_WHITELIST, QStringList() ) );
 <a name="l00151"></a>00151 
 <a name="l00152"></a>00152   <span class="comment">//get blacklist action</span>
-<a name="l00153"></a>00153   <span class="keywordflow">if</span>( <a class="code" href="classSenderListDialog.html#b863a1f45be38d67f64cedb4c74ff631">list</a> == <a class="code" href="classSenderListDialog.html#c9198349954e23bb42c0d5a6c573fbbd0a92a85d0befa7f9346e343c016a187b">Black</a> )
+<a name="l00153"></a>00153   <span class="keywordflow">if</span>( list == Black )
 <a name="l00154"></a>00154   {
-<a name="l00155"></a>00155     <span class="keywordflow">switch</span>( configList-&gt;readEntry( <a class="code" href="constants_8h.html#e1ed7065dc1a236c192be768db91e0c2">CONFIG_ENTRY_FILTER_BLACKLIST_ACTION</a>, <a class="code" href="constants_8h.html#5f3887befa8332d70e0a88a075cbdaa0">DEFAULT_FILTER_BLACKLIST_ACTION</a> ) )
+<a name="l00155"></a>00155     <span class="keywordflow">switch</span>( configList-&gt;readEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, DEFAULT_FILTER_BLACKLIST_ACTION ) )
 <a name="l00156"></a>00156     {
-<a name="l00157"></a>00157       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#0b12174742efea23c3bb8c20a174bb71">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE</a>  : <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a>-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
-<a name="l00158"></a>00158       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#6fda4fb6896ba62599318c30dfcd2b17">CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK</a>    : <a class="code" href="classSenderListDialog.html#f2dc45bbebef7bd4c75d229cac55d4c6">btnMark</a>-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
-<a name="l00159"></a>00159       <span class="keywordflow">default</span>                                           : <a class="code" href="classSenderListDialog.html#e08110baf1aef3b1da1c9ae5bc3a3eac">btnDelete</a>-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
+<a name="l00157"></a>00157       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE  : btnDelete-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
+<a name="l00158"></a>00158       <span class="keywordflow">case</span> CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK    : btnMark-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
+<a name="l00159"></a>00159       <span class="keywordflow">default</span>                                           : btnDelete-&gt;setChecked( <span class="keyword">true</span> ); <span class="keywordflow">break</span>;
 <a name="l00160"></a>00160     }
 <a name="l00161"></a>00161   }
 <a name="l00162"></a>00162 
@@ -182,7 +182,7 @@
 <a name="l00166"></a>00166 
 <a name="l00167"></a>00167 <span class="preprocessor">#include "senderlistdialog.moc"</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

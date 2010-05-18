@@ -44,26 +44,6 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#133eaa4daf79f86a56f07f9a27e55561">save</a> ()</td></tr>
 
-<tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#fa71a146968c6f082748dfdb1ba723e6">slotChanged</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#65e9575c6bdcabdb1efa53aa47bf8609">slotAdd</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#b33abfd05c9338ae3a2631d752ed1930">slotEdit</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#f07a29dd20dfdf9e585f68e7241cb3e9">slotRemove</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KSharedConfigPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#f3efbc23e7193774565318ca475e65be">config</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QTreeWidget *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KPushButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#0c5ebb039f7347640a58c5ee57098779">btnAdd</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KPushButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#95cd2f5c99c1d91560b46ced9d9d1fbf">btnEdit</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KPushButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigAccounts.html#52e23250590a8ad13e1992898a23e635">btnRemove</a></td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Part of the setup dialog (KShowMailApp::SetupDialog) to configure the accounts. 
@@ -98,7 +78,13 @@ Part of the setup dialog (KShowMailApp::SetupDialog) to configure the accounts.
 <div class="memdoc">
 
 <p>
-Generic Constructor 
+Generic Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent widget </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>args</em>&nbsp;</td><td>arguments </td></tr>
+  </table>
+</dl>
+
 </div>
 </div><p>
 <a class="anchor" name="1c3f25feb7830704927f4e05ca9ae6f8"></a><!-- doxytag: member="ConfigAccounts::~ConfigAccounts" ref="1c3f25feb7830704927f4e05ca9ae6f8" args="()" -->
@@ -142,8 +128,6 @@ Destructor
 Overloaded method of KCModule. Sets the user interface elements to reflect the current settings stored in the config file. 
 <p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00072">72</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
 
-<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, <a class="el" href="configaccounts_8h-source.html#l00087">config</a>, <a class="el" href="constants_8h-source.html#l00273">CONFIG_ENTRY_ACCOUNTS_LIST</a>, <a class="el" href="constants_8h-source.html#l00272">CONFIG_GROUP_ACCOUNTS</a>, and <a class="el" href="accountsetupitem_8cpp-source.html#l00183">AccountSetupItem::load()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="47006383d0befb78e37568059a4dbd9e"></a><!-- doxytag: member="ConfigAccounts::defaults" ref="47006383d0befb78e37568059a4dbd9e" args="()" -->
@@ -186,196 +170,12 @@ Overloaded method of KCModule. Sets the user interface elements to default value
 Overloaded method of KCModule. Stores the config information as shown in the user interface in the config file. Is called when the user clicks "Apply" or "Ok". 
 <p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00090">90</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
 
-<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, <a class="el" href="configaccounts_8h-source.html#l00087">config</a>, <a class="el" href="constants_8h-source.html#l00273">CONFIG_ENTRY_ACCOUNTS_LIST</a>, <a class="el" href="constants_8h-source.html#l00272">CONFIG_GROUP_ACCOUNTS</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00070">AccountSetupItem::getAccountName()</a>, and <a class="el" href="accountsetupitem_8cpp-source.html#l00151">AccountSetupItem::save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="fa71a146968c6f082748dfdb1ba723e6"></a><!-- doxytag: member="ConfigAccounts::slotChanged" ref="fa71a146968c6f082748dfdb1ba723e6" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigAccounts::slotChanged           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with the configuration items. Calls the slot changed() of KCModule to notify the dialog about the change. 
-<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00142">142</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
-
-<p>Referenced by <a class="el" href="configaccounts_8cpp-source.html#l00147">slotAdd()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00161">slotEdit()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00182">slotRemove()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="65e9575c6bdcabdb1efa53aa47bf8609"></a><!-- doxytag: member="ConfigAccounts::slotAdd" ref="65e9575c6bdcabdb1efa53aa47bf8609" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigAccounts::slotAdd           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with button btnAdd. Opens the account setup dialog with an account item pointer of NULL. If the user has clicked OK, the dialog will create a new account item with the entered values and adds it to the list view. 
-<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00147">147</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
-
-<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00142">slotChanged()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="b33abfd05c9338ae3a2631d752ed1930"></a><!-- doxytag: member="ConfigAccounts::slotEdit" ref="b33abfd05c9338ae3a2631d752ed1930" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigAccounts::slotEdit           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with button btnEdit. Opens the account setup with the selected account item. 
-<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00161">161</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
-
-<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00142">slotChanged()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="f07a29dd20dfdf9e585f68e7241cb3e9"></a><!-- doxytag: member="ConfigAccounts::slotRemove" ref="f07a29dd20dfdf9e585f68e7241cb3e9" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigAccounts::slotRemove           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with button btnRemove. Removes the selected item. 
-<p>Definition at line <a class="el" href="configaccounts_8cpp-source.html#l00182">182</a> of file <a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a>.</p>
-
-<p>References <a class="el" href="configaccounts_8h-source.html#l00092">accountListView</a>, <a class="el" href="accountsetupitem_8cpp-source.html#l00070">AccountSetupItem::getAccountName()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00142">slotChanged()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="f3efbc23e7193774565318ca475e65be"></a><!-- doxytag: member="ConfigAccounts::config" ref="f3efbc23e7193774565318ca475e65be" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KSharedConfigPtr <a class="el" href="classConfigAccounts.html#f3efbc23e7193774565318ca475e65be">ConfigAccounts::config</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connector to the configuration file 
-<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00087">87</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configaccounts_8cpp-source.html#l00072">load()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00090">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="a41e0fbc468a3f668b85d8fb0cba42b9"></a><!-- doxytag: member="ConfigAccounts::accountListView" ref="a41e0fbc468a3f668b85d8fb0cba42b9" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QTreeWidget* <a class="el" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">ConfigAccounts::accountListView</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-<a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> List View 
-<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00092">92</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configaccounts_8cpp-source.html#l00072">load()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00090">save()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00147">slotAdd()</a>, <a class="el" href="configaccounts_8cpp-source.html#l00161">slotEdit()</a>, and <a class="el" href="configaccounts_8cpp-source.html#l00182">slotRemove()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="0c5ebb039f7347640a58c5ee57098779"></a><!-- doxytag: member="ConfigAccounts::btnAdd" ref="0c5ebb039f7347640a58c5ee57098779" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KPushButton* <a class="el" href="classConfigAccounts.html#0c5ebb039f7347640a58c5ee57098779">ConfigAccounts::btnAdd</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Button to add a new account 
-<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00097">97</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="95cd2f5c99c1d91560b46ced9d9d1fbf"></a><!-- doxytag: member="ConfigAccounts::btnEdit" ref="95cd2f5c99c1d91560b46ced9d9d1fbf" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KPushButton* <a class="el" href="classConfigAccounts.html#95cd2f5c99c1d91560b46ced9d9d1fbf">ConfigAccounts::btnEdit</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Button to edit an account 
-<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00102">102</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="52e23250590a8ad13e1992898a23e635"></a><!-- doxytag: member="ConfigAccounts::btnRemove" ref="52e23250590a8ad13e1992898a23e635" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KPushButton* <a class="el" href="classConfigAccounts.html#52e23250590a8ad13e1992898a23e635">ConfigAccounts::btnRemove</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Button to remove an account 
-<p>Definition at line <a class="el" href="configaccounts_8h-source.html#l00107">107</a> of file <a class="el" href="configaccounts_8h-source.html">configaccounts.h</a>.</p>
-
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="configaccounts_8h-source.html">configaccounts.h</a><li>src/<a class="el" href="configaccounts_8cpp-source.html">configaccounts.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

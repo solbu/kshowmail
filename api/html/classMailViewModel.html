@@ -34,7 +34,7 @@
 <a href="classMailViewModel-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#e5ad0a648d207c07cc3c23e22a94dbdd">MailViewModel</a> (<a class="el" href="classAccountList.html">AccountList</a> *<a class="el" href="classMailViewModel.html#4a2212a120f12f29a0c56369cff831ca">accounts</a>, QObject *parent)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#e5ad0a648d207c07cc3c23e22a94dbdd">MailViewModel</a> (<a class="el" href="classAccountList.html">AccountList</a> *accounts, QObject *parent)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#7064a14a4bce5f65d3df4188bb24e031">~MailViewModel</a> ()</td></tr>
 
@@ -50,6 +50,7 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#f0ee32dd1a5e1868ff02556786e3a995">hasChildren</a> (const QModelIndex &amp;parent=QModelIndex()) const </td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Overloaded from QAbstractItemModel.  <a href="#f0ee32dd1a5e1868ff02556786e3a995"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#490e833272e9463b6ce46898dd445f68">headerData</a> (int section, Qt::Orientation orientation, int role) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual Qt::ItemFlags&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#20dac76ca7ec9ae176ac0f83c09f25d0">flags</a> (const QModelIndex &amp;) const </td></tr>
@@ -71,17 +72,6 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QModelIndexList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#4edddd2739565232388c7247e3ec072c">getMarkedMails</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#e6f7ff7235c508b16dcaf3a35542fbea">saveSetup</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classAccountList.html">AccountList</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#4a2212a120f12f29a0c56369cff831ca">accounts</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QList&lt; <a class="el" href="classMail.html">Mail</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">viewMailList</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KIcon&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#8042cd0d62311bea6f252b0741dc2cb5">picNewMail</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">Qt::SortOrder&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#ef5afebec79e45c5fe7064fc9d025573">lastSortOrder</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailViewModel.html#4e5e6cb723d6722e895d70bf954d8e4b">lastSortColumn</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -122,8 +112,6 @@ Constructor <dl compact><dt><b>Parameters:</b></dt><dd>
 </dl>
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00020">20</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
-
-<p>References <a class="el" href="mailviewmodel_8h-source.html#l00194">picNewMail</a>.</p>
 
 </div>
 </div><p>
@@ -191,8 +179,6 @@ Returns the index of the mail data in this model specified by the given row, col
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00031">31</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00326">getMarkedMails()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00302">getSelectedMails()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00276">getSelectedSenders()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00250">getSelectedSubjects()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="7a34a720a834c4ec7da12d87d5bc46ca"></a><!-- doxytag: member="MailViewModel::parent" ref="7a34a720a834c4ec7da12d87d5bc46ca" args="(const QModelIndex &amp;) const " -->
@@ -242,10 +228,6 @@ Overloaded from QAbstractItemModel Doesn't give a parent item, because the model
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00045">45</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="mailviewmodel_8h-source.html#l00189">viewMailList</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00058">data()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00326">getMarkedMails()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="9b15615a9ac3126682f5e60055bee0c9"></a><!-- doxytag: member="MailViewModel::columnCount" ref="9b15615a9ac3126682f5e60055bee0c9" args="(const QModelIndex &amp;) const " -->
@@ -267,8 +249,6 @@ Overloaded from QAbstractItemModel Doesn't give a parent item, because the model
 <p>
 Overloaded from QAbstractItemModel Doesn't give a parent item, because the model doesn't provide tree structured data. The column count is equal to the number of showed mail data 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00053">53</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
-
-<p>References <a class="el" href="mailviewmodel_8h-source.html#l00039">NUMBER_MAILVIEW_COLUMNS</a>.</p>
 
 </div>
 </div><p>
@@ -307,8 +287,6 @@ Overloaded from QAbstractItemModel Returns the data of the given index. <dl comp
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00058">58</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00847">Mail::getAccountName()</a>, <a class="el" href="mail_8cpp-source.html#l00398">Mail::getContent()</a>, <a class="el" href="mail_8cpp-source.html#l00393">Mail::getDateTime()</a>, <a class="el" href="mail_8cpp-source.html#l00362">Mail::getFrom()</a>, <a class="el" href="mail_8cpp-source.html#l00078">Mail::getNumber()</a>, <a class="el" href="mail_8cpp-source.html#l00372">Mail::getSizeSuffix()</a>, <a class="el" href="mail_8cpp-source.html#l00063">Mail::getSubject()</a>, <a class="el" href="mail_8cpp-source.html#l00367">Mail::getTo()</a>, <a class="el" href="mail_8cpp-source.html#l00099">Mail::isNew()</a>, <a class="el" href="mailviewmodel_8h-source.html#l00039">NUMBER_MAILVIEW_COLUMNS</a>, <a class="el" href="mailviewmodel_8h-source.html#l00194">picNewMail</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00045">rowCount()</a>, and <a class="el" href="mailviewmodel_8h-source.html#l00189">viewMailList</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="f0ee32dd1a5e1868ff02556786e3a995"></a><!-- doxytag: member="MailViewModel::hasChildren" ref="f0ee32dd1a5e1868ff02556786e3a995" args="(const QModelIndex &amp;parent=QModelIndex()) const " -->
@@ -328,7 +306,14 @@ Overloaded from QAbstractItemModel Returns the data of the given index. <dl comp
 <div class="memdoc">
 
 <p>
-Overloaded from QAbstractItemModel Because this model doesn't provides tree structured data, this methode always returns false 
+Overloaded from QAbstractItemModel. 
+<p>
+Because this model doesn't provides tree structured data, this methode always returns false <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent index </td></tr>
+  </table>
+</dl>
+
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00114">114</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
 </div>
@@ -418,10 +403,6 @@ Returns the flags of the given index. All items are enabled and selectable.
 Emits the dataChanged signal to the views to inform they about changed data 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00149">149</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="mailviewmodel_8h-source.html#l00184">accounts</a>, <a class="el" href="accountlist_8cpp-source.html#l00632">AccountList::getAllMails()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00240">sort()</a>, and <a class="el" href="mailviewmodel_8h-source.html#l00189">viewMailList</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmailview_8cpp-source.html#l00057">KShowmailView::refreshViews()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="0d1cb14b1d1f1ba318565d5d0f3fafba"></a><!-- doxytag: member="MailViewModel::sort" ref="0d1cb14b1d1f1ba318565d5d0f3fafba" args="(int column, Qt::SortOrder order=Qt::AscendingOrder)" -->
@@ -459,8 +440,6 @@ Sorts the model by column in the given order. <dl compact><dt><b>Parameters:</b>
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00157">157</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="mail_8cpp-source.html#l00772">Mail::compare()</a>, <a class="el" href="mailviewmodel_8h-source.html#l00204">lastSortColumn</a>, <a class="el" href="mailviewmodel_8h-source.html#l00199">lastSortOrder</a>, <a class="el" href="types_8h-source.html#l00164">Types::MailSortAccount</a>, <a class="el" href="types_8h-source.html#l00170">Types::MailSortContent</a>, <a class="el" href="types_8h-source.html#l00168">Types::MailSortDate</a>, <a class="el" href="types_8h-source.html#l00165">Types::MailSortFrom</a>, <a class="el" href="types_8h-source.html#l00162">Types::MailSortNumber</a>, <a class="el" href="types_8h-source.html#l00169">Types::MailSortSize</a>, <a class="el" href="types_8h-source.html#l00163">Types::MailSortState</a>, <a class="el" href="types_8h-source.html#l00167">Types::MailSortSubject</a>, <a class="el" href="types_8h-source.html#l00166">Types::MailSortTo</a>, and <a class="el" href="mailviewmodel_8h-source.html#l00189">viewMailList</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="15c2c845746af630ddf2136463749cee"></a><!-- doxytag: member="MailViewModel::sort" ref="15c2c845746af630ddf2136463749cee" args="()" -->
@@ -481,10 +460,6 @@ Sorts the model by column in the given order. <dl compact><dt><b>Parameters:</b>
 <p>
 Sorts the model by the last sort properties. 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00240">240</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
-
-<p>References <a class="el" href="mailviewmodel_8h-source.html#l00204">lastSortColumn</a>, and <a class="el" href="mailviewmodel_8h-source.html#l00199">lastSortOrder</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00149">refresh()</a>.</p>
 
 </div>
 </div><p>
@@ -512,10 +487,6 @@ Returns the mail at the given index <dl compact><dt><b>Parameters:</b></dt><dd>
 </dl>
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00245">245</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
-
-<p>References <a class="el" href="mailviewmodel_8h-source.html#l00189">viewMailList</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00326">getMarkedMails()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00302">getSelectedMails()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00276">getSelectedSenders()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00250">getSelectedSubjects()</a>.</p>
 
 </div>
 </div><p>
@@ -545,10 +516,6 @@ Returns the subjects of the selected mails. <dl compact><dt><b>Parameters:</b></
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00250">250</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="mailviewmodel_8cpp-source.html#l00245">getMail()</a>, <a class="el" href="mail_8cpp-source.html#l00063">Mail::getSubject()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00031">index()</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00279">KShowmail::slotDelete()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="02e5fc1ddc856a4ac5524893c5511179"></a><!-- doxytag: member="MailViewModel::getSelectedSenders" ref="02e5fc1ddc856a4ac5524893c5511179" args="(QItemSelectionModel *selectModel) const " -->
@@ -576,10 +543,6 @@ Returns the senders of the selected mails. <dl compact><dt><b>Parameters:</b></d
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>mail senders </dd></dl>
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00276">276</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
-
-<p>References <a class="el" href="mail_8cpp-source.html#l00362">Mail::getFrom()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00245">getMail()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00031">index()</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00356">KShowmail::slotAddToBlacklist()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00380">KShowmail::slotAddToWhitelist()</a>.</p>
 
 </div>
 </div><p>
@@ -609,10 +572,6 @@ Returns the selected mails. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00302">302</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="mailviewmodel_8cpp-source.html#l00245">getMail()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00031">index()</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmail_8cpp-source.html#l00279">KShowmail::slotDelete()</a>, <a class="el" href="kshowmail_8cpp-source.html#l00212">KShowmail::slotShowHeader()</a>, and <a class="el" href="kshowmail_8cpp-source.html#l00241">KShowmail::slotShowMessage()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="4edddd2739565232388c7247e3ec072c"></a><!-- doxytag: member="MailViewModel::getMarkedMails" ref="4edddd2739565232388c7247e3ec072c" args="() const " -->
@@ -636,10 +595,6 @@ Returns the indexes of mails which are marked by filter.<p>
 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00326">326</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="mailviewmodel_8cpp-source.html#l00245">getMail()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00031">index()</a>, <a class="el" href="mail_8cpp-source.html#l00446">Mail::isMarkedByFilter()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00045">rowCount()</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmailview_8cpp-source.html#l00057">KShowmailView::refreshViews()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="e6f7ff7235c508b16dcaf3a35542fbea"></a><!-- doxytag: member="MailViewModel::saveSetup" ref="e6f7ff7235c508b16dcaf3a35542fbea" args="()" -->
@@ -661,112 +616,12 @@ Returns the indexes of mails which are marked by filter.<p>
 Saves the setup 
 <p>Definition at line <a class="el" href="mailviewmodel_8cpp-source.html#l00348">348</a> of file <a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a>.</p>
 
-<p>References <a class="el" href="constants_8h-source.html#l00262">CONFIG_ENTRY_SORT_COLUMN_MESSAGE</a>, <a class="el" href="constants_8h-source.html#l00263">CONFIG_ENTRY_SORT_ORDER_MESSAGE</a>, <a class="el" href="constants_8h-source.html#l00220">CONFIG_GROUP_VIEW</a>, <a class="el" href="constants_8h-source.html#l00223">CONFIG_VALUE_SORT_ORDER_ASCENDING</a>, <a class="el" href="constants_8h-source.html#l00224">CONFIG_VALUE_SORT_ORDER_DESCENDING</a>, <a class="el" href="mailviewmodel_8h-source.html#l00204">lastSortColumn</a>, and <a class="el" href="mailviewmodel_8h-source.html#l00199">lastSortOrder</a>.</p>
-
-<p>Referenced by <a class="el" href="kshowmailview_8cpp-source.html#l00075">KShowmailView::saveSetup()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="4a2212a120f12f29a0c56369cff831ca"></a><!-- doxytag: member="MailViewModel::accounts" ref="4a2212a120f12f29a0c56369cff831ca" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classAccountList.html">AccountList</a>* <a class="el" href="classMailViewModel.html#4a2212a120f12f29a0c56369cff831ca">MailViewModel::accounts</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Pointer to the account list 
-<p>Definition at line <a class="el" href="mailviewmodel_8h-source.html#l00184">184</a> of file <a class="el" href="mailviewmodel_8h-source.html">mailviewmodel.h</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00149">refresh()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="53ccb01b399cae1f222f7c03d77eb526"></a><!-- doxytag: member="MailViewModel::viewMailList" ref="53ccb01b399cae1f222f7c03d77eb526" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QList&lt;<a class="el" href="classMail.html">Mail</a>&gt; <a class="el" href="classMailViewModel.html#53ccb01b399cae1f222f7c03d77eb526">MailViewModel::viewMailList</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-In this we store the pointer to the mails 
-<p>Definition at line <a class="el" href="mailviewmodel_8h-source.html#l00189">189</a> of file <a class="el" href="mailviewmodel_8h-source.html">mailviewmodel.h</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00058">data()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00245">getMail()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00149">refresh()</a>, <a class="el" href="mailviewmodel_8cpp-source.html#l00045">rowCount()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00157">sort()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="8042cd0d62311bea6f252b0741dc2cb5"></a><!-- doxytag: member="MailViewModel::picNewMail" ref="8042cd0d62311bea6f252b0741dc2cb5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KIcon <a class="el" href="classMailViewModel.html#8042cd0d62311bea6f252b0741dc2cb5">MailViewModel::picNewMail</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Icon for a new mail 
-<p>Definition at line <a class="el" href="mailviewmodel_8h-source.html#l00194">194</a> of file <a class="el" href="mailviewmodel_8h-source.html">mailviewmodel.h</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00058">data()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00020">MailViewModel()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="ef5afebec79e45c5fe7064fc9d025573"></a><!-- doxytag: member="MailViewModel::lastSortOrder" ref="ef5afebec79e45c5fe7064fc9d025573" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Qt::SortOrder <a class="el" href="classMailViewModel.html#ef5afebec79e45c5fe7064fc9d025573">MailViewModel::lastSortOrder</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Last sort order 
-<p>Definition at line <a class="el" href="mailviewmodel_8h-source.html#l00199">199</a> of file <a class="el" href="mailviewmodel_8h-source.html">mailviewmodel.h</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00348">saveSetup()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00157">sort()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="4e5e6cb723d6722e895d70bf954d8e4b"></a><!-- doxytag: member="MailViewModel::lastSortColumn" ref="4e5e6cb723d6722e895d70bf954d8e4b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="classMailViewModel.html#4e5e6cb723d6722e895d70bf954d8e4b">MailViewModel::lastSortColumn</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-last sort column 
-<p>Definition at line <a class="el" href="mailviewmodel_8h-source.html#l00204">204</a> of file <a class="el" href="mailviewmodel_8h-source.html">mailviewmodel.h</a>.</p>
-
-<p>Referenced by <a class="el" href="mailviewmodel_8cpp-source.html#l00348">saveSetup()</a>, and <a class="el" href="mailviewmodel_8cpp-source.html#l00157">sort()</a>.</p>
-
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="mailviewmodel_8h-source.html">mailviewmodel.h</a><li>src/<a class="el" href="mailviewmodel_8cpp-source.html">mailviewmodel.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

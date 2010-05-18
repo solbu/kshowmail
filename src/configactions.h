@@ -50,12 +50,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 class ConfigActions : public KCModule
 {
-Q_OBJECT
+  Q_OBJECT
 
   public:
     /**
-    * Generic Constructor
-    */
+     * Generic Constructor
+     * @param parent parent widget
+     * @param args arguments
+     */
     explicit ConfigActions( QWidget *parent = 0, const QVariantList & args = QVariantList() );
 
     /**

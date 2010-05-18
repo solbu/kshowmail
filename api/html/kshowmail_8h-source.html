@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/kshowmail.h</h1><a href="kshowmail_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/kshowmail.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -61,18 +61,18 @@
 <a name="l00045"></a>00045 <span class="preprocessor">#include &lt;KProcess&gt;</span>
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="comment">//KShowmail headers</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include "<a class="code" href="kshowmailview_8h.html">kshowmailview.h</a>"</span>
-<a name="l00049"></a>00049 <span class="preprocessor">#include "<a class="code" href="accountlist_8h.html">accountlist.h</a>"</span>
-<a name="l00050"></a>00050 <span class="preprocessor">#include "<a class="code" href="accountviewmodel_8h.html">accountviewmodel.h</a>"</span>
-<a name="l00051"></a>00051 <span class="preprocessor">#include "<a class="code" href="mailviewmodel_8h.html">mailviewmodel.h</a>"</span>
-<a name="l00052"></a>00052 <span class="preprocessor">#include "<a class="code" href="mail_8h.html">mail.h</a>"</span>
-<a name="l00053"></a>00053 <span class="preprocessor">#include "<a class="code" href="types_8h.html">types.h</a>"</span>
-<a name="l00054"></a>00054 <span class="preprocessor">#include "<a class="code" href="filterlogview_8h.html">filterlogview.h</a>"</span>
-<a name="l00055"></a>00055 <span class="preprocessor">#include "<a class="code" href="showheaderdialog_8h.html">showheaderdialog.h</a>"</span>
-<a name="l00056"></a>00056 <span class="preprocessor">#include "<a class="code" href="showmaildialog_8h.html">showmaildialog.h</a>"</span>
-<a name="l00057"></a>00057 <span class="preprocessor">#include "<a class="code" href="systemtrayicon_8h.html">systemtrayicon.h</a>"</span>
-<a name="l00058"></a>00058 <span class="preprocessor">#include "<a class="code" href="accountsetupdialogcontext_8h.html">accountsetupdialogcontext.h</a>"</span>
-<a name="l00059"></a>00059 <span class="preprocessor">#include "<a class="code" href="newmaildialog_8h.html">newmaildialog.h</a>"</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include "kshowmailview.h"</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include "accountlist.h"</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#include "accountviewmodel.h"</span>
+<a name="l00051"></a>00051 <span class="preprocessor">#include "mailviewmodel.h"</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include "mail.h"</span>
+<a name="l00053"></a>00053 <span class="preprocessor">#include "types.h"</span>
+<a name="l00054"></a>00054 <span class="preprocessor">#include "filterlogview.h"</span>
+<a name="l00055"></a>00055 <span class="preprocessor">#include "showheaderdialog.h"</span>
+<a name="l00056"></a>00056 <span class="preprocessor">#include "showmaildialog.h"</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#include "systemtrayicon.h"</span>
+<a name="l00058"></a>00058 <span class="preprocessor">#include "accountsetupdialogcontext.h"</span>
+<a name="l00059"></a>00059 <span class="preprocessor">#include "newmaildialog.h"</span>
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061 <span class="keyword">using namespace </span>Types;
 <a name="l00062"></a>00062 
@@ -155,63 +155,63 @@
 <a name="l00274"></a>00274 
 <a name="l00275"></a>00275         <span class="keyword">private</span>:
 <a name="l00276"></a>00276                 
-<a name="l00280"></a><a class="code" href="classKShowmail.html#83e8a101c5fb1e2be06af385f505273b">00280</a>                 <a class="code" href="classKShowmailView.html" title="Main view of KShowmail.">KShowmailView</a>* <a class="code" href="classKShowmail.html#83e8a101c5fb1e2be06af385f505273b">view</a>;
+<a name="l00280"></a>00280                 <a class="code" href="classKShowmailView.html" title="Main view of KShowmail.">KShowmailView</a>* view;
 <a name="l00281"></a>00281 
-<a name="l00285"></a><a class="code" href="classKShowmail.html#5f3bea7decb960038f69c1ab65bf9356">00285</a>     KAction* <a class="code" href="classKShowmail.html#5f3bea7decb960038f69c1ab65bf9356">actionRefresh</a>;
+<a name="l00285"></a>00285     KAction* actionRefresh;
 <a name="l00286"></a>00286 
-<a name="l00291"></a><a class="code" href="classKShowmail.html#a179785841b9c8090481246bd9f66be1">00291</a>     KAction* <a class="code" href="classKShowmail.html#a179785841b9c8090481246bd9f66be1">actionShowHeader</a>;
+<a name="l00291"></a>00291     KAction* actionShowHeader;
 <a name="l00292"></a>00292 
-<a name="l00297"></a><a class="code" href="classKShowmail.html#39d40b4abc464593266de0443a9c06f9">00297</a>     KAction* <a class="code" href="classKShowmail.html#39d40b4abc464593266de0443a9c06f9">actionShowMessage</a>;
+<a name="l00297"></a>00297     KAction* actionShowMessage;
 <a name="l00298"></a>00298 
-<a name="l00303"></a><a class="code" href="classKShowmail.html#b9abe12833c466c4e49186481de0d18e">00303</a>     KAction* <a class="code" href="classKShowmail.html#b9abe12833c466c4e49186481de0d18e">actionDelete</a>;
+<a name="l00303"></a>00303     KAction* actionDelete;
 <a name="l00304"></a>00304 
-<a name="l00309"></a><a class="code" href="classKShowmail.html#5780f59f740ff1f2913136a0231cebb3">00309</a>     KAction* <a class="code" href="classKShowmail.html#5780f59f740ff1f2913136a0231cebb3">actionStop</a>;
+<a name="l00309"></a>00309     KAction* actionStop;
 <a name="l00310"></a>00310 
-<a name="l00315"></a><a class="code" href="classKShowmail.html#46c218d87a5a83e906210fbe55041041">00315</a>     KAction* <a class="code" href="classKShowmail.html#46c218d87a5a83e906210fbe55041041">actionShowFilterLog</a>;
+<a name="l00315"></a>00315     KAction* actionShowFilterLog;
 <a name="l00316"></a>00316 
-<a name="l00321"></a><a class="code" href="classKShowmail.html#984772817d0471ae883f811d007797f8">00321</a>     KAction* <a class="code" href="classKShowmail.html#984772817d0471ae883f811d007797f8">actionAddWhitelist</a>;
+<a name="l00321"></a>00321     KAction* actionAddWhitelist;
 <a name="l00322"></a>00322 
-<a name="l00327"></a><a class="code" href="classKShowmail.html#c4efe46351b4af55cefbf5ad786b2a28">00327</a>     KAction* <a class="code" href="classKShowmail.html#c4efe46351b4af55cefbf5ad786b2a28">actionAddBlacklist</a>;
+<a name="l00327"></a>00327     KAction* actionAddBlacklist;
 <a name="l00328"></a>00328 
-<a name="l00333"></a><a class="code" href="classKShowmail.html#70720f567a620990d25320ad4acbbc93">00333</a>     KAction* <a class="code" href="classKShowmail.html#70720f567a620990d25320ad4acbbc93">actionSetupAccount</a>;
+<a name="l00333"></a>00333     KAction* actionSetupAccount;
 <a name="l00334"></a>00334     
-<a name="l00338"></a><a class="code" href="classKShowmail.html#9215d20955228ea308f81c36cc44f4c5">00338</a>                 <a class="code" href="classAccountList.html" title="Contains the accounts.">AccountList</a>* <a class="code" href="classKShowmail.html#9215d20955228ea308f81c36cc44f4c5">accounts</a>;
+<a name="l00338"></a>00338                 <a class="code" href="classAccountList.html" title="Contains the accounts.">AccountList</a>* accounts;
 <a name="l00339"></a>00339                 
-<a name="l00343"></a><a class="code" href="classKShowmail.html#a5028b5f201d958f8a251703e86cf81f">00343</a>     KCMultiDialog* <a class="code" href="classKShowmail.html#a5028b5f201d958f8a251703e86cf81f">setupDialog</a>;
+<a name="l00343"></a>00343     KCMultiDialog* setupDialog;
 <a name="l00344"></a>00344 
-<a name="l00348"></a><a class="code" href="classKShowmail.html#2fc6cad75422418c17eb54e6a524faae">00348</a>     KSharedConfigPtr <a class="code" href="classKShowmail.html#2fc6cad75422418c17eb54e6a524faae">config</a>;
+<a name="l00348"></a>00348     KSharedConfigPtr config;
 <a name="l00349"></a>00349 
-<a name="l00353"></a><a class="code" href="classKShowmail.html#c8594cf6eeef978f543f89a1cdd3adfd">00353</a>     KConfigGroup* <a class="code" href="classKShowmail.html#c8594cf6eeef978f543f89a1cdd3adfd">configGeneral</a>;
+<a name="l00353"></a>00353     KConfigGroup* configGeneral;
 <a name="l00354"></a>00354 
-<a name="l00358"></a><a class="code" href="classKShowmail.html#fb5d51eca5358d8b1bc4eacb28bcc3e1">00358</a>     <a class="code" href="namespaceTypes.html#dc227eb5720632a8290561b001aaa565">State_Type</a> <a class="code" href="classKShowmail.html#fb5d51eca5358d8b1bc4eacb28bcc3e1">state</a>;
+<a name="l00358"></a>00358     <a class="code" href="namespaceTypes.html#dc227eb5720632a8290561b001aaa565">State_Type</a> state;
 <a name="l00359"></a>00359 
-<a name="l00363"></a><a class="code" href="classKShowmail.html#1454e091b5f41248658520103e4bc2f6">00363</a>     QItemSelectionModel* <a class="code" href="classKShowmail.html#1454e091b5f41248658520103e4bc2f6">mailSelectModel</a>;
+<a name="l00363"></a>00363     QItemSelectionModel* mailSelectModel;
 <a name="l00364"></a>00364 
-<a name="l00368"></a><a class="code" href="classKShowmail.html#b8e142344d76a0d9599d00521f0b2fe7">00368</a>     QItemSelectionModel* <a class="code" href="classKShowmail.html#b8e142344d76a0d9599d00521f0b2fe7">accountSelectModel</a>;
+<a name="l00368"></a>00368     QItemSelectionModel* accountSelectModel;
 <a name="l00369"></a>00369 
-<a name="l00373"></a><a class="code" href="classKShowmail.html#82b472c01fdafc16a2b770ede70bf251">00373</a>     <a class="code" href="classMailViewModel.html" title="Model for the mail view.">MailViewModel</a>* <a class="code" href="classKShowmail.html#82b472c01fdafc16a2b770ede70bf251">mailModel</a>;
+<a name="l00373"></a>00373     <a class="code" href="classMailViewModel.html" title="Model for the mail view.">MailViewModel</a>* mailModel;
 <a name="l00374"></a>00374                 
-<a name="l00378"></a><a class="code" href="classKShowmail.html#a96d054a765dfffcce956a234941ea39">00378</a>                 <a class="code" href="classAccountViewModel.html" title="Model for the account view.">AccountViewModel</a>* <a class="code" href="classKShowmail.html#a96d054a765dfffcce956a234941ea39">accountModel</a>;
+<a name="l00378"></a>00378                 <a class="code" href="classAccountViewModel.html" title="Model for the account view.">AccountViewModel</a>* accountModel;
 <a name="l00379"></a>00379 
-<a name="l00383"></a><a class="code" href="classKShowmail.html#7b6231e1660812bbba9c04593b6e766d">00383</a>     <a class="code" href="classSystemTrayIcon.html" title="This shows the small icon in the system tray.">SystemTrayIcon</a>* <a class="code" href="classKShowmail.html#7b6231e1660812bbba9c04593b6e766d">trayIcon</a>;
+<a name="l00383"></a>00383     <a class="code" href="classSystemTrayIcon.html" title="This shows the small icon in the system tray.">SystemTrayIcon</a>* trayIcon;
 <a name="l00384"></a>00384 
-<a name="l00388"></a><a class="code" href="classKShowmail.html#590e1f486fffd8c840f219d86eb715f2">00388</a>     QTimer* <a class="code" href="classKShowmail.html#590e1f486fffd8c840f219d86eb715f2">refreshTimer</a>;
+<a name="l00388"></a>00388     QTimer* refreshTimer;
 <a name="l00389"></a>00389 
-<a name="l00393"></a><a class="code" href="classKShowmail.html#1f225d7e649c39db40a33ec0eeeb2eed">00393</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classKShowmail.html#1f225d7e649c39db40a33ec0eeeb2eed">timeToRefresh</a>;
+<a name="l00393"></a>00393     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> timeToRefresh;
 <a name="l00394"></a>00394 
-<a name="l00399"></a><a class="code" href="classKShowmail.html#bbeb5388879ddf1095dc07f7b34124d6">00399</a>     Phonon::MediaObject *<a class="code" href="classKShowmail.html#bbeb5388879ddf1095dc07f7b34124d6">mediaObject</a>;
+<a name="l00399"></a>00399     Phonon::MediaObject *mediaObject;
 <a name="l00400"></a>00400 
-<a name="l00405"></a><a class="code" href="classKShowmail.html#4cb5c772af249d11c9d931dbbda6c096">00405</a>     Phonon::AudioOutput *<a class="code" href="classKShowmail.html#4cb5c772af249d11c9d931dbbda6c096">audioOutput</a>;
+<a name="l00405"></a>00405     Phonon::AudioOutput *audioOutput;
 <a name="l00406"></a>00406 
-<a name="l00411"></a><a class="code" href="classKShowmail.html#2b011ffb126cf7f06382f3cc790f13fc">00411</a>     <a class="code" href="classNewMailDialog.html" title="Small dialog which will be shown when new mails are arrived.">NewMailDialog</a>* <a class="code" href="classKShowmail.html#2b011ffb126cf7f06382f3cc790f13fc">newMailDlg</a>;
+<a name="l00411"></a>00411     <a class="code" href="classNewMailDialog.html" title="Small dialog which will be shown when new mails are arrived.">NewMailDialog</a>* newMailDlg;
 <a name="l00412"></a>00412 
-<a name="l00416"></a><a class="code" href="classKShowmail.html#2de3d1988d0219e4c0fa08cca323d3af">00416</a>     <span class="keywordtype">bool</span> <a class="code" href="classKShowmail.html#2de3d1988d0219e4c0fa08cca323d3af">forceExit</a>;
+<a name="l00416"></a>00416     <span class="keywordtype">bool</span> forceExit;
 <a name="l00417"></a>00417 
 <a name="l00418"></a>00418 };
 <a name="l00419"></a>00419 
 <a name="l00420"></a>00420 <span class="preprocessor">#endif // _KSHOWMAIL_H_</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

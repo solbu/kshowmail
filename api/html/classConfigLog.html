@@ -44,34 +44,6 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#ffcf14fa9d7f3061da2f6b688cb9745d">save</a> ()</td></tr>
 
-<tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#3687b473ec2512d023a3323fe555637e">slotChanged</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#3a2f475fdec72a03bc657d11524d60aa">slotChangeItems</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">KSharedConfigPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#7dc8aa3ce845787d9a29f19696ee5230">config</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#b8fff5d7cbb30185227c702e1b679be6">chkLogDeletedMails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#dc2656eee036eb7da225edf63b73f2d1">chkLogMovedMails</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#f4cc144f6621754512201ecf04f4b39c">grpDelMailsRemove</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#0b5c4ed624ecf618bbe0d2d4f0b174fa">grpMovMailsRemove</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QSpinBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#822c19a03e5f27b2dd7e3fde36931a3e">spbDelDays</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QSpinBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#665686b7be964c5769b83075a2eb614c">spbMovDays</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#68ebd0dad2255583411429bd5e953d4b">btnDelMailsRemoveExit</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#fce2bf2c6b740bf60db4c1d3eb006689">btnDelMailsRemoveDays</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#c8a6cb4285aa777d4c6b4207e598f680">btnMovMailsRemoveExit</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#84301947e00f41cff17fa0dabdac23da">btnMovMailsRemoveDays</a></td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Part of the setup dialog (KShowMailApp::SetupDialog) to configure the log. 
@@ -106,7 +78,13 @@ Part of the setup dialog (KShowMailApp::SetupDialog) to configure the log.
 <div class="memdoc">
 
 <p>
-Generic constructor 
+Generic constructor <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent widget </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>args</em>&nbsp;</td><td>arguments </td></tr>
+  </table>
+</dl>
+
 </div>
 </div><p>
 <a class="anchor" name="2c32d0d5a4d622e3e8713ab4fff63e02"></a><!-- doxytag: member="ConfigLog::~ConfigLog" ref="2c32d0d5a4d622e3e8713ab4fff63e02" args="()" -->
@@ -150,8 +128,6 @@ Destructor
 Overloaded method of KCModule. Sets the user interface elements to reflect the current settings stored in the config file. 
 <p>Definition at line <a class="el" href="configlog_8cpp-source.html#l00117">117</a> of file <a class="el" href="configlog_8cpp-source.html">configlog.cpp</a>.</p>
 
-<p>References <a class="el" href="configlog_8h-source.html#l00098">chkLogDeletedMails</a>, <a class="el" href="configlog_8h-source.html#l00103">chkLogMovedMails</a>, <a class="el" href="configlog_8h-source.html#l00093">config</a>, <a class="el" href="constants_8h-source.html#l00370">CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00371">CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00366">CONFIG_ENTRY_LOG_LOG_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00367">CONFIG_ENTRY_LOG_LOG_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00368">CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00369">CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00374">CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS</a>, <a class="el" href="constants_8h-source.html#l00373">CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT</a>, <a class="el" href="constants_8h-source.html#l00151">DEFAULT_LOG_HOLDDAYS_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00152">DEFAULT_LOG_HOLDDAYS_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00145">DEFAULT_LOG_LOG_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00146">DEFAULT_LOG_LOG_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00148">DEFAULT_LOG_REMOVE_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00149">DEFAULT_LOG_REMOVE_MOVED_MAILS</a>, <a class="el" href="configlog_8h-source.html#l00108">grpDelMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00113">grpMovMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00023">ID_BUTTON_REMOVE_AFTER_DAYS</a>, <a class="el" href="configlog_8h-source.html#l00022">ID_BUTTON_REMOVE_AT_EXIT</a>, <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>, <a class="el" href="configlog_8h-source.html#l00118">spbDelDays</a>, and <a class="el" href="configlog_8h-source.html#l00123">spbMovDays</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="bcdb1171b0163de70904cd6e3ec72a32"></a><!-- doxytag: member="ConfigLog::defaults" ref="bcdb1171b0163de70904cd6e3ec72a32" args="()" -->
@@ -172,8 +148,6 @@ Overloaded method of KCModule. Sets the user interface elements to reflect the c
 <p>
 Overloaded method of KCModule. Sets the user interface elements to default values. This method is called when the user clicks the "Default" button. 
 <p>Definition at line <a class="el" href="configlog_8cpp-source.html#l00159">159</a> of file <a class="el" href="configlog_8cpp-source.html">configlog.cpp</a>.</p>
-
-<p>References <a class="el" href="configlog_8h-source.html#l00098">chkLogDeletedMails</a>, <a class="el" href="configlog_8h-source.html#l00103">chkLogMovedMails</a>, <a class="el" href="constants_8h-source.html#l00374">CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS</a>, <a class="el" href="constants_8h-source.html#l00373">CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT</a>, <a class="el" href="constants_8h-source.html#l00151">DEFAULT_LOG_HOLDDAYS_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00152">DEFAULT_LOG_HOLDDAYS_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00145">DEFAULT_LOG_LOG_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00146">DEFAULT_LOG_LOG_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00148">DEFAULT_LOG_REMOVE_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00149">DEFAULT_LOG_REMOVE_MOVED_MAILS</a>, <a class="el" href="configlog_8h-source.html#l00108">grpDelMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00113">grpMovMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00023">ID_BUTTON_REMOVE_AFTER_DAYS</a>, <a class="el" href="configlog_8h-source.html#l00022">ID_BUTTON_REMOVE_AT_EXIT</a>, <a class="el" href="configlog_8cpp-source.html#l00226">slotChanged()</a>, <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>, <a class="el" href="configlog_8h-source.html#l00118">spbDelDays</a>, and <a class="el" href="configlog_8h-source.html#l00123">spbMovDays</a>.</p>
 
 </div>
 </div><p>
@@ -196,272 +170,12 @@ Overloaded method of KCModule. Sets the user interface elements to default value
 Overloaded method of KCModule. Stores the config information as shown in the user interface in the config file. Is called when the user clicks "Apply" or "Ok". 
 <p>Definition at line <a class="el" href="configlog_8cpp-source.html#l00199">199</a> of file <a class="el" href="configlog_8cpp-source.html">configlog.cpp</a>.</p>
 
-<p>References <a class="el" href="configlog_8h-source.html#l00098">chkLogDeletedMails</a>, <a class="el" href="configlog_8h-source.html#l00103">chkLogMovedMails</a>, <a class="el" href="configlog_8h-source.html#l00093">config</a>, <a class="el" href="constants_8h-source.html#l00370">CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00371">CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00366">CONFIG_ENTRY_LOG_LOG_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00367">CONFIG_ENTRY_LOG_LOG_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00368">CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00369">CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS</a>, <a class="el" href="constants_8h-source.html#l00290">CONFIG_GROUP_FILTER</a>, <a class="el" href="constants_8h-source.html#l00374">CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS</a>, <a class="el" href="constants_8h-source.html#l00373">CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT</a>, <a class="el" href="configlog_8h-source.html#l00108">grpDelMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00113">grpMovMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00023">ID_BUTTON_REMOVE_AFTER_DAYS</a>, <a class="el" href="configlog_8h-source.html#l00022">ID_BUTTON_REMOVE_AT_EXIT</a>, <a class="el" href="configlog_8h-source.html#l00118">spbDelDays</a>, and <a class="el" href="configlog_8h-source.html#l00123">spbMovDays</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="3687b473ec2512d023a3323fe555637e"></a><!-- doxytag: member="ConfigLog::slotChanged" ref="3687b473ec2512d023a3323fe555637e" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigLog::slotChanged           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with the configuration items. Calls the slot changed() of KCModule to notify the dialog about the change. 
-<p>Definition at line <a class="el" href="configlog_8cpp-source.html#l00226">226</a> of file <a class="el" href="configlog_8cpp-source.html">configlog.cpp</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="3a2f475fdec72a03bc657d11524d60aa"></a><!-- doxytag: member="ConfigLog::slotChangeItems" ref="3a2f475fdec72a03bc657d11524d60aa" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigLog::slotChangeItems           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connected with the checkboxes and radiobuttons. Enables or disables the dialog items. 
-<p>Definition at line <a class="el" href="configlog_8cpp-source.html#l00231">231</a> of file <a class="el" href="configlog_8cpp-source.html">configlog.cpp</a>.</p>
-
-<p>References <a class="el" href="configlog_8h-source.html#l00133">btnDelMailsRemoveDays</a>, <a class="el" href="configlog_8h-source.html#l00128">btnDelMailsRemoveExit</a>, <a class="el" href="configlog_8h-source.html#l00143">btnMovMailsRemoveDays</a>, <a class="el" href="configlog_8h-source.html#l00138">btnMovMailsRemoveExit</a>, <a class="el" href="configlog_8h-source.html#l00098">chkLogDeletedMails</a>, <a class="el" href="configlog_8h-source.html#l00103">chkLogMovedMails</a>, <a class="el" href="configlog_8h-source.html#l00108">grpDelMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00113">grpMovMailsRemove</a>, <a class="el" href="configlog_8h-source.html#l00023">ID_BUTTON_REMOVE_AFTER_DAYS</a>, <a class="el" href="configlog_8h-source.html#l00022">ID_BUTTON_REMOVE_AT_EXIT</a>, <a class="el" href="configlog_8h-source.html#l00118">spbDelDays</a>, and <a class="el" href="configlog_8h-source.html#l00123">spbMovDays</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>, and <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>.</p>
-
-</div>
-</div><p>
-<hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="7dc8aa3ce845787d9a29f19696ee5230"></a><!-- doxytag: member="ConfigLog::config" ref="7dc8aa3ce845787d9a29f19696ee5230" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">KSharedConfigPtr <a class="el" href="classConfigLog.html#7dc8aa3ce845787d9a29f19696ee5230">ConfigLog::config</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Connector to the configuration file 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00093">93</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>, and <a class="el" href="configlog_8cpp-source.html#l00199">save()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="b8fff5d7cbb30185227c702e1b679be6"></a><!-- doxytag: member="ConfigLog::chkLogDeletedMails" ref="b8fff5d7cbb30185227c702e1b679be6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QCheckBox* <a class="el" href="classConfigLog.html#b8fff5d7cbb30185227c702e1b679be6">ConfigLog::chkLogDeletedMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Checkbox to activate log of deleted mails 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00098">98</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>, <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>, <a class="el" href="configlog_8cpp-source.html#l00199">save()</a>, and <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="dc2656eee036eb7da225edf63b73f2d1"></a><!-- doxytag: member="ConfigLog::chkLogMovedMails" ref="dc2656eee036eb7da225edf63b73f2d1" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QCheckBox* <a class="el" href="classConfigLog.html#dc2656eee036eb7da225edf63b73f2d1">ConfigLog::chkLogMovedMails</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Checkbox to activate log of moved mails 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00103">103</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>, <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>, <a class="el" href="configlog_8cpp-source.html#l00199">save()</a>, and <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="f4cc144f6621754512201ecf04f4b39c"></a><!-- doxytag: member="ConfigLog::grpDelMailsRemove" ref="f4cc144f6621754512201ecf04f4b39c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QButtonGroup* <a class="el" href="classConfigLog.html#f4cc144f6621754512201ecf04f4b39c">ConfigLog::grpDelMailsRemove</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Combines the radio buttons to select the kind of removing log entries of deleted mails 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00108">108</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>, <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>, <a class="el" href="configlog_8cpp-source.html#l00199">save()</a>, and <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="0b5c4ed624ecf618bbe0d2d4f0b174fa"></a><!-- doxytag: member="ConfigLog::grpMovMailsRemove" ref="0b5c4ed624ecf618bbe0d2d4f0b174fa" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QButtonGroup* <a class="el" href="classConfigLog.html#0b5c4ed624ecf618bbe0d2d4f0b174fa">ConfigLog::grpMovMailsRemove</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Combines the radio buttons to select the kind of removing log entries of moved mails 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00113">113</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>, <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>, <a class="el" href="configlog_8cpp-source.html#l00199">save()</a>, and <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="822c19a03e5f27b2dd7e3fde36931a3e"></a><!-- doxytag: member="ConfigLog::spbDelDays" ref="822c19a03e5f27b2dd7e3fde36931a3e" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QSpinBox* <a class="el" href="classConfigLog.html#822c19a03e5f27b2dd7e3fde36931a3e">ConfigLog::spbDelDays</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Spinbox to select the number of days to remove. 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00118">118</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>, <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>, <a class="el" href="configlog_8cpp-source.html#l00199">save()</a>, and <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="665686b7be964c5769b83075a2eb614c"></a><!-- doxytag: member="ConfigLog::spbMovDays" ref="665686b7be964c5769b83075a2eb614c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QSpinBox* <a class="el" href="classConfigLog.html#665686b7be964c5769b83075a2eb614c">ConfigLog::spbMovDays</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Spinbox to select the number of days to remove. 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00123">123</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00159">defaults()</a>, <a class="el" href="configlog_8cpp-source.html#l00117">load()</a>, <a class="el" href="configlog_8cpp-source.html#l00199">save()</a>, and <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="68ebd0dad2255583411429bd5e953d4b"></a><!-- doxytag: member="ConfigLog::btnDelMailsRemoveExit" ref="68ebd0dad2255583411429bd5e953d4b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QRadioButton* <a class="el" href="classConfigLog.html#68ebd0dad2255583411429bd5e953d4b">ConfigLog::btnDelMailsRemoveExit</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Radio button to select the removing of entries about deleted mails at application exit. 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00128">128</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="fce2bf2c6b740bf60db4c1d3eb006689"></a><!-- doxytag: member="ConfigLog::btnDelMailsRemoveDays" ref="fce2bf2c6b740bf60db4c1d3eb006689" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QRadioButton* <a class="el" href="classConfigLog.html#fce2bf2c6b740bf60db4c1d3eb006689">ConfigLog::btnDelMailsRemoveDays</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Radio button to select the removing of entries about deleted mails after some days. 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00133">133</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="c8a6cb4285aa777d4c6b4207e598f680"></a><!-- doxytag: member="ConfigLog::btnMovMailsRemoveExit" ref="c8a6cb4285aa777d4c6b4207e598f680" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QRadioButton* <a class="el" href="classConfigLog.html#c8a6cb4285aa777d4c6b4207e598f680">ConfigLog::btnMovMailsRemoveExit</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Radio button to select the removing of entries about moved mails at application exit. 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00138">138</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="84301947e00f41cff17fa0dabdac23da"></a><!-- doxytag: member="ConfigLog::btnMovMailsRemoveDays" ref="84301947e00f41cff17fa0dabdac23da" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QRadioButton* <a class="el" href="classConfigLog.html#84301947e00f41cff17fa0dabdac23da">ConfigLog::btnMovMailsRemoveDays</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Radio button to select the removing of entries about moved mails after some days. 
-<p>Definition at line <a class="el" href="configlog_8h-source.html#l00143">143</a> of file <a class="el" href="configlog_8h-source.html">configlog.h</a>.</p>
-
-<p>Referenced by <a class="el" href="configlog_8cpp-source.html#l00231">slotChangeItems()</a>.</p>
-
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="configlog_8h-source.html">configlog.h</a><li>src/<a class="el" href="configlog_8cpp-source.html">configlog.cpp</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:45 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:53 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

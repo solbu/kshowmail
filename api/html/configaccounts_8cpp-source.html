@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/configaccounts.cpp</h1><a href="configaccounts_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/configaccounts.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -31,9 +31,9 @@
 <a name="l00015"></a>00015 <span class="comment">along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="preprocessor">#include "<a class="code" href="configaccounts_8h.html">configaccounts.h</a>"</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include "configaccounts.h"</span>
 <a name="l00019"></a>00019 
-<a name="l00020"></a><a class="code" href="configaccounts_8cpp.html#cfb69de857f83cc321e140fdbb29cbed">00020</a> <a class="code" href="configaccounts_8cpp.html#cfb69de857f83cc321e140fdbb29cbed">K_PLUGIN_FACTORY</a>( ConfigAccountsFactory, registerPlugin&lt;ConfigAccounts&gt;(); )
+<a name="l00020"></a>00020 K_PLUGIN_FACTORY( ConfigAccountsFactory, registerPlugin&lt;ConfigAccounts&gt;(); )
 <a name="l00021"></a>00021 K_EXPORT_PLUGIN( ConfigAccountsFactory( <span class="stringliteral">"kcm_kshowmailconfigaccounts"</span> ) )
 <a name="l00022"></a>00022  
 <a name="l00023"></a>00023 <a class="code" href="classConfigAccounts.html" title="Part of the setup dialog (KShowMailApp::SetupDialog) to configure the accounts.">ConfigAccounts</a>::<a class="code" href="classConfigAccounts.html" title="Part of the setup dialog (KShowMailApp::SetupDialog) to configure the accounts.">ConfigAccounts</a>( QWidget * parent, const QVariantList &amp; args )
@@ -63,7 +63,7 @@
 <a name="l00047"></a>00047   btnAdd-&gt;setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
 <a name="l00048"></a>00048   connect( btnAdd, SIGNAL( clicked() ), <span class="keyword">this</span>, SLOT( slotAdd() ) );
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050   btnEdit = <span class="keyword">new</span> KPushButton( <a class="code" href="namespaceTypes.html#dc227eb5720632a8290561b001aaa5653cde4c681a768eef7df3659c849a34b6">KStandardGuiItem::configure</a>(), <span class="keyword">this</span> );
+<a name="l00050"></a>00050   btnEdit = <span class="keyword">new</span> KPushButton( KStandardGuiItem::configure(), <span class="keyword">this</span> );
 <a name="l00051"></a>00051   layButtons-&gt;addWidget( btnEdit );
 <a name="l00052"></a>00052   btnEdit-&gt;setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
 <a name="l00053"></a>00053   connect( btnEdit, SIGNAL( clicked() ), <span class="keyword">this</span>, SLOT( slotEdit() ) );
@@ -88,14 +88,14 @@
 <a name="l00072"></a><a class="code" href="classConfigAccounts.html#076c10008dc954b4b89911f3a972de90">00072</a> <span class="keywordtype">void</span> <a class="code" href="classConfigAccounts.html#076c10008dc954b4b89911f3a972de90">ConfigAccounts::load</a>()
 <a name="l00073"></a>00073 {
 <a name="l00074"></a>00074   <span class="comment">//get list of account names</span>
-<a name="l00075"></a>00075   KConfigGroup* configAcc = <span class="keyword">new</span> KConfigGroup( <a class="code" href="classConfigAccounts.html#f3efbc23e7193774565318ca475e65be">config</a>, <a class="code" href="constants_8h.html#1257f059843df69036e2dc9d37f3afa8">CONFIG_GROUP_ACCOUNTS</a> );
-<a name="l00076"></a>00076   QStringList accounts = configAcc-&gt;readEntry( <a class="code" href="constants_8h.html#00a3da2f418cdaf3f82529195a7523c0">CONFIG_ENTRY_ACCOUNTS_LIST</a>, QStringList() );
+<a name="l00075"></a>00075   KConfigGroup* configAcc = <span class="keyword">new</span> KConfigGroup( config, CONFIG_GROUP_ACCOUNTS );
+<a name="l00076"></a>00076   QStringList accounts = configAcc-&gt;readEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078   <span class="comment">//create list view items and order accounts to load their config</span>
 <a name="l00079"></a>00079   <span class="keywordflow">for</span>( QStringList::Iterator it = accounts.begin(); it != accounts.end(); ++it )
 <a name="l00080"></a>00080   {
 <a name="l00081"></a>00081     <span class="comment">//create item</span>
-<a name="l00082"></a>00082     <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>* item = <span class="keyword">new</span> <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>( <a class="code" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a>, *it );
+<a name="l00082"></a>00082     <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>* item = <span class="keyword">new</span> <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>( accountListView, *it );
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084     <span class="comment">//load item config</span>
 <a name="l00085"></a>00085     item-&gt;<a class="code" href="classAccountSetupItem.html#5c4884393afc3498c2e7f2184e47d50e" title="Loads the options of this account from the application config.">load</a>();
@@ -105,15 +105,15 @@
 <a name="l00089"></a>00089 
 <a name="l00090"></a><a class="code" href="classConfigAccounts.html#133eaa4daf79f86a56f07f9a27e55561">00090</a> <span class="keywordtype">void</span> <a class="code" href="classConfigAccounts.html#133eaa4daf79f86a56f07f9a27e55561">ConfigAccounts::save</a>()
 <a name="l00091"></a>00091 {
-<a name="l00092"></a>00092   KConfigGroup grpAccounts =  <a class="code" href="classConfigAccounts.html#f3efbc23e7193774565318ca475e65be">config</a>-&gt;group( <a class="code" href="constants_8h.html#1257f059843df69036e2dc9d37f3afa8">CONFIG_GROUP_ACCOUNTS</a> );
+<a name="l00092"></a>00092   KConfigGroup grpAccounts =  config-&gt;group( CONFIG_GROUP_ACCOUNTS );
 <a name="l00093"></a>00093 
 <a name="l00094"></a>00094   <span class="comment">//get old account list from config file to remove old account entries</span>
-<a name="l00095"></a>00095   QStringList oldList = grpAccounts.readEntry( <a class="code" href="constants_8h.html#00a3da2f418cdaf3f82529195a7523c0">CONFIG_ENTRY_ACCOUNTS_LIST</a>, QStringList() );
+<a name="l00095"></a>00095   QStringList oldList = grpAccounts.readEntry( CONFIG_ENTRY_ACCOUNTS_LIST, QStringList() );
 <a name="l00096"></a>00096 
 <a name="l00097"></a>00097   <span class="comment">//remove all account entries</span>
 <a name="l00098"></a>00098   <span class="keywordflow">for</span>( QStringList::Iterator it = oldList.begin(); it != oldList.end(); ++it )
 <a name="l00099"></a>00099   {
-<a name="l00100"></a>00100     <a class="code" href="classConfigAccounts.html#f3efbc23e7193774565318ca475e65be">config</a>-&gt;deleteGroup( *it );
+<a name="l00100"></a>00100     config-&gt;deleteGroup( *it );
 <a name="l00101"></a>00101   }
 <a name="l00102"></a>00102 
 <a name="l00103"></a>00103 
@@ -124,7 +124,7 @@
 <a name="l00108"></a>00108 
 <a name="l00109"></a>00109   <span class="keywordflow">do</span>  <span class="comment">//get all account names</span>
 <a name="l00110"></a>00110   {
-<a name="l00111"></a>00111     item = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( <a class="code" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a>-&gt;topLevelItem( index ) );
+<a name="l00111"></a>00111     item = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( accountListView-&gt;topLevelItem( index ) );
 <a name="l00112"></a>00112     <span class="keywordflow">if</span>( item != NULL )
 <a name="l00113"></a>00113     {
 <a name="l00114"></a>00114       index++;
@@ -132,14 +132,14 @@
 <a name="l00116"></a>00116     }
 <a name="l00117"></a>00117   } <span class="keywordflow">while</span>( item != NULL );
 <a name="l00118"></a>00118 
-<a name="l00119"></a>00119   grpAccounts.writeEntry( <a class="code" href="constants_8h.html#00a3da2f418cdaf3f82529195a7523c0">CONFIG_ENTRY_ACCOUNTS_LIST</a>, accounts ); <span class="comment">//write list of account names</span>
+<a name="l00119"></a>00119   grpAccounts.writeEntry( CONFIG_ENTRY_ACCOUNTS_LIST, accounts ); <span class="comment">//write list of account names</span>
 <a name="l00120"></a>00120 
 <a name="l00121"></a>00121   <span class="comment">//order the items to save their configuration</span>
 <a name="l00122"></a>00122   index = 0;
 <a name="l00123"></a>00123   item = NULL;
 <a name="l00124"></a>00124   <span class="keywordflow">do</span>
 <a name="l00125"></a>00125   {
-<a name="l00126"></a>00126     item = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( <a class="code" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a>-&gt;topLevelItem( index ) );
+<a name="l00126"></a>00126     item = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( accountListView-&gt;topLevelItem( index ) );
 <a name="l00127"></a>00127     <span class="keywordflow">if</span>( item != NULL )
 <a name="l00128"></a>00128     {
 <a name="l00129"></a>00129       index++;
@@ -148,57 +148,57 @@
 <a name="l00132"></a>00132   } <span class="keywordflow">while</span>( item != NULL );
 <a name="l00133"></a>00133 
 <a name="l00134"></a>00134   <span class="comment">//write configuration to disk</span>
-<a name="l00135"></a>00135   <a class="code" href="classConfigAccounts.html#f3efbc23e7193774565318ca475e65be">config</a>-&gt;sync();
+<a name="l00135"></a>00135   config-&gt;sync();
 <a name="l00136"></a>00136 }
 <a name="l00137"></a>00137 
 <a name="l00138"></a><a class="code" href="classConfigAccounts.html#47006383d0befb78e37568059a4dbd9e">00138</a> <span class="keywordtype">void</span> <a class="code" href="classConfigAccounts.html#47006383d0befb78e37568059a4dbd9e">ConfigAccounts::defaults</a>()
 <a name="l00139"></a>00139 {
 <a name="l00140"></a>00140 }
 <a name="l00141"></a>00141 
-<a name="l00142"></a><a class="code" href="classConfigAccounts.html#fa71a146968c6f082748dfdb1ba723e6">00142</a> <span class="keywordtype">void</span> <a class="code" href="classConfigAccounts.html#fa71a146968c6f082748dfdb1ba723e6">ConfigAccounts::slotChanged</a>( )
+<a name="l00142"></a>00142 <span class="keywordtype">void</span> ConfigAccounts::slotChanged( )
 <a name="l00143"></a>00143 {
 <a name="l00144"></a>00144    KCModule::changed();
 <a name="l00145"></a>00145 }
 <a name="l00146"></a>00146 
-<a name="l00147"></a><a class="code" href="classConfigAccounts.html#65e9575c6bdcabdb1efa53aa47bf8609">00147</a> <span class="keywordtype">void</span> <a class="code" href="classConfigAccounts.html#65e9575c6bdcabdb1efa53aa47bf8609">ConfigAccounts::slotAdd</a>( )
+<a name="l00147"></a>00147 <span class="keywordtype">void</span> ConfigAccounts::slotAdd( )
 <a name="l00148"></a>00148 {
 <a name="l00149"></a>00149   <span class="comment">//open setup dialog</span>
-<a name="l00150"></a>00150   QPointer&lt;AccountSetupDialog&gt; dlg = <span class="keyword">new</span> <a class="code" href="classAccountSetupDialog.html" title="Dialog to setup an account.">AccountSetupDialog</a>( <span class="keyword">this</span>, <a class="code" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a>, NULL );
+<a name="l00150"></a>00150   QPointer&lt;AccountSetupDialog&gt; dlg = <span class="keyword">new</span> <a class="code" href="classAccountSetupDialog.html" title="Dialog to setup an account.">AccountSetupDialog</a>( <span class="keyword">this</span>, accountListView, NULL );
 <a name="l00151"></a>00151   <span class="keywordtype">int</span> res = dlg-&gt;exec();
 <a name="l00152"></a>00152 
 <a name="l00153"></a>00153   <span class="comment">//inform application setup dialog about changes</span>
 <a name="l00154"></a>00154   <span class="keywordflow">if</span>( res == KDialog::Accepted )
-<a name="l00155"></a>00155     <a class="code" href="classConfigAccounts.html#fa71a146968c6f082748dfdb1ba723e6">slotChanged</a>();
+<a name="l00155"></a>00155     slotChanged();
 <a name="l00156"></a>00156 
 <a name="l00157"></a>00157   <span class="comment">//delete dialog</span>
 <a name="l00158"></a>00158   <span class="keyword">delete</span> dlg;
 <a name="l00159"></a>00159 }
 <a name="l00160"></a>00160 
-<a name="l00161"></a><a class="code" href="classConfigAccounts.html#b33abfd05c9338ae3a2631d752ed1930">00161</a> <span class="keywordtype">void</span> <a class="code" href="classConfigAccounts.html#b33abfd05c9338ae3a2631d752ed1930">ConfigAccounts::slotEdit</a>( )
+<a name="l00161"></a>00161 <span class="keywordtype">void</span> ConfigAccounts::slotEdit( )
 <a name="l00162"></a>00162 {
 <a name="l00163"></a>00163   <span class="comment">//get selected item</span>
-<a name="l00164"></a>00164   <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>* account = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( <a class="code" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a>-&gt;currentItem() );
+<a name="l00164"></a>00164   <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>* account = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( accountListView-&gt;currentItem() );
 <a name="l00165"></a>00165 
 <a name="l00166"></a>00166   <span class="comment">//test item</span>
 <a name="l00167"></a>00167   <span class="keywordflow">if</span>( account == NULL )
 <a name="l00168"></a>00168     <span class="keywordflow">return</span>;
 <a name="l00169"></a>00169 
 <a name="l00170"></a>00170   <span class="comment">//open dialog</span>
-<a name="l00171"></a>00171   <a class="code" href="classAccountSetupDialog.html" title="Dialog to setup an account.">AccountSetupDialog</a>* dlg = <span class="keyword">new</span> <a class="code" href="classAccountSetupDialog.html" title="Dialog to setup an account.">AccountSetupDialog</a>( <span class="keyword">this</span>, <a class="code" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a>, account );
+<a name="l00171"></a>00171   <a class="code" href="classAccountSetupDialog.html" title="Dialog to setup an account.">AccountSetupDialog</a>* dlg = <span class="keyword">new</span> <a class="code" href="classAccountSetupDialog.html" title="Dialog to setup an account.">AccountSetupDialog</a>( <span class="keyword">this</span>, accountListView, account );
 <a name="l00172"></a>00172   <span class="keywordtype">int</span> res = dlg-&gt;exec();
 <a name="l00173"></a>00173 
 <a name="l00174"></a>00174   <span class="comment">//inform application setup dialog about changes</span>
 <a name="l00175"></a>00175   <span class="keywordflow">if</span>( res == KDialog::Accepted )
-<a name="l00176"></a>00176     <a class="code" href="classConfigAccounts.html#fa71a146968c6f082748dfdb1ba723e6">slotChanged</a>();
+<a name="l00176"></a>00176     slotChanged();
 <a name="l00177"></a>00177 
 <a name="l00178"></a>00178   <span class="comment">//delete dialog</span>
 <a name="l00179"></a>00179   <span class="keyword">delete</span> dlg;
 <a name="l00180"></a>00180 }
 <a name="l00181"></a>00181 
-<a name="l00182"></a><a class="code" href="classConfigAccounts.html#f07a29dd20dfdf9e585f68e7241cb3e9">00182</a> <span class="keywordtype">void</span> <a class="code" href="classConfigAccounts.html#f07a29dd20dfdf9e585f68e7241cb3e9">ConfigAccounts::slotRemove</a>( )
+<a name="l00182"></a>00182 <span class="keywordtype">void</span> ConfigAccounts::slotRemove( )
 <a name="l00183"></a>00183 {
 <a name="l00184"></a>00184   <span class="comment">//get selected item</span>
-<a name="l00185"></a>00185   <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>* account = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( <a class="code" href="classConfigAccounts.html#a41e0fbc468a3f668b85d8fb0cba42b9">accountListView</a>-&gt;currentItem() );
+<a name="l00185"></a>00185   <a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>* account = (<a class="code" href="classAccountSetupItem.html" title="This class is used in ConfigAccounts to show the available accounts in the list view...">AccountSetupItem</a>*)( accountListView-&gt;currentItem() );
 <a name="l00186"></a>00186 
 <a name="l00187"></a>00187   <span class="comment">//test item</span>
 <a name="l00188"></a>00188   <span class="keywordflow">if</span>( account == NULL )
@@ -209,13 +209,13 @@
 <a name="l00193"></a>00193   <span class="keywordflow">if</span>( result == KMessageBox::Yes )
 <a name="l00194"></a>00194   {
 <a name="l00195"></a>00195     <span class="keyword">delete</span> account;
-<a name="l00196"></a>00196     <a class="code" href="classConfigAccounts.html#fa71a146968c6f082748dfdb1ba723e6">slotChanged</a>();
+<a name="l00196"></a>00196     slotChanged();
 <a name="l00197"></a>00197   }
 <a name="l00198"></a>00198 }
 <a name="l00199"></a>00199 
 <a name="l00200"></a>00200 
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

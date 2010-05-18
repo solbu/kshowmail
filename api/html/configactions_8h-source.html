@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/configactions.h</h1><a href="configactions_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/configactions.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -57,73 +57,73 @@
 <a name="l00041"></a>00041 <span class="preprocessor">#include &lt;kstandarddirs.h&gt;</span>
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="comment">//kshowmail headers</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include "constants.h"</span>
 <a name="l00045"></a>00045 
 <a name="l00051"></a><a class="code" href="classConfigActions.html">00051</a> <span class="keyword">class </span><a class="code" href="classConfigActions.html" title="Part of the setup dialog to configure the actions.">ConfigActions</a> : <span class="keyword">public</span> KCModule
 <a name="l00052"></a>00052 {
-<a name="l00053"></a>00053 Q_OBJECT
+<a name="l00053"></a>00053   Q_OBJECT
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055   <span class="keyword">public</span>:
-<a name="l00059"></a>00059     <span class="keyword">explicit</span> <a class="code" href="classConfigActions.html#8951fd1c894f50ed43a1c2710da19ea3">ConfigActions</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
-<a name="l00060"></a>00060 
-<a name="l00064"></a>00064     <a class="code" href="classConfigActions.html#40b1d8ba72aaa9f43e0c76c43cf635e5">~ConfigActions</a>();
-<a name="l00065"></a>00065 
-<a name="l00071"></a>00071     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#09b13ec270885ae640be8d9935697923">load</a>();
-<a name="l00072"></a>00072 
-<a name="l00078"></a>00078     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#2d0dbe44e984af3e1b10e6943837087d">defaults</a>();
-<a name="l00079"></a>00079 
-<a name="l00086"></a>00086     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#0e55b541aeb0651c66b53ebedebbedfc">save</a>();
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088   <span class="keyword">private</span>:
+<a name="l00061"></a>00061     <span class="keyword">explicit</span> <a class="code" href="classConfigActions.html#8951fd1c894f50ed43a1c2710da19ea3">ConfigActions</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
+<a name="l00062"></a>00062 
+<a name="l00066"></a>00066     <a class="code" href="classConfigActions.html#40b1d8ba72aaa9f43e0c76c43cf635e5">~ConfigActions</a>();
+<a name="l00067"></a>00067 
+<a name="l00073"></a>00073     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#09b13ec270885ae640be8d9935697923">load</a>();
+<a name="l00074"></a>00074 
+<a name="l00080"></a>00080     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#2d0dbe44e984af3e1b10e6943837087d">defaults</a>();
+<a name="l00081"></a>00081 
+<a name="l00088"></a>00088     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#0e55b541aeb0651c66b53ebedebbedfc">save</a>();
 <a name="l00089"></a>00089 
-<a name="l00093"></a><a class="code" href="classConfigActions.html#66c44b37201d8dbe5650b3d5bb981b09">00093</a>     KSharedConfigPtr <a class="code" href="classConfigActions.html#66c44b37201d8dbe5650b3d5bb981b09">config</a>;
-<a name="l00094"></a>00094 
-<a name="l00098"></a><a class="code" href="classConfigActions.html#4efebd1c902bf5a2f3a1bb60f9a67c5f">00098</a>     QCheckBox* <a class="code" href="classConfigActions.html#4efebd1c902bf5a2f3a1bb60f9a67c5f">chkNewMailsAlertWindow</a>;
-<a name="l00099"></a>00099 
-<a name="l00103"></a><a class="code" href="classConfigActions.html#3a2c278df3742d407c8c85f649131869">00103</a>     QCheckBox* <a class="code" href="classConfigActions.html#3a2c278df3742d407c8c85f649131869">chkNewMailsMainWindow</a>;
-<a name="l00104"></a>00104 
-<a name="l00108"></a><a class="code" href="classConfigActions.html#cb1d2eed97f240d95881272500d55923">00108</a>     QCheckBox* <a class="code" href="classConfigActions.html#cb1d2eed97f240d95881272500d55923">chkNewMailsBeep</a>;
-<a name="l00109"></a>00109 
-<a name="l00113"></a><a class="code" href="classConfigActions.html#fef65cfb36bbcd44a2ec8c536a7913bd">00113</a>     QCheckBox* <a class="code" href="classConfigActions.html#fef65cfb36bbcd44a2ec8c536a7913bd">chkNewMailsSound</a>;
-<a name="l00114"></a>00114 
-<a name="l00118"></a><a class="code" href="classConfigActions.html#3a0cd2fad3a3d03dc4c4227cc511265f">00118</a>     QCheckBox* <a class="code" href="classConfigActions.html#3a0cd2fad3a3d03dc4c4227cc511265f">chkNewMailsCommand</a>;
-<a name="l00119"></a>00119 
-<a name="l00123"></a><a class="code" href="classConfigActions.html#36d655db8bb7763e522adf67df33d747">00123</a>     KPushButton* <a class="code" href="classConfigActions.html#36d655db8bb7763e522adf67df33d747">btnNewMailsPlaySound</a>;
-<a name="l00124"></a>00124 
-<a name="l00128"></a><a class="code" href="classConfigActions.html#e44618d32db70130b3d39b1d7bc45acb">00128</a>     KPushButton* <a class="code" href="classConfigActions.html#e44618d32db70130b3d39b1d7bc45acb">btnNewMailsExecCommand</a>;
-<a name="l00129"></a>00129 
-<a name="l00133"></a><a class="code" href="classConfigActions.html#939646611bf2c9daa03a3b30f789803f">00133</a>     KLineEdit* <a class="code" href="classConfigActions.html#939646611bf2c9daa03a3b30f789803f">txtNewMailsSound</a>;
-<a name="l00134"></a>00134 
-<a name="l00138"></a><a class="code" href="classConfigActions.html#a030c72396809e3532bb6d3db7aebb5b">00138</a>     KLineEdit* <a class="code" href="classConfigActions.html#a030c72396809e3532bb6d3db7aebb5b">txtNewMailsCommand</a>;
-<a name="l00139"></a>00139 
-<a name="l00143"></a><a class="code" href="classConfigActions.html#ba27e4247bca54e550c623e0c0e43e2e">00143</a>     KPushButton* <a class="code" href="classConfigActions.html#ba27e4247bca54e550c623e0c0e43e2e">btnNewMailsChooseSound</a>;
-<a name="l00144"></a>00144 
-<a name="l00148"></a><a class="code" href="classConfigActions.html#1b0e5c5712a4c791ace1441190ec44b4">00148</a>     KPushButton* <a class="code" href="classConfigActions.html#1b0e5c5712a4c791ace1441190ec44b4">btnNewMailsChooseCommand</a>;
-<a name="l00149"></a>00149 
-<a name="l00153"></a><a class="code" href="classConfigActions.html#cd4695212a9a586e7a480fde4319970f">00153</a>     QCheckBox* <a class="code" href="classConfigActions.html#cd4695212a9a586e7a480fde4319970f">chkNoNewMailsMinimize</a>;
-<a name="l00154"></a>00154 
-<a name="l00158"></a><a class="code" href="classConfigActions.html#1714fffad832835ae72a8ab1b72c6e63">00158</a>     QCheckBox* <a class="code" href="classConfigActions.html#1714fffad832835ae72a8ab1b72c6e63">chkNoNewMailsTerminate</a>;
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160   <span class="keyword">private</span> slots:
+<a name="l00090"></a>00090   <span class="keyword">private</span>:
+<a name="l00091"></a>00091 
+<a name="l00095"></a>00095     KSharedConfigPtr config;
+<a name="l00096"></a>00096 
+<a name="l00100"></a>00100     QCheckBox* chkNewMailsAlertWindow;
+<a name="l00101"></a>00101 
+<a name="l00105"></a>00105     QCheckBox* chkNewMailsMainWindow;
+<a name="l00106"></a>00106 
+<a name="l00110"></a>00110     QCheckBox* chkNewMailsBeep;
+<a name="l00111"></a>00111 
+<a name="l00115"></a>00115     QCheckBox* chkNewMailsSound;
+<a name="l00116"></a>00116 
+<a name="l00120"></a>00120     QCheckBox* chkNewMailsCommand;
+<a name="l00121"></a>00121 
+<a name="l00125"></a>00125     KPushButton* btnNewMailsPlaySound;
+<a name="l00126"></a>00126 
+<a name="l00130"></a>00130     KPushButton* btnNewMailsExecCommand;
+<a name="l00131"></a>00131 
+<a name="l00135"></a>00135     KLineEdit* txtNewMailsSound;
+<a name="l00136"></a>00136 
+<a name="l00140"></a>00140     KLineEdit* txtNewMailsCommand;
+<a name="l00141"></a>00141 
+<a name="l00145"></a>00145     KPushButton* btnNewMailsChooseSound;
+<a name="l00146"></a>00146 
+<a name="l00150"></a>00150     KPushButton* btnNewMailsChooseCommand;
+<a name="l00151"></a>00151 
+<a name="l00155"></a>00155     QCheckBox* chkNoNewMailsMinimize;
+<a name="l00156"></a>00156 
+<a name="l00160"></a>00160     QCheckBox* chkNoNewMailsTerminate;
 <a name="l00161"></a>00161 
-<a name="l00167"></a>00167     <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#7a02c07f3de8c73f9423cb875a4c0619">slotChooseSound</a>();
-<a name="l00168"></a>00168 
-<a name="l00174"></a>00174     <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#c4089c37961c3094c111f0d877b37590">slotChooseCommand</a>();
-<a name="l00175"></a>00175 
-<a name="l00180"></a>00180     <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#9ac2c366f9f9d727da199c1a9ce82095">slotPlaySound</a>();
-<a name="l00181"></a>00181 
-<a name="l00186"></a>00186     <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#3073cde7f9f939e670d36fbb43212629">slotExecuteCommand</a>();
-<a name="l00187"></a>00187 
-<a name="l00193"></a>00193     <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#e24ebd1d4969bbdbc71f4182adc480c3">slotSoundToggled</a>( <span class="keywordtype">bool</span> on );
-<a name="l00194"></a>00194 
-<a name="l00200"></a>00200     <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#f523717c67aa40650635685301e0487e">slotCommandToggled</a>( <span class="keywordtype">bool</span> on );
-<a name="l00201"></a>00201 
-<a name="l00206"></a>00206     <span class="keywordtype">void</span> <a class="code" href="classConfigActions.html#77ebd22707ff87998a2b16b487ab00c7">slotChanged</a>();
-<a name="l00207"></a>00207 };
-<a name="l00208"></a>00208 
-<a name="l00209"></a>00209 <span class="preprocessor">#endif</span>
+<a name="l00162"></a>00162   <span class="keyword">private</span> slots:
+<a name="l00163"></a>00163 
+<a name="l00169"></a>00169     <span class="keywordtype">void</span> slotChooseSound();
+<a name="l00170"></a>00170 
+<a name="l00176"></a>00176     <span class="keywordtype">void</span> slotChooseCommand();
+<a name="l00177"></a>00177 
+<a name="l00182"></a>00182     <span class="keywordtype">void</span> slotPlaySound();
+<a name="l00183"></a>00183 
+<a name="l00188"></a>00188     <span class="keywordtype">void</span> slotExecuteCommand();
+<a name="l00189"></a>00189 
+<a name="l00195"></a>00195     <span class="keywordtype">void</span> slotSoundToggled( <span class="keywordtype">bool</span> on );
+<a name="l00196"></a>00196 
+<a name="l00202"></a>00202     <span class="keywordtype">void</span> slotCommandToggled( <span class="keywordtype">bool</span> on );
+<a name="l00203"></a>00203 
+<a name="l00208"></a>00208     <span class="keywordtype">void</span> slotChanged();
+<a name="l00209"></a>00209 };
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

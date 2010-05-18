@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/kshowmailview.h</h1><a href="kshowmailview_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/kshowmailview.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -46,44 +46,47 @@
 <a name="l00030"></a>00030 <span class="preprocessor">#include &lt;KAction&gt;</span>
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032 <span class="comment">//KShowmail headers</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="accountviewmodel_8h.html">accountviewmodel.h</a>"</span>
-<a name="l00034"></a>00034 <span class="preprocessor">#include "<a class="code" href="mailviewmodel_8h.html">mailviewmodel.h</a>"</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include "<a class="code" href="accountviewdelegate_8h.html">accountviewdelegate.h</a>"</span>
-<a name="l00036"></a>00036 
-<a name="l00042"></a><a class="code" href="classKShowmailView.html">00042</a> <span class="keyword">class </span><a class="code" href="classKShowmailView.html" title="Main view of KShowmail.">KShowmailView</a> : <span class="keyword">public</span> QSplitter
-<a name="l00043"></a>00043 {
-<a name="l00044"></a>00044         Q_OBJECT
-<a name="l00045"></a>00045         
-<a name="l00046"></a>00046         <span class="keyword">public</span>:
-<a name="l00047"></a>00047                 
-<a name="l00056"></a>00056                 <a class="code" href="classKShowmailView.html#75a8c494b509460d7040c1782f32bdc1">KShowmailView</a>( <a class="code" href="classAccountViewModel.html" title="Model for the account view.">AccountViewModel</a>* <a class="code" href="classKShowmailView.html#989f8034fb569a11f9d82622f55dd04f">accountModel</a>, <a class="code" href="classMailViewModel.html" title="Model for the mail view.">MailViewModel</a>* <a class="code" href="classKShowmailView.html#6fcf2456f32a938b2183c9f2926984bf">mailModel</a>, QItemSelectionModel* mailSelectModel, QItemSelectionModel* accountSelectModel, QWidget* parent = 0 );
-<a name="l00057"></a>00057                 
-<a name="l00061"></a>00061                 <a class="code" href="classKShowmailView.html#cc6221c1caa46a5d2f20169a5434e622">~KShowmailView</a>();
-<a name="l00062"></a>00062 
-<a name="l00067"></a>00067     <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#e471500529d0eb5265696885bb69a60e">refreshViews</a>( QItemSelectionModel* mailSelectModel );
-<a name="l00068"></a>00068                 
-<a name="l00072"></a>00072                 <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#a0c71bcc1b9518406f237bef5332da0d">saveSetup</a>();
-<a name="l00073"></a>00073                 
-<a name="l00077"></a>00077                 <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#c64164926f10c2786c8378994c661b34">loadSetup</a>();
-<a name="l00078"></a>00078 
-<a name="l00083"></a>00083     <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#767a21e27c964d4188919acdb7eff1db">addActionToAccountList</a>( KAction* action );
-<a name="l00084"></a>00084 
-<a name="l00089"></a>00089     <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#879bcfefd73c3be7296ec40daa0cd8ff">addActionToMailList</a>( KAction* action );
-<a name="l00090"></a>00090                 
-<a name="l00091"></a>00091         <span class="keyword">private</span>:
-<a name="l00092"></a>00092                 
-<a name="l00096"></a><a class="code" href="classKShowmailView.html#f487c4f449dbae16952d4bf1f0bdbdd6">00096</a>                 QTreeView* <a class="code" href="classKShowmailView.html#f487c4f449dbae16952d4bf1f0bdbdd6">viewAccounts</a>;
-<a name="l00097"></a>00097                 
-<a name="l00101"></a><a class="code" href="classKShowmailView.html#3f6fb8031f874b16d28e6b4024ec30c7">00101</a>                 QTreeView* <a class="code" href="classKShowmailView.html#3f6fb8031f874b16d28e6b4024ec30c7">viewMails</a>;
-<a name="l00102"></a>00102                 
-<a name="l00106"></a><a class="code" href="classKShowmailView.html#6fcf2456f32a938b2183c9f2926984bf">00106</a>                 <a class="code" href="classMailViewModel.html" title="Model for the mail view.">MailViewModel</a>* mailModel;
-<a name="l00107"></a>00107                 
-<a name="l00111"></a><a class="code" href="classKShowmailView.html#989f8034fb569a11f9d82622f55dd04f">00111</a>                 <a class="code" href="classAccountViewModel.html" title="Model for the account view.">AccountViewModel</a>* accountModel;
-<a name="l00112"></a>00112 };
+<a name="l00033"></a>00033 <span class="preprocessor">#include "accountviewmodel.h"</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include "mailviewmodel.h"</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include "accountviewdelegate.h"</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00037"></a>00037 
+<a name="l00043"></a><a class="code" href="classKShowmailView.html">00043</a> <span class="keyword">class </span><a class="code" href="classKShowmailView.html" title="Main view of KShowmail.">KShowmailView</a> : <span class="keyword">public</span> QSplitter
+<a name="l00044"></a>00044 {
+<a name="l00045"></a>00045         Q_OBJECT
+<a name="l00046"></a>00046         
+<a name="l00047"></a>00047         <span class="keyword">public</span>:
+<a name="l00048"></a>00048                 
+<a name="l00057"></a>00057                 <a class="code" href="classKShowmailView.html#75a8c494b509460d7040c1782f32bdc1">KShowmailView</a>( <a class="code" href="classAccountViewModel.html" title="Model for the account view.">AccountViewModel</a>* accountModel, <a class="code" href="classMailViewModel.html" title="Model for the mail view.">MailViewModel</a>* mailModel, QItemSelectionModel* mailSelectModel, QItemSelectionModel* accountSelectModel, QWidget* parent = 0 );
+<a name="l00058"></a>00058                 
+<a name="l00062"></a>00062                 <a class="code" href="classKShowmailView.html#cc6221c1caa46a5d2f20169a5434e622">~KShowmailView</a>();
+<a name="l00063"></a>00063 
+<a name="l00068"></a>00068     <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#e471500529d0eb5265696885bb69a60e">refreshViews</a>( QItemSelectionModel* mailSelectModel );
+<a name="l00069"></a>00069                 
+<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#a0c71bcc1b9518406f237bef5332da0d">saveSetup</a>();
+<a name="l00074"></a>00074                 
+<a name="l00078"></a>00078                 <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#c64164926f10c2786c8378994c661b34">loadSetup</a>();
+<a name="l00079"></a>00079 
+<a name="l00084"></a>00084     <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#767a21e27c964d4188919acdb7eff1db">addActionToAccountList</a>( KAction* action );
+<a name="l00085"></a>00085 
+<a name="l00090"></a>00090     <span class="keywordtype">void</span> <a class="code" href="classKShowmailView.html#879bcfefd73c3be7296ec40daa0cd8ff">addActionToMailList</a>( KAction* action );
+<a name="l00091"></a>00091                 
+<a name="l00092"></a>00092         <span class="keyword">private</span>:
+<a name="l00093"></a>00093                 
+<a name="l00097"></a>00097                 QTreeView* viewAccounts;
+<a name="l00098"></a>00098                 
+<a name="l00102"></a>00102                 QTreeView* viewMails;
+<a name="l00103"></a>00103                 
+<a name="l00107"></a>00107                 <a class="code" href="classMailViewModel.html" title="Model for the mail view.">MailViewModel</a>* mailModel;
+<a name="l00108"></a>00108                 
+<a name="l00112"></a>00112                 <a class="code" href="classAccountViewModel.html" title="Model for the account view.">AccountViewModel</a>* accountModel;
 <a name="l00113"></a>00113 
-<a name="l00114"></a>00114 <span class="preprocessor">#endif // KSHOWMAILVIEW_H</span>
+<a name="l00117"></a>00117     QSplitter* splitter;
+<a name="l00118"></a>00118 };
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120 <span class="preprocessor">#endif // KSHOWMAILVIEW_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

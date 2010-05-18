@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/configspamcheck.h</h1><a href="configspamcheck_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/configspamcheck.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -60,13 +60,13 @@
 <a name="l00044"></a>00044 <span class="preprocessor">#include &lt;kmessagebox.h&gt;</span>
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="comment">//Kshowmail headers</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include "<a class="code" href="constants_8h.html">constants.h</a>"</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include "<a class="code" href="mailboxwizard_8h.html">mailboxwizard.h</a>"</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include "constants.h"</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include "mailboxwizard.h"</span>
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050 <span class="comment">//radio button IDs</span>
-<a name="l00051"></a><a class="code" href="configspamcheck_8h.html#b770a11282eb360273bc5d0d894ad286">00051</a> <span class="preprocessor">#define ID_SPAM_ACTION_BUTTONS_DELETE     0</span>
-<a name="l00052"></a><a class="code" href="configspamcheck_8h.html#86a04f01e5f5a9e163af245bf1e5ec22">00052</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_SPAM_ACTION_BUTTONS_MARK       1</span>
-<a name="l00053"></a><a class="code" href="configspamcheck_8h.html#e0d83fe020c1d0b9270f739d4a1269be">00053</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_SPAM_ACTION_BUTTONS_MOVE       2</span>
+<a name="l00051"></a>00051 <span class="preprocessor">#define ID_SPAM_ACTION_BUTTONS_DELETE     0</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span><span class="preprocessor">#define ID_SPAM_ACTION_BUTTONS_MARK       1</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">#define ID_SPAM_ACTION_BUTTONS_MOVE       2</span>
 <a name="l00054"></a>00054 <span class="preprocessor"></span>
 <a name="l00055"></a>00055 
 <a name="l00060"></a><a class="code" href="classConfigSpamcheck.html">00060</a> <span class="keyword">class </span><a class="code" href="classConfigSpamcheck.html" title="Part of the setup dialog (KShowMailApp::SetupDialog) to configure the spam check...">ConfigSpamcheck</a> : <span class="keyword">public</span> KCModule
@@ -76,49 +76,49 @@
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066   <span class="keyword">public</span>:
-<a name="l00070"></a>00070     <span class="keyword">explicit</span> <a class="code" href="classConfigSpamcheck.html#4ea554914013caae0040479bbd326f5f">ConfigSpamcheck</a>( QWidget* parent = 0, <span class="keyword">const</span> QVariantList&amp; args = QVariantList() );
-<a name="l00071"></a>00071 
-<a name="l00075"></a>00075     <a class="code" href="classConfigSpamcheck.html#696b7211a7dd6588351f11d658d44af1">~ConfigSpamcheck</a>();
-<a name="l00076"></a>00076 
-<a name="l00082"></a>00082     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#4f3e289ba60151f28a71fb318089c211">load</a>();
-<a name="l00083"></a>00083 
-<a name="l00089"></a>00089     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#8f6770c57e60f881c7b9e9184c808056">defaults</a>();
-<a name="l00090"></a>00090 
-<a name="l00097"></a>00097     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#e555baf30dd3251d594e6c4a74779b9b">save</a>();
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099   <span class="keyword">private</span>:
+<a name="l00072"></a>00072     <span class="keyword">explicit</span> <a class="code" href="classConfigSpamcheck.html#4ea554914013caae0040479bbd326f5f">ConfigSpamcheck</a>( QWidget* parent = 0, <span class="keyword">const</span> QVariantList&amp; args = QVariantList() );
+<a name="l00073"></a>00073 
+<a name="l00077"></a>00077     <a class="code" href="classConfigSpamcheck.html#696b7211a7dd6588351f11d658d44af1">~ConfigSpamcheck</a>();
+<a name="l00078"></a>00078 
+<a name="l00084"></a>00084     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#4f3e289ba60151f28a71fb318089c211">load</a>();
+<a name="l00085"></a>00085 
+<a name="l00091"></a>00091     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#8f6770c57e60f881c7b9e9184c808056">defaults</a>();
+<a name="l00092"></a>00092 
+<a name="l00099"></a>00099     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#e555baf30dd3251d594e6c4a74779b9b">save</a>();
 <a name="l00100"></a>00100 
-<a name="l00104"></a><a class="code" href="classConfigSpamcheck.html#af9c03666499cfe5502faeaa9f70bd98">00104</a>     KSharedConfigPtr <a class="code" href="classConfigSpamcheck.html#af9c03666499cfe5502faeaa9f70bd98">config</a>;
-<a name="l00105"></a>00105 
-<a name="l00109"></a><a class="code" href="classConfigSpamcheck.html#d4a40e236a30b5338df427377f6c4c75">00109</a>     KPushButton* <a class="code" href="classConfigSpamcheck.html#d4a40e236a30b5338df427377f6c4c75">btnTest</a>;
-<a name="l00110"></a>00110 
-<a name="l00114"></a><a class="code" href="classConfigSpamcheck.html#061d393ca53e544cc648af30cf0b9a35">00114</a>     KComboBox* <a class="code" href="classConfigSpamcheck.html#061d393ca53e544cc648af30cf0b9a35">cmbAction</a>;
-<a name="l00115"></a>00115 
-<a name="l00119"></a><a class="code" href="classConfigSpamcheck.html#0fe2f958fd8956b9c843ea3c75230b82">00119</a>     KLineEdit* <a class="code" href="classConfigSpamcheck.html#0fe2f958fd8956b9c843ea3c75230b82">txtMailbox</a>;
-<a name="l00120"></a>00120 
-<a name="l00124"></a><a class="code" href="classConfigSpamcheck.html#79c1b7b26c94e7fa9353f478b67aad36">00124</a>     KPushButton* <a class="code" href="classConfigSpamcheck.html#79c1b7b26c94e7fa9353f478b67aad36">btnMailboxWizard</a>;
-<a name="l00125"></a>00125 
-<a name="l00129"></a><a class="code" href="classConfigSpamcheck.html#c0bc8473323ec5c9edbaf8cee5cdabb0">00129</a>     QGroupBox* <a class="code" href="classConfigSpamcheck.html#c0bc8473323ec5c9edbaf8cee5cdabb0">gboxAction</a>;
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131   <span class="keyword">private</span> slots:
+<a name="l00101"></a>00101   <span class="keyword">private</span>:
+<a name="l00102"></a>00102 
+<a name="l00106"></a>00106     KSharedConfigPtr config;
+<a name="l00107"></a>00107 
+<a name="l00111"></a>00111     KPushButton* btnTest;
+<a name="l00112"></a>00112 
+<a name="l00116"></a>00116     KComboBox* cmbAction;
+<a name="l00117"></a>00117 
+<a name="l00121"></a>00121     KLineEdit* txtMailbox;
+<a name="l00122"></a>00122 
+<a name="l00126"></a>00126     KPushButton* btnMailboxWizard;
+<a name="l00127"></a>00127 
+<a name="l00131"></a>00131     QGroupBox* gboxAction;
 <a name="l00132"></a>00132 
-<a name="l00137"></a>00137     <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#e7de028106aee69e97efaed1e50fa9f4">slotChanged</a>();
-<a name="l00138"></a>00138 
-<a name="l00144"></a>00144     <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#ece01b6f93801b759c6cf6f9c2b09bfc">slotActionChanged</a>( <span class="keywordtype">int</span> index );
-<a name="l00145"></a>00145 
-<a name="l00150"></a>00150     <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#6404817f0dc00495b94cbffba3b5cc28">slotOpenMailBoxWizard</a>();
-<a name="l00151"></a>00151 
-<a name="l00157"></a>00157     <span class="keywordtype">void</span> <a class="code" href="classConfigSpamcheck.html#6881f1416363077e03ca4a3e63d77738">slotTestSpamAssassin</a>();
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159   <span class="keyword">protected</span>:
+<a name="l00133"></a>00133   <span class="keyword">private</span> slots:
+<a name="l00134"></a>00134 
+<a name="l00139"></a>00139     <span class="keywordtype">void</span> slotChanged();
+<a name="l00140"></a>00140 
+<a name="l00146"></a>00146     <span class="keywordtype">void</span> slotActionChanged( <span class="keywordtype">int</span> index );
+<a name="l00147"></a>00147 
+<a name="l00152"></a>00152     <span class="keywordtype">void</span> slotOpenMailBoxWizard();
+<a name="l00153"></a>00153 
+<a name="l00159"></a>00159     <span class="keywordtype">void</span> slotTestSpamAssassin();
 <a name="l00160"></a>00160 
-<a name="l00165"></a>00165     <span class="keywordtype">bool</span> <a class="code" href="classConfigSpamcheck.html#5713b35d8e7f5f3cc0e0d7627f9e7232">isSpamAssassinRunning</a>() <span class="keyword">const</span>;
-<a name="l00166"></a>00166 
-<a name="l00167"></a>00167 };
+<a name="l00161"></a>00161   <span class="keyword">protected</span>:
+<a name="l00162"></a>00162 
+<a name="l00167"></a>00167     <span class="keywordtype">bool</span> <a class="code" href="classConfigSpamcheck.html#5713b35d8e7f5f3cc0e0d7627f9e7232">isSpamAssassinRunning</a>() <span class="keyword">const</span>;
 <a name="l00168"></a>00168 
-<a name="l00169"></a>00169 <span class="preprocessor">#endif</span>
+<a name="l00169"></a>00169 };
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:44 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

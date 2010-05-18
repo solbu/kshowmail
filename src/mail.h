@@ -418,7 +418,8 @@ class Mail : public QObject
     QString scanBodyPart( const QStringList& part, const QString& item ) const;
 
     /**
-     * Decodes a rfc2047 encoded string
+     * @brief Decodes a rfc2047 encoded string
+     * @param text text to encode
      */
     QString decodeRfc2047( const QString& text ) const;
 

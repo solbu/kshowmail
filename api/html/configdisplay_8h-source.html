@@ -14,7 +14,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>src/configdisplay.h</h1><a href="configdisplay_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>src/configdisplay.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">Copyright 2010  Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">This program is free software; you can redistribute it and/or</span>
@@ -49,7 +49,7 @@
 <a name="l00033"></a>00033 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
 <a name="l00034"></a>00034 
 <a name="l00035"></a>00035 <span class="comment">//KShowmail headers</span>
-<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;<a class="code" href="constants_8h.html">constants.h</a>&gt;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;constants.h&gt;</span>
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038 
 <a name="l00043"></a><a class="code" href="classConfigDisplay.html">00043</a> <span class="keyword">class </span><a class="code" href="classConfigDisplay.html" title="Part of the setup dialog to configure the display.">ConfigDisplay</a> : <span class="keyword">public</span> KCModule
@@ -57,60 +57,60 @@
 <a name="l00045"></a>00045 Q_OBJECT
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047   <span class="keyword">public</span>:
-<a name="l00051"></a>00051     <span class="keyword">explicit</span> <a class="code" href="classConfigDisplay.html#c1a53765968048ad5950eedc400fda6f">ConfigDisplay</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
-<a name="l00052"></a>00052 
-<a name="l00056"></a>00056     <a class="code" href="classConfigDisplay.html#4704c7acdf3cd26f1285c72b40fe9959">~ConfigDisplay</a>();
-<a name="l00057"></a>00057 
-<a name="l00063"></a>00063     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#09589984fa1429d5cbd5f0b9aa67e0af">load</a>();
-<a name="l00064"></a>00064 
-<a name="l00070"></a>00070     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#b0179a5ca4d44e08f955dd89cce179cc">defaults</a>();
-<a name="l00071"></a>00071 
-<a name="l00078"></a>00078     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#9a6209d368796d39da31113da74a11f9">save</a>();
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080   <span class="keyword">private</span>:
+<a name="l00053"></a>00053     <span class="keyword">explicit</span> <a class="code" href="classConfigDisplay.html#c1a53765968048ad5950eedc400fda6f">ConfigDisplay</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
+<a name="l00054"></a>00054 
+<a name="l00058"></a>00058     <a class="code" href="classConfigDisplay.html#4704c7acdf3cd26f1285c72b40fe9959">~ConfigDisplay</a>();
+<a name="l00059"></a>00059 
+<a name="l00065"></a>00065     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#09589984fa1429d5cbd5f0b9aa67e0af">load</a>();
+<a name="l00066"></a>00066 
+<a name="l00072"></a>00072     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#b0179a5ca4d44e08f955dd89cce179cc">defaults</a>();
+<a name="l00073"></a>00073 
+<a name="l00080"></a>00080     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#9a6209d368796d39da31113da74a11f9">save</a>();
 <a name="l00081"></a>00081 
-<a name="l00085"></a><a class="code" href="classConfigDisplay.html#2484652438909bc6c3e5bca2913edc09">00085</a>     KSharedConfigPtr <a class="code" href="classConfigDisplay.html#2484652438909bc6c3e5bca2913edc09">config</a>;
-<a name="l00086"></a>00086 
-<a name="l00090"></a><a class="code" href="classConfigDisplay.html#02db52720d61f28444a2b8fcacb37797">00090</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#02db52720d61f28444a2b8fcacb37797">chkAccountlistActive</a>;
-<a name="l00091"></a>00091 
-<a name="l00095"></a><a class="code" href="classConfigDisplay.html#eed2bda3ddef71cb93551499edcdd7d4">00095</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#eed2bda3ddef71cb93551499edcdd7d4">chkAccountlistAccount</a>;
-<a name="l00096"></a>00096 
-<a name="l00100"></a><a class="code" href="classConfigDisplay.html#7ee137ded8f5f0f4277041c45d0d8b9a">00100</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#7ee137ded8f5f0f4277041c45d0d8b9a">chkAccountlistServer</a>;
-<a name="l00101"></a>00101 
-<a name="l00105"></a><a class="code" href="classConfigDisplay.html#f08e20265d27eea0dee1a849e785e5aa">00105</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#f08e20265d27eea0dee1a849e785e5aa">chkAccountlistUser</a>;
-<a name="l00106"></a>00106 
-<a name="l00110"></a><a class="code" href="classConfigDisplay.html#7957216f75d54b7dbacb495b413fc9d0">00110</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#7957216f75d54b7dbacb495b413fc9d0">chkAccountlistMessages</a>;
-<a name="l00111"></a>00111 
-<a name="l00115"></a><a class="code" href="classConfigDisplay.html#84d2c8afcd8f9d3bb5115e8d2c270cdf">00115</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#84d2c8afcd8f9d3bb5115e8d2c270cdf">chkAccountlistSize</a>;
-<a name="l00116"></a>00116 
-<a name="l00120"></a><a class="code" href="classConfigDisplay.html#7cd606b3c05b2681bb7aba6322f084bc">00120</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#7cd606b3c05b2681bb7aba6322f084bc">chkMessagelistNumber</a>;
-<a name="l00121"></a>00121 
-<a name="l00125"></a><a class="code" href="classConfigDisplay.html#f493b7da71ca2d9a77cc5746f76d61b1">00125</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#f493b7da71ca2d9a77cc5746f76d61b1">chkMessagelistAccount</a>;
-<a name="l00126"></a>00126 
-<a name="l00130"></a><a class="code" href="classConfigDisplay.html#407aaa1e6679678e8548a24e9f60ab34">00130</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#407aaa1e6679678e8548a24e9f60ab34">chkMessagelistFrom</a>;
-<a name="l00131"></a>00131 
-<a name="l00135"></a><a class="code" href="classConfigDisplay.html#ec3b78b0095f9dacb0ae0a488ecd5113">00135</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#ec3b78b0095f9dacb0ae0a488ecd5113">chkMessagelistTo</a>;
-<a name="l00136"></a>00136 
-<a name="l00140"></a><a class="code" href="classConfigDisplay.html#6f988f3e6dcc34a0709b9f997b889488">00140</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#6f988f3e6dcc34a0709b9f997b889488">chkMessagelistSubject</a>;
-<a name="l00141"></a>00141 
-<a name="l00145"></a><a class="code" href="classConfigDisplay.html#a22a37699e555d084931f436b6e59bed">00145</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#a22a37699e555d084931f436b6e59bed">chkMessagelistDate</a>;
-<a name="l00146"></a>00146 
-<a name="l00150"></a><a class="code" href="classConfigDisplay.html#7491226de75afc818d742dfb1416401e">00150</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#7491226de75afc818d742dfb1416401e">chkMessagelistSize</a>;
-<a name="l00151"></a>00151 
-<a name="l00155"></a><a class="code" href="classConfigDisplay.html#30f694a335efce99f6872d348cb00dc0">00155</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#30f694a335efce99f6872d348cb00dc0">chkMessagelistContent</a>;
-<a name="l00156"></a>00156 
-<a name="l00160"></a><a class="code" href="classConfigDisplay.html#a96647e5836a520a79d0a6a5147eda81">00160</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#a96647e5836a520a79d0a6a5147eda81">chkMessagelistState</a>;
-<a name="l00161"></a>00161 
-<a name="l00165"></a><a class="code" href="classConfigDisplay.html#0604eee5dd84775d044bd149747754e9">00165</a>     QCheckBox* <a class="code" href="classConfigDisplay.html#0604eee5dd84775d044bd149747754e9">chkAllowHTML</a>;
-<a name="l00166"></a>00166 
-<a name="l00167"></a>00167   <span class="keyword">public</span> slots:
+<a name="l00082"></a>00082   <span class="keyword">private</span>:
+<a name="l00083"></a>00083 
+<a name="l00087"></a>00087     KSharedConfigPtr config;
+<a name="l00088"></a>00088 
+<a name="l00092"></a>00092     QCheckBox* chkAccountlistActive;
+<a name="l00093"></a>00093 
+<a name="l00097"></a>00097     QCheckBox* chkAccountlistAccount;
+<a name="l00098"></a>00098 
+<a name="l00102"></a>00102     QCheckBox* chkAccountlistServer;
+<a name="l00103"></a>00103 
+<a name="l00107"></a>00107     QCheckBox* chkAccountlistUser;
+<a name="l00108"></a>00108 
+<a name="l00112"></a>00112     QCheckBox* chkAccountlistMessages;
+<a name="l00113"></a>00113 
+<a name="l00117"></a>00117     QCheckBox* chkAccountlistSize;
+<a name="l00118"></a>00118 
+<a name="l00122"></a>00122     QCheckBox* chkMessagelistNumber;
+<a name="l00123"></a>00123 
+<a name="l00127"></a>00127     QCheckBox* chkMessagelistAccount;
+<a name="l00128"></a>00128 
+<a name="l00132"></a>00132     QCheckBox* chkMessagelistFrom;
+<a name="l00133"></a>00133 
+<a name="l00137"></a>00137     QCheckBox* chkMessagelistTo;
+<a name="l00138"></a>00138 
+<a name="l00142"></a>00142     QCheckBox* chkMessagelistSubject;
+<a name="l00143"></a>00143 
+<a name="l00147"></a>00147     QCheckBox* chkMessagelistDate;
+<a name="l00148"></a>00148 
+<a name="l00152"></a>00152     QCheckBox* chkMessagelistSize;
+<a name="l00153"></a>00153 
+<a name="l00157"></a>00157     QCheckBox* chkMessagelistContent;
+<a name="l00158"></a>00158 
+<a name="l00162"></a>00162     QCheckBox* chkMessagelistState;
+<a name="l00163"></a>00163 
+<a name="l00167"></a>00167     QCheckBox* chkAllowHTML;
 <a name="l00168"></a>00168 
-<a name="l00173"></a>00173     <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#6156b28babaf77b3df12d01d565213ee">slotChanged</a>();
-<a name="l00174"></a>00174 };
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176 <span class="preprocessor">#endif</span>
+<a name="l00169"></a>00169   <span class="keyword">public</span> slots:
+<a name="l00170"></a>00170 
+<a name="l00175"></a>00175     <span class="keywordtype">void</span> <a class="code" href="classConfigDisplay.html#6156b28babaf77b3df12d01d565213ee">slotChanged</a>();
+<a name="l00176"></a>00176 };
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 2 17:56:43 2010 for KShowmail by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue May 18 19:43:52 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>
