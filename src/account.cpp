@@ -606,7 +606,6 @@ QStringList Account::readfromSocket( bool singleLine )
     //append the read data
     if( data.size() > 0 ) {
       readed.append( data );
-
     }
 
     //check for end of response
