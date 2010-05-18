@@ -41,7 +41,7 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
     /**
      * @brief Constructor
      */
-    FilterLogViewDeletedModel( QObject* parent = 0, FilterLog* log = NULL );
+    explicit FilterLogViewDeletedModel( QObject* parent = 0, FilterLog* log = NULL );
     
     /**
      * @brief Overloaded from QAbstractItemModel

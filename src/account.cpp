@@ -1095,7 +1095,7 @@ void Account::removeStatusIndicator( QStringList* response )
   QString firstLine = response->first();
 
   //is it an indicator?
-  //see the infos about the SSL workaround in readFromSocket()
+  //see the info about the SSL workaround in readFromSocket()
   while( firstLine.startsWith( RESPONSE_POSITIVE ) || firstLine.startsWith( RESPONSE_NEGATIVE ) )
   {
     //Yes, it is. Zack und weg!

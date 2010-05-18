@@ -651,7 +651,7 @@ void KShowmail::slotRefreshTimer() {
   QTime time;
   time = time.addSecs( timeToRefresh );
 
-  statusBar()->changeItem( i18nc( "@info:status time to next refresh", "Next Refresh: %1" ).arg( time.toString() ), STATUSBAR_FIELD_NEXT_REFRESH );
+  statusBar()->changeItem( i18nc( "@info:status time to next refresh", "Next Refresh: %1", time.toString() ), STATUSBAR_FIELD_NEXT_REFRESH );
 
   //start refresh at zero
   if( timeToRefresh == 0 ) {

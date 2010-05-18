@@ -42,7 +42,7 @@ class FilterLogViewMovedModel : public QAbstractItemModel
     /**
      * @brief Constructor
      */
-    FilterLogViewMovedModel( QObject* parent = 0, FilterLog* log = NULL );
+    explicit FilterLogViewMovedModel( QObject* parent = 0, FilterLog* log = NULL );
 
     /**
      * @brief Overloaded from QAbstractItemModel
