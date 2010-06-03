@@ -148,7 +148,7 @@ void FilterSetupItem::save( )
   //write criteria list and number of criterias
   if( !criteriaList.empty() )
   {
-    configFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, criteriaList.size() );
+    configFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, (int)criteriaList.size() );
 
     int ctr = 0; //number of the current criteria
     FilterCriteriaList_Type::iterator it;
