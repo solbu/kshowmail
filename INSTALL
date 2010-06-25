@@ -1,0 +1,27 @@
+How to install KShowmail
+-=-=-=-=-=-=-=-=-=-=-=-=
+
+Required packages:
+------------------
+- gcc
+- KDE-Devel packages
+- kdepimlibs and/or libkdepim
+- kdepimlibs-devel and/or 
+
+Installation:
+-------------
+tar xzf kshowmail-4.0.tar.gz
+cd kshowmail-4.0
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` .. <-- don't forget the ..!
+make
+make install (you have to be root)
+
+to uninstall the project:
+make uninstall (you have to be root)
+
+
+----------------------------
+Please send all comments to:
+Ulrich Weigelt <ulrich.weigelt@gmx.de> 
