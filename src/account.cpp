@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "account.h"
 #include "maillist.h"
 
-Account::Account( QString name, AccountList* accountList, QObject* parent ) 
+Account::Account( QString name, AccountList* accountList, QObject* parent )
 	: QObject( parent )
 {
 	this->name = name;
@@ -33,7 +33,7 @@ Account::Account( QString name, AccountList* accountList, QObject* parent )
   connect( timeoutTimer, SIGNAL( timeout() ), this, SLOT( slotTimeout() ) );
 
   init();
-	
+
 }
 
 Account::~Account()
@@ -57,8 +57,8 @@ void Account::print() const
   cout << "Port: " << url.port() << endl;
   cout << "User: " << url.user().toStdString() << endl;
   cout << "Password: " << url.password().toStdString() << endl;
-  
-	
+
+
 	//print the mails
   mails->print();
 }
@@ -116,7 +116,7 @@ void Account::load()
     setPassword( QString() );
 
   active = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_ACTIVE, DEFAULT_ACCOUNT_ACTIVE );
-  
+
 	int intTransferSecurity = accountConfig->readEntry( CONFIG_ENTRY_ACCOUNT_SECTRANSFER, DEFAULT_ACCOUNT_SECTRANSFER );
 	if( intTransferSecurity == CONFIG_VALUE_ACCOUNT_SECTRANSFER_NONE )
 		transferSecurity = TransSecNone;
@@ -168,13 +168,13 @@ void Account::refreshMailList( FilterLog* log )
   //store pointer to log
   if( log != NULL )
     fLog = log;
-  
+
   //do nothing, if this account is not active
   if( !isActive() )
   {
     emit sigRefreshReady( getName() );
     return;
-  } 
+  }
 
   //check whether we have a password for this account
   //if not, ask for it
@@ -207,7 +207,7 @@ void Account::refreshMailList( FilterLog* log )
 
 
   doConnect();
-  
+
 }
 
 bool Account::hasPassword( ) const
@@ -283,7 +283,7 @@ bool Account::assertPassword( bool force )
     pwdialog->setPrompt( i18nc( "@info we need the password", "Please type in the password for <resource>%1</resource>", getName() ) );
     int result = pwdialog->exec();
 
-    
+
     //set waiting cursor
     QApplication::setOverrideCursor( Qt::WaitCursor );
 
@@ -366,17 +366,17 @@ void Account::doConnect()
   //the first task is to read the server greeting message
   disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
   connect( socket, SIGNAL( readyRead() ), this, SLOT( slotReadFirstServerMessage() ) );
-  
+
   //do connect
   if( transferSecurity == TransSecNone || transferSecurity == TransSecTLS ) {
-    
+
     socket->connectToHost( getHost(), getPort() );
 
   } else if( transferSecurity == TransSecSSL ) {
 
     socket->connectToHostEncrypted( getHost(), getPort() );
-    
-    
+
+
   } else {
 
     handleError( "Unsupported Transfer Security" );
@@ -391,7 +391,7 @@ void Account::closeConnection()
     kdDebug() << "Close Connection: " << getName() << endl;
 
     socket->disconnectFromHost();
-    
+
     //we try to close up to 5 times
     int nrTry = 0;
     while( nrTry < 5 && socket->state() != KTcpSocket::UnconnectedState ) {
@@ -408,13 +408,13 @@ void Account::initBeforeConnect()
   if( !socket.isNull() ) {
 
     disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
-    disconnect( socket, SIGNAL( error() ), 0, 0 );
+    disconnect( socket, SIGNAL( error( KTcpSocket::Error ) ), 0, 0 );
     disconnect( socket, SIGNAL( connected() ), 0, 0 );
     disconnect( socket, SIGNAL( hostFound() ), 0, 0 );
     disconnect( socket, SIGNAL( sslErrors(QList<KSslError>)), 0, 0 );
 
     delete socket;
-  } 
+  }
 
   //create TCP-Socket
   socket = new KTcpSocket( this );
@@ -457,7 +457,7 @@ void Account::slotSocketError( KTcpSocket::Error errorCode)
   //maybe we must not handle this error
   if( dontHandleError ) return;
 
-  
+
   QString message;    //the error message
   switch( errorCode )
   {
@@ -474,7 +474,7 @@ void Account::slotSocketError( KTcpSocket::Error errorCode)
   }
 
 //   switch( ErrorCode ) {
-// 
+//
 //     case QAbstractSocket::ConnectionRefusedError    : message = i18n( "The connection was refused by the peer or timed out" ); break;
 //     case QAbstractSocket::RemoteHostClosedError     : message = i18n( "The remote host closed the connection" ); break;
 //     case QAbstractSocket::HostNotFoundError         : message = QString( i18n( "Host not found: %1" ).arg( getHost() ) ); break;
@@ -496,8 +496,8 @@ void Account::slotSocketError( KTcpSocket::Error errorCode)
 //     case QAbstractSocket::ProxyProtocolError        : message = i18n( "The connection negotiation with the proxy server because the response from the proxy server could not be understand." ); break;
 //     case QAbstractSocket::UnknownSocketError        : message = i18n( "Unknown socket error" ); break;
 //     default                                         : message = i18n( "Unknown connection error" ); break;
-// 
-// 
+//
+//
 //   }
 
   //show error and handle all other
@@ -507,7 +507,7 @@ void Account::slotSocketError( KTcpSocket::Error errorCode)
 
 void Account::handleError( QString error )
 {
-  
+
   //close connection
   closeConnection();
 
@@ -626,7 +626,7 @@ QStringList Account::readfromSocket( bool singleLine )
       //break the loop if we anticipate single line
       if( singleLine && readed.endsWith( lineTerm ) ) responseEndFound = true;
     }
-    
+
 
   }
 
@@ -643,9 +643,9 @@ QStringList Account::readfromSocket( bool singleLine )
     response.removeLast();
   }
 
-  
+
   return response;
-  
+
 
 }
 
@@ -698,15 +698,15 @@ void Account::sendCommand( const QString& command )
     return;
   }
 
-
   //the write methode of the socket needs a byte array
   QByteArray data;
   data.append( command );
   data.append( "\n" );
-  
+
 
   //send it
-  qint64 writtenBytes = socket->write( data );
+  //qint64 writtenBytes = socket->write( data );
+  qint64 writtenBytes = socket->write( data.data() );
 
   //if the return value ist -1 a error is occurred
   if( writtenBytes == -1 )
@@ -714,7 +714,7 @@ void Account::sendCommand( const QString& command )
     handleError( i18nc( "@info error message: could not send a command to the server", "Could not send the command <icode>%1</icode> to <resource>%2</resource>", command, getName() ) );
     return;
   }
-  
+
 }
 
 void Account::getCapabilities()
@@ -729,8 +729,10 @@ void Account::getCapabilities()
 
 void Account::slotCapabilitiesResponse()
 {
+
   //get server answer
   QStringList text = readfromSocket( false );
+
 
   //if the socket has not returned something, we finish at this point
   //we don't need to show an error message, because the handleError-Methode was called already
@@ -740,9 +742,10 @@ void Account::slotCapabilitiesResponse()
     return;
   }
 
+
   //have we got capabilities?
   bool haveCapa = isPositiveServerMessage( text );
-  
+
   //set some capabilities flags
   if( haveCapa )
   {
@@ -752,16 +755,17 @@ void Account::slotCapabilitiesResponse()
 
     //has STARTTLS?
     supportsStartTLS = text.contains( CAPA_RESPONSE_STLS, Qt::CaseInsensitive );
-		
+
 		//if TLS is selected but this provide doesn't support it,
 		//we will finish this task here
 		if( transferSecurity == TransSecTLS && !supportsStartTLS ) {
-		
+
 			handleError( i18nc( "@info error message", "No support for START-TLS" ) );
 			return;
 		}
-		
+
   }
+
 
   //get authentication mechanism
   getAuthMech();
@@ -843,7 +847,7 @@ void Account::slotAuthMechResponse()
 
     loginUser();
     return;
-    
+
   } else if( apopAvail && !dontUseAPOP )
     loginApop();
   else
@@ -1128,7 +1132,7 @@ void Account::getUIDList()
 void Account::slotUIDListResponse()
 {
   kdDebug() << "slotUIDListRespones" << endl;
-  
+
   //get the response
   QStringList receivedUIDs = readfromSocket( false );
 
@@ -1188,7 +1192,7 @@ void Account::slotUIDListResponse()
       //extract mail number and uid
       bool isNumber;
       number = line.left( positionOfSpace ).toLong( &isNumber );
-      
+
       //check number
       if( !isNumber )
       {
@@ -1564,7 +1568,7 @@ void Account::copyHeaders( )
   {
     kdDebug() << "Fehler: " << e.what() << endl;
   }
-  
+
   //now we have the a complete new mail list
   swapMailLists();
 }
@@ -1651,7 +1655,7 @@ void Account::showNextMail()
 
   //send download command
   sendCommand( GET_MAIL + ' ' + QString( "%1" ).arg( mailsToShow.first() ) );
-  
+
 }
 
 void Account::slotMailDeleted()
@@ -1730,10 +1734,10 @@ void Account::slotBodyDownloaded()
   KConfigGroup* configView = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
   bool allowHTML = configView->readEntry( CONFIG_ENTRY_VIEW_USE_HTML, DEFAULT_VIEW_USE_HTML );
 
-  
+
   int currentMail = mailsToShow.first();
-  
- 
+
+
   QString tsender = mails->getSenderOf( currentMail );
   QString tdate = mails->getDateOf( currentMail );
   QString tsize = mails->getSizeOf( currentMail );
@@ -2274,10 +2278,10 @@ void Account::slotSSLError( const QList<KSslError>& errors ) {
   emit sigMessageWindowClosed();
 
   if( answer == KMessageBox::Continue ) {
-  
+
     //continue
     socket->ignoreSslErrors();
-    
+
   } else {
 
     //the socket calls slotSocketError, but we don't want a further error message
@@ -2287,9 +2291,9 @@ void Account::slotSSLError( const QList<KSslError>& errors ) {
     finishTask();
 
   }
-  
+
   return;
-  
+
 }
 
 void Account::readStoredMails( QDomElement& parent )
@@ -2301,51 +2305,51 @@ void Account::readStoredMails( QDomElement& parent )
 int Account::compare( Account* other, AccountSort_Type property ) {
 
 	switch( property ) {
-	
+
 		//compare by active state
 		case AccSortActive : {
-			
+
 			if( other->isActive() == isActive() ) return 0;
 			else if( isActive() == false ) return -1;
 			else return 1;
 			break;
-		
+
 		}
-		
+
 		//compare by name
 		case AccSortName : {
-		
+
 			return QString::localeAwareCompare( getName(), other->getName() );
 		}
-		
+
 		//compare by server
 		case AccSortServer : {
-			
+
 			return QString::localeAwareCompare( getHost(), other->getHost() );
 		}
-		
+
 		//compare by user
 		case AccSortUser : {
-		
+
 			return QString::localeAwareCompare( getUser(), other->getUser() );
 		}
-		
+
 		//compare by number of messages
 		case AccSortNrMess : {
-		
+
 			if( getNumberMails() == other->getNumberMails() ) return 0;
 			else if( getNumberMails() < other->getNumberMails() ) return -1;
 			else return 1;
 		}
-		
+
 		//compare by total size of messages
 		case AccSortSize : {
-		
+
 			if( getTotalSize() == other->getTotalSize() ) return 0;
 			else if( getTotalSize() < other->getTotalSize() ) return -1;
 			else return 1;
 		}
-		
+
 		default: {
 			return QString::localeAwareCompare( getName(), other->getName() );
 		}
@@ -2405,7 +2409,7 @@ void Account::slotStartTLSResponse()
   if( !ack ) {
 
     kdError() << "The Server " << getHost() << " says it supports STLS but it doesn't accept the STLS command: " << text.first() << endl;
-    
+
     if( apopAvail && !dontUseAPOP ) {
 
       loginApop();
@@ -2445,3 +2449,4 @@ AccountViewItem Account::getViewItem()
 {
   return AccountViewItem( isActive(), getName(), getHost(), getUser(), getNumberMails(), getTotalSize(), QPointer<Account>( this ) );
 }
+
