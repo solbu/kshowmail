@@ -175,23 +175,23 @@ class Account : public QObject
 		 * @param parent parent object
 		 */
 		Account( QString name, AccountList* accountList, QObject* parent );
-		
+
 		/**
 		 * @brief Destructor
 		 */
 		~Account();
-		
+
 		/**
 		 * @brief Prints all data of this account to stdout
 		 */
 		void print() const;
-		 
+
 		/**
 		 * @brief Returns the account name
 		 * @return account name
 		 */
 		QString getName() const;
-		
+
     /**
      * @brief Returns whether the account is active.
      * @return TRUE - account is active; FALSE - account is not active
@@ -316,7 +316,7 @@ class Account : public QObject
 
     /**
      * @brief Adds a mail number to the list of mails to delete.
-     * 
+     *
      * The number is the mail number given by the mail server.
      * @param number mail number
      * @see mailsToDelete
@@ -372,14 +372,14 @@ class Account : public QObject
 
     /**
     * @brief Reloads the settings of the filters.
-    * 
+    *
     * It just calls the load() methode of the header filter.
     */
     void reloadFilterSettings();
 
     /**
     * @brief Saves the stored mails into the given DOM document.
-    * 
+    *
     * It doesn't create a new DOM element but used the given one.
     * Saves the setup into the application config.
     * @param doc DOM document which contains all application settings, mails and account settings
@@ -413,22 +413,22 @@ class Account : public QObject
      * @brief Returns the total size of all mails with unit.
      */
     QString getTotalSizeUnit() const;
-		
+
     /**
      * @brief Gets the stored mails.
      * @param parent DOM element which contains the mails of this account
      */
     void readStoredMails( QDomElement& parent );
-		
+
     /**
 		 * @brief Compares this account with <i>other</i> and returns an integer less than,
-		 * equal to, or greater than zero if this account is less than, equal to, 
+		 * equal to, or greater than zero if this account is less than, equal to,
 		 * or greater than <i>other</i>.
 		 * @param other other account
 		 * @param property the account property which will be compared
 		 */
 		int compare( Account* other, AccountSort_Type property );
-		
+
 		/**
 		 * @brief Returns a list which contains the pointers to all mails.
 		 * @return all mails
@@ -512,7 +512,7 @@ class Account : public QObject
      * @see slotCapabilitiesResponse
      */
     void getCapabilities();
-    
+
     /**
      * @brief Prints the a text received from the server to stdout
      * @param text server message
@@ -923,13 +923,13 @@ class Account : public QObject
       */
      void slotStartTLSResponse();
 
-	private:
-		
-		/**
-		 * @brief Name of this account
-		 */
-		QString name;
-		
+  private:
+
+    /**
+     * @brief Name of this account
+     */
+    QString name;
+
     /**
      * @brief TRUE - account is active; FALSE - account is not active
      */
@@ -966,7 +966,7 @@ class Account : public QObject
      * to maillist.
      */
     MailList* tempMailList;
-    
+
 
     /**
      * @brief The socket. Handles all server operations
@@ -1165,7 +1165,7 @@ class Account : public QObject
      */
     bool supportsStartTLS;
 
-    
+
   signals:
 
     /**
@@ -1202,8 +1202,8 @@ class Account : public QObject
      */
     void sigRefreshReady( QString account );
 
-    
-		
+
+
 };
 
 #endif // ACCOUNT_H
