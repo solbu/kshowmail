@@ -1,5 +1,7 @@
 project(kshowmail)
 
+cmake_minimum_required(VERSION 2.8)
+
 # version number
 set (KSHOWMAIL_VERSION 4.0)
 
