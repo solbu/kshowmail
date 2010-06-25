@@ -21,7 +21,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 {
   //init some flags
   forceExit = false;
-  
+
 	//create the account list
 	accounts = new AccountList( this );
   connect( accounts, SIGNAL( sigMessageWindowOpened() ), this, SLOT( slotNormalCursor() ) );
@@ -29,8 +29,8 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   connect( accounts, SIGNAL( sigRefreshReady() ), this, SLOT( slotRefreshReady() ) );
   connect( accounts, SIGNAL( sigDeleteReady() ), this, SLOT( slotDeletionReady() ) );
   connect( accounts, SIGNAL( sigShowBodiesReady() ), this, SLOT( slotShowMessageReady() ) );
-	
-	
+
+
 	//create the models for the account view and mail view
 	accountModel = new AccountViewModel( accounts, this );
   connect( accountModel, SIGNAL( dataChanged(QModelIndex,QModelIndex) ), this, SLOT( slotConfChanged() ) );
@@ -39,7 +39,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //create the selection models
   mailSelectModel = new QItemSelectionModel( mailModel );
   accountSelectModel = new QItemSelectionModel( accountModel );
-	
+
 	//set central widget
 	view = new KShowmailView( accountModel, mailModel, mailSelectModel, accountSelectModel, this );
 	setCentralWidget( view );
@@ -58,7 +58,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   view->addActionToMailList( actionDelete );
   view->addActionToMailList( actionAddWhitelist );
   view->addActionToMailList( actionAddBlacklist );
- 
+
 
   // a call to KXmlGuiWindow::setupGUI() populates the GUI
   // with actions, using KXMLGUI.
@@ -74,7 +74,7 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   //create system tray icon
   trayIcon = new SystemTrayIcon( this, QIcon( KStandardDirs::locate( "data", "kshowmail/pics/trayIcon.png" ) ), actionRefresh );
   trayIcon->show();
-		
+
 	//load the setup
 	accounts->loadSetup();
   view->loadSetup();
@@ -134,7 +134,7 @@ void KShowmail::initActions()
   actionShowMessage->setIcon( KIcon( "mail-mark-read" ) );
   actionShowMessage->setShortcut( Qt::Key_F3 );
   connect( actionShowMessage, SIGNAL( triggered() ), this, SLOT( slotShowMessage() ) );
-  
+
   actionDelete = actionCollection()->addAction( "delete" );
   actionDelete->setText( i18nc( "@action:inmenu delete selected mails", "Delete highlighted messages" ) );
   actionDelete->setIcon( KIcon( "draw-eraser" ) );
@@ -156,13 +156,13 @@ void KShowmail::initActions()
   actionAddWhitelist->setText( i18nc( "@action:inmenu add the senders of selected mails to the whitelist", "Add sender to whitelist" ) );
   actionAddWhitelist->setIcon( KIcon( "list-add-user" ) );
   connect( actionAddWhitelist, SIGNAL( triggered() ), this, SLOT( slotAddToWhitelist() ) );
-  
+
   actionAddBlacklist = actionCollection()->addAction( "addBlacklist" );
   actionAddBlacklist->setText( i18nc( "@action:inmenu add the senders of selected mails to the blacklist", "Add sender to blacklist" ) );
   actionAddBlacklist->setIcon( KIcon( "list-remove-user" ) );
   connect( actionAddBlacklist, SIGNAL( triggered() ), this, SLOT( slotAddToBlacklist() ) );
 
-  
+
   // setup menu
   KStandardAction::preferences( this, SLOT( slotSetup() ), actionCollection() );
 
@@ -293,10 +293,10 @@ void KShowmail::slotDelete() {
   bool confirmDeletion = configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_DELETE, DEFAULT_CONFIRM_DELETE );
 
 
-  
+
   if( confirmDeletion )
   {
-    
+
     //get subjects off all selected mails
     QStringList subjects = mailModel->getSelectedSubjects( mailSelectModel );
 
@@ -331,7 +331,7 @@ void KShowmail::slotDelete() {
     int mailNumber = mail.getNumber();
 
     acc->addMailToDelete( mailNumber );
-    
+
   }
 
   accounts->deleteMails();
@@ -420,11 +420,11 @@ void KShowmail::slotSetup() {
 
   //execute preferences dialog
   setupDialog->exec();
-	
+
 	//clear memory
 	delete setupDialog;
-	
-	
+
+
 }
 
 void KShowmail::slotSendFeedbackMail() {
@@ -466,7 +466,7 @@ bool KShowmail::queryClose() {
     hide();
     return false;
   }
-  
+
   //confirm closing
   if( configGeneral->readEntry( CONFIG_ENTRY_CONFIRM_CLOSE, DEFAULT_CONFIRM_CLOSE ) ) {
 
@@ -673,7 +673,7 @@ void KShowmail::slotSetupAccount() {
 
   if( !accountSelectModel->hasSelection() ) return;
 
-  
+
   //get account
   QModelIndex selIndex = accountSelectModel->selectedRows().first();
   Account* acc = accountModel->getAccount( selIndex );
@@ -695,7 +695,7 @@ void KShowmail::handleNewMails()
 {
   //get config
   KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACTIONS );
-  
+
   //play sound
   if( conf->readEntry( CONFIG_ENTRY_NEW_MAIL_SOUND, DEFAULT_ACTION_NEW_MAIL_SOUND ) ) {
 
@@ -743,9 +743,9 @@ void KShowmail::handleNewMails()
     }
 
   }
-  
+
   delete conf;
-  
+
 }
 
 void KShowmail::slotShowMainWindow()
