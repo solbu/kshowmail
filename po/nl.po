@@ -3,14 +3,13 @@
 # Heimen <vistausss@gmail.com>, 2010.
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Mime-Version: 1.0Last-Translator: Heimen <vistausss@gmail.com>\n"
-"PO-Revision-Date: 2010-07-07 17:26+0200\n"
 "Project-Id-Version: nl\n"
+"PO-Revision-Date: 2010-07-07 17:26+0200\n"
+"Last-Translator: Heimen <vistausss@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
-"Last-Translator: Heimen <vistausss@gmail.com>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: account.cpp:283
