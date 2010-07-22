@@ -48,7 +48,7 @@ set( CONFIGACCOUNTS_SRCS
      kwalletaccess.cpp
      accountsetupdialog.cpp
       )
-     
+
 kde4_add_plugin(kcm_kshowmailconfigaccounts ${CONFIGACCOUNTS_SRCS} )
 target_link_libraries(kcm_kshowmailconfigaccounts  ${KDE4_KDEUI_LIBS})
 

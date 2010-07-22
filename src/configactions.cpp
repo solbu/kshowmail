@@ -120,6 +120,7 @@ ConfigActions::ConfigActions( QWidget * parent, const QVariantList & args )
   connect( chkNoNewMailsTerminate, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
 
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
 
   //get application config object (kshowmailrc)
   config = KGlobal::config();

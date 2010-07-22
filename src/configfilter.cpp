@@ -169,6 +169,8 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   //Because it is initialized with zero, the first filter number is 1.
   lastFilterNumber = 0;
 
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
+
 }
 
 
@@ -307,7 +309,7 @@ void ConfigFilter::save( )
     //get next item
     ++it;
   }
-  
+
   config->sync();
 }
 
@@ -370,7 +372,7 @@ void ConfigFilter::slotEdit( )
   //get selected item
   QList<QTreeWidgetItem*> items = listFilters->selectedItems();
   if( items.isEmpty() ) return;
-  
+
   FilterSetupItem* item = (FilterSetupItem*)items.first();
 
   //return if no item selected
@@ -598,7 +600,7 @@ void ConfigFilter::slotMoveDown( )
 
       //do sorting
       listFilters->sortItems( 0, Qt::AscendingOrder );
-        
+
       }
     }
   }

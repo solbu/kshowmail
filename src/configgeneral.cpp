@@ -129,6 +129,8 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   //get application config object (kshowmailrc)
   config = KGlobal::config();
 
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
+
   //load configurated values
   load();
 
@@ -149,7 +151,7 @@ void ConfigGeneral::load( )
   chkShowConnectionErrors->setChecked( configGeneral->readEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, DEFAULT_SHOW_CONNECTION_ERRORS ) );
   chkKeepNew->setChecked( configGeneral->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW ) );
 
-  
+
   chkAutomaticRefresh->setChecked( configGeneral->readEntry( CONFIG_ENTRY_AUTO_REFRESH, DEFAULT_AUTO_REFRESH ) );
   slotAutomaticRefreshChanged( chkAutomaticRefresh->isChecked() );
   spbInitial->setValue( configGeneral->readEntry( CONFIG_ENTRY_INITIAL_TIME, DEFAULT_INITIAL_TIME ) );

@@ -105,6 +105,8 @@ ConfigLog::ConfigLog( QWidget * parent, const QVariantList & args )
   btnMovMailsRemoveDays->setHidden( true );
   spbMovDays->setHidden( true );
 
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
+
   //get application config object (kshowmailrc)
   config = KGlobal::config();
 
@@ -136,7 +138,7 @@ void ConfigLog::load()
 
   btnToCheck->setChecked( true );
 
-  
+
   if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, DEFAULT_LOG_REMOVE_MOVED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
     btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
   else if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, DEFAULT_LOG_REMOVE_MOVED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
@@ -177,7 +179,7 @@ void ConfigLog::defaults()
     btnToCheck = static_cast<QRadioButton*>( grpDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
 
   btnToCheck->setChecked( true );
-  
+
   if( QString( DEFAULT_LOG_REMOVE_MOVED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
     btnToCheck = static_cast<QRadioButton*>( grpMovMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
   else if( QString( DEFAULT_LOG_REMOVE_MOVED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ) )

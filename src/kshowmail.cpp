@@ -415,6 +415,8 @@ void KShowmail::slotSetup() {
   setupDialog->addModule( "kshowmailconfigspamcheck.desktop" );
   setupDialog->addModule( "kshowmailconfiglog.desktop" );
 
+  setupDialog->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
+
   //If the configuration was changed, it will call slotConfChanged
   connect( setupDialog, SIGNAL( configCommitted() ), this, SLOT( slotConfChanged() ) );
 

@@ -34,6 +34,7 @@ ConfigSpamcheck::ConfigSpamcheck( QWidget * parent, const QVariantList & args )
   QLabel* lblDescription = new QLabel( this );
   lblDescription->setAlignment( Qt::AlignJustify );
   lblDescription->setText( QString( "<i>%1</i>" ).arg( i18n( "KShowmail uses SpamAssassin to check the mails for spam. You have to install, configure and start the SpamAssassin daemon, before you can use this service." ) ) );
+  lblDescription->setWordWrap( true );
   lblDescription->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Maximum );
   layMain->addWidget( lblDescription );
 
@@ -84,6 +85,8 @@ ConfigSpamcheck::ConfigSpamcheck( QWidget * parent, const QVariantList & args )
   //enable or disable widgets
   slotActionChanged( cmbAction->currentIndex() );
   gboxAction->setEnabled( isSpamAssassinRunning() );
+
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
 
   //get application config object (kshowmailrc)
   config = KGlobal::config();

@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 K_PLUGIN_FACTORY( ConfigAccountsFactory, registerPlugin<ConfigAccounts>(); )
 K_EXPORT_PLUGIN( ConfigAccountsFactory( "kcm_kshowmailconfigaccounts" ) )
- 
+
 ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
   : KCModule( ConfigAccountsFactory::componentData(), parent, args )
 {
@@ -34,7 +34,7 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
 	accountListView->setColumnCount( 1 );
 	accountListView->setHeaderLabels( QStringList( i18nc( "@title:column account name in the main view of the account config dialog", "Name" ) ) );
   accountListView->setIndentation( 0 );
-	
+
   layMain->addWidget( accountListView );
 
   //button layout
@@ -58,6 +58,8 @@ ConfigAccounts::ConfigAccounts( QWidget * parent, const QVariantList & args )
   connect( btnRemove, SIGNAL( clicked() ), this, SLOT( slotRemove() ) );
 
   layButtons->addItem( new QSpacerItem( 1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
+
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
 
 
   //get application config object (kshowmailrc)

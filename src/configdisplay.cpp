@@ -128,6 +128,7 @@ ConfigDisplay::ConfigDisplay( QWidget * parent, const QVariantList & args )
   connect( chkMessagelistState, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( chkAllowHTML, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
+  setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
 
   //get application config object (kshowmailrc)
   config = KGlobal::config();

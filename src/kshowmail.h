@@ -43,6 +43,8 @@ class MailViewModel;
 #include <Phonon/AudioOutput>
 #include <Phonon/MediaObject>
 #include <KProcess>
+#include <kconfigdialog.h>
+#include <kconfigskeleton.h>
 
 //KShowmail headers
 #include "kshowmailview.h"
@@ -273,7 +275,7 @@ class KShowmail : public KXmlGuiWindow
     void slotShowMainWindow();
 
 	private:
-		
+
 		/**
 		 * This view is the central widget of KShowmail
 		 */
@@ -331,12 +333,12 @@ class KShowmail : public KXmlGuiWindow
      * @see slotSetupAccount
      */
     KAction* actionSetupAccount;
-    
+
 		/**
 		 * account list
 		 */
 		AccountList* accounts;
-		
+
     /**
      * The setup dialog. Created and used by slotSetup().
      */
@@ -371,7 +373,7 @@ class KShowmail : public KXmlGuiWindow
      * The model of the mail view
      */
     MailViewModel* mailModel;
-		
+
 		/**
 		 * The model of the account view
 		 */
