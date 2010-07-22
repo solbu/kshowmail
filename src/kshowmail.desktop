@@ -10,4 +10,4 @@ GenericName[de]=Prüft POP3-Postfächer auf neue Mails
 GenericName[es]=Una poderosa herramienta para verificar cuentas POP3
 GenericName[it]=Controlla la nuova posta sul tuo server POP3
 Terminal=false
-Categories=Network;Email
+Categories=Qt;KDE;Network;Email;

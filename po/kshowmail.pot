@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: ulrich.weigelt@gmx.de\n"
-"POT-Creation-Date: 2010-05-12 18:15+0200\n"
+"POT-Creation-Date: 2010-07-06 19:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,27 +76,27 @@ msgctxt "@info general error message"
 msgid "Account <resource>%1</resource>: %2"
 msgstr ""
 
-#: account.cpp:747
+#: account.cpp:669
 msgctxt "@info error message: this is not a POP3 server"
 msgid "<resource>%1</resource> is not a POP3 mail server"
 msgstr ""
 
-#: account.cpp:775
+#: account.cpp:697
 msgctxt "@info error message: connection lost"
 msgid "No connect to <resource>%1</resource>"
 msgstr ""
 
-#: account.cpp:792
+#: account.cpp:714
 msgctxt "@info error message: could not send a command to the server"
 msgid "Could not send the command <icode>%1</icode> to <resource>%2</resource>"
 msgstr ""
 
-#: account.cpp:838
+#: account.cpp:763
 msgctxt "@info error message"
 msgid "No support for START-TLS"
 msgstr ""
 
-#: account.cpp:934
+#: account.cpp:860
 msgctxt "@info Warning: the server does'nt support secure login"
 msgid ""
 "Account <resource>%1</resource>: This server doesn't provide a safety login "
@@ -106,24 +106,24 @@ msgid ""
 "warning>"
 msgstr ""
 
-#: account.cpp:934 account.cpp:2501
+#: account.cpp:860 account.cpp:2427
 msgctxt "@title:window"
 msgid "Unsafe login is not allowed"
 msgstr ""
 
-#: account.cpp:1010
+#: account.cpp:936
 msgctxt "@info error message: we could not quit the POP3 session"
 msgid ""
 "<resource>%1</resource> has not accepted the <icode>%2</icode> command. "
 "Error message is: <message>%3</message>"
 msgstr ""
 
-#: account.cpp:1043 account.cpp:1077
+#: account.cpp:969 account.cpp:1003
 msgctxt "@info error message"
 msgid "Login has failed. Error message is: <message>%1</message>"
 msgstr ""
 
-#: account.cpp:1151
+#: account.cpp:1077
 msgctxt "@info error message"
 msgid ""
 "Login has failed. Error message is: <message>%1</message><nl/>Maybe the "
@@ -132,162 +132,162 @@ msgid ""
 "case criminals could read your password!</warning>"
 msgstr ""
 
-#: account.cpp:1224
+#: account.cpp:1150
 msgctxt "@info error message: a server doesn't support mail UIDs"
 msgid ""
 "<resource>%1</resource> doesn't support mail UID's. KShowmail can't work "
 "without this. Error message is: <message>%2</message>"
 msgstr ""
 
-#: account.cpp:1261
+#: account.cpp:1187
 msgctxt "@info error message"
 msgid "Get corrupt UID list. No spaces"
 msgstr ""
 
-#: account.cpp:1274
+#: account.cpp:1200
 msgctxt "@info error message"
 msgid "Get corrupt UID list. No number found at begin."
 msgstr ""
 
-#: account.cpp:1456
+#: account.cpp:1382
 msgctxt "@info error message: a server has not send a response"
 msgid ""
 "<resource>%1</resource> has not sent a response after <icode>%2</icode> "
 "command."
 msgstr ""
 
-#: account.cpp:1463
+#: account.cpp:1389
 msgctxt "@info error message: a server has not send the mail sizes"
 msgid ""
 "Error while try to get the mail sizes. Message is: <message>%1</message>"
 msgstr ""
 
-#: account.cpp:1480
+#: account.cpp:1406
 msgctxt "@info error message"
 msgid "Error while try to get the mail sizes. All mails are disappeard."
 msgstr ""
 
-#: account.cpp:1496
+#: account.cpp:1422
 msgctxt "@info error message"
 msgid "Get corrupt size list. No spaces"
 msgstr ""
 
-#: account.cpp:1508
+#: account.cpp:1434
 msgctxt "@info error message"
 msgid "Get corrupt size list. No numbers at begin."
 msgstr ""
 
-#: account.cpp:1520
+#: account.cpp:1446
 msgctxt "@info error message"
 msgid "Get corrupt size list. No sizes found at end."
 msgstr ""
 
-#: account.cpp:1584
+#: account.cpp:1510
 msgctxt "@info error message: could not get a mail header"
 msgid ""
 "<resource>%1</resource> has not sent the header of mail <numid>%2</numid>."
 msgstr ""
 
-#: account.cpp:1592
+#: account.cpp:1518
 msgctxt "@info error message: a server doesn't know the command TOP"
 msgid ""
 "<resource>%1</resource> doesn't support the TOP command. KShowmail can't "
 "work without this. Error message is: <message>%2</message>"
 msgstr ""
 
-#: account.cpp:1743
+#: account.cpp:1669
 msgctxt "@info error message: no server responce after we have deleted a mail"
 msgid ""
 "<resource>%1</resource> has not sent a answer after removing of mail <numid>%"
 "2</numid>."
 msgstr ""
 
-#: account.cpp:1751
+#: account.cpp:1677
 msgctxt "@info error message: error while removing a mail"
 msgid ""
 "Error while removing mail <numid>%1</numid> of <resource>%2</resource>: "
 "<message>%3</message>"
 msgstr ""
 
-#: account.cpp:1786
+#: account.cpp:1712
 msgctxt "@info error message: we could not download a mail"
 msgid ""
 "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>"
 "%2</numid>."
 msgstr ""
 
-#: account.cpp:1794 account.cpp:1936
+#: account.cpp:1720 account.cpp:1862
 msgctxt "@info error message: we could not download a mail"
 msgid ""
 "Error while downloading mail <numid>%1</numid> of <resource>%2</resource>: "
 "<message>%3</message>"
 msgstr ""
 
-#: account.cpp:1928
+#: account.cpp:1854
 msgctxt "@info error message: we could not download a mail"
 msgid ""
 "<resource>%1</resource> has not sent a answer after retrieve of mail <numid>%"
 "2</numid>."
 msgstr ""
 
-#: account.cpp:2153
+#: account.cpp:2079
 msgctxt ""
 "@info error message: writing a mail into a mailbox: this is not a mail box"
 msgid "<filename>%1</filename> is not a mailbox."
 msgstr ""
 
-#: account.cpp:2168
+#: account.cpp:2094
 msgctxt "@info error message"
 msgid ""
 "Can't read the hostname of your computer. But KShowmail need it to write a "
 "mail into the mailbox."
 msgstr ""
 
-#: account.cpp:2192
+#: account.cpp:2118
 msgctxt "@info error message: we could not write a mail into a mailbox"
 msgid "Could not file a mail to <filename>%1</filename>."
 msgstr ""
 
-#: account.cpp:2203
+#: account.cpp:2129
 msgctxt "@info error message: error during writing a mail into a mailbox"
 msgid ""
 "Could not move a mail from <filename>%1</filename> to <filename>%2</"
 "filename>."
 msgstr ""
 
-#: account.cpp:2244
+#: account.cpp:2170
 msgctxt "@info"
 msgid ""
 "You want to check your mails for spam, but SpamAssassin is not running.<nl/"
 ">KShowmail skips the spam check."
 msgstr ""
 
-#: account.cpp:2244
+#: account.cpp:2170
 msgctxt "@title:window"
 msgid "SpamAssassin is not running"
 msgstr ""
 
-#: account.cpp:2347
+#: account.cpp:2273
 msgctxt "@info error message: general SSL error"
 msgid "SSL error: <message>%1</message><nl/>Do you want to continue?"
 msgstr ""
 
-#: account.cpp:2348
+#: account.cpp:2274
 msgctxt "@title:window"
 msgid "SSL-Error - %1"
 msgstr ""
 
-#: account.cpp:2443
+#: account.cpp:2369
 msgctxt "@info error message"
 msgid "Timeout"
 msgstr ""
 
-#: account.cpp:2451
+#: account.cpp:2377
 msgctxt "@info the task was canceled by user"
 msgid "Task canceled"
 msgstr ""
 
-#: account.cpp:2501
+#: account.cpp:2427
 msgctxt "@info error message: this server doesn't support secure login"
 msgid ""
 "Account <resource>%1</resource>: This server doesn't provide a safety login "
@@ -1310,44 +1310,46 @@ msgctxt "@label:listbox list of deleted mails"
 msgid "Deleted Mails:"
 msgstr ""
 
-#: filterlogview.cpp:45 filterlogview.cpp:74 mailviewmodel.cpp:137
-msgctxt "@title:column send date"
-msgid "Date"
-msgstr ""
-
-#: filterlogview.cpp:46 filterlogview.cpp:75
-msgctxt "@title:column sender of the mail"
-msgid "Sender"
-msgstr ""
-
-#: filterlogview.cpp:47 filterlogview.cpp:76
-msgctxt "@title:column account name"
-msgid "Account"
-msgstr ""
-
-#: filterlogview.cpp:48 filterlogview.cpp:78 mailviewmodel.cpp:136
-msgctxt "@title:column mail subject"
-msgid "Subject"
-msgstr ""
-
-#: filterlogview.cpp:58
+#: filterlogview.cpp:49
 msgctxt "@info:tooltip"
 msgid "Clear the list of deleted mails"
 msgstr ""
 
-#: filterlogview.cpp:67
+#: filterlogview.cpp:58
 msgctxt "@label:listbox list of moved mails (written into mailboxes)"
 msgid "Moved Mails:"
 msgstr ""
 
-#: filterlogview.cpp:77
-msgctxt "@title:column name of the mailbox where the mail was written"
-msgid "Moved To"
-msgstr ""
-
-#: filterlogview.cpp:85
+#: filterlogview.cpp:69
 msgctxt "@info:tooltip"
 msgid "Clear the list of moved mails"
+msgstr ""
+
+#: filterlogviewdeletedmodel.cpp:103 filterlogviewmovedmodel.cpp:104
+#: mailviewmodel.cpp:137
+msgctxt "@title:column send date"
+msgid "Date"
+msgstr ""
+
+#: filterlogviewdeletedmodel.cpp:104 filterlogviewmovedmodel.cpp:105
+msgctxt "@title:column sender of the mail"
+msgid "Sender"
+msgstr ""
+
+#: filterlogviewdeletedmodel.cpp:105 filterlogviewmovedmodel.cpp:106
+msgctxt "@title:column account name"
+msgid "Account"
+msgstr ""
+
+#: filterlogviewdeletedmodel.cpp:106 filterlogviewmovedmodel.cpp:108
+#: mailviewmodel.cpp:136
+msgctxt "@title:column mail subject"
+msgid "Subject"
+msgstr ""
+
+#: filterlogviewmovedmodel.cpp:107
+msgctxt "@title:column name of the mailbox where the mail was written"
+msgid "Moved To"
 msgstr ""
 
 #: filtersetupdialog.cpp:30
