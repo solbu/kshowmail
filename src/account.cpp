@@ -390,7 +390,11 @@ void Account::closeConnection()
   {
     kdDebug() << "Close Connection: " << getName() << endl;
 
+    socket->flush();
     socket->disconnectFromHost();
+    if( socket->state() != KTcpSocket::UnconnectedState )
+      socket->waitForDisconnected();
+    socket->reset();
 
     //we try to close up to 5 times
     int nrTry = 0;
@@ -405,19 +409,21 @@ void Account::initBeforeConnect()
 {
 
   //we instance a new socket because sometimes the old doesn't disconnect correctly
-  if( !socket.isNull() ) {
+//   if( !socket.isNull() ) {
+//
+//     disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
+//     disconnect( socket, SIGNAL( error( KTcpSocket::Error ) ), 0, 0 );
+//     disconnect( socket, SIGNAL( connected() ), 0, 0 );
+//     disconnect( socket, SIGNAL( hostFound() ), 0, 0 );
+//     disconnect( socket, SIGNAL( sslErrors(QList<KSslError>)), 0, 0 );
+//
+//     delete socket;
+//   }
 
-    disconnect( socket, SIGNAL( readyRead() ), 0, 0 );
-    disconnect( socket, SIGNAL( error( KTcpSocket::Error ) ), 0, 0 );
-    disconnect( socket, SIGNAL( connected() ), 0, 0 );
-    disconnect( socket, SIGNAL( hostFound() ), 0, 0 );
-    disconnect( socket, SIGNAL( sslErrors(QList<KSslError>)), 0, 0 );
-
-    delete socket;
-  }
 
   //create TCP-Socket
-  socket = new KTcpSocket( this );
+  if( socket.isNull() )
+    socket = new KTcpSocket( this );
 
   //connect the socket with the slots
   connect( socket, SIGNAL( error( KTcpSocket::Error ) ), this, SLOT( slotSocketError( KTcpSocket::Error ) ) );
@@ -702,7 +708,6 @@ void Account::sendCommand( const QString& command )
   QByteArray data;
   data.append( command );
   data.append( "\n" );
-
 
   //send it
   //qint64 writtenBytes = socket->write( data );
