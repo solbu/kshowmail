@@ -545,6 +545,7 @@ void Account::handleError( QString error )
   mailsToDownload.clear();
   mailsToShow.clear();
 
+
 }
 
 QStringList Account::readfromSocket( bool singleLine )
@@ -971,7 +972,10 @@ void Account::slotLoginUserResponse()
   if( !isPositiveServerMessage( response ) )
   {
     //the server has not accepted the user
-    handleError( i18nc( "@info error message", "Login has failed. Error message is: <message>%1</message>", removeStatusIndicator( response.first() ) ) );
+    handleError( i18nc( "@info error message", "Login has failed. Maybe your user name is invalid. Error message is: <message>%1</message>", removeStatusIndicator( response.first() ) ) );
+    //reload account settings to clear the invalid password
+    load();
+
     return;
   }
 
@@ -1005,7 +1009,9 @@ void Account::slotLoginPasswdResponse()
   if( !isPositiveServerMessage( response ) )
   {
     //the server has not accepted the password
-    handleError( i18nc( "@info error message", "Login has failed. Error message is: <message>%1</message>", removeStatusIndicator( response.first() ) ) );
+    handleError( i18nc( "@info error message", "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message>", removeStatusIndicator( response.first() ) ) );
+    //reload account settings to clear the invalid password
+    load();
     return;
   }
 
@@ -1079,7 +1085,9 @@ void Account::slotLoginApopResponse()
     }
     else
     {
-      handleError( i18nc( "@info error message", "Login has failed. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>", removeStatusIndicator( response.first() ) ) );
+      handleError( i18nc( "@info error message", "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>", removeStatusIndicator( response.first() ) ) );
+      //reload account settings to clear the invalid password
+      load();
       return;
     }
   }
