@@ -123,6 +123,11 @@ Q_OBJECT
     QCheckBox* chkAutomaticRefresh;
 
     /**
+     * Check box to select whether the received mail headers will be stored at exit and reload at start
+     */
+    QCheckBox* chkStoreHeaders;
+
+    /**
      * Spin box to set the initial timer.
      */
     QSpinBox* spbInitial;

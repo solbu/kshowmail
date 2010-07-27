@@ -44,6 +44,7 @@ namespace Constants
   #define DEFAULT_SHOW_CONNECTION_ERRORS  true
   #define DEFAULT_KEEP_NEW                false
   #define DEFAULT_AUTO_REFRESH            false
+  #define DEFAULT_STORE_HEADERS           false
 
   #define DEFAULT_INITIAL_TIME    5
   #define DEFAULT_INTERVAL_TIME   5
@@ -112,7 +113,7 @@ namespace Constants
   #define DEFAULT_WIDTH_LOGVIEW_MOVED_ACCOUNT 80
   #define DEFAULT_WIDTH_LOGVIEW_MOVED_MAILBOX 80
 
-  
+
 
   //account defaults
   #define DEFAULT_ACCOUNT_NAME ""
@@ -220,6 +221,7 @@ namespace Constants
   #define CONFIG_ENTRY_INTERVAL_TIME            "IntervalTime"
   #define CONFIG_ENTRY_TIMEOUT_TIME             "TimeoutTime"
   #define CONFIG_ENTRY_AUTO_REFRESH             "AutomaticRefresh"
+  #define CONFIG_ENTRY_STORE_HEADERS            "storeHeaders"
 
   #define CONFIG_GROUP_ACTIONS                "Actions"
   #define CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW   "showAlertMessageIfNewMail"
@@ -235,7 +237,7 @@ namespace Constants
   #define CONFIG_GROUP_VIEW                "View"
   #define CONFIG_ENTRY_VIEW_USE_HTML       "useHTML"
   #define CONFIG_ENTRY_VIEW_MAIN_WINDOW_SPLITTER "MainWindowSplitter"
-  
+
   #define CONFIG_VALUE_SORT_ORDER_ASCENDING				"asc"
   #define CONFIG_VALUE_SORT_ORDER_DESCENDING      "desc"
 
@@ -404,7 +406,7 @@ namespace Constants
   #define CONFIG_ENTRY_SORT_COLUMN_LOGVIEW_MOVED      "sortColumnLogViewMoved"
   #define CONFIG_ENTRY_SORT_ORDER_LOGVIEW_DELETED     "sortOrderLogViewDeleted"
   #define CONFIG_ENTRY_SORT_ORDER_LOGVIEW_MOVED       "sortOrderLogViewMoved"
-  
+
 
   //Status Bar
   #define STATUSBAR_FIELD_STATE         1

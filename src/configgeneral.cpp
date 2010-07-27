@@ -69,7 +69,10 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   chkKeepNew->setToolTip( i18n( "Keep mail as new until termination" ) );
   layMainTop->addWidget( chkKeepNew, 2, 0 );
 
-
+  chkStoreHeaders = new QCheckBox( i18n( "Store fetched headers" ) );
+  chkStoreHeaders->setToolTip( i18n( "If checked, the fetched mail headers will be stored if you exit Kshowmail.\nAt the next start these headers will be loaded and shown until the next refresh.") );
+  layMainTop->addWidget( chkStoreHeaders, 2, 1 );
+  chkStoreHeaders->setEnabled( false );
 
   chkAutomaticRefresh = new QCheckBox( i18n( "Automatic refresh" ) );
   chkAutomaticRefresh->setToolTip( i18n( "Run refreshes of the mail list automatically") );
@@ -120,6 +123,7 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   connect( chkCloseToTray, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( chkShowConnectionErrors, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( chkKeepNew, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
+  connect( chkStoreHeaders, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
   connect( spbInitial, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( spbInterval, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( spbTimeout, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
@@ -150,6 +154,7 @@ void ConfigGeneral::load( )
   chkCloseToTray->setChecked( configGeneral->readEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, DEFAULT_CLOSE_TO_TRAY ) );
   chkShowConnectionErrors->setChecked( configGeneral->readEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, DEFAULT_SHOW_CONNECTION_ERRORS ) );
   chkKeepNew->setChecked( configGeneral->readEntry( CONFIG_ENTRY_KEEP_NEW, DEFAULT_KEEP_NEW ) );
+  chkStoreHeaders->setChecked( configGeneral->readEntry( CONFIG_ENTRY_STORE_HEADERS, DEFAULT_STORE_HEADERS ) );
 
 
   chkAutomaticRefresh->setChecked( configGeneral->readEntry( CONFIG_ENTRY_AUTO_REFRESH, DEFAULT_AUTO_REFRESH ) );
@@ -167,6 +172,7 @@ void ConfigGeneral::defaults( )
   chkCloseToTray->setChecked( DEFAULT_CLOSE_TO_TRAY );
   chkShowConnectionErrors->setChecked( DEFAULT_SHOW_CONNECTION_ERRORS );
   chkKeepNew->setChecked( DEFAULT_KEEP_NEW );
+  chkStoreHeaders->setCheckable( DEFAULT_STORE_HEADERS );
 
   chkAutomaticRefresh->setChecked( DEFAULT_AUTO_REFRESH );
   slotAutomaticRefreshChanged( chkAutomaticRefresh->isChecked() );
@@ -185,6 +191,7 @@ void ConfigGeneral::save( )
   configGeneral->writeEntry( CONFIG_ENTRY_CLOSE_TO_TRAY, chkCloseToTray->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_SHOW_CONNECTION_ERRORS, chkShowConnectionErrors->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_KEEP_NEW, chkKeepNew->isChecked() );
+  configGeneral->writeEntry( CONFIG_ENTRY_STORE_HEADERS, chkStoreHeaders->isChecked() );
   configGeneral->writeEntry( CONFIG_ENTRY_INITIAL_TIME, spbInitial->value() );
   configGeneral->writeEntry( CONFIG_ENTRY_INTERVAL_TIME, spbInterval->value() );
   configGeneral->writeEntry( CONFIG_ENTRY_TIMEOUT_TIME, spbTimeout->value() );
