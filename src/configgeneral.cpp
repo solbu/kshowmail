@@ -72,7 +72,6 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   chkStoreHeaders = new QCheckBox( i18n( "Store fetched headers" ) );
   chkStoreHeaders->setToolTip( i18n( "If checked, the fetched mail headers will be stored if you exit Kshowmail.\nAt the next start these headers will be loaded and shown until the next refresh.") );
   layMainTop->addWidget( chkStoreHeaders, 2, 1 );
-  chkStoreHeaders->setEnabled( false );
 
   chkAutomaticRefresh = new QCheckBox( i18n( "Automatic refresh" ) );
   chkAutomaticRefresh->setToolTip( i18n( "Run refreshes of the mail list automatically") );

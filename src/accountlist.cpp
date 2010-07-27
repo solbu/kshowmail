@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 AccountList::AccountList( QObject* parent ) : QObject( parent )
 {
   init();
-	
+
 }
 
 AccountList::~AccountList(){}
@@ -36,7 +36,7 @@ Account* AccountList::addAccount( const QString& name )
   connect( acc, SIGNAL( sigMessageWindowClosed() ), this, SLOT( slotMessageWindowClosed() ) );
   connect( acc, SIGNAL( sigDeleteReady(QString) ), this, SLOT( slotCheckDeletionState(QString) ) );
   connect( acc, SIGNAL( sigShowBodiesReady(QString) ), this, SLOT( slotCheckShowBodiesState(QString) ) );
-	
+
 	//append it to the list
 	accounts.append( acc );
 
@@ -106,15 +106,15 @@ void AccountList::loadSetup()
       addAccount( accName );
     }
   }
-	
+
   //load the setup of all accounts
   iter = accounts.begin();
   while( iter != accounts.end() )
   {
     Account* acc = *iter;
-		
+
 		acc->load();
-		
+
 		iter++;
   }
 
@@ -161,7 +161,7 @@ void AccountList::refreshMailLists( FilterLog* log )
   for( iter = accounts.constBegin(); iter != accounts.constEnd(); ++iter )
   {
     QPointer<Account> account = *iter;
-    
+
     //insert item
     accountRefreshMap.insert( account->getName(), true );
   }
@@ -273,7 +273,7 @@ void AccountList::deleteMails()
   {
     //get Account
     QPointer<Account> account = itAcc.next();
-    
+
     //insert item
     accountDeletionMap.insert( account->getName(), true );
 
@@ -289,7 +289,7 @@ void AccountList::deleteMails()
     account->deleteMails();
   }
 
-  
+
 }
 
 void AccountList::slotCheckDeletionState( QString account )
@@ -411,7 +411,7 @@ void AccountList::refreshFilterSetup( )
 }
 
 
-void AccountList::saveOptions ()
+void AccountList::saveMails ()
 {
   //create XML document
   QDomDocument doc( "KShowmail" );
@@ -429,7 +429,7 @@ void AccountList::saveOptions ()
   while( it.hasNext() )
   {
     QPointer<Account> account = it.next();
-    
+
     //save mails
     QDomElement accElem = doc.createElement( QString( ACCOUNT_ELEMENT ) + QString( "%1" ).arg( i++ ) );
     account->saveOptions( doc, accElem ); //account saves the mails into given XML document and the setup into the application config file
@@ -454,7 +454,7 @@ void AccountList::saveOptions ()
   if( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
   {
     kdError() << "Couldn't save mail cache. " << file.errorString() << endl;
-    return;    
+    return;
   }
 
   //write data
@@ -464,7 +464,7 @@ void AccountList::saveOptions ()
 
   //close file
   file.close();
-  
+
 }
 
 void AccountList::showMails()
@@ -538,7 +538,7 @@ int AccountList::getNumberNewMails( )
   while( it.hasNext() )
   {
     QPointer<Account> account = it.next();
-    
+
     if( account->isActive() )
       number += account->getNumberNewMails();
 
@@ -590,9 +590,9 @@ void AccountList::readStoredMails( )
     Account* account = getAccount( accName );
 
 		if( account != NULL ) {
-		
+
 			//order the account to read its stored mails
-			account->readStoredMails( accElem );		
+			account->readStoredMails( accElem );
 		}
 
     //get next account node
@@ -610,7 +610,7 @@ Account* AccountList::getAccount( QString name ) const {
   while( it.hasNext() )
   {
     QPointer<Account> account = it.next();
-    
+
     if( account->getName() == name )
       return account;
 
@@ -632,15 +632,15 @@ QList<QPointer<Account> > AccountList::getAllAccounts() const
 QList<Mail> AccountList::getAllMails() const
 {
 	QList<Mail> listMails;
-	
+
 	QListIterator<QPointer<Account> > itAcc( accounts );
 	while( itAcc.hasNext() ) {
-	
+
 		QPointer<Account> acc = itAcc.next();
-		
+
 		listMails.append( acc->getAllMails() );
 	}
-	
+
 	return listMails;
 }
 

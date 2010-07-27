@@ -50,32 +50,32 @@ class Account;
 class AccountList : public QObject
 {
 	Q_OBJECT
-	
+
 	public:
-		
+
 		/**
 		 * @brief Constructor
 		 * @param parent parent object
 		 */
 		AccountList( QObject* parent );
-		
+
 		/**
 		 * @brief Destructor
 		 */
 		~AccountList();
-		
+
 		/**
 		 * @brief Creates an account and append it to the list
 		 * @param name account name
      * @return pointer to the added account
 		 */
 		Account* addAccount( const QString& name );
-		
+
 		/**
 		 * @brief Prints the accounts to stdout
 		 */
 		void print() const;
-		
+
 		/**
 		 * @brief Returns the number of accounts
 		 * @return number of accounts
@@ -88,7 +88,7 @@ class AccountList : public QObject
      * @return pointer to the requested account
      */
     Account* getAccount( int index ) const;
-		
+
 		/**
 		 * @brief Returns the account with the given name.
 		 * @param name account name
@@ -187,16 +187,15 @@ class AccountList : public QObject
     void refreshFilterSetup();
 
     /**
-     * @brief Saves the current mails data and the account setups.
-     * 
+     * @brief Saves the current mails data.
+     *
      * The mails data will be saved into an XML file (kshowmail.xml).
-     * The account setups will be saved into the application config file (kshowmailrc).
      */
-    void saveOptions();
+    void saveMails();
 
     /**
      * @brief Downloads and shows the selected mails.
-     * 
+     *
      * You need to call Account::addMailToShow() before.
      */
     void showMails();
@@ -214,7 +213,7 @@ class AccountList : public QObject
      * At application start we read this file to identify mails which are not new at first refresh.
      */
     void readStoredMails();
-		
+
 		/**
 		 * @brief Returns a list which contains the pointers to all mails.
 		 * @return all mails
@@ -225,10 +224,10 @@ class AccountList : public QObject
      * @brief Cancels all running tasks.
      */
     void cancelTasks();
-		
-    
+
+
 	private:
-		
+
 		/**
 		 * @brief this list contains the account objects
 		 */
@@ -289,7 +288,7 @@ class AccountList : public QObject
      * @brief TRUE - mails keep new until termination
      */
     bool keepMailsNew;
-    
+
 
   protected:
 
@@ -394,7 +393,7 @@ class AccountList : public QObject
      */
     void sigShowBodiesReady();
 
-    
+
 };
 
 #endif // ACCOUNTLIST_H

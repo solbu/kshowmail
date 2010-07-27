@@ -79,11 +79,13 @@ KShowmail::KShowmail() : KXmlGuiWindow()
 	accounts->loadSetup();
   view->loadSetup();
 
+  //read stored mails
+  if( configGeneral->readEntry( CONFIG_ENTRY_STORE_HEADERS, DEFAULT_STORE_HEADERS ) ) {
+    accounts->readStoredMails();
+  }
+
   //refresh the view
   view->refreshViews( mailSelectModel );
-
-	//read stored mails
-	//accounts->readStoredMails();
 
   //this is to play the new mail sound
   mediaObject = new Phonon::MediaObject( this );
@@ -451,11 +453,18 @@ void KShowmail::slotFileQuit() {
 
 bool KShowmail::queryClose() {
 
+  //get general config
+  KConfigGroup* confGeneral = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_GENERAL );
+
   //save setup
   fLog.save();
   config->sync();
-  accounts->saveOptions();
-	view->saveSetup();
+
+  if( confGeneral->readEntry( CONFIG_ENTRY_STORE_HEADERS, DEFAULT_STORE_HEADERS ) ) {
+    accounts->saveMails();
+  }
+
+  view->saveSetup();
 
   //force exit
   if( forceExit ) {
@@ -551,6 +560,14 @@ void KShowmail::slotRefreshReady()
 
     handleNoNewMails();
   }
+
+  //store mail headers
+  KConfigGroup* confGeneral = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_GENERAL );
+
+  if( confGeneral->readEntry( CONFIG_ENTRY_STORE_HEADERS, DEFAULT_STORE_HEADERS ) ) {
+    accounts->saveMails();
+  }
+
 
   //start the refresh timer
   startAutomaticRefresh();
