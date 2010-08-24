@@ -31,6 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <ktextedit.h>
 #include <kurl.h>
 #include <kapplication.h>
+#include <KIcon>
+#include <KToolInvocation>
 
 //KShowmail headers
 #include "constants.h"
@@ -64,6 +66,38 @@ public:
    * Destructor
    */
   ~ShowMailDialog();
+
+private:
+
+  /**
+   * @brief Activated when a button is clicked.
+   *
+   * Overloaded methode of KDialog.
+   * Hallo
+   */
+  void slotButtonClicked( int button );
+
+  /**
+   * mail subject
+   * @see ShowMailDialog
+   * @see slotButtonClicked
+   */
+  QString m_subject;
+
+  /**
+   * mail body
+   * @see ShowMailDialog
+   * @see slotButtonClicked
+   */
+  QStringList m_body;
+
+  /**
+   * mail sender
+   * @see ShowMailDialog
+   * @see slotButtonClicked
+   */
+  QString m_sender;
+
 
 };
 

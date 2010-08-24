@@ -20,6 +20,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ShowMailDialog::ShowMailDialog( QWidget * parent, QString caption, bool allowHTML, QString sender, QString date, QString size, QString subject, QStringList body ) :
     KDialog( parent )
 {
+
+  //set buttons
+  //we need OK, CANCEL and the USER1 button
+  setButtons( Ok | Cancel | User1 );
+
+  //the User1 button we use to reply a mail
+  setButtonText( User1, i18nc( "@action:button to reply a mail", "Reply") );
+  setButtonIcon( User1, KIcon( "mail-reply-sender" ) );
+  setButtonToolTip( User1, i18nc( "@info:tooltip", "Reply to sender" ) );
+
+  //save some things about the mail to reply it
+  m_subject = subject;
+  m_sender = sender;
+  m_body = body;
+
   //create main widget
   QWidget* mainWidget = new QWidget( this );
   setMainWidget( mainWidget );
@@ -84,5 +99,25 @@ ShowMailDialog::ShowMailDialog( QWidget * parent, QString caption, bool allowHTM
 ShowMailDialog::~ShowMailDialog()
 {
 }
+
+void ShowMailDialog::slotButtonClicked(int button)
+{
+  //Reply button
+  //starts the standard mailer to compose a reply of this mail
+  if( button == User1 ) {
+
+    KToolInvocation::invokeMailer( m_sender,
+                                   "",
+                                   "",
+                                   "Re: " + m_subject,
+                                   m_body.join( "\n" )
+    );
+
+
+  }
+
+    KDialog::slotButtonClicked(button);
+}
+
 
 #include "showmaildialog.moc"
