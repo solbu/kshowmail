@@ -106,11 +106,16 @@ void ShowMailDialog::slotButtonClicked(int button)
   //starts the standard mailer to compose a reply of this mail
   if( button == User1 ) {
 
+    QStringList newBody;
+    foreach( QString line,  m_body ) {
+      newBody.append( line.insert( 0, "> ") );
+    }
+
     KToolInvocation::invokeMailer( m_sender,
                                    "",
                                    "",
                                    "Re: " + m_subject,
-                                   m_body.join( "\n" )
+                                   newBody.join( "\n" )
     );
 
 
@@ -118,6 +123,5 @@ void ShowMailDialog::slotButtonClicked(int button)
 
     KDialog::slotButtonClicked(button);
 }
-
 
 #include "showmaildialog.moc"
