@@ -118,7 +118,7 @@ class MailList : public QObject
      * @param unid UID
      * @param header mail header
      */
-    void setHeader( QString unid, QStringList header );    
+    void setHeader( QString unid, QStringList header );
 
     /**
      * Returns a list of the UIDs of all old mails.
@@ -216,9 +216,10 @@ class MailList : public QObject
      * @param body the whole mail (including header)
      * @param number number of the downloaded mail
      * @param preferHTML decode HTML part if present
+     * @param isHTML will be set on true, if the returned body is HTML formatted; otherwise false
      * @return decoded mail body
      */
-    QStringList decodeMailBody( const QStringList& body, int number, bool preferHTML ) const;
+    QStringList decodeMailBody( const QStringList& body, int number, bool preferHTML, bool& isHTML ) const;
 
     /**
      * Writes the mail into the Move Log.

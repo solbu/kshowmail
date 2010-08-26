@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "showmaildialog.h"
 
-ShowMailDialog::ShowMailDialog( QWidget * parent, QString caption, bool allowHTML, QString sender, QString date, QString size, QString subject, QStringList body ) :
+ShowMailDialog::ShowMailDialog( QWidget * parent, QString caption, bool allowHTML, bool isHTML, QString sender, QString date, QString size, QString subject, QStringList body ) :
     KDialog( parent )
 {
 
@@ -88,6 +88,8 @@ ShowMailDialog::ShowMailDialog( QWidget * parent, QString caption, bool allowHTM
 
   if( !allowHTML )    //set HTML view or not
     txtBody->setPlainText( body.join( "\n" ) );
+  else if( isHTML )
+    txtBody->setHtml( body.join( "\n" ) );
   else
     txtBody->setText( body.join( "\n" ) );
   txtBody->setMinimumSize( WIDTH_VIEW_MAILBODY, HEIGHT_VIEW_MAILBODY );

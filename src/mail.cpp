@@ -25,7 +25,7 @@ Mail::Mail( long number, const QString& unid, bool isNew, QPointer<Account> acco
   accountName = acc->getName();
   setNumber( number );
   setNew( isNew );
-	
+
 	init();
 
 }
@@ -234,7 +234,7 @@ QString Mail::decodeRfc2047( const QString& text ) const
   {
     //to get the codec for RFC2047B you must pass a "b"
     codec = KMime::Codec::codecForName( "b" );
-    
+
   }
   else
   {
@@ -250,15 +250,15 @@ QString Mail::decodeRfc2047( const QString& text ) const
       return text;
     }
   }
-  
-  
+
+
   if( codec == NULL )
   {
     kdDebug() << "No codec available." << endl;
     return text;
   }
 
-  
+
   KMime::Decoder *decoder = codec->makeDecoder();
 
   //look for the encoded string parts
@@ -301,11 +301,11 @@ QString Mail::decodeRfc2047( const QString& text ) const
 
       //extract the charset string between the first and second question mark
       QString charset = encodedPart.mid( firstQuestionMark + 1, secondQuestionMark - firstQuestionMark - 1 );
-      
-      //extract the text between the thirth and fourth question mark      
+
+      //extract the text between the thirth and fourth question mark
       encodedPart = encodedPart.mid( thirthQuestionMark + 1, fourthQuestionMark - thirthQuestionMark - 1 );
 
-      
+
 
       //decode it
 
@@ -344,7 +344,7 @@ QString Mail::decodeRfc2047( const QString& text ) const
 
       //append the decoded part to the target string
       decodedText.append( out );
-      
+
     }
   }
 
@@ -448,16 +448,21 @@ bool Mail::isMarkedByFilter() const
   return markedByFilter;
 }
 
-QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) const
+QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML, bool& isHTML ) const
 {
+
   QString charset;    //charset of the content
   QString encoding;   //content transfer encoding
   QStringList decodedBody;
+
+  //only set it on true, if the returned part is HTML without a doubt
+  isHTML = false;
 
   //get boundary that is separating the parts of a multipart message
   //if the header doesn't contain a boundary attribute, this messsage
   //has just one part
   QString boundary = getBoundary();
+
 
   //process body subject to it is a multipart messsage or not
   if( boundary.isEmpty() )
@@ -471,6 +476,7 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
     //header from the message
     if( posBlankLine != -1 && !body.isEmpty() && body.size() > posBlankLine + 1 ) {
       decodedBody = body.mid( posBlankLine + 1 );
+      decodedBody = trim( decodedBody );
     }
 
 
@@ -480,7 +486,10 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
 
     //get transfer encoding type from the header
     encoding = getTransferEncodingFromHeader();
-    
+
+    //set HTML flag
+    isHTML = getContent().contains( "html" ) && preferHTML;
+
   }
   else
   {
@@ -500,28 +509,35 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
       //truncate body; the found blank line is separating the
       //header from the message
       if( posBlankLine != -1 && !body.isEmpty() && body.size() > posBlankLine + 1 ) {
-        decodedBody = body.mid( posBlankLine + 1 );
+        decodedBody = trim( body.mid( posBlankLine + 1 ) );
       }
 
       if( decodedBody.isEmpty() ) return body;
-      
+
       //split the body into its parts
       QList<QStringList> bodyParts;
       QListIterator<QString> itBody( decodedBody );
 
       //in the body the boundary has "--" in front
       boundary = "--" + boundary;
-      
+
       //the first line must be the boundary
-      QString line = itBody.next();
-      if( line != boundary ) return body;
+      //QString line = itBody.next();
+      //if( line != boundary ) return body;
+
+      //search for the first boundary
+      bool boundFound = false;
+      while( !boundFound && itBody.hasNext() ) {
+        QString line = itBody.next();
+        boundFound = line.startsWith( boundary );
+      }
 
       QStringList part; //contains the current part
 
       while( itBody.hasNext() ) {
 
         //get next line
-        line = itBody.next();
+        QString line = itBody.next();
 
         if( !line.startsWith( boundary ) ) {
 
@@ -532,11 +548,13 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
 
           //it is a boundary
           //append the part to the part list and create a new (empty) part
-          bodyParts.append( part );
+          bodyParts.append( trim( part ) );
           part = QStringList();
         }
-        
+
       }
+
+      if( bodyParts.isEmpty() ) return body;
 
       //do we want to take the HTML part?
       bool takeHTML = ( hasHTML && preferHTML ) || !hasPlaintText;
@@ -559,6 +577,9 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
           //found!!
           decodedBody = part;
           found = true;
+
+          //it is really HTML?
+          if( takeHTML ) isHTML = true;
         }
       }
 
@@ -569,15 +590,19 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
       charset = getCharset( decodedBody );
       encoding = getTransferEncoding( decodedBody );
 
+
       //we just need the text after the first blank line
       posBlankLine = decodedBody.indexOf( "" );
       if( posBlankLine != -1 && !decodedBody.isEmpty() && decodedBody.size() > posBlankLine + 1 ) {
-        decodedBody = decodedBody.mid( posBlankLine + 1 );
+        decodedBody = trim( decodedBody.mid( posBlankLine + 1 ) );
       }
 
       if( decodedBody.isEmpty() ) return body;
 
 
+    } else {
+      //No plain text or html found
+      return body;
     }
   }
 
@@ -643,7 +668,7 @@ QStringList Mail::decodeMailBody( const QStringList& body, bool preferHTML ) con
 
     //get codec
     QTextCodec* codec = QTextCodec::codecForName( charset.toAscii() );
-    
+
     if( codec != NULL )
     {
       joinedBody = codec->toUnicode( joinedBody.toAscii() );
@@ -704,10 +729,20 @@ QString Mail::getCharset( const QStringList& text ) const {
   QString charset;
   const QString TAG( "charset=" );
 
+  //remove all spaces from the text
+  QStringList textWithoutSpaces;
+  QStringListIterator it( text );
+  while( it.hasNext() ) {
+    QString line = it.next();
+    textWithoutSpaces.append( line.remove( ' ' ) );
+  }
+
   //get the line with "charset="
-  QStringList charsets = text.filter( TAG, Qt::CaseInsensitive );
+  QStringList charsets = textWithoutSpaces.filter( TAG, Qt::CaseInsensitive );
   if( charsets.isEmpty() ) return charset;
   QString charsetline = charsets.first();
+
+
 
   //get the position of the first occurrence of "charset="
   int posCharset = charsetline.indexOf( TAG, 0, Qt::CaseInsensitive );
@@ -733,13 +768,28 @@ QString Mail::getCharset( const QStringList& text ) const {
     else
     {
       //if the charset is not quoted
+      //get the start position of the charset
+      int start = posCharset + TAG.length();
+
+      //get all chars after this start position
+      charset = charsetline.mid( start ).trimmed();
+
+      //remove all after a ; or "
+      int posEnd = charset.indexOf( ';' );
+      if( posEnd != -1 ) {
+        charset = charset.left( posEnd );
+      }
+      posEnd = charset.indexOf( '"' );
+      if( posEnd != -1 ) {
+        charset = charset.left( posEnd );
+      }
     }
 
   }
 
   return charset;
 
-  
+
 }
 
 QString Mail::getTransferEncodingFromHeader() const {
@@ -880,3 +930,28 @@ Mail& Mail::operator=( const Mail& other )
   return ( *this );
 
 }
+
+QStringList Mail::trim(QStringList text) const
+{
+  //copy the text
+  QStringList trimmed( text);
+
+  while( trimmed.first().isEmpty() ) {
+    trimmed.removeFirst();
+  }
+
+  while( trimmed.last().isEmpty() ) {
+    trimmed.removeLast();
+  }
+
+  return trimmed;
+}
+
+void Mail::print(QStringList text) const
+{
+  QStringListIterator it( text );
+  while( it.hasNext() ) {
+    kdDebug() << it.next() << endl;
+  }
+}
+

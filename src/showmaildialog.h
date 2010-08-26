@@ -54,13 +54,14 @@ public:
    * @param parent parent of the dialog
    * @param caption the dialog caption
    * @param allowHTML TRUE - allow the dialog to use the HTML in the mail body; FALSE - don't allow
+   * @param isHTML <code>true</code> - the text is really HTML
    * @param sender mail sender
    * @param date date of send
    * @param size mail size
    * @param subject mail subject
    * @param body mail body
    */
-  ShowMailDialog( QWidget* parent, QString caption, bool allowHTML, QString sender, QString date, QString size, QString subject, QStringList body );
+  ShowMailDialog( QWidget* parent, QString caption, bool allowHTML, bool isHTML, QString sender, QString date, QString size, QString subject, QStringList body );
 
   /**
    * Destructor

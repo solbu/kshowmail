@@ -52,10 +52,10 @@ class Mail : public QObject
 {
 
 	Q_OBJECT
-	
+
 	public:
-    
-    
+
+
 		/**
 		 * Constructor
      * @param number number of the mail on the server
@@ -71,7 +71,7 @@ class Mail : public QObject
      * @param mail source mail
      */
     Mail( const Mail& mail );
-		
+
 		/**
 		 * Destructor
 		 */
@@ -82,42 +82,42 @@ class Mail : public QObject
      * @param other other mail
      */
     Mail& operator=( const Mail& other );
-		
+
 		/**
 		 * Sets the size
 		 * @param size mail size (Bytes)
 		 */
 		void setSize( long size );
-		
+
 		/**
 		 * Sets the number.
 		 * @param number the number
 		 */
 		void setNumber( int number );
-		
+
 		/**
 		 * Prints the data of this mail to stdout
 		 */
 		void print() const;
-		
+
 		/**
 		 * Returns the subject
 		 * @return subject
 		 */
 		QString getSubject() const;
-		
+
 		/**
 		 * Returns the UNID.
 		 * @return UNID
 		 */
 		QString getUNID() const;
-		
+
 		/**
 		 * Returns the size of this mail
 		 * @return mail size (Bytes)
 		 */
 		long getSize() const;
-		
+
 		/**
 		 * Returns the number of this mail on the server
 		 * @return number
@@ -143,7 +143,7 @@ class Mail : public QObject
      * @param header the mail header
      */
     void setHeader( const QStringList& header );
-    
+
     /**
      * Returns the header
      * @return mail header
@@ -252,9 +252,10 @@ class Mail : public QObject
      * will be rejected.
      * @param body the encoded mail (including header)
      * @param preferHTML decode HTML part if present
+     * @param isHTML will be set on true, if the returned body is HTML formatted; otherwise false
      * @return decoded mail body
      */
-    QStringList decodeMailBody( const QStringList& body, bool preferHTML ) const;
+    QStringList decodeMailBody( const QStringList& body, bool preferHTML, bool& isHTML ) const;
 
     /**
      * Returns the boundary, if the mail has a multi part body.
@@ -315,27 +316,27 @@ class Mail : public QObject
 
 
 	private:
-		
+
 		/**
 		 * UNID of this mail
 		 */
 		QString unid;
-		
+
 		/**
 		 * Subject
 		 */
 		QString subject;
-		
+
 		/**
 		 * Header
 		 */
 		QStringList header;
-		
+
 		/**
 		 * Size (Bytes)
 		 */
 		long size;
-		
+
 		/**
 		 * Number of this mail on the server
 		 */
@@ -360,7 +361,7 @@ class Mail : public QObject
      * The date on which the mail was sent
      */
     KDateTime sendDate;
-    
+
     /**
      * The content type
      */
@@ -384,7 +385,7 @@ class Mail : public QObject
 
 
 	protected:
-		
+
 		/**
 		 * Initiates the object
 		 */
@@ -429,8 +430,8 @@ class Mail : public QObject
      * @param text body part or header
      * @return charset string
      */
-    QString getCharset( const QStringList& text ) const;    
-		
+    QString getCharset( const QStringList& text ) const;
+
     /**
      * Returns the transfer encoding of the given header or body part.<p>
      * It looks for the transfer encoding tag and returns the string behind this.
@@ -438,6 +439,19 @@ class Mail : public QObject
      * @return charset string
      */
     QString getTransferEncoding( const QStringList& text ) const;
+
+    /**
+     * Removes all empty lines at begin and at end of <em>text</em>
+     * @param text the text which shall be trimmed
+     * @return the text without empty lines at begin and at end
+     */
+    QStringList trim( QStringList text ) const;
+
+    /**
+     * Prints the given text to StdOut.
+     * @param text Text to print
+     */
+    void print( QStringList text ) const;
 
 };
 

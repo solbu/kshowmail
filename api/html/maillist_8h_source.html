@@ -87,7 +87,7 @@
 <a name="l00108"></a>00108 
 <a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#ade533c703877ec74e19e4f938d91f2dc">setHeader</a>( <span class="keywordtype">int</span> number, QStringList header );
 <a name="l00115"></a>00115 
-<a name="l00121"></a>00121     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#ade533c703877ec74e19e4f938d91f2dc">setHeader</a>( QString unid, QStringList header );    
+<a name="l00121"></a>00121     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#ade533c703877ec74e19e4f938d91f2dc">setHeader</a>( QString unid, QStringList header );
 <a name="l00122"></a>00122 
 <a name="l00127"></a>00127     QStringList <a class="code" href="classMailList.html#a8de5a395485ac8684dc5fa1a6b9987a2">getUIDsOfOldMails</a>();
 <a name="l00128"></a>00128 
@@ -113,34 +113,34 @@
 <a name="l00201"></a>00201 
 <a name="l00207"></a>00207     QString <a class="code" href="classMailList.html#ac2b7faf31aa428f892f81543c9f7b054">getCharsetFromHeaderOf</a>( <span class="keywordtype">int</span> number ) <span class="keyword">const</span>;
 <a name="l00208"></a>00208 
-<a name="l00221"></a>00221     QStringList <a class="code" href="classMailList.html#a90313e69a5dc346b2d9cd840d2795bf1">decodeMailBody</a>( <span class="keyword">const</span> QStringList&amp; body, <span class="keywordtype">int</span> number, <span class="keywordtype">bool</span> preferHTML ) <span class="keyword">const</span>;
-<a name="l00222"></a>00222 
-<a name="l00230"></a>00230     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#a9868ac4cc9311eba11f326d8d1c1876e">writeToMoveLog</a>( <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* log, <span class="keywordtype">int</span> number, QString account, QString mailbox );
-<a name="l00231"></a>00231 
-<a name="l00238"></a>00238     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#a5843e955ca33b2c269a89153cc554db9">writeToDeleteLog</a>( <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* log, <span class="keywordtype">int</span> number, QString account );
-<a name="l00239"></a>00239 
-<a name="l00244"></a>00244     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#aff18a93326b5361deb2a1cafbfc86f23">setMarkAtNextViewRefresh</a>( <span class="keywordtype">int</span> number );
-<a name="l00245"></a>00245 
-<a name="l00250"></a>00250     <span class="keywordtype">int</span> <a class="code" href="classMailList.html#a7ccfa7d16852b8b02227e48aaee130f0">getNumberNewMails</a>();
-<a name="l00251"></a>00251 
-<a name="l00256"></a>00256     <span class="keywordtype">long</span> <a class="code" href="classMailList.html#a9e83869411ab50e5a9076510bc308206">getTotalSize</a>();
-<a name="l00257"></a>00257 
-<a name="l00264"></a>00264     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#ade61b5869dd338eb91dd2ca9e63637f2">readStoredMails</a>( QDomElement&amp; parent );
-<a name="l00265"></a>00265 
-<a name="l00270"></a>00270                 QList&lt;Mail&gt; <a class="code" href="classMailList.html#a1d40081c4893d5cc7931faf213f5a368">getAllMails</a>() <span class="keyword">const</span>;
-<a name="l00271"></a>00271 
-<a name="l00272"></a>00272   <span class="keyword">private</span>:
-<a name="l00273"></a>00273 
-<a name="l00277"></a><a class="code" href="classMailList.html#afd84fc8f0655853051cd10c4a92d6588">00277</a>     QList&lt;Mail*&gt; <a class="code" href="classMailList.html#afd84fc8f0655853051cd10c4a92d6588">mails</a>;
-<a name="l00278"></a>00278 
-<a name="l00282"></a><a class="code" href="classMailList.html#aacd96a42ae00d3223cc71dd71563c778">00282</a>     QPointer&lt;Account&gt; <a class="code" href="classMailList.html#aacd96a42ae00d3223cc71dd71563c778">acc</a>;
-<a name="l00283"></a>00283 
+<a name="l00222"></a>00222     QStringList <a class="code" href="classMailList.html#a9cb35c8e50c2d64350c40bf187a1c689">decodeMailBody</a>( <span class="keyword">const</span> QStringList&amp; body, <span class="keywordtype">int</span> number, <span class="keywordtype">bool</span> preferHTML, <span class="keywordtype">bool</span>&amp; isHTML ) <span class="keyword">const</span>;
+<a name="l00223"></a>00223 
+<a name="l00231"></a>00231     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#a9868ac4cc9311eba11f326d8d1c1876e">writeToMoveLog</a>( <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* log, <span class="keywordtype">int</span> number, QString account, QString mailbox );
+<a name="l00232"></a>00232 
+<a name="l00239"></a>00239     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#a5843e955ca33b2c269a89153cc554db9">writeToDeleteLog</a>( <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* log, <span class="keywordtype">int</span> number, QString account );
+<a name="l00240"></a>00240 
+<a name="l00245"></a>00245     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#aff18a93326b5361deb2a1cafbfc86f23">setMarkAtNextViewRefresh</a>( <span class="keywordtype">int</span> number );
+<a name="l00246"></a>00246 
+<a name="l00251"></a>00251     <span class="keywordtype">int</span> <a class="code" href="classMailList.html#a7ccfa7d16852b8b02227e48aaee130f0">getNumberNewMails</a>();
+<a name="l00252"></a>00252 
+<a name="l00257"></a>00257     <span class="keywordtype">long</span> <a class="code" href="classMailList.html#a9e83869411ab50e5a9076510bc308206">getTotalSize</a>();
+<a name="l00258"></a>00258 
+<a name="l00265"></a>00265     <span class="keywordtype">void</span> <a class="code" href="classMailList.html#ade61b5869dd338eb91dd2ca9e63637f2">readStoredMails</a>( QDomElement&amp; parent );
+<a name="l00266"></a>00266 
+<a name="l00271"></a>00271                 QList&lt;Mail&gt; <a class="code" href="classMailList.html#a1d40081c4893d5cc7931faf213f5a368">getAllMails</a>() <span class="keyword">const</span>;
+<a name="l00272"></a>00272 
+<a name="l00273"></a>00273   <span class="keyword">private</span>:
+<a name="l00274"></a>00274 
+<a name="l00278"></a><a class="code" href="classMailList.html#afd84fc8f0655853051cd10c4a92d6588">00278</a>     QList&lt;Mail*&gt; <a class="code" href="classMailList.html#afd84fc8f0655853051cd10c4a92d6588">mails</a>;
+<a name="l00279"></a>00279 
+<a name="l00283"></a><a class="code" href="classMailList.html#aacd96a42ae00d3223cc71dd71563c778">00283</a>     QPointer&lt;Account&gt; <a class="code" href="classMailList.html#aacd96a42ae00d3223cc71dd71563c778">acc</a>;
 <a name="l00284"></a>00284 
-<a name="l00285"></a>00285 };
-<a name="l00286"></a>00286 
-<a name="l00287"></a>00287 <span class="preprocessor">#endif // MAILLIST_H</span>
+<a name="l00285"></a>00285 
+<a name="l00286"></a>00286 };
+<a name="l00287"></a>00287 
+<a name="l00288"></a>00288 <span class="preprocessor">#endif // MAILLIST_H</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Aug 24 19:17:35 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:02 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

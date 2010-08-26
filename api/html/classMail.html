@@ -65,7 +65,7 @@
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a75a86126042d3cb4859dc90d92d8286d">applyHeaderFilter</a> (<a class="el" href="classHeaderFilter.html">HeaderFilter</a> *filter, QString account, QString &amp;mailbox, <a class="el" href="classFilterLog.html">FilterLog</a> *log=NULL)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a83b979d63e95e35b4c8ee20ac533ac3d">save</a> (QDomDocument &amp;doc, QDomElement &amp;parent)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#afd413f7ab35370632cf2efdff34ec6e1">isMarkedByFilter</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a2d002302c55289db64089361d9804cf1">decodeMailBody</a> (const QStringList &amp;body, bool preferHTML) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a431c4f032b31c319e0b1e13310c308b3">decodeMailBody</a> (const QStringList &amp;body, bool preferHTML, bool &amp;isHTML) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a260d3e1a6a0f7d983f01ad8326cc758b">getBoundary</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a4bde1075aad259f138efc31f456e71d0">getCharsetFromHeader</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a3e646bb80f0f17383192e6271be2f806">getTransferEncodingFromHeader</a> () const </td></tr>
@@ -82,6 +82,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Decodes a rfc2047 encoded string.  <a href="#ad502ece96360c816794cb608d6d2ab50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a744bd61d3237be271e28437bc4aa3243">getCharset</a> (const QStringList &amp;text) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a78d1a72fc549c3d4049e6f962720bec7">getTransferEncoding</a> (const QStringList &amp;text) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a33be45a69ab1d52a3efba6fe3421947e">trim</a> (QStringList text) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a81f450be5fa8285a3ca5442d2e9901d6">print</a> (QStringList text) const </td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a573c5b5763cab58782e96ffcc5815a3f">unid</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#ad5c0770ac5b1124a6fff9bdb933a7cbe">subject</a></td></tr>
@@ -298,11 +300,11 @@ markAtViewRefresh </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00772">772</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00822">822</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2d002302c55289db64089361d9804cf1"></a><!-- doxytag: member="Mail::decodeMailBody" ref="a2d002302c55289db64089361d9804cf1" args="(const QStringList &amp;body, bool preferHTML) const " -->
+<a class="anchor" id="a431c4f032b31c319e0b1e13310c308b3"></a><!-- doxytag: member="Mail::decodeMailBody" ref="a431c4f032b31c319e0b1e13310c308b3" args="(const QStringList &amp;body, bool preferHTML, bool &amp;isHTML) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -316,7 +318,13 @@ markAtViewRefresh </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>preferHTML</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>preferHTML</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&nbsp;</td>
+          <td class="paramname"> <em>isHTML</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -331,6 +339,7 @@ markAtViewRefresh </dd></dl>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>body</em>&nbsp;</td><td>the encoded mail (including header) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>preferHTML</em>&nbsp;</td><td>decode HTML part if present </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>isHTML</em>&nbsp;</td><td>will be set on true, if the returned body is HTML formatted; otherwise false </td></tr>
   </table>
   </dd>
 </dl>
@@ -407,7 +416,7 @@ markAtViewRefresh </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>name of the parent account </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMail.html#aff80d2262a601daa4db464c27b8dba27">accountName</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00847">847</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00897">897</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +437,7 @@ markAtViewRefresh </dd></dl>
 <p>Returns the boundary, if the mail has a multi part body. Otherwise it returns an empty string. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>boundary </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00661">661</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00686">686</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +466,7 @@ markAtViewRefresh </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>charset string </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00702">702</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00727">727</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -478,7 +487,7 @@ markAtViewRefresh </dd></dl>
 <p>Returns the char set of the content (e.g. iso-8859-1) from the header. If no char set is denoted, it will returns an empty string. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>charset </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00697">697</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00722">722</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -694,7 +703,7 @@ markAtViewRefresh </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>charset string </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00750">750</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00800">800</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -715,7 +724,7 @@ markAtViewRefresh </dd></dl>
 <p>Returns the transfer encoding string from the header if existing. Otherwise it returns an empty string. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>transfer encoding </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00745">745</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00795">795</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -827,7 +836,34 @@ FALSE - mail is not new </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00852">852</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00902">902</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a81f450be5fa8285a3ca5442d2e9901d6"></a><!-- doxytag: member="Mail::print" ref="a81f450be5fa8285a3ca5442d2e9901d6" args="(QStringList text) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mail::print </td>
+          <td>(</td>
+          <td class="paramtype">QStringList&nbsp;</td>
+          <td class="paramname"> <em>text</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Prints the given text to StdOut. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>Text to print </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00950">950</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -1078,7 +1114,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The mail will be marked at the next view refresh. </p>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00762">762</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00812">812</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -1217,6 +1253,34 @@ FALSE - mail is not new </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a33be45a69ab1d52a3efba6fe3421947e"></a><!-- doxytag: member="Mail::trim" ref="a33be45a69ab1d52a3efba6fe3421947e" args="(QStringList text) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList Mail::trim </td>
+          <td>(</td>
+          <td class="paramtype">QStringList&nbsp;</td>
+          <td class="paramname"> <em>text</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Removes all empty lines at begin and at end of <em>text</em> </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>the text which shall be trimmed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the text without empty lines at begin and at end </dd></dl>
+
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00934">934</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a97a01789aa0735cf4ff560e90c242a88"></a><!-- doxytag: member="Mail::writeToDeleteLog" ref="a97a01789aa0735cf4ff560e90c242a88" args="(FilterLog *log, QString account)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1250,7 +1314,7 @@ FALSE - mail is not new </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00767">767</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00817">817</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -1294,7 +1358,7 @@ FALSE - mail is not new </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00757">757</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00807">807</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -1311,7 +1375,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>It is set to TRUE when the mail is new. </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00347">347</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00348">348</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1327,7 +1391,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Pointer to the parent account </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00378">378</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00379">379</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1343,7 +1407,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Name of the parent account </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00383">383</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00384">384</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1359,7 +1423,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The content type </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00367">367</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00368">368</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1375,7 +1439,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The sender address </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00352">352</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00353">353</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1391,7 +1455,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Header </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00332">332</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00333">333</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1407,7 +1471,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>TRUE - the mail was marked by the filter. It will be set to True by <a class="el" href="classMail.html#a75a86126042d3cb4859dc90d92d8286d">applyHeaderFilter()</a> if the recommend filter action is MARK. </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00373">373</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00374">374</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1423,7 +1487,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Number of this mail on the server </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00342">342</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00343">343</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1439,7 +1503,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The date on which the mail was sent </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00362">362</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00363">363</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1455,7 +1519,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Size (Bytes) </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00337">337</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00338">338</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1471,7 +1535,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Subject </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00327">327</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00328">328</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1487,7 +1551,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The addressee </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00357">357</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00358">358</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1503,7 +1567,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>UNID of this mail </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00322">322</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00323">323</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1512,7 +1576,7 @@ FALSE - mail is not new </dd></dl>
 <li>src/<a class="el" href="mail_8cpp_source.html">mail.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Aug 24 19:17:35 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

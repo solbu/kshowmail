@@ -1755,7 +1755,8 @@ void Account::slotBodyDownloaded()
   QString tdate = mails->getDateOf( currentMail );
   QString tsize = mails->getSizeOf( currentMail );
   QString tsubject = mails->getSubjectOf( currentMail );
-  QStringList body = mails->decodeMailBody( answer, currentMail, allowHTML );
+  bool isHTML;
+  QStringList body = mails->decodeMailBody( answer, currentMail, allowHTML , isHTML );
 
 
 	//emit signal to notify the opening of a window
@@ -1765,7 +1766,7 @@ void Account::slotBodyDownloaded()
   timeoutTimer->stop();
 
   //create and open the window
-  QPointer<ShowMailDialog> dlg = new ShowMailDialog( kapp->activeWindow(), getName(), allowHTML, tsender, tdate, tsize, tsubject, body );
+  QPointer<ShowMailDialog> dlg = new ShowMailDialog( kapp->activeWindow(), getName(), allowHTML, isHTML, tsender, tdate, tsize, tsubject, body );
   int ret = dlg->exec();
 
   delete dlg;

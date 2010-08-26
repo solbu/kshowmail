@@ -58,7 +58,7 @@
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#afcbf8c09f6d5f17ed46f3b6ccaa181c5">getSizeOf</a> (int number) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#aef56178c593039eb2ed26fe426e58fc6">getSubjectOf</a> (int number) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#ac2b7faf31aa428f892f81543c9f7b054">getCharsetFromHeaderOf</a> (int number) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a90313e69a5dc346b2d9cd840d2795bf1">decodeMailBody</a> (const QStringList &amp;body, int number, bool preferHTML) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a9cb35c8e50c2d64350c40bf187a1c689">decodeMailBody</a> (const QStringList &amp;body, int number, bool preferHTML, bool &amp;isHTML) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a9868ac4cc9311eba11f326d8d1c1876e">writeToMoveLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, int number, QString account, QString mailbox)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a5843e955ca33b2c269a89153cc554db9">writeToDeleteLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, int number, QString account)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#aff18a93326b5361deb2a1cafbfc86f23">setMarkAtNextViewRefresh</a> (int number)</td></tr>
@@ -246,7 +246,7 @@
 
 </div>
 </div>
-<a class="anchor" id="a90313e69a5dc346b2d9cd840d2795bf1"></a><!-- doxytag: member="MailList::decodeMailBody" ref="a90313e69a5dc346b2d9cd840d2795bf1" args="(const QStringList &amp;body, int number, bool preferHTML) const " -->
+<a class="anchor" id="a9cb35c8e50c2d64350c40bf187a1c689"></a><!-- doxytag: member="MailList::decodeMailBody" ref="a9cb35c8e50c2d64350c40bf187a1c689" args="(const QStringList &amp;body, int number, bool preferHTML, bool &amp;isHTML) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -266,7 +266,13 @@
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>preferHTML</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>preferHTML</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&nbsp;</td>
+          <td class="paramname"> <em>isHTML</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -282,6 +288,7 @@
     <tr><td valign="top"></td><td valign="top"><em>body</em>&nbsp;</td><td>the whole mail (including header) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the downloaded mail </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>preferHTML</em>&nbsp;</td><td>decode HTML part if present </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>isHTML</em>&nbsp;</td><td>will be set on true, if the returned body is HTML formatted; otherwise false </td></tr>
   </table>
   </dd>
 </dl>
@@ -1029,7 +1036,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
 <div class="memdoc">
 <p>Pointer to the parent account </p>
 
-<p>Definition at line <a class="el" href="maillist_8h_source.html#l00282">282</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8h_source.html#l00283">283</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
 
 </div>
 </div>
@@ -1045,7 +1052,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
 <div class="memdoc">
 <p>List of mails </p>
 
-<p>Definition at line <a class="el" href="maillist_8h_source.html#l00277">277</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8h_source.html#l00278">278</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
 
 </div>
 </div>
@@ -1054,7 +1061,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
 <li>src/<a class="el" href="maillist_8cpp_source.html">maillist.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Aug 24 19:17:35 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

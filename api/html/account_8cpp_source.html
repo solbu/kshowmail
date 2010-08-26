@@ -1780,716 +1780,717 @@
 <a name="l01755"></a>01755   QString tdate = <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a885bad01479e5f9c85a60ace07831d88">getDateOf</a>( currentMail );
 <a name="l01756"></a>01756   QString tsize = <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#afcbf8c09f6d5f17ed46f3b6ccaa181c5">getSizeOf</a>( currentMail );
 <a name="l01757"></a>01757   QString tsubject = <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#aef56178c593039eb2ed26fe426e58fc6">getSubjectOf</a>( currentMail );
-<a name="l01758"></a>01758   QStringList body = <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a90313e69a5dc346b2d9cd840d2795bf1">decodeMailBody</a>( answer, currentMail, allowHTML );
-<a name="l01759"></a>01759 
+<a name="l01758"></a>01758   <span class="keywordtype">bool</span> isHTML;
+<a name="l01759"></a>01759   QStringList body = <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a9cb35c8e50c2d64350c40bf187a1c689">decodeMailBody</a>( answer, currentMail, allowHTML , isHTML );
 <a name="l01760"></a>01760 
-<a name="l01761"></a>01761         <span class="comment">//emit signal to notify the opening of a window</span>
-<a name="l01762"></a>01762   emit <a class="code" href="classAccount.html#a8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
-<a name="l01763"></a>01763 
-<a name="l01764"></a>01764   <span class="comment">//stop timeout timer</span>
-<a name="l01765"></a>01765   <a class="code" href="classAccount.html#a6eaf3595a3dbbb5d8ebf441186543cb1" title="This timer kills a running operation after the preset time.">timeoutTimer</a>-&gt;stop();
-<a name="l01766"></a>01766 
-<a name="l01767"></a>01767   <span class="comment">//create and open the window</span>
-<a name="l01768"></a>01768   QPointer&lt;ShowMailDialog&gt; dlg = <span class="keyword">new</span> <a class="code" href="classShowMailDialog.html" title="This dialog is used in ConfigElem to show a downloaded mail.">ShowMailDialog</a>( kapp-&gt;activeWindow(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), allowHTML, tsender, tdate, tsize, tsubject, body );
-<a name="l01769"></a>01769   <span class="keywordtype">int</span> ret = dlg-&gt;exec();
-<a name="l01770"></a>01770 
-<a name="l01771"></a>01771   <span class="keyword">delete</span> dlg;
-<a name="l01772"></a>01772 
-<a name="l01773"></a>01773         <span class="comment">//emit signal to notify the closing of a window</span>
-<a name="l01774"></a>01774   emit <a class="code" href="classAccount.html#ae25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
-<a name="l01775"></a>01775 
-<a name="l01776"></a>01776   <span class="comment">//restart timeout timer</span>
-<a name="l01777"></a>01777   <a class="code" href="classAccount.html#a6eaf3595a3dbbb5d8ebf441186543cb1" title="This timer kills a running operation after the preset time.">timeoutTimer</a>-&gt;start( <a class="code" href="classAccount.html#ac661f370c8ac5cf25cd095e526127ff7" title="Seconds to Timeout.">timeOutTime</a> * 1000 );
-<a name="l01778"></a>01778 
+<a name="l01761"></a>01761 
+<a name="l01762"></a>01762         <span class="comment">//emit signal to notify the opening of a window</span>
+<a name="l01763"></a>01763   emit <a class="code" href="classAccount.html#a8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
+<a name="l01764"></a>01764 
+<a name="l01765"></a>01765   <span class="comment">//stop timeout timer</span>
+<a name="l01766"></a>01766   <a class="code" href="classAccount.html#a6eaf3595a3dbbb5d8ebf441186543cb1" title="This timer kills a running operation after the preset time.">timeoutTimer</a>-&gt;stop();
+<a name="l01767"></a>01767 
+<a name="l01768"></a>01768   <span class="comment">//create and open the window</span>
+<a name="l01769"></a>01769   QPointer&lt;ShowMailDialog&gt; dlg = <span class="keyword">new</span> <a class="code" href="classShowMailDialog.html" title="This dialog is used in ConfigElem to show a downloaded mail.">ShowMailDialog</a>( kapp-&gt;activeWindow(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), allowHTML, isHTML, tsender, tdate, tsize, tsubject, body );
+<a name="l01770"></a>01770   <span class="keywordtype">int</span> ret = dlg-&gt;exec();
+<a name="l01771"></a>01771 
+<a name="l01772"></a>01772   <span class="keyword">delete</span> dlg;
+<a name="l01773"></a>01773 
+<a name="l01774"></a>01774         <span class="comment">//emit signal to notify the closing of a window</span>
+<a name="l01775"></a>01775   emit <a class="code" href="classAccount.html#ae25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
+<a name="l01776"></a>01776 
+<a name="l01777"></a>01777   <span class="comment">//restart timeout timer</span>
+<a name="l01778"></a>01778   <a class="code" href="classAccount.html#a6eaf3595a3dbbb5d8ebf441186543cb1" title="This timer kills a running operation after the preset time.">timeoutTimer</a>-&gt;start( <a class="code" href="classAccount.html#ac661f370c8ac5cf25cd095e526127ff7" title="Seconds to Timeout.">timeOutTime</a> * 1000 );
 <a name="l01779"></a>01779 
-<a name="l01780"></a>01780   <span class="comment">//cancel the download if desired</span>
-<a name="l01781"></a>01781   <span class="keywordflow">if</span>( ret == KDialog::Rejected )
-<a name="l01782"></a>01782         {
-<a name="l01783"></a>01783                 <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.clear();
-<a name="l01784"></a>01784                 <a class="code" href="classAccount.html#a09984d1dc320c8a697f1cf80667b0047" title="Sends the commit command to end the session.">commit</a>();
-<a name="l01785"></a>01785     <span class="keywordflow">return</span>;
-<a name="l01786"></a>01786         }
-<a name="l01787"></a>01787 
-<a name="l01788"></a>01788   <span class="comment">//remove the first item of the list of mails to show</span>
-<a name="l01789"></a>01789   <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.removeFirst();
-<a name="l01790"></a>01790 
-<a name="l01791"></a>01791         <span class="comment">//if the list of mails is empty, finalize the showing and return</span>
-<a name="l01792"></a>01792   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.empty() )
-<a name="l01793"></a>01793         {
-<a name="l01794"></a>01794     <a class="code" href="classAccount.html#a09984d1dc320c8a697f1cf80667b0047" title="Sends the commit command to end the session.">commit</a>();
-<a name="l01795"></a>01795                 <span class="keywordflow">return</span>;
-<a name="l01796"></a>01796         }
-<a name="l01797"></a>01797 
+<a name="l01780"></a>01780 
+<a name="l01781"></a>01781   <span class="comment">//cancel the download if desired</span>
+<a name="l01782"></a>01782   <span class="keywordflow">if</span>( ret == KDialog::Rejected )
+<a name="l01783"></a>01783         {
+<a name="l01784"></a>01784                 <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.clear();
+<a name="l01785"></a>01785                 <a class="code" href="classAccount.html#a09984d1dc320c8a697f1cf80667b0047" title="Sends the commit command to end the session.">commit</a>();
+<a name="l01786"></a>01786     <span class="keywordflow">return</span>;
+<a name="l01787"></a>01787         }
+<a name="l01788"></a>01788 
+<a name="l01789"></a>01789   <span class="comment">//remove the first item of the list of mails to show</span>
+<a name="l01790"></a>01790   <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.removeFirst();
+<a name="l01791"></a>01791 
+<a name="l01792"></a>01792         <span class="comment">//if the list of mails is empty, finalize the showing and return</span>
+<a name="l01793"></a>01793   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.empty() )
+<a name="l01794"></a>01794         {
+<a name="l01795"></a>01795     <a class="code" href="classAccount.html#a09984d1dc320c8a697f1cf80667b0047" title="Sends the commit command to end the session.">commit</a>();
+<a name="l01796"></a>01796                 <span class="keywordflow">return</span>;
+<a name="l01797"></a>01797         }
 <a name="l01798"></a>01798 
-<a name="l01799"></a>01799   <span class="comment">//show next mail in list</span>
-<a name="l01800"></a>01800   <a class="code" href="classAccount.html#a6f20cd9c1da4a940f7e14105650018ca" title="Shows the body of the first mail in MailsToShow.">showNextMail</a>();
-<a name="l01801"></a>01801 }
-<a name="l01802"></a>01802 
-<a name="l01803"></a><a class="code" href="classAccount.html#ada92a1b821b36ed89fb0388b95bc75e4">01803</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#ada92a1b821b36ed89fb0388b95bc75e4" title="Returns the number of deleted mails by last refresh.">Account::numberDeletedMailsLastRefresh</a>( )
-<a name="l01804"></a>01804 {
-<a name="l01805"></a>01805   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a1646821337a21296d8e42a0ba45bc12e" title="Number of deleted mails by last refresh.">nmbDeletedMailsLastRefresh</a>;
-<a name="l01806"></a>01806 }
-<a name="l01807"></a>01807 
-<a name="l01808"></a><a class="code" href="classAccount.html#ae4fd7f87762e31766d528fe8bbca4175">01808</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#ae4fd7f87762e31766d528fe8bbca4175" title="Returns the number of deleted mails since start.">Account::numberDeletedMailsStart</a>( )
-<a name="l01809"></a>01809 {
-<a name="l01810"></a>01810   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a6a683c23a6cb13af08501624c1251ca3" title="Number of deleted mails since start.">nmbDeletedMailsLastStart</a>;
-<a name="l01811"></a>01811 }
-<a name="l01812"></a>01812 
-<a name="l01813"></a><a class="code" href="classAccount.html#af47294c06cc26734f3342c6464e89412">01813</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#af47294c06cc26734f3342c6464e89412" title="Returns the number of moved mails by last refresh.">Account::numberMovedMailsLastRefresh</a>( )
-<a name="l01814"></a>01814 {
-<a name="l01815"></a>01815   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a897d2dd8e64ae21707e19a6cfdad86fe" title="Number of moved mails by last refresh.">nmbMovedMailsLastRefresh</a>;
-<a name="l01816"></a>01816 }
-<a name="l01817"></a>01817 
-<a name="l01818"></a><a class="code" href="classAccount.html#a2344aa7652eac04fbd8af4a3415f1e14">01818</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#a2344aa7652eac04fbd8af4a3415f1e14" title="Returns the number of moved mails since start.">Account::numberMovedMailsStart</a>( )
-<a name="l01819"></a>01819 {
-<a name="l01820"></a>01820   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a59b24a3b5ee342382cc74ddc7c4e34a1" title="Number of moved mails since start.">nmbMovedMailsLastStart</a>;
-<a name="l01821"></a>01821 }
-<a name="l01822"></a>01822 
-<a name="l01823"></a><a class="code" href="classAccount.html#af04961661e2b3ed44efd14e499e13c97">01823</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#af04961661e2b3ed44efd14e499e13c97" title="Returns the number of ignored mails by last refresh.">Account::numberIgnoredMails</a>( )
-<a name="l01824"></a>01824 {
-<a name="l01825"></a>01825   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a308b89826e944c49cf6336ee4dbfe9eb" title="Number of ignored mails by last refresh.">nmbIgnoredMails</a>;
-<a name="l01826"></a>01826 }
-<a name="l01827"></a>01827 
-<a name="l01828"></a><a class="code" href="classAccount.html#adc21d367799f65d4c232007985e18eae">01828</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#adc21d367799f65d4c232007985e18eae" title="Reloads the settings of the filters.">Account::reloadFilterSettings</a>( )
-<a name="l01829"></a>01829 {
-<a name="l01830"></a>01830   <a class="code" href="classAccount.html#a622c3820f62efaa90098b46acc8649fd" title="Every account has is own header filter instance.">headerFilter</a>.<a class="code" href="classHeaderFilter.html#a46c0c049254cb8c9aa1aa6946f2f4165">load</a>();
-<a name="l01831"></a>01831 }
-<a name="l01832"></a>01832 
-<a name="l01833"></a><a class="code" href="classAccount.html#a33e2fb6a87b117d22c4fcf86e2826832">01833</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a33e2fb6a87b117d22c4fcf86e2826832" title="Does all filter actions for which we have to download the mails.">Account::doDownloadActions</a>()
-<a name="l01834"></a>01834 {
-<a name="l01835"></a>01835   <span class="comment">//get first mail</span>
-<a name="l01836"></a>01836   <a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">getNextMailForDownloadActions</a>();
-<a name="l01837"></a>01837 }
-<a name="l01838"></a>01838 
-<a name="l01839"></a><a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899">01839</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">Account::getNextMailForDownloadActions</a>()
-<a name="l01840"></a>01840 {
-<a name="l01841"></a>01841     <span class="comment">//if the list of mails to move is empty return to applyFilters</span>
-<a name="l01842"></a>01842   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.empty() )
-<a name="l01843"></a>01843   {
-<a name="l01844"></a>01844     <a class="code" href="classAccount.html#accdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
-<a name="l01845"></a>01845     <span class="keywordflow">return</span>;
-<a name="l01846"></a>01846   }
-<a name="l01847"></a>01847 
+<a name="l01799"></a>01799 
+<a name="l01800"></a>01800   <span class="comment">//show next mail in list</span>
+<a name="l01801"></a>01801   <a class="code" href="classAccount.html#a6f20cd9c1da4a940f7e14105650018ca" title="Shows the body of the first mail in MailsToShow.">showNextMail</a>();
+<a name="l01802"></a>01802 }
+<a name="l01803"></a>01803 
+<a name="l01804"></a><a class="code" href="classAccount.html#ada92a1b821b36ed89fb0388b95bc75e4">01804</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#ada92a1b821b36ed89fb0388b95bc75e4" title="Returns the number of deleted mails by last refresh.">Account::numberDeletedMailsLastRefresh</a>( )
+<a name="l01805"></a>01805 {
+<a name="l01806"></a>01806   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a1646821337a21296d8e42a0ba45bc12e" title="Number of deleted mails by last refresh.">nmbDeletedMailsLastRefresh</a>;
+<a name="l01807"></a>01807 }
+<a name="l01808"></a>01808 
+<a name="l01809"></a><a class="code" href="classAccount.html#ae4fd7f87762e31766d528fe8bbca4175">01809</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#ae4fd7f87762e31766d528fe8bbca4175" title="Returns the number of deleted mails since start.">Account::numberDeletedMailsStart</a>( )
+<a name="l01810"></a>01810 {
+<a name="l01811"></a>01811   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a6a683c23a6cb13af08501624c1251ca3" title="Number of deleted mails since start.">nmbDeletedMailsLastStart</a>;
+<a name="l01812"></a>01812 }
+<a name="l01813"></a>01813 
+<a name="l01814"></a><a class="code" href="classAccount.html#af47294c06cc26734f3342c6464e89412">01814</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#af47294c06cc26734f3342c6464e89412" title="Returns the number of moved mails by last refresh.">Account::numberMovedMailsLastRefresh</a>( )
+<a name="l01815"></a>01815 {
+<a name="l01816"></a>01816   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a897d2dd8e64ae21707e19a6cfdad86fe" title="Number of moved mails by last refresh.">nmbMovedMailsLastRefresh</a>;
+<a name="l01817"></a>01817 }
+<a name="l01818"></a>01818 
+<a name="l01819"></a><a class="code" href="classAccount.html#a2344aa7652eac04fbd8af4a3415f1e14">01819</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#a2344aa7652eac04fbd8af4a3415f1e14" title="Returns the number of moved mails since start.">Account::numberMovedMailsStart</a>( )
+<a name="l01820"></a>01820 {
+<a name="l01821"></a>01821   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a59b24a3b5ee342382cc74ddc7c4e34a1" title="Number of moved mails since start.">nmbMovedMailsLastStart</a>;
+<a name="l01822"></a>01822 }
+<a name="l01823"></a>01823 
+<a name="l01824"></a><a class="code" href="classAccount.html#af04961661e2b3ed44efd14e499e13c97">01824</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#af04961661e2b3ed44efd14e499e13c97" title="Returns the number of ignored mails by last refresh.">Account::numberIgnoredMails</a>( )
+<a name="l01825"></a>01825 {
+<a name="l01826"></a>01826   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a308b89826e944c49cf6336ee4dbfe9eb" title="Number of ignored mails by last refresh.">nmbIgnoredMails</a>;
+<a name="l01827"></a>01827 }
+<a name="l01828"></a>01828 
+<a name="l01829"></a><a class="code" href="classAccount.html#adc21d367799f65d4c232007985e18eae">01829</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#adc21d367799f65d4c232007985e18eae" title="Reloads the settings of the filters.">Account::reloadFilterSettings</a>( )
+<a name="l01830"></a>01830 {
+<a name="l01831"></a>01831   <a class="code" href="classAccount.html#a622c3820f62efaa90098b46acc8649fd" title="Every account has is own header filter instance.">headerFilter</a>.<a class="code" href="classHeaderFilter.html#a46c0c049254cb8c9aa1aa6946f2f4165">load</a>();
+<a name="l01832"></a>01832 }
+<a name="l01833"></a>01833 
+<a name="l01834"></a><a class="code" href="classAccount.html#a33e2fb6a87b117d22c4fcf86e2826832">01834</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a33e2fb6a87b117d22c4fcf86e2826832" title="Does all filter actions for which we have to download the mails.">Account::doDownloadActions</a>()
+<a name="l01835"></a>01835 {
+<a name="l01836"></a>01836   <span class="comment">//get first mail</span>
+<a name="l01837"></a>01837   <a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">getNextMailForDownloadActions</a>();
+<a name="l01838"></a>01838 }
+<a name="l01839"></a>01839 
+<a name="l01840"></a><a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899">01840</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">Account::getNextMailForDownloadActions</a>()
+<a name="l01841"></a>01841 {
+<a name="l01842"></a>01842     <span class="comment">//if the list of mails to move is empty return to applyFilters</span>
+<a name="l01843"></a>01843   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.empty() )
+<a name="l01844"></a>01844   {
+<a name="l01845"></a>01845     <a class="code" href="classAccount.html#accdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
+<a name="l01846"></a>01846     <span class="keywordflow">return</span>;
+<a name="l01847"></a>01847   }
 <a name="l01848"></a>01848 
-<a name="l01849"></a>01849   <span class="comment">//connect the signal readyRead of the socket with the response handle methode</span>
-<a name="l01850"></a>01850   disconnect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), 0, 0 );
-<a name="l01851"></a>01851   connect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classAccount.html#a79bd9a4d8eb35366b186475941c2de2d" title="Downloads a mail to write it into a mailbox or do a spam check.">slotMailDownloadedForAction</a>() ) );
-<a name="l01852"></a>01852 
-<a name="l01853"></a>01853   <span class="comment">//send download command</span>
-<a name="l01854"></a>01854   <a class="code" href="classAccount.html#a86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <a class="code" href="namespacePOP3Constants.html#a754f5d787e6f45fe50badaa5e75f44b8" title="Get a mail.">GET_MAIL</a> + <span class="charliteral">&#39; &#39;</span> + QString( <span class="stringliteral">&quot;%1&quot;</span> ).arg( <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.begin().key() ) );
-<a name="l01855"></a>01855 
-<a name="l01856"></a>01856 }
-<a name="l01857"></a>01857 
-<a name="l01858"></a><a class="code" href="classAccount.html#a79bd9a4d8eb35366b186475941c2de2d">01858</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a79bd9a4d8eb35366b186475941c2de2d" title="Downloads a mail to write it into a mailbox or do a spam check.">Account::slotMailDownloadedForAction</a>()
-<a name="l01859"></a>01859 {
-<a name="l01860"></a>01860 
-<a name="l01861"></a>01861     <span class="comment">//get the response</span>
-<a name="l01862"></a>01862   QStringList mail = <a class="code" href="classAccount.html#adc967ce6b695510e9d892078cb202fbe" title="Reads all data from the socket.">readfromSocket</a>( <span class="keyword">false</span> );
-<a name="l01863"></a>01863 
-<a name="l01864"></a>01864   <span class="comment">//no response from the server</span>
-<a name="l01865"></a>01865   <span class="keywordflow">if</span>( mail.isEmpty() )
-<a name="l01866"></a>01866   {
-<a name="l01867"></a>01867     <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info error message: we could not download a mail&quot;</span>, <span class="stringliteral">&quot;&lt;resource&gt;%1&lt;/resource&gt; has not sent a answer after retrieve of mail &lt;numid&gt;%2&lt;/numid&gt;.&quot;</span>, <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>(), <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.first() ) );
-<a name="l01868"></a>01868     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
-<a name="l01869"></a>01869     <span class="keywordflow">return</span>;
-<a name="l01870"></a>01870   }
-<a name="l01871"></a>01871 
-<a name="l01872"></a>01872   <span class="comment">//it is a negative response?</span>
-<a name="l01873"></a>01873   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a8862a31f946ddc6296ef8c987c83fad2" title="Returns whether the server answer is positive or negative.">isPositiveServerMessage</a>( mail ) )
-<a name="l01874"></a>01874   {
-<a name="l01875"></a>01875     <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info error message: we could not download a mail&quot;</span>, <span class="stringliteral">&quot;Error while downloading mail &lt;numid&gt;%1&lt;/numid&gt; of &lt;resource&gt;%2&lt;/resource&gt;: &lt;message&gt;%3&lt;/message&gt;&quot;</span>, <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.first(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), mail.first() ) );
-<a name="l01876"></a>01876     <span class="keywordflow">return</span>;
-<a name="l01877"></a>01877   }
-<a name="l01878"></a>01878 
-<a name="l01879"></a>01879   <span class="comment">//remove first and last line of the response</span>
-<a name="l01880"></a>01880   <span class="comment">//this are the state and the end of response marker</span>
-<a name="l01881"></a>01881   <span class="comment">//we don&#39;t need it</span>
-<a name="l01882"></a>01882   <a class="code" href="classAccount.html#ac181e1d361210773f12333b37e6c62d8" title="Removes the status indicator from a single line server message.">removeStatusIndicator</a>( &amp;mail );
-<a name="l01883"></a>01883   <a class="code" href="classAccount.html#a45463e9090bd0eaf8631ece426b9b7a6" title="If the last line of the server response is the end of response marker, this methode...">removeEndOfResponseMarker</a>( &amp;mail );
-<a name="l01884"></a>01884 
-<a name="l01885"></a>01885   <span class="comment">//successful download</span>
-<a name="l01886"></a>01886 
-<a name="l01887"></a>01887   <span class="comment">//do action</span>
-<a name="l01888"></a>01888   MailToDownloadMap_Type::Iterator firstMail = <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.begin();
-<a name="l01889"></a>01889   <span class="keywordtype">int</span> currentMailNumber = firstMail.key();  <span class="comment">//get mail number</span>
-<a name="l01890"></a>01890   QString currentMailBox( firstMail.value().mailbox ); <span class="comment">//get mailbox</span>
-<a name="l01891"></a>01891 
-<a name="l01892"></a>01892   <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action = firstMail.value().action; <span class="comment">//get action</span>
-<a name="l01893"></a>01893 
-<a name="l01894"></a>01894   <span class="keywordtype">bool</span> resultMove = <span class="keyword">false</span>;    <span class="comment">//TRUE - mail is written into the mailbox</span>
-<a name="l01895"></a>01895   <span class="keywordtype">bool</span> resultSpam = <span class="keyword">false</span>;  <span class="comment">//TRUE - mail is Spam</span>
-<a name="l01896"></a>01896   <span class="keywordtype">bool</span> deleteIt = <span class="keyword">false</span>;    <span class="comment">//TRUE - mail shall be deleted</span>
-<a name="l01897"></a>01897   <span class="keywordtype">bool</span> resultAction = <span class="keyword">false</span>;  <span class="comment">//True - the action was successful performed</span>
-<a name="l01898"></a>01898 
-<a name="l01899"></a>01899   <span class="keywordflow">switch</span>( action )
-<a name="l01900"></a>01900   {
-<a name="l01901"></a>01901     <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa4f2a44934f9b85ed07832ccf32016462">FActMove</a>       : resultMove = <a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">writeToMailBox</a>( mail, currentMailBox );
-<a name="l01902"></a>01902                           <span class="comment">//log entry is made by Mail::applyHeaderFilter</span>
-<a name="l01903"></a>01903                           <span class="keywordflow">if</span>( resultMove == <span class="keyword">true</span> )
-<a name="l01904"></a>01904                           {
-<a name="l01905"></a>01905                             <a class="code" href="classAccount.html#a897d2dd8e64ae21707e19a6cfdad86fe" title="Number of moved mails by last refresh.">nmbMovedMailsLastRefresh</a>++;
-<a name="l01906"></a>01906                             <a class="code" href="classAccount.html#a59b24a3b5ee342382cc74ddc7c4e34a1" title="Number of moved mails since start.">nmbMovedMailsLastStart</a>++;
-<a name="l01907"></a>01907 
-<a name="l01908"></a>01908                             resultAction = <span class="keyword">true</span>;
-<a name="l01909"></a>01909                             deleteIt = <span class="keyword">true</span>;
-<a name="l01910"></a>01910                           }
-<a name="l01911"></a>01911                           <span class="keywordflow">else</span>
-<a name="l01912"></a>01912                           {
-<a name="l01913"></a>01913                             resultAction = <span class="keyword">false</span>;
-<a name="l01914"></a>01914                             deleteIt = <span class="keyword">false</span>;
-<a name="l01915"></a>01915                           }
-<a name="l01916"></a>01916                           <span class="keywordflow">break</span>;
-<a name="l01917"></a>01917 
-<a name="l01918"></a>01918     <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfac54805588ea5ecd697098c55a3ec73a1">FActSpamcheck</a>  : resultSpam = <a class="code" href="classAccount.html#a309e2098c05fba9b4303b24008459574" title="Forwards the given mail to SpamAssassin and returns the test result.">isSpam</a>( mail );  <span class="comment">//it is spam?</span>
-<a name="l01919"></a>01919                           <span class="keywordflow">if</span>( resultSpam == <span class="keyword">true</span> )          <span class="comment">//yes, it is spam! Arrgghh! Torture it!!!</span>
-<a name="l01920"></a>01920                           {
-<a name="l01921"></a>01921                             <span class="keywordflow">switch</span>( <a class="code" href="classAccount.html#a5a2fcde117c3a1502a7a2a558679b393" title="Action which shall be done, if the mail is Spam.">spamAction</a> )
-<a name="l01922"></a>01922                             {
-<a name="l01923"></a>01923                               <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa4f2a44934f9b85ed07832ccf32016462">FActMove</a>   : resultMove = <a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">writeToMailBox</a>( mail, <a class="code" href="classAccount.html#a6708f147a607ff61c8af5fc4cc7f0c6b" title="Mailbox for Spam, if configured.">spamMailbox</a> );
-<a name="l01924"></a>01924                                                 <span class="keywordflow">if</span>( resultMove == <span class="keyword">true</span> )
-<a name="l01925"></a>01925                                                 {
-<a name="l01926"></a>01926                                                   <a class="code" href="classAccount.html#a897d2dd8e64ae21707e19a6cfdad86fe" title="Number of moved mails by last refresh.">nmbMovedMailsLastRefresh</a>++;
-<a name="l01927"></a>01927                                                   <a class="code" href="classAccount.html#a59b24a3b5ee342382cc74ddc7c4e34a1" title="Number of moved mails since start.">nmbMovedMailsLastStart</a>++;
-<a name="l01928"></a>01928 
-<a name="l01929"></a>01929                                                   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a> != NULL )
-<a name="l01930"></a>01930                                                     <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a9868ac4cc9311eba11f326d8d1c1876e">writeToMoveLog</a>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a>, currentMailNumber, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), <a class="code" href="classAccount.html#a6708f147a607ff61c8af5fc4cc7f0c6b" title="Mailbox for Spam, if configured.">spamMailbox</a> );
-<a name="l01931"></a>01931                                                   resultAction = <span class="keyword">true</span>;
-<a name="l01932"></a>01932                                                   deleteIt = <span class="keyword">true</span>;
-<a name="l01933"></a>01933                                                 }
-<a name="l01934"></a>01934                                                 <span class="keywordflow">else</span>
-<a name="l01935"></a>01935                                                 {
-<a name="l01936"></a>01936                                                   resultAction = <span class="keyword">false</span>;
-<a name="l01937"></a>01937                                                   deleteIt = <span class="keyword">false</span>;
-<a name="l01938"></a>01938                                                 }
-<a name="l01939"></a>01939                                                 <span class="keywordflow">break</span>;
-<a name="l01940"></a>01940 
-<a name="l01941"></a>01941                               <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa0b8c53628aabb517f41d6ccdf5bf5d4c">FActMark</a>   : <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#aff18a93326b5361deb2a1cafbfc86f23">setMarkAtNextViewRefresh</a>( currentMailNumber );
-<a name="l01942"></a>01942                                                 resultAction = <span class="keyword">true</span>;
-<a name="l01943"></a>01943                                                 deleteIt = <span class="keyword">false</span>;
-<a name="l01944"></a>01944                                                 <span class="keywordflow">break</span>;
-<a name="l01945"></a>01945 
-<a name="l01946"></a>01946                               <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa9de5e046888ae556dd3f4548957fcf10">FActDelete</a> : <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a> != NULL )
-<a name="l01947"></a>01947                                                   <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a5843e955ca33b2c269a89153cc554db9">writeToDeleteLog</a>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a>, currentMailNumber, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
-<a name="l01948"></a>01948 
-<a name="l01949"></a>01949                                                 <a class="code" href="classAccount.html#a1646821337a21296d8e42a0ba45bc12e" title="Number of deleted mails by last refresh.">nmbDeletedMailsLastRefresh</a>++;
-<a name="l01950"></a>01950                                                 <a class="code" href="classAccount.html#a6a683c23a6cb13af08501624c1251ca3" title="Number of deleted mails since start.">nmbDeletedMailsLastStart</a>++;
-<a name="l01951"></a>01951                                                 resultAction = <span class="keyword">true</span>;
-<a name="l01952"></a>01952                                                 deleteIt = <span class="keyword">true</span>;
-<a name="l01953"></a>01953                                                 <span class="keywordflow">break</span>;
-<a name="l01954"></a>01954 
-<a name="l01955"></a>01955                               <span class="keywordflow">default</span>         : kdError() &lt;&lt; <span class="stringliteral">&quot;invalid action for spam mail&quot;</span> &lt;&lt; endl;
-<a name="l01956"></a>01956                                                 resultAction = <span class="keyword">false</span>;
-<a name="l01957"></a>01957                                                 deleteIt = <span class="keyword">false</span>;
-<a name="l01958"></a>01958                                                 <span class="keywordflow">break</span>;
-<a name="l01959"></a>01959 
-<a name="l01960"></a>01960                             }
-<a name="l01961"></a>01961                           }
-<a name="l01962"></a>01962                           <span class="keywordflow">else</span>    <span class="comment">//mail is not spam</span>
-<a name="l01963"></a>01963                           {
-<a name="l01964"></a>01964                             resultAction = <span class="keyword">true</span>;
-<a name="l01965"></a>01965                             deleteIt = <span class="keyword">false</span>;
-<a name="l01966"></a>01966                           }
-<a name="l01967"></a>01967                           <span class="keywordflow">break</span>;
-<a name="l01968"></a>01968 
-<a name="l01969"></a>01969     <span class="keywordflow">default</span>             : deleteIt = <span class="keyword">false</span>;
-<a name="l01970"></a>01970                           resultAction = <span class="keyword">false</span>;
-<a name="l01971"></a>01971 
-<a name="l01972"></a>01972   }
-<a name="l01973"></a>01973 
-<a name="l01974"></a>01974   <span class="keywordflow">if</span>( resultAction == <span class="keyword">true</span> )
-<a name="l01975"></a>01975   {
-<a name="l01976"></a>01976     <span class="comment">//Action was successful</span>
-<a name="l01977"></a>01977     <span class="comment">//remove this mail from the list</span>
-<a name="l01978"></a>01978     <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.remove( firstMail.key() );
-<a name="l01979"></a>01979 
-<a name="l01980"></a>01980     <span class="comment">//maybe add this mail to list of mails to delete</span>
-<a name="l01981"></a>01981     <span class="keywordflow">if</span>( deleteIt )
-<a name="l01982"></a>01982       <a class="code" href="classAccount.html#aeaa8c337f590e3d31e5d1a296b2830eb" title="Contains the numbers of mails which will be deleted.">mailsToDelete</a>.append( currentMailNumber );
-<a name="l01983"></a>01983   }
-<a name="l01984"></a>01984   <span class="keywordflow">else</span>
-<a name="l01985"></a>01985   {
-<a name="l01986"></a>01986     <span class="comment">//Action was not successful</span>
-<a name="l01987"></a>01987     <span class="comment">//returns to applyFilters() to continue the filtering</span>
-<a name="l01988"></a>01988     <a class="code" href="classAccount.html#accdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
-<a name="l01989"></a>01989     <span class="keywordflow">return</span>;
-<a name="l01990"></a>01990   }
-<a name="l01991"></a>01991 
+<a name="l01849"></a>01849 
+<a name="l01850"></a>01850   <span class="comment">//connect the signal readyRead of the socket with the response handle methode</span>
+<a name="l01851"></a>01851   disconnect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), 0, 0 );
+<a name="l01852"></a>01852   connect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classAccount.html#a79bd9a4d8eb35366b186475941c2de2d" title="Downloads a mail to write it into a mailbox or do a spam check.">slotMailDownloadedForAction</a>() ) );
+<a name="l01853"></a>01853 
+<a name="l01854"></a>01854   <span class="comment">//send download command</span>
+<a name="l01855"></a>01855   <a class="code" href="classAccount.html#a86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <a class="code" href="namespacePOP3Constants.html#a754f5d787e6f45fe50badaa5e75f44b8" title="Get a mail.">GET_MAIL</a> + <span class="charliteral">&#39; &#39;</span> + QString( <span class="stringliteral">&quot;%1&quot;</span> ).arg( <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.begin().key() ) );
+<a name="l01856"></a>01856 
+<a name="l01857"></a>01857 }
+<a name="l01858"></a>01858 
+<a name="l01859"></a><a class="code" href="classAccount.html#a79bd9a4d8eb35366b186475941c2de2d">01859</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a79bd9a4d8eb35366b186475941c2de2d" title="Downloads a mail to write it into a mailbox or do a spam check.">Account::slotMailDownloadedForAction</a>()
+<a name="l01860"></a>01860 {
+<a name="l01861"></a>01861 
+<a name="l01862"></a>01862     <span class="comment">//get the response</span>
+<a name="l01863"></a>01863   QStringList mail = <a class="code" href="classAccount.html#adc967ce6b695510e9d892078cb202fbe" title="Reads all data from the socket.">readfromSocket</a>( <span class="keyword">false</span> );
+<a name="l01864"></a>01864 
+<a name="l01865"></a>01865   <span class="comment">//no response from the server</span>
+<a name="l01866"></a>01866   <span class="keywordflow">if</span>( mail.isEmpty() )
+<a name="l01867"></a>01867   {
+<a name="l01868"></a>01868     <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info error message: we could not download a mail&quot;</span>, <span class="stringliteral">&quot;&lt;resource&gt;%1&lt;/resource&gt; has not sent a answer after retrieve of mail &lt;numid&gt;%2&lt;/numid&gt;.&quot;</span>, <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>(), <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.first() ) );
+<a name="l01869"></a>01869     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
+<a name="l01870"></a>01870     <span class="keywordflow">return</span>;
+<a name="l01871"></a>01871   }
+<a name="l01872"></a>01872 
+<a name="l01873"></a>01873   <span class="comment">//it is a negative response?</span>
+<a name="l01874"></a>01874   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a8862a31f946ddc6296ef8c987c83fad2" title="Returns whether the server answer is positive or negative.">isPositiveServerMessage</a>( mail ) )
+<a name="l01875"></a>01875   {
+<a name="l01876"></a>01876     <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info error message: we could not download a mail&quot;</span>, <span class="stringliteral">&quot;Error while downloading mail &lt;numid&gt;%1&lt;/numid&gt; of &lt;resource&gt;%2&lt;/resource&gt;: &lt;message&gt;%3&lt;/message&gt;&quot;</span>, <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.first(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), mail.first() ) );
+<a name="l01877"></a>01877     <span class="keywordflow">return</span>;
+<a name="l01878"></a>01878   }
+<a name="l01879"></a>01879 
+<a name="l01880"></a>01880   <span class="comment">//remove first and last line of the response</span>
+<a name="l01881"></a>01881   <span class="comment">//this are the state and the end of response marker</span>
+<a name="l01882"></a>01882   <span class="comment">//we don&#39;t need it</span>
+<a name="l01883"></a>01883   <a class="code" href="classAccount.html#ac181e1d361210773f12333b37e6c62d8" title="Removes the status indicator from a single line server message.">removeStatusIndicator</a>( &amp;mail );
+<a name="l01884"></a>01884   <a class="code" href="classAccount.html#a45463e9090bd0eaf8631ece426b9b7a6" title="If the last line of the server response is the end of response marker, this methode...">removeEndOfResponseMarker</a>( &amp;mail );
+<a name="l01885"></a>01885 
+<a name="l01886"></a>01886   <span class="comment">//successful download</span>
+<a name="l01887"></a>01887 
+<a name="l01888"></a>01888   <span class="comment">//do action</span>
+<a name="l01889"></a>01889   MailToDownloadMap_Type::Iterator firstMail = <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.begin();
+<a name="l01890"></a>01890   <span class="keywordtype">int</span> currentMailNumber = firstMail.key();  <span class="comment">//get mail number</span>
+<a name="l01891"></a>01891   QString currentMailBox( firstMail.value().mailbox ); <span class="comment">//get mailbox</span>
+<a name="l01892"></a>01892 
+<a name="l01893"></a>01893   <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action = firstMail.value().action; <span class="comment">//get action</span>
+<a name="l01894"></a>01894 
+<a name="l01895"></a>01895   <span class="keywordtype">bool</span> resultMove = <span class="keyword">false</span>;    <span class="comment">//TRUE - mail is written into the mailbox</span>
+<a name="l01896"></a>01896   <span class="keywordtype">bool</span> resultSpam = <span class="keyword">false</span>;  <span class="comment">//TRUE - mail is Spam</span>
+<a name="l01897"></a>01897   <span class="keywordtype">bool</span> deleteIt = <span class="keyword">false</span>;    <span class="comment">//TRUE - mail shall be deleted</span>
+<a name="l01898"></a>01898   <span class="keywordtype">bool</span> resultAction = <span class="keyword">false</span>;  <span class="comment">//True - the action was successful performed</span>
+<a name="l01899"></a>01899 
+<a name="l01900"></a>01900   <span class="keywordflow">switch</span>( action )
+<a name="l01901"></a>01901   {
+<a name="l01902"></a>01902     <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa4f2a44934f9b85ed07832ccf32016462">FActMove</a>       : resultMove = <a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">writeToMailBox</a>( mail, currentMailBox );
+<a name="l01903"></a>01903                           <span class="comment">//log entry is made by Mail::applyHeaderFilter</span>
+<a name="l01904"></a>01904                           <span class="keywordflow">if</span>( resultMove == <span class="keyword">true</span> )
+<a name="l01905"></a>01905                           {
+<a name="l01906"></a>01906                             <a class="code" href="classAccount.html#a897d2dd8e64ae21707e19a6cfdad86fe" title="Number of moved mails by last refresh.">nmbMovedMailsLastRefresh</a>++;
+<a name="l01907"></a>01907                             <a class="code" href="classAccount.html#a59b24a3b5ee342382cc74ddc7c4e34a1" title="Number of moved mails since start.">nmbMovedMailsLastStart</a>++;
+<a name="l01908"></a>01908 
+<a name="l01909"></a>01909                             resultAction = <span class="keyword">true</span>;
+<a name="l01910"></a>01910                             deleteIt = <span class="keyword">true</span>;
+<a name="l01911"></a>01911                           }
+<a name="l01912"></a>01912                           <span class="keywordflow">else</span>
+<a name="l01913"></a>01913                           {
+<a name="l01914"></a>01914                             resultAction = <span class="keyword">false</span>;
+<a name="l01915"></a>01915                             deleteIt = <span class="keyword">false</span>;
+<a name="l01916"></a>01916                           }
+<a name="l01917"></a>01917                           <span class="keywordflow">break</span>;
+<a name="l01918"></a>01918 
+<a name="l01919"></a>01919     <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfac54805588ea5ecd697098c55a3ec73a1">FActSpamcheck</a>  : resultSpam = <a class="code" href="classAccount.html#a309e2098c05fba9b4303b24008459574" title="Forwards the given mail to SpamAssassin and returns the test result.">isSpam</a>( mail );  <span class="comment">//it is spam?</span>
+<a name="l01920"></a>01920                           <span class="keywordflow">if</span>( resultSpam == <span class="keyword">true</span> )          <span class="comment">//yes, it is spam! Arrgghh! Torture it!!!</span>
+<a name="l01921"></a>01921                           {
+<a name="l01922"></a>01922                             <span class="keywordflow">switch</span>( <a class="code" href="classAccount.html#a5a2fcde117c3a1502a7a2a558679b393" title="Action which shall be done, if the mail is Spam.">spamAction</a> )
+<a name="l01923"></a>01923                             {
+<a name="l01924"></a>01924                               <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa4f2a44934f9b85ed07832ccf32016462">FActMove</a>   : resultMove = <a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">writeToMailBox</a>( mail, <a class="code" href="classAccount.html#a6708f147a607ff61c8af5fc4cc7f0c6b" title="Mailbox for Spam, if configured.">spamMailbox</a> );
+<a name="l01925"></a>01925                                                 <span class="keywordflow">if</span>( resultMove == <span class="keyword">true</span> )
+<a name="l01926"></a>01926                                                 {
+<a name="l01927"></a>01927                                                   <a class="code" href="classAccount.html#a897d2dd8e64ae21707e19a6cfdad86fe" title="Number of moved mails by last refresh.">nmbMovedMailsLastRefresh</a>++;
+<a name="l01928"></a>01928                                                   <a class="code" href="classAccount.html#a59b24a3b5ee342382cc74ddc7c4e34a1" title="Number of moved mails since start.">nmbMovedMailsLastStart</a>++;
+<a name="l01929"></a>01929 
+<a name="l01930"></a>01930                                                   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a> != NULL )
+<a name="l01931"></a>01931                                                     <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a9868ac4cc9311eba11f326d8d1c1876e">writeToMoveLog</a>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a>, currentMailNumber, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), <a class="code" href="classAccount.html#a6708f147a607ff61c8af5fc4cc7f0c6b" title="Mailbox for Spam, if configured.">spamMailbox</a> );
+<a name="l01932"></a>01932                                                   resultAction = <span class="keyword">true</span>;
+<a name="l01933"></a>01933                                                   deleteIt = <span class="keyword">true</span>;
+<a name="l01934"></a>01934                                                 }
+<a name="l01935"></a>01935                                                 <span class="keywordflow">else</span>
+<a name="l01936"></a>01936                                                 {
+<a name="l01937"></a>01937                                                   resultAction = <span class="keyword">false</span>;
+<a name="l01938"></a>01938                                                   deleteIt = <span class="keyword">false</span>;
+<a name="l01939"></a>01939                                                 }
+<a name="l01940"></a>01940                                                 <span class="keywordflow">break</span>;
+<a name="l01941"></a>01941 
+<a name="l01942"></a>01942                               <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa0b8c53628aabb517f41d6ccdf5bf5d4c">FActMark</a>   : <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#aff18a93326b5361deb2a1cafbfc86f23">setMarkAtNextViewRefresh</a>( currentMailNumber );
+<a name="l01943"></a>01943                                                 resultAction = <span class="keyword">true</span>;
+<a name="l01944"></a>01944                                                 deleteIt = <span class="keyword">false</span>;
+<a name="l01945"></a>01945                                                 <span class="keywordflow">break</span>;
+<a name="l01946"></a>01946 
+<a name="l01947"></a>01947                               <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adfa9de5e046888ae556dd3f4548957fcf10">FActDelete</a> : <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a> != NULL )
+<a name="l01948"></a>01948                                                   <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a5843e955ca33b2c269a89153cc554db9">writeToDeleteLog</a>( <a class="code" href="classAccount.html#a936a65fefffd683f9c1789c478e04bb2" title="Pointer to the filter log.">fLog</a>, currentMailNumber, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
+<a name="l01949"></a>01949 
+<a name="l01950"></a>01950                                                 <a class="code" href="classAccount.html#a1646821337a21296d8e42a0ba45bc12e" title="Number of deleted mails by last refresh.">nmbDeletedMailsLastRefresh</a>++;
+<a name="l01951"></a>01951                                                 <a class="code" href="classAccount.html#a6a683c23a6cb13af08501624c1251ca3" title="Number of deleted mails since start.">nmbDeletedMailsLastStart</a>++;
+<a name="l01952"></a>01952                                                 resultAction = <span class="keyword">true</span>;
+<a name="l01953"></a>01953                                                 deleteIt = <span class="keyword">true</span>;
+<a name="l01954"></a>01954                                                 <span class="keywordflow">break</span>;
+<a name="l01955"></a>01955 
+<a name="l01956"></a>01956                               <span class="keywordflow">default</span>         : kdError() &lt;&lt; <span class="stringliteral">&quot;invalid action for spam mail&quot;</span> &lt;&lt; endl;
+<a name="l01957"></a>01957                                                 resultAction = <span class="keyword">false</span>;
+<a name="l01958"></a>01958                                                 deleteIt = <span class="keyword">false</span>;
+<a name="l01959"></a>01959                                                 <span class="keywordflow">break</span>;
+<a name="l01960"></a>01960 
+<a name="l01961"></a>01961                             }
+<a name="l01962"></a>01962                           }
+<a name="l01963"></a>01963                           <span class="keywordflow">else</span>    <span class="comment">//mail is not spam</span>
+<a name="l01964"></a>01964                           {
+<a name="l01965"></a>01965                             resultAction = <span class="keyword">true</span>;
+<a name="l01966"></a>01966                             deleteIt = <span class="keyword">false</span>;
+<a name="l01967"></a>01967                           }
+<a name="l01968"></a>01968                           <span class="keywordflow">break</span>;
+<a name="l01969"></a>01969 
+<a name="l01970"></a>01970     <span class="keywordflow">default</span>             : deleteIt = <span class="keyword">false</span>;
+<a name="l01971"></a>01971                           resultAction = <span class="keyword">false</span>;
+<a name="l01972"></a>01972 
+<a name="l01973"></a>01973   }
+<a name="l01974"></a>01974 
+<a name="l01975"></a>01975   <span class="keywordflow">if</span>( resultAction == <span class="keyword">true</span> )
+<a name="l01976"></a>01976   {
+<a name="l01977"></a>01977     <span class="comment">//Action was successful</span>
+<a name="l01978"></a>01978     <span class="comment">//remove this mail from the list</span>
+<a name="l01979"></a>01979     <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.remove( firstMail.key() );
+<a name="l01980"></a>01980 
+<a name="l01981"></a>01981     <span class="comment">//maybe add this mail to list of mails to delete</span>
+<a name="l01982"></a>01982     <span class="keywordflow">if</span>( deleteIt )
+<a name="l01983"></a>01983       <a class="code" href="classAccount.html#aeaa8c337f590e3d31e5d1a296b2830eb" title="Contains the numbers of mails which will be deleted.">mailsToDelete</a>.append( currentMailNumber );
+<a name="l01984"></a>01984   }
+<a name="l01985"></a>01985   <span class="keywordflow">else</span>
+<a name="l01986"></a>01986   {
+<a name="l01987"></a>01987     <span class="comment">//Action was not successful</span>
+<a name="l01988"></a>01988     <span class="comment">//returns to applyFilters() to continue the filtering</span>
+<a name="l01989"></a>01989     <a class="code" href="classAccount.html#accdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
+<a name="l01990"></a>01990     <span class="keywordflow">return</span>;
+<a name="l01991"></a>01991   }
 <a name="l01992"></a>01992 
-<a name="l01993"></a>01993   <span class="comment">//if the list of mails is empty, return to applyFilters() to continue the filtering</span>
-<a name="l01994"></a>01994   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.empty() )
-<a name="l01995"></a>01995   {
-<a name="l01996"></a>01996     <a class="code" href="classAccount.html#accdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
-<a name="l01997"></a>01997     <span class="keywordflow">return</span>;
-<a name="l01998"></a>01998   }
-<a name="l01999"></a>01999 
-<a name="l02000"></a>02000   <span class="comment">//get next mail in list</span>
-<a name="l02001"></a>02001   <a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">getNextMailForDownloadActions</a>();
-<a name="l02002"></a>02002 }
-<a name="l02003"></a>02003 
-<a name="l02004"></a><a class="code" href="classAccount.html#a270bb12b57d54965436e0e2572a8b993">02004</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a270bb12b57d54965436e0e2572a8b993" title="If there are mails to delete by filters applyFilters will call the regular deletion...">Account::applyFiltersDeleted</a>( )
-<a name="l02005"></a>02005 {
-<a name="l02006"></a>02006   <span class="comment">//unset the flag</span>
-<a name="l02007"></a>02007   <a class="code" href="classAccount.html#a5993a239656c0df398b9c6fd88eeb5b9" title="This flag is set by applyFilters() to indicate the deletion cycle is performed by...">deletionPerformedByFilters</a> = <span class="keyword">false</span>;
-<a name="l02008"></a>02008 
-<a name="l02009"></a>02009   <span class="comment">//start the second refresh cycle</span>
-<a name="l02010"></a>02010   <a class="code" href="classAccount.html#a506d3ee4d01ebd795d5907e66b903387" title="This flag is set by applyFiltersDeleted() to indicate the refresh cycle is the second...">refreshPerformedByFilters</a> = <span class="keyword">true</span>;
-<a name="l02011"></a>02011 
-<a name="l02012"></a>02012   <span class="comment">//this sends a commit and restart the refresh</span>
-<a name="l02013"></a>02013   <a class="code" href="classAccount.html#ae419a2147d73f7447f996b8ad9c5e173" title="Send a commit and restart the refresh cycle.">commitBeforeRefresh</a>();
-<a name="l02014"></a>02014 }
-<a name="l02015"></a>02015 
-<a name="l02016"></a><a class="code" href="classAccount.html#ae419a2147d73f7447f996b8ad9c5e173">02016</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ae419a2147d73f7447f996b8ad9c5e173" title="Send a commit and restart the refresh cycle.">Account::commitBeforeRefresh</a>()
-<a name="l02017"></a>02017 {
-<a name="l02018"></a>02018   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;state() == KTcpSocket::ConnectedState )
-<a name="l02019"></a>02019   {
-<a name="l02020"></a>02020     <span class="comment">//connect the signal readyRead of the socket with the response handle methode</span>
-<a name="l02021"></a>02021     disconnect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), 0, 0 );
-<a name="l02022"></a>02022     connect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classAccount.html#a253e59ac68c6286416841d798a38bef7" title="Restarts a second refresh cycle after a deletion performed by the filter.">slotCommitBeforeRefreshDone</a>() ) );
-<a name="l02023"></a>02023 
-<a name="l02024"></a>02024     <span class="comment">//set the this flag to avoid an error message, if the server close the connection</span>
-<a name="l02025"></a>02025     <span class="comment">//immediately</span>
-<a name="l02026"></a>02026     <a class="code" href="classAccount.html#a019cd466572643e52dc7213d3be69c9a" title="TRUE - the QUIT command was sent to the server. Normally set by the commit methode...">quitSent</a> = <span class="keyword">true</span>;
-<a name="l02027"></a>02027 
-<a name="l02028"></a>02028     <span class="comment">//send the command</span>
-<a name="l02029"></a>02029     <a class="code" href="classAccount.html#a86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <a class="code" href="namespacePOP3Constants.html#a4037c7e462cda551b024d2a80e88a03c" title="Commit command.">COMMIT</a> );
-<a name="l02030"></a>02030   }
-<a name="l02031"></a>02031   <span class="keywordflow">else</span>
-<a name="l02032"></a>02032   {
-<a name="l02033"></a>02033     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
-<a name="l02034"></a>02034   }
-<a name="l02035"></a>02035 
-<a name="l02036"></a>02036 }
-<a name="l02037"></a>02037 
-<a name="l02038"></a><a class="code" href="classAccount.html#a253e59ac68c6286416841d798a38bef7">02038</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a253e59ac68c6286416841d798a38bef7" title="Restarts a second refresh cycle after a deletion performed by the filter.">Account::slotCommitBeforeRefreshDone</a>( )
-<a name="l02039"></a>02039 {
-<a name="l02040"></a>02040   <span class="comment">//after a commit was send, we start a new refresh cyle</span>
-<a name="l02041"></a>02041   <a class="code" href="classAccount.html#aceefec6bdf50f829410c09c398ddfb22" title="Refreshes the mail list.">refreshMailList</a>();
-<a name="l02042"></a>02042 }
-<a name="l02043"></a>02043 
-<a name="l02044"></a><a class="code" href="classAccount.html#a59572b609ad5cbd9b07c0fef0547ac46">02044</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a59572b609ad5cbd9b07c0fef0547ac46" title="Saves the stored mails into the given DOM document.">Account::saveOptions</a>( QDomDocument&amp; doc, QDomElement&amp; parent )
-<a name="l02045"></a>02045 {
-<a name="l02046"></a>02046   <span class="comment">//get application config</span>
-<a name="l02047"></a>02047   KConfigGroup* config = <span class="keyword">new</span> KConfigGroup( KGlobal::config(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
-<a name="l02048"></a>02048 
-<a name="l02049"></a>02049   <span class="comment">//save the active state</span>
-<a name="l02050"></a>02050   config-&gt;writeEntry( <a class="code" href="constants_8h.html#ac930bbf0f5c5dc76bafac5cd0ff17820">CONFIG_ENTRY_ACCOUNT_ACTIVE</a>, <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() );
-<a name="l02051"></a>02051   config-&gt;sync();
-<a name="l02052"></a>02052 
-<a name="l02053"></a>02053   <span class="comment">//save the stored mails inside this account</span>
-<a name="l02054"></a>02054   parent.setAttribute( <a class="code" href="constants_8h.html#adaf886f0193f7f0b565a11dd81e34674">ATTRIBUTE_ACCOUNT_NAME</a>, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
-<a name="l02055"></a>02055   <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#abec88578abf6e426d5553162da01c636">saveMails</a>( doc, parent );
-<a name="l02056"></a>02056 }
-<a name="l02057"></a>02057 
-<a name="l02058"></a><a class="code" href="classAccount.html#ad12721c8dd47db100e29c86bf9a02467">02058</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ad12721c8dd47db100e29c86bf9a02467" title="Downloads and shows the bodies of mails in mailsToShow.">Account::showMails</a>()
-<a name="l02059"></a>02059 {
-<a name="l02060"></a>02060   <span class="comment">//return if no mails in the list</span>
-<a name="l02061"></a>02061   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.empty() )
-<a name="l02062"></a>02062   {
-<a name="l02063"></a>02063     emit <a class="code" href="classAccount.html#a439f0aa2ae9ff2cf4e18a69f7bf3118c" title="Will be emitted when the bodies of all selected mails are downloaded and shown.">sigShowBodiesReady</a>( <a class="code" href="classAccount.html#abe08d97f4ba31a2483afd49376ac4fca" title="Name of this account.">name</a> );
-<a name="l02064"></a>02064     <span class="keywordflow">return</span>;
-<a name="l02065"></a>02065   }
-<a name="l02066"></a>02066 
-<a name="l02067"></a>02067   <span class="comment">//check whether we have a password for this account</span>
-<a name="l02068"></a>02068   <span class="comment">//if not, ask for it</span>
-<a name="l02069"></a>02069   <span class="comment">//return when no password is available</span>
-<a name="l02070"></a>02070   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a2375af112012541c1dbd245f23b0f6b6" title="Opens a dialog to ask for a password, stores it temporarily in the account settings...">assertPassword</a>() )
-<a name="l02071"></a>02071   {
-<a name="l02072"></a>02072     emit <a class="code" href="classAccount.html#a439f0aa2ae9ff2cf4e18a69f7bf3118c" title="Will be emitted when the bodies of all selected mails are downloaded and shown.">sigShowBodiesReady</a>( <a class="code" href="classAccount.html#abe08d97f4ba31a2483afd49376ac4fca" title="Name of this account.">name</a> );
-<a name="l02073"></a>02073     <span class="keywordflow">return</span>;
-<a name="l02074"></a>02074   }
-<a name="l02075"></a>02075 
-<a name="l02076"></a>02076   <span class="comment">//set account state</span>
-<a name="l02077"></a>02077   <a class="code" href="classAccount.html#a709933c49b495528dc5a8cf55bc402ff" title="State of the account.">state</a> = <a class="code" href="namespaceTypes.html#a57c868019acd102e855ff50f6043c1b6a3accada2afa1ad270e3b25c14cae5fd9">AccountDownloading</a>;
-<a name="l02078"></a>02078 
-<a name="l02079"></a>02079   <span class="comment">//connect</span>
-<a name="l02080"></a>02080   <a class="code" href="classAccount.html#ab57adead9293bcf436787823348185a1" title="Establishes a connection to the server.">doConnect</a>();
-<a name="l02081"></a>02081 
-<a name="l02082"></a>02082 }
-<a name="l02083"></a>02083 
-<a name="l02084"></a><a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e">02084</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">Account::writeToMailBox</a>( <span class="keyword">const</span> QStringList&amp; mail, <span class="keyword">const</span> QString&amp; box )
-<a name="l02085"></a>02085 {
-<a name="l02086"></a>02086   QDir mailDir( box );
-<a name="l02087"></a>02087 
-<a name="l02088"></a>02088   <span class="comment">//check whether the given path is a maildir</span>
-<a name="l02089"></a>02089   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a6995176992472513598b2cc93be40e79" title="Returns whether the given directory is a maildir directory.">isMailDir</a>( mailDir ) )
-<a name="l02090"></a>02090   {
-<a name="l02091"></a>02091     <span class="comment">//show an error message</span>
-<a name="l02092"></a>02092     KMessageBox::error( NULL, i18nc( <span class="stringliteral">&quot;@info error message: writing a mail into a mailbox: this is not a mail box&quot;</span>, <span class="stringliteral">&quot;&lt;filename&gt;%1&lt;/filename&gt; is not a mailbox.&quot;</span>, box ) );
-<a name="l02093"></a>02093     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02094"></a>02094   }
-<a name="l02095"></a>02095 
-<a name="l02096"></a>02096   <span class="comment">//create unique file name according http://cr.yp.to/proto/maildir.html</span>
-<a name="l02097"></a>02097   QString partTime = QString::number( time( NULL ) );   <span class="comment">//left part, output of time()</span>
-<a name="l02098"></a>02098 
-<a name="l02099"></a>02099   <span class="keywordtype">char</span> hname[256];                                      <span class="comment">//right part, the hostname</span>
-<a name="l02100"></a>02100   QString partHostname;
-<a name="l02101"></a>02101   <span class="keywordflow">if</span>( gethostname( hname, 255 ) == 0 )
-<a name="l02102"></a>02102     partHostname = QString( hname );
-<a name="l02103"></a>02103   <span class="keywordflow">else</span>
-<a name="l02104"></a>02104   {
-<a name="l02105"></a>02105     <span class="comment">//the hostname is not readable</span>
-<a name="l02106"></a>02106     <span class="comment">//show an error message and exit</span>
-<a name="l02107"></a>02107     KMessageBox::error( NULL, i18nc( <span class="stringliteral">&quot;@info error message&quot;</span>, <span class="stringliteral">&quot;Can&#39;t read the hostname of your computer. But KShowmail need it to write a mail into the mailbox.&quot;</span> ) );
-<a name="l02108"></a>02108     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02109"></a>02109   }
-<a name="l02110"></a>02110 
-<a name="l02111"></a>02111   QString partPID = QString::number( getpid() );      <span class="comment">//middle part, the PID</span>
-<a name="l02112"></a>02112 
-<a name="l02113"></a>02113   QString partCounter = QString::number( <a class="code" href="classAccount.html#a3d98d6d000d1a4fe03c5a0acfc4c2c89" title="Counter for moving to create an unique file name.">moveCounter</a>++ );
-<a name="l02114"></a>02114 
-<a name="l02115"></a>02115   QString uniqueName( partTime + <span class="charliteral">&#39;.&#39;</span> + partPID + partCounter + <span class="charliteral">&#39;.&#39;</span> + partHostname );
-<a name="l02116"></a>02116 
-<a name="l02117"></a>02117   <span class="comment">//build absolute path</span>
-<a name="l02118"></a>02118   mailDir.cd( <span class="stringliteral">&quot;tmp&quot;</span> );
-<a name="l02119"></a>02119   QString absFile = mailDir.filePath( uniqueName );
-<a name="l02120"></a>02120 
-<a name="l02121"></a>02121   <span class="comment">//and writing!</span>
-<a name="l02122"></a>02122   QFile file( absFile );
-<a name="l02123"></a>02123   <span class="keywordflow">if</span>( file.open( QFile::WriteOnly ) )
-<a name="l02124"></a>02124   {
-<a name="l02125"></a>02125     QTextStream stream( &amp;file );
-<a name="l02126"></a>02126     stream &lt;&lt; mail.join( <span class="stringliteral">&quot;\n&quot;</span> ) &lt;&lt; endl;
-<a name="l02127"></a>02127     file.close();
-<a name="l02128"></a>02128   }
-<a name="l02129"></a>02129   <span class="keywordflow">else</span>
-<a name="l02130"></a>02130   {
-<a name="l02131"></a>02131     KMessageBox::detailedError( NULL, i18nc( <span class="stringliteral">&quot;@info error message: we could not write a mail into a mailbox&quot;</span>, <span class="stringliteral">&quot;Could not file a mail to &lt;filename&gt;%1&lt;/filename&gt;.&quot;</span>, box ), file.errorString() );
-<a name="l02132"></a>02132     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02133"></a>02133   }
-<a name="l02134"></a>02134 
-<a name="l02135"></a>02135   <span class="comment">//now we move it to the &quot;new&quot; subdirectory</span>
-<a name="l02136"></a>02136   mailDir.cdUp();
-<a name="l02137"></a>02137   mailDir.cd( <span class="stringliteral">&quot;new&quot;</span> );
-<a name="l02138"></a>02138   QString absNewFile = mailDir.filePath( uniqueName );
-<a name="l02139"></a>02139 
-<a name="l02140"></a>02140   <span class="keywordflow">if</span>( KDE::rename( absFile.toAscii(), absNewFile.toAscii() ) == -1 )
-<a name="l02141"></a>02141   {
-<a name="l02142"></a>02142     KMessageBox::error( NULL, i18nc( <span class="stringliteral">&quot;@info error message: error during writing a mail into a mailbox&quot;</span>, <span class="stringliteral">&quot;Could not move a mail from &lt;filename&gt;%1&lt;/filename&gt; to &lt;filename&gt;%2&lt;/filename&gt;.&quot;</span>, absFile, absNewFile ) );
-<a name="l02143"></a>02143     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02144"></a>02144   }
-<a name="l02145"></a>02145 
-<a name="l02146"></a>02146   <span class="comment">//the writing was successful</span>
-<a name="l02147"></a>02147   <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l02148"></a>02148 }
-<a name="l02149"></a>02149 
-<a name="l02150"></a><a class="code" href="classAccount.html#a6995176992472513598b2cc93be40e79">02150</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#a6995176992472513598b2cc93be40e79" title="Returns whether the given directory is a maildir directory.">Account::isMailDir</a>( <span class="keyword">const</span> QDir&amp; path )
-<a name="l02151"></a>02151 {
-<a name="l02152"></a>02152   <span class="comment">//get a list of all subdirectories in this directory</span>
-<a name="l02153"></a>02153   <span class="keyword">const</span> QStringList entries = path.entryList( QDir::Dirs | QDir::Readable | QDir::Writable | QDir::Hidden, QDir::Name | QDir::IgnoreCase | QDir::LocaleAware );
-<a name="l02154"></a>02154 
-<a name="l02155"></a>02155   <span class="comment">//a maildir folder must contains the folders &quot;cur&quot;, &quot;new&quot; and &quot;tmp&quot;</span>
-<a name="l02156"></a>02156   <span class="keywordtype">bool</span> curFound = <span class="keyword">false</span>;
-<a name="l02157"></a>02157   <span class="keywordtype">bool</span> newFound = <span class="keyword">false</span>;
-<a name="l02158"></a>02158   <span class="keywordtype">bool</span> tmpFound = <span class="keyword">false</span>;
-<a name="l02159"></a>02159 
-<a name="l02160"></a>02160   <span class="comment">//iterate over all directories and look for the three necessary dirs</span>
-<a name="l02161"></a>02161   QStringList::const_iterator it = entries.begin();
-<a name="l02162"></a>02162   <span class="keywordflow">while</span>( it != entries.end() &amp;&amp; !( curFound &amp;&amp; newFound &amp;&amp; tmpFound ) )
-<a name="l02163"></a>02163   {
-<a name="l02164"></a>02164     <span class="keywordflow">if</span>( *it == <span class="stringliteral">&quot;tmp&quot;</span> )
-<a name="l02165"></a>02165       tmpFound = <span class="keyword">true</span>;
-<a name="l02166"></a>02166     <span class="keywordflow">else</span> <span class="keywordflow">if</span>( *it == <span class="stringliteral">&quot;cur&quot;</span> )
-<a name="l02167"></a>02167       curFound = <span class="keyword">true</span>;
-<a name="l02168"></a>02168     <span class="keywordflow">else</span> <span class="keywordflow">if</span>( *it == <span class="stringliteral">&quot;new&quot;</span> )
-<a name="l02169"></a>02169       newFound = <span class="keyword">true</span>;
-<a name="l02170"></a>02170 
-<a name="l02171"></a>02171     ++it;
-<a name="l02172"></a>02172   }
-<a name="l02173"></a>02173 
-<a name="l02174"></a>02174   <span class="keywordflow">return</span> curFound &amp;&amp; newFound &amp;&amp; tmpFound;
-<a name="l02175"></a>02175 }
-<a name="l02176"></a>02176 
-<a name="l02177"></a><a class="code" href="classAccount.html#a309e2098c05fba9b4303b24008459574">02177</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#a309e2098c05fba9b4303b24008459574" title="Forwards the given mail to SpamAssassin and returns the test result.">Account::isSpam</a>( QStringList mail )<span class="keyword"> const</span>
-<a name="l02178"></a>02178 <span class="keyword"></span>{
-<a name="l02179"></a>02179 
-<a name="l02180"></a>02180   <span class="comment">//check for a running spamassassin</span>
-<a name="l02181"></a>02181   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a0f5b60a29afcb519404b365d9f4bb88d" title="Looks for a running spamd daemon of SpamAssassin.">isSpamAssassinRunning</a>() )
-<a name="l02182"></a>02182   {
-<a name="l02183"></a>02183     KMessageBox::information( NULL, i18nc( <span class="stringliteral">&quot;@info&quot;</span>, <span class="stringliteral">&quot;You want to check your mails for spam, but SpamAssassin is not running.&lt;nl/&gt;KShowmail skips the spam check.&quot;</span> ), i18nc( <span class="stringliteral">&quot;@title:window&quot;</span>, <span class="stringliteral">&quot;SpamAssassin is not running&quot;</span> ), <span class="stringliteral">&quot;AccountNoSpamAssassinRunning&quot;</span> );
-<a name="l02184"></a>02184     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02185"></a>02185   }
-<a name="l02186"></a>02186 
-<a name="l02187"></a>02187   <span class="comment">//calls spmac and get an file pointer to stdin of it</span>
-<a name="l02188"></a>02188   FILE *write_fp;
-<a name="l02189"></a>02189   write_fp = popen( <span class="stringliteral">&quot;spamc -E&quot;</span>, <span class="stringliteral">&quot;w&quot;</span> );
-<a name="l02190"></a>02190 
-<a name="l02191"></a>02191   <span class="comment">//forward the mail to SpamAssassin</span>
-<a name="l02192"></a>02192   <span class="keywordflow">if</span>( write_fp != NULL )
-<a name="l02193"></a>02193   {
-<a name="l02194"></a>02194     <span class="comment">//join the mail to a string</span>
-<a name="l02195"></a>02195     QString joinedMail = mail.join( <span class="stringliteral">&quot;\n&quot;</span> );
-<a name="l02196"></a>02196     fwrite( joinedMail.toAscii(), <span class="keyword">sizeof</span>( char), joinedMail.size(), write_fp );
-<a name="l02197"></a>02197 
-<a name="l02198"></a>02198     <span class="comment">//check exit code of spamc and return result</span>
-<a name="l02199"></a>02199     <span class="keywordtype">int</span> excode = pclose( write_fp );
-<a name="l02200"></a>02200     <span class="keywordflow">if</span>(  excode == 0 )
-<a name="l02201"></a>02201       <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02202"></a>02202     <span class="keywordflow">else</span>
-<a name="l02203"></a>02203       <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l02204"></a>02204   }
-<a name="l02205"></a>02205   <span class="keywordflow">else</span>
-<a name="l02206"></a>02206   {
-<a name="l02207"></a>02207     kdError() &lt;&lt; <span class="stringliteral">&quot;Could not call the command spamc of SpamAssassin.&quot;</span> &lt;&lt; endl;
-<a name="l02208"></a>02208     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02209"></a>02209   }
-<a name="l02210"></a>02210 
-<a name="l02211"></a>02211   <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l02212"></a>02212 }
-<a name="l02213"></a>02213 
-<a name="l02214"></a><a class="code" href="classAccount.html#a0f5b60a29afcb519404b365d9f4bb88d">02214</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#a0f5b60a29afcb519404b365d9f4bb88d" title="Looks for a running spamd daemon of SpamAssassin.">Account::isSpamAssassinRunning</a>( )<span class="keyword"> const</span>
-<a name="l02215"></a>02215 <span class="keyword"></span>{
-<a name="l02216"></a>02216   FILE *read_fp;
-<a name="l02217"></a>02217   <span class="keywordtype">char</span> buffer[ BUFSIZ + 1 ];
-<a name="l02218"></a>02218   <span class="keywordtype">int</span> chars_read;
-<a name="l02219"></a>02219   <span class="keywordtype">bool</span> found = <span class="keyword">false</span>;
-<a name="l02220"></a>02220 
-<a name="l02221"></a>02221   memset( buffer, <span class="charliteral">&#39;\0&#39;</span>, <span class="keyword">sizeof</span>( buffer ) );
-<a name="l02222"></a>02222   read_fp = popen( <span class="stringliteral">&quot;ps -eo comm&quot;</span>, <span class="stringliteral">&quot;r&quot;</span> );
-<a name="l02223"></a>02223   <span class="keywordflow">if</span>( read_fp != NULL )
-<a name="l02224"></a>02224   {
-<a name="l02225"></a>02225     chars_read = fread( buffer, <span class="keyword">sizeof</span>( <span class="keywordtype">char</span> ), BUFSIZ, read_fp );
-<a name="l02226"></a>02226     <span class="keywordflow">while</span>( chars_read &gt; 0 )
-<a name="l02227"></a>02227     {
-<a name="l02228"></a>02228       buffer[ chars_read - 1 ] = <span class="charliteral">&#39;\0&#39;</span>;
-<a name="l02229"></a>02229       QString output( buffer );
-<a name="l02230"></a>02230       found = output.contains( <a class="code" href="constants_8h.html#aec8c8d5768db301f9aa3552fd064b0ce">NAME_SPAMASSASSIN_DAEMON</a> ) &gt; 0;
-<a name="l02231"></a>02231       chars_read = fread( buffer, <span class="keyword">sizeof</span>( <span class="keywordtype">char</span> ), BUFSIZ, read_fp );
-<a name="l02232"></a>02232     }
-<a name="l02233"></a>02233     pclose( read_fp );
-<a name="l02234"></a>02234   }
-<a name="l02235"></a>02235 
-<a name="l02236"></a>02236   <span class="keywordflow">return</span> found;
-<a name="l02237"></a>02237 }
-<a name="l02238"></a>02238 
-<a name="l02239"></a><a class="code" href="classAccount.html#acbd4c5af1fdb8f35e3acf9ed5672b8ec">02239</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#acbd4c5af1fdb8f35e3acf9ed5672b8ec" title="Returns the number of new mails.">Account::getNumberNewMails</a>( )
-<a name="l02240"></a>02240 {
-<a name="l02241"></a>02241   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a7ccfa7d16852b8b02227e48aaee130f0">getNumberNewMails</a>();
-<a name="l02242"></a>02242 }
-<a name="l02243"></a>02243 
-<a name="l02244"></a><a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc">02244</a> <span class="keywordtype">long</span> <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">Account::getTotalSize</a>()<span class="keyword"> const </span>{
-<a name="l02245"></a>02245   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a9e83869411ab50e5a9076510bc308206">getTotalSize</a>();
-<a name="l02246"></a>02246 }
-<a name="l02247"></a>02247 
-<a name="l02248"></a><a class="code" href="classAccount.html#ae73862c5ae6b7d1b0860940f83071042">02248</a> QString <a class="code" href="classAccount.html#ae73862c5ae6b7d1b0860940f83071042" title="Returns the total size of all mails with unit.">Account::getTotalSizeUnit</a>()<span class="keyword"> const </span>{
-<a name="l02249"></a>02249 
-<a name="l02250"></a>02250   <span class="keywordtype">int</span> size = <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>();
-<a name="l02251"></a>02251   QString strSize;
-<a name="l02252"></a>02252 
-<a name="l02253"></a>02253   <span class="keywordflow">if</span>( size &gt;= 1024 * 1024 )
-<a name="l02254"></a>02254   {
-<a name="l02255"></a>02255     <span class="comment">//prefix is mega</span>
-<a name="l02256"></a>02256     strSize = QString( <span class="stringliteral">&quot;%L1M&quot;</span> ).arg( ( (<span class="keywordtype">double</span>)size / ( 1024 * 1024 ) ), 0, <span class="charliteral">&#39;f&#39;</span>, 1 );
-<a name="l02257"></a>02257   }
-<a name="l02258"></a>02258   <span class="keywordflow">else</span> <span class="keywordflow">if</span>( size &gt;= 1024 )
-<a name="l02259"></a>02259   {
-<a name="l02260"></a>02260     <span class="comment">//prefix is kilo</span>
-<a name="l02261"></a>02261     strSize = QString( <span class="stringliteral">&quot;%L1K&quot;</span> ).arg( ( (<span class="keywordtype">double</span>)size / 1024 ), 0, <span class="charliteral">&#39;f&#39;</span>, 1 );
-<a name="l02262"></a>02262   }
-<a name="l02263"></a>02263   <span class="keywordflow">else</span>
-<a name="l02264"></a>02264     <span class="comment">//no prefix</span>
-<a name="l02265"></a>02265     strSize = QString( <span class="stringliteral">&quot;%L1&quot;</span> ).arg( size );
-<a name="l02266"></a>02266 
-<a name="l02267"></a>02267   <span class="keywordflow">return</span> strSize;
-<a name="l02268"></a>02268 
-<a name="l02269"></a>02269 }
-<a name="l02270"></a>02270 
-<a name="l02271"></a><a class="code" href="classAccount.html#a09ea69c48d1dae107c40e37688e51a76">02271</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a09ea69c48d1dae107c40e37688e51a76" title="Connected with signale sslErrors of the socket.">Account::slotSSLError</a>( <span class="keyword">const</span> QList&lt;KSslError&gt;&amp; errors ) {
-<a name="l02272"></a>02272 
-<a name="l02273"></a>02273   <span class="comment">//make a single error string</span>
-<a name="l02274"></a>02274   QString message;
-<a name="l02275"></a>02275   QListIterator&lt;KSslError&gt; it( errors );
-<a name="l02276"></a>02276   <span class="keywordflow">while</span>( it.hasNext() ) {
-<a name="l02277"></a>02277 
-<a name="l02278"></a>02278     KSslError error = it.next();
-<a name="l02279"></a>02279 
-<a name="l02280"></a>02280     message.append( error.errorString() );
-<a name="l02281"></a>02281   }
-<a name="l02282"></a>02282 
-<a name="l02283"></a>02283   <span class="comment">//ask the user whether he want to cancel or continue</span>
-<a name="l02284"></a>02284   emit <a class="code" href="classAccount.html#a8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
-<a name="l02285"></a>02285   <span class="keywordtype">int</span> answer = KMessageBox::warningContinueCancel( NULL,
-<a name="l02286"></a>02286                                                    i18nc( <span class="stringliteral">&quot;@info error message: general SSL error&quot;</span>, <span class="stringliteral">&quot;SSL error: &lt;message&gt;%1&lt;/message&gt;&lt;nl/&gt;Do you want to continue?&quot;</span>, message ),
-<a name="l02287"></a>02287                                                    i18nc( <span class="stringliteral">&quot;@title:window&quot;</span>, <span class="stringliteral">&quot;SSL-Error - %1&quot;</span>, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() ),
-<a name="l02288"></a>02288                                                    KStandardGuiItem::cont(),
-<a name="l02289"></a>02289                                                    KStandardGuiItem::cancel(),
-<a name="l02290"></a>02290                                                    QString( <span class="stringliteral">&quot;askSSLErrorContinue_%1&quot;</span>).arg( <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() ) );
-<a name="l02291"></a>02291   emit <a class="code" href="classAccount.html#ae25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
-<a name="l02292"></a>02292 
-<a name="l02293"></a>02293   <span class="keywordflow">if</span>( answer == KMessageBox::Continue ) {
-<a name="l02294"></a>02294 
-<a name="l02295"></a>02295     <span class="comment">//continue</span>
-<a name="l02296"></a>02296     <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;ignoreSslErrors();
-<a name="l02297"></a>02297 
-<a name="l02298"></a>02298   } <span class="keywordflow">else</span> {
-<a name="l02299"></a>02299 
-<a name="l02300"></a>02300     <span class="comment">//the socket calls slotSocketError, but we don&#39;t want a further error message</span>
-<a name="l02301"></a>02301     <a class="code" href="classAccount.html#a7676e6c216669bb62666f48a33c62bc1" title="TRUE - the error will not be handled by slotSocketError.">dontHandleError</a> = <span class="keyword">true</span>;
-<a name="l02302"></a>02302 
-<a name="l02303"></a>02303     <span class="comment">//cancel</span>
-<a name="l02304"></a>02304     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
-<a name="l02305"></a>02305 
-<a name="l02306"></a>02306   }
-<a name="l02307"></a>02307 
-<a name="l02308"></a>02308   <span class="keywordflow">return</span>;
-<a name="l02309"></a>02309 
-<a name="l02310"></a>02310 }
-<a name="l02311"></a>02311 
-<a name="l02312"></a><a class="code" href="classAccount.html#a9a567fcd1f99b6946df9b1bb5e7738d7">02312</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a9a567fcd1f99b6946df9b1bb5e7738d7" title="Gets the stored mails.">Account::readStoredMails</a>( QDomElement&amp; parent )
-<a name="l02313"></a>02313 {
-<a name="l02314"></a>02314   <span class="comment">//get mails</span>
-<a name="l02315"></a>02315   <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#ade61b5869dd338eb91dd2ca9e63637f2">readStoredMails</a>( parent );
-<a name="l02316"></a>02316 }
-<a name="l02317"></a>02317 
-<a name="l02318"></a><a class="code" href="classAccount.html#af50cfd2f4cdb6294a8b258fa16ad86a8">02318</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#af50cfd2f4cdb6294a8b258fa16ad86a8" title="Compares this account with other and returns an integer less than, equal to, or greater...">Account::compare</a>( <a class="code" href="classAccount.html" title="This class represents an POP3-Account.">Account</a>* other, <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1f">AccountSort_Type</a> property ) {
-<a name="l02319"></a>02319 
-<a name="l02320"></a>02320         <span class="keywordflow">switch</span>( property ) {
-<a name="l02321"></a>02321 
-<a name="l02322"></a>02322                 <span class="comment">//compare by active state</span>
-<a name="l02323"></a>02323                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa997eb5304e061f4e8635c7e3c8adfe66">AccSortActive</a> : {
-<a name="l02324"></a>02324 
-<a name="l02325"></a>02325                         <span class="keywordflow">if</span>( other-&gt;<a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() == <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() ) <span class="keywordflow">return</span> 0;
-<a name="l02326"></a>02326                         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() == false ) <span class="keywordflow">return</span> -1;
-<a name="l02327"></a>02327                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> 1;
-<a name="l02328"></a>02328                         <span class="keywordflow">break</span>;
-<a name="l02329"></a>02329 
-<a name="l02330"></a>02330                 }
-<a name="l02331"></a>02331 
-<a name="l02332"></a>02332                 <span class="comment">//compare by name</span>
-<a name="l02333"></a>02333                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fad57c3280d7d1d1f445b6783373902b2a">AccSortName</a> : {
-<a name="l02334"></a>02334 
-<a name="l02335"></a>02335                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), other-&gt;<a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
-<a name="l02336"></a>02336                 }
-<a name="l02337"></a>02337 
-<a name="l02338"></a>02338                 <span class="comment">//compare by server</span>
-<a name="l02339"></a>02339                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa40ddbc77b8c63c32cff838e7e427b857">AccSortServer</a> : {
-<a name="l02340"></a>02340 
-<a name="l02341"></a>02341                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>(), other-&gt;<a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>() );
-<a name="l02342"></a>02342                 }
-<a name="l02343"></a>02343 
-<a name="l02344"></a>02344                 <span class="comment">//compare by user</span>
-<a name="l02345"></a>02345                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa9352e5004467831cc2d44fe06ca1178b">AccSortUser</a> : {
-<a name="l02346"></a>02346 
-<a name="l02347"></a>02347                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#ab28dae6c7a73ab033b714810ac0be200" title="Returns the user name.">getUser</a>(), other-&gt;<a class="code" href="classAccount.html#ab28dae6c7a73ab033b714810ac0be200" title="Returns the user name.">getUser</a>() );
-<a name="l02348"></a>02348                 }
-<a name="l02349"></a>02349 
-<a name="l02350"></a>02350                 <span class="comment">//compare by number of messages</span>
-<a name="l02351"></a>02351                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa7925c374eca1b3400c4605050eab91a2">AccSortNrMess</a> : {
-<a name="l02352"></a>02352 
-<a name="l02353"></a>02353                         <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() == other-&gt;<a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() ) <span class="keywordflow">return</span> 0;
-<a name="l02354"></a>02354                         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() &lt; other-&gt;<a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() ) <span class="keywordflow">return</span> -1;
-<a name="l02355"></a>02355                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> 1;
-<a name="l02356"></a>02356                 }
-<a name="l02357"></a>02357 
-<a name="l02358"></a>02358                 <span class="comment">//compare by total size of messages</span>
-<a name="l02359"></a>02359                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1faf488349d1b9670a39f75d918ef52e8d6">AccSortSize</a> : {
-<a name="l02360"></a>02360 
-<a name="l02361"></a>02361                         <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() == other-&gt;<a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() ) <span class="keywordflow">return</span> 0;
-<a name="l02362"></a>02362                         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() &lt; other-&gt;<a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() ) <span class="keywordflow">return</span> -1;
-<a name="l02363"></a>02363                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> 1;
-<a name="l02364"></a>02364                 }
-<a name="l02365"></a>02365 
-<a name="l02366"></a>02366                 <span class="keywordflow">default</span>: {
-<a name="l02367"></a>02367                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), other-&gt;<a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
-<a name="l02368"></a>02368                 }
-<a name="l02369"></a>02369         }
-<a name="l02370"></a>02370 }
-<a name="l02371"></a>02371 
-<a name="l02372"></a><a class="code" href="classAccount.html#a5a64e6ffd1078663ac0a2646101906c2">02372</a> QList&lt;Mail&gt; <a class="code" href="classAccount.html#a5a64e6ffd1078663ac0a2646101906c2" title="Returns a list which contains the pointers to all mails.">Account::getAllMails</a>()<span class="keyword"> const</span>
-<a name="l02373"></a>02373 <span class="keyword"></span>{
-<a name="l02374"></a>02374         <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() )
-<a name="l02375"></a>02375                 <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a1d40081c4893d5cc7931faf213f5a368">getAllMails</a>();
-<a name="l02376"></a>02376         <span class="keywordflow">else</span>
-<a name="l02377"></a>02377                 <span class="keywordflow">return</span> QList&lt;Mail&gt;();
-<a name="l02378"></a>02378 }
-<a name="l02379"></a>02379 
-<a name="l02380"></a><a class="code" href="classAccount.html#a4fef3a9e3b72505f6091ea3ed368276d">02380</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a4fef3a9e3b72505f6091ea3ed368276d" title="Connected with the timeout timer.">Account::slotTimeout</a>()
-<a name="l02381"></a>02381 {
-<a name="l02382"></a>02382   <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info error message&quot;</span>, <span class="stringliteral">&quot;Timeout&quot;</span> ) );
-<a name="l02383"></a>02383 }
-<a name="l02384"></a>02384 
-<a name="l02385"></a><a class="code" href="classAccount.html#a3cd16e59bb73d42325fb75abd201d7ea">02385</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a3cd16e59bb73d42325fb75abd201d7ea" title="Cancels the current running task.">Account::cancelTask</a>()
-<a name="l02386"></a>02386 {
-<a name="l02387"></a>02387   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a709933c49b495528dc5a8cf55bc402ff" title="State of the account.">state</a> != <a class="code" href="namespaceTypes.html#a57c868019acd102e855ff50f6043c1b6aa15826a259a1b9518c05738511bca3c7">AccountIdle</a> ) {
-<a name="l02388"></a>02388 
-<a name="l02389"></a>02389     <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;close();
-<a name="l02390"></a>02390     <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info the task was canceled by user&quot;</span>, <span class="stringliteral">&quot;Task canceled&quot;</span> ) );
-<a name="l02391"></a>02391   }
-<a name="l02392"></a>02392 }
-<a name="l02393"></a>02393 
-<a name="l02394"></a><a class="code" href="classAccount.html#a2d192a810474d780611c095b9f971fbe">02394</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a2d192a810474d780611c095b9f971fbe" title="Invites the server to crypt using TLS (STARTTLS).">Account::startTLS</a>()
-<a name="l02395"></a>02395 {
-<a name="l02396"></a>02396   <span class="comment">//connect the signal readyRead of the socket with the response handle methode</span>
-<a name="l02397"></a>02397   disconnect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), 0, 0 );
-<a name="l02398"></a>02398   connect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classAccount.html#af1a8bd9405314c274cc24ebe96dba17f" title="Receives the response of the STLS command.">slotStartTLSResponse</a>() ) );
-<a name="l02399"></a>02399 
-<a name="l02400"></a>02400   <span class="comment">//send the command</span>
-<a name="l02401"></a>02401   <a class="code" href="classAccount.html#a86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <a class="code" href="namespacePOP3Constants.html#a00ac5e29ad83cad15ab6862eb5c30e04" title="command for start TLS">START_TLS</a> );
-<a name="l02402"></a>02402 
-<a name="l02403"></a>02403 }
-<a name="l02404"></a>02404 
-<a name="l02405"></a><a class="code" href="classAccount.html#af1a8bd9405314c274cc24ebe96dba17f">02405</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#af1a8bd9405314c274cc24ebe96dba17f" title="Receives the response of the STLS command.">Account::slotStartTLSResponse</a>()
-<a name="l02406"></a>02406 {
-<a name="l02407"></a>02407   <span class="comment">//get server answer</span>
-<a name="l02408"></a>02408   QStringList text = <a class="code" href="classAccount.html#adc967ce6b695510e9d892078cb202fbe" title="Reads all data from the socket.">readfromSocket</a>( <span class="keyword">true</span> );
-<a name="l02409"></a>02409 
-<a name="l02410"></a>02410   <span class="comment">//if the socket has not returned something, we finish at this point</span>
-<a name="l02411"></a>02411   <span class="comment">//we don&#39;t need to show an error message, because the handleError-Methode was called already</span>
-<a name="l02412"></a>02412   <span class="keywordflow">if</span>( text.isEmpty() )
-<a name="l02413"></a>02413   {
-<a name="l02414"></a>02414     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
-<a name="l02415"></a>02415     <span class="keywordflow">return</span>;
-<a name="l02416"></a>02416   }
-<a name="l02417"></a>02417 
-<a name="l02418"></a>02418   <span class="comment">//have we got a acknowledgment?</span>
-<a name="l02419"></a>02419   <span class="keywordtype">bool</span> ack = <a class="code" href="classAccount.html#a8862a31f946ddc6296ef8c987c83fad2" title="Returns whether the server answer is positive or negative.">isPositiveServerMessage</a>( text );
-<a name="l02420"></a>02420 
-<a name="l02421"></a>02421   <span class="comment">//if the server isn&#39;t ready for TLS, continue without TLS</span>
-<a name="l02422"></a>02422   <span class="keywordflow">if</span>( !ack ) {
-<a name="l02423"></a>02423 
-<a name="l02424"></a>02424     kdError() &lt;&lt; <span class="stringliteral">&quot;The Server &quot;</span> &lt;&lt; <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>() &lt;&lt; <span class="stringliteral">&quot; says it supports STLS but it doesn&#39;t accept the STLS command: &quot;</span> &lt;&lt; text.first() &lt;&lt; endl;
-<a name="l02425"></a>02425 
-<a name="l02426"></a>02426     <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a9bfe1916b0f61f6f0e21e5ab6f232f19" title="APOP available.">apopAvail</a> &amp;&amp; !<a class="code" href="classAccount.html#a0bb190f15c4ee896dfe2e899f4fbdd39" title="Is set to TRUE by slotLoginAPOPResponse if the first login with APOP is failed.">dontUseAPOP</a> ) {
-<a name="l02427"></a>02427 
-<a name="l02428"></a>02428       <a class="code" href="classAccount.html#a84ec89cb9027a490ab4054be24892581" title="Initiates a login using APOP.">loginApop</a>();
-<a name="l02429"></a>02429       <span class="keywordflow">return</span>;
-<a name="l02430"></a>02430 
-<a name="l02431"></a>02431     } <span class="keywordflow">else</span> {
-<a name="l02432"></a>02432 
-<a name="l02433"></a>02433       <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a6c382c4db738ee387d9e2bab4483c7c3" title="TRUE - unsafe login is allowed if a secure login failed.">allowUnsecureLogin</a> == <span class="keyword">true</span> ) {
-<a name="l02434"></a>02434 
-<a name="l02435"></a>02435         <a class="code" href="classAccount.html#a841597d36acd8d9d2ac4120cfde72588" title="Sends the login name.">loginUser</a>();
-<a name="l02436"></a>02436 
-<a name="l02437"></a>02437       } <span class="keywordflow">else</span> {
-<a name="l02438"></a>02438 
-<a name="l02439"></a>02439         emit <a class="code" href="classAccount.html#a8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
-<a name="l02440"></a>02440         KMessageBox::sorry( NULL, i18nc( <span class="stringliteral">&quot;@info error message: this server doesn&#39;t support secure login&quot;</span>, <span class="stringliteral">&quot;Account &lt;resource&gt;%1&lt;/resource&gt;: This server doesn&#39;t provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.&lt;nl/&gt;&lt;warning&gt;Bear in mind in this case criminals could read your password!&lt;/warning&gt;&quot;</span>, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() ), i18nc( <span class="stringliteral">&quot;@title:window&quot;</span>, <span class="stringliteral">&quot;Unsafe login is not allowed&quot;</span>) );
-<a name="l02441"></a>02441         emit <a class="code" href="classAccount.html#ae25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
-<a name="l02442"></a>02442 
-<a name="l02443"></a>02443         <span class="comment">//the user has not allowed unsafe login; finish the task</span>
-<a name="l02444"></a>02444         <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
-<a name="l02445"></a>02445 
-<a name="l02446"></a>02446       }
-<a name="l02447"></a>02447     }
-<a name="l02448"></a>02448 
-<a name="l02449"></a>02449   } <span class="keywordflow">else</span> {
-<a name="l02450"></a>02450 
-<a name="l02451"></a>02451     <span class="comment">//Yes, lets start TLS!!!</span>
-<a name="l02452"></a>02452 
-<a name="l02453"></a>02453     <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;startClientEncryption();
-<a name="l02454"></a>02454 
-<a name="l02455"></a>02455     <span class="comment">//login</span>
-<a name="l02456"></a>02456     <a class="code" href="classAccount.html#a841597d36acd8d9d2ac4120cfde72588" title="Sends the login name.">loginUser</a>();
-<a name="l02457"></a>02457   }
-<a name="l02458"></a>02458 
-<a name="l02459"></a>02459 }
-<a name="l02460"></a>02460 
-<a name="l02461"></a><a class="code" href="classAccount.html#aed94ea5174ca3a444820a5130f9e6638">02461</a> <a class="code" href="classAccountViewItem.html" title="This class is used by AccountViewModel to hold a list of the accounts.">AccountViewItem</a> <a class="code" href="classAccount.html#aed94ea5174ca3a444820a5130f9e6638" title="Returns a appropriate view item.">Account::getViewItem</a>()
-<a name="l02462"></a>02462 {
-<a name="l02463"></a>02463   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html" title="This class is used by AccountViewModel to hold a list of the accounts.">AccountViewItem</a>( <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>(), <a class="code" href="classAccount.html#ab28dae6c7a73ab033b714810ac0be200" title="Returns the user name.">getUser</a>(), <a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>(), <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>(), QPointer&lt;Account&gt;( <span class="keyword">this</span> ) );
-<a name="l02464"></a>02464 }
-<a name="l02465"></a>02465 
+<a name="l01993"></a>01993 
+<a name="l01994"></a>01994   <span class="comment">//if the list of mails is empty, return to applyFilters() to continue the filtering</span>
+<a name="l01995"></a>01995   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a1a058c26db20a995d5867aabdb6845db" title="Contains the numbers of the mails shall be moved for actions like moving to mailbox...">mailsToDownload</a>.empty() )
+<a name="l01996"></a>01996   {
+<a name="l01997"></a>01997     <a class="code" href="classAccount.html#accdf99ff196dbe01a9f2a8137341a373" title="Applies the filters to the mails in the mail list.">applyFilters</a>();
+<a name="l01998"></a>01998     <span class="keywordflow">return</span>;
+<a name="l01999"></a>01999   }
+<a name="l02000"></a>02000 
+<a name="l02001"></a>02001   <span class="comment">//get next mail in list</span>
+<a name="l02002"></a>02002   <a class="code" href="classAccount.html#a40ebeb22286577195e01b693b9295899" title="Gets the body of the first mail in MailsToDownload.">getNextMailForDownloadActions</a>();
+<a name="l02003"></a>02003 }
+<a name="l02004"></a>02004 
+<a name="l02005"></a><a class="code" href="classAccount.html#a270bb12b57d54965436e0e2572a8b993">02005</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a270bb12b57d54965436e0e2572a8b993" title="If there are mails to delete by filters applyFilters will call the regular deletion...">Account::applyFiltersDeleted</a>( )
+<a name="l02006"></a>02006 {
+<a name="l02007"></a>02007   <span class="comment">//unset the flag</span>
+<a name="l02008"></a>02008   <a class="code" href="classAccount.html#a5993a239656c0df398b9c6fd88eeb5b9" title="This flag is set by applyFilters() to indicate the deletion cycle is performed by...">deletionPerformedByFilters</a> = <span class="keyword">false</span>;
+<a name="l02009"></a>02009 
+<a name="l02010"></a>02010   <span class="comment">//start the second refresh cycle</span>
+<a name="l02011"></a>02011   <a class="code" href="classAccount.html#a506d3ee4d01ebd795d5907e66b903387" title="This flag is set by applyFiltersDeleted() to indicate the refresh cycle is the second...">refreshPerformedByFilters</a> = <span class="keyword">true</span>;
+<a name="l02012"></a>02012 
+<a name="l02013"></a>02013   <span class="comment">//this sends a commit and restart the refresh</span>
+<a name="l02014"></a>02014   <a class="code" href="classAccount.html#ae419a2147d73f7447f996b8ad9c5e173" title="Send a commit and restart the refresh cycle.">commitBeforeRefresh</a>();
+<a name="l02015"></a>02015 }
+<a name="l02016"></a>02016 
+<a name="l02017"></a><a class="code" href="classAccount.html#ae419a2147d73f7447f996b8ad9c5e173">02017</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ae419a2147d73f7447f996b8ad9c5e173" title="Send a commit and restart the refresh cycle.">Account::commitBeforeRefresh</a>()
+<a name="l02018"></a>02018 {
+<a name="l02019"></a>02019   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;state() == KTcpSocket::ConnectedState )
+<a name="l02020"></a>02020   {
+<a name="l02021"></a>02021     <span class="comment">//connect the signal readyRead of the socket with the response handle methode</span>
+<a name="l02022"></a>02022     disconnect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), 0, 0 );
+<a name="l02023"></a>02023     connect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classAccount.html#a253e59ac68c6286416841d798a38bef7" title="Restarts a second refresh cycle after a deletion performed by the filter.">slotCommitBeforeRefreshDone</a>() ) );
+<a name="l02024"></a>02024 
+<a name="l02025"></a>02025     <span class="comment">//set the this flag to avoid an error message, if the server close the connection</span>
+<a name="l02026"></a>02026     <span class="comment">//immediately</span>
+<a name="l02027"></a>02027     <a class="code" href="classAccount.html#a019cd466572643e52dc7213d3be69c9a" title="TRUE - the QUIT command was sent to the server. Normally set by the commit methode...">quitSent</a> = <span class="keyword">true</span>;
+<a name="l02028"></a>02028 
+<a name="l02029"></a>02029     <span class="comment">//send the command</span>
+<a name="l02030"></a>02030     <a class="code" href="classAccount.html#a86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <a class="code" href="namespacePOP3Constants.html#a4037c7e462cda551b024d2a80e88a03c" title="Commit command.">COMMIT</a> );
+<a name="l02031"></a>02031   }
+<a name="l02032"></a>02032   <span class="keywordflow">else</span>
+<a name="l02033"></a>02033   {
+<a name="l02034"></a>02034     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
+<a name="l02035"></a>02035   }
+<a name="l02036"></a>02036 
+<a name="l02037"></a>02037 }
+<a name="l02038"></a>02038 
+<a name="l02039"></a><a class="code" href="classAccount.html#a253e59ac68c6286416841d798a38bef7">02039</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a253e59ac68c6286416841d798a38bef7" title="Restarts a second refresh cycle after a deletion performed by the filter.">Account::slotCommitBeforeRefreshDone</a>( )
+<a name="l02040"></a>02040 {
+<a name="l02041"></a>02041   <span class="comment">//after a commit was send, we start a new refresh cyle</span>
+<a name="l02042"></a>02042   <a class="code" href="classAccount.html#aceefec6bdf50f829410c09c398ddfb22" title="Refreshes the mail list.">refreshMailList</a>();
+<a name="l02043"></a>02043 }
+<a name="l02044"></a>02044 
+<a name="l02045"></a><a class="code" href="classAccount.html#a59572b609ad5cbd9b07c0fef0547ac46">02045</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a59572b609ad5cbd9b07c0fef0547ac46" title="Saves the stored mails into the given DOM document.">Account::saveOptions</a>( QDomDocument&amp; doc, QDomElement&amp; parent )
+<a name="l02046"></a>02046 {
+<a name="l02047"></a>02047   <span class="comment">//get application config</span>
+<a name="l02048"></a>02048   KConfigGroup* config = <span class="keyword">new</span> KConfigGroup( KGlobal::config(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
+<a name="l02049"></a>02049 
+<a name="l02050"></a>02050   <span class="comment">//save the active state</span>
+<a name="l02051"></a>02051   config-&gt;writeEntry( <a class="code" href="constants_8h.html#ac930bbf0f5c5dc76bafac5cd0ff17820">CONFIG_ENTRY_ACCOUNT_ACTIVE</a>, <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() );
+<a name="l02052"></a>02052   config-&gt;sync();
+<a name="l02053"></a>02053 
+<a name="l02054"></a>02054   <span class="comment">//save the stored mails inside this account</span>
+<a name="l02055"></a>02055   parent.setAttribute( <a class="code" href="constants_8h.html#adaf886f0193f7f0b565a11dd81e34674">ATTRIBUTE_ACCOUNT_NAME</a>, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
+<a name="l02056"></a>02056   <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#abec88578abf6e426d5553162da01c636">saveMails</a>( doc, parent );
+<a name="l02057"></a>02057 }
+<a name="l02058"></a>02058 
+<a name="l02059"></a><a class="code" href="classAccount.html#ad12721c8dd47db100e29c86bf9a02467">02059</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#ad12721c8dd47db100e29c86bf9a02467" title="Downloads and shows the bodies of mails in mailsToShow.">Account::showMails</a>()
+<a name="l02060"></a>02060 {
+<a name="l02061"></a>02061   <span class="comment">//return if no mails in the list</span>
+<a name="l02062"></a>02062   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#aa1022eb311849a9596e9f7d01e2fda7f" title="Contains the numbers of mails for which the bodies will be shown.">mailsToShow</a>.empty() )
+<a name="l02063"></a>02063   {
+<a name="l02064"></a>02064     emit <a class="code" href="classAccount.html#a439f0aa2ae9ff2cf4e18a69f7bf3118c" title="Will be emitted when the bodies of all selected mails are downloaded and shown.">sigShowBodiesReady</a>( <a class="code" href="classAccount.html#abe08d97f4ba31a2483afd49376ac4fca" title="Name of this account.">name</a> );
+<a name="l02065"></a>02065     <span class="keywordflow">return</span>;
+<a name="l02066"></a>02066   }
+<a name="l02067"></a>02067 
+<a name="l02068"></a>02068   <span class="comment">//check whether we have a password for this account</span>
+<a name="l02069"></a>02069   <span class="comment">//if not, ask for it</span>
+<a name="l02070"></a>02070   <span class="comment">//return when no password is available</span>
+<a name="l02071"></a>02071   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a2375af112012541c1dbd245f23b0f6b6" title="Opens a dialog to ask for a password, stores it temporarily in the account settings...">assertPassword</a>() )
+<a name="l02072"></a>02072   {
+<a name="l02073"></a>02073     emit <a class="code" href="classAccount.html#a439f0aa2ae9ff2cf4e18a69f7bf3118c" title="Will be emitted when the bodies of all selected mails are downloaded and shown.">sigShowBodiesReady</a>( <a class="code" href="classAccount.html#abe08d97f4ba31a2483afd49376ac4fca" title="Name of this account.">name</a> );
+<a name="l02074"></a>02074     <span class="keywordflow">return</span>;
+<a name="l02075"></a>02075   }
+<a name="l02076"></a>02076 
+<a name="l02077"></a>02077   <span class="comment">//set account state</span>
+<a name="l02078"></a>02078   <a class="code" href="classAccount.html#a709933c49b495528dc5a8cf55bc402ff" title="State of the account.">state</a> = <a class="code" href="namespaceTypes.html#a57c868019acd102e855ff50f6043c1b6a3accada2afa1ad270e3b25c14cae5fd9">AccountDownloading</a>;
+<a name="l02079"></a>02079 
+<a name="l02080"></a>02080   <span class="comment">//connect</span>
+<a name="l02081"></a>02081   <a class="code" href="classAccount.html#ab57adead9293bcf436787823348185a1" title="Establishes a connection to the server.">doConnect</a>();
+<a name="l02082"></a>02082 
+<a name="l02083"></a>02083 }
+<a name="l02084"></a>02084 
+<a name="l02085"></a><a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e">02085</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#ad7ff55ed0462e32ace3f76ca4751179e" title="Writes the given mail into the mailbox.">Account::writeToMailBox</a>( <span class="keyword">const</span> QStringList&amp; mail, <span class="keyword">const</span> QString&amp; box )
+<a name="l02086"></a>02086 {
+<a name="l02087"></a>02087   QDir mailDir( box );
+<a name="l02088"></a>02088 
+<a name="l02089"></a>02089   <span class="comment">//check whether the given path is a maildir</span>
+<a name="l02090"></a>02090   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a6995176992472513598b2cc93be40e79" title="Returns whether the given directory is a maildir directory.">isMailDir</a>( mailDir ) )
+<a name="l02091"></a>02091   {
+<a name="l02092"></a>02092     <span class="comment">//show an error message</span>
+<a name="l02093"></a>02093     KMessageBox::error( NULL, i18nc( <span class="stringliteral">&quot;@info error message: writing a mail into a mailbox: this is not a mail box&quot;</span>, <span class="stringliteral">&quot;&lt;filename&gt;%1&lt;/filename&gt; is not a mailbox.&quot;</span>, box ) );
+<a name="l02094"></a>02094     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02095"></a>02095   }
+<a name="l02096"></a>02096 
+<a name="l02097"></a>02097   <span class="comment">//create unique file name according http://cr.yp.to/proto/maildir.html</span>
+<a name="l02098"></a>02098   QString partTime = QString::number( time( NULL ) );   <span class="comment">//left part, output of time()</span>
+<a name="l02099"></a>02099 
+<a name="l02100"></a>02100   <span class="keywordtype">char</span> hname[256];                                      <span class="comment">//right part, the hostname</span>
+<a name="l02101"></a>02101   QString partHostname;
+<a name="l02102"></a>02102   <span class="keywordflow">if</span>( gethostname( hname, 255 ) == 0 )
+<a name="l02103"></a>02103     partHostname = QString( hname );
+<a name="l02104"></a>02104   <span class="keywordflow">else</span>
+<a name="l02105"></a>02105   {
+<a name="l02106"></a>02106     <span class="comment">//the hostname is not readable</span>
+<a name="l02107"></a>02107     <span class="comment">//show an error message and exit</span>
+<a name="l02108"></a>02108     KMessageBox::error( NULL, i18nc( <span class="stringliteral">&quot;@info error message&quot;</span>, <span class="stringliteral">&quot;Can&#39;t read the hostname of your computer. But KShowmail need it to write a mail into the mailbox.&quot;</span> ) );
+<a name="l02109"></a>02109     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02110"></a>02110   }
+<a name="l02111"></a>02111 
+<a name="l02112"></a>02112   QString partPID = QString::number( getpid() );      <span class="comment">//middle part, the PID</span>
+<a name="l02113"></a>02113 
+<a name="l02114"></a>02114   QString partCounter = QString::number( <a class="code" href="classAccount.html#a3d98d6d000d1a4fe03c5a0acfc4c2c89" title="Counter for moving to create an unique file name.">moveCounter</a>++ );
+<a name="l02115"></a>02115 
+<a name="l02116"></a>02116   QString uniqueName( partTime + <span class="charliteral">&#39;.&#39;</span> + partPID + partCounter + <span class="charliteral">&#39;.&#39;</span> + partHostname );
+<a name="l02117"></a>02117 
+<a name="l02118"></a>02118   <span class="comment">//build absolute path</span>
+<a name="l02119"></a>02119   mailDir.cd( <span class="stringliteral">&quot;tmp&quot;</span> );
+<a name="l02120"></a>02120   QString absFile = mailDir.filePath( uniqueName );
+<a name="l02121"></a>02121 
+<a name="l02122"></a>02122   <span class="comment">//and writing!</span>
+<a name="l02123"></a>02123   QFile file( absFile );
+<a name="l02124"></a>02124   <span class="keywordflow">if</span>( file.open( QFile::WriteOnly ) )
+<a name="l02125"></a>02125   {
+<a name="l02126"></a>02126     QTextStream stream( &amp;file );
+<a name="l02127"></a>02127     stream &lt;&lt; mail.join( <span class="stringliteral">&quot;\n&quot;</span> ) &lt;&lt; endl;
+<a name="l02128"></a>02128     file.close();
+<a name="l02129"></a>02129   }
+<a name="l02130"></a>02130   <span class="keywordflow">else</span>
+<a name="l02131"></a>02131   {
+<a name="l02132"></a>02132     KMessageBox::detailedError( NULL, i18nc( <span class="stringliteral">&quot;@info error message: we could not write a mail into a mailbox&quot;</span>, <span class="stringliteral">&quot;Could not file a mail to &lt;filename&gt;%1&lt;/filename&gt;.&quot;</span>, box ), file.errorString() );
+<a name="l02133"></a>02133     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02134"></a>02134   }
+<a name="l02135"></a>02135 
+<a name="l02136"></a>02136   <span class="comment">//now we move it to the &quot;new&quot; subdirectory</span>
+<a name="l02137"></a>02137   mailDir.cdUp();
+<a name="l02138"></a>02138   mailDir.cd( <span class="stringliteral">&quot;new&quot;</span> );
+<a name="l02139"></a>02139   QString absNewFile = mailDir.filePath( uniqueName );
+<a name="l02140"></a>02140 
+<a name="l02141"></a>02141   <span class="keywordflow">if</span>( KDE::rename( absFile.toAscii(), absNewFile.toAscii() ) == -1 )
+<a name="l02142"></a>02142   {
+<a name="l02143"></a>02143     KMessageBox::error( NULL, i18nc( <span class="stringliteral">&quot;@info error message: error during writing a mail into a mailbox&quot;</span>, <span class="stringliteral">&quot;Could not move a mail from &lt;filename&gt;%1&lt;/filename&gt; to &lt;filename&gt;%2&lt;/filename&gt;.&quot;</span>, absFile, absNewFile ) );
+<a name="l02144"></a>02144     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02145"></a>02145   }
+<a name="l02146"></a>02146 
+<a name="l02147"></a>02147   <span class="comment">//the writing was successful</span>
+<a name="l02148"></a>02148   <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l02149"></a>02149 }
+<a name="l02150"></a>02150 
+<a name="l02151"></a><a class="code" href="classAccount.html#a6995176992472513598b2cc93be40e79">02151</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#a6995176992472513598b2cc93be40e79" title="Returns whether the given directory is a maildir directory.">Account::isMailDir</a>( <span class="keyword">const</span> QDir&amp; path )
+<a name="l02152"></a>02152 {
+<a name="l02153"></a>02153   <span class="comment">//get a list of all subdirectories in this directory</span>
+<a name="l02154"></a>02154   <span class="keyword">const</span> QStringList entries = path.entryList( QDir::Dirs | QDir::Readable | QDir::Writable | QDir::Hidden, QDir::Name | QDir::IgnoreCase | QDir::LocaleAware );
+<a name="l02155"></a>02155 
+<a name="l02156"></a>02156   <span class="comment">//a maildir folder must contains the folders &quot;cur&quot;, &quot;new&quot; and &quot;tmp&quot;</span>
+<a name="l02157"></a>02157   <span class="keywordtype">bool</span> curFound = <span class="keyword">false</span>;
+<a name="l02158"></a>02158   <span class="keywordtype">bool</span> newFound = <span class="keyword">false</span>;
+<a name="l02159"></a>02159   <span class="keywordtype">bool</span> tmpFound = <span class="keyword">false</span>;
+<a name="l02160"></a>02160 
+<a name="l02161"></a>02161   <span class="comment">//iterate over all directories and look for the three necessary dirs</span>
+<a name="l02162"></a>02162   QStringList::const_iterator it = entries.begin();
+<a name="l02163"></a>02163   <span class="keywordflow">while</span>( it != entries.end() &amp;&amp; !( curFound &amp;&amp; newFound &amp;&amp; tmpFound ) )
+<a name="l02164"></a>02164   {
+<a name="l02165"></a>02165     <span class="keywordflow">if</span>( *it == <span class="stringliteral">&quot;tmp&quot;</span> )
+<a name="l02166"></a>02166       tmpFound = <span class="keyword">true</span>;
+<a name="l02167"></a>02167     <span class="keywordflow">else</span> <span class="keywordflow">if</span>( *it == <span class="stringliteral">&quot;cur&quot;</span> )
+<a name="l02168"></a>02168       curFound = <span class="keyword">true</span>;
+<a name="l02169"></a>02169     <span class="keywordflow">else</span> <span class="keywordflow">if</span>( *it == <span class="stringliteral">&quot;new&quot;</span> )
+<a name="l02170"></a>02170       newFound = <span class="keyword">true</span>;
+<a name="l02171"></a>02171 
+<a name="l02172"></a>02172     ++it;
+<a name="l02173"></a>02173   }
+<a name="l02174"></a>02174 
+<a name="l02175"></a>02175   <span class="keywordflow">return</span> curFound &amp;&amp; newFound &amp;&amp; tmpFound;
+<a name="l02176"></a>02176 }
+<a name="l02177"></a>02177 
+<a name="l02178"></a><a class="code" href="classAccount.html#a309e2098c05fba9b4303b24008459574">02178</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#a309e2098c05fba9b4303b24008459574" title="Forwards the given mail to SpamAssassin and returns the test result.">Account::isSpam</a>( QStringList mail )<span class="keyword"> const</span>
+<a name="l02179"></a>02179 <span class="keyword"></span>{
+<a name="l02180"></a>02180 
+<a name="l02181"></a>02181   <span class="comment">//check for a running spamassassin</span>
+<a name="l02182"></a>02182   <span class="keywordflow">if</span>( !<a class="code" href="classAccount.html#a0f5b60a29afcb519404b365d9f4bb88d" title="Looks for a running spamd daemon of SpamAssassin.">isSpamAssassinRunning</a>() )
+<a name="l02183"></a>02183   {
+<a name="l02184"></a>02184     KMessageBox::information( NULL, i18nc( <span class="stringliteral">&quot;@info&quot;</span>, <span class="stringliteral">&quot;You want to check your mails for spam, but SpamAssassin is not running.&lt;nl/&gt;KShowmail skips the spam check.&quot;</span> ), i18nc( <span class="stringliteral">&quot;@title:window&quot;</span>, <span class="stringliteral">&quot;SpamAssassin is not running&quot;</span> ), <span class="stringliteral">&quot;AccountNoSpamAssassinRunning&quot;</span> );
+<a name="l02185"></a>02185     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02186"></a>02186   }
+<a name="l02187"></a>02187 
+<a name="l02188"></a>02188   <span class="comment">//calls spmac and get an file pointer to stdin of it</span>
+<a name="l02189"></a>02189   FILE *write_fp;
+<a name="l02190"></a>02190   write_fp = popen( <span class="stringliteral">&quot;spamc -E&quot;</span>, <span class="stringliteral">&quot;w&quot;</span> );
+<a name="l02191"></a>02191 
+<a name="l02192"></a>02192   <span class="comment">//forward the mail to SpamAssassin</span>
+<a name="l02193"></a>02193   <span class="keywordflow">if</span>( write_fp != NULL )
+<a name="l02194"></a>02194   {
+<a name="l02195"></a>02195     <span class="comment">//join the mail to a string</span>
+<a name="l02196"></a>02196     QString joinedMail = mail.join( <span class="stringliteral">&quot;\n&quot;</span> );
+<a name="l02197"></a>02197     fwrite( joinedMail.toAscii(), <span class="keyword">sizeof</span>( char), joinedMail.size(), write_fp );
+<a name="l02198"></a>02198 
+<a name="l02199"></a>02199     <span class="comment">//check exit code of spamc and return result</span>
+<a name="l02200"></a>02200     <span class="keywordtype">int</span> excode = pclose( write_fp );
+<a name="l02201"></a>02201     <span class="keywordflow">if</span>(  excode == 0 )
+<a name="l02202"></a>02202       <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02203"></a>02203     <span class="keywordflow">else</span>
+<a name="l02204"></a>02204       <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l02205"></a>02205   }
+<a name="l02206"></a>02206   <span class="keywordflow">else</span>
+<a name="l02207"></a>02207   {
+<a name="l02208"></a>02208     kdError() &lt;&lt; <span class="stringliteral">&quot;Could not call the command spamc of SpamAssassin.&quot;</span> &lt;&lt; endl;
+<a name="l02209"></a>02209     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02210"></a>02210   }
+<a name="l02211"></a>02211 
+<a name="l02212"></a>02212   <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l02213"></a>02213 }
+<a name="l02214"></a>02214 
+<a name="l02215"></a><a class="code" href="classAccount.html#a0f5b60a29afcb519404b365d9f4bb88d">02215</a> <span class="keywordtype">bool</span> <a class="code" href="classAccount.html#a0f5b60a29afcb519404b365d9f4bb88d" title="Looks for a running spamd daemon of SpamAssassin.">Account::isSpamAssassinRunning</a>( )<span class="keyword"> const</span>
+<a name="l02216"></a>02216 <span class="keyword"></span>{
+<a name="l02217"></a>02217   FILE *read_fp;
+<a name="l02218"></a>02218   <span class="keywordtype">char</span> buffer[ BUFSIZ + 1 ];
+<a name="l02219"></a>02219   <span class="keywordtype">int</span> chars_read;
+<a name="l02220"></a>02220   <span class="keywordtype">bool</span> found = <span class="keyword">false</span>;
+<a name="l02221"></a>02221 
+<a name="l02222"></a>02222   memset( buffer, <span class="charliteral">&#39;\0&#39;</span>, <span class="keyword">sizeof</span>( buffer ) );
+<a name="l02223"></a>02223   read_fp = popen( <span class="stringliteral">&quot;ps -eo comm&quot;</span>, <span class="stringliteral">&quot;r&quot;</span> );
+<a name="l02224"></a>02224   <span class="keywordflow">if</span>( read_fp != NULL )
+<a name="l02225"></a>02225   {
+<a name="l02226"></a>02226     chars_read = fread( buffer, <span class="keyword">sizeof</span>( <span class="keywordtype">char</span> ), BUFSIZ, read_fp );
+<a name="l02227"></a>02227     <span class="keywordflow">while</span>( chars_read &gt; 0 )
+<a name="l02228"></a>02228     {
+<a name="l02229"></a>02229       buffer[ chars_read - 1 ] = <span class="charliteral">&#39;\0&#39;</span>;
+<a name="l02230"></a>02230       QString output( buffer );
+<a name="l02231"></a>02231       found = output.contains( <a class="code" href="constants_8h.html#aec8c8d5768db301f9aa3552fd064b0ce">NAME_SPAMASSASSIN_DAEMON</a> ) &gt; 0;
+<a name="l02232"></a>02232       chars_read = fread( buffer, <span class="keyword">sizeof</span>( <span class="keywordtype">char</span> ), BUFSIZ, read_fp );
+<a name="l02233"></a>02233     }
+<a name="l02234"></a>02234     pclose( read_fp );
+<a name="l02235"></a>02235   }
+<a name="l02236"></a>02236 
+<a name="l02237"></a>02237   <span class="keywordflow">return</span> found;
+<a name="l02238"></a>02238 }
+<a name="l02239"></a>02239 
+<a name="l02240"></a><a class="code" href="classAccount.html#acbd4c5af1fdb8f35e3acf9ed5672b8ec">02240</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#acbd4c5af1fdb8f35e3acf9ed5672b8ec" title="Returns the number of new mails.">Account::getNumberNewMails</a>( )
+<a name="l02241"></a>02241 {
+<a name="l02242"></a>02242   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a7ccfa7d16852b8b02227e48aaee130f0">getNumberNewMails</a>();
+<a name="l02243"></a>02243 }
+<a name="l02244"></a>02244 
+<a name="l02245"></a><a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc">02245</a> <span class="keywordtype">long</span> <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">Account::getTotalSize</a>()<span class="keyword"> const </span>{
+<a name="l02246"></a>02246   <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a9e83869411ab50e5a9076510bc308206">getTotalSize</a>();
+<a name="l02247"></a>02247 }
+<a name="l02248"></a>02248 
+<a name="l02249"></a><a class="code" href="classAccount.html#ae73862c5ae6b7d1b0860940f83071042">02249</a> QString <a class="code" href="classAccount.html#ae73862c5ae6b7d1b0860940f83071042" title="Returns the total size of all mails with unit.">Account::getTotalSizeUnit</a>()<span class="keyword"> const </span>{
+<a name="l02250"></a>02250 
+<a name="l02251"></a>02251   <span class="keywordtype">int</span> size = <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>();
+<a name="l02252"></a>02252   QString strSize;
+<a name="l02253"></a>02253 
+<a name="l02254"></a>02254   <span class="keywordflow">if</span>( size &gt;= 1024 * 1024 )
+<a name="l02255"></a>02255   {
+<a name="l02256"></a>02256     <span class="comment">//prefix is mega</span>
+<a name="l02257"></a>02257     strSize = QString( <span class="stringliteral">&quot;%L1M&quot;</span> ).arg( ( (<span class="keywordtype">double</span>)size / ( 1024 * 1024 ) ), 0, <span class="charliteral">&#39;f&#39;</span>, 1 );
+<a name="l02258"></a>02258   }
+<a name="l02259"></a>02259   <span class="keywordflow">else</span> <span class="keywordflow">if</span>( size &gt;= 1024 )
+<a name="l02260"></a>02260   {
+<a name="l02261"></a>02261     <span class="comment">//prefix is kilo</span>
+<a name="l02262"></a>02262     strSize = QString( <span class="stringliteral">&quot;%L1K&quot;</span> ).arg( ( (<span class="keywordtype">double</span>)size / 1024 ), 0, <span class="charliteral">&#39;f&#39;</span>, 1 );
+<a name="l02263"></a>02263   }
+<a name="l02264"></a>02264   <span class="keywordflow">else</span>
+<a name="l02265"></a>02265     <span class="comment">//no prefix</span>
+<a name="l02266"></a>02266     strSize = QString( <span class="stringliteral">&quot;%L1&quot;</span> ).arg( size );
+<a name="l02267"></a>02267 
+<a name="l02268"></a>02268   <span class="keywordflow">return</span> strSize;
+<a name="l02269"></a>02269 
+<a name="l02270"></a>02270 }
+<a name="l02271"></a>02271 
+<a name="l02272"></a><a class="code" href="classAccount.html#a09ea69c48d1dae107c40e37688e51a76">02272</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a09ea69c48d1dae107c40e37688e51a76" title="Connected with signale sslErrors of the socket.">Account::slotSSLError</a>( <span class="keyword">const</span> QList&lt;KSslError&gt;&amp; errors ) {
+<a name="l02273"></a>02273 
+<a name="l02274"></a>02274   <span class="comment">//make a single error string</span>
+<a name="l02275"></a>02275   QString message;
+<a name="l02276"></a>02276   QListIterator&lt;KSslError&gt; it( errors );
+<a name="l02277"></a>02277   <span class="keywordflow">while</span>( it.hasNext() ) {
+<a name="l02278"></a>02278 
+<a name="l02279"></a>02279     KSslError error = it.next();
+<a name="l02280"></a>02280 
+<a name="l02281"></a>02281     message.append( error.errorString() );
+<a name="l02282"></a>02282   }
+<a name="l02283"></a>02283 
+<a name="l02284"></a>02284   <span class="comment">//ask the user whether he want to cancel or continue</span>
+<a name="l02285"></a>02285   emit <a class="code" href="classAccount.html#a8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
+<a name="l02286"></a>02286   <span class="keywordtype">int</span> answer = KMessageBox::warningContinueCancel( NULL,
+<a name="l02287"></a>02287                                                    i18nc( <span class="stringliteral">&quot;@info error message: general SSL error&quot;</span>, <span class="stringliteral">&quot;SSL error: &lt;message&gt;%1&lt;/message&gt;&lt;nl/&gt;Do you want to continue?&quot;</span>, message ),
+<a name="l02288"></a>02288                                                    i18nc( <span class="stringliteral">&quot;@title:window&quot;</span>, <span class="stringliteral">&quot;SSL-Error - %1&quot;</span>, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() ),
+<a name="l02289"></a>02289                                                    KStandardGuiItem::cont(),
+<a name="l02290"></a>02290                                                    KStandardGuiItem::cancel(),
+<a name="l02291"></a>02291                                                    QString( <span class="stringliteral">&quot;askSSLErrorContinue_%1&quot;</span>).arg( <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() ) );
+<a name="l02292"></a>02292   emit <a class="code" href="classAccount.html#ae25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
+<a name="l02293"></a>02293 
+<a name="l02294"></a>02294   <span class="keywordflow">if</span>( answer == KMessageBox::Continue ) {
+<a name="l02295"></a>02295 
+<a name="l02296"></a>02296     <span class="comment">//continue</span>
+<a name="l02297"></a>02297     <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;ignoreSslErrors();
+<a name="l02298"></a>02298 
+<a name="l02299"></a>02299   } <span class="keywordflow">else</span> {
+<a name="l02300"></a>02300 
+<a name="l02301"></a>02301     <span class="comment">//the socket calls slotSocketError, but we don&#39;t want a further error message</span>
+<a name="l02302"></a>02302     <a class="code" href="classAccount.html#a7676e6c216669bb62666f48a33c62bc1" title="TRUE - the error will not be handled by slotSocketError.">dontHandleError</a> = <span class="keyword">true</span>;
+<a name="l02303"></a>02303 
+<a name="l02304"></a>02304     <span class="comment">//cancel</span>
+<a name="l02305"></a>02305     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
+<a name="l02306"></a>02306 
+<a name="l02307"></a>02307   }
+<a name="l02308"></a>02308 
+<a name="l02309"></a>02309   <span class="keywordflow">return</span>;
+<a name="l02310"></a>02310 
+<a name="l02311"></a>02311 }
+<a name="l02312"></a>02312 
+<a name="l02313"></a><a class="code" href="classAccount.html#a9a567fcd1f99b6946df9b1bb5e7738d7">02313</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a9a567fcd1f99b6946df9b1bb5e7738d7" title="Gets the stored mails.">Account::readStoredMails</a>( QDomElement&amp; parent )
+<a name="l02314"></a>02314 {
+<a name="l02315"></a>02315   <span class="comment">//get mails</span>
+<a name="l02316"></a>02316   <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#ade61b5869dd338eb91dd2ca9e63637f2">readStoredMails</a>( parent );
+<a name="l02317"></a>02317 }
+<a name="l02318"></a>02318 
+<a name="l02319"></a><a class="code" href="classAccount.html#af50cfd2f4cdb6294a8b258fa16ad86a8">02319</a> <span class="keywordtype">int</span> <a class="code" href="classAccount.html#af50cfd2f4cdb6294a8b258fa16ad86a8" title="Compares this account with other and returns an integer less than, equal to, or greater...">Account::compare</a>( <a class="code" href="classAccount.html" title="This class represents an POP3-Account.">Account</a>* other, <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1f">AccountSort_Type</a> property ) {
+<a name="l02320"></a>02320 
+<a name="l02321"></a>02321         <span class="keywordflow">switch</span>( property ) {
+<a name="l02322"></a>02322 
+<a name="l02323"></a>02323                 <span class="comment">//compare by active state</span>
+<a name="l02324"></a>02324                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa997eb5304e061f4e8635c7e3c8adfe66">AccSortActive</a> : {
+<a name="l02325"></a>02325 
+<a name="l02326"></a>02326                         <span class="keywordflow">if</span>( other-&gt;<a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() == <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() ) <span class="keywordflow">return</span> 0;
+<a name="l02327"></a>02327                         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() == false ) <span class="keywordflow">return</span> -1;
+<a name="l02328"></a>02328                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> 1;
+<a name="l02329"></a>02329                         <span class="keywordflow">break</span>;
+<a name="l02330"></a>02330 
+<a name="l02331"></a>02331                 }
+<a name="l02332"></a>02332 
+<a name="l02333"></a>02333                 <span class="comment">//compare by name</span>
+<a name="l02334"></a>02334                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fad57c3280d7d1d1f445b6783373902b2a">AccSortName</a> : {
+<a name="l02335"></a>02335 
+<a name="l02336"></a>02336                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), other-&gt;<a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
+<a name="l02337"></a>02337                 }
+<a name="l02338"></a>02338 
+<a name="l02339"></a>02339                 <span class="comment">//compare by server</span>
+<a name="l02340"></a>02340                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa40ddbc77b8c63c32cff838e7e427b857">AccSortServer</a> : {
+<a name="l02341"></a>02341 
+<a name="l02342"></a>02342                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>(), other-&gt;<a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>() );
+<a name="l02343"></a>02343                 }
+<a name="l02344"></a>02344 
+<a name="l02345"></a>02345                 <span class="comment">//compare by user</span>
+<a name="l02346"></a>02346                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa9352e5004467831cc2d44fe06ca1178b">AccSortUser</a> : {
+<a name="l02347"></a>02347 
+<a name="l02348"></a>02348                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#ab28dae6c7a73ab033b714810ac0be200" title="Returns the user name.">getUser</a>(), other-&gt;<a class="code" href="classAccount.html#ab28dae6c7a73ab033b714810ac0be200" title="Returns the user name.">getUser</a>() );
+<a name="l02349"></a>02349                 }
+<a name="l02350"></a>02350 
+<a name="l02351"></a>02351                 <span class="comment">//compare by number of messages</span>
+<a name="l02352"></a>02352                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1fa7925c374eca1b3400c4605050eab91a2">AccSortNrMess</a> : {
+<a name="l02353"></a>02353 
+<a name="l02354"></a>02354                         <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() == other-&gt;<a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() ) <span class="keywordflow">return</span> 0;
+<a name="l02355"></a>02355                         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() &lt; other-&gt;<a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>() ) <span class="keywordflow">return</span> -1;
+<a name="l02356"></a>02356                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> 1;
+<a name="l02357"></a>02357                 }
+<a name="l02358"></a>02358 
+<a name="l02359"></a>02359                 <span class="comment">//compare by total size of messages</span>
+<a name="l02360"></a>02360                 <span class="keywordflow">case</span> <a class="code" href="namespaceTypes.html#a61f06b1f5058c3d5ae515b2398a83e1faf488349d1b9670a39f75d918ef52e8d6">AccSortSize</a> : {
+<a name="l02361"></a>02361 
+<a name="l02362"></a>02362                         <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() == other-&gt;<a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() ) <span class="keywordflow">return</span> 0;
+<a name="l02363"></a>02363                         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() &lt; other-&gt;<a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>() ) <span class="keywordflow">return</span> -1;
+<a name="l02364"></a>02364                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> 1;
+<a name="l02365"></a>02365                 }
+<a name="l02366"></a>02366 
+<a name="l02367"></a>02367                 <span class="keywordflow">default</span>: {
+<a name="l02368"></a>02368                         <span class="keywordflow">return</span> QString::localeAwareCompare( <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), other-&gt;<a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() );
+<a name="l02369"></a>02369                 }
+<a name="l02370"></a>02370         }
+<a name="l02371"></a>02371 }
+<a name="l02372"></a>02372 
+<a name="l02373"></a><a class="code" href="classAccount.html#a5a64e6ffd1078663ac0a2646101906c2">02373</a> QList&lt;Mail&gt; <a class="code" href="classAccount.html#a5a64e6ffd1078663ac0a2646101906c2" title="Returns a list which contains the pointers to all mails.">Account::getAllMails</a>()<span class="keyword"> const</span>
+<a name="l02374"></a>02374 <span class="keyword"></span>{
+<a name="l02375"></a>02375         <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>() )
+<a name="l02376"></a>02376                 <span class="keywordflow">return</span> <a class="code" href="classAccount.html#a8ba56d88f5a3d1eff36ba78481bf7584" title="The mail container.">mails</a>-&gt;<a class="code" href="classMailList.html#a1d40081c4893d5cc7931faf213f5a368">getAllMails</a>();
+<a name="l02377"></a>02377         <span class="keywordflow">else</span>
+<a name="l02378"></a>02378                 <span class="keywordflow">return</span> QList&lt;Mail&gt;();
+<a name="l02379"></a>02379 }
+<a name="l02380"></a>02380 
+<a name="l02381"></a><a class="code" href="classAccount.html#a4fef3a9e3b72505f6091ea3ed368276d">02381</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a4fef3a9e3b72505f6091ea3ed368276d" title="Connected with the timeout timer.">Account::slotTimeout</a>()
+<a name="l02382"></a>02382 {
+<a name="l02383"></a>02383   <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info error message&quot;</span>, <span class="stringliteral">&quot;Timeout&quot;</span> ) );
+<a name="l02384"></a>02384 }
+<a name="l02385"></a>02385 
+<a name="l02386"></a><a class="code" href="classAccount.html#a3cd16e59bb73d42325fb75abd201d7ea">02386</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a3cd16e59bb73d42325fb75abd201d7ea" title="Cancels the current running task.">Account::cancelTask</a>()
+<a name="l02387"></a>02387 {
+<a name="l02388"></a>02388   <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a709933c49b495528dc5a8cf55bc402ff" title="State of the account.">state</a> != <a class="code" href="namespaceTypes.html#a57c868019acd102e855ff50f6043c1b6aa15826a259a1b9518c05738511bca3c7">AccountIdle</a> ) {
+<a name="l02389"></a>02389 
+<a name="l02390"></a>02390     <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;close();
+<a name="l02391"></a>02391     <a class="code" href="classAccount.html#aab7a230ec723aeff2ef25fb59c898d12" title="Shows the given error, sets the state to idle and emits a ready signal if necessary...">handleError</a>( i18nc( <span class="stringliteral">&quot;@info the task was canceled by user&quot;</span>, <span class="stringliteral">&quot;Task canceled&quot;</span> ) );
+<a name="l02392"></a>02392   }
+<a name="l02393"></a>02393 }
+<a name="l02394"></a>02394 
+<a name="l02395"></a><a class="code" href="classAccount.html#a2d192a810474d780611c095b9f971fbe">02395</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#a2d192a810474d780611c095b9f971fbe" title="Invites the server to crypt using TLS (STARTTLS).">Account::startTLS</a>()
+<a name="l02396"></a>02396 {
+<a name="l02397"></a>02397   <span class="comment">//connect the signal readyRead of the socket with the response handle methode</span>
+<a name="l02398"></a>02398   disconnect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), 0, 0 );
+<a name="l02399"></a>02399   connect( <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>, SIGNAL( readyRead() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classAccount.html#af1a8bd9405314c274cc24ebe96dba17f" title="Receives the response of the STLS command.">slotStartTLSResponse</a>() ) );
+<a name="l02400"></a>02400 
+<a name="l02401"></a>02401   <span class="comment">//send the command</span>
+<a name="l02402"></a>02402   <a class="code" href="classAccount.html#a86509e04a0d152711be00f390ca19c18" title="Sends a command to the server.">sendCommand</a>( <a class="code" href="namespacePOP3Constants.html#a00ac5e29ad83cad15ab6862eb5c30e04" title="command for start TLS">START_TLS</a> );
+<a name="l02403"></a>02403 
+<a name="l02404"></a>02404 }
+<a name="l02405"></a>02405 
+<a name="l02406"></a><a class="code" href="classAccount.html#af1a8bd9405314c274cc24ebe96dba17f">02406</a> <span class="keywordtype">void</span> <a class="code" href="classAccount.html#af1a8bd9405314c274cc24ebe96dba17f" title="Receives the response of the STLS command.">Account::slotStartTLSResponse</a>()
+<a name="l02407"></a>02407 {
+<a name="l02408"></a>02408   <span class="comment">//get server answer</span>
+<a name="l02409"></a>02409   QStringList text = <a class="code" href="classAccount.html#adc967ce6b695510e9d892078cb202fbe" title="Reads all data from the socket.">readfromSocket</a>( <span class="keyword">true</span> );
+<a name="l02410"></a>02410 
+<a name="l02411"></a>02411   <span class="comment">//if the socket has not returned something, we finish at this point</span>
+<a name="l02412"></a>02412   <span class="comment">//we don&#39;t need to show an error message, because the handleError-Methode was called already</span>
+<a name="l02413"></a>02413   <span class="keywordflow">if</span>( text.isEmpty() )
+<a name="l02414"></a>02414   {
+<a name="l02415"></a>02415     <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
+<a name="l02416"></a>02416     <span class="keywordflow">return</span>;
+<a name="l02417"></a>02417   }
+<a name="l02418"></a>02418 
+<a name="l02419"></a>02419   <span class="comment">//have we got a acknowledgment?</span>
+<a name="l02420"></a>02420   <span class="keywordtype">bool</span> ack = <a class="code" href="classAccount.html#a8862a31f946ddc6296ef8c987c83fad2" title="Returns whether the server answer is positive or negative.">isPositiveServerMessage</a>( text );
+<a name="l02421"></a>02421 
+<a name="l02422"></a>02422   <span class="comment">//if the server isn&#39;t ready for TLS, continue without TLS</span>
+<a name="l02423"></a>02423   <span class="keywordflow">if</span>( !ack ) {
+<a name="l02424"></a>02424 
+<a name="l02425"></a>02425     kdError() &lt;&lt; <span class="stringliteral">&quot;The Server &quot;</span> &lt;&lt; <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>() &lt;&lt; <span class="stringliteral">&quot; says it supports STLS but it doesn&#39;t accept the STLS command: &quot;</span> &lt;&lt; text.first() &lt;&lt; endl;
+<a name="l02426"></a>02426 
+<a name="l02427"></a>02427     <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a9bfe1916b0f61f6f0e21e5ab6f232f19" title="APOP available.">apopAvail</a> &amp;&amp; !<a class="code" href="classAccount.html#a0bb190f15c4ee896dfe2e899f4fbdd39" title="Is set to TRUE by slotLoginAPOPResponse if the first login with APOP is failed.">dontUseAPOP</a> ) {
+<a name="l02428"></a>02428 
+<a name="l02429"></a>02429       <a class="code" href="classAccount.html#a84ec89cb9027a490ab4054be24892581" title="Initiates a login using APOP.">loginApop</a>();
+<a name="l02430"></a>02430       <span class="keywordflow">return</span>;
+<a name="l02431"></a>02431 
+<a name="l02432"></a>02432     } <span class="keywordflow">else</span> {
+<a name="l02433"></a>02433 
+<a name="l02434"></a>02434       <span class="keywordflow">if</span>( <a class="code" href="classAccount.html#a6c382c4db738ee387d9e2bab4483c7c3" title="TRUE - unsafe login is allowed if a secure login failed.">allowUnsecureLogin</a> == <span class="keyword">true</span> ) {
+<a name="l02435"></a>02435 
+<a name="l02436"></a>02436         <a class="code" href="classAccount.html#a841597d36acd8d9d2ac4120cfde72588" title="Sends the login name.">loginUser</a>();
+<a name="l02437"></a>02437 
+<a name="l02438"></a>02438       } <span class="keywordflow">else</span> {
+<a name="l02439"></a>02439 
+<a name="l02440"></a>02440         emit <a class="code" href="classAccount.html#a8d73de6d525c32736f05dee3dc6249d8" title="Will be emitted, when a window to show a message was opened.">sigMessageWindowOpened</a>();
+<a name="l02441"></a>02441         KMessageBox::sorry( NULL, i18nc( <span class="stringliteral">&quot;@info error message: this server doesn&#39;t support secure login&quot;</span>, <span class="stringliteral">&quot;Account &lt;resource&gt;%1&lt;/resource&gt;: This server doesn&#39;t provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.&lt;nl/&gt;&lt;warning&gt;Bear in mind in this case criminals could read your password!&lt;/warning&gt;&quot;</span>, <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>() ), i18nc( <span class="stringliteral">&quot;@title:window&quot;</span>, <span class="stringliteral">&quot;Unsafe login is not allowed&quot;</span>) );
+<a name="l02442"></a>02442         emit <a class="code" href="classAccount.html#ae25257fcbdf0b341b36c4299927ef8bc" title="Will be emitted, when a window to show a message was closed.">sigMessageWindowClosed</a>();
+<a name="l02443"></a>02443 
+<a name="l02444"></a>02444         <span class="comment">//the user has not allowed unsafe login; finish the task</span>
+<a name="l02445"></a>02445         <a class="code" href="classAccount.html#a3948da5210de55b4572f9810c85a527a" title="Finishes the running task (Refreshing, Deleting, ...).">finishTask</a>();
+<a name="l02446"></a>02446 
+<a name="l02447"></a>02447       }
+<a name="l02448"></a>02448     }
+<a name="l02449"></a>02449 
+<a name="l02450"></a>02450   } <span class="keywordflow">else</span> {
+<a name="l02451"></a>02451 
+<a name="l02452"></a>02452     <span class="comment">//Yes, lets start TLS!!!</span>
+<a name="l02453"></a>02453 
+<a name="l02454"></a>02454     <a class="code" href="classAccount.html#ad08cb7981e2856785121a49f8c6b6f44" title="The socket. Handles all server operations.">socket</a>-&gt;startClientEncryption();
+<a name="l02455"></a>02455 
+<a name="l02456"></a>02456     <span class="comment">//login</span>
+<a name="l02457"></a>02457     <a class="code" href="classAccount.html#a841597d36acd8d9d2ac4120cfde72588" title="Sends the login name.">loginUser</a>();
+<a name="l02458"></a>02458   }
+<a name="l02459"></a>02459 
+<a name="l02460"></a>02460 }
+<a name="l02461"></a>02461 
+<a name="l02462"></a><a class="code" href="classAccount.html#aed94ea5174ca3a444820a5130f9e6638">02462</a> <a class="code" href="classAccountViewItem.html" title="This class is used by AccountViewModel to hold a list of the accounts.">AccountViewItem</a> <a class="code" href="classAccount.html#aed94ea5174ca3a444820a5130f9e6638" title="Returns a appropriate view item.">Account::getViewItem</a>()
+<a name="l02463"></a>02463 {
+<a name="l02464"></a>02464   <span class="keywordflow">return</span> <a class="code" href="classAccountViewItem.html" title="This class is used by AccountViewModel to hold a list of the accounts.">AccountViewItem</a>( <a class="code" href="classAccount.html#a2a8d07ed977c542903feb3ee273663fb" title="Returns whether the account is active.">isActive</a>(), <a class="code" href="classAccount.html#a0ac1578810516df5af911d7c7c069ed0" title="Returns the account name.">getName</a>(), <a class="code" href="classAccount.html#a9e76c1673cf0e37b319d2098214e61aa" title="Returns the hostname.">getHost</a>(), <a class="code" href="classAccount.html#ab28dae6c7a73ab033b714810ac0be200" title="Returns the user name.">getUser</a>(), <a class="code" href="classAccount.html#a84b04f6ee013fdd4863ab887a397c7a3" title="Returns the number of mails if this account is active. Otherwise returns 0.">getNumberMails</a>(), <a class="code" href="classAccount.html#a0bb8ca9f13172f2443a23bb1674bbccc" title="Returns the total size (bytes) of all mails.">getTotalSize</a>(), QPointer&lt;Account&gt;( <span class="keyword">this</span> ) );
+<a name="l02465"></a>02465 }
+<a name="l02466"></a>02466 
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Aug 24 19:17:35 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:02 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

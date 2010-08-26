@@ -42,7 +42,7 @@
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 <span class="preprocessor">#include &quot;<a class="code" href="showmaildialog_8h.html">showmaildialog.h</a>&quot;</span>
 <a name="l00019"></a>00019 
-<a name="l00020"></a><a class="code" href="classShowMailDialog.html#a82fbe0242be45bb4ac135449fef7310d">00020</a> <a class="code" href="classShowMailDialog.html#a82fbe0242be45bb4ac135449fef7310d">ShowMailDialog::ShowMailDialog</a>( QWidget * parent, QString caption, <span class="keywordtype">bool</span> allowHTML, QString sender, QString date, QString size, QString subject, QStringList body ) :
+<a name="l00020"></a><a class="code" href="classShowMailDialog.html#ab55609d95a25e64750c319335ac20bbc">00020</a> <a class="code" href="classShowMailDialog.html#ab55609d95a25e64750c319335ac20bbc">ShowMailDialog::ShowMailDialog</a>( QWidget * parent, QString caption, <span class="keywordtype">bool</span> allowHTML, <span class="keywordtype">bool</span> isHTML, QString sender, QString date, QString size, QString subject, QStringList body ) :
 <a name="l00021"></a>00021     KDialog( parent )
 <a name="l00022"></a>00022 {
 <a name="l00023"></a>00023 
@@ -113,41 +113,47 @@
 <a name="l00088"></a>00088 
 <a name="l00089"></a>00089   <span class="keywordflow">if</span>( !allowHTML )    <span class="comment">//set HTML view or not</span>
 <a name="l00090"></a>00090     txtBody-&gt;setPlainText( body.join( <span class="stringliteral">&quot;\n&quot;</span> ) );
-<a name="l00091"></a>00091   <span class="keywordflow">else</span>
-<a name="l00092"></a>00092     txtBody-&gt;setText( body.join( <span class="stringliteral">&quot;\n&quot;</span> ) );
-<a name="l00093"></a>00093   txtBody-&gt;setMinimumSize( <a class="code" href="constants_8h.html#a807ad8f984f27d098fb519e4c72182d4">WIDTH_VIEW_MAILBODY</a>, <a class="code" href="constants_8h.html#acdc520d1a4f429f2cfb8abd3062348f0">HEIGHT_VIEW_MAILBODY</a> );
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095   layMain-&gt;addWidget( txtBody );
+<a name="l00091"></a>00091   <span class="keywordflow">else</span> <span class="keywordflow">if</span>( isHTML )
+<a name="l00092"></a>00092     txtBody-&gt;setHtml( body.join( <span class="stringliteral">&quot;\n&quot;</span> ) );
+<a name="l00093"></a>00093   <span class="keywordflow">else</span>
+<a name="l00094"></a>00094     txtBody-&gt;setText( body.join( <span class="stringliteral">&quot;\n&quot;</span> ) );
+<a name="l00095"></a>00095   txtBody-&gt;setMinimumSize( <a class="code" href="constants_8h.html#a807ad8f984f27d098fb519e4c72182d4">WIDTH_VIEW_MAILBODY</a>, <a class="code" href="constants_8h.html#acdc520d1a4f429f2cfb8abd3062348f0">HEIGHT_VIEW_MAILBODY</a> );
 <a name="l00096"></a>00096 
-<a name="l00097"></a>00097 }
+<a name="l00097"></a>00097   layMain-&gt;addWidget( txtBody );
 <a name="l00098"></a>00098 
-<a name="l00099"></a><a class="code" href="classShowMailDialog.html#a37fd2e70ec2bbca753250bf5270f208e">00099</a> <a class="code" href="classShowMailDialog.html#a37fd2e70ec2bbca753250bf5270f208e">ShowMailDialog::~ShowMailDialog</a>()
-<a name="l00100"></a>00100 {
-<a name="l00101"></a>00101 }
-<a name="l00102"></a>00102 
-<a name="l00103"></a><a class="code" href="classShowMailDialog.html#ab1f1cc0a10d3b13ecf9dc9bfcf1ec689">00103</a> <span class="keywordtype">void</span> <a class="code" href="classShowMailDialog.html#ab1f1cc0a10d3b13ecf9dc9bfcf1ec689" title="Activated when a button is clicked.">ShowMailDialog::slotButtonClicked</a>(<span class="keywordtype">int</span> button)
-<a name="l00104"></a>00104 {
-<a name="l00105"></a>00105   <span class="comment">//Reply button</span>
-<a name="l00106"></a>00106   <span class="comment">//starts the standard mailer to compose a reply of this mail</span>
-<a name="l00107"></a>00107   <span class="keywordflow">if</span>( button == User1 ) {
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109     KToolInvocation::invokeMailer( <a class="code" href="classShowMailDialog.html#a2cfed74c01ce7d28b18e1bd15eebe814">m_sender</a>,
-<a name="l00110"></a>00110                                    <span class="stringliteral">&quot;&quot;</span>,
-<a name="l00111"></a>00111                                    <span class="stringliteral">&quot;&quot;</span>,
-<a name="l00112"></a>00112                                    <span class="stringliteral">&quot;Re: &quot;</span> + <a class="code" href="classShowMailDialog.html#a73df230afe94aa1118ef69044d619822">m_subject</a>,
-<a name="l00113"></a>00113                                    <a class="code" href="classShowMailDialog.html#ab2d2866d5eba63e849033b72fcb82819">m_body</a>.join( <span class="stringliteral">&quot;\n&quot;</span> )
-<a name="l00114"></a>00114     );
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
+<a name="l00101"></a><a class="code" href="classShowMailDialog.html#a37fd2e70ec2bbca753250bf5270f208e">00101</a> <a class="code" href="classShowMailDialog.html#a37fd2e70ec2bbca753250bf5270f208e">ShowMailDialog::~ShowMailDialog</a>()
+<a name="l00102"></a>00102 {
+<a name="l00103"></a>00103 }
+<a name="l00104"></a>00104 
+<a name="l00105"></a><a class="code" href="classShowMailDialog.html#ab1f1cc0a10d3b13ecf9dc9bfcf1ec689">00105</a> <span class="keywordtype">void</span> <a class="code" href="classShowMailDialog.html#ab1f1cc0a10d3b13ecf9dc9bfcf1ec689" title="Activated when a button is clicked.">ShowMailDialog::slotButtonClicked</a>(<span class="keywordtype">int</span> button)
+<a name="l00106"></a>00106 {
+<a name="l00107"></a>00107   <span class="comment">//Reply button</span>
+<a name="l00108"></a>00108   <span class="comment">//starts the standard mailer to compose a reply of this mail</span>
+<a name="l00109"></a>00109   <span class="keywordflow">if</span>( button == User1 ) {
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111     QStringList newBody;
+<a name="l00112"></a>00112     <span class="keywordflow">foreach</span>( QString line,  <a class="code" href="classShowMailDialog.html#ab2d2866d5eba63e849033b72fcb82819">m_body</a> ) {
+<a name="l00113"></a>00113       newBody.append( line.insert( 0, <span class="stringliteral">&quot;&gt; &quot;</span>) );
+<a name="l00114"></a>00114     }
 <a name="l00115"></a>00115 
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117   }
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119     <a class="code" href="classShowMailDialog.html#ab1f1cc0a10d3b13ecf9dc9bfcf1ec689" title="Activated when a button is clicked.">KDialog::slotButtonClicked</a>(button);
-<a name="l00120"></a>00120 }
-<a name="l00121"></a>00121 
+<a name="l00116"></a>00116     KToolInvocation::invokeMailer( <a class="code" href="classShowMailDialog.html#a2cfed74c01ce7d28b18e1bd15eebe814">m_sender</a>,
+<a name="l00117"></a>00117                                    <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00118"></a>00118                                    <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00119"></a>00119                                    <span class="stringliteral">&quot;Re: &quot;</span> + <a class="code" href="classShowMailDialog.html#a73df230afe94aa1118ef69044d619822">m_subject</a>,
+<a name="l00120"></a>00120                                    newBody.join( <span class="stringliteral">&quot;\n&quot;</span> )
+<a name="l00121"></a>00121     );
 <a name="l00122"></a>00122 
-<a name="l00123"></a>00123 <span class="preprocessor">#include &quot;showmaildialog.moc&quot;</span>
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124   }
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126     <a class="code" href="classShowMailDialog.html#ab1f1cc0a10d3b13ecf9dc9bfcf1ec689" title="Activated when a button is clicked.">KDialog::slotButtonClicked</a>(button);
+<a name="l00127"></a>00127 }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 <span class="preprocessor">#include &quot;showmaildialog.moc&quot;</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Aug 24 19:17:35 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:02 2010 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

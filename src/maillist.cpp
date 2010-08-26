@@ -31,7 +31,7 @@ MailList::~MailList(){
     Mail* mail = iter.next();
     delete mail;
   }
-  
+
 }
 
 Mail* MailList::addMail( long number, const QString& unid, bool isNew )
@@ -41,7 +41,7 @@ Mail* MailList::addMail( long number, const QString& unid, bool isNew )
 
   //append it to the list
   mails.append( mail );
-	
+
 	return mail;
 }
 
@@ -64,7 +64,7 @@ bool MailList::hasMail(QString uid)
   while( it.hasNext() && !found )
   {
     Mail* mail = it.next();
-     
+
     //compare the uid
     if( mail->getUNID() == uid )
     {
@@ -106,7 +106,7 @@ void MailList::setSize( long number, long size )
   while( it.hasNext() && !found )
   {
     Mail* mail = it.next();
-    
+
     //if the current mail has the given number, decode the mail
     if( mail->getNumber() == number )
     {
@@ -126,7 +126,7 @@ Types::MailNumberList_Type MailList::getNewMails()
   while( it.hasNext() )
   {
     Mail* mail = it.next();
-    
+
     //if current mail is new append its number to the mail number list
     if( mail->isNew() )
       numberList.append( mail->getNumber() );
@@ -144,7 +144,7 @@ void MailList::setHeader(int number, QStringList header)
   while( it.hasNext() && !found )
   {
     Mail* mail = it.next();
-    
+
     //if the current mail has the given number, set the header
     if( mail->getNumber() == number )
     {
@@ -165,7 +165,7 @@ QStringList MailList::getUIDsOfOldMails( )
   {
     //get next Mail
     Mail* mail = it.next();
-    
+
     //if current mail is new append its number to the mail number list
     if( !mail->isNew() )
       list.append( mail->getUNID() );
@@ -183,7 +183,7 @@ QStringList MailList::getHeaderOf( QString unid ) throw( CorruptDataException )
   {
     //get next mail
     Mail* mail = it.next();
-    
+
     //if the current mail has the given uid, get the header
     if( mail->getUNID() == unid )
     {
@@ -203,7 +203,7 @@ void MailList::setHeader( QString unid, QStringList header )
   {
     //get th next mail
     Mail* mail = it.next();
-    
+
     //if the current mail has the given UID, set the header
     if( mail->getUNID() == unid )
     {
@@ -234,7 +234,7 @@ void MailList::applyHeaderFilter( HeaderFilter * filter, QString account, MailNu
   {
 
     Mail* pElem = it.next();
-    
+
     //apply the filters to the current mail
     QString mailbox;
     FilterAction_Type action = pElem->applyHeaderFilter( filter, account, mailbox, log );
@@ -301,7 +301,7 @@ QString MailList::getSenderOf( int number ) const
   while( it.hasNext() && !found )
   {
     Mail* mail = it.next();
-    
+
     //if the current mail has the given number, remove it
     if( mail->getNumber() == number )
     {
@@ -400,7 +400,7 @@ QString MailList::getCharsetFromHeaderOf( int number ) const
 
 }
 
-QStringList MailList::decodeMailBody( const QStringList& body, int number, bool preferHTML ) const
+QStringList MailList::decodeMailBody( const QStringList& body, int number, bool preferHTML, bool& isHTML ) const
 {
   QListIterator<Mail*> it( mails );   //iterator for the mail list
 
@@ -409,11 +409,11 @@ QStringList MailList::decodeMailBody( const QStringList& body, int number, bool 
   {
 
     Mail* mail = it.next();
-    
+
     //if the current mail has the given number, decode the mail
     if( mail->getNumber() == number )
     {
-      return mail->decodeMailBody( body, preferHTML );
+      return mail->decodeMailBody( body, preferHTML, isHTML );
     }
   }
 
@@ -431,7 +431,7 @@ void MailList::writeToMoveLog( FilterLog * log, int number, QString account, QSt
   while( it.hasNext() && !found )
   {
 		Mail* mail = it.next();
-		
+
     //if the current mail has the given number, set the header
     if( mail->getNumber() == number )
     {
@@ -450,7 +450,7 @@ void MailList::setMarkAtNextViewRefresh( int number )
   while( it.hasNext() && !found )
   {
 		Mail* mail = it.next();
-		
+
     //if the current mail has the given number, set the header
     if( mail->getNumber() == number )
     {
@@ -525,7 +525,7 @@ void MailList::readStoredMails( QDomElement& parent )
   {
     //get element of the current node
     QDomElement e = n.toElement();
-		
+
     //get values
     int number = e.attribute( ATTRIBUTE_MAIL_NUMBER ).toInt();
     int size = e.attribute( ATTRIBUTE_MAIL_SIZE ).toInt();
@@ -535,7 +535,7 @@ void MailList::readStoredMails( QDomElement& parent )
 
     //create mail
 		Mail* mail = addMail( number, unid, false );
-		
+
 		//set other values
 		mail->setSize( size );
 		mail->setHeader( header );
