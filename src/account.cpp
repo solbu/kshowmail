@@ -528,8 +528,17 @@ void Account::handleError( QString error )
     emit sigMessageWindowClosed();
   }
 
+  //set state but save old state to emit the right ready signal
+  AccountState_Type oldState = state;
+  state = AccountIdle;
+
+  //clear lists
+  mailsToDelete.clear();
+  mailsToDownload.clear();
+  mailsToShow.clear();
+
   //emit ready signal
-  switch( state )
+  switch( oldState )
   {
     case AccountDeleting    : emit sigDeleteReady( getName() ); break;
     case AccountDownloading : emit sigShowBodiesReady( getName() ); break;
@@ -537,13 +546,6 @@ void Account::handleError( QString error )
     default                 : break;
   }
 
-  //set state
-  state = AccountIdle;
-
-  //clear lists
-  mailsToDelete.clear();
-  mailsToDownload.clear();
-  mailsToShow.clear();
 
 
 }
