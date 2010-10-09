@@ -83,8 +83,8 @@ FilterSetupDialog::FilterSetupDialog( QWidget* parent, FilterSetupItem* item )
   //buttons to add or remove criterias
   QHBoxLayout* layButtons = new QHBoxLayout();
   layCriteria->addLayout( layButtons );
-  btnAddCriteria = new KPushButton( KGuiItem( i18nc( "@action:button show more criterias", "More" ), "button_more", i18nc( "@info:tooltip", "Add a further criteria." ) ), gboxCriteria );
-  btnRemoveCriteria = new KPushButton( KGuiItem( i18nc( "@action:button how fewer criterias", "Fewer" ), "button_fewer", i18nc( "@info:tooltip", "Remove the last criteria." ) ), gboxCriteria );
+  btnAddCriteria = new KPushButton( KGuiItem( i18nc( "@action:button show more criterias", "More" ), "list-add", i18nc( "@info:tooltip", "Add a further criteria." ) ), gboxCriteria );
+  btnRemoveCriteria = new KPushButton( KGuiItem( i18nc( "@action:button how fewer criterias", "Fewer" ), "list-remove", i18nc( "@info:tooltip", "Remove the last criteria." ) ), gboxCriteria );
   btnAddCriteria->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   btnRemoveCriteria->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
   layButtons->addWidget( btnAddCriteria );
