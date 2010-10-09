@@ -82,7 +82,6 @@ void MailBoxWizard::slotOpenDirDialog( )
 
 void MailBoxWizard::slotPageChanged( int pageID )
 {
-  kdDebug() << pageID << endl;
   //just we looking for mailboxes if the page 2 was opened
   if( pageID == 1 )
   {
@@ -162,9 +161,13 @@ void MailBoxWizard::addMailBoxListItem( QString boxname, QDir path )
 
 QString MailBoxWizard::getPath( )
 {
-  MailBoxWizardListItem* item = (MailBoxWizardListItem*)lstMailboxes->selectedItems().first();
 
-  QString path;
+  QList<QTreeWidgetItem *> selectedItems = lstMailboxes->selectedItems();
+  if( selectedItems.isEmpty() ) return "";
+
+  MailBoxWizardListItem* item = (MailBoxWizardListItem*)selectedItems.first();
+
+  QString path( "" );
   if( item != NULL )
     path = item->getPath();
 

@@ -68,7 +68,7 @@ class MailBoxWizard : public QWizard
 
     /**
      * Returns the absolute path of the selected mailbox.
-     * @return the path
+     * @return the path; empty string if no item is selected
      */
     QString getPath();
 
