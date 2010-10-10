@@ -414,7 +414,6 @@ namespace Constants
   #define STATUSBAR_FIELD_NEXT_REFRESH  3
   #define STATUSBAR_FIELD_LAST_REFRESH  4
 
-  //Misc
-  #define NAME_SPAMASSASSIN_DAEMON    "spamd"
+
 }
 #endif

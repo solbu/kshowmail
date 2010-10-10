@@ -207,7 +207,7 @@ bool ConfigSpamcheck::isSpamAssassinRunning( ) const
   bool found = false;
 
   memset( buffer, '\0', sizeof( buffer ) );
-  read_fp = popen( "ps -eo comm", "r" );
+  read_fp = popen( "sa-check_spamd", "r" );
   if( read_fp != NULL )
   {
     chars_read = fread( buffer, sizeof( char ), BUFSIZ, read_fp );
@@ -215,7 +215,8 @@ bool ConfigSpamcheck::isSpamAssassinRunning( ) const
     {
       buffer[ chars_read - 1 ] = '\0';
       QString output( buffer );
-      found = output.contains( NAME_SPAMASSASSIN_DAEMON ) > 0;
+      found = output.contains( "SPAMD OK" ) > 0;
+      if( found ) return found;
       chars_read = fread( buffer, sizeof( char ), BUFSIZ, read_fp );
     }
     pclose( read_fp );

@@ -1267,7 +1267,7 @@ msgstr "Mailbox auswählen"
 
 #: configspamcheck.cpp:228
 msgid "SpamAssassin is running."
-msgstr "SpamAssassin ist nicht aktiv.."
+msgstr "SpamAssassin ist aktiv.."
 
 #: configspamcheck.cpp:228 configspamcheck.cpp:233
 msgid "Check for SpamAssassin"
