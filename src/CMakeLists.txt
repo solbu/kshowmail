@@ -74,6 +74,7 @@ set( CONFIGFILTER_SRCS
      mailboxwizard.cpp
      mailboxwizardlistitem.cpp
      filtercriteriawidget.cpp
+     regexcheckdialog.cpp
    )
 
 kde4_add_plugin( kcm_kshowmailconfigfilter ${CONFIGFILTER_SRCS} )

@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <knuminput.h>
 #include <kpushbutton.h>
 #include <kregexpeditorinterface.h>
-#include <ktrader.h>
+#include <kservicetypetrader.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
 #include <kparts/componentfactory.h>
@@ -40,6 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //KShowmail headers
 #include <constants.h>
 #include <types.h>
+#include "regexcheckdialog.h"
 
 //ComboBox IDs
 #define ID_COMBO_SOURCE_FROM    0
@@ -163,11 +164,6 @@ Q_OBJECT
      */
     KPushButton* btnOpenRegExpEditor;
 
-    /**
-     * TRUE - KRegExpEditor is installed and available.
-     */
-    bool kRegExpEditorAvailable;
-
 
   private slots:
 
@@ -178,9 +174,9 @@ Q_OBJECT
     void slotSetWidgets();
 
     /**
-     * Opens the editor for regular expressions.
+     * Opens a dialog to check a regex
      */
-    void slotOpenRegExpEditor();
+    void slotOpenRegExpCheck();
 };
 
 #endif

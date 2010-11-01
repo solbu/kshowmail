@@ -24,7 +24,7 @@ FilterCriteriaWidget::FilterCriteriaWidget( QWidget *parent )
 
   //Set object name
   setObjectName( FILTER_CRITERIA_WIDGET_NAME );
-  
+
   //this is the main layout
   QVBoxLayout* layMain = new QVBoxLayout();
   this->setLayout( layMain );
@@ -132,12 +132,9 @@ FilterCriteriaWidget::FilterCriteriaWidget( QWidget *parent )
   layLine1->addWidget( spbCompValueNum );
 
   //Button to open the regular expression editor
-  btnOpenRegExpEditor = new KPushButton( KGuiItem( "", "tools-wizard", "Edit Regular Expression" ), this );
+  btnOpenRegExpEditor = new KPushButton( KGuiItem( "", "tools-wizard", "Check Regular Expression" ), this );
   layLine1->addWidget( btnOpenRegExpEditor );
-  connect( btnOpenRegExpEditor, SIGNAL( clicked() ), this, SLOT( slotOpenRegExpEditor() ) );
-
-  //check whether the KRegExpEditor is available
-  kRegExpEditorAvailable = !KServiceTypeTrader::self()->query( "KRegExpEditor/KRegExpEditor" ).isEmpty();
+  connect( btnOpenRegExpEditor, SIGNAL( clicked() ), this, SLOT( slotOpenRegExpCheck() ) );
 
   //checkbox to select case sensitve
   chkCaseSensitive = new QCheckBox( i18n( "Case sensitive" ), this );
@@ -215,8 +212,7 @@ void FilterCriteriaWidget::slotSetWidgets( )
   if( ( !cmbConditionText->isHidden() && ( cmbConditionText->currentIndex() == ID_COMBO_COND_TEXT_REGEXPR || cmbConditionText->currentIndex() == ID_COMBO_COND_TEXT_NOT_REGEXPR ) ) ||
       ( !cmbConditionTextList->isHidden() && ( cmbConditionTextList->currentIndex() == ID_COMBO_COND_TEXT_REGEXPR || cmbConditionTextList->currentIndex() == ID_COMBO_COND_TEXT_NOT_REGEXPR ) ) )
   {
-    if( kRegExpEditorAvailable )
-      btnOpenRegExpEditor->setHidden( false );
+    btnOpenRegExpEditor->setHidden( false );
 
     //we don't need case sensitve for regular expressions
     chkCaseSensitive->setHidden( true );
@@ -227,32 +223,22 @@ void FilterCriteriaWidget::slotSetWidgets( )
   }
 }
 
-void FilterCriteriaWidget::slotOpenRegExpEditor( )
+void FilterCriteriaWidget::slotOpenRegExpCheck( )
 {
-  QDialog* editorDialog = KServiceTypeTrader::createInstanceFromQuery<QDialog>( "KRegExpEditor/KRegExpEditor" );
+  //create check dialog
+  RegexCheckDialog* dlg = new RegexCheckDialog( this );
 
-  if( editorDialog != NULL )
-  {
-    //kdeutils was installed, so the dialog was found fetch the editor interface
-    KRegExpEditorInterface* editor = qobject_cast< KRegExpEditorInterface* >( editorDialog );
-    if( editor == NULL )
-    {
-      KMessageBox::error( this, i18n( "The Regular Expression Editor could not be initialized." ) );
-      return;
-    }
+  //put the previously entered regex in it
+  dlg->setRegex( txtCompValueText->text() );
 
-    //use the editor.
-    editor->setRegExp( txtCompValueText->text() );
+  //open dialog
+  int result = dlg->exec();
 
-    //exec the dialog
-    if( editorDialog->exec() == QDialog::Accepted )
-      txtCompValueText->setText( editor->regExp() );
-
-    //delete dialog
-    delete editorDialog;
+  //if the user has clicked on OK, the regex will be transfered into the value edit line
+  if( result == RegexCheckDialog::Accepted ) {
+    txtCompValueText->setText( dlg->getRegex() );
   }
-  else
-    KMessageBox::error( this, i18n( "The Regular Expression Editor is not available." ) );
+
 
 }
 
