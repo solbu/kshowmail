@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kdebug.h>
 #include <kconfig.h>
 #include <KConfigGroup>
+#include <KLocale>
 
 //KShowmail headers
 #include "constants.h"
@@ -63,9 +64,10 @@ class HeaderFilter{
      * @param header Header
      * @param account Account
      * @param mailboxName contains the mailbox name after call, if filter action is MOVE
+     * @param filterName after the call it contains the name of the filter which has catched the mail
      * @return recommend action
      */
-    FilterAction_Type check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName ) const;
+    FilterAction_Type check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName, QString& filterName ) const;
 
     /**
      * Loads the settings from the application config file.

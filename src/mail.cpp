@@ -33,7 +33,7 @@ Mail::Mail( long number, const QString& unid, bool isNew, QPointer<Account> acco
 Mail::Mail( const Mail& mail ): QObject ( NULL ),
   unid( mail.unid ), subject( mail.subject ), header( mail.header ), size( mail.size ), number( mail.number ), _new( mail._new ),
   from( mail.from ), to( mail.to ), sendDate( mail.sendDate ), contentType( mail.contentType ), markedByFilter( mail.markedByFilter ),
-  acc( mail.acc ), accountName( mail.accountName )
+  acc( mail.acc ), accountName( mail.accountName ), filterName( mail.filterName )
 {
 }
 
@@ -402,12 +402,12 @@ QString Mail::getContent() const
 
 FilterAction_Type Mail::applyHeaderFilter( HeaderFilter* filter, QString account, QString& mailbox, FilterLog* log )
 {
-  FilterAction_Type action = filter->check( getFrom(), getTo(), getSize(), getSubject(), getHeader(), account, mailbox );
+  FilterAction_Type action = filter->check( getFrom(), getTo(), getSize(), getSubject(), getHeader(), account, mailbox, filterName );
 
   //if the action is MARK, the related view entry shall be marked at the next view refresh
   if( action == FActMark ) markedByFilter = true;
 
-  //if the action is DELETE, we add a entry to the log
+  //if the action is DELETE, we add an entry to the log
   if( log == NULL )
     kdError() << "Mail::applyHeaderFilter: Pointer to the filter log is NULL. Can't write to log." << endl;;
   if( action == FActDelete && log != NULL )
@@ -954,4 +954,15 @@ void Mail::print(QStringList text) const
     kdDebug() << it.next() << endl;
   }
 }
+
+QString Mail::getFilterName() const
+{
+  return filterName;
+}
+
+void Mail::setFilterName(QString filter)
+{
+  filterName = filter;
+}
+
 

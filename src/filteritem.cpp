@@ -103,7 +103,7 @@ FilterAction_Type FilterItem::check( QString from, QString to, uint size, QStrin
     while( it.hasNext() && match )
     {
       FilterItemCriteria* crit = it.next();
-      
+
       match = match && crit->check( from, to, size, subject, header, account );
     }
   }
@@ -170,4 +170,8 @@ void FilterItem::print( ) const
   }
 }
 
+QString FilterItem::getName() const
+{
+  return name;
+}
 

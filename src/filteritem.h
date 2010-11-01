@@ -73,6 +73,13 @@ class FilterItem{
      */
     FilterAction_Type check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName ) const;
 
+    /**
+     * Returns the name of this filter
+     *
+     * @return name
+     */
+    QString getName() const;
+
   private:
 
     /**

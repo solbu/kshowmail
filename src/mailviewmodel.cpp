@@ -33,7 +33,7 @@ QModelIndex MailViewModel::index( int row, int column, const QModelIndex& parent
 	//returns a invalid index if the parent index is valid
 	//because no index has a child
 	if( parent.isValid() ) return QModelIndex();
-	
+
 	return createIndex( row, column );
 }
 
@@ -42,7 +42,7 @@ QModelIndex MailViewModel::parent( const QModelIndex& ) const
 	return QModelIndex();
 }
 
-int MailViewModel::rowCount ( const QModelIndex & parent ) const 
+int MailViewModel::rowCount ( const QModelIndex & parent ) const
 {
 	//return 0, if the parent is valid
 	if( parent.isValid() ) return 0;
@@ -59,14 +59,14 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
 {
 	//return a empty data if the index is invalid
 	if( !index.isValid() ) return QVariant();
-	
+
 	if( index.row() >= rowCount() || index.column() > NUMBER_MAILVIEW_COLUMNS - 1 ) return QVariant();
-	
+
 	if( index.row() > viewMailList.size() - 1 ) return QVariant();
 
   //get the mail
   Mail mail = viewMailList.at( index.row() );
-  
+
   //the kind of data we return is dependent on the given role
   switch( role )
   {
@@ -106,8 +106,18 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
       }
       break;
 
+    //the tooltip shows the name of the filter which has chatched the mail
+    case ( Qt::ToolTipRole ) :
+
+      QString filtername = mail.getFilterName();
+      if( filtername.isEmpty() ) {
+        return QVariant();
+      } else {
+        return QVariant( i18nc( "@info:Shows the filter which has catched this mail", "Catched by filter: %1", mail.getFilterName() ) );
+      }
+
   }
-  
+
 	return QVariant();
 }
 
@@ -150,7 +160,7 @@ void MailViewModel::refresh()
 {
 	viewMailList.clear();
 	viewMailList.append( accounts->getAllMails() );
-	sort(); 
+	sort();
   reset();
 }
 
@@ -250,7 +260,7 @@ Mail MailViewModel::getMail(const QModelIndex index) const
 QStringList MailViewModel::getSelectedSubjects( QItemSelectionModel* selectModel ) const
 {
   QStringList subjects;
-  
+
   if( !selectModel->hasSelection() ) return subjects;
 
     //get selected rows
@@ -331,7 +341,7 @@ QModelIndexList MailViewModel::getMarkedMails() const
 
     //get index
     QModelIndex ix = index( i, 0 );
-    
+
     //get mail
     Mail mail = getMail( ix );
 

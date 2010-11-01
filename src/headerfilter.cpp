@@ -38,15 +38,30 @@ HeaderFilter::~HeaderFilter()
   }
 }
 
-FilterAction_Type HeaderFilter::check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName ) const
+FilterAction_Type HeaderFilter::check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName, QString& filterName ) const
 {
+
+  //clear old filter name
+  filterName.remove( 0, filterName.length() );
+
   //return PASS, if filter is not active
   if( !active )
     return FActPass;
-  
+
   //check for matching with blacklist or whitelist
   FilterAction_Type action = senderlist.check( from );
-  if( action != FActNone ) return action;
+  if( action != FActNone ) {
+
+    //set the filter name
+    //just the whitelist returns FActPass
+    if( action == FActPass ) {
+      filterName.append( "Whitelist" );
+    } else {
+      filterName.append( "Blacklist" );
+    }
+
+    return action;
+  }
 
   //check for matching with filters
   QListIterator<FilterItem*> it( filters );
@@ -55,7 +70,10 @@ FilterAction_Type HeaderFilter::check( QString from, QString to, uint size, QStr
     FilterItem* filter = it.next();
     action = filter->check( from, to, size, subject, header, account, mailboxName );
 
-    if( action != FActNone ) return action;
+    if( action != FActNone ) {
+      filterName.append( filter->getName() );
+      return action;
+    }
   }
 
   //no matching; return default action
@@ -64,6 +82,10 @@ FilterAction_Type HeaderFilter::check( QString from, QString to, uint size, QStr
     mailboxName.remove( 0, mailboxName.length() );
     mailboxName.append( mailbox );
   }
+
+  //set filter name
+  filterName.append( i18nc( "@info The default action which has catched this mail", "Default Action" )  );
+
   return defaultAction;
 
 }

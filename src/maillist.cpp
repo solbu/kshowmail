@@ -547,6 +547,7 @@ void MailList::readStoredMails( QDomElement& parent )
 
 QList<Mail> MailList::getAllMails() const
 {
+
 	QList<Mail> list;
   QListIterator<Mail*> it( mails );
 
@@ -555,7 +556,9 @@ QList<Mail> MailList::getAllMails() const
     Mail* mail = it.next();
 
     list.append( *mail );
+
   }
+
 	return list;
 }
 
