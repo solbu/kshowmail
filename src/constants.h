@@ -103,6 +103,7 @@ namespace Constants
   #define DEFAULT_WIDTH_MESSAGE_STATE     50
 
   //default column widthes of the log view
+  #define DEFAULT_WIDTH_LOGVIEW_DELETED_BY 20
   #define DEFAULT_WIDTH_LOGVIEW_DELETED_DATE 80
   #define DEFAULT_WIDTH_LOGVIEW_DELETED_FROM 80
   #define DEFAULT_WIDTH_LOGVIEW_DELETED_SUBJECT 80
@@ -158,14 +159,17 @@ namespace Constants
 
 
   //Log Defaults
-  #define DEFAULT_LOG_LOG_DELETED_MAILS       true
-  #define DEFAULT_LOG_LOG_MOVED_MAILS         true
-    //the log entires will be deleted after some days (constant value is "days") or at app exit (value is "exit")
+  #define DEFAULT_LOG_LOG_DELETED_MAILS         true
+  #define DEFAULT_LOG_LOG_MOVED_MAILS           true
+  #define DEFAULT_LOG_LOG_MANUAL_DELETED_MAILS  true
+  //the log entires will be deleted after some days (constant value is "days") or at app exit (value is "exit")
   #define DEFAULT_LOG_REMOVE_DELETED_MAILS    "days"
   #define DEFAULT_LOG_REMOVE_MOVED_MAILS      "exit"
+  #define DEFAULT_LOG_REMOVE_MANUAL_DELETED_MAILS    "days"
     //number of days the entries will be stored
   #define DEFAULT_LOG_HOLDDAYS_DELETED_MAILS  7
   #define DEFAULT_LOG_HOLDDAYS_MOVED_MAILS    7
+  #define DEFAULT_LOG_HOLDDAYS_MANUAL_DELETED_MAILS  7
 
   /**
    * XML file to store mails
@@ -192,6 +196,9 @@ namespace Constants
   #define LOG_ENTRY_ATTRIBUTE_SENDER "Sender"
   #define LOG_ENTRY_ATTRIBUTE_ACCOUNT "Account"
   #define LOG_ENTRY_ATTRIBUTE_SUBJECT "Subject"
+  #define LOG_ENTRY_ATTRIBUTE_KIND_DELETE "KindDelete"
+  #define LOG_ENTRY_VALUE_KIND_DELETE_MANUAL "manual"
+  #define LOG_ENTRY_VALUE_KIND_DELETE_FILTER "filter"
 
   /**
    * Geometry
@@ -380,19 +387,23 @@ namespace Constants
   #define CONFIG_VALUE_SPAMCHECK_ACTION_MOVE        4
 
   //Log
-  #define CONFIG_GROUP_LOG                        "Log"
-  #define CONFIG_ENTRY_LOG_LOG_DELETED_MAILS      "LogDeletedMails"
-  #define CONFIG_ENTRY_LOG_LOG_MOVED_MAILS        "LogMovedMails"
-  #define CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS   "RemoveEventOfDeletedMails"
-  #define CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS     "RemoveEvendOfMovedMails"
-  #define CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS "HoldDaysOfDeletedMails"
-  #define CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS   "HoldDaysOfMovedMails"
+  #define CONFIG_GROUP_LOG                                "Log"
+  #define CONFIG_ENTRY_LOG_LOG_DELETED_MAILS              "LogDeletedMails"
+  #define CONFIG_ENTRY_LOG_LOG_MOVED_MAILS                "LogMovedMails"
+  #define CONFIG_ENTRY_LOG_LOG_MANUAL_DELETED_MAILS       "LogManualDeletedMails"
+  #define CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS           "RemoveEventOfDeletedMails"
+  #define CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS             "RemoveEvendOfMovedMails"
+  #define CONFIG_ENTRY_LOG_REMOVE_MANUAL_DELETED_MAILS    "RemoveEventOfManualDeletedMails"
+  #define CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS         "HoldDaysOfDeletedMails"
+  #define CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS           "HoldDaysOfMovedMails"
+  #define CONFIG_ENTRY_LOG_HOLDDAYS_MANUAL_DELETED_MAILS  "HoldDaysOfManualDeletedMails"
 
   #define CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT     "exit"
   #define CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS  "days"
 
   //Log view
   #define CONFIG_GROUP_LOGVIEW                        "LogView"
+  #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_BY       "WidthLogViewDeletedBy"
   #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE     "WidthLogViewDeletedDate"
   #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT  "WidthLogViewDeletedSubject"
   #define CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT  "WidthLogViewDeletedAccount"

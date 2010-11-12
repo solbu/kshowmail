@@ -1693,6 +1693,17 @@ void Account::slotMailDeleted()
     return;
   }
 
+  //if the mail was manual deleted we write it into the log
+  //the log entries about mails deleted by the filter will be written in Mail::applyHeaderFilter()
+  if( !deletionPerformedByFilters ) {
+
+    fLog->addDeletedMail( mails->getDateTimeOf( mailsToDelete.first() ),
+                          mails->getSenderOf( mailsToDelete.first() ),
+                          getName(),
+                          mails->getSubjectOf( mailsToDelete.first() ),
+                          DelManual
+                        );
+  }
 
   //remove the first item of the list of mails to delete
   mailsToDelete.removeFirst();
@@ -1947,7 +1958,7 @@ void Account::slotMailDownloadedForAction()
                                                 break;
 
                               case FActDelete : if( fLog != NULL )
-                                                  mails->writeToDeleteLog( fLog, currentMailNumber, getName() );
+                                                  mails->writeToDeleteLog( fLog, currentMailNumber, getName(), DelFilter );
 
                                                 nmbDeletedMailsLastRefresh++;
                                                 nmbDeletedMailsLastStart++;

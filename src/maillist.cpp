@@ -334,6 +334,28 @@ QString MailList::getDateOf( int number ) const
 
 }
 
+KDateTime MailList::getDateTimeOf(int number) const
+{
+  QListIterator<Mail*> it( mails );   //iterator for the mail list
+  bool found = false;                             //True, when the wanted mail was found
+  KDateTime date;                                   //sent date of the wanted mail
+
+  //looking for the mail with the number 'number'
+  while( it.hasNext() && !found )
+  {
+    Mail* mail = it.next();
+
+    //if the current mail has the given number, remove it
+    if( mail->getNumber() == number )
+    {
+      date = mail->getDateTime();
+      found = true;
+    }
+  }
+  return date;
+}
+
+
 QString MailList::getSizeOf( int number ) const
 {
   QListIterator<Mail*> it( mails );   //iterator for the mail list
@@ -460,7 +482,7 @@ void MailList::setMarkAtNextViewRefresh( int number )
   }
 }
 
-void MailList::writeToDeleteLog( FilterLog * log, int number, QString account )
+void MailList::writeToDeleteLog( FilterLog * log, int number, QString account, KindOfMailDeleting kindDelete )
 {
   QListIterator<Mail*> it( mails );   //iterator for the mail list
   bool found = false;                             //True, when the wanted mail was found
@@ -473,7 +495,7 @@ void MailList::writeToDeleteLog( FilterLog * log, int number, QString account )
     //if the current mail has the given number, set the header
     if( mail->getNumber() == number )
     {
-      mail->writeToDeleteLog( log, account );
+      mail->writeToDeleteLog( log, account, kindDelete );
       found = true;
     }
   }

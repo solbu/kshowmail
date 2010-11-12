@@ -290,8 +290,9 @@ class Mail : public QObject
      * Writes this mail into the Delete Log.
      * @param log pointer to the log
      * @param account name of the account
+     * @param kindDelete kind of mail deleting (by filter or manual)
      */
-    void writeToDeleteLog( FilterLog* log, QString account );
+     void writeToDeleteLog( FilterLog* log, QString account, KindOfMailDeleting kindDelete );
 
     /**
      * The mail will be marked at the next view refresh.

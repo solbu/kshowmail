@@ -100,6 +100,43 @@ ConfigLog::ConfigLog( QWidget * parent, const QVariantList & args )
   spbMovDays->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Minimum );
   layMovMailsConfigDays->addWidget( spbMovDays );
 
+  //widgets for manual deleted mails log
+  QVBoxLayout* layManualDelMails = new QVBoxLayout();
+  layMain->addLayout( layManualDelMails );
+
+  chkLogManualDeletedMails = new QCheckBox( i18n( "Log manual deleted mails" ), this );
+  chkLogManualDeletedMails->setToolTip( i18n( "Check to activate the log of manual deleted mails." ) );
+  layManualDelMails->addWidget( chkLogManualDeletedMails );
+  connect( chkLogManualDeletedMails, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
+  connect( chkLogManualDeletedMails, SIGNAL( toggled( bool ) ), this, SLOT( slotChangeItems() ) );
+
+  QVBoxLayout* layManualDelMailsConfig = new QVBoxLayout();
+  layManualDelMailsConfig->setMargin( 20 );
+  layMain->addLayout( layManualDelMailsConfig );
+
+  grpManualDelMailsRemove = new QButtonGroup( NULL );
+  connect( grpManualDelMailsRemove, SIGNAL( buttonClicked( int ) ), this, SLOT( slotChanged() ) );
+  connect( grpManualDelMailsRemove, SIGNAL( buttonClicked( int ) ), this, SLOT( slotChangeItems() ) );
+  btnManualDelMailsRemoveExit = new QRadioButton( i18n( "Remove log entries at exit" ), this );
+  grpManualDelMailsRemove->addButton( btnManualDelMailsRemoveExit, ID_BUTTON_REMOVE_AT_EXIT );
+  layManualDelMailsConfig->addWidget( btnManualDelMailsRemoveExit );
+
+  QHBoxLayout* layManualDelMailsConfigDays = new QHBoxLayout();
+  layManualDelMailsConfig->addLayout( layManualDelMailsConfigDays );
+  layManualDelMailsConfigDays->setAlignment( Qt::AlignLeft );
+  btnManualDelMailsRemoveDays = new QRadioButton( i18n( "Remove log entries after" ), this );
+  grpManualDelMailsRemove->addButton( btnManualDelMailsRemoveDays, ID_BUTTON_REMOVE_AFTER_DAYS );
+  layManualDelMailsConfigDays->addWidget( btnManualDelMailsRemoveDays );
+  spbManualDelDays = new QSpinBox( this );
+  spbManualDelDays->setMinimum( 1 );
+  spbManualDelDays->setMaximum( 999999 );
+  connect( spbManualDelDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
+  connect( spbManualDelDays, SIGNAL( valueChanged( int ) ), this, SLOT( slotChangeItems() ) );
+  spbManualDelDays->setSuffix( i18nc( "@label:spinbox number of days till deletion", " Days" ) );
+  spbManualDelDays->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Fixed );
+  layManualDelMailsConfigDays->addWidget( spbManualDelDays );
+
+
   //the log of moved mails is not saved yet, maybe later...
   btnMovMailsRemoveExit->setHidden( true );
   btnMovMailsRemoveDays->setHidden( true );
@@ -119,11 +156,12 @@ ConfigLog::~ConfigLog()
 void ConfigLog::load()
 {
   //set group
-  KConfigGroup* configLog = new KConfigGroup( config, CONFIG_GROUP_FILTER );
+  KConfigGroup* configLog = new KConfigGroup( config, CONFIG_GROUP_LOG );
 
   //load settings
   chkLogDeletedMails->setChecked( configLog->readEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, DEFAULT_LOG_LOG_DELETED_MAILS ) );
   chkLogMovedMails->setChecked( configLog->readEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, DEFAULT_LOG_LOG_MOVED_MAILS ) );
+  chkLogManualDeletedMails->setChecked( configLog->readEntry( CONFIG_ENTRY_LOG_LOG_MANUAL_DELETED_MAILS, DEFAULT_LOG_LOG_MANUAL_DELETED_MAILS ) );
 
   QRadioButton* btnToCheck;
   if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_DELETED_MAILS, DEFAULT_LOG_REMOVE_DELETED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
@@ -151,8 +189,21 @@ void ConfigLog::load()
 
   btnToCheck->setChecked( true );
 
+  if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_MANUAL_DELETED_MAILS, DEFAULT_LOG_REMOVE_MANUAL_DELETED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
+    btnToCheck = static_cast<QRadioButton*>( grpManualDelMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
+  else if( configLog->readEntry( CONFIG_ENTRY_LOG_REMOVE_MANUAL_DELETED_MAILS, DEFAULT_LOG_REMOVE_MANUAL_DELETED_MAILS ) == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
+    btnToCheck = static_cast<QRadioButton*>( grpManualDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
+  else
+    if( QString( DEFAULT_LOG_REMOVE_MANUAL_DELETED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
+      btnToCheck = static_cast<QRadioButton*>( grpManualDelMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
+    else
+      btnToCheck = static_cast<QRadioButton*>( grpManualDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
+
+    btnToCheck->setChecked( true );
+
   spbDelDays->setValue( configLog->readEntry( CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS, DEFAULT_LOG_HOLDDAYS_DELETED_MAILS ) );
   spbMovDays->setValue( configLog->readEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS, DEFAULT_LOG_HOLDDAYS_MOVED_MAILS ) );
+  spbManualDelDays->setValue( configLog->readEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MANUAL_DELETED_MAILS, DEFAULT_LOG_HOLDDAYS_MANUAL_DELETED_MAILS ) );
 
   //enable or disable Items
   slotChangeItems();
@@ -163,12 +214,17 @@ void ConfigLog::defaults()
   if( DEFAULT_LOG_LOG_DELETED_MAILS )
     chkLogDeletedMails->setChecked( true );
   else
-    chkLogMovedMails->setChecked( false );
+    chkLogDeletedMails->setChecked( false );
 
   if( DEFAULT_LOG_LOG_MOVED_MAILS )
     chkLogMovedMails->setChecked( true );
   else
     chkLogMovedMails->setChecked( false );
+
+  if( DEFAULT_LOG_LOG_MANUAL_DELETED_MAILS )
+    chkLogManualDeletedMails->setChecked( true );
+  else
+    chkLogManualDeletedMails->setChecked( false );
 
   QRadioButton* btnToCheck;
   if( QString( DEFAULT_LOG_REMOVE_DELETED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
@@ -189,8 +245,18 @@ void ConfigLog::defaults()
 
   btnToCheck->setChecked( true );
 
+  if( QString( DEFAULT_LOG_REMOVE_MANUAL_DELETED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ) )
+    btnToCheck = static_cast<QRadioButton*>( grpManualDelMailsRemove->button( ID_BUTTON_REMOVE_AT_EXIT ) );
+  else if( QString( DEFAULT_LOG_REMOVE_MANUAL_DELETED_MAILS ) == QString( CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ) )
+    btnToCheck = static_cast<QRadioButton*>( grpManualDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
+  else
+    btnToCheck = static_cast<QRadioButton*>( grpManualDelMailsRemove->button( ID_BUTTON_REMOVE_AFTER_DAYS ) );
+
+  btnToCheck->setChecked( true );
+
   spbDelDays->setValue( DEFAULT_LOG_HOLDDAYS_DELETED_MAILS );
   spbMovDays->setValue( DEFAULT_LOG_HOLDDAYS_MOVED_MAILS );
+  spbManualDelDays->setValue( DEFAULT_LOG_HOLDDAYS_MANUAL_DELETED_MAILS );
 
   //enable or disable Items
   slotChangeItems();
@@ -201,11 +267,12 @@ void ConfigLog::defaults()
 void ConfigLog::save()
 {
   //set group
-  KConfigGroup* configLog = new KConfigGroup( config, CONFIG_GROUP_FILTER );
+  KConfigGroup* configLog = new KConfigGroup( config, CONFIG_GROUP_LOG );
 
   //write settings
   configLog->writeEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, chkLogDeletedMails->isChecked() );
   configLog->writeEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, chkLogMovedMails->isChecked() );
+  configLog->writeEntry( CONFIG_ENTRY_LOG_LOG_MANUAL_DELETED_MAILS, chkLogManualDeletedMails->isChecked() );
 
   switch( grpDelMailsRemove->checkedId() )
   {
@@ -221,8 +288,16 @@ void ConfigLog::save()
     default                           : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MOVED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
   }
 
+  switch( grpManualDelMailsRemove->checkedId() )
+  {
+    case ID_BUTTON_REMOVE_AT_EXIT     : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MANUAL_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT ); break;
+    case ID_BUTTON_REMOVE_AFTER_DAYS  : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MANUAL_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
+    default                           : configLog->writeEntry( CONFIG_ENTRY_LOG_REMOVE_MANUAL_DELETED_MAILS, CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS ); break;
+  }
+
   configLog->writeEntry( CONFIG_ENTRY_LOG_HOLDDAYS_DELETED_MAILS, spbDelDays->value() );
   configLog->writeEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MOVED_MAILS, spbMovDays->value() );
+  configLog->writeEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MANUAL_DELETED_MAILS, spbManualDelDays->value() );
 }
 
 void ConfigLog::slotChanged()
@@ -269,6 +344,27 @@ void ConfigLog::slotChangeItems()
     btnMovMailsRemoveDays->setEnabled( false );
     spbMovDays->setEnabled( false );
   }
+
+  if( chkLogManualDeletedMails->isChecked() )
+  {
+    btnManualDelMailsRemoveExit->setEnabled( true );
+    btnManualDelMailsRemoveDays->setEnabled( true );
+    spbManualDelDays->setEnabled( true );
+    switch( grpManualDelMailsRemove->checkedId() )
+    {
+      case ID_BUTTON_REMOVE_AFTER_DAYS      : spbManualDelDays->setEnabled( true ); break;
+      case ID_BUTTON_REMOVE_AT_EXIT         : spbManualDelDays->setEnabled( false ); break;
+      default                               : spbManualDelDays->setEnabled( true ); break;
+    }
+  }
+  else
+  {
+    btnManualDelMailsRemoveExit->setEnabled( false );
+    btnManualDelMailsRemoveDays->setEnabled( false );
+    spbManualDelDays->setEnabled( false );
+  }
+
+
 }
 
 

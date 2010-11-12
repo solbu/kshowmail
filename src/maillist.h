@@ -186,6 +186,13 @@ class MailList : public QObject
     QString getDateOf( int number ) const;
 
     /**
+     * Returns the date of sent of the mail with the given number.
+     * @param number mail number
+     * @return date
+     */
+    KDateTime getDateTimeOf( int number ) const;
+
+    /**
      * Returns the size of the mail with the given number.
      * @param number mail number
      * @return size
@@ -235,8 +242,9 @@ class MailList : public QObject
      * @param log pointer to the log
      * @param number number of the mail
      * @param account name of the account
+     * @param kindDelete kind of mail deleting (by filter or manual)
      */
-    void writeToDeleteLog( FilterLog* log, int number, QString account );
+    void writeToDeleteLog( FilterLog* log, int number, QString account, KindOfMailDeleting kindDelete );
 
     /**
      * The given mail will be marked at the next view refresh.

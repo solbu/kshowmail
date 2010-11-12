@@ -56,8 +56,9 @@ class FilterLogEntry{
      * @param account Account which has received the mail
      * @param subject Subject of the mail
      * @param mailbox mailbox where the mails was moved
+     * @param kindDelete kind of deleting (manual or by filter)
      */
-    FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString() );
+    FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString(), KindOfMailDeleting kindDelete = DelFilter );
 
     /**
      * Copy Constructor
@@ -168,6 +169,12 @@ class FilterLogEntry{
     QString getMailbox() const;
 
     /**
+     * Returns the kind of the deleting
+     * @return kind of the deleting
+     */
+    KindOfMailDeleting getKindOfDeleting() const;
+
+    /**
      * @brief Compares this entry with <em>other</em> and returns an integer less than,
      * equal to, or greater than zero if this entry is less than, equal to,
      * or greater than <em>other</em>.
@@ -207,6 +214,11 @@ class FilterLogEntry{
      * mailbox if the mails was moved
      */
     QString mailbox;
+
+    /**
+     * kind of the deleting of the mail (manual or by filter)
+     */
+    KindOfMailDeleting kindDel;
 
 };
 

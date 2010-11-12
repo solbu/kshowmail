@@ -55,6 +55,14 @@ class FilterLog{
   public:
 
     /**
+     * Storage mode of the log entries
+     */
+    enum LogEntryStorageMode {
+      exit,       /**<hold log entries mails until application exit*/
+      days        /**<hold log entries some days*/
+    };
+
+    /**
      * Default constructor
      */
     FilterLog();
@@ -70,8 +78,9 @@ class FilterLog{
      * @param sender sender of the mail
      * @param account Account which has received the mail
      * @param subject Subject of the mail
+     * @param kindDelete kind of mail deleting (by filter or manual)
      */
-    void addDeletedMail( const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject );
+    void addDeletedMail( const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, KindOfMailDeleting kindDelete );
 
     /**
      * Adds an entry about a moved mail.
@@ -161,22 +170,36 @@ class FilterLog{
     bool logDeletedMails;
 
     /**
+     * TRUE - the log accepts orders to log manual deleted mails
+     */
+    bool logManualDeletedMails;
+
+    /**
      * TRUE - the log accepts orders to log moved mails
      */
     bool logMovedMails;
 
     /**
-     * exit - hold log of deleted mails until application exit
-     * days - hold log some days
+     * Storage mode of log entries about deleted mails
      */
-    enum{ exit, days } deletedMailsStorageMode;
+    LogEntryStorageMode deletedMailsStorageMode;
+
+    /**
+     * Storage mode of log entries about manual deleted mails
+     */
+    LogEntryStorageMode manualDeletedMailsStorageMode;
 
     /**
      * Time (days) a entry of a deleted mail will be stored.
      */
     unsigned int daysStoreDeletedMails;
 
-  protected:
+    /**
+     * Time (days) a entry of a manual deleted mail will be stored.
+     */
+    unsigned int daysStoreManualDeletedMails;
+
+protected:
 
     /**
      * @brief Adds an entry.
@@ -188,8 +211,9 @@ class FilterLog{
      * @param account account
      * @param subject mail subject
      * @param mailbox mailbox if the mail was moved
+     * @param kindDelete kind of mail deleting (by filter or manual)
      */
-    void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString() );
+    void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString(), KindOfMailDeleting kindDelete = DelFilter );
 
 };
 

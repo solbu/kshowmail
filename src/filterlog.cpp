@@ -34,22 +34,22 @@ FilterLog::~FilterLog()
 {
 }
 
-void FilterLog::addDeletedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject)
+void FilterLog::addDeletedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, KindOfMailDeleting kindDelete )
 {
   if( logDeletedMails )
-    addEntry( FActDelete, dateTime, sender, account, subject, "" );
+    addEntry( FActDelete, dateTime, sender, account, subject, "", kindDelete );
 }
 
 void FilterLog::addMovedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox)
 {
   if( logMovedMails )
-    addEntry( FActMove, dateTime, sender, account, subject, mailbox );
+    addEntry( FActMove, dateTime, sender, account, subject, mailbox, DelFilter );
 }
 
-void FilterLog::addEntry(FilterAction_Type action, const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox)
+void FilterLog::addEntry(FilterAction_Type action, const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox, KindOfMailDeleting kindDelete )
 {
   //create entry
-  FilterLogEntry entry = FilterLogEntry( action, dateTime, sender, account, subject, mailbox );
+  FilterLogEntry entry = FilterLogEntry( action, dateTime, sender, account, subject, mailbox, kindDelete );
 
   //add entry to the appropriate list
   switch( action )
@@ -94,8 +94,10 @@ void FilterLog::clearMovedMailsLog()
 void FilterLog::save()
 {
   //maybe we have to remove old entries, calculate minimum date
-  KDateTime minTime = KDateTime::currentLocalDateTime();
-  minTime = minTime.addDays( daysStoreDeletedMails * -1 );
+  KDateTime minTimeDelete = KDateTime::currentLocalDateTime();
+  minTimeDelete = minTimeDelete.addDays( daysStoreDeletedMails * -1 );
+  KDateTime minTimeManualDelete = KDateTime::currentLocalDateTime();
+  minTimeManualDelete = minTimeManualDelete.addDays( daysStoreManualDeletedMails * -1 );
 
   //we need a XML document
   QDomDocument doc( LOG_DOCTYPE );
@@ -111,8 +113,27 @@ void FilterLog::save()
     LogEntryList::iterator it;
     for ( it = listDeletedMails.begin(); it != listDeletedMails.end(); ++it )
     {
-      if( (*it).getDate() >= minTime )
-        (*it).save( doc, rootElem );
+      if( (*it).getKindOfDeleting() == DelFilter ) {
+
+        if( (*it).getDate() >= minTimeDelete )
+          (*it).save( doc, rootElem );
+
+      }
+    }
+  }
+
+  //store the entries of the manual deleted mails list into the document
+  //if the user want it
+  if( manualDeletedMailsStorageMode != exit )
+  {
+    LogEntryList::iterator it;
+    for ( it = listDeletedMails.begin(); it != listDeletedMails.end(); ++it )
+    {
+      if( (*it).getKindOfDeleting() == DelManual ) {
+        if( (*it).getDate() >= minTimeManualDelete )
+          (*it).save( doc, rootElem );
+
+      }
     }
   }
 
@@ -138,8 +159,10 @@ void FilterLog::save()
 void FilterLog::load()
 {
   //maybe we have to remove old entries, calculate minimum date
-  KDateTime minTime = KDateTime::currentLocalDateTime();
-  minTime = minTime.addDays( daysStoreDeletedMails * -1 );
+  KDateTime minTimeDeleted = KDateTime::currentLocalDateTime();
+  minTimeDeleted = minTimeDeleted.addDays( daysStoreDeletedMails * -1 );
+  KDateTime minTimeManualDeleted = KDateTime::currentLocalDateTime();
+  minTimeManualDeleted = minTimeManualDeleted.addDays( daysStoreManualDeletedMails * -1 );
 
   //we need a XML document
   QDomDocument doc( LOG_DOCTYPE );
@@ -175,13 +198,44 @@ void FilterLog::load()
     {
       if( e.tagName() == LOG_ENTRY_ELEMENT )
       {
+        //get the kind of deleting
+        KindOfMailDeleting kindDel;
+        if( e.attribute( LOG_ENTRY_ATTRIBUTE_KIND_DELETE ) == LOG_ENTRY_VALUE_KIND_DELETE_MANUAL ) {
+          kindDel = DelManual;
+        } else {
+          kindDel = DelFilter;
+        }
+
         //add the read entry to the list of deleted mails
+        //if the entry is to old, we don't add it.
         KDateTime mailTime = KDateTime::fromString( e.attribute( LOG_ENTRY_ATTRIBUTE_DATETIME ), KDateTime::ISODate );
-        if( mailTime >= minTime )
-          addDeletedMail( mailTime,
-                          e.attribute( LOG_ENTRY_ATTRIBUTE_SENDER ),
-                          e.attribute( LOG_ENTRY_ATTRIBUTE_ACCOUNT ),
-                          e.attribute( LOG_ENTRY_ATTRIBUTE_SUBJECT ) );
+        if( kindDel == DelManual ) {
+
+          if( mailTime >= minTimeManualDeleted ) {
+
+
+            addDeletedMail( mailTime,
+                            e.attribute( LOG_ENTRY_ATTRIBUTE_SENDER ),
+                            e.attribute( LOG_ENTRY_ATTRIBUTE_ACCOUNT ),
+                            e.attribute( LOG_ENTRY_ATTRIBUTE_SUBJECT ),
+                            kindDel
+            );
+          }
+
+        } else {
+
+          if( mailTime >= minTimeDeleted ) {
+
+
+            addDeletedMail( mailTime,
+                            e.attribute( LOG_ENTRY_ATTRIBUTE_SENDER ),
+                            e.attribute( LOG_ENTRY_ATTRIBUTE_ACCOUNT ),
+                            e.attribute( LOG_ENTRY_ATTRIBUTE_SUBJECT ),
+                            kindDel
+            );
+          }
+        }
+
       }
     }
     n = n.nextSibling();            //get next child
@@ -204,6 +258,7 @@ void FilterLog::loadSetup( )
 
   logDeletedMails = configLog->readEntry( CONFIG_ENTRY_LOG_LOG_DELETED_MAILS, DEFAULT_LOG_LOG_DELETED_MAILS );
   logMovedMails = configLog->readEntry( CONFIG_ENTRY_LOG_LOG_MOVED_MAILS, DEFAULT_LOG_LOG_MOVED_MAILS );
+  logManualDeletedMails = configLog->readEntry( CONFIG_ENTRY_LOG_LOG_MANUAL_DELETED_MAILS, DEFAULT_LOG_LOG_MANUAL_DELETED_MAILS );
 
   if( logDeletedMails )
   {
@@ -225,6 +280,29 @@ void FilterLog::loadSetup( )
     deletedMailsStorageMode = days;
     daysStoreDeletedMails = 7;
   }
+
+
+  if( logManualDeletedMails )
+  {
+    QString storageMode = configLog->readEntry(CONFIG_ENTRY_LOG_REMOVE_MANUAL_DELETED_MAILS, DEFAULT_LOG_REMOVE_MANUAL_DELETED_MAILS );
+    if( storageMode == CONFIG_VALUE_LOG_REMOVE_MAILS_AT_EXIT )
+      manualDeletedMailsStorageMode = exit;
+    else if( storageMode == CONFIG_VALUE_LOG_REMOVE_MAILS_AFTER_DAYS )
+      manualDeletedMailsStorageMode = days;
+    else
+      manualDeletedMailsStorageMode = days;
+
+    if( manualDeletedMailsStorageMode == days )
+      daysStoreManualDeletedMails = configLog->readEntry( CONFIG_ENTRY_LOG_HOLDDAYS_MANUAL_DELETED_MAILS, DEFAULT_LOG_HOLDDAYS_MANUAL_DELETED_MAILS );
+    else
+      daysStoreManualDeletedMails = 7;
+  }
+  else
+  {
+    manualDeletedMailsStorageMode = days;
+    daysStoreManualDeletedMails = 7;
+  }
+
 }
 
 int FilterLog::numberDeletedMails( )

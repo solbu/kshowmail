@@ -115,10 +115,11 @@ void FilterLogView::saveSetup()
   KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_LOGVIEW );
 
   //save column widthes
-  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE, viewDeleted->columnWidth( 0 ) );
-  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_FROM, viewDeleted->columnWidth( 1 ) );
-  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT, viewDeleted->columnWidth( 2 ) );
-  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT, viewDeleted->columnWidth( 3 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_BY, viewDeleted->columnWidth( 0 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE, viewDeleted->columnWidth( 1 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_FROM, viewDeleted->columnWidth( 2 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT, viewDeleted->columnWidth( 3 ) );
+  conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT, viewDeleted->columnWidth( 4 ) );
 
   conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_DATE, viewMoved->columnWidth( 0 ) );
   conf->writeEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_FROM, viewMoved->columnWidth( 1 ) );
@@ -131,7 +132,7 @@ void FilterLogView::saveSetup()
   //save the model setup
   modelDeleted->saveSetup();
   modelMoved->saveSetup();
-  
+
 }
 
 void FilterLogView::loadSetup()
@@ -139,10 +140,11 @@ void FilterLogView::loadSetup()
   KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_LOGVIEW );
 
   //load column widthes
-  viewDeleted->setColumnWidth( 0, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE, DEFAULT_WIDTH_LOGVIEW_DELETED_DATE ) );
-  viewDeleted->setColumnWidth( 1, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_FROM, DEFAULT_WIDTH_LOGVIEW_DELETED_FROM ) );
-  viewDeleted->setColumnWidth( 2, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT, DEFAULT_WIDTH_LOGVIEW_DELETED_ACCOUNT ) );
-  viewDeleted->setColumnWidth( 3, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT, DEFAULT_WIDTH_LOGVIEW_DELETED_SUBJECT ) );
+  viewDeleted->setColumnWidth( 0, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_BY, DEFAULT_WIDTH_LOGVIEW_DELETED_BY ) );
+  viewDeleted->setColumnWidth( 1, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_DATE, DEFAULT_WIDTH_LOGVIEW_DELETED_DATE ) );
+  viewDeleted->setColumnWidth( 2, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_FROM, DEFAULT_WIDTH_LOGVIEW_DELETED_FROM ) );
+  viewDeleted->setColumnWidth( 3, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_ACCOUNT, DEFAULT_WIDTH_LOGVIEW_DELETED_ACCOUNT ) );
+  viewDeleted->setColumnWidth( 4, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_DELETED_SUBJECT, DEFAULT_WIDTH_LOGVIEW_DELETED_SUBJECT ) );
 
   viewMoved->setColumnWidth( 0, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_DATE, DEFAULT_WIDTH_LOGVIEW_MOVED_DATE ) );
   viewMoved->setColumnWidth( 1, conf->readEntry( CONFIG_ENTRY_WIDTH_LOGVIEW_MOVED_FROM, DEFAULT_WIDTH_LOGVIEW_MOVED_FROM ) );

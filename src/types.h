@@ -118,7 +118,7 @@ namespace Types
      * List of filter criterias.
      */
     typedef list<FilterCriteria_Type> FilterCriteriaList_Type;
-		
+
 		/**
 		 * Transfer Security Types
 		 */
@@ -128,7 +128,7 @@ namespace Types
 			TransSecSSL,			/**<use SSL*/
 			TransSecTLS				/**<use TLS*/
 		};
-		
+
 		/**
 		 * Password Storage Type
 		 */
@@ -138,13 +138,13 @@ namespace Types
 			PwStorageFile,		/**<save password into the config file*/
 			PwStorageKWallet	/**<use KWallet*/
 		};
-		
+
 		/**
 		 * Account list sorting<p>
 		 * The members of this enum represent the columns of the account list which shall be sorted.
 		 */
 		enum AccountSort_Type {
-		
+
 			AccSortActive,		/**<sort by active state*/
 			AccSortName,			/**<sort by name*/
 			AccSortServer,		/**<sort by server*/
@@ -152,13 +152,13 @@ namespace Types
 			AccSortNrMess,		/**<sort by the number of messages*/
 			AccSortSize				/**<sort by the total size of messages*/
 		};
-		
+
 		/**
 		 * Mail list sorting<p>
 		 * The members of this enum represent the columns of the mail list which shall be sorted.
 		 */
 		enum MailSort_Type {
-		
+
 			MailSortNumber,			/**<sort by mail number*/
 			MailSortState,			/**<sort by mail state*/
 			MailSortAccount,		/**<sort by account*/
@@ -177,13 +177,22 @@ namespace Types
      */
     enum LogViewSort {
 
+      LogViewSortKind,    /**<sort by the kind of deleting or moving*/
       LogViewSortDate,    /**<sort by date*/
       LogViewSortFrom,    /**<sort by sender*/
       LogViewSortAccount, /**<sort by account*/
       LogViewSortSubject, /**<sort by subject*/
       LogViewSortMailbox  /**<sort by mailbox*/
     };
-     
+
+    /**
+     * @brief This is the kind of mail deleting
+     */
+    enum KindOfMailDeleting {
+      DelManual,    /**<manualy deleted by user*/
+      DelFilter     /**<deleted by filter*/
+    };
+
 
 }
 

@@ -25,9 +25,14 @@ FilterLogViewDeletedModel::FilterLogViewDeletedModel( QObject* parent, FilterLog
   lastSortOrder = Qt::AscendingOrder;
   lastSortColumn = 0;
 
+  //load pictures
+  picManualDeleted = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/deletedManual.png" ) );
+  picFilterDeleted = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/deletedFilter.png" ) );
+
+
   //load data
   list.append( log->getDeletedMails() );
-  
+
 }
 
 QVariant FilterLogViewDeletedModel::data( const QModelIndex& index, int role ) const
@@ -48,12 +53,58 @@ QVariant FilterLogViewDeletedModel::data( const QModelIndex& index, int role ) c
 
       switch( index.column() ) {
 
-        case 0 : return QVariant( entry.getDate().toString( KDateTime::LocalDate) ); break;
-        case 1 : return QVariant( entry.getSender() ); break;
-        case 2 : return QVariant( entry.getAccount() ); break;
-        case 3 : return QVariant( entry.getSubject() ); break;
+        case 1 : return QVariant( entry.getDate().toString( KDateTime::LocalDate) ); break;
+        case 2 : return QVariant( entry.getSender() ); break;
+        case 3 : return QVariant( entry.getAccount() ); break;
+        case 4 : return QVariant( entry.getSubject() ); break;
         default : return QVariant(); break;
       }
+
+      break;
+    }
+
+    case( Qt::DecorationRole ) : {
+
+      switch( index.column() )
+      {
+        case 0  :
+
+          if( entry.getKindOfDeleting() == DelManual )
+          {
+            return QVariant( picManualDeleted );
+          }
+          else
+          {
+            return QVariant( picFilterDeleted );
+          }
+
+          break;
+
+        default : return QVariant();
+      }
+
+      break;
+    }
+
+    case( Qt::ToolTipRole ) : {
+
+      switch( index.column() ) {
+
+        case 0 : {
+
+          if( entry.getKindOfDeleting() == DelManual ) {
+            return QVariant( i18nc( "@Info:tooltip Filter-Log: The mail was manually deleted", "This mail was manually deleted.") );
+          } else {
+            return QVariant( i18nc( "@Info:tooltip Filter-Log: The mail was deleted by the filter", "This mail was deleted by filter.") );
+          }
+
+          break;
+        }
+
+        default: return QVariant();
+      }
+
+      break;
     }
 
     default : return QVariant();
@@ -100,10 +151,11 @@ QVariant FilterLogViewDeletedModel::headerData(int section, Qt::Orientation orie
 
   switch( section )
   {
-    case 0  : return QVariant( i18nc( "@title:column send date", "Date" ) ); break;
-    case 1  : return QVariant( i18nc( "@title:column sender of the mail", "Sender" ) ); break;
-    case 2  : return QVariant( i18nc( "@title:column account name", "Account" ) ); break;
-    case 3  : return QVariant( i18nc( "@title:column mail subject", "Subject" ) ); break;
+    case 0  : return QVariant();      //this column shows a small icon about the mails was deleted by filter or manual
+    case 1  : return QVariant( i18nc( "@title:column send date", "Date" ) ); break;
+    case 2  : return QVariant( i18nc( "@title:column sender of the mail", "Sender" ) ); break;
+    case 3  : return QVariant( i18nc( "@title:column account name", "Account" ) ); break;
+    case 4  : return QVariant( i18nc( "@title:column mail subject", "Subject" ) ); break;
     default : return QVariant();
   }
 }
@@ -121,10 +173,11 @@ void FilterLogViewDeletedModel::sort(int column, Qt::SortOrder order)
   LogViewSort prop;
   switch( column ) {
 
-    case 0 : prop = LogViewSortDate; break;
-    case 1 : prop = LogViewSortFrom; break;
-    case 2 : prop = LogViewSortAccount; break;
-    case 3 : prop = LogViewSortSubject; break;
+    case 0 : prop = LogViewSortKind; break;
+    case 1 : prop = LogViewSortDate; break;
+    case 2 : prop = LogViewSortFrom; break;
+    case 3 : prop = LogViewSortAccount; break;
+    case 4 : prop = LogViewSortSubject; break;
     default : prop = LogViewSortDate; break;
   }
 

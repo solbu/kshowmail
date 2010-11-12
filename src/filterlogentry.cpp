@@ -25,8 +25,8 @@ FilterLogEntry::FilterLogEntry()
   act = FActNone;
 }
 
-FilterLogEntry::FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox)
-  : act( action ), sentDateTime( dateTime ), sender( sender ), account( account ), subject( subject ), mailbox( mailbox )
+FilterLogEntry::FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox, KindOfMailDeleting kindDelete )
+  : act( action ), sentDateTime( dateTime ), sender( sender ), account( account ), subject( subject ), mailbox( mailbox ), kindDel( kindDelete )
 {
 }
 
@@ -59,6 +59,7 @@ FilterLogEntry::FilterLogEntry(const FilterLogEntry & ent)
   this->subject = ent.subject;
   this->act = ent.act;
   this->mailbox = ent.mailbox;
+  this->kindDel = ent.kindDel;
 }
 
 FilterLogEntry& FilterLogEntry::operator=( const FilterLogEntry & ent )
@@ -71,6 +72,7 @@ FilterLogEntry& FilterLogEntry::operator=( const FilterLogEntry & ent )
   this->subject = ent.subject;
   this->mailbox = ent.mailbox;
   this->act = ent.act;
+  this->kindDel = ent.kindDel;
 
   return *this;
 }
@@ -118,6 +120,11 @@ void FilterLogEntry::save( QDomDocument& doc, QDomElement& parent )
   elem.setAttribute( LOG_ENTRY_ATTRIBUTE_SENDER, sender );
   elem.setAttribute( LOG_ENTRY_ATTRIBUTE_ACCOUNT, account );
   elem.setAttribute( LOG_ENTRY_ATTRIBUTE_SUBJECT, subject );
+  if( kindDel == DelFilter ) {
+    elem.setAttribute( LOG_ENTRY_ATTRIBUTE_KIND_DELETE, LOG_ENTRY_VALUE_KIND_DELETE_FILTER );
+  } else {
+    elem.setAttribute( LOG_ENTRY_ATTRIBUTE_KIND_DELETE, LOG_ENTRY_VALUE_KIND_DELETE_MANUAL );
+  }
 
   //add entry element to the log (parent) element
   parent.appendChild( elem );
@@ -152,12 +159,19 @@ int FilterLogEntry::compare( const FilterLogEntry& other, LogViewSort property )
 {
   switch( property ) {
 
+    case( LogViewSortKind ) : {
+
+      if( getKindOfDeleting() == other.getKindOfDeleting() ) return 0;
+      else if( getKindOfDeleting() > other.getKindOfDeleting() ) return 1;
+      else return -1;
+    }
+
     case( LogViewSortDate ) : {
 
       if( getDate() == other.getDate() ) return 0;
       else if( getDate() > other.getDate() ) return 1;
       else return -1;
-      
+
     }
 
     case( LogViewSortFrom ) : {
@@ -190,3 +204,9 @@ int FilterLogEntry::compare( const FilterLogEntry& other, LogViewSort property )
 
   }
 }
+
+KindOfMailDeleting FilterLogEntry::getKindOfDeleting() const
+{
+  return kindDel;
+}
+

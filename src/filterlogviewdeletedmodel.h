@@ -22,11 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QModelIndex>
 #include <QList>
 
+//KDE headers
+#include <KIcon>
+
 //KShowmail headers
 #include "filterlog.h"
 #include "types.h"
 
-#define NUMBER_VIEWDELETED_COLUMNS 4
+#define NUMBER_VIEWDELETED_COLUMNS 5
 
 /**
  * @brief Model for the log view of deleted mails.
@@ -42,7 +45,7 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * @brief Constructor
      */
     explicit FilterLogViewDeletedModel( QObject* parent = 0, FilterLog* log = NULL );
-    
+
     /**
      * @brief Overloaded from QAbstractItemModel
      *
@@ -51,7 +54,7 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * @param role the role
      */
     virtual QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
-    
+
     /**
      * @brief Overloaded from QAbstractItemModel
      *
@@ -60,7 +63,7 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * Always returns 6.
      */
     virtual int columnCount( const QModelIndex& ) const;
-    
+
     /**
      * @brief Overloaded from QAbstractItemModel
      *
@@ -69,7 +72,7 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * @param parent parent index
      */
     virtual int rowCount( const QModelIndex& parent = QModelIndex() ) const;
-    
+
     /**
      * @brief Overloaded from QAbstractItemModel
      *
@@ -77,7 +80,7 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * an invalid index.
      */
     virtual QModelIndex parent( const QModelIndex& ) const;
-    
+
     /**
      * @brief Returns the index of the data in this model specified by the given row, column.
      *
@@ -118,8 +121,8 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * Saves the setup
      */
     void saveSetup();
-    
-    
+
+
   private:
 
     /**
@@ -133,7 +136,7 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * Will be load from filter log by constructor.
      */
     QList<FilterLogEntry> list;
-  
+
     /**
      * Last sort order
      */
@@ -143,6 +146,16 @@ class FilterLogViewDeletedModel : public QAbstractItemModel
      * last sort column
      */
     int lastSortColumn;
+
+    /**
+     * Icon for a manual deleted mail
+     */
+    KIcon picManualDeleted;
+
+    /**
+     * Icon for a mail deleted by filter
+     */
+    KIcon picFilterDeleted;
 
 };
 

@@ -105,6 +105,11 @@ Q_OBJECT
   QCheckBox* chkLogMovedMails;
 
   /**
+   * Checkbox to activate log of manual deleted mails
+   */
+  QCheckBox* chkLogManualDeletedMails;
+
+  /**
    * Combines the radio buttons to select the kind of removing log entries of deleted mails
    */
   QButtonGroup* grpDelMailsRemove;
@@ -115,6 +120,11 @@ Q_OBJECT
   QButtonGroup* grpMovMailsRemove;
 
   /**
+   * Combines the radio buttons to select the kind of removing log entries of manual deleted mails
+   */
+  QButtonGroup* grpManualDelMailsRemove;
+
+  /**
    * Spinbox to select the number of days to remove.
    */
   QSpinBox* spbDelDays;
@@ -123,6 +133,11 @@ Q_OBJECT
    * Spinbox to select the number of days to remove.
    */
   QSpinBox* spbMovDays;
+
+  /**
+   * Spinbox to select the number of days to remove the logs of manual deleted mails.
+   */
+  QSpinBox* spbManualDelDays;
 
   /**
    * Radio button to select the removing of entries about deleted mails at application exit.
@@ -144,7 +159,17 @@ Q_OBJECT
    */
   QRadioButton* btnMovMailsRemoveDays;
 
-  private slots:
+  /**
+   * Radio button to select the removing of entries about manual deleted mails at application exit.
+   */
+  QRadioButton* btnManualDelMailsRemoveExit;
+
+  /**
+   * Radio button to select the removing of entries about manual deleted mails after some days.
+   */
+  QRadioButton* btnManualDelMailsRemoveDays;
+
+private slots:
 
   /**
    * Connected with the configuration items.
