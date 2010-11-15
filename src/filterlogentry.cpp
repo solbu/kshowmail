@@ -25,8 +25,8 @@ FilterLogEntry::FilterLogEntry()
   act = FActNone;
 }
 
-FilterLogEntry::FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox, KindOfMailDeleting kindDelete )
-  : act( action ), sentDateTime( dateTime ), sender( sender ), account( account ), subject( subject ), mailbox( mailbox ), kindDel( kindDelete )
+FilterLogEntry::FilterLogEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox, KindOfMailDeleting kindDelete, const QString& filter )
+  : act( action ), sentDateTime( dateTime ), sender( sender ), account( account ), subject( subject ), mailbox( mailbox ), kindDel( kindDelete ), filter( filter )
 {
 }
 
@@ -60,6 +60,7 @@ FilterLogEntry::FilterLogEntry(const FilterLogEntry & ent)
   this->act = ent.act;
   this->mailbox = ent.mailbox;
   this->kindDel = ent.kindDel;
+  this->filter = ent.filter;
 }
 
 FilterLogEntry& FilterLogEntry::operator=( const FilterLogEntry & ent )
@@ -73,6 +74,7 @@ FilterLogEntry& FilterLogEntry::operator=( const FilterLogEntry & ent )
   this->mailbox = ent.mailbox;
   this->act = ent.act;
   this->kindDel = ent.kindDel;
+  this->filter = ent.filter;
 
   return *this;
 }
@@ -125,6 +127,7 @@ void FilterLogEntry::save( QDomDocument& doc, QDomElement& parent )
   } else {
     elem.setAttribute( LOG_ENTRY_ATTRIBUTE_KIND_DELETE, LOG_ENTRY_VALUE_KIND_DELETE_MANUAL );
   }
+  elem.setAttribute( LOG_ENTRY_ATTRIBUTE_FILTER, filter );
 
   //add entry element to the log (parent) element
   parent.appendChild( elem );
@@ -208,5 +211,10 @@ int FilterLogEntry::compare( const FilterLogEntry& other, LogViewSort property )
 KindOfMailDeleting FilterLogEntry::getKindOfDeleting() const
 {
   return kindDel;
+}
+
+QString FilterLogEntry::getFilter() const
+{
+  return filter;
 }
 

@@ -95,7 +95,7 @@ QVariant FilterLogViewDeletedModel::data( const QModelIndex& index, int role ) c
           if( entry.getKindOfDeleting() == DelManual ) {
             return QVariant( i18nc( "@Info:tooltip Filter-Log: The mail was manually deleted", "This mail was manually deleted.") );
           } else {
-            return QVariant( i18nc( "@Info:tooltip Filter-Log: The mail was deleted by the filter", "This mail was deleted by filter.") );
+            return QVariant( i18nc( "@Info:tooltip Filter-Log: The mail was deleted by the filter" , "This mail was deleted by filter: %1" ).arg( entry.getFilter() ) );
           }
 
           break;

@@ -79,8 +79,9 @@ class FilterLog{
      * @param account Account which has received the mail
      * @param subject Subject of the mail
      * @param kindDelete kind of mail deleting (by filter or manual)
+     * @param filter the name of the filter which has deleted the mail
      */
-    void addDeletedMail( const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, KindOfMailDeleting kindDelete );
+    void addDeletedMail( const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, KindOfMailDeleting kindDelete, const QString& filter = QString() );
 
     /**
      * Adds an entry about a moved mail.
@@ -212,8 +213,9 @@ protected:
      * @param subject mail subject
      * @param mailbox mailbox if the mail was moved
      * @param kindDelete kind of mail deleting (by filter or manual)
+     * @param filter the name of the filter which has deleted the mail
      */
-    void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString(), KindOfMailDeleting kindDelete = DelFilter );
+    void addEntry( FilterAction_Type action, const KDateTime& dateTime, const QString& sender, const QString& account, const QString& subject, const QString& mailbox = QString(), KindOfMailDeleting kindDelete = DelFilter, const QString& filter = QString() );
 
 };
 

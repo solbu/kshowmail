@@ -411,7 +411,7 @@ FilterAction_Type Mail::applyHeaderFilter( HeaderFilter* filter, QString account
   if( log == NULL )
     kdError() << "Mail::applyHeaderFilter: Pointer to the filter log is NULL. Can't write to log." << endl;;
   if( action == FActDelete && log != NULL )
-    log->addDeletedMail( getDateTime(), getFrom(), account, getSubject() , DelFilter );
+    log->addDeletedMail( getDateTime(), getFrom(), account, getSubject() , DelFilter, filterName );
   if( action == FActMove && log != NULL )
     log->addMovedMail( getDateTime(), getFrom(), account, getSubject(), mailbox );
 

@@ -201,6 +201,7 @@ namespace Constants
   #define LOG_ENTRY_ATTRIBUTE_KIND_DELETE "KindDelete"
   #define LOG_ENTRY_VALUE_KIND_DELETE_MANUAL "manual"
   #define LOG_ENTRY_VALUE_KIND_DELETE_FILTER "filter"
+  #define LOG_ENTRY_ATTRIBUTE_FILTER "Filter"
 
   /**
    * Geometry

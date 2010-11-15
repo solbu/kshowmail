@@ -34,10 +34,10 @@ FilterLog::~FilterLog()
 {
 }
 
-void FilterLog::addDeletedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, KindOfMailDeleting kindDelete )
+void FilterLog::addDeletedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, KindOfMailDeleting kindDelete, const QString& filter )
 {
   if( logDeletedMails )
-    addEntry( FActDelete, dateTime, sender, account, subject, "", kindDelete );
+    addEntry( FActDelete, dateTime, sender, account, subject, "", kindDelete, filter );
 }
 
 void FilterLog::addMovedMail(const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox)
@@ -46,10 +46,10 @@ void FilterLog::addMovedMail(const KDateTime & dateTime, const QString & sender,
     addEntry( FActMove, dateTime, sender, account, subject, mailbox, DelFilter );
 }
 
-void FilterLog::addEntry(FilterAction_Type action, const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox, KindOfMailDeleting kindDelete )
+void FilterLog::addEntry(FilterAction_Type action, const KDateTime & dateTime, const QString & sender, const QString & account, const QString & subject, const QString & mailbox, KindOfMailDeleting kindDelete, const QString& filter )
 {
   //create entry
-  FilterLogEntry entry = FilterLogEntry( action, dateTime, sender, account, subject, mailbox, kindDelete );
+  FilterLogEntry entry = FilterLogEntry( action, dateTime, sender, account, subject, mailbox, kindDelete, filter );
 
   //add entry to the appropriate list
   switch( action )
@@ -231,7 +231,8 @@ void FilterLog::load()
                             e.attribute( LOG_ENTRY_ATTRIBUTE_SENDER ),
                             e.attribute( LOG_ENTRY_ATTRIBUTE_ACCOUNT ),
                             e.attribute( LOG_ENTRY_ATTRIBUTE_SUBJECT ),
-                            kindDel
+                            kindDel,
+                            e.attribute( LOG_ENTRY_ATTRIBUTE_FILTER )
             );
           }
         }
