@@ -43,9 +43,9 @@ class AccountViewModel;
 class KShowmailView : public QSplitter
 {
 	Q_OBJECT
-	
+
 	public:
-		
+
 		/**
 		 * Constructor
 		 * @param accountModel model for the account view
@@ -55,7 +55,7 @@ class KShowmailView : public QSplitter
 		 * @param parent pointer to parent widget
 		 */
 		KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QItemSelectionModel* accountSelectModel, QWidget* parent = 0 );
-		
+
 		/**
 		 * Destructor
 		 */
@@ -66,12 +66,12 @@ class KShowmailView : public QSplitter
      * @param mailSelectModel mail selection model
      */
     void refreshViews( QItemSelectionModel* mailSelectModel );
-		
+
 		/**
 		 * Saves the column widths
 		 */
 		void saveSetup();
-		
+
 		/**
 		 * Loads and sets the column widths
 		 */
@@ -88,24 +88,24 @@ class KShowmailView : public QSplitter
      * @param action action to add
      */
     void addActionToMailList( KAction* action );
-		
+
 	private:
-		
+
 		/**
 		 * account list
 		 */
 		QTreeView* viewAccounts;
-		
+
 		/**
 		 * mail list
 		 */
 		QTreeView* viewMails;
-		
+
 		/**
 		 * Mail view model
 		 */
 		MailViewModel* mailModel;
-		
+
 		/**
 		 * Account view model
 		 */
@@ -115,6 +115,23 @@ class KShowmailView : public QSplitter
      * The view splitter
      */
     QSplitter* splitter;
+
+  protected slots:
+
+    /**
+     * Connected with signal <em>doubleClicked<em> of <em>viewAccounts</em>
+     * Emits the signal <em>sigMailDoubleClicked</em>
+     * @see sigMailDoubleClicked()
+     */
+    void slotMailDoubleClicked( const QModelIndex& );
+
+  signals:
+
+    /**
+     * Emitted if a mail list entry was double clicked.
+     * @see slotMailDoubleClicked( const QModelIndex& )
+     */
+    void sigMailDoubleClicked();
 };
 
 #endif // KSHOWMAILVIEW_H

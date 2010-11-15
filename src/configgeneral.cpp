@@ -128,6 +128,21 @@ ConfigGeneral::ConfigGeneral( QWidget * parent, const QVariantList & args )
   connect( spbTimeout, SIGNAL( valueChanged( int ) ), this, SLOT( slotChanged() ) );
   connect( chkAutomaticRefresh, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
+  //items for double click action on a mail
+  QGroupBox* gBoxDoubleClick = new QGroupBox( i18nc( "@title:group the standard action of a double click on a mail", "Double click on a mail list entry shows"), this );
+  layMain->addWidget( gBoxDoubleClick );
+  QVBoxLayout* layDoubleClick = new QVBoxLayout();
+  gBoxDoubleClick->setLayout( layDoubleClick );
+
+  grpDoubleClick = new QButtonGroup( NULL );
+  connect( grpDoubleClick, SIGNAL( buttonClicked( int ) ), this, SLOT( slotChanged() ) );
+  btnDoubleClickShowBody = new QRadioButton( i18nc( "@option:radio the standard double click action is to show the mail body", "the mail" ), this );
+  grpDoubleClick->addButton( btnDoubleClickShowBody, ID_BUTTON_SHOW_MAIL_BODY );
+  layDoubleClick->addWidget( btnDoubleClickShowBody );
+  btnDoubleClickShowHeader = new QRadioButton( i18nc( "@option:radio the standard double click action is to show the mail header", "the mail header" ), this );
+  grpDoubleClick->addButton( btnDoubleClickShowHeader, ID_BUTTON_SHOW_MAIL_HEADER );
+  layDoubleClick->addWidget( btnDoubleClickShowHeader );
+
 
   //get application config object (kshowmailrc)
   config = KGlobal::config();
@@ -161,6 +176,22 @@ void ConfigGeneral::load( )
   spbInitial->setValue( configGeneral->readEntry( CONFIG_ENTRY_INITIAL_TIME, DEFAULT_INITIAL_TIME ) );
   spbInterval->setValue( configGeneral->readEntry( CONFIG_ENTRY_INTERVAL_TIME, DEFAULT_INTERVAL_TIME) );
   spbTimeout->setValue( configGeneral->readEntry( CONFIG_ENTRY_TIMEOUT_TIME, DEFAULT_TIMEOUT_TIME) );
+
+  //Double click action
+  QRadioButton* btnToCheck;
+  if( configGeneral->readEntry( CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION, DEFAULT_MAIL_DOUBLE_CLICK_ACTION ) == CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_BODY )
+    btnToCheck = static_cast<QRadioButton*>( grpDoubleClick->button( ID_BUTTON_SHOW_MAIL_BODY ) );
+  else if( configGeneral->readEntry( CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION, DEFAULT_MAIL_DOUBLE_CLICK_ACTION ) == CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_HEADER )
+    btnToCheck = static_cast<QRadioButton*>( grpDoubleClick->button( ID_BUTTON_SHOW_MAIL_HEADER ) );
+  else
+    if( QString( DEFAULT_MAIL_DOUBLE_CLICK_ACTION ) == QString( CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_BODY ) )
+      btnToCheck = static_cast<QRadioButton*>( grpDoubleClick->button( ID_BUTTON_SHOW_MAIL_BODY ) );
+    else
+      btnToCheck = static_cast<QRadioButton*>( grpDoubleClick->button( ID_BUTTON_SHOW_MAIL_HEADER ) );
+
+    btnToCheck->setChecked( true );
+
+
 }
 
 void ConfigGeneral::defaults( )
@@ -178,6 +209,19 @@ void ConfigGeneral::defaults( )
   spbInitial->setValue( DEFAULT_INITIAL_TIME );
   spbInterval->setValue( DEFAULT_INTERVAL_TIME );
   spbTimeout->setValue( DEFAULT_TIMEOUT_TIME );
+
+  //double click action
+  QRadioButton* btnToCheck;
+  if( QString( DEFAULT_MAIL_DOUBLE_CLICK_ACTION ) == QString( CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_BODY ) )
+    btnToCheck = static_cast<QRadioButton*>( grpDoubleClick->button( ID_BUTTON_SHOW_MAIL_BODY ) );
+  else if( QString( DEFAULT_MAIL_DOUBLE_CLICK_ACTION ) == QString( CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_HEADER ) )
+    btnToCheck = static_cast<QRadioButton*>( grpDoubleClick->button( ID_BUTTON_SHOW_MAIL_HEADER ) );
+  else
+    btnToCheck = static_cast<QRadioButton*>( grpDoubleClick->button( ID_BUTTON_SHOW_MAIL_BODY ) );
+
+  btnToCheck->setChecked( true );
+
+
 }
 
 void ConfigGeneral::save( )
@@ -195,6 +239,16 @@ void ConfigGeneral::save( )
   configGeneral->writeEntry( CONFIG_ENTRY_INTERVAL_TIME, spbInterval->value() );
   configGeneral->writeEntry( CONFIG_ENTRY_TIMEOUT_TIME, spbTimeout->value() );
   configGeneral->writeEntry( CONFIG_ENTRY_AUTO_REFRESH, chkAutomaticRefresh->isChecked() );
+
+  //Double click action
+  switch( grpDoubleClick->checkedId() )
+  {
+    case ID_BUTTON_SHOW_MAIL_BODY     : configGeneral->writeEntry( CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION, CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_BODY ); break;
+    case ID_BUTTON_SHOW_MAIL_HEADER   : configGeneral->writeEntry( CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION, CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_HEADER ); break;
+    default                           : configGeneral->writeEntry( CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION, CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_BODY ); break;
+  }
+
+
 
   //write configuration to disk
   config->sync();

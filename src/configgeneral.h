@@ -18,6 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONFIGGENERAL_H
 #define CONFIGGENERAL_H
 
+//button IDs
+#define ID_BUTTON_SHOW_MAIL_HEADER    1
+#define ID_BUTTON_SHOW_MAIL_BODY      2
+
 //Qt headers
 #include <qlayout.h>
 #include <qgroupbox.h>
@@ -25,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <qspinbox.h>
 #include <qtooltip.h>
 #include <qlabel.h>
+#include <QRadioButton>
+#include <QButtonGroup>
 
 //KDE headers
 #include <kcmodule.h>
@@ -152,7 +158,26 @@ Q_OBJECT
      */
     QSpinBox* spbTimeout;
 
-  public slots:
+    /**
+     * Combines the radio buttons to select the standard double click action
+     */
+    QButtonGroup* grpDoubleClick;
+
+    /**
+     * Radio button to select the standard double click action is to show the header
+     */
+    QRadioButton* btnDoubleClickShowHeader;
+
+    /**
+     * Radio button to select the standard double click action is to show the mail body
+     */
+    QRadioButton* btnDoubleClickShowBody;
+
+
+
+
+
+public slots:
 
     /**
      * Connected with the configuration items.

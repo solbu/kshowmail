@@ -51,6 +51,8 @@ namespace Constants
   #define MINIMUM_TIMEOUT_TIME    5
   #define DEFAULT_TIMEOUT_TIME    30
 
+  #define DEFAULT_MAIL_DOUBLE_CLICK_ACTION  "body"
+
   //default actions
   #define DEFAULT_ACTION_NEW_MAIL_ALERTWINDOW   true
   #define DEFAULT_ACTION_NEW_MAIL_MAINWINDOW    false
@@ -229,6 +231,9 @@ namespace Constants
   #define CONFIG_ENTRY_TIMEOUT_TIME             "TimeoutTime"
   #define CONFIG_ENTRY_AUTO_REFRESH             "AutomaticRefresh"
   #define CONFIG_ENTRY_STORE_HEADERS            "storeHeaders"
+  #define CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION "mailDoubleClickAction"
+  #define CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_BODY "body"
+  #define CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_HEADER "header"
 
   #define CONFIG_GROUP_ACTIONS                "Actions"
   #define CONFIG_ENTRY_NEW_MAIL_ALERTWINDOW   "showAlertMessageIfNewMail"

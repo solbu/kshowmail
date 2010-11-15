@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mailModel, QItemSelectionModel* mailSelectModel, QItemSelectionModel* accountSelectModel, QWidget* parent ) : QSplitter( Qt::Vertical, parent )
 {
-	
+
 	//Split the view into two parts
 	splitter = new QSplitter( Qt::Vertical, this );
 
@@ -34,7 +34,7 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
   viewAccounts->setContextMenuPolicy( Qt::ActionsContextMenu );
   viewAccounts->setSelectionModel( accountSelectModel );
   viewAccounts->setSortingEnabled( true );
-  
+
 	//create mail view
 	viewMails = new QTreeView( splitter );
 	viewMails->setModel( mailModel );
@@ -43,11 +43,14 @@ KShowmailView::KShowmailView( AccountViewModel* accountModel, MailViewModel* mai
   viewMails->setSelectionModel( mailSelectModel );
   viewMails->setSortingEnabled( true );
   viewMails->setContextMenuPolicy( Qt::ActionsContextMenu );
-	
+
+  //a double click on an entry of the mail list calls slotMailDoubleClicked()
+  connect( viewMails, SIGNAL( doubleClicked(QModelIndex) ), this, SLOT( slotMailDoubleClicked(QModelIndex) ) );
+
 	//save the pointer to the models
 	this->mailModel = mailModel;
 	this->accountModel = accountModel;
-	
+
 	loadSetup();
 
 
@@ -79,7 +82,7 @@ void KShowmailView::saveSetup() {
 	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
 	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
   KConfigGroup* configView = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
-	
+
 	//save the column widths
   if( !viewAccounts->isColumnHidden( 0 ) )
     configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, viewAccounts->columnWidth( 0 ) );
@@ -99,10 +102,10 @@ void KShowmailView::saveSetup() {
   if( !viewAccounts->isColumnHidden( 5 ) )
     configAcc->writeEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE, viewAccounts->columnWidth( 5 ) );
 
-  
+
   if( !viewMails->isColumnHidden( 0 ) )
     configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_STATE, viewMails->columnWidth( 0 ) );
-  
+
   if( !viewMails->isColumnHidden( 1 ) )
 	configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_NUMBER, viewMails->columnWidth( 1 ) );
 
@@ -129,11 +132,11 @@ void KShowmailView::saveSetup() {
 
   //save position of the splitter
   configView->writeEntry( CONFIG_ENTRY_VIEW_MAIN_WINDOW_SPLITTER, splitter->saveState() );
-	
+
 	//save models setup
 	accountModel->saveSetup();
 	mailModel->saveSetup();
-	
+
 	configAcc->sync();
 	configMail->sync();
   configView->sync();
@@ -149,14 +152,14 @@ void KShowmailView::loadSetup() {
 	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
 	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
   KConfigGroup* configView = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
-	
+
 	viewAccounts->setColumnWidth( 0, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, DEFAULT_WIDTH_ACCOUNT_ACTIVE ) );
 	viewAccounts->setColumnWidth( 1, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT, DEFAULT_WIDTH_ACCOUNT_ACCOUNT ) );
 	viewAccounts->setColumnWidth( 2, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SERVER, DEFAULT_WIDTH_ACCOUNT_SERVER ) );
 	viewAccounts->setColumnWidth( 3, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_USER, DEFAULT_WIDTH_ACCOUNT_USER ) );
 	viewAccounts->setColumnWidth( 4, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_MESSAGES, DEFAULT_WIDTH_ACCOUNT_MESSAGES ) );
 	viewAccounts->setColumnWidth( 5, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE, DEFAULT_WIDTH_ACCOUNT_SIZE ) );
-	
+
 	viewMails->setColumnWidth( 0, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_STATE, DEFAULT_WIDTH_MESSAGE_STATE ) );
 	viewMails->setColumnWidth( 1, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_NUMBER, DEFAULT_WIDTH_MESSAGE_NUMBER ) );
 	viewMails->setColumnWidth( 2, configMail->readEntry( CONFIG_ENTRY_WIDTH_MESSAGE_ACCOUNT, DEFAULT_WIDTH_MESSAGE_ACCOUNT ) );
@@ -173,7 +176,7 @@ void KShowmailView::loadSetup() {
   viewAccounts->setColumnHidden( 3 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_USER, DEFAULT_DISPLAY_ACCOUNT_USER ) );
   viewAccounts->setColumnHidden( 4 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_MESSAGES, DEFAULT_DISPLAY_ACCOUNT_MESSAGES ) );
   viewAccounts->setColumnHidden( 5 , !configAcc->readEntry( CONFIG_ENTRY_DISPLAY_ACCOUNT_SIZE, DEFAULT_DISPLAY_ACCOUNT_SIZE ) );
-	
+
   viewMails->setColumnHidden( 0 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_STATE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
   viewMails->setColumnHidden( 1 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_NUMBER, DEFAULT_DISPLAY_MESSAGE_STATE ) );
   viewMails->setColumnHidden( 2 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_ACCOUNT, DEFAULT_DISPLAY_MESSAGE_STATE ) );
@@ -183,40 +186,40 @@ void KShowmailView::loadSetup() {
   viewMails->setColumnHidden( 6 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_DATE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
   viewMails->setColumnHidden( 7 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_SIZE, DEFAULT_DISPLAY_MESSAGE_STATE ) );
   viewMails->setColumnHidden( 8 , !configMail->readEntry( CONFIG_ENTRY_DISPLAY_MESSAGE_CONTENT, DEFAULT_DISPLAY_MESSAGE_STATE ) );
-	
+
 	//load sorting
 	KConfigGroup* confSort = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
-	
+
 	QString strSortOrderAcc = confSort->readEntry( CONFIG_ENTRY_SORT_ORDER_ACCOUNT, DEFAULT_SORT_ORDER );
 	int sortColumnAcc = confSort->readEntry( CONFIG_ENTRY_SORT_COLUMN_ACCOUNT, DEFAULT_SORT_COLUMN_ACCOUNT );
 	if( strSortOrderAcc == CONFIG_VALUE_SORT_ORDER_DESCENDING ) {
-	
+
 		viewAccounts->sortByColumn( sortColumnAcc, Qt::DescendingOrder );
-	
+
 	} else {
-	
+
 		viewAccounts->sortByColumn( sortColumnAcc, Qt::AscendingOrder );
 	}
-	
+
 	QString strSortOderMail = confSort->readEntry( CONFIG_ENTRY_SORT_ORDER_MESSAGE, DEFAULT_SORT_ORDER );
 	int sortColumnMail = confSort->readEntry( CONFIG_ENTRY_SORT_COLUMN_MESSAGE, DEFAULT_SORT_COLUMN_MESSAGE );
 	if( strSortOderMail == CONFIG_VALUE_SORT_ORDER_DESCENDING ) {
-	
+
 		viewMails->sortByColumn( sortColumnMail, Qt::DescendingOrder );
-	
+
 	} else {
-	
+
 		viewMails->sortByColumn( sortColumnMail, Qt::AscendingOrder );
 	}
 
 	//load splitter state
   splitter->restoreState( configView->readEntry( CONFIG_ENTRY_VIEW_MAIN_WINDOW_SPLITTER, QByteArray() ) );
-	
+
 	delete confSort;
 	delete configAcc;
 	delete configMail;
   delete configView;
-	
+
 }
 
 void KShowmailView::addActionToAccountList( KAction* action ) {
@@ -229,3 +232,9 @@ void KShowmailView::addActionToMailList(KAction* action)
 {
   viewMails->addAction( action );
 }
+
+void KShowmailView::slotMailDoubleClicked(const QModelIndex& )
+{
+  emit sigMailDoubleClicked();
+}
+

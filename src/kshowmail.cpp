@@ -59,6 +59,9 @@ KShowmail::KShowmail() : KXmlGuiWindow()
   view->addActionToMailList( actionAddWhitelist );
   view->addActionToMailList( actionAddBlacklist );
 
+  //a double click on an mail list entry calls the slot slotMailDoubleClicked()
+  connect( view, SIGNAL( sigMailDoubleClicked() ), this, SLOT( slotMailDoubleClicked() ) );
+
 
   // a call to KXmlGuiWindow::setupGUI() populates the GUI
   // with actions, using KXMLGUI.
@@ -795,6 +798,24 @@ bool KShowmail::askCloseConfirmation()
 {
   return KMessageBox::questionYesNo( this, i18nc( "@info ask for closing the application", "KShowmail will be closed.\nAre you sure?") ) == KMessageBox::Yes;
 
+}
+
+void KShowmail::slotMailDoubleClicked()
+{
+
+  //get config
+  KConfigGroup* conf = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_GENERAL );
+
+  if( conf->readEntry( CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION, DEFAULT_MAIL_DOUBLE_CLICK_ACTION) == CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_BODY ) {
+
+    slotShowMessage();
+
+  } else if( conf->readEntry( CONFIG_ENTRY_MAIL_DOUBLE_CLICK_ACTION, DEFAULT_MAIL_DOUBLE_CLICK_ACTION) == CONFIG_VALUE_MAIL_DOUBLE_CLICK_ACTION_HEADER ) {
+
+    slotShowHeader();
+  }
+
+  delete conf;
 }
 
 

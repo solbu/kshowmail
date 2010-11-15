@@ -274,6 +274,12 @@ class KShowmail : public KXmlGuiWindow
      */
     void slotShowMainWindow();
 
+    /**
+     * Connected with Signal sidMailDoubleClicked of the mail list view.
+     * Calls slotShowMessage() or slotShowHeader according with the configuration
+     */
+    void slotMailDoubleClicked();
+
 	private:
 
 		/**
