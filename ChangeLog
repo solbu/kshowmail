@@ -203,6 +203,6 @@ v.4.1
   dutch translation
   reply function in show mail dialog
   log shows manually deleted mails
-  in the mail view a tooltip shows the filter which has catched the mail
+  in the mail view and in the log view a tooltip shows the filter which has catched the mail
   You can set up an action for a double click on a mail list entry
   mail list: an icon in front of the sender shows whether the sender is listed on the whitelist
