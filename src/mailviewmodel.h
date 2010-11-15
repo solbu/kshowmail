@@ -44,21 +44,21 @@ class AccountList;
 class MailViewModel : public QAbstractItemModel
 {
 	Q_OBJECT
-	
+
 	public:
-		
+
 		/**
 		 * Constructor
 		 * @param accounts pointer to the account list
 		 * @param parent parent object
 		 */
 		MailViewModel( AccountList* accounts, QObject* parent );
-		
+
 		/**
 		 * Destructor
 		 */
 		virtual ~MailViewModel();
-		
+
 		/**
 		 * Returns the index of the mail data in this model specified by the given row, column.
 		 * The parent index is not used.
@@ -68,14 +68,14 @@ class MailViewModel : public QAbstractItemModel
 		 * @param parent parent index; not used
 		 */
 		virtual QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const;
-		
+
 		/**
 		 * Overloaded from QAbstractItemModel
 		 * Because this model doesn't provide tree structured data this function just returns
 		 * an invalid index.
 		 */
 		virtual QModelIndex parent( const QModelIndex& ) const;
-		
+
 		/**
 		 * Overloaded from QAbstractItemModel
 		 * Doesn't give a parent item, because the model doesn't provide tree structured data
@@ -83,14 +83,14 @@ class MailViewModel : public QAbstractItemModel
 		 * @param parent parent index
 		 */
 		virtual int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
-		
+
 		/**
 		 * Overloaded from QAbstractItemModel
 		 * Doesn't give a parent item, because the model doesn't provide tree structured data.
 		 * The column count is equal to the number of showed mail data
 		 */
 		virtual int columnCount ( const QModelIndex& ) const;
-		
+
 		/**
 		 * Overloaded from QAbstractItemModel
 		 * Returns the data of the given index.
@@ -98,7 +98,7 @@ class MailViewModel : public QAbstractItemModel
 		 * @param role the role
 		 */
 		QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
-		
+
 		/**
 		 * @brief Overloaded from QAbstractItemModel
      *
@@ -106,7 +106,7 @@ class MailViewModel : public QAbstractItemModel
      * @param parent parent index
 		 */
 		bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
-		
+
 		/**
 		 * Returns the header text of the given section
 		 * @param section header section
@@ -132,18 +132,18 @@ class MailViewModel : public QAbstractItemModel
 		 * @param order sort order
 		 */
 		void sort( int column, Qt::SortOrder order = Qt::AscendingOrder );
-		
+
 		/**
 		 * Sorts the model by the last sort properties.
 		 */
 		void sort();
-		
+
 		/**
 		 * Returns the mail at the given index
 		 * @param index index
 		 */
 		Mail getMail( const QModelIndex index ) const;
-		
+
 		/**
      * Returns the subjects of the selected mails.
      * @param selectModel mail select model
@@ -176,8 +176,12 @@ class MailViewModel : public QAbstractItemModel
      */
     void saveSetup();
 
+    /**
+     * Loads the setup
+     */
+    void loadSetup();
 
-		
+
   private:
 
     /**
@@ -194,18 +198,28 @@ class MailViewModel : public QAbstractItemModel
      * Icon for a new mail
      */
     KIcon picNewMail;
-    
+
+    /**
+     * Icon for a sender which is listed on the whitelist
+     */
+    KIcon picSenderOnWhitelist;
+
 		/**
 		 * Last sort order
 		 */
 		Qt::SortOrder lastSortOrder;
-		
+
 		/**
 		 * last sort column
 		 */
 		int lastSortColumn;
 
-
+    /**
+     * @brief Black and White lists
+     *
+     * This is to whether a sender is listed on the whitelist
+     */
+    SenderListFilter senderlist;
 };
 
 #endif // MAILVIEWMODEL_H

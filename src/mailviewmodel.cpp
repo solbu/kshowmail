@@ -23,6 +23,7 @@ MailViewModel::MailViewModel( AccountList* accounts, QObject* parent ) : QAbstra
 
   //load pictures
   picNewMail = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/mail-unread-new.png" ) );
+  picSenderOnWhitelist = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/senderOnWhitelist.png" ) );
 
 }
 
@@ -91,6 +92,7 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
 
       switch( index.column() )
       {
+        //new mail icon
         case 0  :
           if( mail.isNew() )
           {
@@ -101,6 +103,19 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
             return QVariant();
           }
           break;
+
+        //sender
+        //we show a icon to indicate the sender is on the white list
+        case 3 : {
+
+          if( senderlist.isOnWhitelist( mail.getFrom() ) ) {
+            return QVariant( picSenderOnWhitelist );
+          } else {
+            return QVariant();
+          }
+
+          break;
+        }
 
         default : return QVariant();
       }
@@ -372,4 +387,10 @@ void MailViewModel::saveSetup()
 
   conf->sync();
 }
+
+void MailViewModel::loadSetup()
+{
+  senderlist.load();
+}
+
 

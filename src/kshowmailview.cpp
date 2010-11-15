@@ -220,6 +220,9 @@ void KShowmailView::loadSetup() {
 	delete configMail;
   delete configView;
 
+  //load the setup of the mail view model
+  mailModel->loadSetup();
+
 }
 
 void KShowmailView::addActionToAccountList( KAction* action ) {

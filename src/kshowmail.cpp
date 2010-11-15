@@ -362,7 +362,6 @@ void KShowmail::slotAddToBlacklist() {
 
   //get selected senders
   QStringList senders = mailModel->getSelectedSenders( mailSelectModel );
-  kdDebug() << senders << endl;
 
   //get previous blacklist from config
   KConfigGroup* config = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_FILTER );
@@ -379,6 +378,7 @@ void KShowmail::slotAddToBlacklist() {
 
   //load new config
   accounts->refreshFilterSetup();
+  view->loadSetup();
 
 }
 
@@ -386,7 +386,6 @@ void KShowmail::slotAddToWhitelist() {
 
   //get selected senders
   QStringList senders = mailModel->getSelectedSenders( mailSelectModel );
-  kdDebug() << senders << endl;
 
   //get previous whitelist from config
   KConfigGroup* config = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_FILTER );
@@ -403,6 +402,7 @@ void KShowmail::slotAddToWhitelist() {
 
   //load new config
   accounts->refreshFilterSetup();
+  view->loadSetup();
 }
 
 void KShowmail::slotSetup() {

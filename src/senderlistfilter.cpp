@@ -106,3 +106,9 @@ void SenderListFilter::print( )
   }
 
 }
+
+bool SenderListFilter::isOnWhitelist(const QString& sender) const
+{
+  return search( whitelist, sender );
+}
+
