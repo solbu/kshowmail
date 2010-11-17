@@ -142,6 +142,12 @@ class FilterLog{
     int numberDeletedMails();
 
     /**
+     * Returns the number of logged mails deleted by filter.
+     * @return number of logged mails deleted by filter
+     */
+    int numberFilterDeletedMails();
+
+    /**
      * Returns the number of logged moved mails.
      * @return number of logged moved mails
      */

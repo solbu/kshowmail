@@ -612,7 +612,7 @@ void KShowmail::refreshFilterStatusBar( )
 {
   int numberDeletedLastRefresh = accounts->numberDeletedMailsLastRefresh();
   int numberDeletedSinceStart = accounts->numberDeletedMailsStart();
-  int numberDeletedLog = fLog.numberDeletedMails();
+  int numberDeletedLog = fLog.numberFilterDeletedMails();
 
   int numberMovedLastRefresh = accounts->numberMovedMailsLastRefresh();
   int numberMovedSinceStart = accounts->numberMovedMailsStart();

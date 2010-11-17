@@ -316,5 +316,25 @@ int FilterLog::numberMovedMails( )
   return listMovedMails.count();
 }
 
+int FilterLog::numberFilterDeletedMails()
+{
+  int ctr = 0;
+
+  QListIterator<FilterLogEntry> it( listDeletedMails );
+
+  //iterate over all accounts
+  while( it.hasNext() )
+  {
+    FilterLogEntry entry = it.next();
+
+    if( entry.getKindOfDeleting() == DelFilter ) {
+      ctr++;
+    }
+  }
+
+
+  return ctr;
+
+}
 
 
