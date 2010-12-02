@@ -9,4 +9,6 @@ install( FILES accountActive.png
                deletedFilter.png
                deletedManual.png
                senderOnWhitelist.png
+               export.png
+               import.png
                DESTINATION ${DATA_INSTALL_DIR}/kshowmail/pics )

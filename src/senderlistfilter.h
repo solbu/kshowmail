@@ -73,11 +73,23 @@ class SenderListFilter{
     void print();
 
     /**
-     * Checks wheter <em>sender</em> is on the whitelist
+     * Checks whether <em>sender</em> is on the whitelist
      * @param sender the sender to check
      * @return TRUE - sender is listed on the whitelist
      */
     bool isOnWhitelist( const QString& sender ) const;
+
+    /**
+     * Returns the blacklist
+     * @return the blacklist
+     */
+    QStringList getBlacklist() const;
+
+    /**
+     * Returns the whitelist
+     * @return the whitelist
+     */
+    QStringList getWhitelist() const;
 
   private:
 

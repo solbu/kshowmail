@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <qradiobutton.h>
 #include <qbuttongroup.h>
 #include <qpushbutton.h>
+#include <QStringList>
 
 //KDE headers
 #include <KDialog>
@@ -59,21 +60,48 @@ class SenderListDialog : public KDialog
     /**
      * Constructor
      * @param parent parent widget
-     * @param list list which shall be opened
+     * @param type type of dialog which shall be opened
+     * @param list the list
+     * @param blackListAction The action for mails these senders are listed on the blacklist; Possible actions are: CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK
      */
-    explicit SenderListDialog( QWidget *parent = 0, ListType list = Black );
+    explicit SenderListDialog( QWidget *parent = 0, ListType type = Black, QStringList list = QStringList(), int blackListAction = DEFAULT_FILTER_BLACKLIST_ACTION );
 
     /**
      * Destructor
      */
     ~SenderListDialog();
 
+    /**
+     * Returns the list.
+     * @return the list
+     */
+    QStringList getList() const;
+
+    /**
+     * Returns the blacklist action.<p>
+     * Is not defined if the list type is white list.
+     * @return blacklist action
+     */
+    int getBlacklistAction() const;
+
+
   private:
 
     /**
      * list which shall be opened
      */
-    ListType list;
+    ListType type;
+
+    /**
+     * The list
+     */
+    QStringList list;
+
+    /**
+     * The action for mails these senders are listed on the blacklist.<p>
+     * Possible actions are: CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK
+     */
+    int blacklistAction;
 
     /**
      * Application Config Object
@@ -116,11 +144,11 @@ class SenderListDialog : public KDialog
     /**
      * Overwritten method of KDialogBase.
      * Activated when the button <code>button</code> is clicked.
-     * If OK was clicked, it will stores the entered values.
+     * If OK was clicked, it will stores the entered values into #list and #blackListAction.
      * After then it invokes <code>slotButtonClicked</code>of KDialogBase.
      * @param button clicked button; is the type KDialog::ButtonCode
      */
-    void slotButtonClicked( int button );
+     void slotButtonClicked( int button );
 
 
 };

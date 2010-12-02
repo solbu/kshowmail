@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <qcheckbox.h>
 #include <QTreeWidget>
 #include <QPointer>
+#include <QStringList>
 
 //KDE headers
 #include <kcmodule.h>
@@ -36,6 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <klineedit.h>
 #include <KConfigGroup>
 #include <KStandardDirs>
+#include <KFileDialog>
+#include <KUrl>
 
 //Kshowmail headers
 #include "constants.h"
@@ -125,6 +128,11 @@ Q_OBJECT
     QGroupBox* gboxOthers;
 
     /**
+     * Group box for export/import filter settings
+     */
+    QGroupBox* gBoxExImport;
+
+    /**
      * Button to open the Blacklist.
      */
     KPushButton* btnOpenBlacklist;
@@ -190,10 +198,36 @@ Q_OBJECT
     KPushButton* btnMailboxWizard;
 
     /**
+     * Button to export the filter settings
+     */
+    KPushButton* btnExport;
+
+    /**
+     * Button to import the filter settings
+     */
+    KPushButton* btnImport;
+
+    /**
      * The last assigned number of a filter setup item.
      * It is set to zero by the constructor. Therefore the first filter number is 1.
      */
     uint lastFilterNumber;
+
+    /**
+     * The blacklist
+     */
+    QStringList blacklist;
+
+    /**
+     * The action for mails these senders are listed on the blacklist.<p>
+     * Possible actions are: CONFIG_VALUE_FILTER_BLACKLIST_ACTION_DELETE, CONFIG_VALUE_FILTER_BLACKLIST_ACTION_MARK
+     */
+    int blacklistAction;
+
+    /**
+     * The whiteList
+     */
+    QStringList whitelist;
 
   private slots:
 
@@ -279,8 +313,19 @@ Q_OBJECT
      */
     void slotOpenMailBoxWizard();
 
+    /**
+     * Connected with button btnExport.<br>
+     * Exports the filter settings.
+     */
+    void slotExport();
 
-  protected:
+    /**
+     * Connected with button btnImport.<br>
+     * Imports the filter settings.
+     */
+    void slotImport();
+
+protected:
 
     /**
      * Decrease the numbers of these filter setup items whose number is greater than or equals num.

@@ -182,10 +182,14 @@ class FilterSetupItem : public QTreeWidgetItem
     virtual int compare( FilterSetupItem* i, int col, bool ascending ) const;
 
     /**
-     * Reads the settings from the config file.
-     * The group is named CONFIG_GROUP_FILTER + filter number, e.g. Filter12.
+     * @brief Reads the settings from the config file.
+     *
+     * If you giving a valid config group object it will take this to load its settings.
+     * Otherwise it will create a config group from the application config.<br>
+     * A self created group is named CONFIG_GROUP_FILTER + filter number, e.g. Filter12.
+     * @param configGroup a valif config group object if it shall get its settings from this
      */
-    void load();
+    void load( KConfigGroup* configGroup = NULL );
 
 
   private:

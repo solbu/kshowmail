@@ -112,3 +112,12 @@ bool SenderListFilter::isOnWhitelist(const QString& sender) const
   return search( whitelist, sender );
 }
 
+QStringList SenderListFilter::getBlacklist() const
+{
+  return blacklist;
+}
+
+QStringList SenderListFilter::getWhitelist() const
+{
+  return whitelist;
+}

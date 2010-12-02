@@ -158,6 +158,35 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   }
   chkActivateFilter->setChecked( DEFAULT_FILTER_ACTIVE );
 
+  //GUI for Export/Import
+  //---------------------
+  gBoxExImport = new QGroupBox( i18nc( "@title:group the title of the group box for export and import the filter settings", "Export/Import filter settings" ), this );
+  QHBoxLayout* layExImport = new QHBoxLayout( );
+  gBoxExImport->setLayout( layExImport );
+  layMain->addWidget( gBoxExImport );
+
+  KIcon picExport = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/export.png" ) );
+  btnExport = new KPushButton( picExport, i18nc( "@action:button exports the filter settings ", "Export"), gBoxExImport );
+  btnExport->setToolTip( i18nc( "@info:tooltip", "Click here to export the filter settings." ) );
+  layExImport->addWidget( btnExport );
+  layExImport->setStretchFactor( btnExport, 3 );
+  btnExport->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum ) );
+  connect( btnExport, SIGNAL( clicked() ), this, SLOT( slotExport() ) );
+
+  KIcon picImport = KIcon( KStandardDirs::locate( "data", "kshowmail/pics/import.png" ) );
+  btnImport = new KPushButton( picImport, i18nc( "@action:button imports the filter settings ", "Import"), gBoxExImport );
+  btnImport->setToolTip( i18nc( "@info:tooltip", "Click here to import the filter settings." ) );
+  layExImport->addWidget( btnImport );
+  layExImport->setStretchFactor( btnImport, 3 );
+  btnImport->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum ) );
+  connect( btnImport, SIGNAL( clicked() ), this, SLOT( slotImport() ) );
+
+  layExImport->insertStretch( 0, 2 );
+  layExImport->insertStretch( 2, 2 );
+  layExImport->insertStretch( 4, 2 );
+
+
+
   //enable or disable widgets
   slotOtherActionChanged( cmbActionOthers->currentIndex() );
   slotFilterActiveToggled( DEFAULT_FILTER_ACTIVE );
@@ -185,6 +214,11 @@ void ConfigFilter::load( )
   //load filter active state
   chkActivateFilter->setChecked( configFilter->readEntry( CONFIG_ENTRY_FILTER_ACTIVE, DEFAULT_FILTER_ACTIVE ) );
   slotFilterActiveToggled( chkActivateFilter->isChecked() );
+
+  //load black and white list
+  blacklist = configFilter->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST, QStringList() );
+  whitelist = configFilter->readEntry( CONFIG_ENTRY_FILTER_WHITELIST, QStringList() );
+  blacklistAction = configFilter->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, DEFAULT_FILTER_BLACKLIST_ACTION );
 
   //load other action
   switch( configFilter->readEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ) )
@@ -233,6 +267,11 @@ void ConfigFilter::defaults( )
   chkActivateFilter->setChecked( DEFAULT_FILTER_ACTIVE );
   slotFilterActiveToggled( chkActivateFilter->isChecked() );
 
+  //senderlists
+  blacklist = QStringList();
+  whitelist = QStringList();
+  blacklistAction = DEFAULT_FILTER_BLACKLIST_ACTION;
+
   switch( DEFAULT_FILTER_OTHERS_ACTION )
   {
     case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
@@ -260,6 +299,11 @@ void ConfigFilter::save( )
 
   //save filter active state
   configFilter->writeEntry( CONFIG_ENTRY_FILTER_ACTIVE, chkActivateFilter->isChecked() );
+
+  //save senderlists
+  configFilter->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST, blacklist );
+  configFilter->writeEntry( CONFIG_ENTRY_FILTER_WHITELIST, whitelist );
+  configFilter->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, blacklistAction );
 
   //save other action
   switch( cmbActionOthers->currentIndex() )
@@ -321,8 +365,12 @@ void ConfigFilter::slotChanged( )
 void ConfigFilter::slotOpenWhitelist( )
 {
   //open list dialog
-  QPointer<SenderListDialog> dlg = new SenderListDialog( this, SenderListDialog::White );
-  dlg->exec();
+  QPointer<SenderListDialog> dlg = new SenderListDialog( this, SenderListDialog::White, whitelist );
+  int ret = dlg->exec();
+  if( ret == QDialog::Accepted ) {
+    whitelist = dlg->getList();
+    slotChanged();
+  }
 
   //delete dialog
   delete dlg;
@@ -331,8 +379,13 @@ void ConfigFilter::slotOpenWhitelist( )
 void ConfigFilter::slotOpenBlacklist( )
 {
   //open list dialog
-  QPointer<SenderListDialog> dlg = new SenderListDialog( this, SenderListDialog::Black );
-  dlg->exec();
+  QPointer<SenderListDialog> dlg = new SenderListDialog( this, SenderListDialog::Black, blacklist, blacklistAction );
+  int ret = dlg->exec();
+  if( ret == QDialog::Accepted ) {
+    blacklist = dlg->getList();
+    blacklistAction = dlg->getBlacklistAction();
+    slotChanged();
+  }
 
   //delete dialog
   delete dlg;
@@ -654,6 +707,243 @@ void ConfigFilter::slotOpenMailBoxWizard( )
 
 }
 
+void ConfigFilter::slotExport()
+{
+  //get the export file name
+  QString filename = KFileDialog::getSaveFileName( KUrl( "~"), QString(), this, i18nc( "@title:window The title of the dialog to choose the file for filter settings export", "Choose the export file" ) );
+
+  //we use a config object to write an export file
+  KConfig configExport( filename, KConfig::SimpleConfig );
+
+  //get config group for general settings
+  KConfigGroup* configGroupGeneral = new KConfigGroup( &configExport, CONFIG_GROUP_FILTER );
+
+  //save filter active state
+  configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_ACTIVE, chkActivateFilter->isChecked() );
+
+  //save the list of senders
+  configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST, blacklist );
+  configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_WHITELIST, whitelist );
+  configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, blacklistAction );
+
+
+  //save other action
+  //*****************
+  switch( cmbActionOthers->currentIndex() )
+  {
+    case ID_COMBO_FILTER_OTHERS_ACTION_PASS      : configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_DELETE    : configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_MARK      : configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_MOVE      : configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_IGNORE    : configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE ); break;
+    case ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK : configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
+    default                                      : configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ); break;
+  }
+
+  //save mailbox name
+  if( cmbActionOthers->currentIndex() == ID_COMBO_FILTER_OTHERS_ACTION_MOVE )
+  {
+    configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_OTHERS_MAILBOX, txtMailbox->text() );
+  }
+  else
+  {
+    configGroupGeneral->deleteEntry( CONFIG_ENTRY_FILTER_OTHERS_MAILBOX );
+  }
+
+  //get old number of filters
+  uint oldNumFilter = configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, 0 );
+
+  //save current number of filters
+  configGroupGeneral->writeEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, lastFilterNumber );
+
+  //delete surplus filter configurations
+  if( oldNumFilter > lastFilterNumber )
+  {
+    for( uint ctr = lastFilterNumber + 1; ctr <= oldNumFilter; ctr++ )
+    {
+      configExport.deleteGroup( QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( ctr ) );
+    }
+  }
+
+
+  //save the filters
+  //*****************
+  QTreeWidgetItemIterator it( listFilters );
+
+  //iterate over the filter list
+  while( *it )
+  {
+    //get filter item
+    FilterSetupItem* item = ( FilterSetupItem*)*it;
+
+    //build group name
+    QString group;
+    group = QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( item->getNumber() );
+
+    //first delete the group to clear it of old criteria entries
+    configExport.deleteGroup( group );
+
+    //set group
+    KConfigGroup* configGroupFilter = new KConfigGroup( &configExport, group );
+
+    //write entries
+    configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_NAME, item->getName() );
+
+    if( item->getCriteriaLinkage() == CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL ||
+      item->getCriteriaLinkage() == CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY )
+    {
+      configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, item->getCriteriaLinkage() );
+    }
+    else
+    {
+      configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE, DEFAULT_FILTER_CRITERIA_LINKAGE );
+    }
+
+    if( item->getAction() == CONFIG_VALUE_FILTER_ACTION_PASS ||
+      item->getAction() == CONFIG_VALUE_FILTER_ACTION_DELETE ||
+      item->getAction() == CONFIG_VALUE_FILTER_ACTION_MARK ||
+      item->getAction() == CONFIG_VALUE_FILTER_ACTION_MOVE ||
+      item->getAction() == CONFIG_VALUE_FILTER_ACTION_IGNORE ||
+      item->getAction() == CONFIG_VALUE_FILTER_ACTION_SPAMCHECK )
+    {
+      configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_ACTION, item->getAction() );
+    }
+    else
+    {
+      configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_ACTION, DEFAULT_FILTER_ACTION );
+    }
+
+    //write action parameter
+    switch( item->getAction() )
+    {
+      case CONFIG_VALUE_FILTER_ACTION_MOVE  :
+        configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_MOVE_MAILBOX, item->getMailBox() );
+        break;
+
+      default: break;
+    }
+
+    //write criteria list and number of criterias
+    FilterCriteriaList_Type criteriaList = item->getCriteriaList();
+    if( !criteriaList.empty() )
+    {
+      configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, (int)criteriaList.size() );
+
+      int ctr = 0; //number of the current criteria
+      FilterCriteriaList_Type::iterator it;
+      for( it = criteriaList.begin(); it != criteriaList.end(); ++it )
+      {
+        ctr++;
+
+        configGroupFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_SOURCE ).arg( ctr ), (*it).source );
+        configGroupFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CONDITION ).arg( ctr ), (*it).condition );
+
+        switch( (*it).source )
+        {
+          case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM     :
+          case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO       :
+          case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT  :
+          case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER   :
+          case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT  :   configGroupFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), (*it).txtValue );
+          configGroupFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE ).arg( ctr ), (*it).cs );
+          break;
+
+          case CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE     :   configGroupFilter->writeEntry( QString( "%1%2" ).arg( CONFIG_ENTRY_FILTER_CRITERIA_VALUE ).arg( ctr ), (*it).numValue );
+          break;
+        }
+      }
+    }
+    else
+    {
+      configGroupFilter->writeEntry( CONFIG_ENTRY_FILTER_CRITERIA_NUMBER, 0 );
+    }
+
+    delete configGroupFilter;
+
+    //get next item
+    ++it;
+  }
+
+  configExport.sync();
+
+  delete configGroupGeneral;
+}
+
+void ConfigFilter::slotImport()
+{
+  //ask the user
+  int result = KMessageBox::questionYesNo( this, i18nc( "@info Message in the dialog whether the user really want to import the filter settings.", "Do you really want to import new filter settings? Your old settings will be removed."),
+                                           i18nc( "@title:window the title of the dialog whether the user really want to import the filter settings", "Import filter settings" ) );
+  if( result == KMessageBox::No ) return;
+
+  //get the import file name
+  QString filename = KFileDialog::getOpenFileName( KUrl( "~"), QString(), this, i18nc( "@title:window The title of the dialog to choose the file for filter settings import", "Choose the import file" ) );
+
+  //we use a config object to write an export file
+  KConfig configImport( filename, KConfig::SimpleConfig );
+
+  //get config group for general settings
+  KConfigGroup* configGroupGeneral = new KConfigGroup( &configImport, CONFIG_GROUP_FILTER );
+
+  //load filter active state
+  chkActivateFilter->setChecked( configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_ACTIVE, DEFAULT_FILTER_ACTIVE ) );
+  slotFilterActiveToggled( chkActivateFilter->isChecked() );
+
+  //load black and white list
+  blacklist = configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST, QStringList() );
+  whitelist = configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_WHITELIST, QStringList() );
+  blacklistAction = configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_BLACKLIST_ACTION, DEFAULT_FILTER_BLACKLIST_ACTION );
+
+  //load other action
+  switch( configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ) )
+  {
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_PASS       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_PASS ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_DELETE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_DELETE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MARK       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MARK ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE       : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_MOVE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_IGNORE     : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_IGNORE ); break;
+    case CONFIG_VALUE_FILTER_OTHERS_ACTION_SPAMCHECK  : cmbActionOthers->setCurrentIndex( ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK ); break;
+  }
+
+  //get mailbox name
+  if( configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_OTHERS_ACTION, DEFAULT_FILTER_OTHERS_ACTION ) == CONFIG_VALUE_FILTER_OTHERS_ACTION_MOVE )
+    txtMailbox->setText( configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_OTHERS_MAILBOX, DEFAULT_FILTER_ACTION_MOVE_MAILBOX ) );
+  else
+    txtMailbox->clear();
+
+  //enable or disable widgets for other action
+  slotOtherActionChanged( cmbActionOthers->currentIndex() );
+
+  //clear filter list
+  listFilters->clear();
+
+  //get number of filters
+  uint numFilters = configGroupGeneral->readEntry( CONFIG_ENTRY_FILTER_NUMBER_OF_FILTERS, 0 );
+
+  //create filter setup items and load theirs settings
+  for( uint ctr = 1; ctr <= numFilters; ctr++ )
+  {
+    //create filter item
+    FilterSetupItem* item = new FilterSetupItem( listFilters, ctr );
+
+    //create config group object for this item
+    QString group = QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( ctr );
+    KConfigGroup* configGroupFilter = new KConfigGroup( &configImport, group );
+
+    //load settings
+    item->load( configGroupFilter );
+
+    delete configGroupFilter;
+  }
+
+  //set filter index counter
+  lastFilterNumber = numFilters;
+
+
+  delete configGroupGeneral;
+
+  slotChanged();
+}
 
 
 #include "configfilter.moc"

@@ -255,7 +255,7 @@ int FilterSetupItem::compare( FilterSetupItem * i, int col, bool ascending ) con
       return text( col ).compare( text( col ) ) * -1;
     }
   }
-    
+
 
 }
 
@@ -279,16 +279,23 @@ void FilterSetupItem::updateActionColumn( )
   setText( ColAction, QString( " %1" ).arg( strAction ) );
 }
 
-void FilterSetupItem::load( )
+void FilterSetupItem::load( KConfigGroup* configGroup )
 {
     //build group name
   QString group;
   group = QString( "%1%2" ).arg( CONFIG_GROUP_FILTER ).arg( number );
 
 
-  //set group
-  //set group
-  KConfigGroup* configFilter = new KConfigGroup( config, group );
+  //set group or take the given
+  KConfigGroup* configFilter;
+  if( configGroup == NULL ) {
+
+    configFilter = new KConfigGroup( config, group );
+
+  } else {
+
+    configFilter = configGroup;
+  }
 
   //get name
   setName( configFilter->readEntry( CONFIG_ENTRY_FILTER_NAME, DEFAULT_FILTER_NAME ) );
@@ -361,6 +368,9 @@ void FilterSetupItem::load( )
     criteriaList.push_back( crit );
 
   }
+
+  if( configGroup == NULL )
+    delete configFilter;
 
 
 }
