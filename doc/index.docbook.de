@@ -57,10 +57,9 @@ thanks ;-).
     <authorgroup>
       <author>
         <personname>
-          <firstname>Ulrich</firstname>
-          <surname>Weigelt</surname>
+          <firstname>Otmar</firstname>
+          <surname>Mak</surname>
         </personname>
-        <email>ulrich.weigelt@gmx.de</email>
       </author>
     </authorgroup>
 
@@ -68,7 +67,7 @@ thanks ;-).
 
     <copyright>
       <year>2010</year>
-      <holder>Ulrich Weigelt</holder>
+      <holder>Otmar Mak</holder>
     </copyright>
 
     <!-- Translators: put here the copyright notice of the translation -->
@@ -96,9 +95,9 @@ thanks ;-).
      </para>
       <para>
         &kmyapplication; ist ein KDE Werkzeug um Emails auf einem POP3 Server zu überwachen.
-        Email-Header und Email-Inhalt können betrachtet werden ohne die Mails in den lokalen 
+        Email-Header und Email-Inhalt können betrachtet werden ohne die Mails in den lokalen
         Email-Client herunterladen zu müssen.
-        
+
         Unerwünschte Emails können bereits am Server gelöscht werden.
         Die angezeigte Liste der auf dem Server wartenden Mails kann automatisch aktualisiert werden durch Vorgabe Intervallzeiten.
         Filter können definiert werden, um Emails zu markieren, löschen, verschieben oder zu ignorieren.
@@ -149,16 +148,16 @@ thanks ;-).
         <listitem><para>
         Unerwünschte Mails können schon am Server gelöscht werden.</para></listitem>
         <listitem><para>
-        Die Liste der angezeigten Mails kann in einstellbaren Zeitintervallen 
+        Die Liste der angezeigten Mails kann in einstellbaren Zeitintervallen
         automatisch aktualisiert werden.</para></listitem>
         <listitem><para>
-        Filter können definiert werden, um Emails zu markieren, löschen, zu verschieben 
+        Filter können definiert werden, um Emails zu markieren, löschen, zu verschieben
         oder den Download in den Mail-Client zu erlauben</para></listitem>
         <listitem><para>
         Ein Tonsignal kann bei Eintreffen neuer Mails abgespielt werden.</para></listitem>
         <listitem><para>
         Mehrere Postfächer (Konten) können gleichzeitig benutzt werden.</para></listitem>
-      </itemizedlist>      
+      </itemizedlist>
     </para>
     <para>
       <emphasis> Beiträge zur Verbesserung des Handbuchs bitte an: ulrich.weigelt@gmx.de</emphasis>
@@ -169,7 +168,7 @@ thanks ;-).
 
  <chapter id="using-kshowmail">
  <title>KShowmail verwenden</title>
- 
+
  <sect1 id="first-steps">
   <title>Erste Schritte</title>
  <para>
@@ -184,21 +183,21 @@ thanks ;-).
  Vor dem praktischen Einsatz definieren Sie allerdings zuvor noch Ihre spezifischen Email-Filter.
   </para>
  </sect1>
- 
- <sect1 id="defining-filters"> 
+
+ <sect1 id="defining-filters">
  <title>Definieren von Email-Filtern</title>
  <para>
  Arten von Filtern:
  <itemizedlist>
        <listitem><para>Erster Check: Absender -
              Im Dialog "KShowmail einrichten/Filter" können Sie eine <emphasis>White List</emphasis> und eine
-            <emphasis>Black List</emphasis> von Absenderadressen erstellen, welche Ihren Email-Filter passieren 
+            <emphasis>Black List</emphasis> von Absenderadressen erstellen, welche Ihren Email-Filter passieren
             bzw. nicht passieren dürfen.
             </para>
        </listitem>
          <listitem><para>
-             Als zweiten Check erstellen Sie Filterregeln, indem Sie definieren, durch welche Header-Elemente 
-             (From/Von, To/An, Subject/Betreff, kompletter Header-Text, Größenlimit ..) ein auszufilterndes Mail 
+             Als zweiten Check erstellen Sie Filterregeln, indem Sie definieren, durch welche Header-Elemente
+             (From/Von, To/An, Subject/Betreff, kompletter Header-Text, Größenlimit ..) ein auszufilterndes Mail
              erkannt werden kann, wenn sie mit bestimmten Wörtern, Zeichenfolgen etc. übereinstimmen.
              Reguläre Ausdrücke sind erlaubt.
              Zusammen mit den Filter-Kriterien definieren Sie die Aktionen, die auszuführen sind
@@ -208,26 +207,26 @@ thanks ;-).
              werden, welche festlegt, in welcher Reihenfolge die Filter von KShowmail angewandt werden.
              </para>
        </listitem>
-       <listitem><para>Als dritten Check können Sie eine Aktion für nicht gefilterte Mails vorsehen, z.B. 
+       <listitem><para>Als dritten Check können Sie eine Aktion für nicht gefilterte Mails vorsehen, z.B.
              ein Spam-Check durch SpamAssassin.
              Dies erfordert, dass der SpamAssassin Daemon auf Ihrem System läuft und vorzugsweise auch
              mit Ihren spezifischen SpamAssassin Filterregeln konfiguriert ist.
              Im Dialog "KShowmail einrichten/Spam-Prüfung" können Sie testen, ob SpamAssassin läuft.
              Hier sind auch die Aktionen für SPAM auszuwählen (Löschen, Markieren, Verschieben).
             </para>
-       </listitem>  
+       </listitem>
  </itemizedlist>
  </para>
  </sect1>
 
-<sect1 id="further-options"> 
+<sect1 id="further-options">
  <title>KShowmail Einrichten: weitere Optionen</title>
  <para>
  Weitere Konfigurierungsoptionen
  <itemizedlist>
        <listitem><para>
        Aktionen/Verhalten: Dies definiert, wie KShowmail sich verhalten soll, wenn neue Mails am Server
-       entdeckt wurden (Benachrichtigungsdialog anzeigen, Tonsignal, ...) oder falls keine Mails empfangen 
+       entdeckt wurden (Benachrichtigungsdialog anzeigen, Tonsignal, ...) oder falls keine Mails empfangen
        wurden.
              </para>
        </listitem>
@@ -239,37 +238,37 @@ thanks ;-).
              </para>
        </listitem>
        <listitem><para>
-         Allgemeine Optionen: Unter anderem können Sie hier ein Zeitintervall für automatische Aktualisierung 
+         Allgemeine Optionen: Unter anderem können Sie hier ein Zeitintervall für automatische Aktualisierung
          vorgeben. Weiters kann hier auch ein Zeitlimit für den Aufbau einer Verbindung mit dem POP Server
          festgelegt werden.
             </para>
-       </listitem> 
+       </listitem>
       <listitem><para>Logging/Protokollierung: Falls gesetzt, protokolliert KShowmail alle Vorgänge, bei denen
       Emails automatisch durch einen Filter gelöscht oder verschoben wurden. (Manuelle Löschungen werden
       nicht protokolliert)
             </para>
-       </listitem> 
- 
+       </listitem>
+
  </itemizedlist>
  </para>
  </sect1>
 
- <sect1 id="running-kshowmail"> 
+ <sect1 id="running-kshowmail">
  <title>KShowmail verwenden</title>
  <para>
- 
+
  <itemizedlist>
        <listitem><para>
        Aktualisieren: Falls KShowmail nicht ohnehin auf automatische Aktualisierung eingestellt wurde,
-       aktualisieren Sie die Email-Liste manuell durch Mausclick auf der Werkzeugleiste. Wenn die Verbindung 
-       zum POP Server in Ordnung ist, listet KShowmail danach für die aktivierten Email-Konten die aktuell 
-       am Server wartenden Emails auf. 
+       aktualisieren Sie die Email-Liste manuell durch Mausclick auf der Werkzeugleiste. Wenn die Verbindung
+       zum POP Server in Ordnung ist, listet KShowmail danach für die aktivierten Email-Konten die aktuell
+       am Server wartenden Emails auf.
        Dabei werden angezeigt: Status (markiert, unmarkiert) und Merkmale wie Absender, Empfänger,
        Betreff, Datum, Größe etc.
              </para>
        </listitem>
          <listitem><para>
-         Aktionen ausführen: Wenn Sie ein Email näher untersuchen wollen, wählen Sie im Submenü von "Aktionen" 
+         Aktionen ausführen: Wenn Sie ein Email näher untersuchen wollen, wählen Sie im Submenü von "Aktionen"
          das Anzeigen des Headers oder des kompletten Inhalts des Mails.
          Wenn Sie sicher sind, dass es sich beim hervorgehobenen Mail um SPAM handelt, löschen Sie es.
          Sie können hier auch Absender der White List oder Black List hinzufügen oder das Löschungs- und
@@ -282,12 +281,12 @@ thanks ;-).
        ("Was ist das ?") einzureichen, und natürlich können Sie hier das KShowmail Handbuch aufrufen
        (dieses Dokument).
             </para>
-       </listitem> 
+       </listitem>
  </itemizedlist>
  </para>
  </sect1>
 
- 
+
  </chapter>
 
   <chapter id="credits">
@@ -380,7 +379,7 @@ make
 </programlisting></listitem>
        <listitem>
 <programlisting># optional:
-checkinstall               # als Benutzer root; wenn Sie sichergehen wollen, dass 
+checkinstall               # als Benutzer root; wenn Sie sichergehen wollen, dass
                            # die Installation nicht unbeabsichtigt Daten überschreibt
                            # damit können rpm-Packages, Debian Packages erstellt etc. werden
 </programlisting></listitem>
@@ -409,7 +408,7 @@ make uninstall             # als Benutzer root
   <para>
   Anmerkung: Diese Dokumentation beschreibt wie KShowmail sich verhalten sollte, das tatsächliche Verhalten
   von KShowmail kann davon abweichen.
-  Einige der Fehler in der aktuellen Version, die bei Benutzertests gefunden wurden, sind erwähnt in einer 
+  Einige der Fehler in der aktuellen Version, die bei Benutzertests gefunden wurden, sind erwähnt in einer
   separaten Datei mit Namen BUGS_4.0.1</para>
   </sect1>
 

@@ -57,10 +57,9 @@ thanks ;-).
     <authorgroup>
       <author>
         <personname>
-          <firstname>Ulrich</firstname>
-          <surname>Weigelt</surname>
+          <firstname>Otmar</firstname>
+          <surname>Mak</surname>
         </personname>
-        <email>ulrich.weigelt@gmx.de</email>
       </author>
     </authorgroup>
 
@@ -68,7 +67,7 @@ thanks ;-).
 
     <copyright>
       <year>2010</year>
-      <holder>Ulrich Weigelt</holder>
+      <holder>Otmar Mak</holder>
     </copyright>
 
     <!-- Translators: put here the copyright notice of the translation -->
@@ -94,7 +93,7 @@ thanks ;-).
                 If you want complement or improve, please contact: ulrich.weigelt@gmx.de</emphasis>
      </para>
       <para>
-        &kmyapplication; is a KDE tool to watch mails on a POP3 server. 
+        &kmyapplication; is a KDE tool to watch mails on a POP3 server.
         Headers and complete mails can be viewed without loading them to the
         local mail client.
         Unpleasant mail can be deleted from the server.
@@ -147,7 +146,7 @@ thanks ;-).
         <listitem><para>Filters can be defined to mark, delete, ignore move mails.</para></listitem>
         <listitem><para>A sound can be played if new mail arrives.</para></listitem>
         <listitem><para>Multiple accounts are supported.</para></listitem>
-      </itemizedlist>      
+      </itemizedlist>
     </para>
     <para>
       <emphasis> contributors for handbook improvements please contact: ulrich.weigelt@gmx.de</emphasis>
@@ -158,13 +157,13 @@ thanks ;-).
 
  <chapter id="using-kshowmail">
  <title>Using Kshowmail</title>
- 
+
  <sect1 id="first-steps">
   <title>First Steps</title>
  <para>
- Configure your email account(s) in the  KShowmail Configure Dialog (Edit Account) with the usual 
- parameters for a POP3 account. You may have KShowmail store your POP3 password. 
- For the security settings choose among the encryption options NONE/SSL/TSL and specify 
+ Configure your email account(s) in the  KShowmail Configure Dialog (Edit Account) with the usual
+ parameters for a POP3 account. You may have KShowmail store your POP3 password.
+ For the security settings choose among the encryption options NONE/SSL/TSL and specify
  whether unsafe login should be allowed.
  </para>
  <para>
@@ -172,21 +171,21 @@ thanks ;-).
  For practical application, however, define appropriate email filters before usage.
  </para>
  </sect1>
- 
- <sect1 id="defining-filters"> 
+
+ <sect1 id="defining-filters">
  <title>Defining Filters</title>
  <para>
  Types of Filters:
  <itemizedlist>
        <listitem><para>First Check: mail senders -
-             In the Configure KShowmail Filters dialog you may setup a <emphasis>White List</emphasis> and a 
+             In the Configure KShowmail Filters dialog you may setup a <emphasis>White List</emphasis> and a
             <emphasis>Black List</emphasis> of sender email addresses that should or should not pass your filter respectively.
             </para>
        </listitem>
          <listitem><para>As Second Check, add rules defining by which header items (From, To, Subject,
-             complete Header text, size..) a SPAM mail can be recognized, if they match certain words, 
+             complete Header text, size..) a SPAM mail can be recognized, if they match certain words,
              phrases etc. This may involve defining regular expressions.
-             Along with the criteria define the action to be taken (mark as candidate for deletion, 
+             Along with the criteria define the action to be taken (mark as candidate for deletion,
              delete automatically at the POP3 server, move elsewhere, show,..).
              The configured filters may be added, removed, edited and sorted in the filter list, which
              defines the order in which the filters will be applied.
@@ -199,12 +198,12 @@ thanks ;-).
              Here also the possible actions for spam mails should be selected (delete, mark for deletion,
              move).
             </para>
-       </listitem>  
+       </listitem>
  </itemizedlist>
  </para>
  </sect1>
 
-<sect1 id="further-options"> 
+<sect1 id="further-options">
  <title>Configuring KShowmail: Further Options</title>
  <para>
  Further Types of Configuring Options
@@ -224,20 +223,20 @@ thanks ;-).
              Here you can also specify a server timeout period, after which KShowmail will shut down
              connection to the server.
             </para>
-       </listitem> 
+       </listitem>
       <listitem><para>Logging: If set, KShowmail will log mail automatically deleted or moved by a filter
              (but in the current implementation, it will not log manually deleted mails).
             </para>
-       </listitem> 
- 
+       </listitem>
+
  </itemizedlist>
  </para>
  </sect1>
 
- <sect1 id="running-kshowmail"> 
+ <sect1 id="running-kshowmail">
  <title>Running KShowmail</title>
  <para>
- 
+
  <itemizedlist>
        <listitem><para>Refresh messages: If KShowmail is not set to lookup for new emails automatically,
              apply the refresh button at the toolbar. If the connection with the POP server is OK,
@@ -255,15 +254,15 @@ thanks ;-).
        </listitem>
        <listitem><para>Help: The Help Menu offers a standard set of Options, among others you
              may switch the application language, you may invoke your email program for submitting
-             suggestions for in-place context-related help comments ("What's this Help"), 
+             suggestions for in-place context-related help comments ("What's this Help"),
              and of course, you may take a look at the KShowmail Handbook (This document).
             </para>
-       </listitem> 
+       </listitem>
  </itemizedlist>
  </para>
  </sect1>
 
- 
+
  </chapter>
 
   <chapter id="credits">
@@ -378,13 +377,13 @@ make uninstall             # you have to be root
         installation.</para>
 
   </sect1>
-  
+
   <sect1 id="bugs">
   <title>Bugs</title>
   <para>
   Note that this documentation describes how KShowmail is intended to work,
   and actual behavior of KShowmail may deviate from the handbook.
-  Some of the current version's bugs, as found by user tests, are mentioned 
+  Some of the current version's bugs, as found by user tests, are mentioned
   in a separate file named BUGS_4.0.1</para>
   </sect1>
 

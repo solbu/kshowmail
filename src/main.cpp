@@ -43,17 +43,25 @@ int main(int argc, char **argv)
 {
   //some things about KShowmail
   KAboutData about( "kshowmail", 0, ki18n( "KShowmail" ), version, ki18n( description ),
-                    KAboutData::License_GPL, ki18n("(C) 2000 - 2005 Eggert Ehmke\n(C) 2006 - 2009 Ulrich Weigelt"), KLocalizedString(),
+                    KAboutData::License_GPL, ki18n("(C) 2006 - 2009 Ulrich Weigelt"), KLocalizedString(),
                     "http://kshowmail.sourceforge.net", "ulrich.weigelt@gmx.de");
 
   //add authors
+  about.addAuthor( ki18n( "Ulrich Weigelt" ), ki18n( "maintainer" ), "ulrich.weigelt@gmx.de" );
   about.addAuthor( ki18n( "Eggert Ehmke" ), ki18n( "Initiator and first developer" ), "eggert.ehmke@berlin.de", "http://kshowmail.sourceforge.net" );
-  about.addAuthor( ki18n( "Ulrich Weigelt" ), ki18n( "current developer" ), "ulrich.weigelt@gmx.de" );
   about.addAuthor( ki18n( "Allistar Melville" ), KLocalizedString(), "allistar@silvermoon.co.nz" );
   about.addAuthor( ki18n( "Oleg Ivanov" ), KLocalizedString(), "saruman@unigsm.com" );
 
   //add Translators
   about.setTranslator( ki18nc( "NAME OF TRANSLATORS", "Your names" ), ki18nc( "EMAIL OF TRANSLATORS", "Your emails" ) );
+
+  //add credits
+  about.addCredit( ki18n( "Scott Barninger" ), ki18nc( "@info:credit Who build the RPMs and releases they", "Release Manager") );
+  about.addCredit( ki18n( "Luca Pedrielli"), ki18nc( "@info:credit", "a lot of testing and italian translation") );
+  about.addCredit( ki18n( "Elsa Andrés"), ki18nc( "@info:credit", "spanish translation") );
+  about.addCredit( ki18n( "Heimen Stoffels"), ki18nc( "@info:credit", "dutch translation") );
+  about.addCredit( ki18n( "Otmar Mak" ), ki18nc( "@info:credit", "handbook and testing") );
+  about.addCredit( ki18n( "Tor B. Løken"), ki18nc( "@info:credit", "norwegian translation") );
 
   //Initialize command line arguments
   KCmdLineArgs::init( argc, argv, &about );
