@@ -933,15 +933,20 @@ Mail& Mail::operator=( const Mail& other )
 
 QStringList Mail::trim(QStringList text) const
 {
+  if( text.isEmpty() )
+    return text;
+
   //copy the text
   QStringList trimmed( text);
 
   while( trimmed.first().isEmpty() ) {
     trimmed.removeFirst();
+    if( trimmed.isEmpty() ) return trimmed;
   }
 
   while( trimmed.last().isEmpty() ) {
     trimmed.removeLast();
+    if( trimmed.isEmpty() ) return trimmed;
   }
 
   return trimmed;

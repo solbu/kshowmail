@@ -206,3 +206,4 @@ v.4.1
   in the mail view and in the log view a tooltip shows the filter which has catched the mail
   You can set up an action for a double click on a mail list entry
   mail list: an icon in front of the sender shows whether the sender is listed on the whitelist
+  Bugfix: Kshowmail has crashed while showing an empty mail.
