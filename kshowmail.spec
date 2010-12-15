@@ -1,18 +1,14 @@
-# norootforbuild                                   
-
 Name:    kshowmail
-Summary: A pop3 mail checker
-Version: 4.0
+Summary: POP3 mail checker
+Version: 4.0.1
 Release: 1
-License: GPL                         
+License: GNU General Public License version 2.0 (GPLv2)                   
 Group:   Productivity/Networking/Email/Clients
 URL:     http://kshowmail.sourceforge.net/            
 Source0: %{name}-%{version}.tar.gz                      
-# Patch0:  desktop_file.diff
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-# Requires:  %{name}-lang = %{version}
-
-BuildRequires:  libkde4-devel libkdepimlibs4-devel
+BuildRoot: %{_tmppath}/%{name}-%{version}-build
+Requires: kdepimlibs4 libkdepim4 libkdepimlibs4
+BuildRequires:  libkde4-devel libkdepim4-devel libkdepimlibs4-devel
 
 
 %description
@@ -22,30 +18,24 @@ on pop3 servers in a list view, show the mail headers
 or complete mails, delete unwanted mail from server 
 by configurable filters.                   
 
-
-
-
 Authors:
 --------
   Ulrich Weigelt <ulrich.weigelt@gmx.de>
   Eggert Ehmke <eggert.ehmke@berlin.de
 
-%lang_package
+
 %prep
 %setup -q 
-#%patch0
 
 %build
 %cmake_kde4 -d build  
+make %{?_smp_mflags}
 
-%__make %{?jobs:-j%{jobs}}
 
 %install
 cd build  
 %makeinstall
 cd ..
-
-%suse_update_desktop_file -r kshowmail Qt KDE Network Email
 
 %kde_post_install
 
@@ -81,11 +71,18 @@ rm -fr %buildroot
 %{_datadir}/kde4/apps/kshowmail/pics/account.svgz
 %{_datadir}/kde4/apps/kshowmail/pics/trayIcon.png
 %{_datadir}/kde4/apps/kshowmail/pics/newMailPic.png
+%{_datadir}/kde4/apps/kshowmail/pics/deletedFilter.png
+%{_datadir}/kde4/apps/kshowmail/pics/deletedManual.png
+%{_datadir}/kde4/apps/kshowmail/pics/export.png
+%{_datadir}/kde4/apps/kshowmail/pics/import.png
+%{_datadir}/kde4/apps/kshowmail/pics/senderOnWhitelist.png
+
 %{_datadir}/kde4/apps/kshowmail/sounds/neuepost.ogg
 %{_datadir}/kde4/apps/kshowmail/sounds/newmail.ogg
 %{_datadir}/locale/de/LC_MESSAGES/kshowmail.mo
 %{_datadir}/locale/it/LC_MESSAGES/kshowmail.mo
 %{_datadir}/locale/es/LC_MESSAGES/kshowmail.mo
+%{_datadir}/locale/nl/LC_MESSAGES/kshowmail.mo
 %{_libdir}/kde4/kcm_kshowmailconfigaccounts.so
 %{_libdir}/kde4/kcm_kshowmailconfigactions.so
 %{_libdir}/kde4/kcm_kshowmailconfigdisplay.so

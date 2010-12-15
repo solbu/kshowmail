@@ -52,7 +52,7 @@ thanks ;-).
   as Authors, publish date, the abstract, and Keywords -->
 
   <bookinfo>
-    <title> &kmyapplication; Handbuch</title>
+    <title>The &kmyapplication; Handbook</title>
 
     <authorgroup>
       <author>
@@ -89,20 +89,18 @@ thanks ;-).
 
     <abstract>
     <para>
-      <emphasis>
-      Dieses Handbuch ist eine Kurzbeschreibung von KShowmail 4.0.1.
-      Falls Sie Ergänzungen oder Verbesserungen beistragen wollen, kontaktieren Sie bitte: ulrich.weigelt@gmx.de</emphasis>
+      <emphasis>This handbook describes KShowmail 4.0.1 in short.
+                If you want complement or improve, please contact: ulrich.weigelt@gmx.de</emphasis>
      </para>
       <para>
-        &kmyapplication; ist ein KDE Werkzeug um Emails auf einem POP3 Server zu überwachen.
-        Email-Header und Email-Inhalt können betrachtet werden ohne die Mails in den lokalen
-        Email-Client herunterladen zu müssen.
-
-        Unerwünschte Emails können bereits am Server gelöscht werden.
-        Die angezeigte Liste der auf dem Server wartenden Mails kann automatisch aktualisiert werden durch Vorgabe Intervallzeiten.
-        Filter können definiert werden, um Emails zu markieren, löschen, verschieben oder zu ignorieren.
-        Beim Eintreffen neuer Mails kann ein Ton abgespielt werden.
-        Mehrere Postfächer können simultan benutzt werden.
+        &kmyapplication; is a KDE tool to watch mails on a POP3 server.
+        Headers and complete mails can be viewed without loading them to the
+        local mail client.
+        Unpleasant mail can be deleted from the server.
+        The list of displayed mails can be refreshed via configurable timers.
+        Filters can be defined to mark, delete, ignore or move mails.
+        A sound can be played if new mail arrives.
+        Multiple accounts are supported.
       </para>
     </abstract>
 
@@ -129,7 +127,7 @@ thanks ;-).
   consistent documentation style across all KDE apps. -->
 
   <chapter id="introduction">
-    <title>Einleitung</title>
+    <title>Introduction</title>
 
     <!-- The introduction chapter contains a brief introduction for the
     application that explains what it does and where to report
@@ -137,82 +135,68 @@ thanks ;-).
     revision history. (see installation appendix comment) -->
 
     <para>
-      &kmyapplication;  -  ein KDE Programm zum Ausfiltern von Emails am POP3 Server.
+      &kmyapplication; is a KDE tool to watch mails on a POP3 server.
     </para>
     <para>
-      Hauptmerkmale:
+      Features:
       <itemizedlist>
-        <listitem><para>
-        Email-Header und komplette Mails können inspiziert werden
-        ohne sie in den lokalen Email-Client herunterzuladen.</para></listitem>
-        <listitem><para>
-        Unerwünschte Mails können schon am Server gelöscht werden.</para></listitem>
-        <listitem><para>
-        Die Liste der angezeigten Mails kann in einstellbaren Zeitintervallen
-        automatisch aktualisiert werden.</para></listitem>
-        <listitem><para>
-        Filter können definiert werden, um Emails zu markieren, löschen, zu verschieben
-        oder den Download in den Mail-Client zu erlauben</para></listitem>
-        <listitem><para>
-        Ein Tonsignal kann bei Eintreffen neuer Mails abgespielt werden.</para></listitem>
-        <listitem><para>
-        Mehrere Postfächer (Konten) können gleichzeitig benutzt werden.</para></listitem>
+        <listitem><para>Headers and complete mails can be viewed without loading them to the local mail client.</para></listitem>
+        <listitem><para>Unpleasant mail can be deleted from the server.</para></listitem>
+        <listitem><para>The list of displayed mails can be refreshed via configurable timers.</para></listitem>
+        <listitem><para>Filters can be defined to mark, delete, ignore move mails.</para></listitem>
+        <listitem><para>A sound can be played if new mail arrives.</para></listitem>
+        <listitem><para>Multiple accounts are supported.</para></listitem>
       </itemizedlist>
     </para>
     <para>
-      <emphasis> Beiträge zur Verbesserung des Handbuchs bitte an: ulrich.weigelt@gmx.de</emphasis>
+      <emphasis> contributors for handbook improvements please contact: ulrich.weigelt@gmx.de</emphasis>
      </para>
 
 
   </chapter>
 
  <chapter id="using-kshowmail">
- <title>KShowmail verwenden</title>
+ <title>Using Kshowmail</title>
 
  <sect1 id="first-steps">
-  <title>Erste Schritte</title>
+  <title>First Steps</title>
  <para>
- Konfigurieren Sie ihre Email-Postfächer (Konten) im Dialog "KShowmail einrichten/Konten" mit den
- üblichen Parametern für ein POP3 Konto. Sie können auch Ihr POP3 Passwort von KShowmail speichern
- lassen.
- Bei den Sicherheitseinstellungen wählen Sie unter den Verschlüsselungsoptionen KEINE/SSL/TSL
- und geben an, ob ein unsicherer Login zugelassen werden soll.
+ Configure your email account(s) in the  KShowmail Configure Dialog (Edit Account) with the usual
+ parameters for a POP3 account. You may have KShowmail store your POP3 password.
+ For the security settings choose among the encryption options NONE/SSL/TSL and specify
+ whether unsafe login should be allowed.
  </para>
  <para>
- Mit diesen Minimal-Einstellungen könnten Sie bereits beginnen, KShowmail online zu testen.
- Vor dem praktischen Einsatz definieren Sie allerdings zuvor noch Ihre spezifischen Email-Filter.
-  </para>
+ With these minimum settings you could already start testing KShowmail online.
+ For practical application, however, define appropriate email filters before usage.
+ </para>
  </sect1>
 
  <sect1 id="defining-filters">
- <title>Definieren von Email-Filtern</title>
+ <title>Defining Filters</title>
  <para>
- Arten von Filtern:
+ Types of Filters:
  <itemizedlist>
-       <listitem><para>Erster Check: Absender -
-             Im Dialog "KShowmail einrichten/Filter" können Sie eine <emphasis>White List</emphasis> und eine
-            <emphasis>Black List</emphasis> von Absenderadressen erstellen, welche Ihren Email-Filter passieren
-            bzw. nicht passieren dürfen.
+       <listitem><para>First Check: mail senders -
+             In the Configure KShowmail Filters dialog you may setup a <emphasis>White List</emphasis> and a
+            <emphasis>Black List</emphasis> of sender email addresses that should or should not pass your filter respectively.
             </para>
        </listitem>
-         <listitem><para>
-             Als zweiten Check erstellen Sie Filterregeln, indem Sie definieren, durch welche Header-Elemente
-             (From/Von, To/An, Subject/Betreff, kompletter Header-Text, Größenlimit ..) ein auszufilterndes Mail
-             erkannt werden kann, wenn sie mit bestimmten Wörtern, Zeichenfolgen etc. übereinstimmen.
-             Reguläre Ausdrücke sind erlaubt.
-             Zusammen mit den Filter-Kriterien definieren Sie die Aktionen, die auszuführen sind
-             (Markieren als Kandidat für Löschung, automatisches Löschen am POP Server, verschieben,
-              Anzeigen,..)
-             Die Filter können hinzugefügt, gelöscht, editiert und in der Filterliste sortiert
-             werden, welche festlegt, in welcher Reihenfolge die Filter von KShowmail angewandt werden.
+         <listitem><para>As Second Check, add rules defining by which header items (From, To, Subject,
+             complete Header text, size..) a SPAM mail can be recognized, if they match certain words,
+             phrases etc. This may involve defining regular expressions.
+             Along with the criteria define the action to be taken (mark as candidate for deletion,
+             delete automatically at the POP3 server, move elsewhere, show,..).
+             The configured filters may be added, removed, edited and sorted in the filter list, which
+             defines the order in which the filters will be applied.
              </para>
        </listitem>
-       <listitem><para>Als dritten Check können Sie eine Aktion für nicht gefilterte Mails vorsehen, z.B.
-             ein Spam-Check durch SpamAssassin.
-             Dies erfordert, dass der SpamAssassin Daemon auf Ihrem System läuft und vorzugsweise auch
-             mit Ihren spezifischen SpamAssassin Filterregeln konfiguriert ist.
-             Im Dialog "KShowmail einrichten/Spam-Prüfung" können Sie testen, ob SpamAssassin läuft.
-             Hier sind auch die Aktionen für SPAM auszuwählen (Löschen, Markieren, Verschieben).
+       <listitem><para>As Third Check you may configure an action for mails not filtered, e.g. a spamcheck performed by
+             spamassassin. This would require that the spamassassin daemon is running on your system,
+             and preferably is also configured with your specific spamassassin filter rules.
+             You can perform a test whether spamassassin is running in the Configure Spamcheck dialog.
+             Here also the possible actions for spam mails should be selected (delete, mark for deletion,
+             move).
             </para>
        </listitem>
  </itemizedlist>
@@ -220,32 +204,28 @@ thanks ;-).
  </sect1>
 
 <sect1 id="further-options">
- <title>KShowmail Einrichten: weitere Optionen</title>
+ <title>Configuring KShowmail: Further Options</title>
  <para>
- Weitere Konfigurierungsoptionen
+ Further Types of Configuring Options
  <itemizedlist>
-       <listitem><para>
-       Aktionen/Verhalten: Dies definiert, wie KShowmail sich verhalten soll, wenn neue Mails am Server
-       entdeckt wurden (Benachrichtigungsdialog anzeigen, Tonsignal, ...) oder falls keine Mails empfangen
-       wurden.
+       <listitem><para>Actions: This is to define how KShowmail is to behave in the event of new mail
+             detected on the server (show message box, beep,..) or if no mail was found.
              </para>
        </listitem>
-         <listitem><para>
-         Erscheinungsbild: Hier können Sie auswählen, welche Merkmale Ihrer Email-Konten und Emails
-         in der tabellarischen Auflistung von KShowmail angezeigt werden sollen.
-         Sie können auch festlegen, ob HTML Format zu berücksichtigen ist, wenn Mail-Inhalte
-         angezeigt werden sollen.
+         <listitem><para>Appearance: Here you can select which properties of your accounts and mails
+             will be shown in the  POP accounts and email lists KShowmail displays.
+             You may also select whether HTML format is to be allowed, if mail content is to be
+             displayed.
              </para>
        </listitem>
-       <listitem><para>
-         Allgemeine Optionen: Unter anderem können Sie hier ein Zeitintervall für automatische Aktualisierung
-         vorgeben. Weiters kann hier auch ein Zeitlimit für den Aufbau einer Verbindung mit dem POP Server
-         festgelegt werden.
+       <listitem><para>General Options: Among others, here you may define an automatic refresh interval,
+             at which KShowmail will lookup, whether new mail has arrived.
+             Here you can also specify a server timeout period, after which KShowmail will shut down
+             connection to the server.
             </para>
        </listitem>
-      <listitem><para>Logging/Protokollierung: Falls gesetzt, protokolliert KShowmail alle Vorgänge, bei denen
-      Emails automatisch durch einen Filter gelöscht oder verschoben wurden. (Manuelle Löschungen werden
-      nicht protokolliert)
+      <listitem><para>Logging: If set, KShowmail will log mail automatically deleted or moved by a filter
+             (but in the current implementation, it will not log manually deleted mails).
             </para>
        </listitem>
 
@@ -254,32 +234,28 @@ thanks ;-).
  </sect1>
 
  <sect1 id="running-kshowmail">
- <title>KShowmail verwenden</title>
+ <title>Running KShowmail</title>
  <para>
 
  <itemizedlist>
-       <listitem><para>
-       Aktualisieren: Falls KShowmail nicht ohnehin auf automatische Aktualisierung eingestellt wurde,
-       aktualisieren Sie die Email-Liste manuell durch Mausclick auf der Werkzeugleiste. Wenn die Verbindung
-       zum POP Server in Ordnung ist, listet KShowmail danach für die aktivierten Email-Konten die aktuell
-       am Server wartenden Emails auf.
-       Dabei werden angezeigt: Status (markiert, unmarkiert) und Merkmale wie Absender, Empfänger,
-       Betreff, Datum, Größe etc.
+       <listitem><para>Refresh messages: If KShowmail is not set to lookup for new emails automatically,
+             apply the refresh button at the toolbar. If the connection with the POP server is OK,
+             KShowmail will then list the currently residing mails on the server for the account(s)
+             you have selected as active, giving the state (marked, unmarked) and properties such as
+             sender (From field), recipient (To field), Subject, Date, Size etc.
              </para>
        </listitem>
-         <listitem><para>
-         Aktionen ausführen: Wenn Sie ein Email näher untersuchen wollen, wählen Sie im Submenü von "Aktionen"
-         das Anzeigen des Headers oder des kompletten Inhalts des Mails.
-         Wenn Sie sicher sind, dass es sich beim hervorgehobenen Mail um SPAM handelt, löschen Sie es.
-         Sie können hier auch Absender der White List oder Black List hinzufügen oder das Löschungs- und
-         Verschiebungsprotokoll von KShowmail ansehen.
+         <listitem><para>Performing Actions: If you want to inspect an email further, select it and
+             click in the Actions submenu to show the header or complete contents of the mail.
+             If you are sure the highlighted emails are SPAM, click to delete them.
+             You may also decide to add email senders to your White or Black List, or to display
+             the log of deleted mails in the Actions submenu.
              </para>
        </listitem>
-       <listitem><para>
-       Hilfe: Das Hilfe-Menü bietet die Standard-Optionen, u.a. können Sie hier die Sprache der Anwendung
-       umschalten, das Email-Programm aufrufen, um Vorschläge für kontext-abhängige Hilfstexte
-       ("Was ist das ?") einzureichen, und natürlich können Sie hier das KShowmail Handbuch aufrufen
-       (dieses Dokument).
+       <listitem><para>Help: The Help Menu offers a standard set of Options, among others you
+             may switch the application language, you may invoke your email program for submitting
+             suggestions for in-place context-related help comments ("What's this Help"),
+             and of course, you may take a look at the KShowmail Handbook (This document).
             </para>
        </listitem>
  </itemizedlist>
@@ -330,15 +306,15 @@ thanks ;-).
   <title>Installation</title>
 
   <sect1 id="getting-kapp">
-  <title>Wie man  &kmyapplication; erhält</title>
+  <title>How to obtain &kmyapplication;</title>
 
-  <para>KShowmail ist erhältlich von http://sourceforge.net/projects/kshowmail/ </para>
+  <para>KShowmail is available from http://sourceforge.net/projects/kshowmail/ </para>
 
   </sect1>
 
   <sect1 id="requirements">
-  <title>Voraussetzungen</title>
-  <para> Erforderliche Pakete für das Kompilieren:
+  <title>Requirements</title>
+  <para> Required packages for compilation
          <itemizedlist>
          <listitem><para> gcc</para> </listitem>
          <listitem><para> cmake</para> </listitem>
@@ -362,9 +338,9 @@ thanks ;-).
   </sect1>
 
   <sect1 id="compilation">
-  <title>Kompilieren und Installieren</title>
+  <title>Compilation and Installation</title>
 
-  <para>Benutzen Sie folgende Befehlsfolge:
+  <para>use the following command sequence:
     <itemizedlist>
        <listitem>
 <programlisting>
@@ -373,20 +349,20 @@ cd kshowmail-4.0.1
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` ..
-                           # die zwei Punkte       (..)  nicht vergessen !
+                       # don't forget the two dots (..) !
 cd ..
 make
 </programlisting></listitem>
        <listitem>
-<programlisting># optional:
-checkinstall               # als Benutzer root; wenn Sie sichergehen wollen, dass
-                           # die Installation nicht unbeabsichtigt Daten überschreibt
-                           # damit können rpm-Packages, Debian Packages erstellt etc. werden
+<programlisting># optionally:
+checkinstall               # as root; if you want to make sure the installation
+                           # is not going to overwrite other installed files
+                           # this allows to build an rpm-package, Debian package etc.
 </programlisting></listitem>
        <listitem><programlisting>
-make install               # als Benutzer root</programlisting></listitem>
-       <listitem><programlisting># zur Deinstallation:
-make uninstall             # als Benutzer root
+make install               # you have to be root</programlisting></listitem>
+       <listitem><programlisting># to uninstall the project:
+make uninstall             # you have to be root
 </programlisting></listitem>
     </itemizedlist>
 
@@ -394,22 +370,21 @@ make uninstall             # als Benutzer root
   </sect1>
 
   <sect1 id="configuration">
-  <title>Konfiguration</title>
+  <title>Configuration</title>
 
-  <para>Wegen des cmake Build Prozesses erfolgt die Konfiguration automatisch für die anschließende Installation;
-        Die Benutzer-Konfiguration ist vom Anwender über den KShowmail-Einrichten-Dialog nach der Installation
-        durchzuführen.
-  </para>
+  <para>due to the cmake build process the configuration is automatic for later installation;
+        the configuration for the user is done via the KShowmail Configuration dialog after
+        installation.</para>
 
   </sect1>
 
-<sect1 id="bugs">
-  <title>Softwarefehler ("Bugs")</title>
+  <sect1 id="bugs">
+  <title>Bugs</title>
   <para>
-  Anmerkung: Diese Dokumentation beschreibt wie KShowmail sich verhalten sollte, das tatsächliche Verhalten
-  von KShowmail kann davon abweichen.
-  Einige der Fehler in der aktuellen Version, die bei Benutzertests gefunden wurden, sind erwähnt in einer
-  separaten Datei mit Namen BUGS_4.0.1</para>
+  Note that this documentation describes how KShowmail is intended to work,
+  and actual behavior of KShowmail may deviate from the handbook.
+  Some of the current version's bugs, as found by user tests, are mentioned
+  in a separate file named BUGS_4.0.1</para>
   </sect1>
 
   </appendix>
