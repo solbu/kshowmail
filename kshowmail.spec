@@ -8,7 +8,10 @@ URL:     http://kshowmail.sourceforge.net/
 Source0: %{name}-%{version}.tar.gz                      
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
 Requires: kdepimlibs4 libkdepim4 libkdepimlibs4
-BuildRequires:  libkde4-devel libkdepim4-devel libkdepimlibs4-devel
+BuildRequires:  libkde4-devel 
+BuildRequires: libkdepim4-devel 
+BuildRequires: libkdepimlibs4-devel
+BuildRequires: update-desktop-files
 
 
 %description
@@ -29,17 +32,19 @@ Authors:
 
 %build
 %cmake_kde4 -d build  
-make %{?_smp_mflags}
+%make_jobs
 
 
 %install
-cd build  
-%makeinstall
-cd ..
+pushd build  
+%kde4_makeinstall
+popd
 
-%kde_post_install
+%suse_update_desktop_file %name Network Email
 
 %find_lang %{name}
+
+%kde_post_install
 
 %clean
 rm -fr %buildroot
@@ -48,10 +53,14 @@ rm -fr %buildroot
 
 %files 
 %defattr(-,root,root)
-%doc 
-%{_datadir}/doc/kde/HTML/en/kshowmail/index.cache.bz2
-%{_datadir}/doc/kde/HTML/en/kshowmail/index.docbook
-%{_bindir}/kshowmail
+
+%{_kde4_bindir}/kshowmail
+
+%doc ChangeLog README
+
+%{_kde4_htmldir}/*/kshowmail
+
+
 %{_datadir}/applications/kde4/kshowmail.desktop
 %{_datadir}/icons/hicolor/*x*/apps/%{name}.png
 %dir %{_datadir}/kde4
