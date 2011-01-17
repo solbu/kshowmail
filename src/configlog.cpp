@@ -104,7 +104,7 @@ ConfigLog::ConfigLog( QWidget * parent, const QVariantList & args )
   QVBoxLayout* layManualDelMails = new QVBoxLayout();
   layMain->addLayout( layManualDelMails );
 
-  chkLogManualDeletedMails = new QCheckBox( i18n( "Log manual deleted mails" ), this );
+  chkLogManualDeletedMails = new QCheckBox( i18n( "Log manually deleted mails" ), this );
   chkLogManualDeletedMails->setToolTip( i18n( "Check to activate the log of manual deleted mails." ) );
   layManualDelMails->addWidget( chkLogManualDeletedMails );
   connect( chkLogManualDeletedMails, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
