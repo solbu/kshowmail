@@ -5,10 +5,12 @@ Name=Accounts
 Name[de]=Konten
 Name[es]=Cuentas
 Name[it]=Account
+Name[nl]=Accounts
 Comment=Accounts
 Comment[de]=Konten
 Comment[es]=Cuentas
 Comment[it]=Account
+Comment[nl]=Accounts
 Icon=network-workgroup
 ServiceTypes=KCModule
 

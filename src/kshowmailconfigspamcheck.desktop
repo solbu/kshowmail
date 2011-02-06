@@ -4,10 +4,12 @@ Name=Spam Checking
 Name[de]=Spam-Prüfung
 Name[es]=Análisis de spam
 Name[it]=Controllo Spam
+Name[nl]=Spamcontrole
 Comment=Checking for Spam
 Comment[de]=Prüfung auf Spam
 Comment[es]=Analizar el spam
 Comment[it]=Controllo Spam
+Comment[nl]=Controleren op spam
 Icon=mail-mark-junk
 ServiceTypes=KCModule
 

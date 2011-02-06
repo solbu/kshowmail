@@ -4,10 +4,12 @@ Name=Filter
 Name[de]=Filter
 Name[es]=Filtro
 Name[it]=Filtri
+Name[nl]=Filter
 Comment=Filter
 Comment[de]=Filter
 Comment[es]=Filtro
 Comment[it]=Filtri
+Comment[nl]=Filter
 Icon=view-filter
 ServiceTypes=KCModule
 
