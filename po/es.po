@@ -7,12 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: ulrich.weigelt@gmx.de\n"
-"POT-Creation-Date: 2010-07-06 19:40+0200\n"
-"PO-Revision-Date: 2010-04-29 17:04+0100\n"
+"POT-Creation-Date: 2011-01-18 17:34+0100\n"
+"PO-Revision-Date: 2011-01-18 20:47+0100\n"
 "Last-Translator: Elsa Andrés <e.andres@ist-sci.com>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Spanish\n"
 
@@ -21,516 +21,437 @@ msgctxt "@info we need the password"
 msgid "Please type in the password for <resource>%1</resource>"
 msgstr "Por favor, introduzca la contraseña de <resource>%1</resource>"
 
-#: account.cpp:464
+#: account.cpp:470
 msgctxt "@info error message"
 msgid "Unknown error"
 msgstr "Error desconocido"
 
-#: account.cpp:465
+#: account.cpp:471
 msgctxt "@info error message"
 msgid "Connection refused"
 msgstr "Conexión rechazada"
 
-#: account.cpp:466
+#: account.cpp:472
 msgctxt "@info error message"
 msgid "Host not found: <resource>%1</resource>"
 msgstr "Servidor no encontrado: <resource>%1</resource>"
 
-#: account.cpp:467
+#: account.cpp:473
 msgctxt "@info error message"
 msgid "Host <resource>%1</resource> closed"
 msgstr "Servidor <resource>%1</resource> cerrado"
 
-#: account.cpp:468
+#: account.cpp:474
 msgctxt "@info error message"
 msgid "Socket access error"
 msgstr "Error de conexión de acceso"
 
-#: account.cpp:469
+#: account.cpp:475
 msgctxt "@info error message"
 msgid "Socket resource error"
 msgstr "Error de conexión del recurso"
 
-#: account.cpp:470
+#: account.cpp:476
 msgctxt "@info error message"
 msgid "Socket timeout error"
 msgstr "Error de conexión de tiempo límite"
 
-#: account.cpp:471
+#: account.cpp:477
 msgctxt "@info error message"
 msgid "Network error"
 msgstr "Error de red"
 
-#: account.cpp:472
+#: account.cpp:478
 msgctxt "@info error message"
 msgid "Unsupported Socket Operation Error"
 msgstr "Error de conexión de operación no admitida"
 
-#: account.cpp:473
+#: account.cpp:479
 msgctxt "@info error message"
 msgid "Unknown connection error"
 msgstr "Error de conexión desconocido"
 
-#: account.cpp:521
+#: account.cpp:527
 msgctxt "@info general error message"
 msgid "Account <resource>%1</resource>: %2"
 msgstr "Cuenta <resource>%1</resource>: %2"
 
-#: account.cpp:669
+#: account.cpp:678
 msgctxt "@info error message: this is not a POP3 server"
 msgid "<resource>%1</resource> is not a POP3 mail server"
 msgstr "<resource>%1</resource> no es un servidor de correo POP3"
 
-#: account.cpp:697
+#: account.cpp:706
 msgctxt "@info error message: connection lost"
 msgid "No connect to <resource>%1</resource>"
 msgstr "Sin conexión con <resource>%1</resource>"
 
-#: account.cpp:714
+#: account.cpp:722
 msgctxt "@info error message: could not send a command to the server"
 msgid "Could not send the command <icode>%1</icode> to <resource>%2</resource>"
-msgstr ""
-"No se ha podido enviar el comando <icode>%1</icode> a <resource>%2</resource>"
+msgstr "No se ha podido enviar el comando <icode>%1</icode> a <resource>%2</resource>"
 
-#: account.cpp:763
+#: account.cpp:771
 msgctxt "@info error message"
 msgid "No support for START-TLS"
 msgstr "No admite START-TLS"
 
-#: account.cpp:860
+#: account.cpp:868
 msgctxt "@info Warning: the server does'nt support secure login"
-msgid ""
-"Account <resource>%1</resource>: This server doesn't provide a safety login "
-"and you have disallowed the using of an unsafe login. If you want to use "
-"this Account you must allow unsafe login at the account setup.<nl/"
-"><warning>Bear in mind in this case criminals could read your password!</"
-"warning>"
-msgstr ""
-"Cuenta <resource>%1</resource>: Este servidor no proporciona un inicio de "
-"sesión seguro y ha desactivado el uso de inicio de sesión sin seguridad. Si "
-"quiere utilizar esta Cuenta debe permitir el inicio de sesión sin seguridad "
-"en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta que en este "
-"caso los criminales podrían leer su contraseña!</warning>"
+msgid "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>"
+msgstr "Cuenta <resource>%1</resource>: Este servidor no proporciona un inicio de sesión seguro y ha desactivado el uso de inicio de sesión sin seguridad. Si quiere utilizar esta Cuenta debe permitir el inicio de sesión sin seguridad en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta que en este caso los criminales podrían leer su contraseña!</warning>"
 
-#: account.cpp:860 account.cpp:2427
+#: account.cpp:868
+#: account.cpp:2456
 msgctxt "@title:window"
 msgid "Unsafe login is not allowed"
 msgstr "No se admite el inicio de sesión sin seguridad"
 
-#: account.cpp:936
+#: account.cpp:944
 msgctxt "@info error message: we could not quit the POP3 session"
-msgid ""
-"<resource>%1</resource> has not accepted the <icode>%2</icode> command. "
-"Error message is: <message>%3</message>"
-msgstr ""
-"<resource>%1</resource> no ha aceptado el comando <icode>%2</icode>. Mensaje "
-"de error: <message>%3</message>"
+msgid "<resource>%1</resource> has not accepted the <icode>%2</icode> command. Error message is: <message>%3</message>"
+msgstr "<resource>%1</resource> no ha aceptado el comando <icode>%2</icode>. Mensaje de error: <message>%3</message>"
 
-#: account.cpp:969 account.cpp:1003
+#: account.cpp:977
 msgctxt "@info error message"
-msgid "Login has failed. Error message is: <message>%1</message>"
-msgstr ""
-"Ha fallado el inicio de sesión. Mensaje de error: <message>%1</message>"
+msgid "Login has failed. Maybe your user name is invalid. Error message is: <message>%1</message>"
+msgstr "Ha fallado el inicio de sesión. Es posible que el nombre de usuario no sea correcto. Mensaje de error: <message>%1</message>"
 
-#: account.cpp:1077
+#: account.cpp:1014
 msgctxt "@info error message"
-msgid ""
-"Login has failed. Error message is: <message>%1</message><nl/>Maybe the "
-"secure login of this server is faulty. You can try to allow the unsafe login "
-"for this account at the account setup.<nl/><warning>Bear in mind in this "
-"case criminals could read your password!</warning>"
-msgstr ""
-"Ha fallado el inicio de sesión. El mensaje de error es: <message>%1</"
-"message><nl/>Es posible que el inicio de sesión seguro de este servidor "
-"tenga algún problema. Puede intentar permitir el inicio de sesión sin "
-"seguridad en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta "
-"que en este caso los criminales podrían leer su contraseña!</warning>"
+msgid "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message>"
+msgstr "Ha fallado el inicio de sesión. Es posible que el nombre de usuario o la contraseña no sean correctos. Mensaje de error: <message>%1</message>"
 
-#: account.cpp:1150
+#: account.cpp:1090
+msgctxt "@info error message"
+msgid "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>"
+msgstr "Ha fallado el inicio de sesión. Es posible que el nombre de usuario o la contraseña no sean correctos. El mensaje de error es: <message>%1</message><nl/>Es posible que el inicio de sesión seguro de este servidor tenga algún problema. Puede intentar permitir el inicio de sesión sin seguridad en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta que en este caso los criminales podrían leer su contraseña!</warning>"
+
+#: account.cpp:1165
 msgctxt "@info error message: a server doesn't support mail UIDs"
-msgid ""
-"<resource>%1</resource> doesn't support mail UID's. KShowmail can't work "
-"without this. Error message is: <message>%2</message>"
-msgstr ""
-"<resource>%1</resource> no admite UID de correo. KShowmail no puede "
-"funcionar sin ésto. Mensaje de error: <message>%2</message>"
+msgid "<resource>%1</resource> doesn't support mail UID's. KShowmail can't work without this. Error message is: <message>%2</message>"
+msgstr "<resource>%1</resource> no admite UID de correo. KShowmail no puede funcionar sin ésto. Mensaje de error: <message>%2</message>"
 
-#: account.cpp:1187
+#: account.cpp:1202
 msgctxt "@info error message"
 msgid "Get corrupt UID list. No spaces"
 msgstr "Lista de UID corrupta. Sin espacios"
 
-#: account.cpp:1200
+#: account.cpp:1215
 msgctxt "@info error message"
 msgid "Get corrupt UID list. No number found at begin."
 msgstr "Lista de UID corrupta. Sin números al inicio."
 
-#: account.cpp:1382
+#: account.cpp:1397
 msgctxt "@info error message: a server has not send a response"
-msgid ""
-"<resource>%1</resource> has not sent a response after <icode>%2</icode> "
-"command."
-msgstr ""
-"<resource>%1</resource> no ha enviado una respuesta tras el comando <icode>%"
-"2</icode>."
+msgid "<resource>%1</resource> has not sent a response after <icode>%2</icode> command."
+msgstr "<resource>%1</resource> no ha enviado una respuesta tras el comando <icode>%2</icode>."
 
-#: account.cpp:1389
+#: account.cpp:1404
 msgctxt "@info error message: a server has not send the mail sizes"
-msgid ""
-"Error while try to get the mail sizes. Message is: <message>%1</message>"
-msgstr ""
-"Error al intentar obtener el tamaño de los mensajes. Mensaje: <message>%1</"
-"message>"
+msgid "Error while try to get the mail sizes. Message is: <message>%1</message>"
+msgstr "Error al intentar obtener el tamaño de los mensajes. Mensaje: <message>%1</message>"
 
-#: account.cpp:1406
+#: account.cpp:1421
 msgctxt "@info error message"
 msgid "Error while try to get the mail sizes. All mails are disappeard."
-msgstr ""
-"Error al intentar obtener el tamaño de los mensajes. Todos los mensajes han "
-"desaparecido."
+msgstr "Error al intentar obtener el tamaño de los mensajes. Todos los mensajes han desaparecido."
 
-#: account.cpp:1422
+#: account.cpp:1437
 msgctxt "@info error message"
 msgid "Get corrupt size list. No spaces"
 msgstr "Lista de tamaños corrupta. Sin espacios"
 
-#: account.cpp:1434
+#: account.cpp:1449
 msgctxt "@info error message"
 msgid "Get corrupt size list. No numbers at begin."
 msgstr "Lista de tamaños corrupta. Sin números al inicio."
 
-#: account.cpp:1446
+#: account.cpp:1461
 msgctxt "@info error message"
 msgid "Get corrupt size list. No sizes found at end."
 msgstr "Lista de tamaños corrupta. Sin tamaños al final."
 
-#: account.cpp:1510
+#: account.cpp:1525
 msgctxt "@info error message: could not get a mail header"
-msgid ""
-"<resource>%1</resource> has not sent the header of mail <numid>%2</numid>."
-msgstr ""
-"<resource>%1</resource> no ha enviado la cabecera del mensaje <numid>%2</"
-"numid>."
+msgid "<resource>%1</resource> has not sent the header of mail <numid>%2</numid>."
+msgstr "<resource>%1</resource> no ha enviado la cabecera del mensaje <numid>%2</numid>."
 
-#: account.cpp:1518
+#: account.cpp:1533
 msgctxt "@info error message: a server doesn't know the command TOP"
-msgid ""
-"<resource>%1</resource> doesn't support the TOP command. KShowmail can't "
-"work without this. Error message is: <message>%2</message>"
-msgstr ""
-"<resource>%1</resource> no admite el comando TOP. KShowmail no puede "
-"funcionar sin ésto. Mensaje de error: <message>%2</message>"
+msgid "<resource>%1</resource> doesn't support the TOP command. KShowmail can't work without this. Error message is: <message>%2</message>"
+msgstr "<resource>%1</resource> no admite el comando TOP. KShowmail no puede funcionar sin ésto. Mensaje de error: <message>%2</message>"
 
-#: account.cpp:1669
+#: account.cpp:1684
 msgctxt "@info error message: no server responce after we have deleted a mail"
-msgid ""
-"<resource>%1</resource> has not sent a answer after removing of mail <numid>%"
-"2</numid>."
-msgstr ""
-"<resource>%1</resource> no ha enviado una respuesta tras eliminar el mensaje "
-"<numid>%2</numid>."
+msgid "<resource>%1</resource> has not sent a answer after removing of mail <numid>%2</numid>."
+msgstr "<resource>%1</resource> no ha enviado una respuesta tras eliminar el mensaje <numid>%2</numid>."
 
-#: account.cpp:1677
+#: account.cpp:1692
 msgctxt "@info error message: error while removing a mail"
-msgid ""
-"Error while removing mail <numid>%1</numid> of <resource>%2</resource>: "
-"<message>%3</message>"
-msgstr ""
-"Error al eliminar el mensaje <numid>%1</numid> de <resource>%2</resource>: "
-"<message>%3</message>"
+msgid "Error while removing mail <numid>%1</numid> of <resource>%2</resource>: <message>%3</message>"
+msgstr "Error al eliminar el mensaje <numid>%1</numid> de <resource>%2</resource>: <message>%3</message>"
 
-#: account.cpp:1712
+#: account.cpp:1738
 msgctxt "@info error message: we could not download a mail"
-msgid ""
-"<resource>%1</resource> has not sent an answer after retrieve of mail <numid>"
-"%2</numid>."
-msgstr ""
-"<resource>%1</resource> no ha enviado una respuesta tras recuperar el "
-"mensaje <numid>%2</numid>."
+msgid "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%2</numid>."
+msgstr "<resource>%1</resource> no ha enviado una respuesta tras recuperar el mensaje <numid>%2</numid>."
 
-#: account.cpp:1720 account.cpp:1862
+#: account.cpp:1746
+#: account.cpp:1889
 msgctxt "@info error message: we could not download a mail"
-msgid ""
-"Error while downloading mail <numid>%1</numid> of <resource>%2</resource>: "
-"<message>%3</message>"
-msgstr ""
-"Error al descargar el mensaje <numid>%1</numid> de <resource>%2</resource>: "
-"<message>%3</message>"
+msgid "Error while downloading mail <numid>%1</numid> of <resource>%2</resource>: <message>%3</message>"
+msgstr "Error al descargar el mensaje <numid>%1</numid> de <resource>%2</resource>: <message>%3</message>"
 
-#: account.cpp:1854
+#: account.cpp:1881
 msgctxt "@info error message: we could not download a mail"
-msgid ""
-"<resource>%1</resource> has not sent a answer after retrieve of mail <numid>%"
-"2</numid>."
-msgstr ""
-"<resource>%1</resource> no ha enviado una respuesta tras recuperar el "
-"mensaje <numid>%2</numid>."
+msgid "<resource>%1</resource> has not sent a answer after retrieve of mail <numid>%2</numid>."
+msgstr "<resource>%1</resource> no ha enviado una respuesta tras recuperar el mensaje <numid>%2</numid>."
 
-#: account.cpp:2079
-msgctxt ""
-"@info error message: writing a mail into a mailbox: this is not a mail box"
+#: account.cpp:2106
+msgctxt "@info error message: writing a mail into a mailbox: this is not a mail box"
 msgid "<filename>%1</filename> is not a mailbox."
 msgstr "<filename>%1</filename> no es un buzón de correo."
 
-#: account.cpp:2094
+#: account.cpp:2121
 msgctxt "@info error message"
-msgid ""
-"Can't read the hostname of your computer. But KShowmail need it to write a "
-"mail into the mailbox."
-msgstr ""
-"No se puede leer el nombre de equipo de su sistema, pero KShowmail lo "
-"necesita para guardar un mensaje en su buzón de correo."
+msgid "Can't read the hostname of your computer. But KShowmail need it to write a mail into the mailbox."
+msgstr "No se puede leer el nombre de equipo de su sistema, pero KShowmail lo necesita para guardar un mensaje en su buzón de correo."
 
-#: account.cpp:2118
+#: account.cpp:2145
 msgctxt "@info error message: we could not write a mail into a mailbox"
 msgid "Could not file a mail to <filename>%1</filename>."
 msgstr "No se ha podido almacenar un mensaje en <filename>%1</filename>."
 
-#: account.cpp:2129
+#: account.cpp:2156
 msgctxt "@info error message: error during writing a mail into a mailbox"
-msgid ""
-"Could not move a mail from <filename>%1</filename> to <filename>%2</"
-"filename>."
-msgstr ""
-"No se ha podido mover un mensaje de <filename>%1</filename> a <filename>%2</"
-"filename>."
+msgid "Could not move a mail from <filename>%1</filename> to <filename>%2</filename>."
+msgstr "No se ha podido mover un mensaje de <filename>%1</filename> a <filename>%2</filename>."
 
-#: account.cpp:2170
+#: account.cpp:2197
 msgctxt "@info"
-msgid ""
-"You want to check your mails for spam, but SpamAssassin is not running.<nl/"
-">KShowmail skips the spam check."
-msgstr ""
-"Quiere analizar sus mensajes para comprobar el spam, pero SpamAssassin no se "
-"está ejecutando.<nl/>KShowmail se saltará la comprobación del spam."
+msgid "You want to check your mails for spam, but SpamAssassin is not running.<nl/>KShowmail skips the spam check."
+msgstr "Quiere analizar sus mensajes para comprobar el spam, pero SpamAssassin no se está ejecutando.<nl/>KShowmail se saltará la comprobación del spam."
 
-#: account.cpp:2170
+#: account.cpp:2197
 msgctxt "@title:window"
 msgid "SpamAssassin is not running"
 msgstr "SpamAssassin no se encuentra en ejecución"
 
-#: account.cpp:2273
+#: account.cpp:2302
 msgctxt "@info error message: general SSL error"
 msgid "SSL error: <message>%1</message><nl/>Do you want to continue?"
 msgstr "Error de SSL: <message>%1</message><nl/>¿Desea continuar?"
 
-#: account.cpp:2274
+#: account.cpp:2303
 msgctxt "@title:window"
 msgid "SSL-Error - %1"
 msgstr "Error-SSL - %1"
 
-#: account.cpp:2369
+#: account.cpp:2398
 msgctxt "@info error message"
 msgid "Timeout"
 msgstr "Tiempo límite"
 
-#: account.cpp:2377
+#: account.cpp:2406
 msgctxt "@info the task was canceled by user"
 msgid "Task canceled"
 msgstr "Trabajo cancelado"
 
-#: account.cpp:2427
+#: account.cpp:2456
 msgctxt "@info error message: this server doesn't support secure login"
-msgid ""
-"Account <resource>%1</resource>: This server doesn't provide a safety login "
-"and you have disallowed the using of an unsafe login. If you want to use "
-"this Account you must allow unsafe login at the account setup.<nl/"
-"><warning>Bear in mind in this case criminals could read your password!</"
-"warning>"
-msgstr ""
-"Cuenta <resource>%1</resource>: Este servidor no proporciona un inicio de "
-"sesión seguro y ha desactivado el uso de inicio de sesión sin seguridad. Si "
-"quiere utilizar esta Cuenta debe permitir el inicio de sesión sin seguridad "
-"en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta que en este "
-"caso los criminales podrían leer su contraseña!</warning>"
+msgid "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>"
+msgstr "Cuenta <resource>%1</resource>: Este servidor no proporciona un inicio de sesión seguro y ha desactivado el uso de inicio de sesión sin seguridad. Si quiere utilizar esta Cuenta debe permitir el inicio de sesión sin seguridad en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta que en este caso los criminales podrían leer su contraseña!</warning>"
 
 #: accountsetupdialogcontext.cpp:45
 msgctxt "@label:textbox account name"
 msgid "Account:"
 msgstr "Cuenta:"
 
-#: accountsetupdialogcontext.cpp:49 accountsetupdialogcontext.cpp:50
-#: accountsetupdialog.cpp:48 accountsetupdialog.cpp:49
+#: accountsetupdialogcontext.cpp:49
+#: accountsetupdialogcontext.cpp:50
+#: accountsetupdialog.cpp:48
+#: accountsetupdialog.cpp:49
 msgctxt "@info:tooltip"
 msgid "Unique Account Name"
 msgstr "Nombre de cuenta único"
 
-#: accountsetupdialogcontext.cpp:54 accountsetupdialog.cpp:53
+#: accountsetupdialogcontext.cpp:54
+#: accountsetupdialog.cpp:53
 msgctxt "@label:textbox server host name"
 msgid "Server:"
 msgstr "Servidor:"
 
-#: accountsetupdialogcontext.cpp:56 accountsetupdialogcontext.cpp:57
-#: accountsetupdialog.cpp:55 accountsetupdialog.cpp:56
+#: accountsetupdialogcontext.cpp:56
+#: accountsetupdialogcontext.cpp:57
+#: accountsetupdialog.cpp:55
+#: accountsetupdialog.cpp:56
 msgctxt "@info:tooltip"
 msgid "Server Name"
 msgstr "Nombre del servidor"
 
-#: accountsetupdialogcontext.cpp:61 accountsetupdialog.cpp:60
+#: accountsetupdialogcontext.cpp:61
+#: accountsetupdialog.cpp:60
 msgctxt "@label:listbox mail fetching protocol"
 msgid "Protocol:"
 msgstr "Protocolo:"
 
-#: accountsetupdialogcontext.cpp:64 accountsetupdialogcontext.cpp:65
-#: accountsetupdialog.cpp:63 accountsetupdialog.cpp:64
+#: accountsetupdialogcontext.cpp:64
+#: accountsetupdialogcontext.cpp:65
+#: accountsetupdialog.cpp:63
+#: accountsetupdialog.cpp:64
 msgctxt "@info:tooltip"
-msgid ""
-"Protocol, which shall be used to get the mails from the server. Currently "
-"KShowmail just supports POP3."
-msgstr ""
-"Protocolo que se debe utilizar para obtener los mensajes del servidor. "
-"Actualmente KShowmail sólo admite POP3."
+msgid "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3."
+msgstr "Protocolo que se debe utilizar para obtener los mensajes del servidor. Actualmente KShowmail sólo admite POP3."
 
-#: accountsetupdialogcontext.cpp:69 accountsetupdialog.cpp:68
+#: accountsetupdialogcontext.cpp:69
+#: accountsetupdialog.cpp:68
 msgctxt "@label:spinbox TCP port, on which the server is listening"
 msgid "Port:"
 msgstr "Puerto:"
 
-#: accountsetupdialogcontext.cpp:73 accountsetupdialogcontext.cpp:74
-#: accountsetupdialog.cpp:72 accountsetupdialog.cpp:73
+#: accountsetupdialogcontext.cpp:73
+#: accountsetupdialogcontext.cpp:74
+#: accountsetupdialog.cpp:72
+#: accountsetupdialog.cpp:73
 msgctxt "@info:tooltip"
 msgid "Port Number. Normally POP3 uses port 110."
 msgstr "Número de puerto. POP3 utiliza normalmente el puerto 110."
 
-#: accountsetupdialogcontext.cpp:78 accountsetupdialog.cpp:77
+#: accountsetupdialogcontext.cpp:78
+#: accountsetupdialog.cpp:77
 msgctxt "@label:textbox user name to authenticate"
 msgid "User:"
 msgstr "Usuario:"
 
-#: accountsetupdialogcontext.cpp:80 accountsetupdialogcontext.cpp:81
-#: accountsetupdialog.cpp:79 accountsetupdialog.cpp:80
+#: accountsetupdialogcontext.cpp:80
+#: accountsetupdialogcontext.cpp:81
+#: accountsetupdialog.cpp:79
+#: accountsetupdialog.cpp:80
 msgctxt "@info:tooltip"
 msgid "To authenticate to the mail server you need an user name."
-msgstr ""
-"Para autentificarse en el servidor de correo necesita un nombre de usuario."
+msgstr "Para autentificarse en el servidor de correo necesita un nombre de usuario."
 
-#: accountsetupdialogcontext.cpp:86 accountsetupdialog.cpp:85
-msgctxt ""
-"@title:group contains password storage options and passwort input textbox"
+#: accountsetupdialogcontext.cpp:86
+#: accountsetupdialog.cpp:85
+msgctxt "@title:group contains password storage options and passwort input textbox"
 msgid "Password"
 msgstr "Contraseña"
 
-#: accountsetupdialogcontext.cpp:99 accountsetupdialog.cpp:98
+#: accountsetupdialogcontext.cpp:99
+#: accountsetupdialog.cpp:98
 msgctxt "@option:radio don't save the password"
 msgid "Don't save"
 msgstr "No guardar"
 
-#: accountsetupdialogcontext.cpp:100 accountsetupdialog.cpp:99
+#: accountsetupdialogcontext.cpp:100
+#: accountsetupdialog.cpp:99
 msgctxt "@option:radio save passwort in config file"
 msgid "Save password "
 msgstr "Guardar contraseña "
 
-#: accountsetupdialogcontext.cpp:101 accountsetupdialog.cpp:100
+#: accountsetupdialogcontext.cpp:101
+#: accountsetupdialog.cpp:100
 msgctxt "@option:radio use KWallet to save the password"
 msgid "Use KWallet"
 msgstr "Utilizar KWallet"
 
-#: accountsetupdialogcontext.cpp:105 accountsetupdialog.cpp:104
+#: accountsetupdialogcontext.cpp:105
+#: accountsetupdialog.cpp:104
 msgctxt "@info:tooltip"
-msgid ""
-"Don't save password. KShowmail will ask you for it at first server connect."
-msgstr ""
-"No guardar la contraseña. KShowmail se la pedirá cuando conecte con el "
-"servidor la primera vez."
+msgid "Don't save password. KShowmail will ask you for it at first server connect."
+msgstr "No guardar la contraseña. KShowmail se la pedirá cuando conecte con el servidor la primera vez."
 
-#: accountsetupdialogcontext.cpp:106 accountsetupdialog.cpp:105
+#: accountsetupdialogcontext.cpp:106
+#: accountsetupdialog.cpp:105
 msgctxt "@info:tooltip"
-msgid ""
-"Save password in the configuration file. Not recommended, because the "
-"password is just lightly encrypted"
-msgstr ""
-"Guardar la contraseña en el archivo de configuración. No se recomienda, ya "
-"que la contraseña está ligeramente cifrada"
+msgid "Save password in the configuration file. Not recommended, because the password is just lightly encrypted"
+msgstr "Guardar la contraseña en el archivo de configuración. No se recomienda, ya que la contraseña está ligeramente cifrada"
 
-#: accountsetupdialogcontext.cpp:107 accountsetupdialog.cpp:106
+#: accountsetupdialogcontext.cpp:107
+#: accountsetupdialog.cpp:106
 msgctxt "@info:tooltip"
-msgid ""
-"Use KWallet to save the password. Maybe you have to type in the KWallet "
-"master password at first server connect."
-msgstr ""
-"Utilizar KWallet para guardar la contraseña. Es posible que tenga que "
-"introducir la contraseña maestra cuando conecte con el servidor la primera "
-"vez."
+msgid "Use KWallet to save the password. Maybe you have to type in the KWallet master password at first server connect."
+msgstr "Utilizar KWallet para guardar la contraseña. Es posible que tenga que introducir la contraseña maestra cuando conecte con el servidor la primera vez."
 
-#: accountsetupdialogcontext.cpp:127 accountsetupdialog.cpp:126
+#: accountsetupdialogcontext.cpp:127
+#: accountsetupdialog.cpp:126
 msgctxt "@option:check to activate this account"
 msgid "Active"
 msgstr "Activar"
 
-#: accountsetupdialogcontext.cpp:128 accountsetupdialog.cpp:127
+#: accountsetupdialogcontext.cpp:128
+#: accountsetupdialog.cpp:127
 msgctxt "@info:tooltip"
 msgid "Select it to activate this account."
 msgstr "Selecciónelo para activar esta cuenta."
 
-#: accountsetupdialogcontext.cpp:133 accountsetupdialog.cpp:132
+#: accountsetupdialogcontext.cpp:133
+#: accountsetupdialog.cpp:132
 msgctxt "@title:group transfer encryption"
 msgid "Encryption"
 msgstr "Cifrado"
 
-#: accountsetupdialogcontext.cpp:144 accountsetupdialog.cpp:143
+#: accountsetupdialogcontext.cpp:144
+#: accountsetupdialog.cpp:143
 msgctxt "@option:radio encryption"
 msgid "None"
 msgstr "Ninguno"
 
-#: accountsetupdialogcontext.cpp:145 accountsetupdialog.cpp:144
+#: accountsetupdialogcontext.cpp:145
+#: accountsetupdialog.cpp:144
 msgctxt "@option:radio encryption"
 msgid "SSL"
 msgstr "SSL"
 
-#: accountsetupdialogcontext.cpp:146 accountsetupdialog.cpp:145
+#: accountsetupdialogcontext.cpp:146
+#: accountsetupdialog.cpp:145
 msgctxt "@option:radio encryption"
 msgid "TLS"
 msgstr "TLS"
 
-#: accountsetupdialogcontext.cpp:150 accountsetupdialog.cpp:149
+#: accountsetupdialogcontext.cpp:150
+#: accountsetupdialog.cpp:149
 msgctxt "@info:tooltip"
-msgid ""
-"The download of the mail header and body will not be encrypted. Use this, if "
-"your provider doesn't make a secure transfer available."
-msgstr ""
-"La descarga de la cabecera y el cuerpo del mensaje no estará cifrada. "
-"Utilice esta opción si su proveedor no dispone de transferencia segura."
+msgid "The download of the mail header and body will not be encrypted. Use this, if your provider doesn't make a secure transfer available."
+msgstr "La descarga de la cabecera y el cuerpo del mensaje no estará cifrada. Utilice esta opción si su proveedor no dispone de transferencia segura."
 
-#: accountsetupdialogcontext.cpp:151 accountsetupdialog.cpp:150
+#: accountsetupdialogcontext.cpp:151
+#: accountsetupdialog.cpp:150
 msgctxt "@info:tooltip"
-msgid ""
-"Secure Sockets Layer (SSL), is a cryptographic protocol that provides secure "
-"communications on the Internet."
-msgstr ""
-"El Protocolo de Capa de Conexión Segura (SSL) es un protocolo criptográfico "
-"que proporciona comunicaciones seguras en Internet."
+msgid "Secure Sockets Layer (SSL), is a cryptographic protocol that provides secure communications on the Internet."
+msgstr "El Protocolo de Capa de Conexión Segura (SSL) es un protocolo criptográfico que proporciona comunicaciones seguras en Internet."
 
-#: accountsetupdialogcontext.cpp:152 accountsetupdialog.cpp:151
+#: accountsetupdialogcontext.cpp:152
+#: accountsetupdialog.cpp:151
 msgctxt "@info:tooltip"
-msgid ""
-"Transport Layer Security (TLS) is a cryptographic protocol that provides "
-"secure communications on the Internet. It is the successor of SSL."
-msgstr ""
-"Seguridad de la Capa de Transporte (TLS) es un protocolo criptográfico que "
-"proporciona comunicaciones seguras en Internet. Es el sucesor de SSL."
+msgid "Transport Layer Security (TLS) is a cryptographic protocol that provides secure communications on the Internet. It is the successor of SSL."
+msgstr "Seguridad de la Capa de Transporte (TLS) es un protocolo criptográfico que proporciona comunicaciones seguras en Internet. Es el sucesor de SSL."
 
-#: accountsetupdialogcontext.cpp:161 accountsetupdialog.cpp:160
+#: accountsetupdialogcontext.cpp:161
+#: accountsetupdialog.cpp:160
 msgctxt "@option:check whether login without security shall be allowed"
 msgid "Allow unsafe login"
 msgstr "Permitir inicio de sesión sin seguridad"
 
-#: accountsetupdialogcontext.cpp:162 accountsetupdialog.cpp:161
+#: accountsetupdialogcontext.cpp:162
+#: accountsetupdialog.cpp:161
 msgctxt "@info:tooltip"
 msgid ""
 "Select it to allow an unsafe login if necessary.\n"
 "The password will be transmit unencrypted. Maybe someone can read it!"
 msgstr ""
-"Selecciónelo para permitir el inicio de sesión sin seguridad en el caso de "
-"que sea necesario.\n"
-"La contraseña se transmitirá sin cifrar. ¡Es posible que alguien la pueda "
-"leer!"
+"Selecciónelo para permitir el inicio de sesión sin seguridad en el caso de que sea necesario.\n"
+"La contraseña se transmitirá sin cifrar. ¡Es posible que alguien la pueda leer!"
 
-#: accountsetupdialogcontext.cpp:168 accountsetupdialog.cpp:167
+#: accountsetupdialogcontext.cpp:168
+#: accountsetupdialog.cpp:167
 msgctxt "@title:tab general account options"
 msgid "General"
 msgstr "General"
 
-#: accountsetupdialogcontext.cpp:169 accountsetupdialog.cpp:168
+#: accountsetupdialogcontext.cpp:169
+#: accountsetupdialog.cpp:168
 msgctxt "@title:tab account security options"
 msgid "Security"
 msgstr "Seguridad"
@@ -540,12 +461,14 @@ msgctxt "@title:window title of account setup dialog"
 msgid "Edit Account <resource>%1</resource>"
 msgstr "Editar la cuenta <resource>%1</resource>"
 
-#: accountsetupdialogcontext.cpp:206 accountsetupdialog.cpp:214
+#: accountsetupdialogcontext.cpp:206
+#: accountsetupdialog.cpp:214
 msgctxt "@info error message: no server was entered"
 msgid "Please enter an server."
 msgstr "Por favor, introduzca un servidor."
 
-#: accountsetupdialogcontext.cpp:212 accountsetupdialog.cpp:220
+#: accountsetupdialogcontext.cpp:212
+#: accountsetupdialog.cpp:220
 msgctxt "@info error message: no user name was entered"
 msgid "Please enter an user name."
 msgstr "Por favor, introduzca un nombre de usuario."
@@ -572,21 +495,13 @@ msgstr "Por favor, introduzca un nombre de cuenta."
 
 #: accountsetupdialog.cpp:245
 msgctxt "@info error message"
-msgid ""
-"There is already an account named <resource>%1</resource>. Please choose "
-"another name."
-msgstr ""
-"Ya existe una cuenta que se llama <resource>%1</resource>. Por favor, elija "
-"otro nombre."
+msgid "There is already an account named <resource>%1</resource>. Please choose another name."
+msgstr "Ya existe una cuenta que se llama <resource>%1</resource>. Por favor, elija otro nombre."
 
 #: accountsetupdialog.cpp:258
 msgctxt "@info info message"
-msgid ""
-"You have changed the account name. The account will lose all downloaded mail "
-"headers. Please perform a refresh."
-msgstr ""
-"Ha cambiado el nombre de la cuenta. La cuenta perderá todas las cabeceras de "
-"los mensajes descargados. Por favor, refresque esa cuenta."
+msgid "You have changed the account name. The account will lose all downloaded mail headers. Please perform a refresh."
+msgstr "Ha cambiado el nombre de la cuenta. La cuenta perderá todas las cabeceras de los mensajes descargados. Por favor, refresque esa cuenta."
 
 #: accountviewdelegate.cpp:38
 msgctxt "@item:inlistbox account is active"
@@ -624,12 +539,11 @@ msgid "Size"
 msgstr "Tamaño"
 
 #: configaccounts.cpp:35
-msgctxt ""
-"@title:column account name in the main view of the account config dialog"
+msgctxt "@title:column account name in the main view of the account config dialog"
 msgid "Name"
 msgstr "Nombre"
 
-#: configaccounts.cpp:192
+#: configaccounts.cpp:194
 msgctxt "@info"
 msgid "Do you really want to remove account <resource>%1</resource>?"
 msgstr "¿Desea eliminar la cuenta <resource>%1</resource>?"
@@ -754,22 +668,22 @@ msgctxt "@info:tooltip"
 msgid "Terminate kshowmail if no new mail"
 msgstr "Finalizar KShowmail si no hay mensajes nuevos"
 
-#: configactions.cpp:214
+#: configactions.cpp:215
 msgctxt "@item:inlistbox file types showed by file dialog"
 msgid "Sound files (*.wav, *.ogg)"
 msgstr "Archivos de sonido (*.wav, *.ogg)"
 
-#: configactions.cpp:214
+#: configactions.cpp:215
 msgctxt "@item:inlistbox file types showed by file dialog"
 msgid "All files (*)"
 msgstr "Todos los archivos (*)"
 
-#: configactions.cpp:214
+#: configactions.cpp:215
 msgctxt "@title:window"
 msgid "Select Sound File"
 msgstr "Seleccionar archivo de sonido"
 
-#: configactions.cpp:224
+#: configactions.cpp:225
 msgctxt "@title:window"
 msgid "Select external command"
 msgstr "Seleccionar comando externo"
@@ -840,8 +754,7 @@ msgid "To switch on/off the 'Messages' column in the account list"
 msgstr "Para activar/desactivar la columna 'Mensajes' en la lista de cuentas"
 
 #: configdisplay.cpp:69
-msgctxt ""
-"@option:check show column about the entire size of mails in the account view"
+msgctxt "@option:check show column about the entire size of mails in the account view"
 msgid "Size"
 msgstr "Tamaño"
 
@@ -972,11 +885,8 @@ msgstr "Lista blanca"
 
 #: configfilter.cpp:48
 msgctxt "@info:tooltip"
-msgid ""
-"Click here to edit the list of senders whose mails shall pass the filter."
-msgstr ""
-"Pulse aquí para editar la lista de los remitentes cuyos mensajes pasarán el "
-"filtro."
+msgid "Click here to edit the list of senders whose mails shall pass the filter."
+msgstr "Pulse aquí para editar la lista de los remitentes cuyos mensajes pasarán el filtro."
 
 #: configfilter.cpp:55
 msgctxt "@action:button opens the dialog to edit the blacklist"
@@ -985,12 +895,8 @@ msgstr "Lista negra"
 
 #: configfilter.cpp:56
 msgctxt "@info:tooltip"
-msgid ""
-"Click here to edit the list of senders whose mails shall be deleted or "
-"marked."
-msgstr ""
-"Pulse aquí para editar la lista de los remitentes cuyos mensajes serán "
-"eliminados o marcados."
+msgid "Click here to edit the list of senders whose mails shall be deleted or marked."
+msgstr "Pulse aquí para editar la lista de los remitentes cuyos mensajes serán eliminados o marcados."
 
 #: configfilter.cpp:68
 msgctxt "@title:group"
@@ -1039,51 +945,101 @@ msgstr "Tercera comprobación: acciones para el resto"
 
 #: configfilter.cpp:125
 msgctxt "@info:tooltip"
-msgid ""
-"Choose the action for all mails which are not filtered by the steps before."
-msgstr ""
-"Seleccione la acción para todos los mensajes que no han sido filtrados en "
-"pasos anteriores."
+msgid "Choose the action for all mails which are not filtered by the steps before."
+msgstr "Seleccione la acción para todos los mensajes que no han sido filtrados en pasos anteriores."
 
-#: configfilter.cpp:131 filtersetupdialog.cpp:103
+#: configfilter.cpp:131
+#: filtersetupdialog.cpp:103
 msgctxt "@item:inlistbox show the filtered mail"
 msgid "Show"
 msgstr "Mostrar"
 
-#: configfilter.cpp:132 filtersetupdialog.cpp:104
+#: configfilter.cpp:132
+#: filtersetupdialog.cpp:104
 msgctxt "@item:inlistbox delete the filtered mail"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: configfilter.cpp:133 filtersetupdialog.cpp:105
+#: configfilter.cpp:133
+#: filtersetupdialog.cpp:105
 msgctxt "@item:inlistbox mark the filtered mail"
 msgid "Mark"
 msgstr "Marcar"
 
-#: configfilter.cpp:134 filtersetupdialog.cpp:106
+#: configfilter.cpp:134
+#: filtersetupdialog.cpp:106
 msgctxt "@item:inlistbox write the filtered mail into a mailbox"
 msgid "Move"
 msgstr "Mover"
 
-#: configfilter.cpp:135 filtersetupdialog.cpp:107
+#: configfilter.cpp:135
+#: filtersetupdialog.cpp:107
 msgctxt "@item:inlistbox check the filtered mail for spam"
 msgid "Spamcheck"
 msgstr "Comprobar spam"
 
-#: configfilter.cpp:136 filtersetupdialog.cpp:108
+#: configfilter.cpp:136
+#: filtersetupdialog.cpp:108
 msgctxt "@item:inlistbox ignore the filtered mail"
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: configfilter.cpp:145 filtersetupdialog.cpp:117
+#: configfilter.cpp:145
+#: filtersetupdialog.cpp:117
 msgctxt "@info:tooltip"
 msgid "Choose the mailbox"
 msgstr "Seleccionar el buzón de correo"
 
-#: configfilter.cpp:645 filtersetupdialog.cpp:468
+#: configfilter.cpp:163
+msgctxt "@title:group the title of the group box for export and import the filter settings"
+msgid "Export/Import filter settings"
+msgstr "Exportar/Importar ajustes de configuración de los filtros"
+
+#: configfilter.cpp:169
+msgctxt "@action:button exports the filter settings "
+msgid "Export"
+msgstr "Exportar"
+
+#: configfilter.cpp:170
+msgctxt "@info:tooltip"
+msgid "Click here to export the filter settings."
+msgstr "Pulse aquí para exportar los ajustes de configuración de los filtros."
+
+#: configfilter.cpp:177
+msgctxt "@action:button imports the filter settings "
+msgid "Import"
+msgstr "Importar"
+
+#: configfilter.cpp:178
+msgctxt "@info:tooltip"
+msgid "Click here to import the filter settings."
+msgstr "Pulse aquí para importar los ajustes de configuración de los filtros."
+
+#: configfilter.cpp:700
+#: filtersetupdialog.cpp:468
 msgctxt "@title:window"
 msgid "Mailbox Select"
 msgstr "Seleccionar buzón de correo"
+
+#: configfilter.cpp:713
+msgctxt "@title:window The title of the dialog to choose the file for filter settings export"
+msgid "Choose the export file"
+msgstr "Seleccione el archivo a exportar"
+
+#: configfilter.cpp:875
+msgctxt "@info Message in the dialog whether the user really want to import the filter settings."
+msgid "Do you really want to import new filter settings? Your old settings will be removed."
+msgstr "¿Está seguro de que desea importar una nueva configuración de los filtros? Se eliminará la configuración anterior."
+
+#: configfilter.cpp:876
+msgctxt "@title:window the title of the dialog whether the user really want to import the filter settings"
+msgid "Import filter settings"
+msgstr "Importar ajustes de configuración de los filtros"
+
+#: configfilter.cpp:880
+msgctxt "@title:window The title of the dialog to choose the file for filter settings import"
+msgid "Choose the import file"
+msgstr "Seleccione el archivo a importar"
 
 #: configgeneral.cpp:38
 msgid "&Automatic Refresh"
@@ -1123,9 +1079,7 @@ msgstr "Cerrar a bandeja del sistema"
 
 #: configgeneral.cpp:65
 msgid "Close button leaves the application running in tray"
-msgstr ""
-"El botón de cerrar mantiene la aplicación en ejecución en la bandeja del "
-"sistema"
+msgstr "El botón de cerrar mantiene la aplicación en ejecución en la bandeja del sistema"
 
 #: configgeneral.cpp:68
 msgid "&Keep mail as new"
@@ -1135,60 +1089,84 @@ msgstr "&Mantener mensajes como nuevos"
 msgid "Keep mail as new until termination"
 msgstr "Mantener los mensajes como nuevos hasta terminar"
 
-#: configgeneral.cpp:74
+#: configgeneral.cpp:72
+msgid "Store fetched headers"
+msgstr "Guardar las cabeceras"
+
+#: configgeneral.cpp:73
+msgid ""
+"If checked, the fetched mail headers will be stored if you exit Kshowmail.\n"
+"At the next start these headers will be loaded and shown until the next refresh."
+msgstr ""
+"Si activa esta opción, se guardarán las cabeceras de los mensajes si sale de KShowmail.\n"
+"Cuando vuelva a iniciar el programa se cargarán estas cabeceras y se mostrarán hasta la próxima actualización."
+
+#: configgeneral.cpp:76
 msgid "Automatic refresh"
 msgstr "Actualización automática"
 
-#: configgeneral.cpp:75
+#: configgeneral.cpp:77
 msgid "Run refreshes of the mail list automatically"
 msgstr "Actualiza la lista de mensajes automáticamente"
 
-#: configgeneral.cpp:79
+#: configgeneral.cpp:81
 msgid "Initial Timer:"
 msgstr "Temporizador inicial:"
 
-#: configgeneral.cpp:83 configgeneral.cpp:109
+#: configgeneral.cpp:85
+#: configgeneral.cpp:111
 msgid " Seconds"
 msgstr " Segundos"
 
-#: configgeneral.cpp:84 configgeneral.cpp:85
+#: configgeneral.cpp:86
+#: configgeneral.cpp:87
 msgid "Seconds until first automatic refresh (0 = it refreshes immediately)"
-msgstr ""
-"Segundos hasta la primera actualización automática (0 = se actualiza "
-"inmediatamente)"
+msgstr "Segundos hasta la primera actualización automática (0 = se actualiza inmediatamente)"
 
-#: configgeneral.cpp:89
+#: configgeneral.cpp:91
 msgid "Interval Timer:"
 msgstr "Intervalo del temporizador:"
 
-#: configgeneral.cpp:93
+#: configgeneral.cpp:95
 msgid " Minutes"
 msgstr " Minutos"
 
-#: configgeneral.cpp:94 configgeneral.cpp:95
+#: configgeneral.cpp:96
+#: configgeneral.cpp:97
 msgid "Minutes between automatic refresh (0 = no automatic)"
 msgstr "Minutos entre actualizaciones automáticas (0 = no automático)"
 
-#: configgeneral.cpp:100
+#: configgeneral.cpp:102
 msgid "Show Connection Errors"
 msgstr "Mostrar errores de conexión"
 
-#: configgeneral.cpp:101
-msgid ""
-"If a connection error occurs (e.g. unknown server), an error message will be "
-"shown."
-msgstr ""
-"Si se produce un error de conexión (p. ej. servidor desconocido), se "
-"mostrará un mensaje de error."
+#: configgeneral.cpp:103
+msgid "If a connection error occurs (e.g. unknown server), an error message will be shown."
+msgstr "Si se produce un error de conexión (p. ej. servidor desconocido), se mostrará un mensaje de error."
 
-#: configgeneral.cpp:105
+#: configgeneral.cpp:107
 msgid "Timeout:"
 msgstr "Tiempo límite:"
 
-#: configgeneral.cpp:110 configgeneral.cpp:111
+#: configgeneral.cpp:112
+#: configgeneral.cpp:113
 msgid "Seconds until a server connect will be canceled"
-msgstr ""
-"Segundos que deben transcurrir para cancelar la conexión con el servidor"
+msgstr "Segundos que deben transcurrir para cancelar la conexión con el servidor"
+
+#: configgeneral.cpp:132
+msgctxt "@title:group the standard action of a double click on a mail"
+msgid "Double click on a mail list entry shows"
+msgstr "Al pulsar dos veces sobre una entrada de la lista de mensajes, se muestra"
+
+#: configgeneral.cpp:139
+msgctxt "@option:radio the standard double click action is to show the mail body"
+msgid "the mail"
+msgstr "el mensaje"
+
+#: configgeneral.cpp:142
+msgctxt "@option:radio the standard double click action is to show the mail header"
+msgid "the mail header"
+msgstr "la cabecera del mensaje"
 
 #: configlog.cpp:35
 msgid "Log mails deleted by filter"
@@ -1196,18 +1174,23 @@ msgstr "Registrar los mensajes eliminados por el filtro"
 
 #: configlog.cpp:36
 msgid "Check to activate the log of mails deleted by filter."
-msgstr ""
-"Marcar para activar el registro de los mensajes eliminados por el filtro."
+msgstr "Marcar para activar el registro de los mensajes eliminados por el filtro."
 
-#: configlog.cpp:48 configlog.cpp:84
+#: configlog.cpp:48
+#: configlog.cpp:84
+#: configlog.cpp:120
 msgid "Remove log entries at exit"
 msgstr "Eliminar las entradas del registro al salir"
 
-#: configlog.cpp:55 configlog.cpp:91
+#: configlog.cpp:55
+#: configlog.cpp:91
+#: configlog.cpp:127
 msgid "Remove log entries after"
 msgstr "Eliminar las entradas del registro tras"
 
-#: configlog.cpp:63 configlog.cpp:99
+#: configlog.cpp:63
+#: configlog.cpp:99
+#: configlog.cpp:135
 msgctxt "@label:spinbox number of days till deletion"
 msgid " Days"
 msgstr " Días"
@@ -1220,53 +1203,56 @@ msgstr "Registrar los mensajes movidos por el filtro"
 msgid "Check to activate the log of mails moved by filter."
 msgstr "Marcar para activar el registro de los mensajes movidos por el filtro."
 
-#: configspamcheck.cpp:36
-msgid ""
-"KShowmail uses SpamAssassin to check the mails for spam. You have to "
-"install, configure and start the SpamAssassin daemon, before you can use "
-"this service."
-msgstr ""
-"KShowmail utiliza SpamAssassin para analizar los mensajes de spam. Tiene que "
-"instalar, configurar e iniciar el daemon de SpamAssassin antes de poder "
-"utilizar este servicio."
+#: configlog.cpp:107
+msgid "Log manually deleted mails"
+msgstr "Registrar los mensajes eliminados manualmente"
 
-#: configspamcheck.cpp:47
+#: configlog.cpp:108
+msgid "Check to activate the log of manual deleted mails."
+msgstr "Marcar esta opción para activar el registro de los mensajes eliminados manualmente."
+
+#: configspamcheck.cpp:36
+msgid "KShowmail uses SpamAssassin to check the mails for spam. You have to install, configure and start the SpamAssassin daemon, before you can use this service."
+msgstr "KShowmail utiliza SpamAssassin para analizar los mensajes de spam. Tiene que instalar, configurar e iniciar el daemon de SpamAssassin antes de poder utilizar este servicio."
+
+#: configspamcheck.cpp:48
 msgid "Action for Spam"
 msgstr "Acción para el spam"
 
-#: configspamcheck.cpp:54
+#: configspamcheck.cpp:55
 msgid "Choose the action for spam mails."
 msgstr "Elegir la acción para los mensajes de spam."
 
-#: configspamcheck.cpp:59
+#: configspamcheck.cpp:60
 msgid "Delete"
 msgstr "Eliminar"
 
-#: configspamcheck.cpp:60
+#: configspamcheck.cpp:61
 msgid "Mark"
 msgstr "Marcar"
 
-#: configspamcheck.cpp:61
+#: configspamcheck.cpp:62
 msgid "Move"
 msgstr "Mover"
 
-#: configspamcheck.cpp:71
+#: configspamcheck.cpp:72
 msgid "Choose the mailbox"
 msgstr "Seleccione el buzón de correo"
 
-#: configspamcheck.cpp:190
+#: configspamcheck.cpp:193
 msgid "Mailbox Select"
 msgstr "Selección del buzón"
 
-#: configspamcheck.cpp:228
+#: configspamcheck.cpp:232
 msgid "SpamAssassin is running."
 msgstr "SpamAssassin está en ejecución."
 
-#: configspamcheck.cpp:228 configspamcheck.cpp:233
+#: configspamcheck.cpp:232
+#: configspamcheck.cpp:237
 msgid "Check for SpamAssassin"
 msgstr "Comprobar SpamAssassin"
 
-#: configspamcheck.cpp:233
+#: configspamcheck.cpp:237
 msgid "SpamAssassin is not running."
 msgstr "SpamAssassin no está en ejecución."
 
@@ -1372,19 +1358,11 @@ msgstr "es menor que"
 msgid "is less than or equal to"
 msgstr "es menor o igual que"
 
-#: filtercriteriawidget.cpp:143
+#: filtercriteriawidget.cpp:140
 msgid "Case sensitive"
 msgstr "Distingue mayúsculas"
 
-#: filtercriteriawidget.cpp:240
-msgid "The Regular Expression Editor could not be initialized."
-msgstr "No se ha podido inicializar el editor de expresiones regulares."
-
-#: filtercriteriawidget.cpp:255
-msgid "The Regular Expression Editor is not available."
-msgstr "El editor de expresiones regulares no está disponible."
-
-#: filterlog.cpp:134
+#: filterlog.cpp:155
 msgid "Could not save the filter log."
 msgstr "No se puede guardar el registro del filtro."
 
@@ -1413,24 +1391,38 @@ msgctxt "@info:tooltip"
 msgid "Clear the list of moved mails"
 msgstr "Limpiar la lista de mensajes movidos"
 
-#: filterlogviewdeletedmodel.cpp:103 filterlogviewmovedmodel.cpp:104
-#: mailviewmodel.cpp:137
+#: filterlogviewdeletedmodel.cpp:96
+msgctxt "@Info:tooltip Filter-Log: The mail was manually deleted"
+msgid "This mail was manually deleted."
+msgstr "Este correo se ha eliminado manualmente."
+
+#: filterlogviewdeletedmodel.cpp:98
+msgctxt "@Info:tooltip Filter-Log: The mail was deleted by the filter"
+msgid "This mail was deleted by filter: %1"
+msgstr "Este mensaje se ha eliminado por el filtro: %1"
+
+#: filterlogviewdeletedmodel.cpp:155
+#: filterlogviewmovedmodel.cpp:104
+#: mailviewmodel.cpp:162
 msgctxt "@title:column send date"
 msgid "Date"
 msgstr "Fecha"
 
-#: filterlogviewdeletedmodel.cpp:104 filterlogviewmovedmodel.cpp:105
+#: filterlogviewdeletedmodel.cpp:156
+#: filterlogviewmovedmodel.cpp:105
 msgctxt "@title:column sender of the mail"
 msgid "Sender"
 msgstr "Remitente"
 
-#: filterlogviewdeletedmodel.cpp:105 filterlogviewmovedmodel.cpp:106
+#: filterlogviewdeletedmodel.cpp:157
+#: filterlogviewmovedmodel.cpp:106
 msgctxt "@title:column account name"
 msgid "Account"
 msgstr "Cuenta"
 
-#: filterlogviewdeletedmodel.cpp:106 filterlogviewmovedmodel.cpp:108
-#: mailviewmodel.cpp:136
+#: filterlogviewdeletedmodel.cpp:158
+#: filterlogviewmovedmodel.cpp:108
+#: mailviewmodel.cpp:161
 msgctxt "@title:column mail subject"
 msgid "Subject"
 msgstr "Asunto"
@@ -1498,8 +1490,7 @@ msgstr "Eliminar el último criterio."
 #: filtersetupdialog.cpp:99
 msgctxt "@info:tooltip"
 msgid "Choose the action for all mails which are filtered by this filter."
-msgstr ""
-"Seleccionar la acción para todos los mensajes afectados por este filtro."
+msgstr "Seleccionar la acción para todos los mensajes afectados por este filtro."
 
 #: filtersetupitem.cpp:269
 msgctxt "@item:intable show the filtered mail in the view"
@@ -1536,120 +1527,125 @@ msgctxt "@item:intable unknown action"
 msgid "Unknown action"
 msgstr "Acción desconocida"
 
-#: kshowmail.cpp:121
+#: headerfilter.cpp:87
+msgctxt "@info The default action which has catched this mail"
+msgid "Default Action"
+msgstr "Acción predeterminada"
+
+#: kshowmail.cpp:126
 msgctxt "@action:inmenu look for new messages"
 msgid "Refresh messages"
 msgstr "Actualizar la lista de mensajes"
 
-#: kshowmail.cpp:127
+#: kshowmail.cpp:132
 msgctxt "@action:inmenu show the headers of the selected mails"
 msgid "Show header of highlighted messages"
 msgstr "Mostrar la cabecera de los mensajes seleccionados"
 
-#: kshowmail.cpp:133
+#: kshowmail.cpp:138
 msgctxt "@action:inmenu show the body of the selected mails"
 msgid "Show complete highlighted messages"
 msgstr "Mostrar los mensajes completos seleccionados"
 
-#: kshowmail.cpp:139
+#: kshowmail.cpp:144
 msgctxt "@action:inmenu delete selected mails"
 msgid "Delete highlighted messages"
 msgstr "Eliminar los mensajes seleccionados"
 
-#: kshowmail.cpp:145
+#: kshowmail.cpp:150
 msgctxt "@action:inmenu cancle the current running task"
 msgid "Stop current transfer"
 msgstr "Detener la transferencia actual"
 
-#: kshowmail.cpp:150
+#: kshowmail.cpp:155
 msgctxt "@action:inmenu open the filter log"
 msgid "Show Filter Log"
 msgstr "Mostrar el registro de filtrado"
 
-#: kshowmail.cpp:156
+#: kshowmail.cpp:161
 msgctxt "@action:inmenu add the senders of selected mails to the whitelist"
 msgid "Add sender to whitelist"
 msgstr "Añadir remitente a la lista blanca"
 
-#: kshowmail.cpp:161
+#: kshowmail.cpp:166
 msgctxt "@action:inmenu add the senders of selected mails to the blacklist"
 msgid "Add sender to blacklist"
 msgstr "Añadir remitente a la lista negra"
 
-#: kshowmail.cpp:171
+#: kshowmail.cpp:176
 msgctxt "@action:inmenu open a dialog to send a feedback"
 msgid "Send Feedback Mail"
 msgstr "Enviar un correo electrónico de opinión"
 
-#: kshowmail.cpp:177
+#: kshowmail.cpp:182
 msgctxt "@action:inmenu setup the selected account"
 msgid "Setup this account"
 msgstr "Configurar esta cuenta"
 
-#: kshowmail.cpp:200
+#: kshowmail.cpp:205
 msgctxt "@info:status application is getting mails from the servers"
 msgid "Refreshing ..."
 msgstr "Actualizando..."
 
-#: kshowmail.cpp:258
+#: kshowmail.cpp:263
 msgctxt "@info:status application is downloading mails to show"
 msgid "Downloading ..."
 msgstr "Descargando..."
 
-#: kshowmail.cpp:304
+#: kshowmail.cpp:309
 msgctxt "@info ask for delete the mails"
 msgid "Do you want to delete these mails?"
 msgstr "¿Desea eliminar estos mensajes?"
 
-#: kshowmail.cpp:304
+#: kshowmail.cpp:309
 msgctxt "@title:window ask for delete the mails"
 msgid "Delete?"
 msgstr "¿Eliminar?"
 
-#: kshowmail.cpp:315
+#: kshowmail.cpp:320
 msgctxt "@info:status application is removing mails from server"
 msgid "Deleting Mail(s) ..."
 msgstr "Eliminando mensajes(s)..."
 
-#: kshowmail.cpp:503 kshowmail.cpp:528
+#: kshowmail.cpp:517
+#: kshowmail.cpp:542
 msgctxt "@info:status application is idle"
 msgid "Ready"
 msgstr "Preparado"
 
-#: kshowmail.cpp:511
+#: kshowmail.cpp:525
 msgctxt "@info:tooltip"
 msgid ""
 "Shows the number of deleted, moved or ignored mails by the filter.\n"
 "The positions denotes:\n"
 "by last refresh / since application start / listed by the log"
 msgstr ""
-"Muestra el número de mensajes eliminados, movidos o ignorados por el "
-"filtro.\n"
+"Muestra el número de mensajes eliminados, movidos o ignorados por el filtro.\n"
 "La posición indica:\n"
-"desde la última actualización / desde que se inició la aplicación / "
-"enumerados en el registro"
+"desde la última actualización / desde que se inició la aplicación / enumerados en el registro"
 
-#: kshowmail.cpp:541
+#: kshowmail.cpp:555
 msgctxt "@info:status time of the last refresh"
 msgid "Last Refresh: %1"
 msgstr "Última actualización: %1"
 
-#: kshowmail.cpp:583 kshowmail.cpp:614
+#: kshowmail.cpp:605
+#: kshowmail.cpp:636
 msgctxt "@info:status application is idle"
 msgid "Ready."
 msgstr "Preparado."
 
-#: kshowmail.cpp:601
+#: kshowmail.cpp:623
 msgctxt "@info:status numbers of filtered mails"
 msgid "Filter: Deleted: %1/%2/%3; Moved: %4/%5/%6; Ignored: %7"
 msgstr "Filtro: Eliminado(s): %1/%2/%3; Movido(s): %4/%5/%6; Ignorado(s): %7"
 
-#: kshowmail.cpp:654
+#: kshowmail.cpp:676
 msgctxt "@info:status time to next refresh"
 msgid "Next Refresh: %1"
 msgstr "Próxima actualización: %1"
 
-#: kshowmail.cpp:777
+#: kshowmail.cpp:799
 msgctxt "@info ask for closing the application"
 msgid ""
 "KShowmail will be closed.\n"
@@ -1658,17 +1654,18 @@ msgstr ""
 "Se va a cerrar KShowmail.\n"
 "¿Está seguro?"
 
-#: kwalletaccess.cpp:26 kwalletaccess.cpp:95
+#: kwalletaccess.cpp:26
+#: kwalletaccess.cpp:95
 msgid "KWallet is not available."
 msgstr "KWallet no está disponible."
 
-#: kwalletaccess.cpp:34 kwalletaccess.cpp:103
+#: kwalletaccess.cpp:34
+#: kwalletaccess.cpp:103
 msgid "Could not get wallet name for network data from KWallet."
-msgstr ""
-"No se puede obtener el nombre de la cartera para los datos de la red desde "
-"KWallet."
+msgstr "No se puede obtener el nombre de la cartera para los datos de la red desde KWallet."
 
-#: kwalletaccess.cpp:54 kwalletaccess.cpp:123
+#: kwalletaccess.cpp:54
+#: kwalletaccess.cpp:123
 msgid "Could not open KWallet."
 msgstr "No se puede abrir KWallet."
 
@@ -1676,7 +1673,8 @@ msgstr "No se puede abrir KWallet."
 msgid "Could not create folder for KShowmail in KWallet."
 msgstr "No se puede crear el directorio para KShowmail en KWallet."
 
-#: kwalletaccess.cpp:74 kwalletaccess.cpp:131
+#: kwalletaccess.cpp:74
+#: kwalletaccess.cpp:131
 msgid "Could not open folder for KShowmail in KWallet."
 msgstr "No se puede abrir el directorio para KShowmail en KWallet."
 
@@ -1687,9 +1685,7 @@ msgstr "No se puede guardar la contraseña en KWallet."
 #: kwalletaccess.cpp:141
 msgctxt "@info error message"
 msgid "Could not get password of account <resource>%1</resource> from KWallet."
-msgstr ""
-"No se puede obtener la contraseña para la cuenta <resource>%1</resource> "
-"desde KWallet."
+msgstr "No se puede obtener la contraseña para la cuenta <resource>%1</resource> desde KWallet."
 
 #: mailboxwizard.cpp:28
 msgid "Please choose the path to the mailboxes."
@@ -1711,57 +1707,62 @@ msgstr "Por favor, seleccione el buzón de correo"
 msgid "Choose the mailbox directory"
 msgstr "Seleccionar el directorio del buzón de correo"
 
-#: mailboxwizard.cpp:144
+#: mailboxwizard.cpp:143
 msgid "Inbox"
 msgstr "Bandeja de entrada"
 
-#: mailboxwizard.cpp:146
+#: mailboxwizard.cpp:145
 msgid "Outbox"
 msgstr "Bandeja de salida"
 
-#: mailboxwizard.cpp:148
+#: mailboxwizard.cpp:147
 msgid "Drafts"
 msgstr "Borradores"
 
-#: mailboxwizard.cpp:150
+#: mailboxwizard.cpp:149
 msgid "sent-mail"
 msgstr "Elementos enviados"
 
-#: mailboxwizard.cpp:152
+#: mailboxwizard.cpp:151
 msgid "Trash"
 msgstr "Papelera"
 
 #: mailviewmodel.cpp:131
+msgctxt "@info:Shows the filter which has catched this mail"
+msgid "Catched by filter: %1"
+msgstr "Capturado por el filtro: %1"
+
+#: mailviewmodel.cpp:156
 msgctxt "@title:column state of the mail"
 msgid "State"
 msgstr "Estado"
 
-#: mailviewmodel.cpp:132
+#: mailviewmodel.cpp:157
 msgctxt "@title:column mail number on the server"
 msgid "Number"
 msgstr "Número"
 
-#: mailviewmodel.cpp:133
+#: mailviewmodel.cpp:158
 msgctxt "@title:column name of the account"
 msgid "Account"
 msgstr "Cuenta"
 
-#: mailviewmodel.cpp:134
+#: mailviewmodel.cpp:159
 msgctxt "@title:column sender"
 msgid "From"
 msgstr "De"
 
-#: mailviewmodel.cpp:135
+#: mailviewmodel.cpp:160
 msgctxt "@title:column addressee"
 msgid "To"
 msgstr "Para"
 
-#: mailviewmodel.cpp:138
+#: mailviewmodel.cpp:163
 msgctxt "@title:column mail size"
 msgid "Size"
 msgstr "Tamaño"
 
-#: mailviewmodel.cpp:139
+#: mailviewmodel.cpp:164
 msgctxt "@title:column content type"
 msgid "Content"
 msgstr "Contenido"
@@ -1775,28 +1776,24 @@ msgid "KShowmail"
 msgstr "KShowmail"
 
 #: main.cpp:46
-msgid ""
-"(C) 2000 - 2005 Eggert Ehmke\n"
-"(C) 2006 - 2009 Ulrich Weigelt"
-msgstr ""
-"(C) 2000 - 2005 Eggert Ehmke\n"
-"(C) 2006 - 2009 Ulrich Weigelt"
+msgid "(C) 2006 - 2009 Ulrich Weigelt"
+msgstr "(C) 2006 - 2009 Ulrich Weigelt"
 
 #: main.cpp:50
-msgid "Eggert Ehmke"
-msgstr "Eggert Ehmke"
-
-#: main.cpp:50
-msgid "Initiator and first developer"
-msgstr "Iniciativa y primer desarrollador"
-
-#: main.cpp:51
 msgid "Ulrich Weigelt"
 msgstr "Ulrich Weigelt"
 
+#: main.cpp:50
+msgid "maintainer"
+msgstr "responsable del paquete"
+
 #: main.cpp:51
-msgid "current developer"
-msgstr "desarrollador actual"
+msgid "Eggert Ehmke"
+msgstr "Eggert Ehmke"
+
+#: main.cpp:51
+msgid "Initiator and first developer"
+msgstr "Iniciativa y primer desarrollador"
 
 #: main.cpp:52
 msgid "Allistar Melville"
@@ -1806,17 +1803,73 @@ msgstr "Allistar Melville"
 msgid "Oleg Ivanov"
 msgstr "Oleg Ivanov"
 
-#: main.cpp:56 rc.cpp:10
+#: main.cpp:56
+#: rc.cpp:10
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Elsa Andrés, 2010"
 
-#: main.cpp:56 rc.cpp:11
+#: main.cpp:56
+#: rc.cpp:11
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "e.andres@ist-sci.com"
 
-#: main.cpp:80
+#: main.cpp:59
+msgid "Scott Barninger"
+msgstr "Scott Barninger"
+
+#: main.cpp:59
+msgctxt "@info:credit Who build the RPMs and releases they"
+msgid "Release Manager"
+msgstr "Director de la publicación"
+
+#: main.cpp:60
+msgid "Luca Pedrielli"
+msgstr "Luca Pedrielli"
+
+#: main.cpp:60
+msgctxt "@info:credit"
+msgid "a lot of testing and italian translation"
+msgstr "un montón de pruebas y traducción al italiano"
+
+#: main.cpp:61
+msgid "Elsa Andrés"
+msgstr "Elsa Andrés"
+
+#: main.cpp:61
+msgctxt "@info:credit"
+msgid "spanish translation"
+msgstr "traducción al español"
+
+#: main.cpp:62
+msgid "Heimen Stoffels"
+msgstr "Heimen Stoffels"
+
+#: main.cpp:62
+msgctxt "@info:credit"
+msgid "dutch translation"
+msgstr "traducción al holandés"
+
+#: main.cpp:63
+msgid "Otmar Mak"
+msgstr "Otmar Mak"
+
+#: main.cpp:63
+msgctxt "@info:credit"
+msgid "handbook and testing"
+msgstr "manual y pruebas"
+
+#: main.cpp:64
+msgid "Tor B. Løken"
+msgstr "Tor B. Løken"
+
+#: main.cpp:64
+msgctxt "@info:credit"
+msgid "norwegian translation"
+msgstr "traducción al noruego"
+
+#: main.cpp:88
 msgid "KShowmail is already running!"
 msgstr "¡KShowmail ya se está ejecutando!"
 
@@ -1824,7 +1877,8 @@ msgstr "¡KShowmail ya se está ejecutando!"
 msgid "Show main mindow"
 msgstr "Mostrar la ventana principal"
 
-#: newmaildialog.cpp:27 newmaildialog.cpp:28
+#: newmaildialog.cpp:27
+#: newmaildialog.cpp:28
 msgid "Shows the main window"
 msgstr "Muestra la ventana principal"
 
@@ -1832,84 +1886,123 @@ msgstr "Muestra la ventana principal"
 msgid "New mail has arrived!"
 msgstr "¡Tiene mensajes nuevos!"
 
-#: senderlistdialog.cpp:46
+#: regexcheckdialog.cpp:33
+msgctxt "@label:textbox the edit line to enter a regular expression"
+msgid "Regular Expression:"
+msgstr "Expresión regular:"
+
+#: regexcheckdialog.cpp:39
+msgctxt "@label:textbox the edit line to enter a phrase to test the regular expression"
+msgid "Test Phrase:"
+msgstr "Texto de prueba:"
+
+#: regexcheckdialog.cpp:45
+msgctxt "@info:status a line which shows the result of the regex test"
+msgid "Result:"
+msgstr "Resultado:"
+
+#: regexcheckdialog.cpp:78
+msgctxt "@info:status no regex entered"
+msgid "No Regex"
+msgstr "Falta la expresión regular"
+
+#: regexcheckdialog.cpp:85
+msgctxt "@info Error message about an invalid regular expression"
+msgid "The regular expression is invalid."
+msgstr "La expresión regular no es correcta."
+
+#: regexcheckdialog.cpp:85
+msgctxt "@info:title Title from error message box about a invalid regular expression"
+msgid "Invalid regular expression"
+msgstr "Expresión regular incorrecta"
+
+#: regexcheckdialog.cpp:86
+msgctxt "@info:status Short error message about an invalid regular expression"
+msgid "invalid regex"
+msgstr "expresión regular incorrecta"
+
+#: regexcheckdialog.cpp:93
+msgctxt "@info:status no test phrase entered"
+msgid "No Test Phrase"
+msgstr "Falta el texto de prueba"
+
+#: regexcheckdialog.cpp:99
+msgctxt "@info:status The test phrase is matched exactly by the regular expression"
+msgid "Matched"
+msgstr "Coincide"
+
+#: regexcheckdialog.cpp:101
+msgctxt "@info:status The text phrase is not matched by the regular expression"
+msgid "Failed"
+msgstr "No coincide"
+
+#: senderlistdialog.cpp:48
 msgctxt "@title:window dialog to edit the black- or whitelist"
 msgid "List"
 msgstr "Lista"
 
-#: senderlistdialog.cpp:48
-msgctxt "@info/rich"
-msgid ""
-"A mail whose sender is listed here will pass the filter.<nl/>A mail will be "
-"accepted, if its From line incloses a list entry.<nl/>E.g. a line of<nl/"
-">&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; is accepted by the "
-"entries<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich "
-"Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;"
-msgstr ""
-"Un mensaje cuyo remitente aparezca en esta lista, pasará el filtro.<nl/>Se "
-"aceptará el correo si el campo De coincide con alguna de las entradas de la "
-"lista.<nl/>P. ej. la siguiente línea<nl>&quot;Ulrich Weigelt&quot; &lt;"
-"ulrich.weigelt@gmx.de&gt; se aceptaría con las entradas:<nl/>Ulrich "
-"Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich."
-"weigelt@gmx.de&gt;"
-
 #: senderlistdialog.cpp:50
-msgctxt "@info:tooltip"
-msgid ""
-"A mail whose sender is listed here will be hold up by the filter.<nl/>A mail "
-"will be stopped, if its From line incloses a list entry.<nl/>E.g. a line "
-"of<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; is filtered "
-"by the entries<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich "
-"Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;"
-msgstr ""
-"Un mensaje cuyo remitente aparezca en esta lista, será capturado por el "
-"filtro.<nl/>El correo se detendrá si el campo De coincide con alguna de las "
-"entradas de la lista.<nl/>P. ej. la siguiente línea<nl/>&quot;Ulrich "
-"Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; se filtraría con las entradas:"
-"<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; "
-"&lt;ulrich.weigelt@gmx.de&gt;"
+msgctxt "@info/rich"
+msgid "A mail whose sender is listed here will pass the filter.<nl/>A mail will be accepted, if its From line incloses a list entry.<nl/>E.g. a line of<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; is accepted by the entries<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;"
+msgstr "Un mensaje cuyo remitente aparezca en esta lista, pasará el filtro.<nl/>Se aceptará el correo si el campo De coincide con alguna de las entradas de la lista.<nl/>P. ej. la siguiente línea<nl>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; se aceptaría con las entradas:<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;"
 
-#: senderlistdialog.cpp:60
+#: senderlistdialog.cpp:52
+msgctxt "@info:tooltip"
+msgid "A mail whose sender is listed here will be hold up by the filter.<nl/>A mail will be stopped, if its From line incloses a list entry.<nl/>E.g. a line of<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; is filtered by the entries<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;"
+msgstr "Un mensaje cuyo remitente aparezca en esta lista, será capturado por el filtro.<nl/>El correo se detendrá si el campo De coincide con alguna de las entradas de la lista.<nl/>P. ej. la siguiente línea<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt; se filtraría con las entradas:<nl/>Ulrich Weigelt<nl/>ulrich.weigelt@gmx.de<nl/>&quot;Ulrich Weigelt&quot; &lt;ulrich.weigelt@gmx.de&gt;"
+
+#: senderlistdialog.cpp:62
 msgctxt "@title:group action to execute if a blacklisted mail comes in"
 msgid "Action"
 msgstr "Acción"
 
-#: senderlistdialog.cpp:66
+#: senderlistdialog.cpp:68
 msgctxt "@option:radio delete a blacklisted mail"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: senderlistdialog.cpp:67
+#: senderlistdialog.cpp:69
 msgctxt "@option:radio mark a blacklisted mail"
 msgid "Mark"
 msgstr "Marcar"
 
-#: senderlistdialog.cpp:72
+#: senderlistdialog.cpp:74
 msgctxt "@info:tooltip"
 msgid "The mails will be deleted."
 msgstr "Se eliminarán los mensajes."
 
-#: senderlistdialog.cpp:73
+#: senderlistdialog.cpp:75
 msgctxt "@info:tooltip"
 msgid "The mails will be marked."
 msgstr "Se marcarán los mensajes."
 
-#: showheaderdialog.cpp:37 showmaildialog.cpp:50
+#: showheaderdialog.cpp:37
+#: showmaildialog.cpp:65
 msgctxt "@label:textbox mail subject"
 msgid "Subject:"
 msgstr "Asunto:"
 
-#: showmaildialog.cpp:41
+#: showmaildialog.cpp:29
+msgctxt "@action:button to reply a mail"
+msgid "Reply"
+msgstr "Responder"
+
+#: showmaildialog.cpp:31
+msgctxt "@info:tooltip"
+msgid "Reply to sender"
+msgstr "Responder al remitente"
+
+#: showmaildialog.cpp:56
 msgctxt "@label:textbox sender of the mail"
 msgid "Sender:"
 msgstr "Remitente:"
 
-#: showmaildialog.cpp:44
+#: showmaildialog.cpp:59
 msgctxt "@label:textbox send date"
 msgid "Date:"
 msgstr "Fecha:"
 
-#: showmaildialog.cpp:47
+#: showmaildialog.cpp:62
 msgctxt "@label:textbox mail size"
 msgid "Size:"
 msgstr "Tamaño:"
@@ -1936,6 +2029,10 @@ msgstr "A&yuda"
 msgid "Main Toolbar"
 msgstr "Barra de herramientas principal"
 
+#~ msgid "The Regular Expression Editor could not be initialized."
+#~ msgstr "No se ha podido inicializar el editor de expresiones regulares."
+#~ msgid "current developer"
+#~ msgstr "desarrollador actual"
 #~ msgctxt "@info error messsage: no response gto from a server"
 #~ msgid ""
 #~ "<resource>%1</resource> has not sent a response after <icode>%2</icode> "
@@ -1943,3 +2040,4 @@ msgstr "Barra de herramientas principal"
 #~ msgstr ""
 #~ "<resource>%1</resource> no ha enviado una respuesta tras el comando "
 #~ "<icode>%2</icode>."
+
