@@ -3,7 +3,7 @@ project(kshowmail)
 cmake_minimum_required(VERSION 2.6)
 
 # version number
-set (KSHOWMAIL_VERSION 4.0)
+set (KSHOWMAIL_VERSION 4.1)
 
 find_package(KDE4 REQUIRED)
 
