@@ -1,0 +1,406 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!-- Define an entity for your application if it is not part of KDE
+       CVS -->
+  <!ENTITY kmyapplication "<application>KShowmail</application>">
+  <!ENTITY kappname "&kmyapplication;"><!-- replace kmyapplication here
+                                            do *not* replace kappname-->
+  <!ENTITY package "kde-module"><!-- kdebase, kdeadmin, etc.  Leave
+                                     this unchanged if your
+                                     application is not maintained in KDE CVS -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"> <!-- ONLY If you are writing non-English
+                                     original documentation, change
+                                     the language here -->
+
+  <!-- Do not define any other entities; instead, use the entities
+       from entities/general.entities and $LANG/user.entities. -->
+]>
+<!-- kdoctemplate v0.9 January 10 2003
+     Changes to comments to clarify entity usage January 10 2003
+     Minor update to "Credits and Licenses" section on August 24, 2000
+     Removed "Revision history" section on 22 January 2001
+     Changed to Installation/Help menu entities 18 October 2001
+     Other minor cleanup and changes 18 October 2001
+     FPI change and minor changes November 2002 -->
+
+<!--
+This template was designed by: David Rugge davidrugge@mindspring.com
+with lots of help from: Eric Bischoff ebisch@cybercable.tm.fr
+and Frederik Fouvry fouvry@sfs.nphil.uni-tuebingen.de
+of the KDE DocBook team.
+
+You may freely use this template for writing any sort of KDE documentation.
+If you have any changes or improvements, please let us know.
+
+Remember:
+- in XML, the case of the <tags> and attributes is relevant ;
+- also, quote all attributes.
+
+Please don't forget to remove all these comments in your final documentation,
+thanks ;-).
+-->
+
+<!-- ................................................................ -->
+
+<!-- The language must NOT be changed here. -->
+<!-- If you are writing original documentation in a language other -->
+<!-- than English, change the language above ONLY, not here -->
+<book lang="&language;">
+
+  <!-- This header contains all of the meta-information for the document such
+  as Authors, publish date, the abstract, and Keywords -->
+
+  <bookinfo>
+    <title>Manuale di &kmyapplication;</title>
+
+    <authorgroup>
+      <author>
+        <personname>
+          <firstname>Otmar</firstname>
+          <surname>Mak</surname>
+        </personname>
+      </author>
+    </authorgroup>
+
+  <othercredit role="translator">
+    <firstname>Luca</firstname>
+    <surname>Pedrielli</surname>
+    <affiliation>
+      <address>
+	<email>ilprof@barradev.it</email>
+      </address>
+    </affiliation>
+    <contrib>Traduttore</contrib>
+  </othercredit> 
+
+
+    <copyright>
+      <year>2010</year>
+      <holder>Otmar Mak</holder>
+    </copyright>
+
+    <!-- Translators: put here the copyright notice of the translation -->
+    <!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+        and in the FDL itself on how to use it. -->
+    <legalnotice>&FDLNotice;</legalnotice>
+
+    <!-- Date and version information of the application
+    Don't forget to include this last date and this last revision number, we
+    need them for translation coordination !
+    Please respect the format of the date (YYYY-MM-DD) and of the version
+    (V.MM.LL), it could be used by automation scripts.
+    Do NOT change these in the translation. -->
+
+    <date>2010-10-09</date>
+    <releaseinfo>4.0.1</releaseinfo>
+
+    <!-- Abstract about this handbook -->
+
+    <abstract>
+    <para>
+      <emphasis>Questo manuale descrive in breve KShowmail 4.0.1.
+                Se lo volete completare o migliorare contattate: ulrich.weigelt @ gmx.de</emphasis>
+     </para>
+      <para>
+        &kmyapplication; è un programma di KDE per accedere alle mail su un server POP3.
+         Le intestazioni ed i messaggi completi possono essere visualizzati senza scaricarli sul
+         client di posta locale.
+         Le mail indesiderate possono essere cancellate dal server.
+         L'elenco dei messaggi visualizzati può essere aggiornato tramite timer configurabile.
+         Possono essere definiti filtri per marcare, cancellare, ignorare o spostare i messaggi.
+         Un suono può segnalare l'arrivo di nuova posta.
+         Sono supportate contemporaneamente più caselle di posta. 
+      </para>
+    </abstract>
+
+    <!-- This is a set of Keywords for indexing by search engines.
+    Please at least include KDE, the KDE package it is in, the name
+    of your application, and a few relevant keywords. -->
+
+    <keywordset>
+      <keyword>KDE</keyword>
+      <keyword>kshowmail</keyword>
+      <keyword>mail</keyword>
+      <keyword>pop3</keyword>
+    </keywordset>
+
+  </bookinfo>
+
+  <!-- The contents of the documentation begin here.  Label
+  each chapter so with the id attribute. This is necessary for two reasons: it
+  allows you to easily reference the chapter from other chapters of your
+  document, and if there is no ID, the name of the generated HTML files will vary
+  from time to time making it hard to manage for maintainers and for the CVS
+  system. Any chapter labelled (OPTIONAL) may be left out at the author's
+  discretion. Other chapters should not be left out in order to maintain a
+  consistent documentation style across all KDE apps. -->
+
+  <chapter id="introduction">
+    <title>Introduzione</title>
+
+    <!-- The introduction chapter contains a brief introduction for the
+    application that explains what it does and where to report
+    problems. Basically a long version of the abstract.  Don't include a
+    revision history. (see installation appendix comment) -->
+
+    <para>
+      &kmyapplication; è un programma di KDE per accedere alle mail su un server POP3.
+    </para>
+    <para>
+      Caratteristiche principali:
+      <itemizedlist>
+        <listitem><para>Le intestazioni ed i messaggi completi possono essere visualizzati senza scaricarli sul
+         client di posta locale.</para></listitem>
+        <listitem><para>Le mail indesiderate possono essere cancellate dal server.</para></listitem>
+        <listitem><para>L'elenco dei messaggi visualizzati può essere aggiornato tramite timer configurabile.</para></listitem>
+        <listitem><para>Possono essere definiti filtri per marcare, cancellare, ignorare o spostare i messaggi.</para></listitem>
+        <listitem><para>Un suono può segnalare l'arrivo di nuova posta.</para></listitem>
+        <listitem><para>Sono supportate contemporaneamente più caselle di posta.</para></listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      <emphasis> volete contribuire al miglioramento di questo manuale? contattate: ulrich.weigelt@gmx.de</emphasis>
+     </para>
+
+
+  </chapter>
+
+ <chapter id="using-kshowmail">
+ <title>Usare Kshowmail</title>
+
+ <sect1 id="first-steps">
+  <title>Primi Passi</title>
+ <para>Configura il tuo account di posta elettronica in Configura KShowmail(Account) indicando i 
+ parametri per un account POP3. KShowmail può memorizzare la password POP3. Per le impostazioni di sicurezza puoi scegliere tra le opzioni di crittografia Nessuna / SSL / TSL e specificare
+ se è consentito l'accesso non sicuro. 
+ </para>
+ <para>
+ Con queste impostazioni minime si potrebbe già testare KShowmail.
+ Per l'applicazione pratica e per sfruttarne appieno le potenzialità è il caso di definire prima appropriati 
+ filtri di posta elettronica.  
+ </para>
+ </sect1>
+
+ <sect1 id="defining-filters">
+ <title>Definizione dei filtri</title>
+ <para>
+ Tipi di filtri:
+ <itemizedlist>
+       <listitem><para>Primo controllo: i mittenti di posta.
+             In Configura KShowmail(Filtri) è possibile impostare una <emphasis>White List</emphasis> ed una
+            <emphasis>Black List</emphasis> di indirizzi email che devono o non devono passare il filtro.
+            </para>
+       </listitem>
+         <listitem><para>Come Secondo controllo, è possibile aggiungere le regole che definiscono da quali elementi di 
+	     intestazione (Da, A, Oggetto, dimensioni ..) una mail indesiderata può essere riconosciuta. 
+	     Questo in base alla corrispondenza di certe frasi o parole. 
+             Può essere quindi necessaria la definizione di espressioni regolari.
+             Ogni regola prevede anche l'azione da intraprendere(contrassegna come candidato per la cancellazione, cancella 
+	     automaticamente sul server, spostala altrove ....).
+	     I filtri possono essere aggiunti, rimossi, modificati ed ordinati nella lista dei filtri, che
+             definisce l'ordine in cui questi verranno applicati.
+             </para>
+       </listitem>
+       <listitem><para>
+	     Come Terzo controllo è possibile prevedere una azione per le mail non filtrate, ad esempio, 
+	     un controllo eseguito da spamassassin. 
+	     Ciò richiede che il demone SpamAssassin sia attivo nel sistema e correttamente configurato.
+             È possibile testare se spamassassin è in esecuzione in Configura KShowmail(Controllo Spam).
+             Anche in questo caso occorre indicare l'azione per le mail di spam (cancella, contrassegna 
+	     per la cancellazione, sposta).
+            </para>
+       </listitem>
+ </itemizedlist>
+ </para>
+ </sect1>
+
+<sect1 id="further-options">
+ <title>Configurazione KShowmail: Ulteriori Opzioni</title>
+ <para>
+ Altre opzioni di Configurazione
+ <itemizedlist>
+       <listitem><para>Azioni: qui si definisce come KShowmail si comporta in caso di nuova posta
+             rilevata sul server (mostra messaggio, beep, ..) o se la posta non è stata trovata.
+             </para>
+       </listitem>
+         <listitem><para>Aspetto: qui è possibile selezionare le colonne da visualizzare nella lista
+	     degli account e nella mailing list.
+	     È anche possibile selezionare se il formato HTML deve essere consentito.
+	     </para>
+       </listitem>
+       <listitem><para>Opzioni generali: tra le altre opzioni, qui si può definire un intervallo di aggiornamento 
+	     automatico per la ricerca di nuova posta.
+             E' anche possibile specificare un periodo di timeout del server, dopo di che KShowmail interrompe la
+             connessione.
+            </para>
+       </listitem>
+      <listitem><para>Log: Se impostato, KShowmail registrerà automaticamente i messaggi cancellati o spostati 
+	     da un filtro.
+             (Ma l'implementazione corrente non registrerà i messaggi eliminati manualmente)
+            </para>
+       </listitem>
+
+ </itemizedlist>
+ </para>
+ </sect1>
+
+ <sect1 id="running-kshowmail">
+ <title>Usare KShowmail</title>
+ <para>
+
+ <itemizedlist>
+       <listitem><para>Aggiorna Messaggi: Se KShowmail non è stato già impostato per l'aggiornamento automatico
+             aggiornare la lista e-mail manualmente cliccando il pulsante Aggiorna con il mouse sulla barra degli strumenti. 
+	     Se la connessione con il server POP è OK, KShowmail mostrerà la lista delle mail attualmente presenti sul server 
+	     per gli account dichiarati attivi indicando Stato, mittente (campo Da), il destinatario (campo A), oggetto, data, ecc
+             </para>
+       </listitem>
+         <listitem><para>Azioni: se si desidera controllare una e-mail in maniera più dettagliata, selezionate e
+             scegliere il sottomenu Azioni per mostrare l'intestazione o il contenuto completo della mail.
+             Se sei sicuro che le email sono indesiderate o spam, eliminale.
+             Si può anche decidere di aggiungere mittenti di posta elettronica alla White List o alla Black List, o visualizzare
+             il registro dei messaggi cancellati.
+	     </para>
+       </listitem>
+       <listitem><para>Aiuto: Il menu Aiuto offre un set standard di opzioni, tra gli altri si può cambiare la lingua dell'applicazione,
+	     si può richiamare il vostro programma di posta elettronica per proporre suggerimenti, la guida relativa al contesto ("Che Cos'è"),
+             e, naturalmente, si può dare un'occhiata al manuale KShowmail (questo documento).
+            </para>
+       </listitem>
+ </itemizedlist>
+ </para>
+ </sect1>
+
+
+ </chapter>
+
+  <chapter id="credits">
+
+  <!-- Include credits for the programmers, documentation writers, and
+  contributors here. The license for your software should then be included below
+  the credits with a reference to the appropriate license file included in the KDE
+  distribution. -->
+
+  <title>Ringraziamenti e licenza</title>
+
+  <para>
+  &kmyapplication;
+  </para>
+  <para>
+  Copyright programma 2010 Ulrich Weigelt <email>ulrich.weigelt@gmx.de</email>
+  </para>
+  <para>
+  Hanno contribuito:
+  <itemizedlist>
+  <listitem><para>Eggert Ehmke<email>eggert.ehmke@berlin.de</email></para>
+  </listitem>
+  <listitem><para>Scott Barninger<email>scott@barninger.com</email></para>
+  </listitem>
+  </itemizedlist>
+  </para>
+
+  <para>
+  Copyright documentazione 2010 Ulrich Weigelt <email>ulrich.weigelt@gmx.de</email>
+  </para>
+
+  <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+  &underFDL;               <!-- FDL: do not remove -->
+
+  &underGPL;
+
+  </chapter>
+
+  <appendix id="installation">
+  <title>Installazione</title>
+
+  <sect1 id="getting-kapp">
+  <title>Come ottenere &kmyapplication;</title>
+
+  <para>KShowmail è disponibile all' indirizzo http://sourceforge.net/projects/kshowmail/ </para>
+
+  </sect1>
+
+  <sect1 id="requirements">
+  <title>Requisiti</title>
+  <para> I pacchetti necessari per la compilazione
+         <itemizedlist>
+         <listitem><para> gcc</para> </listitem>
+         <listitem><para> cmake</para> </listitem>
+         <listitem><para> KDE-Devel packages </para></listitem>
+         <listitem><para> kdepimlibs and/or libkdepim</para> </listitem>
+         <listitem><para> kdepimlibs-devel and/or</para> </listitem>
+         </itemizedlist>
+  </para>
+
+  <!--
+  List any special requirements for your application here. This should include:
+  .Libraries or other software that is not included in kdesupport,
+  kdelibs, or kdebase.
+  .Hardware requirements like amount of RAM, disk space, graphics card
+  capabilities, screen resolution, special expansion cards, etc.
+  .Operating systems the app will run on. If your app is designed only for a
+  specific OS, (you wrote a graphical LILO configurator for example) put this
+  information here.
+  -->
+
+  </sect1>
+
+  <sect1 id="compilation">
+  <title>Compilazione e installazione</title>
+
+  <para>Eseguire la seguente sequenza di comandi:
+    <itemizedlist>
+       <listitem>
+<programlisting>
+tar xzf kshowmail-4.1.tar.gz
+cd kshowmail-4.1
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` ..
+                       # Non dimenticare i due punti (..) !
+cd ..
+make
+</programlisting></listitem>
+       <listitem>
+<programlisting># Facoltativo:
+checkinstall               # come root, se si desidera assicurarsi che l'installazione
+                           # non vada a sovrascrivere altri file installati
+                           # Questo permette di costruire pacchetti rpm, Debian ecc.
+</programlisting></listitem>
+       <listitem><programlisting>
+make install               # devi essere root</programlisting></listitem>
+       <listitem><programlisting>#per disinstallare il progetto:
+make uninstall             # devi essere root
+</programlisting></listitem>
+    </itemizedlist>
+
+   </para>
+  </sect1>
+
+  <sect1 id="configuration">
+  <title>Configurazione</title>
+
+  <para>grazie a cmake la configurazione per la successiva installazione è automatica;
+        la configurazione utente è fatta tramite le finestre di configurazione di Kshowmail dopo
+	l'installazione.
+        </para>
+
+  </sect1>
+
+  <sect1 id="bugs">
+  <title>Bugs</title>
+  <para>
+   Nota: Questo documento descrive come KShowmail dovrebbe comportarsi, il comportamento effettivo
+   di KShowmail può variare.
+   Alcuni degli errori nella versione corrente, che sono stati trovati nel corso delle prove degli utenti, sono menzionati 
+   in un file separato chiamato BUGS_4.0.1
+  </para>
+  </sect1>
+
+  </appendix>
+
+  &documentation.index;
+</book>
+
