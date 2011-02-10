@@ -1,1 +1,0 @@
-cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` -DKdepimLibs_DIR=/usr/lib/cmake/KdepimLibs -DCMAKE_BUILD_TYPE=debug ../trunk
