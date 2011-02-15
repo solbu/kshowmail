@@ -710,7 +710,7 @@ void Account::sendCommand( const QString& command )
   //the write methode of the socket needs a byte array
   QByteArray data;
   data.append( command );
-  data.append( "\n" );
+  data.append( "\r\n" );
 
   //send it
   //qint64 writtenBytes = socket->write( data );
