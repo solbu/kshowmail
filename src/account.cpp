@@ -865,7 +865,7 @@ void Account::slotAuthMechResponse()
     else
     {
       emit sigMessageWindowOpened();
-      KMessageBox::sorry( NULL, i18nc( "@info Warning: the server does'nt support secure login", "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>", getName() ), i18nc( "@title:window", "Unsafe login is not allowed") );
+      KMessageBox::sorry( NULL, i18nc( "@info Warning: the server does'nt support secure login", "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind, in this case criminals could read your password!</warning>", getName() ), i18nc( "@title:window", "Unsafe login is not allowed") );
       emit sigMessageWindowClosed();
 
       //the user has not allowed unsafe login; finish the task
@@ -1087,7 +1087,7 @@ void Account::slotLoginApopResponse()
     }
     else
     {
-      handleError( i18nc( "@info error message", "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>", removeStatusIndicator( response.first() ) ) );
+      handleError( i18nc( "@info error message", "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind, in this case criminals could read your password!</warning>", removeStatusIndicator( response.first() ) ) );
       //reload account settings to clear the invalid password
       load();
       return;
@@ -1401,7 +1401,7 @@ void Account::slotMailSizesResponse()
   //it is a negative response?
   if( !isPositiveServerMessage( receivedSizes ) )
   {
-    handleError( i18nc( "@info error message: a server has not send the mail sizes", "Error while try to get the mail sizes. Message is: <message>%1</message>", receivedSizes.first() ) );
+    handleError( i18nc( "@info error message: a server has not send the mail sizes", "Error while trying to get the mail sizes. Message is: <message>%1</message>", receivedSizes.first() ) );
     return;
   }
 
@@ -1418,7 +1418,7 @@ void Account::slotMailSizesResponse()
   //analyze Sizes
   if( receivedSizes.isEmpty() )
   {
-    handleError( i18nc( "@info error message", "Error while try to get the mail sizes. All mails are disappeard." ) );
+    handleError( i18nc( "@info error message", "Error while trying to get the mail sizes. All mails are disappeard." ) );
     return;
   }
 
@@ -1681,7 +1681,7 @@ void Account::slotMailDeleted()
   //no response from the server
   if( answer.isEmpty() )
   {
-    handleError( i18nc( "@info error message: no server responce after we have deleted a mail", "<resource>%1</resource> has not sent a answer after removing of mail <numid>%2</numid>.", getHost(), mailsToDelete.first() ) );
+    handleError( i18nc( "@info error message: no server responce after we have deleted a mail", "<resource>%1</resource> has not sent an answer after removing of mail <numid>%2</numid>.", getHost(), mailsToDelete.first() ) );
     finishTask();
     return;
   }
@@ -1878,7 +1878,7 @@ void Account::slotMailDownloadedForAction()
   //no response from the server
   if( mail.isEmpty() )
   {
-    handleError( i18nc( "@info error message: we could not download a mail", "<resource>%1</resource> has not sent a answer after retrieve of mail <numid>%2</numid>.", getHost(), mailsToShow.first() ) );
+    handleError( i18nc( "@info error message: we could not download a mail", "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%2</numid>.", getHost(), mailsToShow.first() ) );
     finishTask();
     return;
   }

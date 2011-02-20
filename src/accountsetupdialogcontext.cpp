@@ -61,8 +61,8 @@ AccountSetupDialogContext::AccountSetupDialogContext( QWidget* parent, QString a
    QLabel* lblProtocol = new QLabel( i18nc( "@label:listbox mail fetching protocol", "Protocol:" ), pgGeneral );
    cboProtocol = new KComboBox( pgGeneral );
    cboProtocol->insertItem( 0, "POP3" );  //currently KShowmail just supports POP3
-   lblProtocol->setToolTip( i18nc( "@info:tooltip", "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
-   cboProtocol->setToolTip( i18nc( "@info:tooltip", "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.") );
+   lblProtocol->setToolTip( i18nc( "@info:tooltip", "Protocol, which shall be used to fetch the mails from the server. Currently KShowmail only supports POP3.") );
+   cboProtocol->setToolTip( i18nc( "@info:tooltip", "Protocol, which shall be used to fetch the mails from the server. Currently KShowmail only supports POP3.") );
    layTop->addWidget( lblProtocol, 2, 0 );
    layTop->addWidget( cboProtocol, 2, 1 );
  
@@ -77,8 +77,8 @@ AccountSetupDialogContext::AccountSetupDialogContext( QWidget* parent, QString a
  
    QLabel* lblUser = new QLabel( i18nc( "@label:textbox user name to authenticate", "User:" ), pgGeneral );
    txtUser = new KLineEdit( pgGeneral );
-   lblUser->setToolTip( i18nc( "@info:tooltip", "To authenticate to the mail server you need an user name." ) );
-   txtUser->setToolTip( i18nc( "@info:tooltip", "To authenticate to the mail server you need an user name." ) );
+   lblUser->setToolTip( i18nc( "@info:tooltip", "To identify to the mail server you need an user name." ) );
+   txtUser->setToolTip( i18nc( "@info:tooltip", "To identify to the mail server you need an user name." ) );
    layTop->addWidget( lblUser, 4, 0 );
    layTop->addWidget( txtUser, 4, 1 );
  
@@ -159,7 +159,7 @@ AccountSetupDialogContext::AccountSetupDialogContext( QWidget* parent, QString a
 
   //checkbox to allow unsecure transfer
   chkAllowUnsecureLogin = new QCheckBox( i18nc( "@option:check whether login without security shall be allowed", "Allow unsafe login"), pgSecurity );
-  chkAllowUnsecureLogin->setToolTip( i18nc( "@info:tooltip", "Select it to allow an unsafe login if necessary.\nThe password will be transmit unencrypted. Maybe someone can read it!" ) );
+  chkAllowUnsecureLogin->setToolTip( i18nc( "@info:tooltip", "Select it to allow an unsafe login if necessary.\nThe password will be transmitted unencrypted. Maybe someone can read it!" ) );
   laySecurity->addWidget( chkAllowUnsecureLogin );
   chkAllowUnsecureLogin->setChecked( DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN );
 
@@ -203,7 +203,7 @@ void AccountSetupDialogContext::slotButtonClicked( int button )
   //check for necessary values
   if( txtServer->text().isEmpty() )
   {
-    KMessageBox::error( this, i18nc( "@info error message: no server was entered", "Please enter an server." ) );
+    KMessageBox::error( this, i18nc( "@info error message: no server was entered", "Please enter a server." ) );
     return;
   }
 

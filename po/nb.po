@@ -98,7 +98,7 @@ msgid ""
 "Account <resource>%1</resource>: This server doesn't provide a safety login "
 "and you have disallowed the using of an unsafe login. If you want to use "
 "this Account you must allow unsafe login at the account setup.<nl/"
-"><warning>Bear in mind in this case criminals could read your password!</"
+"><warning>Bear in mind, in this case criminals could read your password!</"
 "warning>"
 msgstr ""
 "Konto <resource>%2</resource>: Denne tjeneren støtter ikke sikker påmelding"
@@ -146,7 +146,7 @@ msgid ""
 "Login has failed. Maybe your user name or password is invalid. Error message "
 "is: <message>%1</message><nl/>Maybe the secure login of this server is "
 "faulty. You can try to allow the unsafe login for this account at the "
-"account setup.<nl/><warning>Bear in mind in this case criminals could read "
+"account setup.<nl/><warning>Bear in mind, in this case criminals could read "
 "your password!</warning>"
 msgstr ""
 "Innlogging slo feil. Kanskje brukernavnet eller passordet ditt er feil. "
@@ -184,14 +184,14 @@ msgstr ""
 
 #: account.cpp:1404
 msgctxt "@info error message: a server has not send the mail sizes"
-msgid "Error while try to get the mail sizes. Message is: <message>%1</message>"
+msgid "Error while trying to get the mail sizes. Message is: <message>%1</message>"
 msgstr ""
 "Feil ved forsøk på å lese størrelsene på e-post. Meldingen er: <message>%1<"
 "/message>"
 
 #: account.cpp:1421
 msgctxt "@info error message"
-msgid "Error while try to get the mail sizes. All mails are disappeard."
+msgid "Error while trying to get the mail sizes. All mails are disappeard."
 msgstr "Feil ved forsøk på å lese størrelsene på e-post. All e-post har forsvunnet."
 
 #: account.cpp:1437
@@ -228,7 +228,7 @@ msgstr ""
 #: account.cpp:1684
 msgctxt "@info error message: no server responce after we have deleted a mail"
 msgid ""
-"<resource>%1</resource> has not sent a answer after removing of mail <numid>%"
+"<resource>%1</resource> has not sent an answer after removing of mail <numid>%"
 "2</numid>."
 msgstr ""
 "<resource>%1</resource> har ikke sendt et svar etter sletting av e-post <numid>%"
@@ -264,7 +264,7 @@ msgstr ""
 #: account.cpp:1881
 msgctxt "@info error message: we could not download a mail"
 msgid ""
-"<resource>%1</resource> has not sent a answer after retrieve of mail <numid>%"
+"<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%"
 "2</numid>."
 msgstr ""
 "<resource>%1</resource> har ikke sendt et svar etter henting av e-post <numid>"
@@ -379,8 +379,8 @@ msgstr "Protokoll:"
 #: accountsetupdialog.cpp:63 accountsetupdialog.cpp:64
 msgctxt "@info:tooltip"
 msgid ""
-"Protocol, which shall be used to get the mails from the server. Currently "
-"KShowmail just supports POP3."
+"Protocol, which shall be used to fetch the mails from the server. Currently "
+"KShowmail only supports POP3."
 msgstr ""
 "Protokoll som skal brukes for å hente e-post fra tjeneren. KShowmail kan kun "
 "bruke POP3."
@@ -404,7 +404,7 @@ msgstr "Bruker:"
 #: accountsetupdialogcontext.cpp:80 accountsetupdialogcontext.cpp:81
 #: accountsetupdialog.cpp:79 accountsetupdialog.cpp:80
 msgctxt "@info:tooltip"
-msgid "To authenticate to the mail server you need an user name."
+msgid "To identify to the mail server you need an user name."
 msgstr "Du trenger et brukernavn for å identifisere deg hos e-post-tjeneren."
 
 #: accountsetupdialogcontext.cpp:86 accountsetupdialog.cpp:85
@@ -517,7 +517,7 @@ msgstr "Tillat usikker innlogging."
 msgctxt "@info:tooltip"
 msgid ""
 "Select it to allow an unsafe login if necessary.\n"
-"The password will be transmit unencrypted. Maybe someone can read it!"
+"The password will be transmitted unencrypted. Maybe someone can read it!"
 msgstr ""
 "Velg det for å tillate usikker innlogging hvis det er nødvendig.\n"
 "Passordet vil bli sendt ukryptert. Noen kan kanskje lese det!"
@@ -539,7 +539,7 @@ msgstr "Rediger konto <resource>%1</resource>"
 
 #: accountsetupdialogcontext.cpp:206 accountsetupdialog.cpp:214
 msgctxt "@info error message: no server was entered"
-msgid "Please enter an server."
+msgid "Please enter a server."
 msgstr "Vennligst oppgi en tjener."
 
 #: accountsetupdialogcontext.cpp:212 accountsetupdialog.cpp:220
@@ -1024,7 +1024,7 @@ msgstr "Flytter det valgte filteret ned"
 
 #: configfilter.cpp:91
 msgctxt "@info:tooltip"
-msgid "Moves the selected filter at the bottm"
+msgid "Moves the selected filter to the bottom"
 msgstr "Flytter det valgte filteret til bunnen"
 
 #: configfilter.cpp:118

@@ -98,7 +98,7 @@ msgstr "No admite START-TLS"
 
 #: account.cpp:868
 msgctxt "@info Warning: the server does'nt support secure login"
-msgid "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>"
+msgid "Account <resource>%1</resource>: This server doesn't provide a safety login and you have disallowed the using of an unsafe login. If you want to use this Account you must allow unsafe login at the account setup.<nl/><warning>Bear in mind, in this case criminals could read your password!</warning>"
 msgstr "Cuenta <resource>%1</resource>: Este servidor no proporciona un inicio de sesión seguro y ha desactivado el uso de inicio de sesión sin seguridad. Si quiere utilizar esta Cuenta debe permitir el inicio de sesión sin seguridad en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta que en este caso los criminales podrían leer su contraseña!</warning>"
 
 #: account.cpp:868
@@ -124,7 +124,7 @@ msgstr "Ha fallado el inicio de sesión. Es posible que el nombre de usuario o l
 
 #: account.cpp:1090
 msgctxt "@info error message"
-msgid "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind in this case criminals could read your password!</warning>"
+msgid "Login has failed. Maybe your user name or password is invalid. Error message is: <message>%1</message><nl/>Maybe the secure login of this server is faulty. You can try to allow the unsafe login for this account at the account setup.<nl/><warning>Bear in mind, in this case criminals could read your password!</warning>"
 msgstr "Ha fallado el inicio de sesión. Es posible que el nombre de usuario o la contraseña no sean correctos. El mensaje de error es: <message>%1</message><nl/>Es posible que el inicio de sesión seguro de este servidor tenga algún problema. Puede intentar permitir el inicio de sesión sin seguridad en la configuración de la cuenta.<nl/><warning>¡Tenga en cuenta que en este caso los criminales podrían leer su contraseña!</warning>"
 
 #: account.cpp:1165
@@ -149,12 +149,12 @@ msgstr "<resource>%1</resource> no ha enviado una respuesta tras el comando <ico
 
 #: account.cpp:1404
 msgctxt "@info error message: a server has not send the mail sizes"
-msgid "Error while try to get the mail sizes. Message is: <message>%1</message>"
+msgid "Error while trying to get the mail sizes. Message is: <message>%1</message>"
 msgstr "Error al intentar obtener el tamaño de los mensajes. Mensaje: <message>%1</message>"
 
 #: account.cpp:1421
 msgctxt "@info error message"
-msgid "Error while try to get the mail sizes. All mails are disappeard."
+msgid "Error while trying to get the mail sizes. All mails are disappeard."
 msgstr "Error al intentar obtener el tamaño de los mensajes. Todos los mensajes han desaparecido."
 
 #: account.cpp:1437
@@ -184,7 +184,7 @@ msgstr "<resource>%1</resource> no admite el comando TOP. KShowmail no puede fun
 
 #: account.cpp:1684
 msgctxt "@info error message: no server responce after we have deleted a mail"
-msgid "<resource>%1</resource> has not sent a answer after removing of mail <numid>%2</numid>."
+msgid "<resource>%1</resource> has not sent an answer after removing of mail <numid>%2</numid>."
 msgstr "<resource>%1</resource> no ha enviado una respuesta tras eliminar el mensaje <numid>%2</numid>."
 
 #: account.cpp:1692
@@ -205,7 +205,7 @@ msgstr "Error al descargar el mensaje <numid>%1</numid> de <resource>%2</resourc
 
 #: account.cpp:1881
 msgctxt "@info error message: we could not download a mail"
-msgid "<resource>%1</resource> has not sent a answer after retrieve of mail <numid>%2</numid>."
+msgid "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%2</numid>."
 msgstr "<resource>%1</resource> no ha enviado una respuesta tras recuperar el mensaje <numid>%2</numid>."
 
 #: account.cpp:2106
@@ -301,7 +301,7 @@ msgstr "Protocolo:"
 #: accountsetupdialog.cpp:63
 #: accountsetupdialog.cpp:64
 msgctxt "@info:tooltip"
-msgid "Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3."
+msgid "Protocol, which shall be used to fetch the mails from the server. Currently KShowmail only supports POP3."
 msgstr "Protocolo que se debe utilizar para obtener los mensajes del servidor. Actualmente KShowmail sólo admite POP3."
 
 #: accountsetupdialogcontext.cpp:69
@@ -329,7 +329,7 @@ msgstr "Usuario:"
 #: accountsetupdialog.cpp:79
 #: accountsetupdialog.cpp:80
 msgctxt "@info:tooltip"
-msgid "To authenticate to the mail server you need an user name."
+msgid "To identify to the mail server you need an user name."
 msgstr "Para autentificarse en el servidor de correo necesita un nombre de usuario."
 
 #: accountsetupdialogcontext.cpp:86
@@ -439,7 +439,7 @@ msgstr "Permitir inicio de sesión sin seguridad"
 msgctxt "@info:tooltip"
 msgid ""
 "Select it to allow an unsafe login if necessary.\n"
-"The password will be transmit unencrypted. Maybe someone can read it!"
+"The password will be transmitted unencrypted. Maybe someone can read it!"
 msgstr ""
 "Selecciónelo para permitir el inicio de sesión sin seguridad en el caso de que sea necesario.\n"
 "La contraseña se transmitirá sin cifrar. ¡Es posible que alguien la pueda leer!"
@@ -464,7 +464,7 @@ msgstr "Editar la cuenta <resource>%1</resource>"
 #: accountsetupdialogcontext.cpp:206
 #: accountsetupdialog.cpp:214
 msgctxt "@info error message: no server was entered"
-msgid "Please enter an server."
+msgid "Please enter a server."
 msgstr "Por favor, introduzca un servidor."
 
 #: accountsetupdialogcontext.cpp:212
@@ -935,7 +935,7 @@ msgstr "Mueve el filtro seleccionado hacia abajo"
 
 #: configfilter.cpp:91
 msgctxt "@info:tooltip"
-msgid "Moves the selected filter at the bottm"
+msgid "Moves the selected filter to the bottom"
 msgstr "Mueve el filtro seleccionado a la parte inferior"
 
 #: configfilter.cpp:118

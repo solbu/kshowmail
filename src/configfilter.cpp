@@ -88,7 +88,7 @@ ConfigFilter::ConfigFilter( QWidget * parent, const QVariantList & args )
   btnMoveTop = new KPushButton( KGuiItem( "", "go-top", i18nc( "@info:tooltip", "Moves the selected filter at the top" ) ), gboxFilters );
   btnMoveUp = new KPushButton( KGuiItem( "", "go-up", i18nc( "@info:tooltip", "Moves the selected filter up" ) ), gboxFilters );
   btnMoveDown = new KPushButton( KGuiItem( "", "go-down", i18nc( "@info:tooltip", "Moves the selected filter down" ) ), gboxFilters );
-  btnMoveBottom = new KPushButton( KGuiItem( "", "go-bottom", i18nc( "@info:tooltip", "Moves the selected filter at the bottm" ) ), gboxFilters );
+  btnMoveBottom = new KPushButton( KGuiItem( "", "go-bottom", i18nc( "@info:tooltip", "Moves the selected filter to the bottom" ) ), gboxFilters );
   btnAdd->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
   btnEdit->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
   btnRemove->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum );
