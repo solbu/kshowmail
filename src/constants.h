@@ -269,6 +269,7 @@ namespace Constants
   #define CONFIG_ENTRY_WIDTH_ACCOUNT_SIZE     		"widthAccountListSizeColumn"
   #define CONFIG_ENTRY_SORT_COLUMN_ACCOUNT				"sortColumnAccountList"
   #define CONFIG_ENTRY_SORT_ORDER_ACCOUNT					"sortOrderAccountList"
+	#define CONFIG_ENTRY_STATE_ACCOUNTLIST					"stateAccountList"
 
 
   #define CONFIG_GROUP_MESSAGE_LIST               "LayoutMessageList"
@@ -292,6 +293,7 @@ namespace Constants
   #define CONFIG_ENTRY_WIDTH_MESSAGE_STATE    		"widthMessageListStateColumn"
   #define CONFIG_ENTRY_SORT_COLUMN_MESSAGE				"sortColumnMessageList"
   #define CONFIG_ENTRY_SORT_ORDER_MESSAGE					"sortOrderMessageList"
+	#define CONFIG_ENTRY_STATE_MESSAGELIST					"stateMessageList"
 
   #define CONFIG_VALUE_ACCOUNT_PASSWORD_DONT_SAVE     1
   #define CONFIG_VALUE_ACCOUNT_PASSWORD_SAVE_FILE     2

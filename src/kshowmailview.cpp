@@ -129,6 +129,10 @@ void KShowmailView::saveSetup() {
 
   if( !viewMails->isColumnHidden( 8 ) )
     configMail->writeEntry( CONFIG_ENTRY_WIDTH_MESSAGE_CONTENT, viewMails->columnWidth( 8 ) );
+	
+	//save the state of the views
+	configAcc->writeEntry( CONFIG_ENTRY_STATE_ACCOUNTLIST, viewAccounts->header()->saveState() );
+	configMail->writeEntry( CONFIG_ENTRY_STATE_MESSAGELIST, viewMails->header()->saveState() );
 
   //save position of the splitter
   configView->writeEntry( CONFIG_ENTRY_VIEW_MAIN_WINDOW_SPLITTER, splitter->saveState() );
@@ -152,6 +156,16 @@ void KShowmailView::loadSetup() {
 	KConfigGroup* configAcc = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_ACCOUNT_LIST );
 	KConfigGroup* configMail = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_MESSAGE_LIST );
   KConfigGroup* configView = new KConfigGroup( KGlobal::config(), CONFIG_GROUP_VIEW );
+	
+  //load view states
+  QByteArray stateAccountView = configAcc->readEntry( CONFIG_ENTRY_STATE_ACCOUNTLIST, QByteArray() );
+  if( !stateAccountView.isEmpty() ) {
+    viewAccounts->header()->restoreState( stateAccountView );
+  }
+  QByteArray stateMailView = configMail->readEntry( CONFIG_ENTRY_STATE_MESSAGELIST, QByteArray() );
+  if( !stateMailView.isEmpty() ) {
+    viewMails->header()->restoreState( stateMailView );
+  }
 
 	viewAccounts->setColumnWidth( 0, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACTIVE, DEFAULT_WIDTH_ACCOUNT_ACTIVE ) );
 	viewAccounts->setColumnWidth( 1, configAcc->readEntry( CONFIG_ENTRY_WIDTH_ACCOUNT_ACCOUNT, DEFAULT_WIDTH_ACCOUNT_ACCOUNT ) );

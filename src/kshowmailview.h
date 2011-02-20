@@ -25,9 +25,11 @@ class AccountViewModel;
 #include <QTreeView>
 #include <QModelIndexList>
 #include <QItemSelectionModel>
+#include <QHeaderView>
 
 //KDE headers
 #include <KAction>
+#include <KConfigGroup>
 
 //KShowmail headers
 #include "accountviewmodel.h"
