@@ -6,11 +6,13 @@ Name[de]=Aktionen
 Name[es]=Acciones
 Name[it]=Azioni
 Name[nl]=Acties
-Comment=actions
+Name[nb]=Aksjoner
+Comment=Actions
 Comment[de]=Aktionen
 Comment[es]=Acciones
 Comment[it]=Azioni
 Comment[nl]=Acties
+Comment[nb]=Aksjoner
 Icon=media-playback-start
 ServiceTypes=KCModule
 

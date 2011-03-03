@@ -6,11 +6,13 @@ Name[de]=Konten
 Name[es]=Cuentas
 Name[it]=Account
 Name[nl]=Accounts
+Name[nb]=Konti
 Comment=Accounts
 Comment[de]=Konten
 Comment[es]=Cuentas
 Comment[it]=Account
 Comment[nl]=Accounts
+Comment[nb]=Konti
 Icon=network-workgroup
 ServiceTypes=KCModule
 
