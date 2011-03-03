@@ -192,7 +192,7 @@ msgctxt "@info error message: error while removing a mail"
 msgid "Error while removing mail <numid>%1</numid> of <resource>%2</resource>: <message>%3</message>"
 msgstr "Error al eliminar el mensaje <numid>%1</numid> de <resource>%2</resource>: <message>%3</message>"
 
-#: account.cpp:1738
+#: account.cpp:1738 account.cpp:1881
 msgctxt "@info error message: we could not download a mail"
 msgid "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%2</numid>."
 msgstr "<resource>%1</resource> no ha enviado una respuesta tras recuperar el mensaje <numid>%2</numid>."
@@ -202,11 +202,6 @@ msgstr "<resource>%1</resource> no ha enviado una respuesta tras recuperar el me
 msgctxt "@info error message: we could not download a mail"
 msgid "Error while downloading mail <numid>%1</numid> of <resource>%2</resource>: <message>%3</message>"
 msgstr "Error al descargar el mensaje <numid>%1</numid> de <resource>%2</resource>: <message>%3</message>"
-
-#: account.cpp:1881
-msgctxt "@info error message: we could not download a mail"
-msgid "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%2</numid>."
-msgstr "<resource>%1</resource> no ha enviado una respuesta tras recuperar el mensaje <numid>%2</numid>."
 
 #: account.cpp:2106
 msgctxt "@info error message: writing a mail into a mailbox: this is not a mail box"
@@ -1729,7 +1724,7 @@ msgstr "Papelera"
 
 #: mailviewmodel.cpp:131
 msgctxt "@info:Shows the filter which has catched this mail"
-msgid "Catched by filter: %1"
+msgid "Caught by filter: %1"
 msgstr "Capturado por el filtro: %1"
 
 #: mailviewmodel.cpp:156

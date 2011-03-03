@@ -243,7 +243,7 @@ msgstr ""
 "Feil ved sletting av e-post <numid>%1</numid> av <resource>%2</resource>: "
 "<message>%3</message>"
 
-#: account.cpp:1738
+#: account.cpp:1738 account.cpp:1881
 msgctxt "@info error message: we could not download a mail"
 msgid ""
 "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>"
@@ -260,15 +260,6 @@ msgid ""
 msgstr ""
 "Feil ved nedlasting av e-post <numid>%1</numid> av <resource>%2</resource>: "
 "<message>%3</message>"
-
-#: account.cpp:1881
-msgctxt "@info error message: we could not download a mail"
-msgid ""
-"<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%"
-"2</numid>."
-msgstr ""
-"<resource>%1</resource> har ikke sendt et svar etter henting av e-post <numid>"
-"%2</numid>."
 
 #: account.cpp:2106
 msgctxt "@info error message: writing a mail into a mailbox: this is not a mail box"
@@ -1814,7 +1805,7 @@ msgstr "Søppel"
 
 #: mailviewmodel.cpp:131
 msgctxt "@info:Shows the filter which has catched this mail"
-msgid "Catched by filter: %1"
+msgid "Caught by filter: %1"
 msgstr "Fanget av filter: %1"
 
 #: mailviewmodel.cpp:156

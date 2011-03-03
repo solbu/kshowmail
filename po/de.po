@@ -260,7 +260,7 @@ msgstr ""
 "Fehler beim Löschen der Mail <numid>%1</numid> von <resource>%2</resource>: "
 "<message>%3</message>"
 
-#: account.cpp:1738
+#: account.cpp:1738 account.cpp:1881
 msgctxt "@info error message: we could not download a mail"
 msgid ""
 "<resource>%1</resource> has not sent an answer after retrieve of mail <numid>"
@@ -277,15 +277,6 @@ msgid ""
 msgstr ""
 "Fehler beim Abholen der Mail <numid>%1</numid> von <resource>%2</resource>: "
 "<message>%3</message>"
-
-#: account.cpp:1881
-msgctxt "@info error message: we could not download a mail"
-msgid ""
-"<resource>%1</resource> has not sent an answer after retrieve of mail <numid>%"
-"2</numid>."
-msgstr ""
-"<resource>%1</resource> hat keine Antwort auf die Anforderung von Mail "
-"<numid>%2</numid> gesendet."
 
 #: account.cpp:2106
 msgctxt ""
@@ -1861,7 +1852,7 @@ msgstr "Mülleimer"
 
 #: mailviewmodel.cpp:131
 msgctxt "@info:Shows the filter which has catched this mail"
-msgid "Catched by filter: %1"
+msgid "Caught by filter: %1"
 msgstr "Gefiltert durch: %1"
 
 #: mailviewmodel.cpp:156
