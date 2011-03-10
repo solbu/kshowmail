@@ -208,6 +208,6 @@ v.4.1
   mail list: an icon in front of the sender shows whether the sender is listed on the whitelist
   Bugfix: Kshowmail has crashed while showing an empty mail.
   You can export and import the filter settings
-  handbook was written by Otmar Mak (english and german) and our translators have translated it into spanish, italien, dutch and norwegian
+  handbook was written by Otmar Mak (english and german) and our translators have translated it into spanish, italien and dutch
   Some providers need the sequence \r\n at the end of a transmission
   The column order of the views will be saved.

@@ -84,7 +84,7 @@ FilterAction_Type HeaderFilter::check( QString from, QString to, uint size, QStr
   }
 
   //set filter name
-  filterName.append( i18nc( "@info The default action which has catched this mail", "Default Action" )  );
+  filterName.append( i18nc( "@info The default action which has caught this mail", "Default Action" )  );
 
   return defaultAction;
 

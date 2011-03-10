@@ -28,10 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "uniqueapp.h"
 #include "buildConfig.h"
 
-static const char description[] = I18N_NOOP("A pop3 mail checker");
-
-//the version number is defined in cmake via buildConfig.h.in
-static const char version[] = KSHOWMAIL_VERSION;
 
 /**
  * @mainpage
@@ -42,26 +38,28 @@ static const char version[] = KSHOWMAIL_VERSION;
 int main(int argc, char **argv)
 {
   //some things about KShowmail
-  KAboutData about( "kshowmail", 0, ki18n( "KShowmail" ), version, ki18n( description ),
-                    KAboutData::License_GPL, ki18n("(C) 2006 - 2009 Ulrich Weigelt"), KLocalizedString(),
-                    "http://kshowmail.sourceforge.net", "ulrich.weigelt@gmx.de");
+  //the version number is defined in cmake via buildConfig.h.in
+  KAboutData about( QByteArray( "kshowmail" ), NULL, ki18nc( "@title application name", "KShowmail" ), QByteArray( KSHOWMAIL_VERSION ), 
+                    ki18nc( "@title", "A pop3 mail checker" ),
+                    KAboutData::License_GPL, ki18nc( "@info:credit copyright statement", "(C) 2006 - 2009 Ulrich Weigelt" ), KLocalizedString(),
+                    QByteArray( "http://kshowmail.sourceforge.net" ), QByteArray( "ulrich.weigelt@gmx.de" ) );
 
   //add authors
-  about.addAuthor( ki18n( "Ulrich Weigelt" ), ki18n( "maintainer" ), "ulrich.weigelt@gmx.de" );
-  about.addAuthor( ki18n( "Eggert Ehmke" ), ki18n( "Initiator and first developer" ), "eggert.ehmke@berlin.de", "http://kshowmail.sourceforge.net" );
-  about.addAuthor( ki18n( "Allistar Melville" ), KLocalizedString(), "allistar@silvermoon.co.nz" );
-  about.addAuthor( ki18n( "Oleg Ivanov" ), KLocalizedString(), "saruman@unigsm.com" );
+  about.addAuthor( ki18nc( "@info:credit", "Ulrich Weigelt" ), ki18nc( "@info:credit maintainer", "maintainer" ), "ulrich.weigelt@gmx.de" );
+  about.addAuthor( ki18nc( "@info:credit", "Eggert Ehmke" ), ki18nc( "@info:credit", "Initiator and first developer" ), "eggert.ehmke@berlin.de", "http://kshowmail.sourceforge.net" );
+  about.addAuthor( ki18nc( "@info:credit", "Allistar Melville" ), KLocalizedString(), "allistar@silvermoon.co.nz" );
+  about.addAuthor( ki18nc( "@info:credit", "Oleg Ivanov" ), KLocalizedString(), "saruman@unigsm.com" );
 
   //add Translators
-  about.setTranslator( ki18nc( "NAME OF TRANSLATORS", "Your names" ), ki18nc( "EMAIL OF TRANSLATORS", "Your emails" ) );
+  about.setTranslator( ki18nc( "@info:credit NAME OF TRANSLATORS", "Your names" ), ki18nc( "@info:credit EMAIL OF TRANSLATORS", "Your emails" ) );
 
   //add credits
-  about.addCredit( ki18n( "Scott Barninger" ), ki18nc( "@info:credit Who build the RPMs and releases they", "Release Manager") );
-  about.addCredit( ki18n( "Luca Pedrielli"), ki18nc( "@info:credit", "a lot of testing and italian translation") );
-  about.addCredit( ki18n( "Elsa Andrés"), ki18nc( "@info:credit", "spanish translation") );
-  about.addCredit( ki18n( "Heimen Stoffels"), ki18nc( "@info:credit", "dutch translation") );
-  about.addCredit( ki18n( "Otmar Mak" ), ki18nc( "@info:credit", "handbook and testing") );
-  about.addCredit( ki18n( "Tor B. Løken"), ki18nc( "@info:credit", "norwegian translation") );
+  about.addCredit( ki18nc( "@info:credit", "Scott Barninger" ), ki18nc( "@info:credit Who build the RPMs and releases they", "Release Manager") );
+  about.addCredit( ki18nc( "@info:credit", "Luca Pedrielli" ), ki18nc( "@info:credit", "a lot of testing and italian translation") );
+  about.addCredit( ki18nc( "@info:credit", "Elsa Andrés" ), ki18nc( "@info:credit", "spanish translation") );
+  about.addCredit( ki18nc( "@info:credit", "Heimen Stoffels" ), ki18nc( "@info:credit", "dutch translation") );
+  about.addCredit( ki18nc( "@info:credit", "Otmar Mak" ), ki18nc( "@info:credit", "handbook and testing") );
+  about.addCredit( ki18nc( "@info:credit", "Tor B. Løken" ), ki18nc( "@info:credit", "norwegian translation") );
 
   //Initialize command line arguments
   KCmdLineArgs::init( argc, argv, &about );
@@ -85,7 +83,7 @@ int main(int argc, char **argv)
   else
   {
     //kshowmail is already running
-    kWarning() << I18N_NOOP( "KShowmail is already running!" ) << endl;
+    kWarning() << I18N_NOOP2( "@info shown if Kshowmail was started but it is already running", "KShowmail is already running!" ) << endl;
   }
 
   return EXIT_SUCCESS;

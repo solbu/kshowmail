@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <qwidget.h>
 #include <qlayout.h>
 #include <qcheckbox.h>
+#include <QPointer>
 
 //KDE headers
 #include <klineedit.h>

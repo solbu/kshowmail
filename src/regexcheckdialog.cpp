@@ -82,7 +82,7 @@ void RegexCheckDialog::checkRegex()
 
   //check Regex
   if( !regex.isValid() ) {
-    KMessageBox::detailedError( this, i18nc( "@info Error message about an invalid regular expression", "The regular expression is invalid."), regex.errorString(), i18nc( "@info:title Title from error message box about a invalid regular expression", "Invalid regular expression") );
+    KMessageBox::detailedError( this, i18nc( "@info Error message about an invalid regular expression", "The regular expression is invalid."), regex.errorString(), i18nc( "@title:window Title from error message box about a invalid regular expression", "Invalid regular expression") );
     writeRed( i18nc( "@info:status Short error message about an invalid regular expression", "invalid regex") );
     return;
   }

@@ -1610,7 +1610,7 @@ msgid "Unknown action"
 msgstr "Ukjent aksjon"
 
 #: headerfilter.cpp:87
-msgctxt "@info The default action which has catched this mail"
+msgctxt "@info The default action which has caught this mail"
 msgid "Default Action"
 msgstr "Standard aksjon"
 
@@ -1804,7 +1804,7 @@ msgid "Trash"
 msgstr "Søppel"
 
 #: mailviewmodel.cpp:131
-msgctxt "@info:Shows the filter which has catched this mail"
+msgctxt "@info Shows the filter which has caught this mail"
 msgid "Caught by filter: %1"
 msgstr "Fanget av filter: %1"
 
@@ -1844,38 +1844,47 @@ msgid "Content"
 msgstr "Innhold"
 
 #: main.cpp:31
+msgctxt "@title"
 msgid "A pop3 mail checker"
 msgstr "En POP3 e-post sjekker"
 
 #: main.cpp:45
+msgctxt "@title application name"
 msgid "KShowmail"
 msgstr "KShowmail"
 
 #: main.cpp:46
+msgctxt "@info:credit copyright statement"
 msgid "(C) 2006 - 2009 Ulrich Weigelt"
 msgstr "(C) 2006 - 2009 Ulrich Weigelt"
 
 #: main.cpp:50
+msgctxt "@info:credit"
 msgid "Ulrich Weigelt"
 msgstr "Ulrich Weigelt"
 
 #: main.cpp:50
+msgctxt "@info:credit maintainer"
 msgid "maintainer"
 msgstr "vedlikeholder"
 
 #: main.cpp:51
+msgctxt "@info:credit"
 msgid "Eggert Ehmke"
 msgstr "Eggert Ehmke"
 
 #: main.cpp:51
+msgctxt "@info:credit"
 msgid "Initiator and first developer"
 msgstr "Initiator og første utvikler"
 
 #: main.cpp:52
+msgctxt "@info:credit"
 msgid "Allistar Melville"
 msgstr "Allistar Melville"
 
 #: main.cpp:53
+msgctxt "@info:credit"
 msgid "Oleg Ivanov"
 msgstr "Oleg Ivanov"
 
@@ -1890,6 +1899,7 @@ msgid "Your emails"
 msgstr "tebelille@gmx.de"
 
 #: main.cpp:59
+msgctxt "@info:credit"
 msgid "Scott Barninger"
 msgstr "Scott Barninger"
 
@@ -1899,6 +1909,7 @@ msgid "Release Manager"
 msgstr "Versjon manager"
 
 #: main.cpp:60
+msgctxt "@info:credit"
 msgid "Luca Pedrielli"
 msgstr "Luca Pedrielli"
 
@@ -1908,8 +1919,9 @@ msgid "a lot of testing and italian translation"
 msgstr "masse testing og italiensk oversettelse"
 
 #: main.cpp:61
-msgid "Elsa Andrs"
-msgstr "Elsa Andrs"
+msgctxt "@info:credit"
+msgid "Elsa Andrés"
+msgstr "Elsa Andrés"
 
 #: main.cpp:61
 msgctxt "@info:credit"
@@ -1917,6 +1929,7 @@ msgid "spanish translation"
 msgstr "spansk oversettelse"
 
 #: main.cpp:62
+msgctxt "@info:credit"
 msgid "Heimen Stoffels"
 msgstr "Heimen Stoffels"
 
@@ -1926,6 +1939,7 @@ msgid "dutch translation"
 msgstr "nederlandsk oversettelse"
 
 #: main.cpp:63
+msgctxt "@info:credit"
 msgid "Otmar Mak"
 msgstr "Otmar Mak"
 
@@ -1935,7 +1949,8 @@ msgid "handbook and testing"
 msgstr "håndbok og testing"
 
 #: main.cpp:64
-msgid "Tor B. Lken"
+msgctxt "@info:credit"
+msgid "Tor B. Løken"
 msgstr "Tor B. Løken"
 
 #: main.cpp:64
@@ -1944,6 +1959,7 @@ msgid "norwegian translation"
 msgstr "norsk oversettelse"
 
 #: main.cpp:88
+msgctxt "@info shown if Kshowmail was started but it is already running"
 msgid "KShowmail is already running!"
 msgstr "KShowmail kjører allerede!"
 
@@ -1987,7 +2003,7 @@ msgstr "Det regulære uttrykket er ugyldig."
 
 #: regexcheckdialog.cpp:85
 msgctxt ""
-"@info:title Title from error message box about a invalid regular expression"
+"@title:window Title from error message box about a invalid regular expression"
 msgid "Invalid regular expression"
 msgstr "Ugyldig regulært uttrykk"
 

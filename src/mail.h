@@ -316,14 +316,14 @@ class Mail : public QObject
     QString getAccountName() const;
 
     /**
-     * Returns the name of the filter which has catched this mail.
+     * Returns the name of the filter which has caught this mail.
      *
-     * @return name of the filter which has catched this mail
+     * @return name of the filter which has caught this mail
      */
     QString getFilterName() const;
 
     /**
-     * Sets the name of the filter which has catched this mail
+     * Sets the name of the filter which has caught this mail
      *
      * @param filter name of the filter
      */
@@ -399,7 +399,7 @@ class Mail : public QObject
     QString accountName;
 
     /**
-     * The name of the filter which has catched this mail
+     * The name of the filter which has caught this mail
      */
     QString filterName;
 

@@ -1648,7 +1648,7 @@ msgid "Unknown action"
 msgstr "Onbekende actie"
 
 #: headerfilter.cpp:87
-msgctxt "@info The default action which has catched this mail"
+msgctxt "@info The default action which has caught this mail"
 msgid "Default Action"
 msgstr "Standaardactie"
 
@@ -1845,7 +1845,7 @@ msgid "Trash"
 msgstr "Prullenbak"
 
 #: mailviewmodel.cpp:131
-msgctxt "@info:Shows the filter which has catched this mail"
+msgctxt "@info Shows the filter which has caught this mail"
 msgid "Caught by filter: %1"
 msgstr "Gevangen door filter: %1"
 
@@ -1885,38 +1885,47 @@ msgid "Content"
 msgstr "Inhoud"
 
 #: main.cpp:31
+msgctxt "@title"
 msgid "A pop3 mail checker"
 msgstr "Een POP3 mail-controleur"
 
 #: main.cpp:45
+msgctxt "@title application name"
 msgid "KShowmail"
 msgstr "KShowmail"
 
 #: main.cpp:46
+msgctxt "@info:credit copyright statement"
 msgid "(C) 2006 - 2009 Ulrich Weigelt"
 msgstr "(C) 2006 - 2009 Ulrich Weigelt"
 
 #: main.cpp:50
+msgctxt "@info:credit"
 msgid "Ulrich Weigelt"
 msgstr "Ulrich Weigelt"
 
 #: main.cpp:50
+msgctxt "@info:credit maintainer"
 msgid "maintainer"
 msgstr "beheerder"
 
 #: main.cpp:51
+msgctxt "@info:credit"
 msgid "Eggert Ehmke"
 msgstr "Eggert Ehmke"
 
 #: main.cpp:51
+msgctxt "@info:credit"
 msgid "Initiator and first developer"
 msgstr "Bedenker en eerste ontwikkelaar"
 
 #: main.cpp:52
+msgctxt "@info:credit"
 msgid "Allistar Melville"
 msgstr "Allistar Melville"
 
 #: main.cpp:53
+msgctxt "@info:credit"
 msgid "Oleg Ivanov"
 msgstr "Oleg Ivanov"
 
@@ -1931,6 +1940,7 @@ msgid "Your emails"
 msgstr "vistausss@gmail.com"
 
 #: main.cpp:59
+msgctxt "@info:credit"
 msgid "Scott Barninger"
 msgstr "Scott Barninger"
 
@@ -1940,6 +1950,7 @@ msgid "Release Manager"
 msgstr "Uitgave-beheerder"
 
 #: main.cpp:60
+msgctxt "@info:credit"
 msgid "Luca Pedrielli"
 msgstr "Luca Pedrielli"
 
@@ -1949,6 +1960,7 @@ msgid "a lot of testing and italian translation"
 msgstr "veel testen en Italiaanse vertaling"
 
 #: main.cpp:61
+msgctxt "@info:credit"
 msgid "Elsa Andrés"
 msgstr "Elsa Andrés"
 
@@ -1958,6 +1970,7 @@ msgid "spanish translation"
 msgstr "Spaanse vertaling"
 
 #: main.cpp:62
+msgctxt "@info:credit"
 msgid "Heimen Stoffels"
 msgstr "Heimen Stoffels"
 
@@ -1967,6 +1980,7 @@ msgid "dutch translation"
 msgstr "Nederlandse vertaling"
 
 #: main.cpp:63
+msgctxt "@info:credit"
 msgid "Otmar Mak"
 msgstr "Otmar Mak"
 
@@ -1976,6 +1990,7 @@ msgid "handbook and testing"
 msgstr "handboek en testen"
 
 #: main.cpp:64
+msgctxt "@info:credit"
 msgid "Tor B. Løken"
 msgstr "Tor B. Løken"
 
@@ -1985,6 +2000,7 @@ msgid "norwegian translation"
 msgstr "Noorweegse vertaling"
 
 #: main.cpp:88
+msgctxt "@info shown if Kshowmail was started but it is already running"
 msgid "KShowmail is already running!"
 msgstr "KShowmail draait al!"
 
@@ -2028,7 +2044,7 @@ msgstr "De reguliere expressie is ongeldig."
 
 #: regexcheckdialog.cpp:85
 msgctxt ""
-"@info:title Title from error message box about a invalid regular expression"
+"@title:window Title from error message box about a invalid regular expression"
 msgid "Invalid regular expression"
 msgstr "Ongeldige reguliere expressie"
 

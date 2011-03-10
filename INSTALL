@@ -10,8 +10,8 @@ Required packages:
 
 Installation:
 -------------
-tar xzf kshowmail-4.0.tar.gz
-cd kshowmail-4.0
+tar xzf kshowmail-4.1.tar.gz
+cd kshowmail-4.1
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` .. <-- don't forget the ..!

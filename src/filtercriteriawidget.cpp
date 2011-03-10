@@ -226,7 +226,7 @@ void FilterCriteriaWidget::slotSetWidgets( )
 void FilterCriteriaWidget::slotOpenRegExpCheck( )
 {
   //create check dialog
-  RegexCheckDialog* dlg = new RegexCheckDialog( this );
+  QPointer<RegexCheckDialog> dlg = new RegexCheckDialog( this );
 
   //put the previously entered regex in it
   dlg->setRegex( txtCompValueText->text() );
@@ -234,12 +234,12 @@ void FilterCriteriaWidget::slotOpenRegExpCheck( )
   //open dialog
   int result = dlg->exec();
 
-  //if the user has clicked on OK, the regex will be transfered into the value edit line
+  //if the user has clicked on OK, the regex will be transferred into the value edit line
   if( result == RegexCheckDialog::Accepted ) {
     txtCompValueText->setText( dlg->getRegex() );
   }
 
-
+  delete dlg;
 }
 
 void FilterCriteriaWidget::setNumCriteria( int source, int condition, uint value )

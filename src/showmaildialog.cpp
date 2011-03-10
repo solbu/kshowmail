@@ -109,8 +109,8 @@ void ShowMailDialog::slotButtonClicked(int button)
   if( button == User1 ) {
 
     QStringList newBody;
-    foreach( QString line,  m_body ) {
-      newBody.append( line.insert( 0, "> ") );
+    foreach( const QString& line,  m_body ) {
+      newBody.append( "> " + line );
     }
 
     KToolInvocation::invokeMailer( m_sender,

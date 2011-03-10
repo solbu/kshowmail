@@ -64,7 +64,7 @@ class HeaderFilter{
      * @param header Header
      * @param account Account
      * @param mailboxName contains the mailbox name after call, if filter action is MOVE
-     * @param filterName after the call it contains the name of the filter which has catched the mail
+     * @param filterName after the call it contains the name of the filter which has caught the mail
      * @return recommend action
      */
     FilterAction_Type check( QString from, QString to, uint size, QString subject, QStringList header, QString account, QString& mailboxName, QString& filterName ) const;

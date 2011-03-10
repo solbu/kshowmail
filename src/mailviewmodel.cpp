@@ -128,7 +128,7 @@ QVariant MailViewModel::data ( const QModelIndex & index, int role ) const
       if( filtername.isEmpty() ) {
         return QVariant();
       } else {
-        return QVariant( i18nc( "@info:Shows the filter which has catched this mail", "Caught by filter: %1", mail.getFilterName() ) );
+        return QVariant( i18nc( "@info Shows the filter which has caught this mail", "Caught by filter: %1", mail.getFilterName() ) );
       }
 
   }
