@@ -50,130 +50,148 @@
 <a name="l00025"></a>00025 <span class="preprocessor">#include &lt;qcheckbox.h&gt;</span>
 <a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QTreeWidget&gt;</span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QPointer&gt;</span>
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029 <span class="comment">//KDE headers</span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;kcmodule.h&gt;</span>
-<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;kconfig.h&gt;</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include &lt;kgenericfactory.h&gt;</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include &lt;kapplication.h&gt;</span>
-<a name="l00034"></a>00034 <span class="preprocessor">#include &lt;kpushbutton.h&gt;</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include &lt;kcombobox.h&gt;</span>
-<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;klineedit.h&gt;</span>
-<a name="l00037"></a>00037 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
-<a name="l00038"></a>00038 <span class="preprocessor">#include &lt;KStandardDirs&gt;</span>
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment">//Kshowmail headers</span>
-<a name="l00041"></a>00041 <span class="preprocessor">#include &quot;<a class="code" href="constants_8h.html">constants.h</a>&quot;</span>
-<a name="l00042"></a>00042 <span class="preprocessor">#include &quot;<a class="code" href="senderlistdialog_8h.html">senderlistdialog.h</a>&quot;</span>
-<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;<a class="code" href="filtersetupitem_8h.html">filtersetupitem.h</a>&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="filtersetupdialog_8h.html">filtersetupdialog.h</a>&quot;</span>
-<a name="l00045"></a>00045 <span class="comment">//#include &quot;mailboxwizard.h&quot;</span>
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="comment">//radio button IDs</span>
-<a name="l00048"></a><a class="code" href="configfilter_8h.html#a09c345baab5ce7f1213fc6cac40404d4">00048</a> <span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_PASS       0</span>
-<a name="l00049"></a><a class="code" href="configfilter_8h.html#aaa4dd86b33c1d2938937507832b7d34f">00049</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_DELETE     1</span>
-<a name="l00050"></a><a class="code" href="configfilter_8h.html#af6536f059561fad8ec6d11135a0fda8c">00050</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_MARK       2</span>
-<a name="l00051"></a><a class="code" href="configfilter_8h.html#a05cfc472a7d76f8735cd11e097420572">00051</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_MOVE       3</span>
-<a name="l00052"></a><a class="code" href="configfilter_8h.html#a7ada615049b7d732906a28e1e22d0093">00052</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK  4</span>
-<a name="l00053"></a><a class="code" href="configfilter_8h.html#aee52d944f877c377ba37047b06b36bf1">00053</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_IGNORE     5</span>
-<a name="l00054"></a>00054 <span class="preprocessor"></span>
-<a name="l00055"></a>00055 
-<a name="l00060"></a><a class="code" href="classConfigFilter.html">00060</a> <span class="keyword">class </span><a class="code" href="classConfigFilter.html" title="Part of the setup dialog (KShowMailApp::SetupDialog) to configure the filter.">ConfigFilter</a> : <span class="keyword">public</span> KCModule
-<a name="l00061"></a>00061 {
-<a name="l00062"></a>00062 Q_OBJECT
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064   <span class="keyword">public</span>:
-<a name="l00065"></a>00065 
-<a name="l00071"></a>00071     <span class="keyword">explicit</span> <a class="code" href="classConfigFilter.html#a75e9a63054a4fb74f19bf82c9ff236d8">ConfigFilter</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
-<a name="l00072"></a>00072 
-<a name="l00076"></a>00076     <a class="code" href="classConfigFilter.html#a026bfbced44f2565c331c2fc51265569">~ConfigFilter</a>();
-<a name="l00077"></a>00077 
-<a name="l00083"></a>00083     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ab8b269888cea46ad87c97f8e2aa5e727">load</a>();
-<a name="l00084"></a>00084 
-<a name="l00090"></a>00090     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ab810d016d9fbb0cf1e860ab22c0b4ac3">defaults</a>();
-<a name="l00091"></a>00091 
-<a name="l00098"></a>00098     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a12d47bcad1116876e8d957dabc1739e7">save</a>();
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100   <span class="keyword">private</span>:
-<a name="l00101"></a>00101 
-<a name="l00105"></a><a class="code" href="classConfigFilter.html#a830198ad06bdbae05905db455004fa22">00105</a>     KSharedConfigPtr <a class="code" href="classConfigFilter.html#a830198ad06bdbae05905db455004fa22">config</a>;
-<a name="l00106"></a>00106 
-<a name="l00110"></a><a class="code" href="classConfigFilter.html#ac2a415bbf59e3e3849a646e2175a14dd">00110</a>     QCheckBox* <a class="code" href="classConfigFilter.html#ac2a415bbf59e3e3849a646e2175a14dd">chkActivateFilter</a>;
-<a name="l00111"></a>00111 
-<a name="l00115"></a><a class="code" href="classConfigFilter.html#a6bd47c0c00e8345a568864fe9e6df0f1">00115</a>     QGroupBox* <a class="code" href="classConfigFilter.html#a6bd47c0c00e8345a568864fe9e6df0f1">gboxSenderLists</a>;
-<a name="l00116"></a>00116 
-<a name="l00120"></a><a class="code" href="classConfigFilter.html#a451fc7c1f8d5e9f47a5c9578ef90fdd8">00120</a>     QGroupBox* <a class="code" href="classConfigFilter.html#a451fc7c1f8d5e9f47a5c9578ef90fdd8">gboxFilters</a>;
-<a name="l00121"></a>00121 
-<a name="l00125"></a><a class="code" href="classConfigFilter.html#ad143d33466899d1e6bf47ac9f81e5095">00125</a>     QGroupBox* <a class="code" href="classConfigFilter.html#ad143d33466899d1e6bf47ac9f81e5095">gboxOthers</a>;
-<a name="l00126"></a>00126 
-<a name="l00130"></a><a class="code" href="classConfigFilter.html#a7174045c4556a9561c4973b9ef939242">00130</a>     KPushButton* <a class="code" href="classConfigFilter.html#a7174045c4556a9561c4973b9ef939242">btnOpenBlacklist</a>;
-<a name="l00131"></a>00131 
-<a name="l00135"></a><a class="code" href="classConfigFilter.html#a5f2657065bc7241093ea3cfc1a8992bc">00135</a>     KPushButton* <a class="code" href="classConfigFilter.html#a5f2657065bc7241093ea3cfc1a8992bc">btnOpenWhitelist</a>;
-<a name="l00136"></a>00136 
-<a name="l00140"></a><a class="code" href="classConfigFilter.html#a8174f96980ed8fc03b1fac178e476570">00140</a>     QTreeWidget* <a class="code" href="classConfigFilter.html#a8174f96980ed8fc03b1fac178e476570">listFilters</a>;
-<a name="l00141"></a>00141 
-<a name="l00145"></a><a class="code" href="classConfigFilter.html#a3936c764c0a6152232e13f5a25b55ab6">00145</a>     KPushButton* <a class="code" href="classConfigFilter.html#a3936c764c0a6152232e13f5a25b55ab6">btnMoveTop</a>;
-<a name="l00146"></a>00146 
-<a name="l00150"></a><a class="code" href="classConfigFilter.html#a1f56ae436a4df8ae216e19f1b9ecbf95">00150</a>     KPushButton* <a class="code" href="classConfigFilter.html#a1f56ae436a4df8ae216e19f1b9ecbf95">btnMoveBottom</a>;
-<a name="l00151"></a>00151 
-<a name="l00155"></a><a class="code" href="classConfigFilter.html#af6f460803a19cd2e1b5f56cb9f5a7d0a">00155</a>     KPushButton* <a class="code" href="classConfigFilter.html#af6f460803a19cd2e1b5f56cb9f5a7d0a">btnMoveUp</a>;
-<a name="l00156"></a>00156 
-<a name="l00160"></a><a class="code" href="classConfigFilter.html#a6d50c434a5c67d23785cf70a4958f536">00160</a>     KPushButton* <a class="code" href="classConfigFilter.html#a6d50c434a5c67d23785cf70a4958f536">btnMoveDown</a>;
-<a name="l00161"></a>00161 
-<a name="l00165"></a><a class="code" href="classConfigFilter.html#ad82b8fe7bca580c1c86361be2d998a29">00165</a>     KPushButton* <a class="code" href="classConfigFilter.html#ad82b8fe7bca580c1c86361be2d998a29">btnAdd</a>;
-<a name="l00166"></a>00166 
-<a name="l00170"></a><a class="code" href="classConfigFilter.html#ae1763aa712de4ef72f045eeadc8af472">00170</a>     KPushButton* <a class="code" href="classConfigFilter.html#ae1763aa712de4ef72f045eeadc8af472">btnEdit</a>;
-<a name="l00171"></a>00171 
-<a name="l00175"></a><a class="code" href="classConfigFilter.html#aa07c7a7e15ccdf67f08d074e81ba4376">00175</a>     KPushButton* <a class="code" href="classConfigFilter.html#aa07c7a7e15ccdf67f08d074e81ba4376">btnRemove</a>;
-<a name="l00176"></a>00176 
-<a name="l00180"></a><a class="code" href="classConfigFilter.html#ac98a570d959fda8ecf0ae3abf6c6045b">00180</a>     KComboBox* <a class="code" href="classConfigFilter.html#ac98a570d959fda8ecf0ae3abf6c6045b">cmbActionOthers</a>;
-<a name="l00181"></a>00181 
-<a name="l00185"></a><a class="code" href="classConfigFilter.html#a045b3617514d7c505a5641eec11ce7ca">00185</a>     KLineEdit* <a class="code" href="classConfigFilter.html#a045b3617514d7c505a5641eec11ce7ca">txtMailbox</a>;
-<a name="l00186"></a>00186 
-<a name="l00190"></a><a class="code" href="classConfigFilter.html#ae44fc384a0fa34800b713b726cb67b39">00190</a>     KPushButton* <a class="code" href="classConfigFilter.html#ae44fc384a0fa34800b713b726cb67b39">btnMailboxWizard</a>;
-<a name="l00191"></a>00191 
-<a name="l00196"></a><a class="code" href="classConfigFilter.html#af0a12d142f8edbe554c9ce48e0fcf781">00196</a>     uint <a class="code" href="classConfigFilter.html#af0a12d142f8edbe554c9ce48e0fcf781">lastFilterNumber</a>;
-<a name="l00197"></a>00197 
-<a name="l00198"></a>00198   <span class="keyword">private</span> slots:
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QStringList&gt;</span>
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030 <span class="comment">//KDE headers</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;kcmodule.h&gt;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &lt;kconfig.h&gt;</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include &lt;kgenericfactory.h&gt;</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include &lt;kapplication.h&gt;</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include &lt;kpushbutton.h&gt;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;kcombobox.h&gt;</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#include &lt;klineedit.h&gt;</span>
+<a name="l00038"></a>00038 <span class="preprocessor">#include &lt;KConfigGroup&gt;</span>
+<a name="l00039"></a>00039 <span class="preprocessor">#include &lt;KStandardDirs&gt;</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#include &lt;KFileDialog&gt;</span>
+<a name="l00041"></a>00041 <span class="preprocessor">#include &lt;KUrl&gt;</span>
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 <span class="comment">//Kshowmail headers</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="constants_8h.html">constants.h</a>&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;<a class="code" href="senderlistdialog_8h.html">senderlistdialog.h</a>&quot;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;<a class="code" href="filtersetupitem_8h.html">filtersetupitem.h</a>&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;<a class="code" href="filtersetupdialog_8h.html">filtersetupdialog.h</a>&quot;</span>
+<a name="l00048"></a>00048 <span class="comment">//#include &quot;mailboxwizard.h&quot;</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">//radio button IDs</span>
+<a name="l00051"></a><a class="code" href="configfilter_8h.html#a09c345baab5ce7f1213fc6cac40404d4">00051</a> <span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_PASS       0</span>
+<a name="l00052"></a><a class="code" href="configfilter_8h.html#aaa4dd86b33c1d2938937507832b7d34f">00052</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_DELETE     1</span>
+<a name="l00053"></a><a class="code" href="configfilter_8h.html#af6536f059561fad8ec6d11135a0fda8c">00053</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_MARK       2</span>
+<a name="l00054"></a><a class="code" href="configfilter_8h.html#a05cfc472a7d76f8735cd11e097420572">00054</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_MOVE       3</span>
+<a name="l00055"></a><a class="code" href="configfilter_8h.html#a7ada615049b7d732906a28e1e22d0093">00055</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_SPAMCHECK  4</span>
+<a name="l00056"></a><a class="code" href="configfilter_8h.html#aee52d944f877c377ba37047b06b36bf1">00056</a> <span class="preprocessor"></span><span class="preprocessor">#define ID_COMBO_FILTER_OTHERS_ACTION_IGNORE     5</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span>
+<a name="l00058"></a>00058 
+<a name="l00063"></a><a class="code" href="classConfigFilter.html">00063</a> <span class="keyword">class </span><a class="code" href="classConfigFilter.html" title="Part of the setup dialog (KShowMailApp::SetupDialog) to configure the filter.">ConfigFilter</a> : <span class="keyword">public</span> KCModule
+<a name="l00064"></a>00064 {
+<a name="l00065"></a>00065 Q_OBJECT
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067   <span class="keyword">public</span>:
+<a name="l00068"></a>00068 
+<a name="l00074"></a>00074     <span class="keyword">explicit</span> <a class="code" href="classConfigFilter.html#a75e9a63054a4fb74f19bf82c9ff236d8">ConfigFilter</a>( QWidget *parent = 0, <span class="keyword">const</span> QVariantList &amp; args = QVariantList() );
+<a name="l00075"></a>00075 
+<a name="l00079"></a>00079     <a class="code" href="classConfigFilter.html#a026bfbced44f2565c331c2fc51265569">~ConfigFilter</a>();
+<a name="l00080"></a>00080 
+<a name="l00086"></a>00086     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ab8b269888cea46ad87c97f8e2aa5e727">load</a>();
+<a name="l00087"></a>00087 
+<a name="l00093"></a>00093     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ab810d016d9fbb0cf1e860ab22c0b4ac3">defaults</a>();
+<a name="l00094"></a>00094 
+<a name="l00101"></a>00101     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a12d47bcad1116876e8d957dabc1739e7">save</a>();
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103   <span class="keyword">private</span>:
+<a name="l00104"></a>00104 
+<a name="l00108"></a><a class="code" href="classConfigFilter.html#a830198ad06bdbae05905db455004fa22">00108</a>     KSharedConfigPtr <a class="code" href="classConfigFilter.html#a830198ad06bdbae05905db455004fa22">config</a>;
+<a name="l00109"></a>00109 
+<a name="l00113"></a><a class="code" href="classConfigFilter.html#ac2a415bbf59e3e3849a646e2175a14dd">00113</a>     QCheckBox* <a class="code" href="classConfigFilter.html#ac2a415bbf59e3e3849a646e2175a14dd">chkActivateFilter</a>;
+<a name="l00114"></a>00114 
+<a name="l00118"></a><a class="code" href="classConfigFilter.html#a6bd47c0c00e8345a568864fe9e6df0f1">00118</a>     QGroupBox* <a class="code" href="classConfigFilter.html#a6bd47c0c00e8345a568864fe9e6df0f1">gboxSenderLists</a>;
+<a name="l00119"></a>00119 
+<a name="l00123"></a><a class="code" href="classConfigFilter.html#a451fc7c1f8d5e9f47a5c9578ef90fdd8">00123</a>     QGroupBox* <a class="code" href="classConfigFilter.html#a451fc7c1f8d5e9f47a5c9578ef90fdd8">gboxFilters</a>;
+<a name="l00124"></a>00124 
+<a name="l00128"></a><a class="code" href="classConfigFilter.html#ad143d33466899d1e6bf47ac9f81e5095">00128</a>     QGroupBox* <a class="code" href="classConfigFilter.html#ad143d33466899d1e6bf47ac9f81e5095">gboxOthers</a>;
+<a name="l00129"></a>00129 
+<a name="l00133"></a><a class="code" href="classConfigFilter.html#a96322a79e9fb592254d3029f0795f75e">00133</a>     QGroupBox* <a class="code" href="classConfigFilter.html#a96322a79e9fb592254d3029f0795f75e">gBoxExImport</a>;
+<a name="l00134"></a>00134 
+<a name="l00138"></a><a class="code" href="classConfigFilter.html#a7174045c4556a9561c4973b9ef939242">00138</a>     KPushButton* <a class="code" href="classConfigFilter.html#a7174045c4556a9561c4973b9ef939242">btnOpenBlacklist</a>;
+<a name="l00139"></a>00139 
+<a name="l00143"></a><a class="code" href="classConfigFilter.html#a5f2657065bc7241093ea3cfc1a8992bc">00143</a>     KPushButton* <a class="code" href="classConfigFilter.html#a5f2657065bc7241093ea3cfc1a8992bc">btnOpenWhitelist</a>;
+<a name="l00144"></a>00144 
+<a name="l00148"></a><a class="code" href="classConfigFilter.html#a8174f96980ed8fc03b1fac178e476570">00148</a>     QTreeWidget* <a class="code" href="classConfigFilter.html#a8174f96980ed8fc03b1fac178e476570">listFilters</a>;
+<a name="l00149"></a>00149 
+<a name="l00153"></a><a class="code" href="classConfigFilter.html#a3936c764c0a6152232e13f5a25b55ab6">00153</a>     KPushButton* <a class="code" href="classConfigFilter.html#a3936c764c0a6152232e13f5a25b55ab6">btnMoveTop</a>;
+<a name="l00154"></a>00154 
+<a name="l00158"></a><a class="code" href="classConfigFilter.html#a1f56ae436a4df8ae216e19f1b9ecbf95">00158</a>     KPushButton* <a class="code" href="classConfigFilter.html#a1f56ae436a4df8ae216e19f1b9ecbf95">btnMoveBottom</a>;
+<a name="l00159"></a>00159 
+<a name="l00163"></a><a class="code" href="classConfigFilter.html#af6f460803a19cd2e1b5f56cb9f5a7d0a">00163</a>     KPushButton* <a class="code" href="classConfigFilter.html#af6f460803a19cd2e1b5f56cb9f5a7d0a">btnMoveUp</a>;
+<a name="l00164"></a>00164 
+<a name="l00168"></a><a class="code" href="classConfigFilter.html#a6d50c434a5c67d23785cf70a4958f536">00168</a>     KPushButton* <a class="code" href="classConfigFilter.html#a6d50c434a5c67d23785cf70a4958f536">btnMoveDown</a>;
+<a name="l00169"></a>00169 
+<a name="l00173"></a><a class="code" href="classConfigFilter.html#ad82b8fe7bca580c1c86361be2d998a29">00173</a>     KPushButton* <a class="code" href="classConfigFilter.html#ad82b8fe7bca580c1c86361be2d998a29">btnAdd</a>;
+<a name="l00174"></a>00174 
+<a name="l00178"></a><a class="code" href="classConfigFilter.html#ae1763aa712de4ef72f045eeadc8af472">00178</a>     KPushButton* <a class="code" href="classConfigFilter.html#ae1763aa712de4ef72f045eeadc8af472">btnEdit</a>;
+<a name="l00179"></a>00179 
+<a name="l00183"></a><a class="code" href="classConfigFilter.html#aa07c7a7e15ccdf67f08d074e81ba4376">00183</a>     KPushButton* <a class="code" href="classConfigFilter.html#aa07c7a7e15ccdf67f08d074e81ba4376">btnRemove</a>;
+<a name="l00184"></a>00184 
+<a name="l00188"></a><a class="code" href="classConfigFilter.html#ac98a570d959fda8ecf0ae3abf6c6045b">00188</a>     KComboBox* <a class="code" href="classConfigFilter.html#ac98a570d959fda8ecf0ae3abf6c6045b">cmbActionOthers</a>;
+<a name="l00189"></a>00189 
+<a name="l00193"></a><a class="code" href="classConfigFilter.html#a045b3617514d7c505a5641eec11ce7ca">00193</a>     KLineEdit* <a class="code" href="classConfigFilter.html#a045b3617514d7c505a5641eec11ce7ca">txtMailbox</a>;
+<a name="l00194"></a>00194 
+<a name="l00198"></a><a class="code" href="classConfigFilter.html#ae44fc384a0fa34800b713b726cb67b39">00198</a>     KPushButton* <a class="code" href="classConfigFilter.html#ae44fc384a0fa34800b713b726cb67b39">btnMailboxWizard</a>;
 <a name="l00199"></a>00199 
-<a name="l00204"></a>00204     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ae626fc3ce1c6e341587bbbcf3c611d72" title="Connected with the configuration items. Calls the slot changed() of KCModule to notify...">slotChanged</a>();
-<a name="l00205"></a>00205 
-<a name="l00210"></a>00210     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ada34005d02ab687ac31936c260a909eb">slotOpenWhitelist</a>();
-<a name="l00211"></a>00211 
-<a name="l00216"></a>00216     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a59985cf246e5cb913338cdde10750759">slotOpenBlacklist</a>();
-<a name="l00217"></a>00217 
-<a name="l00224"></a>00224     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a7d39cb7b4d25de5dd7f5dc2cae9fc2d3">slotAdd</a>();
-<a name="l00225"></a>00225 
-<a name="l00230"></a>00230     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a49e5fe216ba80e4c006e74e5a4e94db1">slotEdit</a>();
+<a name="l00203"></a><a class="code" href="classConfigFilter.html#a7a31f9a156605c146d11f6b68632336b">00203</a>     KPushButton* <a class="code" href="classConfigFilter.html#a7a31f9a156605c146d11f6b68632336b">btnExport</a>;
+<a name="l00204"></a>00204 
+<a name="l00208"></a><a class="code" href="classConfigFilter.html#a9282b30e3375cfd4bfba1d48f94695db">00208</a>     KPushButton* <a class="code" href="classConfigFilter.html#a9282b30e3375cfd4bfba1d48f94695db">btnImport</a>;
+<a name="l00209"></a>00209 
+<a name="l00214"></a><a class="code" href="classConfigFilter.html#af0a12d142f8edbe554c9ce48e0fcf781">00214</a>     uint <a class="code" href="classConfigFilter.html#af0a12d142f8edbe554c9ce48e0fcf781">lastFilterNumber</a>;
+<a name="l00215"></a>00215 
+<a name="l00219"></a><a class="code" href="classConfigFilter.html#aeaa93edfac375eb361aeb652da33efa1">00219</a>     QStringList <a class="code" href="classConfigFilter.html#aeaa93edfac375eb361aeb652da33efa1">blacklist</a>;
+<a name="l00220"></a>00220 
+<a name="l00225"></a><a class="code" href="classConfigFilter.html#aad7aee19a9ca8c581ce4b52888637b43">00225</a>     <span class="keywordtype">int</span> <a class="code" href="classConfigFilter.html#aad7aee19a9ca8c581ce4b52888637b43">blacklistAction</a>;
+<a name="l00226"></a>00226 
+<a name="l00230"></a><a class="code" href="classConfigFilter.html#a8487e42398e4c06b89f2915ea3ca445b">00230</a>     QStringList <a class="code" href="classConfigFilter.html#a8487e42398e4c06b89f2915ea3ca445b">whitelist</a>;
 <a name="l00231"></a>00231 
-<a name="l00236"></a>00236     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ae164faaa56958a3ec5a59eae5dc1b40a">slotRemove</a>();
-<a name="l00237"></a>00237 
-<a name="l00243"></a>00243     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a24fc66c44faed7d415fc71b5ee0c0435">slotOtherActionChanged</a>( <span class="keywordtype">int</span> index );
-<a name="l00244"></a>00244 
-<a name="l00249"></a>00249     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ab0134250b85a1e8eeb0a6c0e7a5375a9">slotMoveTop</a>();
-<a name="l00250"></a>00250 
-<a name="l00255"></a>00255     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a3e2709df5fb1849733c7b6c6a2b7fb10">slotMoveBottom</a>();
-<a name="l00256"></a>00256 
-<a name="l00261"></a>00261     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a6419ef19b91c6b2466242f8ead6169a4">slotMoveUp</a>();
-<a name="l00262"></a>00262 
-<a name="l00267"></a>00267     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#adee742eae6c7fc7dbe5153ffee084dc5">slotMoveDown</a>();
-<a name="l00268"></a>00268 
-<a name="l00274"></a>00274     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a3d5ae5822e55949318ba40732e0218ac">slotFilterActiveToggled</a>( <span class="keywordtype">bool</span> filterOn );
-<a name="l00275"></a>00275 
-<a name="l00280"></a>00280     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a6cf6533d0ba8a0e3741a68a8b886f930">slotOpenMailBoxWizard</a>();
-<a name="l00281"></a>00281 
-<a name="l00282"></a>00282 
-<a name="l00283"></a>00283   <span class="keyword">protected</span>:
+<a name="l00232"></a>00232   <span class="keyword">private</span> slots:
+<a name="l00233"></a>00233 
+<a name="l00238"></a>00238     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ae626fc3ce1c6e341587bbbcf3c611d72" title="Connected with the configuration items. Calls the slot changed() of KCModule to notify...">slotChanged</a>();
+<a name="l00239"></a>00239 
+<a name="l00244"></a>00244     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ada34005d02ab687ac31936c260a909eb">slotOpenWhitelist</a>();
+<a name="l00245"></a>00245 
+<a name="l00250"></a>00250     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a59985cf246e5cb913338cdde10750759">slotOpenBlacklist</a>();
+<a name="l00251"></a>00251 
+<a name="l00258"></a>00258     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a7d39cb7b4d25de5dd7f5dc2cae9fc2d3">slotAdd</a>();
+<a name="l00259"></a>00259 
+<a name="l00264"></a>00264     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a49e5fe216ba80e4c006e74e5a4e94db1">slotEdit</a>();
+<a name="l00265"></a>00265 
+<a name="l00270"></a>00270     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ae164faaa56958a3ec5a59eae5dc1b40a">slotRemove</a>();
+<a name="l00271"></a>00271 
+<a name="l00277"></a>00277     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a24fc66c44faed7d415fc71b5ee0c0435">slotOtherActionChanged</a>( <span class="keywordtype">int</span> index );
+<a name="l00278"></a>00278 
+<a name="l00283"></a>00283     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ab0134250b85a1e8eeb0a6c0e7a5375a9">slotMoveTop</a>();
 <a name="l00284"></a>00284 
-<a name="l00289"></a>00289     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a6c99096068ac50e26094464120dcaeea">decreaseNumbers</a>( uint number );
+<a name="l00289"></a>00289     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a3e2709df5fb1849733c7b6c6a2b7fb10">slotMoveBottom</a>();
 <a name="l00290"></a>00290 
-<a name="l00296"></a>00296     <a class="code" href="classFilterSetupItem.html" title="This class is used in ConfigFilter to show the available filters in the list view...">FilterSetupItem</a>* <a class="code" href="classConfigFilter.html#ab7958325a649d8f882feefcec880c390">getFilterItem</a>( uint num );
-<a name="l00297"></a>00297 
-<a name="l00298"></a>00298 };
-<a name="l00299"></a>00299 
-<a name="l00300"></a>00300 <span class="preprocessor">#endif</span>
+<a name="l00295"></a>00295     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a6419ef19b91c6b2466242f8ead6169a4">slotMoveUp</a>();
+<a name="l00296"></a>00296 
+<a name="l00301"></a>00301     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#adee742eae6c7fc7dbe5153ffee084dc5">slotMoveDown</a>();
+<a name="l00302"></a>00302 
+<a name="l00308"></a>00308     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a3d5ae5822e55949318ba40732e0218ac">slotFilterActiveToggled</a>( <span class="keywordtype">bool</span> filterOn );
+<a name="l00309"></a>00309 
+<a name="l00314"></a>00314     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a6cf6533d0ba8a0e3741a68a8b886f930">slotOpenMailBoxWizard</a>();
+<a name="l00315"></a>00315 
+<a name="l00320"></a>00320     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a34ed477fbd460653364b85bdf69d0099">slotExport</a>();
+<a name="l00321"></a>00321 
+<a name="l00326"></a>00326     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#ae2396aa38f2af33c45e41fe74f236f43">slotImport</a>();
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328 <span class="keyword">protected</span>:
+<a name="l00329"></a>00329 
+<a name="l00334"></a>00334     <span class="keywordtype">void</span> <a class="code" href="classConfigFilter.html#a6c99096068ac50e26094464120dcaeea">decreaseNumbers</a>( uint number );
+<a name="l00335"></a>00335 
+<a name="l00341"></a>00341     <a class="code" href="classFilterSetupItem.html" title="This class is used in ConfigFilter to show the available filters in the list view...">FilterSetupItem</a>* <a class="code" href="classConfigFilter.html#ab7958325a649d8f882feefcec880c390">getFilterItem</a>( uint num );
+<a name="l00342"></a>00342 
+<a name="l00343"></a>00343 };
+<a name="l00344"></a>00344 
+<a name="l00345"></a>00345 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:02 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:08 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

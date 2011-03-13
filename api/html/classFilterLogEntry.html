@@ -37,7 +37,7 @@
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a2fa09bcc0a3631b5a8b0cf18f5291081">FilterLogEntry</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a8443104147dd93f806140b0d545c1933">FilterLogEntry</a> (<a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, const KDateTime &amp;dateTime, const QString &amp;<a class="el" href="classFilterLogEntry.html#abeb4991508455d61c59cbb6ef6766b32">sender</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#a712d167a9ba886be14ca9ad1bc8341f7">account</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#abe167b5503f62f90b0dc560a1e5b1558">subject</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#ad149fca2f4561be04dae1b8eabfdae58">mailbox</a>=QString())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a7acea1decfdf87b578b51e018159eeae">FilterLogEntry</a> (<a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, const KDateTime &amp;dateTime, const QString &amp;<a class="el" href="classFilterLogEntry.html#abeb4991508455d61c59cbb6ef6766b32">sender</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#a712d167a9ba886be14ca9ad1bc8341f7">account</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#abe167b5503f62f90b0dc560a1e5b1558">subject</a>, const QString &amp;<a class="el" href="classFilterLogEntry.html#ad149fca2f4561be04dae1b8eabfdae58">mailbox</a>=QString(), <a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> kindDelete=DelFilter, const QString &amp;<a class="el" href="classFilterLogEntry.html#acc14ad9a7eb07783ee3adce60fe32572">filter</a>=QString())</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#af137f54e07ca4d26e1574d1839353d40">FilterLogEntry</a> (const <a class="el" href="classFilterLogEntry.html">FilterLogEntry</a> &amp;ent)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#af1e1205386c56c99067ccc4966d6bdb2">~FilterLogEntry</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#aff00ae65a018c124e29f6ce10f445abf">operator=</a> (const <a class="el" href="classFilterLogEntry.html">FilterLogEntry</a> &amp;ent)</td></tr>
@@ -56,6 +56,8 @@
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a18cde550a84c1e5978d4f1293775d205">getAccount</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a6b3387780bcc217346d1a3020aeb02f3">getSubject</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#ac96efc78c81d14c500b3cdf3b65ec08b">getMailbox</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a49be7c47cc603d83973650df426dd718">getFilter</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a65243f7448716f455cbd02acdaadf5f8">getKindOfDeleting</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#ab9f7bf969120a2bf6c771d14c9611987">compare</a> (const <a class="el" href="classFilterLogEntry.html">FilterLogEntry</a> &amp;other, <a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795cea">LogViewSort</a> property) const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares this entry with <em>other</em> and returns an integer less than, equal to, or greater than zero if this entry is less than, equal to, or greater than <em>other</em>.  <a href="#ab9f7bf969120a2bf6c771d14c9611987"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
@@ -65,6 +67,8 @@
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a712d167a9ba886be14ca9ad1bc8341f7">account</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#abe167b5503f62f90b0dc560a1e5b1558">subject</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#ad149fca2f4561be04dae1b8eabfdae58">mailbox</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#a94378c7136f8f8a2c230ca4d27771886">kindDel</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogEntry.html#acc14ad9a7eb07783ee3adce60fe32572">filter</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>An Object of this class contains the data about a deleted or moved mail. These objects are stored in the lists of the filter log. </p>
@@ -92,7 +96,7 @@
 
 </div>
 </div>
-<a class="anchor" id="a8443104147dd93f806140b0d545c1933"></a><!-- doxytag: member="FilterLogEntry::FilterLogEntry" ref="a8443104147dd93f806140b0d545c1933" args="(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString())" -->
+<a class="anchor" id="a7acea1decfdf87b578b51e018159eeae"></a><!-- doxytag: member="FilterLogEntry::FilterLogEntry" ref="a7acea1decfdf87b578b51e018159eeae" args="(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString(), KindOfMailDeleting kindDelete=DelFilter, const QString &amp;filter=QString())" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -130,7 +134,19 @@
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>mailbox</em> = <code>QString()</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>mailbox</em> = <code>QString()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a>&nbsp;</td>
+          <td class="paramname"> <em>kindDelete</em> = <code>DelFilter</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&nbsp;</td>
+          <td class="paramname"> <em>filter</em> = <code>QString()</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -140,15 +156,51 @@
       </table>
 </div>
 <div class="memdoc">
-<p>General constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>General constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td>executed action </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>date and time on which the mail was sent </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> which has received the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>mailbox where the mails was moved </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td>executed action <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>date and time on which the mail was sent <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> which has received the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>mailbox where the mails was moved <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>kindDelete</em>&nbsp;</td><td>kind of deleting (manual or by filter) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>the filter which has deleted this mail </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -172,8 +224,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Copy Constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Copy Constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>source entry </td></tr>
   </table>
@@ -233,13 +284,18 @@
 <p>Compares this entry with <em>other</em> and returns an integer less than, equal to, or greater than zero if this entry is less than, equal to, or greater than <em>other</em>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>other entry </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>other entry <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>property</em>&nbsp;</td><td>the entry property which will be compared </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00151">151</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00161">161</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -257,10 +313,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the account. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </dd></dl>
+<p>Returns the account. <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00136">136</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00146">146</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -278,10 +333,49 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the date and time of send </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>send date and time </dd></dl>
+<p>Returns the date and time of send <dl class="return"><dt><b>Returns:</b></dt><dd>send date and time </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00126">126</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00136">136</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49be7c47cc603d83973650df426dd718"></a><!-- doxytag: member="FilterLogEntry::getFilter" ref="a49be7c47cc603d83973650df426dd718" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FilterLogEntry::getFilter </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the name of the filter which has deleted the mail </p>
+
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00216">216</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a65243f7448716f455cbd02acdaadf5f8"></a><!-- doxytag: member="FilterLogEntry::getKindOfDeleting" ref="a65243f7448716f455cbd02acdaadf5f8" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> FilterLogEntry::getKindOfDeleting </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the kind of the deleting <dl class="return"><dt><b>Returns:</b></dt><dd>kind of the deleting </dd></dl>
+
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00211">211</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -299,10 +393,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the mailbox </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mailbox </dd></dl>
+<p>Returns the mailbox <dl class="return"><dt><b>Returns:</b></dt><dd>mailbox </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00146">146</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00156">156</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,10 +413,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the sender. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Sender </dd></dl>
+<p>Returns the sender. <dl class="return"><dt><b>Returns:</b></dt><dd>Sender </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00131">131</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00141">141</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -341,10 +433,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the subject </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Subject </dd></dl>
+<p>Returns the subject <dl class="return"><dt><b>Returns:</b></dt><dd>Subject </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00141">141</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00151">151</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,16 +454,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns whether the mail of this entry is older than the given number of days. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns whether the mail of this entry is older than the given number of days. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>days</em>&nbsp;</td><td>number of days to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>days</em>&nbsp;</td><td>number of days to compare <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the mail is older than the given date </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the mail is older than the given date </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00078">78</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00082">82</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -391,16 +481,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this entry with the given entry </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this entry with the given entry <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is not equal to the time of the given entry. </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is not equal to the time of the given entry. </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00088">88</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00092">92</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,16 +508,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this entry with the given entry </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this entry with the given entry <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is earlier than the time of the given entry. </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is earlier than the time of the given entry. </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00103">103</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00107">107</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -447,16 +535,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this entry with the given entry </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this entry with the given entry <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is earlier than or equal to the time of the given entry. </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is earlier than or equal to the time of the given entry. </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00108">108</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00112">112</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -475,15 +562,14 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Assignment operator </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Assignment operator <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>source entry </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00064">64</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00066">66</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -502,16 +588,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this entry with the given entry </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this entry with the given entry <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is equal to te time of the given entry. </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is equal to te time of the given entry. </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00083">83</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00087">87</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -530,16 +615,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this entry with the given entry </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this entry with the given entry <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is later than the time of the given entry. </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is later than the time of the given entry. </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00093">93</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00097">97</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -558,16 +642,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this entry with the given entry </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this entry with the given entry <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ent</em>&nbsp;</td><td>entry to compare <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is later than or equal to the time of the given entry. </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the time of this entry is later than or equal to the time of the given entry. </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00098">98</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00102">102</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -619,13 +702,18 @@
 <p>Stores the entry into the given DOM document as child of the given DOM element. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>DOM document </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>DOM document <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent element </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00113">113</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8cpp_source.html#l00117">117</a> of file <a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a>.</p>
 
 </div>
 </div>
@@ -642,7 +730,7 @@
 <div class="memdoc">
 <p><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </p>
 
-<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00199">199</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00212">212</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
 
 </div>
 </div>
@@ -658,7 +746,39 @@
 <div class="memdoc">
 <p>executed action </p>
 
-<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00184">184</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00197">197</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc14ad9a7eb07783ee3adce60fe32572"></a><!-- doxytag: member="FilterLogEntry::filter" ref="acc14ad9a7eb07783ee3adce60fe32572" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString <a class="el" href="classFilterLogEntry.html#acc14ad9a7eb07783ee3adce60fe32572">FilterLogEntry::filter</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The filter which has deleted the mail </p>
+
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00232">232</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a94378c7136f8f8a2c230ca4d27771886"></a><!-- doxytag: member="FilterLogEntry::kindDel" ref="a94378c7136f8f8a2c230ca4d27771886" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> <a class="el" href="classFilterLogEntry.html#a94378c7136f8f8a2c230ca4d27771886">FilterLogEntry::kindDel</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>kind of the deleting of the mail (manual or by filter) </p>
+
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00227">227</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
 
 </div>
 </div>
@@ -674,7 +794,7 @@
 <div class="memdoc">
 <p>mailbox if the mails was moved </p>
 
-<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00209">209</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00222">222</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
 
 </div>
 </div>
@@ -690,7 +810,7 @@
 <div class="memdoc">
 <p>Sender </p>
 
-<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00194">194</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00207">207</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
 
 </div>
 </div>
@@ -706,7 +826,7 @@
 <div class="memdoc">
 <p>Delivery date and time </p>
 
-<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00189">189</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00202">202</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
 
 </div>
 </div>
@@ -722,7 +842,7 @@
 <div class="memdoc">
 <p>Subject </p>
 
-<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00204">204</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogentry_8h_source.html#l00217">217</a> of file <a class="el" href="filterlogentry_8h_source.html">filterlogentry.h</a>.</p>
 
 </div>
 </div>
@@ -731,7 +851,7 @@
 <li>src/<a class="el" href="filterlogentry_8cpp_source.html">filterlogentry.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

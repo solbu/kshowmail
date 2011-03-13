@@ -28,7 +28,7 @@
 </div>
 <div class="contents">
 <h1>HeaderFilter Class Reference</h1><!-- doxytag: class="HeaderFilter" -->
-<p>This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#a55391c8f76aa829b6f84b9ff149331b5">check()</a> with some header data of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#a46c0c049254cb8c9aa1aa6946f2f4165">load()</a>.  
+<p>This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#aee0ee287751737eaaca5cb62ac822f8c">check()</a> with some header data of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#a46c0c049254cb8c9aa1aa6946f2f4165">load()</a>.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>&gt;</code></p>
@@ -38,7 +38,7 @@
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#a3b0e807158cc2a6314edc1155caa04b7">HeaderFilter</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#a301cf390f0257fe44afacaf118fa4df4">~HeaderFilter</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#a55391c8f76aa829b6f84b9ff149331b5">check</a> (QString from, QString to, uint size, QString subject, QStringList header, QString account, QString &amp;mailboxName) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#aee0ee287751737eaaca5cb62ac822f8c">check</a> (QString from, QString to, uint size, QString subject, QStringList header, QString account, QString &amp;mailboxName, QString &amp;filterName) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#a46c0c049254cb8c9aa1aa6946f2f4165">load</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#ab726693ef1f1ff8bae551edd0fee325e">print</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#aa51b13dce32e73c69f207c6de2d02a61">isActive</a> ()</td></tr>
@@ -52,10 +52,10 @@
 <tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="classFilterItem.html">FilterItem</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHeaderFilter.html#aa5068ea2d4b2a516f5586081a0b2e696">filters</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#a55391c8f76aa829b6f84b9ff149331b5">check()</a> with some header data of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#a46c0c049254cb8c9aa1aa6946f2f4165">load()</a>. </p>
+<p>This is the mail header filter. Call <a class="el" href="classHeaderFilter.html#aee0ee287751737eaaca5cb62ac822f8c">check()</a> with some header data of the mail to get the configured action for this mail. If the settings was changed by the config GUI you have to call <a class="el" href="classHeaderFilter.html#a46c0c049254cb8c9aa1aa6946f2f4165">load()</a>. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00043">43</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00044">44</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3b0e807158cc2a6314edc1155caa04b7"></a><!-- doxytag: member="HeaderFilter::HeaderFilter" ref="a3b0e807158cc2a6314edc1155caa04b7" args="()" -->
 <div class="memitem">
@@ -98,7 +98,7 @@
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a55391c8f76aa829b6f84b9ff149331b5"></a><!-- doxytag: member="HeaderFilter::check" ref="a55391c8f76aa829b6f84b9ff149331b5" args="(QString from, QString to, uint size, QString subject, QStringList header, QString account, QString &amp;mailboxName) const " -->
+<a class="anchor" id="aee0ee287751737eaaca5cb62ac822f8c"></a><!-- doxytag: member="HeaderFilter::check" ref="aee0ee287751737eaaca5cb62ac822f8c" args="(QString from, QString to, uint size, QString subject, QStringList header, QString account, QString &amp;mailboxName, QString &amp;filterName) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -142,7 +142,13 @@
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>mailboxName</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>mailboxName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;&nbsp;</td>
+          <td class="paramname"> <em>filterName</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -152,20 +158,55 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Checks the given mail header. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Checks the given mail header. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>from</em>&nbsp;</td><td>Sender </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>Addressee </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>Size </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>Header </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mailboxName</em>&nbsp;</td><td>contains the mailbox name after call, if filter action is MOVE </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>from</em>&nbsp;</td><td>Sender <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>Addressee <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>Size <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>Header <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>mailboxName</em>&nbsp;</td><td>contains the mailbox name after call, if filter action is MOVE <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filterName</em>&nbsp;</td><td>after the call it contains the name of the filter which has caught the mail <dl class="return"><dt><b>Returns:</b></dt><dd>recommend action </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>recommend action </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="headerfilter_8cpp_source.html#l00041">41</a> of file <a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a>.</p>
 
@@ -185,10 +226,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the filter active state. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - filter is active </dd></dl>
+<p>Returns the filter active state. <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - filter is active </dd></dl>
 
-<p>Definition at line <a class="el" href="headerfilter_8cpp_source.html#l00154">154</a> of file <a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8cpp_source.html#l00176">176</a> of file <a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a>.</p>
 
 </div>
 </div>
@@ -208,7 +248,7 @@
 <div class="memdoc">
 <p>Loads the settings from the application config file. </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8cpp_source.html#l00071">71</a> of file <a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8cpp_source.html#l00093">93</a> of file <a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a>.</p>
 
 </div>
 </div>
@@ -228,7 +268,7 @@
 <div class="memdoc">
 <p>Prints the settings </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8cpp_source.html#l00113">113</a> of file <a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8cpp_source.html#l00135">135</a> of file <a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a>.</p>
 
 </div>
 </div>
@@ -245,7 +285,7 @@
 <div class="memdoc">
 <p>TRUE - filter is active </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00096">96</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00098">98</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 
 </div>
 </div>
@@ -261,7 +301,7 @@
 <div class="memdoc">
 <p>Connector to the configuration file </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00091">91</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00093">93</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 
 </div>
 </div>
@@ -277,7 +317,7 @@
 <div class="memdoc">
 <p>Default action, if no filter matches </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00101">101</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00103">103</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 
 </div>
 </div>
@@ -293,7 +333,7 @@
 <div class="memdoc">
 <p>This list holds the filter items </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00121">121</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00123">123</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +349,7 @@
 <div class="memdoc">
 <p>mailbox name if default action is MOVE </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00106">106</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00108">108</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 
 </div>
 </div>
@@ -325,7 +365,7 @@
 <div class="memdoc">
 <p>Number of filter items </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00111">111</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00113">113</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 
 </div>
 </div>
@@ -341,7 +381,7 @@
 <div class="memdoc">
 <p>Black and White lists </p>
 
-<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00116">116</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="headerfilter_8h_source.html#l00118">118</a> of file <a class="el" href="headerfilter_8h_source.html">headerfilter.h</a>.</p>
 
 </div>
 </div>
@@ -350,7 +390,7 @@
 <li>src/<a class="el" href="headerfilter_8cpp_source.html">headerfilter.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

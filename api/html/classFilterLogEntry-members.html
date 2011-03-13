@@ -31,15 +31,19 @@
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a712d167a9ba886be14ca9ad1bc8341f7">account</a></td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a491ab294e7c012aaf2ecefbd5a40467a">act</a></td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#ab9f7bf969120a2bf6c771d14c9611987">compare</a>(const FilterLogEntry &amp;other, LogViewSort property) const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#acc14ad9a7eb07783ee3adce60fe32572">filter</a></td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a2fa09bcc0a3631b5a8b0cf18f5291081">FilterLogEntry</a>()</td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a8443104147dd93f806140b0d545c1933">FilterLogEntry</a>(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString())</td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a7acea1decfdf87b578b51e018159eeae">FilterLogEntry</a>(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString(), KindOfMailDeleting kindDelete=DelFilter, const QString &amp;filter=QString())</td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#af137f54e07ca4d26e1574d1839353d40">FilterLogEntry</a>(const FilterLogEntry &amp;ent)</td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a18cde550a84c1e5978d4f1293775d205">getAccount</a>() const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#ad0d2a00f2da98a26fbb9c6647e3bbce2">getDate</a>() const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a49be7c47cc603d83973650df426dd718">getFilter</a>() const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a65243f7448716f455cbd02acdaadf5f8">getKindOfDeleting</a>() const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#ac96efc78c81d14c500b3cdf3b65ec08b">getMailbox</a>() const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a859da042bf6d4ba013f6306e121e4e88">getSender</a>() const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a6b3387780bcc217346d1a3020aeb02f3">getSubject</a>() const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a5d099ea50c7c6c451af2a3b05c97dad6">isOlder</a>(uint days)</td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a94378c7136f8f8a2c230ca4d27771886">kindDel</a></td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#ad149fca2f4561be04dae1b8eabfdae58">mailbox</a></td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a3bb6afd3175fffa9a51d6b100ebd6d47">operator!=</a>(const FilterLogEntry &amp;ent) const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#a96a298fcbc6aadac1d545a9ecf7ce3de">operator&lt;</a>(const FilterLogEntry &amp;ent) const </td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
@@ -55,7 +59,7 @@
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#abe167b5503f62f90b0dc560a1e5b1558">subject</a></td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLogEntry.html#af1e1205386c56c99067ccc4966d6bdb2">~FilterLogEntry</a>()</td><td><a class="el" href="classFilterLogEntry.html">FilterLogEntry</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

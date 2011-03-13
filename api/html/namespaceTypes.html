@@ -100,16 +100,22 @@
 <br/>
  }</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795cea">LogViewSort</a> { <br/>
-&nbsp;&nbsp;<a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaa30c3bbcea234c0b4a16dd73676b596f5">LogViewSortDate</a>, 
+&nbsp;&nbsp;<a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaaa85eeab5b2086da1e6b37232e7513ed7">LogViewSortKind</a>, 
+<a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaa30c3bbcea234c0b4a16dd73676b596f5">LogViewSortDate</a>, 
 <a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaa01dcf1d47731b4c08ef2fa8c1b5ad41a">LogViewSortFrom</a>, 
 <a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaad981be565c6ab0434338b0815785550a">LogViewSortAccount</a>, 
-<a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaa4492e48a00774eb47c00e77324704137">LogViewSortSubject</a>, 
 <br/>
-&nbsp;&nbsp;<a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaaea108fda2a18234d835ebc1a328757ad">LogViewSortMailbox</a>
+&nbsp;&nbsp;<a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaa4492e48a00774eb47c00e77324704137">LogViewSortSubject</a>, 
+<a class="el" href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795ceaaea108fda2a18234d835ebc1a328757ad">LogViewSortMailbox</a>
 <br/>
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Log view sorting. </p>
  <a href="namespaceTypes.html#a186cbce5608fe9683d74b24bf8795cea">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> { <a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6ac164bc1d1cf080832a9f74a9e6450c40">DelManual</a>, 
+<a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6ae9cda7145ef90c71e463af65178c8b6c">DelFilter</a>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>This is the kind of mail deleting. </p>
+ <a href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">More...</a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>All special types for KShowMail. </p>
@@ -292,6 +298,33 @@
 
 </div>
 </div>
+<a class="anchor" id="a34395d5a7baaaa9a5eb96022c5c8ceb6"></a><!-- doxytag: member="Types::KindOfMailDeleting" ref="a34395d5a7baaaa9a5eb96022c5c8ceb6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">Types::KindOfMailDeleting</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This is the kind of mail deleting. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a34395d5a7baaaa9a5eb96022c5c8ceb6ac164bc1d1cf080832a9f74a9e6450c40"></a><!-- doxytag: member="DelManual" ref="a34395d5a7baaaa9a5eb96022c5c8ceb6ac164bc1d1cf080832a9f74a9e6450c40" args="" -->DelManual</em>&nbsp;</td><td>
+<p>manualy deleted by user </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a34395d5a7baaaa9a5eb96022c5c8ceb6ae9cda7145ef90c71e463af65178c8b6c"></a><!-- doxytag: member="DelFilter" ref="a34395d5a7baaaa9a5eb96022c5c8ceb6ae9cda7145ef90c71e463af65178c8b6c" args="" -->DelFilter</em>&nbsp;</td><td>
+<p>deleted by filter </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="types_8h_source.html#l00191">191</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a186cbce5608fe9683d74b24bf8795cea"></a><!-- doxytag: member="Types::LogViewSort" ref="a186cbce5608fe9683d74b24bf8795cea" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -306,6 +339,9 @@
 <p>Log view sorting. </p>
 <p>The members of this enum represent the columns of the log view list which shall be sorted. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a186cbce5608fe9683d74b24bf8795ceaaa85eeab5b2086da1e6b37232e7513ed7"></a><!-- doxytag: member="LogViewSortKind" ref="a186cbce5608fe9683d74b24bf8795ceaaa85eeab5b2086da1e6b37232e7513ed7" args="" -->LogViewSortKind</em>&nbsp;</td><td>
+<p>sort by the kind of deleting or moving </p>
+</td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a186cbce5608fe9683d74b24bf8795ceaa30c3bbcea234c0b4a16dd73676b596f5"></a><!-- doxytag: member="LogViewSortDate" ref="a186cbce5608fe9683d74b24bf8795ceaa30c3bbcea234c0b4a16dd73676b596f5" args="" -->LogViewSortDate</em>&nbsp;</td><td>
 <p>sort by date </p>
 </td></tr>
@@ -471,7 +507,7 @@
 </div>
 </div>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

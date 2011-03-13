@@ -44,7 +44,7 @@
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTypes_1_1FilterCriteria__Type.html">FilterCriteria_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a94ee5d41a12b725ea56328acaa9c87cf">getValues</a> ()</td></tr>
 <tr><td colspan="2"><h2>Private Slots</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a9c9afe0acdd319ecfd750819d34183b4">slotSetWidgets</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#aeec4bd9e62c068658d9973abed97cf9d">slotOpenRegExpEditor</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a0b3fef77d7d449d2d31582f41e9c6601">slotOpenRegExpCheck</a> ()</td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">KComboBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#aa60915511ddf8072f4fb8b23e1a1c1aa">cmbSource</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">KComboBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a757183597ee7613f518ea7a0e6dc3c86">cmbConditionText</a></td></tr>
@@ -54,13 +54,12 @@
 <tr><td class="memItemLeft" align="right" valign="top">KIntNumInput *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a3f6c902e9c9d95e7bfd5844b7d989da2">spbCompValueNum</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a464ed7fa31017e93ecb38f4dd86472f5">chkCaseSensitive</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">KPushButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#a41299a8b2eca0903834c110ce0b25384">btnOpenRegExpEditor</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterCriteriaWidget.html#ac995d48264457868fb297126f4b18b7c">kRegExpEditorAvailable</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Part of the filter setup dialog (class <a class="el" href="classFilterSetupDialog.html" title="Dialog to setup a filter.">FilterSetupDialog</a>) to show a criteria of the selected filter. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Ulrich Weigelt &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; </dd></dl>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00074">74</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00076">76</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a485a21293dff6ed6908b2b4f18647024"></a><!-- doxytag: member="FilterCriteriaWidget::FilterCriteriaWidget" ref="a485a21293dff6ed6908b2b4f18647024" args="(QWidget *parent=0)" -->
 <div class="memitem">
@@ -77,8 +76,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent widget </td></tr>
   </table>
@@ -105,7 +103,7 @@
 <div class="memdoc">
 <p>Destructor </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00155">155</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00152">152</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -124,10 +122,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the values of the criteria. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>criteria values </dd></dl>
+<p>Returns the values of the criteria. <dl class="return"><dt><b>Returns:</b></dt><dd>criteria values </dd></dl>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00360">360</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00346">346</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -161,17 +158,26 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the values of a numeric criteria. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the values of a numeric criteria. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison value </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00259">259</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00245">245</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -211,18 +217,32 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the values of a text criteria. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the values of a text criteria. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison string </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison string <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>cs</em>&nbsp;</td><td>TRUE - comparison is case sensitive; FALSE - comparison is not case sensitive </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00291">291</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00277">277</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,27 +282,41 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the values of a text list criteria. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the values of a text list criteria. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison string </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>source</em>&nbsp;</td><td>Object of Comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>condition</em>&nbsp;</td><td>Condition of the comparison (see <a class="el" href="constants_8h.html">constants.h</a> for valid values) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>comparison string <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>cs</em>&nbsp;</td><td>TRUE - comparison is case sensitive; FALSE - comparison is not case sensitive </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00327">327</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00313">313</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aeec4bd9e62c068658d9973abed97cf9d"></a><!-- doxytag: member="FilterCriteriaWidget::slotOpenRegExpEditor" ref="aeec4bd9e62c068658d9973abed97cf9d" args="()" -->
+<a class="anchor" id="a0b3fef77d7d449d2d31582f41e9c6601"></a><!-- doxytag: member="FilterCriteriaWidget::slotOpenRegExpCheck" ref="a0b3fef77d7d449d2d31582f41e9c6601" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void FilterCriteriaWidget::slotOpenRegExpEditor </td>
+          <td class="memname">void FilterCriteriaWidget::slotOpenRegExpCheck </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -291,9 +325,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Opens the editor for regular expressions. </p>
+<p>Opens a dialog to check a regex </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00230">230</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00226">226</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -313,7 +347,7 @@
 <div class="memdoc">
 <p>Connected with combobox cmbSource. Hides or shows the widgets dependent on the criteria source (text or numeric). </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00159">159</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8cpp_source.html#l00156">156</a> of file <a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a>.</p>
 
 </div>
 </div>
@@ -330,7 +364,7 @@
 <div class="memdoc">
 <p>Button to open the regular expression editor. </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00164">164</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00166">166</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +380,7 @@
 <div class="memdoc">
 <p>Checkbox to select case sensitive. </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00159">159</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00161">161</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -362,7 +396,7 @@
 <div class="memdoc">
 <p>Combobox to select the condition of a numeric source (Size, ...) </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00144">144</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00146">146</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -378,7 +412,7 @@
 <div class="memdoc">
 <p>Combobox to select the condition of a text source (From, To, ...) </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00134">134</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00136">136</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -394,7 +428,7 @@
 <div class="memdoc">
 <p>Combobox to select the condition of a text list source (Header) </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00139">139</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00141">141</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -410,23 +444,7 @@
 <div class="memdoc">
 <p>Combobox to select the source of the criteria. </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00129">129</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac995d48264457868fb297126f4b18b7c"></a><!-- doxytag: member="FilterCriteriaWidget::kRegExpEditorAvailable" ref="ac995d48264457868fb297126f4b18b7c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="classFilterCriteriaWidget.html#ac995d48264457868fb297126f4b18b7c">FilterCriteriaWidget::kRegExpEditorAvailable</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>TRUE - KRegExpEditor is installed and available. </p>
-
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00169">169</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00131">131</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +460,7 @@
 <div class="memdoc">
 <p>Spin Box for a numeric comparative value. </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00154">154</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00156">156</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -458,7 +476,7 @@
 <div class="memdoc">
 <p>Line for a text comparative value. </p>
 
-<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00149">149</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
+<p>Definition at line <a class="el" href="filtercriteriawidget_8h_source.html#l00151">151</a> of file <a class="el" href="filtercriteriawidget_8h_source.html">filtercriteriawidget.h</a>.</p>
 
 </div>
 </div>
@@ -467,7 +485,7 @@
 <li>src/<a class="el" href="filtercriteriawidget_8cpp_source.html">filtercriteriawidget.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

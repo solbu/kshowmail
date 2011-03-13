@@ -48,14 +48,19 @@
 <tr><td class="memItemLeft" align="right" valign="top">KSharedConfigPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a7dc8aa3ce845787d9a29f19696ee5230">config</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#ab8fff5d7cbb30185227c702e1b679be6">chkLogDeletedMails</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#adc2656eee036eb7da225edf63b73f2d1">chkLogMovedMails</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QCheckBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a3e9cddfe4de43a8ea2e36c875c4463f9">chkLogManualDeletedMails</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#af4cc144f6621754512201ecf04f4b39c">grpDelMailsRemove</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a0b5c4ed624ecf618bbe0d2d4f0b174fa">grpMovMailsRemove</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QButtonGroup *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#ada45ce97eb7b7932ff9e0d9e0db25dfd">grpManualDelMailsRemove</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QSpinBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a822c19a03e5f27b2dd7e3fde36931a3e">spbDelDays</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QSpinBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a665686b7be964c5769b83075a2eb614c">spbMovDays</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSpinBox *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#ad30281f28816a15b9cf73565513b60ba">spbManualDelDays</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a68ebd0dad2255583411429bd5e953d4b">btnDelMailsRemoveExit</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#afce2bf2c6b740bf60db4c1d3eb006689">btnDelMailsRemoveDays</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#ac8a6cb4285aa777d4c6b4207e598f680">btnMovMailsRemoveExit</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a84301947e00f41cff17fa0dabdac23da">btnMovMailsRemoveDays</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a48161876eb5ab158d4d69850a6376493">btnManualDelMailsRemoveExit</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRadioButton *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLog.html#a24c74b46671e2a8efbdce5f0ddbc372a">btnManualDelMailsRemoveDays</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Part of the setup dialog (KShowMailApp::SetupDialog) to configure the log. </p>
@@ -87,11 +92,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Generic constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Generic constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent widget </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent widget <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>args</em>&nbsp;</td><td>arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -116,7 +125,7 @@
 <div class="memdoc">
 <p>Destructor </p>
 
-<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00115">115</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00152">152</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -137,7 +146,7 @@
 <div class="memdoc">
 <p>Overloaded method of KCModule. Sets the user interface elements to default values. This method is called when the user clicks the "Default" button. </p>
 
-<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00161">161</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00212">212</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -157,7 +166,7 @@
 <div class="memdoc">
 <p>Overloaded method of KCModule. Sets the user interface elements to reflect the current settings stored in the config file. </p>
 
-<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00119">119</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00156">156</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -177,7 +186,7 @@
 <div class="memdoc">
 <p>Overloaded method of KCModule. Stores the config information as shown in the user interface in the config file. Is called when the user clicks "Apply" or "Ok". </p>
 
-<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00201">201</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00267">267</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -197,7 +206,7 @@
 <div class="memdoc">
 <p>Connected with the configuration items. Calls the slot changed() of KCModule to notify the dialog about the change. </p>
 
-<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00228">228</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00303">303</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -217,7 +226,7 @@
 <div class="memdoc">
 <p>Connected with the checkboxes and radiobuttons. Enables or disables the dialog items. </p>
 
-<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00233">233</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8cpp_source.html#l00308">308</a> of file <a class="el" href="configlog_8cpp_source.html">configlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,7 +243,7 @@
 <div class="memdoc">
 <p>Radio button to select the removing of entries about deleted mails after some days. </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00135">135</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00150">150</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -250,7 +259,39 @@
 <div class="memdoc">
 <p>Radio button to select the removing of entries about deleted mails at application exit. </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00130">130</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00145">145</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a24c74b46671e2a8efbdce5f0ddbc372a"></a><!-- doxytag: member="ConfigLog::btnManualDelMailsRemoveDays" ref="a24c74b46671e2a8efbdce5f0ddbc372a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QRadioButton* <a class="el" href="classConfigLog.html#a24c74b46671e2a8efbdce5f0ddbc372a">ConfigLog::btnManualDelMailsRemoveDays</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Radio button to select the removing of entries about manual deleted mails after some days. </p>
+
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00170">170</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a48161876eb5ab158d4d69850a6376493"></a><!-- doxytag: member="ConfigLog::btnManualDelMailsRemoveExit" ref="a48161876eb5ab158d4d69850a6376493" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QRadioButton* <a class="el" href="classConfigLog.html#a48161876eb5ab158d4d69850a6376493">ConfigLog::btnManualDelMailsRemoveExit</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Radio button to select the removing of entries about manual deleted mails at application exit. </p>
+
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00165">165</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -266,7 +307,7 @@
 <div class="memdoc">
 <p>Radio button to select the removing of entries about moved mails after some days. </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00145">145</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00160">160</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -282,7 +323,7 @@
 <div class="memdoc">
 <p>Radio button to select the removing of entries about moved mails at application exit. </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00140">140</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00155">155</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -299,6 +340,22 @@
 <p>Checkbox to activate log of deleted mails </p>
 
 <p>Definition at line <a class="el" href="configlog_8h_source.html#l00100">100</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e9cddfe4de43a8ea2e36c875c4463f9"></a><!-- doxytag: member="ConfigLog::chkLogManualDeletedMails" ref="a3e9cddfe4de43a8ea2e36c875c4463f9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QCheckBox* <a class="el" href="classConfigLog.html#a3e9cddfe4de43a8ea2e36c875c4463f9">ConfigLog::chkLogManualDeletedMails</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checkbox to activate log of manual deleted mails </p>
+
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00110">110</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +403,23 @@
 <div class="memdoc">
 <p>Combines the radio buttons to select the kind of removing log entries of deleted mails </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00110">110</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00115">115</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ada45ce97eb7b7932ff9e0d9e0db25dfd"></a><!-- doxytag: member="ConfigLog::grpManualDelMailsRemove" ref="ada45ce97eb7b7932ff9e0d9e0db25dfd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QButtonGroup* <a class="el" href="classConfigLog.html#ada45ce97eb7b7932ff9e0d9e0db25dfd">ConfigLog::grpManualDelMailsRemove</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Combines the radio buttons to select the kind of removing log entries of manual deleted mails </p>
+
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00125">125</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -362,7 +435,7 @@
 <div class="memdoc">
 <p>Combines the radio buttons to select the kind of removing log entries of moved mails </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00115">115</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00120">120</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -378,7 +451,23 @@
 <div class="memdoc">
 <p>Spinbox to select the number of days to remove. </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00120">120</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00130">130</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad30281f28816a15b9cf73565513b60ba"></a><!-- doxytag: member="ConfigLog::spbManualDelDays" ref="ad30281f28816a15b9cf73565513b60ba" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSpinBox* <a class="el" href="classConfigLog.html#ad30281f28816a15b9cf73565513b60ba">ConfigLog::spbManualDelDays</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Spinbox to select the number of days to remove the logs of manual deleted mails. </p>
+
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00140">140</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -394,7 +483,7 @@
 <div class="memdoc">
 <p>Spinbox to select the number of days to remove. </p>
 
-<p>Definition at line <a class="el" href="configlog_8h_source.html#l00125">125</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
+<p>Definition at line <a class="el" href="configlog_8h_source.html#l00135">135</a> of file <a class="el" href="configlog_8h_source.html">configlog.h</a>.</p>
 
 </div>
 </div>
@@ -403,7 +492,7 @@
 <li>src/<a class="el" href="configlog_8cpp_source.html">configlog.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:08 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -35,10 +35,14 @@
 
 <p><a href="classFilterLog-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700">LogEntryStorageMode</a> { <a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700a417033d64ee8a4b460e74cf60c7e949b">exit</a>, 
+<a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700a516fcb3bdc67d933b239de1eda23df9d">days</a>
+ }</td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a5e4dc0320e613fa0884c20597e2f801d">FilterLog</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ae33b0808ca97f0bc42f5d04d8b3352f7">~FilterLog</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ad2ffd04aba73853da7c3c4e84d64291b">addDeletedMail</a> (const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a4ebb0b6d2c9d1a83afacbd69c9fc5912">addDeletedMail</a> (const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, <a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> kindDelete, const QString &amp;filter=QString())</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#af00b6ab0172a919fd92aa4f92d018f2f">addMovedMail</a> (const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a852b7d3cc47c7c6a2130dbd7765176c2">print</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ace778330869163990b75091ff52eaaed">clearDeletedMailsLog</a> ()</td></tr>
@@ -49,22 +53,22 @@
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="filterlog_8h.html#abd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a4535da60ad21f8cf819bf1b293a930f4">getMovedMails</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a38b93bd89be1c76c88bd33d3222bbe92">loadSetup</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a62b2d4b187928b34a97a8c2a8edae4bf">numberDeletedMails</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ae541c21fa90934a4c4fcf1b29bc90772">numberFilterDeletedMails</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#aae150f073ac6a47a00b56e88b71cbe5f">numberMovedMails</a> ()</td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a8e332a583eba75f49e895f0cea42304c">addEntry</a> (<a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString())</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds an entry.  <a href="#a8e332a583eba75f49e895f0cea42304c"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Private Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classFilterLog.html#a7a5dfed7513657cdac5537729ac2f14ba417033d64ee8a4b460e74cf60c7e949b">exit</a>, 
-<a class="el" href="classFilterLog.html#a7a5dfed7513657cdac5537729ac2f14ba516fcb3bdc67d933b239de1eda23df9d">days</a>
- }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ab23d58c45420bb902947bfb7984ccc8c">addEntry</a> (<a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a> action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString(), <a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> kindDelete=DelFilter, const QString &amp;filter=QString())</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds an entry.  <a href="#ab23d58c45420bb902947bfb7984ccc8c"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">KSharedConfigPtr&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#aafb4f521b50b870dc0b10ad0beafa25e">config</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="filterlog_8h.html#abd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#afda049847515829b1e403cd2adee4e02">listDeletedMails</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="filterlog_8h.html#abd7fc276d1bb039eac67cc5fc52eec00">LogEntryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a5179ab13c32aa6eb7857267869010d89">listMovedMails</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a69bc71567187d7dc15fda6eb8f1d2979">logDeletedMails</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a0dd4d1e00ef0f73b1c5a368a8fd2dfef">logManualDeletedMails</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ad9a377c3856846908684babf5cb6d9bd">logMovedMails</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum FilterLog:: { ... } &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a2a17bd37938071ec9e5fdb07ed21e1ee">deletedMailsStorageMode</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700">LogEntryStorageMode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a34d1cda074ce7877e411edb797e2cf9d">deletedMailsStorageMode</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700">LogEntryStorageMode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ad935744454cf03262977b0ab2d4b8c78">manualDeletedMailsStorageMode</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#ac2c77f4f69224d4128d538f6949a72e8">daysStoreDeletedMails</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLog.html#a9372d8a3efa4b23f7e55cbb59571640b">daysStoreManualDeletedMails</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the log of the filters. </p>
@@ -73,27 +77,29 @@
 
 <p>Definition at line <a class="el" href="filterlog_8h_source.html#l00052">52</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
-<a class="anchor" id="a7a5dfed7513657cdac5537729ac2f14b"></a><!-- doxytag: member="FilterLog::@0" ref="a7a5dfed7513657cdac5537729ac2f14b" args="" -->
+<a class="anchor" id="a2277eb1c34243e7bc0cf742765237700"></a><!-- doxytag: member="FilterLog::LogEntryStorageMode" ref="a2277eb1c34243e7bc0cf742765237700" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">anonymous enum<code> [private]</code></td>
+          <td class="memname">enum <a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700">FilterLog::LogEntryStorageMode</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>exit - hold log of deleted mails until application exit days - hold log some days </p>
+<p>Storage mode of the log entries </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a7a5dfed7513657cdac5537729ac2f14ba417033d64ee8a4b460e74cf60c7e949b"></a><!-- doxytag: member="exit" ref="a7a5dfed7513657cdac5537729ac2f14ba417033d64ee8a4b460e74cf60c7e949b" args="" -->exit</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a2277eb1c34243e7bc0cf742765237700a417033d64ee8a4b460e74cf60c7e949b"></a><!-- doxytag: member="exit" ref="a2277eb1c34243e7bc0cf742765237700a417033d64ee8a4b460e74cf60c7e949b" args="" -->exit</em>&nbsp;</td><td>
+<p>hold log entries mails until application exit </p>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a7a5dfed7513657cdac5537729ac2f14ba516fcb3bdc67d933b239de1eda23df9d"></a><!-- doxytag: member="days" ref="a7a5dfed7513657cdac5537729ac2f14ba516fcb3bdc67d933b239de1eda23df9d" args="" -->days</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a2277eb1c34243e7bc0cf742765237700a516fcb3bdc67d933b239de1eda23df9d"></a><!-- doxytag: member="days" ref="a2277eb1c34243e7bc0cf742765237700a516fcb3bdc67d933b239de1eda23df9d" args="" -->days</em>&nbsp;</td><td>
+<p>hold log entries some days </p>
 </td></tr>
 </table>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00172">172</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00060">60</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
@@ -139,7 +145,7 @@
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ad2ffd04aba73853da7c3c4e84d64291b"></a><!-- doxytag: member="FilterLog::addDeletedMail" ref="ad2ffd04aba73853da7c3c4e84d64291b" args="(const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject)" -->
+<a class="anchor" id="a4ebb0b6d2c9d1a83afacbd69c9fc5912"></a><!-- doxytag: member="FilterLog::addDeletedMail" ref="a4ebb0b6d2c9d1a83afacbd69c9fc5912" args="(const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, KindOfMailDeleting kindDelete, const QString &amp;filter=QString())" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -165,7 +171,19 @@
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>subject</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>subject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a>&nbsp;</td>
+          <td class="paramname"> <em>kindDelete</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&nbsp;</td>
+          <td class="paramname"> <em>filter</em> = <code>QString()</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -175,13 +193,39 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Adds an entry about a deleted mail. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Adds an entry about a deleted mail. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>date and time on which the mail was sent </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> which has received the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>date and time on which the mail was sent <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> which has received the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>kindDelete</em>&nbsp;</td><td>kind of mail deleting (by filter or manual) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>the name of the filter which has deleted the mail </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -190,7 +234,7 @@
 
 </div>
 </div>
-<a class="anchor" id="a8e332a583eba75f49e895f0cea42304c"></a><!-- doxytag: member="FilterLog::addEntry" ref="a8e332a583eba75f49e895f0cea42304c" args="(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString())" -->
+<a class="anchor" id="ab23d58c45420bb902947bfb7984ccc8c"></a><!-- doxytag: member="FilterLog::addEntry" ref="ab23d58c45420bb902947bfb7984ccc8c" args="(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString(), KindOfMailDeleting kindDelete=DelFilter, const QString &amp;filter=QString())" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -228,7 +272,19 @@
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>mailbox</em> = <code>QString()</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>mailbox</em> = <code>QString()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a>&nbsp;</td>
+          <td class="paramname"> <em>kindDelete</em> = <code>DelFilter</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&nbsp;</td>
+          <td class="paramname"> <em>filter</em> = <code>QString()</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -240,15 +296,51 @@
 <div class="memdoc">
 
 <p>Adds an entry. </p>
-<p>The target list will be coose on the basis of the given filter action. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>The target list will be coose on the basis of the given filter action. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td>the performed action </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>send time of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>account </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>mail subject </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>mailbox if the mail was moved </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td>the performed action <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>send time of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>mail subject <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>mailbox if the mail was moved <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>kindDelete</em>&nbsp;</td><td>kind of mail deleting (by filter or manual) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>the name of the filter which has deleted the mail </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -299,14 +391,33 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Adds an entry about a moved mail. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Adds an entry about a moved mail. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>date and time on which the mail was sent </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> which has received the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>dateTime</em>&nbsp;</td><td>date and time on which the mail was sent <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> which has received the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>mailbox </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -369,10 +480,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns a copy of the list of deleted mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>copy of the deleted mails list </dd></dl>
+<p>Returns a copy of the list of deleted mails. <dl class="return"><dt><b>Returns:</b></dt><dd>copy of the deleted mails list </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00191">191</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00246">246</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,10 +500,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Retruns a copy of the list of moved mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>copy of the moved mails list </dd></dl>
+<p>Retruns a copy of the list of moved mails. <dl class="return"><dt><b>Returns:</b></dt><dd>copy of the moved mails list </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00196">196</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00251">251</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +522,7 @@
 <div class="memdoc">
 <p>Loads the log of deleted mails from the XML document and get settings. </p>
 
-<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00138">138</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00159">159</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,7 +542,7 @@
 <div class="memdoc">
 <p>Loads the settings </p>
 
-<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00201">201</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00256">256</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -451,10 +560,29 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the number of logged deleted mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>number of logged deleted mails </dd></dl>
+<p>Returns the number of logged deleted mails. <dl class="return"><dt><b>Returns:</b></dt><dd>number of logged deleted mails </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00230">230</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00309">309</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae541c21fa90934a4c4fcf1b29bc90772"></a><!-- doxytag: member="FilterLog::numberFilterDeletedMails" ref="ae541c21fa90934a4c4fcf1b29bc90772" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FilterLog::numberFilterDeletedMails </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the number of logged mails deleted by filter. <dl class="return"><dt><b>Returns:</b></dt><dd>number of logged mails deleted by filter </dd></dl>
+
+<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00319">319</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -472,10 +600,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the number of logged moved mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>number of logged moved mails </dd></dl>
+<p>Returns the number of logged moved mails. <dl class="return"><dt><b>Returns:</b></dt><dd>number of logged moved mails </dd></dl>
 
-<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00235">235</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8cpp_source.html#l00314">314</a> of file <a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a>.</p>
 
 </div>
 </div>
@@ -532,7 +659,7 @@
 <div class="memdoc">
 <p>Connector to the configuration file </p>
 
-<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00146">146</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00162">162</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
@@ -548,21 +675,39 @@
 <div class="memdoc">
 <p>Time (days) a entry of a deleted mail will be stored. </p>
 
-<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00177">177</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00202">202</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2a17bd37938071ec9e5fdb07ed21e1ee"></a><!-- doxytag: member="FilterLog::deletedMailsStorageMode" ref="a2a17bd37938071ec9e5fdb07ed21e1ee" args="" -->
+<a class="anchor" id="a9372d8a3efa4b23f7e55cbb59571640b"></a><!-- doxytag: member="FilterLog::daysStoreManualDeletedMails" ref="a9372d8a3efa4b23f7e55cbb59571640b" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum { ... }   <a class="el" href="classFilterLog.html#a2a17bd37938071ec9e5fdb07ed21e1ee">FilterLog::deletedMailsStorageMode</a><code> [private]</code></td>
+          <td class="memname">unsigned int <a class="el" href="classFilterLog.html#a9372d8a3efa4b23f7e55cbb59571640b">FilterLog::daysStoreManualDeletedMails</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>exit - hold log of deleted mails until application exit days - hold log some days </p>
+<p>Time (days) a entry of a manual deleted mail will be stored. </p>
+
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00207">207</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34d1cda074ce7877e411edb797e2cf9d"></a><!-- doxytag: member="FilterLog::deletedMailsStorageMode" ref="a34d1cda074ce7877e411edb797e2cf9d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700">LogEntryStorageMode</a> <a class="el" href="classFilterLog.html#a34d1cda074ce7877e411edb797e2cf9d">FilterLog::deletedMailsStorageMode</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Storage mode of log entries about deleted mails </p>
+
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00192">192</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
@@ -578,7 +723,7 @@
 <div class="memdoc">
 <p>List of entries about deleted mails. </p>
 
-<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00151">151</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00167">167</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
@@ -594,7 +739,7 @@
 <div class="memdoc">
 <p>List of entries about moved mails. </p>
 
-<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00156">156</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00172">172</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
@@ -610,7 +755,23 @@
 <div class="memdoc">
 <p>TRUE - the log accepts orders to log deleted mails </p>
 
-<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00161">161</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00177">177</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0dd4d1e00ef0f73b1c5a368a8fd2dfef"></a><!-- doxytag: member="FilterLog::logManualDeletedMails" ref="a0dd4d1e00ef0f73b1c5a368a8fd2dfef" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classFilterLog.html#a0dd4d1e00ef0f73b1c5a368a8fd2dfef">FilterLog::logManualDeletedMails</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>TRUE - the log accepts orders to log manual deleted mails </p>
+
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00182">182</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
@@ -626,7 +787,23 @@
 <div class="memdoc">
 <p>TRUE - the log accepts orders to log moved mails </p>
 
-<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00166">166</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00187">187</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad935744454cf03262977b0ab2d4b8c78"></a><!-- doxytag: member="FilterLog::manualDeletedMailsStorageMode" ref="ad935744454cf03262977b0ab2d4b8c78" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700">LogEntryStorageMode</a> <a class="el" href="classFilterLog.html#ad935744454cf03262977b0ab2d4b8c78">FilterLog::manualDeletedMailsStorageMode</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Storage mode of log entries about manual deleted mails </p>
+
+<p>Definition at line <a class="el" href="filterlog_8h_source.html#l00197">197</a> of file <a class="el" href="filterlog_8h_source.html">filterlog.h</a>.</p>
 
 </div>
 </div>
@@ -635,7 +812,7 @@
 <li>src/<a class="el" href="filterlog_8cpp_source.html">filterlog.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

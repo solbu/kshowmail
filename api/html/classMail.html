@@ -70,10 +70,12 @@
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a4bde1075aad259f138efc31f456e71d0">getCharsetFromHeader</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a3e646bb80f0f17383192e6271be2f806">getTransferEncodingFromHeader</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#af12fe5432e54e0ea962bb9d274827c29">writeToMoveLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, QString account, QString mailbox)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a97a01789aa0735cf4ff560e90c242a88">writeToDeleteLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, QString account)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#ad67122e15d373a2bf2425ad5a1338bfe">writeToDeleteLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, QString account, <a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> kindDelete)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a1242a9c09bce753c79dc755ce7c66333">setMarkAtNextViewRefresh</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a71e23bd54ea79915fdfe8404c8bce1a1">compare</a> (const <a class="el" href="classMail.html">Mail</a> &amp;other, <a class="el" href="namespaceTypes.html#aa41eee3cc91221a60a8252f4a31da4c1">MailSort_Type</a> property)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a8c004c2ed9d8c8a5761f359685a73956">getAccountName</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a3618a36aa5f3faa6282791073204e14b">getFilterName</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a0a38c1dec5158e6a312688686cd68223">setFilterName</a> (QString filter)</td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a9bb87f1b7fab8c9ff396d48c530dd40a">init</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a0b74a5dae412eb2744216d2529a6044f">scanHeader</a> (const QString &amp;item) const </td></tr>
@@ -98,6 +100,7 @@
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a3d88ed5f20b6fd757e2c6dfa266fac02">markedByFilter</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QPointer&lt; <a class="el" href="classAccount.html">Account</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a2976b0ec09d6f59995f4ef08fe05ab73">acc</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#aff80d2262a601daa4db464c27b8dba27">accountName</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMail.html#a339fde8497b14eb7f6da134ec8ab5974">filterName</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This class represents a mail. </p>
@@ -146,14 +149,33 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail on the server </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>Unique ID of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>isNew</em>&nbsp;</td><td>TRUE - mail is new; FALSE - mail is not new </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>pointer to the parent account </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail on the server <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>Unique ID of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>isNew</em>&nbsp;</td><td>TRUE - mail is new; FALSE - mail is not new <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>pointer to the parent account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent object </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -177,8 +199,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Copy Constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Copy Constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>mail</em>&nbsp;</td><td>source mail </td></tr>
   </table>
@@ -246,22 +267,36 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Looks for a filter matching the mail header and returns the action recommend by this filter. If the action is MARK, it set markAtViewRefresh to True so the related view entry will be marked at the next view refresh. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Looks for a filter matching the mail header and returns the action recommend by this filter. If the action is MARK, it set markAtViewRefresh to True so the related view entry will be marked at the next view refresh. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>pointer to the header filter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>reference to a QString object in which the mailbox name shall be written if the action is MOVE </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the filter log </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>recommend action </dd></dl>
+    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>pointer to the header filter <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>reference to a QString object in which the mailbox name shall be written if the action is MOVE <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the filter log <dl class="return"><dt><b>Returns:</b></dt><dd>recommend action </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd>FilterAction_Type </dd>
 <dd>
 <a class="el" href="classHeaderFilter.html" title="This is the mail header filter. Call check() with some header data of the mail to...">HeaderFilter</a> </dd>
 <dd>
 markAtViewRefresh </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00403">403</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -291,11 +326,15 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this mail with <em>other</em> and returns an integer less than, equal to, or greater than zero if this mail is less than, equal to, or greater than <em>other</em>. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this mail with <em>other</em> and returns an integer less than, equal to, or greater than zero if this mail is less than, equal to, or greater than <em>other</em>. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>other mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>other mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>property</em>&nbsp;</td><td>the mail property which will be compared </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -334,16 +373,25 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Decodes the given mail body. The mail object has to do this job, because it has stored the mail header and therefore it knows the content type and encoding of the mail. It decodes just the text or html part of the body. The rest of it will be rejected. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Decodes the given mail body. The mail object has to do this job, because it has stored the mail header and therefore it knows the content type and encoding of the mail. It decodes just the text or html part of the body. The rest of it will be rejected. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>body</em>&nbsp;</td><td>the encoded mail (including header) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>preferHTML</em>&nbsp;</td><td>decode HTML part if present </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>isHTML</em>&nbsp;</td><td>will be set on true, if the returned body is HTML formatted; otherwise false </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>body</em>&nbsp;</td><td>the encoded mail (including header) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>preferHTML</em>&nbsp;</td><td>decode HTML part if present <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>isHTML</em>&nbsp;</td><td>will be set on true, if the returned body is HTML formatted; otherwise false <dl class="return"><dt><b>Returns:</b></dt><dd>decoded mail body </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>decoded mail body </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00451">451</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -391,8 +439,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns a pointer to the account which contains this mail. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>account </dd></dl>
+<p>Returns a pointer to the account which contains this mail. <dl class="return"><dt><b>Returns:</b></dt><dd>account </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00357">357</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -412,8 +459,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the name of the parent account. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>name of the parent account </dd></dl>
+<p>Returns the name of the parent account. <dl class="return"><dt><b>Returns:</b></dt><dd>name of the parent account </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMail.html#aff80d2262a601daa4db464c27b8dba27">accountName</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00897">897</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
@@ -434,8 +480,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the boundary, if the mail has a multi part body. Otherwise it returns an empty string. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>boundary </dd></dl>
+<p>Returns the boundary, if the mail has a multi part body. Otherwise it returns an empty string. <dl class="return"><dt><b>Returns:</b></dt><dd>boundary </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00686">686</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -457,14 +502,13 @@ markAtViewRefresh </dd></dl>
 </div>
 <div class="memdoc">
 <p>Returns the charset of the given header or body part.</p>
-<p>It looks for the charset tag and returns the string behind this. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>It looks for the charset tag and returns the string behind this. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>body part or header </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>body part or header <dl class="return"><dt><b>Returns:</b></dt><dd>charset string </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>charset string </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00727">727</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -484,8 +528,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the char set of the content (e.g. iso-8859-1) from the header. If no char set is denoted, it will returns an empty string. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>charset </dd></dl>
+<p>Returns the char set of the content (e.g. iso-8859-1) from the header. If no char set is denoted, it will returns an empty string. <dl class="return"><dt><b>Returns:</b></dt><dd>charset </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00722">722</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -505,8 +548,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the content type. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>content type </dd></dl>
+<p>Returns the content type. <dl class="return"><dt><b>Returns:</b></dt><dd>content type </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00398">398</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -532,6 +574,27 @@ markAtViewRefresh </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a3618a36aa5f3faa6282791073204e14b"></a><!-- doxytag: member="Mail::getFilterName" ref="a3618a36aa5f3faa6282791073204e14b" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString Mail::getFilterName </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the name of the filter which has caught this mail.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>name of the filter which has caught this mail </dd></dl>
+
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00963">963</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="af68babd70d84fc44312d09f49ec0eae9"></a><!-- doxytag: member="Mail::getFrom" ref="af68babd70d84fc44312d09f49ec0eae9" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -546,8 +609,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the sender address. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>sender address </dd></dl>
+<p>Returns the sender address. <dl class="return"><dt><b>Returns:</b></dt><dd>sender address </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00362">362</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -567,8 +629,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the header </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mail header </dd></dl>
+<p>Returns the header <dl class="return"><dt><b>Returns:</b></dt><dd>mail header </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00219">219</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -588,8 +649,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the number of this mail on the server </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>number </dd></dl>
+<p>Returns the number of this mail on the server <dl class="return"><dt><b>Returns:</b></dt><dd>number </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00078">78</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -609,8 +669,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the size of this mail </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mail size (Bytes) </dd></dl>
+<p>Returns the size of this mail <dl class="return"><dt><b>Returns:</b></dt><dd>mail size (Bytes) </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00073">73</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -650,8 +709,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the subject </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>subject </dd></dl>
+<p>Returns the subject <dl class="return"><dt><b>Returns:</b></dt><dd>subject </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00063">63</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -671,8 +729,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the addressee. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the addressee </dd></dl>
+<p>Returns the addressee. <dl class="return"><dt><b>Returns:</b></dt><dd>the addressee </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00367">367</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -694,14 +751,13 @@ markAtViewRefresh </dd></dl>
 </div>
 <div class="memdoc">
 <p>Returns the transfer encoding of the given header or body part.</p>
-<p>It looks for the transfer encoding tag and returns the string behind this. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>It looks for the transfer encoding tag and returns the string behind this. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>body part or header </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>body part or header <dl class="return"><dt><b>Returns:</b></dt><dd>charset string </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>charset string </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00800">800</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -721,8 +777,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the transfer encoding string from the header if existing. Otherwise it returns an empty string. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>transfer encoding </dd></dl>
+<p>Returns the transfer encoding string from the header if existing. Otherwise it returns an empty string. <dl class="return"><dt><b>Returns:</b></dt><dd>transfer encoding </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00795">795</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -742,8 +797,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the UNID. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>UNID </dd></dl>
+<p>Returns the UNID. <dl class="return"><dt><b>Returns:</b></dt><dd>UNID </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00068">68</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -783,8 +837,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns whether this mail was marked by filter. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - marked; FALSE - not marked </dd></dl>
+<p>Returns whether this mail was marked by filter. <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - marked; FALSE - not marked </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00446">446</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -804,8 +857,7 @@ markAtViewRefresh </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns whether the mail is new or not. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - mail is new </dd>
+<p>Returns whether the mail is new or not. <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - mail is new </dd>
 <dd>
 FALSE - mail is not new </dd></dl>
 
@@ -828,8 +880,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Assign operator </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Assign operator <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>other mail </td></tr>
   </table>
@@ -855,15 +906,14 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Prints the given text to StdOut. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Prints the given text to StdOut. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>Text to print </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00950">950</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00955">955</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -911,11 +961,15 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Creates a new DOM element in the given DOM document and add it to given DOM parent element </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Creates a new DOM element in the given DOM document and add it to given DOM parent element <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>the DOM document in that all options are stored </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>the DOM document in that all options are stored <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>the parent element (account) of the mail </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -948,15 +1002,19 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Searches in the given body part for a line which starts with the given item. For example: scanBodyPart( "Content-Transfer-Encoding") will find the line "Content-Transfer-Encoding: 7bit" and returns "7bit" Returns an empty string (""), if nothing was found. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Searches in the given body part for a line which starts with the given item. For example: scanBodyPart( "Content-Transfer-Encoding") will find the line "Content-Transfer-Encoding: 7bit" and returns "7bit" Returns an empty string (""), if nothing was found. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>part</em>&nbsp;</td><td>the body part </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>the search item </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>part</em>&nbsp;</td><td>the body part <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>the search item <dl class="return"><dt><b>Returns:</b></dt><dd>the content of the found line </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the content of the found line </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00167">167</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -977,14 +1035,13 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Searches in the header for a line which starts with the given item. For example: scanHeader( "From") will find the line "From: Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;" and returns "Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;" Returns an empty string (""), if nothing was found. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Searches in the header for a line which starts with the given item. For example: scanHeader( "From") will find the line "From: Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;" and returns "Ulrich Weigelt &lt;ulrich.weigelt@gmx.de&gt;" Returns an empty string (""), if nothing was found. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>the search item </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>the search item <dl class="return"><dt><b>Returns:</b></dt><dd>the content of the found line </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the content of the found line </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00143">143</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
@@ -1005,8 +1062,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the given string as content type. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the given string as content type. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>content</em>&nbsp;</td><td>the content type </td></tr>
   </table>
@@ -1032,8 +1088,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Converts the given string to a date-time value and stores it. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Converts the given string to a date-time value and stores it. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>date</em>&nbsp;</td><td>the date </td></tr>
   </table>
@@ -1041,6 +1096,33 @@ FALSE - mail is not new </dd></dl>
 </dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00207">207</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a38c1dec5158e6a312688686cd68223"></a><!-- doxytag: member="Mail::setFilterName" ref="a0a38c1dec5158e6a312688686cd68223" args="(QString filter)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mail::setFilterName </td>
+          <td>(</td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>filter</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Sets the name of the filter which has caught this mail</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>name of the filter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="mail_8cpp_source.html#l00968">968</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
@@ -1059,8 +1141,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the given string as sender address </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the given string as sender address <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>from</em>&nbsp;</td><td>sender address </td></tr>
   </table>
@@ -1086,8 +1167,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the mail header and extracts From, To, Subject, Date and Content Type. All parts of the header are coded according RFC 2047. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the mail header and extracts From, To, Subject, Date and Content Type. All parts of the header are coded according RFC 2047. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>the mail header </td></tr>
   </table>
@@ -1133,8 +1213,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets whether the mail is new or not. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets whether the mail is new or not. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>isnew</em>&nbsp;</td><td>TRUE - mail is new; FALSE - mail is not new </td></tr>
   </table>
@@ -1160,8 +1239,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>the number </td></tr>
   </table>
@@ -1187,8 +1265,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the size </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the size <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>mail size (Bytes) </td></tr>
   </table>
@@ -1214,8 +1291,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the given string as subject </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the given string as subject <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>the mail subject </td></tr>
   </table>
@@ -1241,8 +1317,7 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the given string as recipient address </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the given string as recipient address <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>recipient address </td></tr>
   </table>
@@ -1268,20 +1343,19 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Removes all empty lines at begin and at end of <em>text</em> </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Removes all empty lines at begin and at end of <em>text</em> <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>the text which shall be trimmed </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>text</em>&nbsp;</td><td>the text which shall be trimmed <dl class="return"><dt><b>Returns:</b></dt><dd>the text without empty lines at begin and at end </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the text without empty lines at begin and at end </dd></dl>
 
 <p>Definition at line <a class="el" href="mail_8cpp_source.html#l00934">934</a> of file <a class="el" href="mail_8cpp_source.html">mail.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a97a01789aa0735cf4ff560e90c242a88"></a><!-- doxytag: member="Mail::writeToDeleteLog" ref="a97a01789aa0735cf4ff560e90c242a88" args="(FilterLog *log, QString account)" -->
+<a class="anchor" id="ad67122e15d373a2bf2425ad5a1338bfe"></a><!-- doxytag: member="Mail::writeToDeleteLog" ref="ad67122e15d373a2bf2425ad5a1338bfe" args="(FilterLog *log, QString account, KindOfMailDeleting kindDelete)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1295,7 +1369,13 @@ FALSE - mail is not new </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>account</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>account</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a>&nbsp;</td>
+          <td class="paramname"> <em>kindDelete</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -1305,11 +1385,21 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Writes this mail into the Delete Log. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Writes this mail into the Delete Log. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>kindDelete</em>&nbsp;</td><td>kind of mail deleting (by filter or manual) </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -1348,12 +1438,21 @@ FALSE - mail is not new </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Writes this mail into the Move Log. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Writes this mail into the Move Log. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>name of the mailbox </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -1375,7 +1474,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>It is set to TRUE when the mail is new. </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00348">348</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00363">363</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1391,7 +1490,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Pointer to the parent account </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00379">379</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00394">394</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1407,7 +1506,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Name of the parent account </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00384">384</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00399">399</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1423,7 +1522,23 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The content type </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00368">368</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00383">383</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a339fde8497b14eb7f6da134ec8ab5974"></a><!-- doxytag: member="Mail::filterName" ref="a339fde8497b14eb7f6da134ec8ab5974" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString <a class="el" href="classMail.html#a339fde8497b14eb7f6da134ec8ab5974">Mail::filterName</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The name of the filter which has caught this mail </p>
+
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00404">404</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1439,7 +1554,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The sender address </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00353">353</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00368">368</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1455,7 +1570,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Header </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00333">333</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00348">348</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1471,7 +1586,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>TRUE - the mail was marked by the filter. It will be set to True by <a class="el" href="classMail.html#a75a86126042d3cb4859dc90d92d8286d">applyHeaderFilter()</a> if the recommend filter action is MARK. </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00374">374</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00389">389</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1487,7 +1602,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Number of this mail on the server </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00343">343</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00358">358</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1503,7 +1618,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The date on which the mail was sent </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00363">363</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00378">378</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1519,7 +1634,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Size (Bytes) </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00338">338</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00353">353</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1535,7 +1650,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>Subject </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00328">328</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00343">343</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1551,7 +1666,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>The addressee </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00358">358</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00373">373</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1567,7 +1682,7 @@ FALSE - mail is not new </dd></dl>
 <div class="memdoc">
 <p>UNID of this mail </p>
 
-<p>Definition at line <a class="el" href="mail_8h_source.html#l00323">323</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
+<p>Definition at line <a class="el" href="mail_8h_source.html#l00338">338</a> of file <a class="el" href="mail_8h_source.html">mail.h</a>.</p>
 
 </div>
 </div>
@@ -1576,7 +1691,7 @@ FALSE - mail is not new </dd></dl>
 <li>src/<a class="el" href="mail_8cpp_source.html">mail.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

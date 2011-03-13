@@ -85,8 +85,8 @@
 <a name="l00060"></a>00060    QLabel* lblProtocol = <span class="keyword">new</span> QLabel( i18nc( <span class="stringliteral">&quot;@label:listbox mail fetching protocol&quot;</span>, <span class="stringliteral">&quot;Protocol:&quot;</span> ), pgGeneral );
 <a name="l00061"></a>00061    <a class="code" href="classAccountSetupDialog.html#aad109f88ad94c12be8f6a7f5892f8308" title="Combo box to choose the protocol.">cboProtocol</a> = <span class="keyword">new</span> KComboBox( pgGeneral );
 <a name="l00062"></a>00062    <a class="code" href="classAccountSetupDialog.html#aad109f88ad94c12be8f6a7f5892f8308" title="Combo box to choose the protocol.">cboProtocol</a>-&gt;insertItem( 0, <span class="stringliteral">&quot;POP3&quot;</span> );  <span class="comment">//currently KShowmail just supports POP3</span>
-<a name="l00063"></a>00063    lblProtocol-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.&quot;</span>) );
-<a name="l00064"></a>00064    <a class="code" href="classAccountSetupDialog.html#aad109f88ad94c12be8f6a7f5892f8308" title="Combo box to choose the protocol.">cboProtocol</a>-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;Protocol, which shall be used to get the mails from the server. Currently KShowmail just supports POP3.&quot;</span>) );
+<a name="l00063"></a>00063    lblProtocol-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;Protocol, which shall be used to fetch the mails from the server. Currently KShowmail only supports POP3.&quot;</span>) );
+<a name="l00064"></a>00064    <a class="code" href="classAccountSetupDialog.html#aad109f88ad94c12be8f6a7f5892f8308" title="Combo box to choose the protocol.">cboProtocol</a>-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;Protocol, which shall be used to fetch the mails from the server. Currently KShowmail only supports POP3.&quot;</span>) );
 <a name="l00065"></a>00065    layTop-&gt;addWidget( lblProtocol, 2, 0 );
 <a name="l00066"></a>00066    layTop-&gt;addWidget( <a class="code" href="classAccountSetupDialog.html#aad109f88ad94c12be8f6a7f5892f8308" title="Combo box to choose the protocol.">cboProtocol</a>, 2, 1 );
 <a name="l00067"></a>00067  
@@ -101,8 +101,8 @@
 <a name="l00076"></a>00076  
 <a name="l00077"></a>00077    QLabel* lblUser = <span class="keyword">new</span> QLabel( i18nc( <span class="stringliteral">&quot;@label:textbox user name to authenticate&quot;</span>, <span class="stringliteral">&quot;User:&quot;</span> ), pgGeneral );
 <a name="l00078"></a>00078    <a class="code" href="classAccountSetupDialog.html#ab27b8d090b54974dcc7816dd93b9c46c" title="Edit line which contains the user name.">txtUser</a> = <span class="keyword">new</span> KLineEdit( pgGeneral );
-<a name="l00079"></a>00079    lblUser-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;To authenticate to the mail server you need an user name.&quot;</span> ) );
-<a name="l00080"></a>00080    <a class="code" href="classAccountSetupDialog.html#ab27b8d090b54974dcc7816dd93b9c46c" title="Edit line which contains the user name.">txtUser</a>-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;To authenticate to the mail server you need an user name.&quot;</span> ) );
+<a name="l00079"></a>00079    lblUser-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;To identify to the mail server you need an user name.&quot;</span> ) );
+<a name="l00080"></a>00080    <a class="code" href="classAccountSetupDialog.html#ab27b8d090b54974dcc7816dd93b9c46c" title="Edit line which contains the user name.">txtUser</a>-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;To identify to the mail server you need an user name.&quot;</span> ) );
 <a name="l00081"></a>00081    layTop-&gt;addWidget( lblUser, 4, 0 );
 <a name="l00082"></a>00082    layTop-&gt;addWidget( <a class="code" href="classAccountSetupDialog.html#ab27b8d090b54974dcc7816dd93b9c46c" title="Edit line which contains the user name.">txtUser</a>, 4, 1 );
 <a name="l00083"></a>00083  
@@ -183,7 +183,7 @@
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159   <span class="comment">//checkbox to allow unsecure transfer</span>
 <a name="l00160"></a>00160   <a class="code" href="classAccountSetupDialog.html#ab5c2efbec5245167ceadea1731ae64e7" title="Check box to select whether unsecure login is allowed.">chkAllowUnsecureLogin</a> = <span class="keyword">new</span> QCheckBox( i18nc( <span class="stringliteral">&quot;@option:check whether login without security shall be allowed&quot;</span>, <span class="stringliteral">&quot;Allow unsafe login&quot;</span>), pgSecurity );
-<a name="l00161"></a>00161   <a class="code" href="classAccountSetupDialog.html#ab5c2efbec5245167ceadea1731ae64e7" title="Check box to select whether unsecure login is allowed.">chkAllowUnsecureLogin</a>-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;Select it to allow an unsafe login if necessary.\nThe password will be transmit unencrypted. Maybe someone can read it!&quot;</span> ) );
+<a name="l00161"></a>00161   <a class="code" href="classAccountSetupDialog.html#ab5c2efbec5245167ceadea1731ae64e7" title="Check box to select whether unsecure login is allowed.">chkAllowUnsecureLogin</a>-&gt;setToolTip( i18nc( <span class="stringliteral">&quot;@info:tooltip&quot;</span>, <span class="stringliteral">&quot;Select it to allow an unsafe login if necessary.\nThe password will be transmitted unencrypted. Maybe someone can read it!&quot;</span> ) );
 <a name="l00162"></a>00162   laySecurity-&gt;addWidget( <a class="code" href="classAccountSetupDialog.html#ab5c2efbec5245167ceadea1731ae64e7" title="Check box to select whether unsecure login is allowed.">chkAllowUnsecureLogin</a> );
 <a name="l00163"></a>00163   <a class="code" href="classAccountSetupDialog.html#ab5c2efbec5245167ceadea1731ae64e7" title="Check box to select whether unsecure login is allowed.">chkAllowUnsecureLogin</a>-&gt;setChecked( <a class="code" href="constants_8h.html#a48e378cc912562b25d51d8812ff2101b">DEFAULT_ACCOUNT_ALLOW_UNSECURE_LOGIN</a> );
 <a name="l00164"></a>00164 
@@ -236,7 +236,7 @@
 <a name="l00211"></a>00211   }
 <a name="l00212"></a>00212   <span class="keywordflow">if</span>( <a class="code" href="classAccountSetupDialog.html#ae95956f6bffaf59934194cf7d9e332f9" title="Edit line which contains the server name.">txtServer</a>-&gt;text().isEmpty() )
 <a name="l00213"></a>00213   {
-<a name="l00214"></a>00214     KMessageBox::error( <span class="keyword">this</span>, i18nc( <span class="stringliteral">&quot;@info error message: no server was entered&quot;</span>, <span class="stringliteral">&quot;Please enter an server.&quot;</span> ) );
+<a name="l00214"></a>00214     KMessageBox::error( <span class="keyword">this</span>, i18nc( <span class="stringliteral">&quot;@info error message: no server was entered&quot;</span>, <span class="stringliteral">&quot;Please enter a server.&quot;</span> ) );
 <a name="l00215"></a>00215     <span class="keywordflow">return</span>;
 <a name="l00216"></a>00216   }
 <a name="l00217"></a>00217 
@@ -425,7 +425,7 @@
 <a name="l00400"></a>00400 
 <a name="l00401"></a>00401 <span class="preprocessor">#include &quot;accountsetupdialog.moc&quot;</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:02 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:08 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

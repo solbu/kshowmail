@@ -41,6 +41,9 @@
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListFilter.html#acd54522f12bc731e41e14abf9660f151">check</a> (QString sender) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListFilter.html#a6e7a4477291793511c385bdd30c349f1">load</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListFilter.html#abfd7364f08f06d471c38e5e366bc07d6">print</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListFilter.html#abc1b62ddc417c16dea09e68c62a532b2">isOnWhitelist</a> (const QString &amp;sender) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListFilter.html#a374442bca2d2d1f2e1ab21f532b2ba9a">getBlacklist</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListFilter.html#a95c2f3ca0fedcb1c161091cab76c09ed">getWhitelist</a> () const </td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSenderListFilter.html#adf8a4549d9ab8d4cfc361fc3778d1ca7">search</a> (QStringList list, QString sender) const </td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
@@ -111,16 +114,82 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Checks the given sender whether it is listed in the blacklist or whitelist. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Checks the given sender whether it is listed in the blacklist or whitelist. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender which shall be checked </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>sender which shall be checked <dl class="return"><dt><b>Returns:</b></dt><dd>appointed action (FActPass, FActDelete, FActMark, FActNone) </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>appointed action (FActPass, FActDelete, FActMark, FActNone) </dd></dl>
 
 <p>Definition at line <a class="el" href="senderlistfilter_8cpp_source.html#l00036">36</a> of file <a class="el" href="senderlistfilter_8cpp_source.html">senderlistfilter.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a374442bca2d2d1f2e1ab21f532b2ba9a"></a><!-- doxytag: member="SenderListFilter::getBlacklist" ref="a374442bca2d2d1f2e1ab21f532b2ba9a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList SenderListFilter::getBlacklist </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the blacklist <dl class="return"><dt><b>Returns:</b></dt><dd>the blacklist </dd></dl>
+
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp_source.html#l00115">115</a> of file <a class="el" href="senderlistfilter_8cpp_source.html">senderlistfilter.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a95c2f3ca0fedcb1c161091cab76c09ed"></a><!-- doxytag: member="SenderListFilter::getWhitelist" ref="a95c2f3ca0fedcb1c161091cab76c09ed" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList SenderListFilter::getWhitelist </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the whitelist <dl class="return"><dt><b>Returns:</b></dt><dd>the whitelist </dd></dl>
+
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp_source.html#l00120">120</a> of file <a class="el" href="senderlistfilter_8cpp_source.html">senderlistfilter.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abc1b62ddc417c16dea09e68c62a532b2"></a><!-- doxytag: member="SenderListFilter::isOnWhitelist" ref="abc1b62ddc417c16dea09e68c62a532b2" args="(const QString &amp;sender) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SenderListFilter::isOnWhitelist </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&nbsp;</td>
+          <td class="paramname"> <em>sender</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks whether <em>sender</em> is on the whitelist <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>the sender to check <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - sender is listed on the whitelist </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="senderlistfilter_8cpp_source.html#l00110">110</a> of file <a class="el" href="senderlistfilter_8cpp_source.html">senderlistfilter.cpp</a>.</p>
 
 </div>
 </div>
@@ -192,12 +261,17 @@
 <p>This sender strings will cause a return value of TRUE: "Ulrich Weigelt" &lt;<a href="mailto:ulrich.weigelt@gmx.de">ulrich.weigelt@gmx.de</a>&gt; "Spam King" &lt;<a href="mailto:spam@spamhouse.com">spam@spamhouse.com</a>&gt; <a href="mailto:spam@spamhouse.com">spam@spamhouse.com</a> <a href="mailto:lara.croft@tombraider.com">lara.croft@tombraider.com</a> "Lara Croft" &lt;<a href="mailto:lara.croft@tombraider.com">lara.croft@tombraider.com</a>&gt;</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>list</em>&nbsp;</td><td>blacklist or whitelist </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>searched sender name </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>list</em>&nbsp;</td><td>blacklist or whitelist <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sender</em>&nbsp;</td><td>searched sender name <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the given sender name is listed. FALSE - is not listed </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - the given sender name is listed. FALSE - is not listed </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="senderlistfilter_8cpp_source.html#l00069">69</a> of file <a class="el" href="senderlistfilter_8cpp_source.html">senderlistfilter.cpp</a>.</p>
 
@@ -216,7 +290,7 @@
 <div class="memdoc">
 <p>blacklisted addresses </p>
 
-<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00085">85</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00104">104</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
 
 </div>
 </div>
@@ -232,7 +306,7 @@
 <div class="memdoc">
 <p>appointed action of the blacklist. </p>
 
-<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00095">95</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00114">114</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
 
 </div>
 </div>
@@ -248,7 +322,7 @@
 <div class="memdoc">
 <p>Connector to the configuration file </p>
 
-<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00080">80</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00099">99</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +338,7 @@
 <div class="memdoc">
 <p>whitelisted addresses </p>
 
-<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00090">90</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
+<p>Definition at line <a class="el" href="senderlistfilter_8h_source.html#l00109">109</a> of file <a class="el" href="senderlistfilter_8h_source.html">senderlistfilter.h</a>.</p>
 
 </div>
 </div>
@@ -273,7 +347,7 @@
 <li>src/<a class="el" href="senderlistfilter_8cpp_source.html">senderlistfilter.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

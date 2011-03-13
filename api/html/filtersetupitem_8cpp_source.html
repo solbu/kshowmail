@@ -280,7 +280,7 @@
 <a name="l00255"></a>00255       <span class="keywordflow">return</span> text( col ).compare( text( col ) ) * -1;
 <a name="l00256"></a>00256     }
 <a name="l00257"></a>00257   }
-<a name="l00258"></a>00258     
+<a name="l00258"></a>00258 
 <a name="l00259"></a>00259 
 <a name="l00260"></a>00260 }
 <a name="l00261"></a>00261 
@@ -304,96 +304,106 @@
 <a name="l00279"></a>00279   setText( <a class="code" href="classFilterSetupItem.html#a75976f4e0a1067acd189088152f6ef39af4bcf75b077a12755ff0819d8d4b5ede">ColAction</a>, QString( <span class="stringliteral">&quot; %1&quot;</span> ).arg( strAction ) );
 <a name="l00280"></a>00280 }
 <a name="l00281"></a>00281 
-<a name="l00282"></a><a class="code" href="classFilterSetupItem.html#ad005e34c67d87cb65685a0220901cb61">00282</a> <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#ad005e34c67d87cb65685a0220901cb61">FilterSetupItem::load</a>( )
+<a name="l00282"></a><a class="code" href="classFilterSetupItem.html#a3f2407c1317358c27831bd01b853fd43">00282</a> <span class="keywordtype">void</span> <a class="code" href="classFilterSetupItem.html#a3f2407c1317358c27831bd01b853fd43" title="Reads the settings from the config file.">FilterSetupItem::load</a>( KConfigGroup* configGroup )
 <a name="l00283"></a>00283 {
 <a name="l00284"></a>00284     <span class="comment">//build group name</span>
 <a name="l00285"></a>00285   QString group;
 <a name="l00286"></a>00286   group = QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#a3980b28063773c4ff90dfc5290c40ace">CONFIG_GROUP_FILTER</a> ).arg( <a class="code" href="classFilterSetupItem.html#a09a730b72395838d679ac848ba9cbd54">number</a> );
 <a name="l00287"></a>00287 
 <a name="l00288"></a>00288 
-<a name="l00289"></a>00289   <span class="comment">//set group</span>
-<a name="l00290"></a>00290   <span class="comment">//set group</span>
-<a name="l00291"></a>00291   KConfigGroup* configFilter = <span class="keyword">new</span> KConfigGroup( <a class="code" href="classFilterSetupItem.html#af587f3ebf4a2f115c428579b712aa48b">config</a>, group );
+<a name="l00289"></a>00289   <span class="comment">//set group or take the given</span>
+<a name="l00290"></a>00290   KConfigGroup* configFilter;
+<a name="l00291"></a>00291   <span class="keywordflow">if</span>( configGroup == NULL ) {
 <a name="l00292"></a>00292 
-<a name="l00293"></a>00293   <span class="comment">//get name</span>
-<a name="l00294"></a>00294   <a class="code" href="classFilterSetupItem.html#a96a7ddb3233d77a63e8470cc3dbe1137">setName</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#a6ca733772db0f232be935288e243d608">CONFIG_ENTRY_FILTER_NAME</a>, <a class="code" href="constants_8h.html#aea00f66b6666d05f90ed460d2575461f">DEFAULT_FILTER_NAME</a> ) );
-<a name="l00295"></a>00295 
-<a name="l00296"></a>00296   <span class="comment">//get linkage</span>
-<a name="l00297"></a>00297   <a class="code" href="classFilterSetupItem.html#ad8449dc1e448170fb0f1504e9d4b29f5">setCriteriaLinkage</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#aac77da58c388fe64fed6e92bda23ba03">CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE</a>, <a class="code" href="constants_8h.html#a840873a63beffb33754e92905a11b7f6">DEFAULT_FILTER_CRITERIA_LINKAGE</a> ) );
-<a name="l00298"></a>00298   <span class="keywordflow">if</span>( <a class="code" href="classFilterSetupItem.html#a2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> != <a class="code" href="constants_8h.html#ab9605cb7cc171bb2c67520dfc3c1180f">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL</a> &amp;&amp; <a class="code" href="classFilterSetupItem.html#a2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> != <a class="code" href="constants_8h.html#a3d34e1342db1085ab1205c53bf9f85b7">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY</a> )
-<a name="l00299"></a>00299     <a class="code" href="classFilterSetupItem.html#ad8449dc1e448170fb0f1504e9d4b29f5">setCriteriaLinkage</a>( <a class="code" href="constants_8h.html#a840873a63beffb33754e92905a11b7f6">DEFAULT_FILTER_CRITERIA_LINKAGE</a> );
-<a name="l00300"></a>00300 
-<a name="l00301"></a>00301   <span class="comment">//get action</span>
-<a name="l00302"></a>00302   <a class="code" href="classFilterSetupItem.html#a6f1b035725692bce5172bbb73afd8413">setAction</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#a357fc2b9d70bc024c39885ca661ebebd">CONFIG_ENTRY_FILTER_ACTION</a>, <a class="code" href="constants_8h.html#a8f34fdcd8c1d7f0f99b8898d62505c97">DEFAULT_FILTER_ACTION</a> ) );
-<a name="l00303"></a>00303   <span class="keywordflow">if</span>( <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a295662a0a5141e9abf04cdfe2684609d">CONFIG_VALUE_FILTER_ACTION_PASS</a> &amp;&amp;
-<a name="l00304"></a>00304       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a905853ac0e6baaf4526da8d333a132f8">CONFIG_VALUE_FILTER_ACTION_DELETE</a> &amp;&amp;
-<a name="l00305"></a>00305       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#adb74299799c553dee6846bba80408748">CONFIG_VALUE_FILTER_ACTION_MARK</a> &amp;&amp;
-<a name="l00306"></a>00306       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a9e8712bf9a9e8312363afdbd049f164c">CONFIG_VALUE_FILTER_ACTION_MOVE</a> &amp;&amp;
-<a name="l00307"></a>00307       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a8030cd9308f2403581a9ef186e504226">CONFIG_VALUE_FILTER_ACTION_IGNORE</a> &amp;&amp;
-<a name="l00308"></a>00308       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a9b4f4c23041080a70c7a5a8cbbd7d2a3">CONFIG_VALUE_FILTER_ACTION_SPAMCHECK</a> )
-<a name="l00309"></a>00309     <a class="code" href="classFilterSetupItem.html#a6f1b035725692bce5172bbb73afd8413">setAction</a>( <a class="code" href="constants_8h.html#a8f34fdcd8c1d7f0f99b8898d62505c97">DEFAULT_FILTER_ACTION</a> );
-<a name="l00310"></a>00310 
-<a name="l00311"></a>00311   <span class="comment">//get action parameter</span>
-<a name="l00312"></a>00312   <span class="keywordflow">switch</span>( <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> )
-<a name="l00313"></a>00313   {
-<a name="l00314"></a>00314     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#a9e8712bf9a9e8312363afdbd049f164c">CONFIG_VALUE_FILTER_ACTION_MOVE</a> : <a class="code" href="classFilterSetupItem.html#a8b97e85703485c71fd374d7938cdf3f2">setMailBox</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#ad8c9098fb91b81ebbd71e329ca587988">CONFIG_ENTRY_FILTER_MOVE_MAILBOX</a>, <a class="code" href="constants_8h.html#a4465d4f6dbc0bb78965a2bcc7c37391f">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a> ) ); <span class="keywordflow">break</span>;
-<a name="l00315"></a>00315     <span class="keywordflow">default</span>                              : <a class="code" href="classFilterSetupItem.html#a8b97e85703485c71fd374d7938cdf3f2">setMailBox</a>( QString() );
-<a name="l00316"></a>00316   }
+<a name="l00293"></a>00293     configFilter = <span class="keyword">new</span> KConfigGroup( <a class="code" href="classFilterSetupItem.html#af587f3ebf4a2f115c428579b712aa48b">config</a>, group );
+<a name="l00294"></a>00294 
+<a name="l00295"></a>00295   } <span class="keywordflow">else</span> {
+<a name="l00296"></a>00296 
+<a name="l00297"></a>00297     configFilter = configGroup;
+<a name="l00298"></a>00298   }
+<a name="l00299"></a>00299 
+<a name="l00300"></a>00300   <span class="comment">//get name</span>
+<a name="l00301"></a>00301   <a class="code" href="classFilterSetupItem.html#a96a7ddb3233d77a63e8470cc3dbe1137">setName</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#a6ca733772db0f232be935288e243d608">CONFIG_ENTRY_FILTER_NAME</a>, <a class="code" href="constants_8h.html#aea00f66b6666d05f90ed460d2575461f">DEFAULT_FILTER_NAME</a> ) );
+<a name="l00302"></a>00302 
+<a name="l00303"></a>00303   <span class="comment">//get linkage</span>
+<a name="l00304"></a>00304   <a class="code" href="classFilterSetupItem.html#ad8449dc1e448170fb0f1504e9d4b29f5">setCriteriaLinkage</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#aac77da58c388fe64fed6e92bda23ba03">CONFIG_ENTRY_FILTER_CRITERIA_LINKAGE</a>, <a class="code" href="constants_8h.html#a840873a63beffb33754e92905a11b7f6">DEFAULT_FILTER_CRITERIA_LINKAGE</a> ) );
+<a name="l00305"></a>00305   <span class="keywordflow">if</span>( <a class="code" href="classFilterSetupItem.html#a2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> != <a class="code" href="constants_8h.html#ab9605cb7cc171bb2c67520dfc3c1180f">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL</a> &amp;&amp; <a class="code" href="classFilterSetupItem.html#a2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> != <a class="code" href="constants_8h.html#a3d34e1342db1085ab1205c53bf9f85b7">CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY</a> )
+<a name="l00306"></a>00306     <a class="code" href="classFilterSetupItem.html#ad8449dc1e448170fb0f1504e9d4b29f5">setCriteriaLinkage</a>( <a class="code" href="constants_8h.html#a840873a63beffb33754e92905a11b7f6">DEFAULT_FILTER_CRITERIA_LINKAGE</a> );
+<a name="l00307"></a>00307 
+<a name="l00308"></a>00308   <span class="comment">//get action</span>
+<a name="l00309"></a>00309   <a class="code" href="classFilterSetupItem.html#a6f1b035725692bce5172bbb73afd8413">setAction</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#a357fc2b9d70bc024c39885ca661ebebd">CONFIG_ENTRY_FILTER_ACTION</a>, <a class="code" href="constants_8h.html#a8f34fdcd8c1d7f0f99b8898d62505c97">DEFAULT_FILTER_ACTION</a> ) );
+<a name="l00310"></a>00310   <span class="keywordflow">if</span>( <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a295662a0a5141e9abf04cdfe2684609d">CONFIG_VALUE_FILTER_ACTION_PASS</a> &amp;&amp;
+<a name="l00311"></a>00311       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a905853ac0e6baaf4526da8d333a132f8">CONFIG_VALUE_FILTER_ACTION_DELETE</a> &amp;&amp;
+<a name="l00312"></a>00312       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#adb74299799c553dee6846bba80408748">CONFIG_VALUE_FILTER_ACTION_MARK</a> &amp;&amp;
+<a name="l00313"></a>00313       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a9e8712bf9a9e8312363afdbd049f164c">CONFIG_VALUE_FILTER_ACTION_MOVE</a> &amp;&amp;
+<a name="l00314"></a>00314       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a8030cd9308f2403581a9ef186e504226">CONFIG_VALUE_FILTER_ACTION_IGNORE</a> &amp;&amp;
+<a name="l00315"></a>00315       <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> != <a class="code" href="constants_8h.html#a9b4f4c23041080a70c7a5a8cbbd7d2a3">CONFIG_VALUE_FILTER_ACTION_SPAMCHECK</a> )
+<a name="l00316"></a>00316     <a class="code" href="classFilterSetupItem.html#a6f1b035725692bce5172bbb73afd8413">setAction</a>( <a class="code" href="constants_8h.html#a8f34fdcd8c1d7f0f99b8898d62505c97">DEFAULT_FILTER_ACTION</a> );
 <a name="l00317"></a>00317 
-<a name="l00318"></a>00318   <span class="comment">//get number of criterias</span>
-<a name="l00319"></a>00319   uint numCrit = configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#a12d8c15c10b04f2eab1bce59715310cf">CONFIG_ENTRY_FILTER_CRITERIA_NUMBER</a>, 0 );
-<a name="l00320"></a>00320 
-<a name="l00321"></a>00321   <span class="comment">//get criterias</span>
-<a name="l00322"></a>00322   <span class="keywordflow">for</span>( uint ctr = 1; ctr &lt;= numCrit; ctr++ )
-<a name="l00323"></a>00323   {
-<a name="l00324"></a>00324     <span class="keyword">struct </span><a class="code" href="structTypes_1_1FilterCriteria__Type.html" title="Contains all values of a filter criteria.">FilterCriteria_Type</a> crit;
-<a name="l00325"></a>00325 
-<a name="l00326"></a>00326     crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#a3ff6181c4e85488685f990fb38a6c395">CONFIG_ENTRY_FILTER_CRITERIA_SOURCE</a> ).arg( ctr ), <a class="code" href="constants_8h.html#a49432e7ac56ae1686c7e61e1977d069c">DEFAULT_FILTER_CRITERIA_SOURCE</a> );
-<a name="l00327"></a>00327     <span class="keywordflow">if</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a07ec2b9550b81fb0c8d5178a0c8310af">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a> &amp;&amp;
-<a name="l00328"></a>00328         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a634864651eb3087845890b35daa307a5">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a> &amp;&amp;
-<a name="l00329"></a>00329         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#aa3f15bee0b2066a2009fbb2a701b0b01">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a> &amp;&amp;
-<a name="l00330"></a>00330         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#accc149c3618fe09c84023617ea1f3261">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>  &amp;&amp;
-<a name="l00331"></a>00331         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a60992807765887b7cbd53d6dfa5302e3">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>  &amp;&amp;
-<a name="l00332"></a>00332         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a319aea6dde5e028ced09e921914dd16f">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a> )
-<a name="l00333"></a>00333       crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> = <a class="code" href="constants_8h.html#a49432e7ac56ae1686c7e61e1977d069c">DEFAULT_FILTER_CRITERIA_SOURCE</a>;
-<a name="l00334"></a>00334 
-<a name="l00335"></a>00335     <span class="keywordflow">switch</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> )
-<a name="l00336"></a>00336     {
-<a name="l00337"></a>00337       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#a319aea6dde5e028ced09e921914dd16f">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>   : crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#a8a1e84b6d2d082ec63c4c07291151f17">CONFIG_ENTRY_FILTER_CRITERIA_CONDITION</a> ).arg( ctr ), <a class="code" href="constants_8h.html#acb20386e8c04963ef7ca0435fedf807f">DEFAULT_FILTER_CRITERIA_COND_NUM</a> );
-<a name="l00338"></a>00338                                                         <span class="keywordflow">if</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a76fe82b410658a0bb492316c92a56d85">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL</a> &amp;&amp;
-<a name="l00339"></a>00339                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#afdb2bf8fe032cef6ae4072495f4f72d9">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL</a> &amp;&amp;
-<a name="l00340"></a>00340                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#ab99914e8f94bb1bf48319b0db24b7250">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER</a> &amp;&amp;
-<a name="l00341"></a>00341                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#ad702d49be58a997e276161f126abf375">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL</a> &amp;&amp;
-<a name="l00342"></a>00342                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a7b36b049326f59ec6b42bfa2ecfe0eb1">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS</a> &amp;&amp;
-<a name="l00343"></a>00343                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#aa3f70df369d4ccbf44ee6165913b00ef">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL</a> )
-<a name="l00344"></a>00344                                                           crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = <a class="code" href="constants_8h.html#acb20386e8c04963ef7ca0435fedf807f">DEFAULT_FILTER_CRITERIA_COND_NUM</a>;
-<a name="l00345"></a>00345                                                         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#aba4af96342c299a576bbe4d0628192f5">numValue</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#ad5c833e2dea46274dd4e70f2b6bbe6c5">CONFIG_ENTRY_FILTER_CRITERIA_VALUE</a> ).arg( ctr ), <a class="code" href="constants_8h.html#ad8231c441b3c19e166745a6b6e5b7382">DEFAULT_FILTER_CRITERIA_SIZE</a> );
-<a name="l00346"></a>00346                                                         <span class="keywordflow">break</span>;
-<a name="l00347"></a>00347 
-<a name="l00348"></a>00348       <span class="keywordflow">default</span>                                         :  crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#a8a1e84b6d2d082ec63c4c07291151f17">CONFIG_ENTRY_FILTER_CRITERIA_CONDITION</a> ).arg( ctr ), <a class="code" href="constants_8h.html#a656445c84109ef8b367bd4928b410fa9">DEFAULT_FILTER_CRITERIA_COND_TEXT</a> );
-<a name="l00349"></a>00349                                                          <span class="keywordflow">if</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a267d2734621cf8acedb29967859e9290">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a> &amp;&amp;
-<a name="l00350"></a>00350                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a6acea62e3b02c102d3633b4d22a813ee">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a> &amp;&amp;
-<a name="l00351"></a>00351                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#aa18504a90ae646ad38db31ee3c99ac8c">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a> &amp;&amp;
-<a name="l00352"></a>00352                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a37aa21515d2250c1467fb39ad4902dc6">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a> &amp;&amp;
-<a name="l00353"></a>00353                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a579ab7b1404eb79f9a2044be694e3ed6">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a> &amp;&amp;
-<a name="l00354"></a>00354                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a957e42b9813a543f5a22a9801f9fc409">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a> )
-<a name="l00355"></a>00355                                                            crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = <a class="code" href="constants_8h.html#a656445c84109ef8b367bd4928b410fa9">DEFAULT_FILTER_CRITERIA_COND_TEXT</a>;
-<a name="l00356"></a>00356                                                          crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a30e8afe468fdbcc1483ddfec89602c92">txtValue</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#ad5c833e2dea46274dd4e70f2b6bbe6c5">CONFIG_ENTRY_FILTER_CRITERIA_VALUE</a> ).arg( ctr ) );
-<a name="l00357"></a>00357                                                          crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a88f3fbe98218173cdb417423a890832c">cs</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#adf889c1b87feae7359262a116a9e8de1">CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE</a> ).arg( ctr ), <a class="code" href="constants_8h.html#a828e9df6c43e0fae404b24b3f5642cd3">DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE</a> );
-<a name="l00358"></a>00358                                                          <span class="keywordflow">break</span>;
-<a name="l00359"></a>00359     }
-<a name="l00360"></a>00360 
-<a name="l00361"></a>00361     <a class="code" href="classFilterSetupItem.html#a6bdbcb472bdb9f1bc1bd0d45836b2cbf">criteriaList</a>.push_back( crit );
-<a name="l00362"></a>00362 
-<a name="l00363"></a>00363   }
-<a name="l00364"></a>00364 
-<a name="l00365"></a>00365 
-<a name="l00366"></a>00366 }
+<a name="l00318"></a>00318   <span class="comment">//get action parameter</span>
+<a name="l00319"></a>00319   <span class="keywordflow">switch</span>( <a class="code" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> )
+<a name="l00320"></a>00320   {
+<a name="l00321"></a>00321     <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#a9e8712bf9a9e8312363afdbd049f164c">CONFIG_VALUE_FILTER_ACTION_MOVE</a> : <a class="code" href="classFilterSetupItem.html#a8b97e85703485c71fd374d7938cdf3f2">setMailBox</a>( configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#ad8c9098fb91b81ebbd71e329ca587988">CONFIG_ENTRY_FILTER_MOVE_MAILBOX</a>, <a class="code" href="constants_8h.html#a4465d4f6dbc0bb78965a2bcc7c37391f">DEFAULT_FILTER_ACTION_MOVE_MAILBOX</a> ) ); <span class="keywordflow">break</span>;
+<a name="l00322"></a>00322     <span class="keywordflow">default</span>                              : <a class="code" href="classFilterSetupItem.html#a8b97e85703485c71fd374d7938cdf3f2">setMailBox</a>( QString() );
+<a name="l00323"></a>00323   }
+<a name="l00324"></a>00324 
+<a name="l00325"></a>00325   <span class="comment">//get number of criterias</span>
+<a name="l00326"></a>00326   uint numCrit = configFilter-&gt;readEntry( <a class="code" href="constants_8h.html#a12d8c15c10b04f2eab1bce59715310cf">CONFIG_ENTRY_FILTER_CRITERIA_NUMBER</a>, 0 );
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328   <span class="comment">//get criterias</span>
+<a name="l00329"></a>00329   <span class="keywordflow">for</span>( uint ctr = 1; ctr &lt;= numCrit; ctr++ )
+<a name="l00330"></a>00330   {
+<a name="l00331"></a>00331     <span class="keyword">struct </span><a class="code" href="structTypes_1_1FilterCriteria__Type.html" title="Contains all values of a filter criteria.">FilterCriteria_Type</a> crit;
+<a name="l00332"></a>00332 
+<a name="l00333"></a>00333     crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#a3ff6181c4e85488685f990fb38a6c395">CONFIG_ENTRY_FILTER_CRITERIA_SOURCE</a> ).arg( ctr ), <a class="code" href="constants_8h.html#a49432e7ac56ae1686c7e61e1977d069c">DEFAULT_FILTER_CRITERIA_SOURCE</a> );
+<a name="l00334"></a>00334     <span class="keywordflow">if</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a07ec2b9550b81fb0c8d5178a0c8310af">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_FROM</a> &amp;&amp;
+<a name="l00335"></a>00335         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a634864651eb3087845890b35daa307a5">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_TO</a> &amp;&amp;
+<a name="l00336"></a>00336         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#aa3f15bee0b2066a2009fbb2a701b0b01">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SUBJECT</a> &amp;&amp;
+<a name="l00337"></a>00337         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#accc149c3618fe09c84023617ea1f3261">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_HEADER</a>  &amp;&amp;
+<a name="l00338"></a>00338         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a60992807765887b7cbd53d6dfa5302e3">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_ACCOUNT</a>  &amp;&amp;
+<a name="l00339"></a>00339         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> != <a class="code" href="constants_8h.html#a319aea6dde5e028ced09e921914dd16f">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a> )
+<a name="l00340"></a>00340       crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> = <a class="code" href="constants_8h.html#a49432e7ac56ae1686c7e61e1977d069c">DEFAULT_FILTER_CRITERIA_SOURCE</a>;
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342     <span class="keywordflow">switch</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a9866add14b0f3c62082e62e3b0992e9b">source</a> )
+<a name="l00343"></a>00343     {
+<a name="l00344"></a>00344       <span class="keywordflow">case</span> <a class="code" href="constants_8h.html#a319aea6dde5e028ced09e921914dd16f">CONFIG_VALUE_FILTER_CRITERIA_SOURCE_SIZE</a>   : crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#a8a1e84b6d2d082ec63c4c07291151f17">CONFIG_ENTRY_FILTER_CRITERIA_CONDITION</a> ).arg( ctr ), <a class="code" href="constants_8h.html#acb20386e8c04963ef7ca0435fedf807f">DEFAULT_FILTER_CRITERIA_COND_NUM</a> );
+<a name="l00345"></a>00345                                                         <span class="keywordflow">if</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a76fe82b410658a0bb492316c92a56d85">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_EQUAL</a> &amp;&amp;
+<a name="l00346"></a>00346                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#afdb2bf8fe032cef6ae4072495f4f72d9">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_NOT_EQUAL</a> &amp;&amp;
+<a name="l00347"></a>00347                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#ab99914e8f94bb1bf48319b0db24b7250">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER</a> &amp;&amp;
+<a name="l00348"></a>00348                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#ad702d49be58a997e276161f126abf375">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_GREATER_EQUAL</a> &amp;&amp;
+<a name="l00349"></a>00349                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a7b36b049326f59ec6b42bfa2ecfe0eb1">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS</a> &amp;&amp;
+<a name="l00350"></a>00350                                                             crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#aa3f70df369d4ccbf44ee6165913b00ef">CONFIG_VALUE_FILTER_CRITERIA_COND_NUM_LESS_EQUAL</a> )
+<a name="l00351"></a>00351                                                           crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = <a class="code" href="constants_8h.html#acb20386e8c04963ef7ca0435fedf807f">DEFAULT_FILTER_CRITERIA_COND_NUM</a>;
+<a name="l00352"></a>00352                                                         crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#aba4af96342c299a576bbe4d0628192f5">numValue</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#ad5c833e2dea46274dd4e70f2b6bbe6c5">CONFIG_ENTRY_FILTER_CRITERIA_VALUE</a> ).arg( ctr ), <a class="code" href="constants_8h.html#ad8231c441b3c19e166745a6b6e5b7382">DEFAULT_FILTER_CRITERIA_SIZE</a> );
+<a name="l00353"></a>00353                                                         <span class="keywordflow">break</span>;
+<a name="l00354"></a>00354 
+<a name="l00355"></a>00355       <span class="keywordflow">default</span>                                         :  crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#a8a1e84b6d2d082ec63c4c07291151f17">CONFIG_ENTRY_FILTER_CRITERIA_CONDITION</a> ).arg( ctr ), <a class="code" href="constants_8h.html#a656445c84109ef8b367bd4928b410fa9">DEFAULT_FILTER_CRITERIA_COND_TEXT</a> );
+<a name="l00356"></a>00356                                                          <span class="keywordflow">if</span>( crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a267d2734621cf8acedb29967859e9290">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_CONTAINS</a> &amp;&amp;
+<a name="l00357"></a>00357                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a6acea62e3b02c102d3633b4d22a813ee">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_CONTAINS</a> &amp;&amp;
+<a name="l00358"></a>00358                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#aa18504a90ae646ad38db31ee3c99ac8c">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_EQUALS</a> &amp;&amp;
+<a name="l00359"></a>00359                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a37aa21515d2250c1467fb39ad4902dc6">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_EQUALS</a> &amp;&amp;
+<a name="l00360"></a>00360                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a579ab7b1404eb79f9a2044be694e3ed6">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_REGEXPR</a> &amp;&amp;
+<a name="l00361"></a>00361                                                              crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> != <a class="code" href="constants_8h.html#a957e42b9813a543f5a22a9801f9fc409">CONFIG_VALUE_FILTER_CRITERIA_COND_TEXT_NOT_REGEXPR</a> )
+<a name="l00362"></a>00362                                                            crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a825ed5a5486fd08ea46073e108105681">condition</a> = <a class="code" href="constants_8h.html#a656445c84109ef8b367bd4928b410fa9">DEFAULT_FILTER_CRITERIA_COND_TEXT</a>;
+<a name="l00363"></a>00363                                                          crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a30e8afe468fdbcc1483ddfec89602c92">txtValue</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#ad5c833e2dea46274dd4e70f2b6bbe6c5">CONFIG_ENTRY_FILTER_CRITERIA_VALUE</a> ).arg( ctr ) );
+<a name="l00364"></a>00364                                                          crit.<a class="code" href="structTypes_1_1FilterCriteria__Type.html#a88f3fbe98218173cdb417423a890832c">cs</a> = configFilter-&gt;readEntry( QString( <span class="stringliteral">&quot;%1%2&quot;</span> ).arg( <a class="code" href="constants_8h.html#adf889c1b87feae7359262a116a9e8de1">CONFIG_ENTRY_FILTER_CRITERIA_CASESENSITIVE</a> ).arg( ctr ), <a class="code" href="constants_8h.html#a828e9df6c43e0fae404b24b3f5642cd3">DEFAULT_FILTER_CRITERIA_CASE_SENSITIVE</a> );
+<a name="l00365"></a>00365                                                          <span class="keywordflow">break</span>;
+<a name="l00366"></a>00366     }
 <a name="l00367"></a>00367 
-<a name="l00368"></a>00368 
+<a name="l00368"></a>00368     <a class="code" href="classFilterSetupItem.html#a6bdbcb472bdb9f1bc1bd0d45836b2cbf">criteriaList</a>.push_back( crit );
 <a name="l00369"></a>00369 
+<a name="l00370"></a>00370   }
+<a name="l00371"></a>00371 
+<a name="l00372"></a>00372   <span class="keywordflow">if</span>( configGroup == NULL )
+<a name="l00373"></a>00373     <span class="keyword">delete</span> configFilter;
+<a name="l00374"></a>00374 
+<a name="l00375"></a>00375 
+<a name="l00376"></a>00376 }
+<a name="l00377"></a>00377 
+<a name="l00378"></a>00378 
+<a name="l00379"></a>00379 
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:02 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:08 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

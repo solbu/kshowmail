@@ -130,16 +130,20 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Adds a new mailbox list view item to the mailbox list or to a given parent item. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Adds a new mailbox list view item to the mailbox list or to a given parent item. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>boxname</em>&nbsp;</td><td>name of the mailbox </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>boxname</em>&nbsp;</td><td>name of the mailbox <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>path</em>&nbsp;</td><td>path to the directory of this mailbox </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="mailboxwizard_8cpp_source.html#l00139">139</a> of file <a class="el" href="mailboxwizard_8cpp_source.html">mailboxwizard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mailboxwizard_8cpp_source.html#l00138">138</a> of file <a class="el" href="mailboxwizard_8cpp_source.html">mailboxwizard.cpp</a>.</p>
 
 </div>
 </div>
@@ -157,10 +161,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the absolute path of the selected mailbox. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>the path </dd></dl>
+<p>Returns the absolute path of the selected mailbox. <dl class="return"><dt><b>Returns:</b></dt><dd>the path; empty string if no item is selected </dd></dl>
 
-<p>Definition at line <a class="el" href="mailboxwizard_8cpp_source.html#l00163">163</a> of file <a class="el" href="mailboxwizard_8cpp_source.html">mailboxwizard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mailboxwizard_8cpp_source.html#l00162">162</a> of file <a class="el" href="mailboxwizard_8cpp_source.html">mailboxwizard.cpp</a>.</p>
 
 </div>
 </div>
@@ -179,16 +182,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns whether the given directory is a maildir directory </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns whether the given directory is a maildir directory <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>path</em>&nbsp;</td><td>the directory for test </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>path</em>&nbsp;</td><td>the directory for test <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - directory is a maildir directory </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - directory is a maildir directory </dd></dl>
 
-<p>Definition at line <a class="el" href="mailboxwizard_8cpp_source.html#l00112">112</a> of file <a class="el" href="mailboxwizard_8cpp_source.html">mailboxwizard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mailboxwizard_8cpp_source.html#l00111">111</a> of file <a class="el" href="mailboxwizard_8cpp_source.html">mailboxwizard.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,8 +229,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Connected with the signal selected of this wizard. Searchs for mailboxes inside the path typed in page1. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Connected with the signal selected of this wizard. Searchs for mailboxes inside the path typed in page1. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>pageID</em>&nbsp;</td><td>ID of the showed page </td></tr>
   </table>
@@ -293,7 +294,7 @@
 <li>src/<a class="el" href="mailboxwizard_8cpp_source.html">mailboxwizard.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

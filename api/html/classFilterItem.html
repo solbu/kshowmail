@@ -40,6 +40,7 @@
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterItem.html#a146084a4a8383d3407115aab6c949687">~FilterItem</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterItem.html#abce00b1e6fe29658d76a06609b104724">print</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceTypes.html#ace032cf029e8037fd21721b33e3a6adf">FilterAction_Type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterItem.html#a58d6e6768dfc77082df065163830127b">check</a> (QString from, QString to, uint size, QString subject, QStringList header, QString account, QString &amp;mailboxName) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterItem.html#a60143d9cd0824b3dcf61a2768a4175de">getName</a> () const </td></tr>
 <tr><td colspan="2"><h2>Private Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterItem.html#a58b18d2ee6b00081df0b962224aca749">Linkage_Type</a> { <a class="el" href="classFilterItem.html#a58b18d2ee6b00081df0b962224aca749a9c5079e590cae0aa11aa30bbfa5661e1">LinkAll</a>, 
 <a class="el" href="classFilterItem.html#a58b18d2ee6b00081df0b962224aca749a10c7570abaf0aabd42082bdf961aa274">LinkAny</a>
@@ -80,7 +81,7 @@
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00101">101</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00108">108</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -100,8 +101,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Constructor Loads the settings from the config file </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Constructor Loads the settings from the config file <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>filterNr</em>&nbsp;</td><td>Number of the filter </td></tr>
   </table>
@@ -187,22 +187,72 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Checks the given mail header. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Checks the given mail header. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>from</em>&nbsp;</td><td>Sender </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>Addressee </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>Size </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>Header </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>mailboxName</em>&nbsp;</td><td>contains the mailbox name after call, if filter action is MOVE </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>from</em>&nbsp;</td><td>Sender <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>Addressee <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>Size <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>subject</em>&nbsp;</td><td>Subject <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>Header <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>mailboxName</em>&nbsp;</td><td>contains the mailbox name after call, if filter action is MOVE <dl class="return"><dt><b>Returns:</b></dt><dd>recommend action </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>recommend action </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="filteritem_8cpp_source.html#l00088">88</a> of file <a class="el" href="filteritem_8cpp_source.html">filteritem.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a60143d9cd0824b3dcf61a2768a4175de"></a><!-- doxytag: member="FilterItem::getName" ref="a60143d9cd0824b3dcf61a2768a4175de" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString FilterItem::getName </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the name of this filter</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>name </dd></dl>
+
+<p>Definition at line <a class="el" href="filteritem_8cpp_source.html#l00173">173</a> of file <a class="el" href="filteritem_8cpp_source.html">filteritem.cpp</a>.</p>
 
 </div>
 </div>
@@ -239,7 +289,7 @@
 <div class="memdoc">
 <p>Filter Action </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00111">111</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00118">118</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -255,7 +305,7 @@
 <div class="memdoc">
 <p>Connector to the configuration file </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00081">81</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00088">88</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +321,7 @@
 <div class="memdoc">
 <p>This list holds the criterias. </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00121">121</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00128">128</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -287,7 +337,7 @@
 <div class="memdoc">
 <p>Filter number. Just for messages. </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00086">86</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00093">93</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -303,7 +353,7 @@
 <div class="memdoc">
 <p>Criteria Linkage </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00106">106</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00113">113</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -319,7 +369,7 @@
 <div class="memdoc">
 <p>Mailbox Name for move action </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00116">116</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00123">123</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -335,7 +385,7 @@
 <div class="memdoc">
 <p>Filter name. Just for messages. </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00091">91</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00098">98</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -351,7 +401,7 @@
 <div class="memdoc">
 <p>Number of criterias </p>
 
-<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00096">96</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
+<p>Definition at line <a class="el" href="filteritem_8h_source.html#l00103">103</a> of file <a class="el" href="filteritem_8h_source.html">filteritem.h</a>.</p>
 
 </div>
 </div>
@@ -360,7 +410,7 @@
 <li>src/<a class="el" href="filteritem_8cpp_source.html">filteritem.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -146,67 +146,73 @@
 <a name="l00280"></a>00280 
 <a name="l00287"></a>00287     <span class="keywordtype">void</span> <a class="code" href="classMail.html#af12fe5432e54e0ea962bb9d274827c29">writeToMoveLog</a>( <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* log, QString account, QString mailbox );
 <a name="l00288"></a>00288 
-<a name="l00294"></a>00294     <span class="keywordtype">void</span> <a class="code" href="classMail.html#a97a01789aa0735cf4ff560e90c242a88">writeToDeleteLog</a>( <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* log, QString account );
-<a name="l00295"></a>00295 
-<a name="l00299"></a>00299     <span class="keywordtype">void</span> <a class="code" href="classMail.html#a1242a9c09bce753c79dc755ce7c66333">setMarkAtNextViewRefresh</a>();
-<a name="l00300"></a>00300 
-<a name="l00308"></a>00308     <span class="keywordtype">int</span> <a class="code" href="classMail.html#a71e23bd54ea79915fdfe8404c8bce1a1">compare</a>( <span class="keyword">const</span> <a class="code" href="classMail.html" title="This class represents a mail.">Mail</a>&amp; other, <a class="code" href="namespaceTypes.html#aa41eee3cc91221a60a8252f4a31da4c1">MailSort_Type</a> property );
-<a name="l00309"></a>00309 
-<a name="l00315"></a>00315     QString <a class="code" href="classMail.html#a8c004c2ed9d8c8a5761f359685a73956">getAccountName</a>() <span class="keyword">const</span>;
-<a name="l00316"></a>00316 
+<a name="l00295"></a>00295      <span class="keywordtype">void</span> <a class="code" href="classMail.html#ad67122e15d373a2bf2425ad5a1338bfe">writeToDeleteLog</a>( <a class="code" href="classFilterLog.html" title="This is the log of the filters.">FilterLog</a>* log, QString account, <a class="code" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6" title="This is the kind of mail deleting.">KindOfMailDeleting</a> kindDelete );
+<a name="l00296"></a>00296 
+<a name="l00300"></a>00300     <span class="keywordtype">void</span> <a class="code" href="classMail.html#a1242a9c09bce753c79dc755ce7c66333">setMarkAtNextViewRefresh</a>();
+<a name="l00301"></a>00301 
+<a name="l00309"></a>00309     <span class="keywordtype">int</span> <a class="code" href="classMail.html#a71e23bd54ea79915fdfe8404c8bce1a1">compare</a>( <span class="keyword">const</span> <a class="code" href="classMail.html" title="This class represents a mail.">Mail</a>&amp; other, <a class="code" href="namespaceTypes.html#aa41eee3cc91221a60a8252f4a31da4c1">MailSort_Type</a> property );
+<a name="l00310"></a>00310 
+<a name="l00316"></a>00316     QString <a class="code" href="classMail.html#a8c004c2ed9d8c8a5761f359685a73956">getAccountName</a>() <span class="keyword">const</span>;
 <a name="l00317"></a>00317 
-<a name="l00318"></a>00318         <span class="keyword">private</span>:
-<a name="l00319"></a>00319 
-<a name="l00323"></a><a class="code" href="classMail.html#a573c5b5763cab58782e96ffcc5815a3f">00323</a>                 QString unid;
+<a name="l00323"></a>00323     QString <a class="code" href="classMail.html#a3618a36aa5f3faa6282791073204e14b">getFilterName</a>() <span class="keyword">const</span>;
 <a name="l00324"></a>00324 
-<a name="l00328"></a><a class="code" href="classMail.html#ad5c0770ac5b1124a6fff9bdb933a7cbe">00328</a>                 QString subject;
-<a name="l00329"></a>00329 
-<a name="l00333"></a><a class="code" href="classMail.html#a6b35beb2f9d7b33bfe1d2270b626b9f4">00333</a>                 QStringList header;
+<a name="l00330"></a>00330     <span class="keywordtype">void</span> <a class="code" href="classMail.html#a0a38c1dec5158e6a312688686cd68223">setFilterName</a>( QString filter );
+<a name="l00331"></a>00331 
+<a name="l00332"></a>00332 
+<a name="l00333"></a>00333         <span class="keyword">private</span>:
 <a name="l00334"></a>00334 
-<a name="l00338"></a><a class="code" href="classMail.html#a8f6452c577ea387c3902eb74971833ad">00338</a>                 <span class="keywordtype">long</span> size;
+<a name="l00338"></a><a class="code" href="classMail.html#a573c5b5763cab58782e96ffcc5815a3f">00338</a>                 QString unid;
 <a name="l00339"></a>00339 
-<a name="l00343"></a><a class="code" href="classMail.html#a72531c2f3f016021c4dc362f33703c2d">00343</a>                 <span class="keywordtype">int</span> number;
+<a name="l00343"></a><a class="code" href="classMail.html#ad5c0770ac5b1124a6fff9bdb933a7cbe">00343</a>                 QString subject;
 <a name="l00344"></a>00344 
-<a name="l00348"></a><a class="code" href="classMail.html#aa055c9a6e8f8a8f1432d121bcd50871b">00348</a>     <span class="keywordtype">bool</span> <a class="code" href="classMail.html#aa055c9a6e8f8a8f1432d121bcd50871b">_new</a>;
+<a name="l00348"></a><a class="code" href="classMail.html#a6b35beb2f9d7b33bfe1d2270b626b9f4">00348</a>                 QStringList header;
 <a name="l00349"></a>00349 
-<a name="l00353"></a><a class="code" href="classMail.html#a50d03592bc5577d13bb6ad55cd134e3a">00353</a>     QString from;
+<a name="l00353"></a><a class="code" href="classMail.html#a8f6452c577ea387c3902eb74971833ad">00353</a>                 <span class="keywordtype">long</span> size;
 <a name="l00354"></a>00354 
-<a name="l00358"></a><a class="code" href="classMail.html#a2842351c66f7dfb81e39bbc91b88c594">00358</a>     QString to;
+<a name="l00358"></a><a class="code" href="classMail.html#a72531c2f3f016021c4dc362f33703c2d">00358</a>                 <span class="keywordtype">int</span> number;
 <a name="l00359"></a>00359 
-<a name="l00363"></a><a class="code" href="classMail.html#a134219093d96a9d1e4e4d06e3a9b25f0">00363</a>     KDateTime <a class="code" href="classMail.html#a134219093d96a9d1e4e4d06e3a9b25f0">sendDate</a>;
+<a name="l00363"></a><a class="code" href="classMail.html#aa055c9a6e8f8a8f1432d121bcd50871b">00363</a>     <span class="keywordtype">bool</span> <a class="code" href="classMail.html#aa055c9a6e8f8a8f1432d121bcd50871b">_new</a>;
 <a name="l00364"></a>00364 
-<a name="l00368"></a><a class="code" href="classMail.html#a424e0d906f50ddbcdd68213d3b8d3b0c">00368</a>     QString <a class="code" href="classMail.html#a424e0d906f50ddbcdd68213d3b8d3b0c">contentType</a>;
+<a name="l00368"></a><a class="code" href="classMail.html#a50d03592bc5577d13bb6ad55cd134e3a">00368</a>     QString from;
 <a name="l00369"></a>00369 
-<a name="l00374"></a><a class="code" href="classMail.html#a3d88ed5f20b6fd757e2c6dfa266fac02">00374</a>     <span class="keywordtype">bool</span> <a class="code" href="classMail.html#a3d88ed5f20b6fd757e2c6dfa266fac02">markedByFilter</a>;
-<a name="l00375"></a>00375 
-<a name="l00379"></a><a class="code" href="classMail.html#a2976b0ec09d6f59995f4ef08fe05ab73">00379</a>     QPointer&lt;Account&gt; <a class="code" href="classMail.html#a2976b0ec09d6f59995f4ef08fe05ab73">acc</a>;
-<a name="l00380"></a>00380 
-<a name="l00384"></a><a class="code" href="classMail.html#aff80d2262a601daa4db464c27b8dba27">00384</a>     QString <a class="code" href="classMail.html#aff80d2262a601daa4db464c27b8dba27">accountName</a>;
-<a name="l00385"></a>00385 
-<a name="l00386"></a>00386 
-<a name="l00387"></a>00387         <span class="keyword">protected</span>:
-<a name="l00388"></a>00388 
-<a name="l00392"></a>00392                 <span class="keywordtype">void</span> <a class="code" href="classMail.html#a9bb87f1b7fab8c9ff396d48c530dd40a">init</a>();
-<a name="l00393"></a>00393 
-<a name="l00405"></a>00405     QString <a class="code" href="classMail.html#a0b74a5dae412eb2744216d2529a6044f">scanHeader</a>( <span class="keyword">const</span> QString&amp; item ) <span class="keyword">const</span>;
+<a name="l00373"></a><a class="code" href="classMail.html#a2842351c66f7dfb81e39bbc91b88c594">00373</a>     QString to;
+<a name="l00374"></a>00374 
+<a name="l00378"></a><a class="code" href="classMail.html#a134219093d96a9d1e4e4d06e3a9b25f0">00378</a>     KDateTime <a class="code" href="classMail.html#a134219093d96a9d1e4e4d06e3a9b25f0">sendDate</a>;
+<a name="l00379"></a>00379 
+<a name="l00383"></a><a class="code" href="classMail.html#a424e0d906f50ddbcdd68213d3b8d3b0c">00383</a>     QString <a class="code" href="classMail.html#a424e0d906f50ddbcdd68213d3b8d3b0c">contentType</a>;
+<a name="l00384"></a>00384 
+<a name="l00389"></a><a class="code" href="classMail.html#a3d88ed5f20b6fd757e2c6dfa266fac02">00389</a>     <span class="keywordtype">bool</span> <a class="code" href="classMail.html#a3d88ed5f20b6fd757e2c6dfa266fac02">markedByFilter</a>;
+<a name="l00390"></a>00390 
+<a name="l00394"></a><a class="code" href="classMail.html#a2976b0ec09d6f59995f4ef08fe05ab73">00394</a>     QPointer&lt;Account&gt; <a class="code" href="classMail.html#a2976b0ec09d6f59995f4ef08fe05ab73">acc</a>;
+<a name="l00395"></a>00395 
+<a name="l00399"></a><a class="code" href="classMail.html#aff80d2262a601daa4db464c27b8dba27">00399</a>     QString <a class="code" href="classMail.html#aff80d2262a601daa4db464c27b8dba27">accountName</a>;
+<a name="l00400"></a>00400 
+<a name="l00404"></a><a class="code" href="classMail.html#a339fde8497b14eb7f6da134ec8ab5974">00404</a>     QString <a class="code" href="classMail.html#a339fde8497b14eb7f6da134ec8ab5974">filterName</a>;
+<a name="l00405"></a>00405 
 <a name="l00406"></a>00406 
-<a name="l00419"></a>00419     QString <a class="code" href="classMail.html#ac3089fc2f8355d94f3feb36394ec614e">scanBodyPart</a>( <span class="keyword">const</span> QStringList&amp; part, <span class="keyword">const</span> QString&amp; item ) <span class="keyword">const</span>;
-<a name="l00420"></a>00420 
-<a name="l00425"></a>00425     QString <a class="code" href="classMail.html#ad502ece96360c816794cb608d6d2ab50" title="Decodes a rfc2047 encoded string.">decodeRfc2047</a>( <span class="keyword">const</span> QString&amp; text ) <span class="keyword">const</span>;
+<a name="l00407"></a>00407         <span class="keyword">protected</span>:
+<a name="l00408"></a>00408 
+<a name="l00412"></a>00412                 <span class="keywordtype">void</span> <a class="code" href="classMail.html#a9bb87f1b7fab8c9ff396d48c530dd40a">init</a>();
+<a name="l00413"></a>00413 
+<a name="l00425"></a>00425     QString <a class="code" href="classMail.html#a0b74a5dae412eb2744216d2529a6044f">scanHeader</a>( <span class="keyword">const</span> QString&amp; item ) <span class="keyword">const</span>;
 <a name="l00426"></a>00426 
-<a name="l00433"></a>00433     QString <a class="code" href="classMail.html#a744bd61d3237be271e28437bc4aa3243">getCharset</a>( <span class="keyword">const</span> QStringList&amp; text ) <span class="keyword">const</span>;
-<a name="l00434"></a>00434 
-<a name="l00441"></a>00441     QString <a class="code" href="classMail.html#a78d1a72fc549c3d4049e6f962720bec7">getTransferEncoding</a>( <span class="keyword">const</span> QStringList&amp; text ) <span class="keyword">const</span>;
-<a name="l00442"></a>00442 
-<a name="l00448"></a>00448     QStringList <a class="code" href="classMail.html#a33be45a69ab1d52a3efba6fe3421947e">trim</a>( QStringList text ) <span class="keyword">const</span>;
-<a name="l00449"></a>00449 
-<a name="l00454"></a>00454     <span class="keywordtype">void</span> <a class="code" href="classMail.html#a6f8bc30354479bab239c1d0675552b8a">print</a>( QStringList text ) <span class="keyword">const</span>;
-<a name="l00455"></a>00455 
-<a name="l00456"></a>00456 };
-<a name="l00457"></a>00457 
-<a name="l00458"></a>00458 <span class="preprocessor">#endif // MAIL_H</span>
+<a name="l00439"></a>00439     QString <a class="code" href="classMail.html#ac3089fc2f8355d94f3feb36394ec614e">scanBodyPart</a>( <span class="keyword">const</span> QStringList&amp; part, <span class="keyword">const</span> QString&amp; item ) <span class="keyword">const</span>;
+<a name="l00440"></a>00440 
+<a name="l00445"></a>00445     QString <a class="code" href="classMail.html#ad502ece96360c816794cb608d6d2ab50" title="Decodes a rfc2047 encoded string.">decodeRfc2047</a>( <span class="keyword">const</span> QString&amp; text ) <span class="keyword">const</span>;
+<a name="l00446"></a>00446 
+<a name="l00453"></a>00453     QString <a class="code" href="classMail.html#a744bd61d3237be271e28437bc4aa3243">getCharset</a>( <span class="keyword">const</span> QStringList&amp; text ) <span class="keyword">const</span>;
+<a name="l00454"></a>00454 
+<a name="l00461"></a>00461     QString <a class="code" href="classMail.html#a78d1a72fc549c3d4049e6f962720bec7">getTransferEncoding</a>( <span class="keyword">const</span> QStringList&amp; text ) <span class="keyword">const</span>;
+<a name="l00462"></a>00462 
+<a name="l00468"></a>00468     QStringList <a class="code" href="classMail.html#a33be45a69ab1d52a3efba6fe3421947e">trim</a>( QStringList text ) <span class="keyword">const</span>;
+<a name="l00469"></a>00469 
+<a name="l00474"></a>00474     <span class="keywordtype">void</span> <a class="code" href="classMail.html#a6f8bc30354479bab239c1d0675552b8a">print</a>( QStringList text ) <span class="keyword">const</span>;
+<a name="l00475"></a>00475 
+<a name="l00476"></a>00476 };
+<a name="l00477"></a>00477 
+<a name="l00478"></a>00478 <span class="preprocessor">#endif // MAIL_H</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:02 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:08 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

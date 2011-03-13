@@ -58,7 +58,8 @@
 <tr><td class="memItemLeft" align="right" valign="top">FilterCriteriaList_Type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterSetupItem.html#a12731c7cbdd221900856887c737930a8">getCriteriaList</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterSetupItem.html#a8738c3bd9543487adf1208ed37290bf5">save</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterSetupItem.html#a377876c3399e01715c207eb781389e12">compare</a> (<a class="el" href="classFilterSetupItem.html">FilterSetupItem</a> *i, int col, bool ascending) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterSetupItem.html#ad005e34c67d87cb65685a0220901cb61">load</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterSetupItem.html#a3f2407c1317358c27831bd01b853fd43">load</a> (KConfigGroup *configGroup=NULL)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads the settings from the config file.  <a href="#a3f2407c1317358c27831bd01b853fd43"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterSetupItem.html#a34dfbe100755f105c61ddb151df31491">init</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterSetupItem.html#a5c17a5cb348c64ac15b4c2dbcf219535">updateActionColumn</a> ()</td></tr>
@@ -119,8 +120,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>General Constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>General Constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>the list view </td></tr>
   </table>
@@ -155,11 +155,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>the list view </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>the list view <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>num</em>&nbsp;</td><td>filter number </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -219,12 +223,21 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Compares this item to i using the column col in ascending order. Reutrns &lt;0 if this item is less than i, 0 if they are equal and &gt;0 if this item is greater than i. The parameter ascneding will be ignored. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Compares this item to i using the column col in ascending order. Reutrns &lt;0 if this item is less than i, 0 if they are equal and &gt;0 if this item is greater than i. The parameter ascneding will be ignored. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>pointer to the second view item </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>number of the sorted column </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>pointer to the second view item <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>col</em>&nbsp;</td><td>number of the sorted column <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ascending</em>&nbsp;</td><td>ignored </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -247,8 +260,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the action of this filter. See <a class="el" href="constants_8h.html">constants.h</a> for possible values (CONFIG_VALUE_FILTER_ACTION...). </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>action code </dd></dl>
+<p>Returns the action of this filter. See <a class="el" href="constants_8h.html">constants.h</a> for possible values (CONFIG_VALUE_FILTER_ACTION...). <dl class="return"><dt><b>Returns:</b></dt><dd>action code </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a6f1b035725692bce5172bbb73afd8413">setAction</a> </dd>
 <dd>
 <a class="el" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> </dd></dl>
@@ -271,8 +283,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the criteria linkage. Possible values are CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL (all criterias have to satisy) or CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY (at least one criteria has to satisy ). </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>criteria linkage </dd></dl>
+<p>Returns the criteria linkage. Possible values are CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL (all criterias have to satisy) or CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY (at least one criteria has to satisy ). <dl class="return"><dt><b>Returns:</b></dt><dd>criteria linkage </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#ad8449dc1e448170fb0f1504e9d4b29f5">setCriteriaLinkage</a> </dd>
 <dd>
 <a class="el" href="classFilterSetupItem.html#a2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> </dd></dl>
@@ -295,8 +306,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the criteria list. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>criteria list </dd></dl>
+<p>Returns the criteria list. <dl class="return"><dt><b>Returns:</b></dt><dd>criteria list </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a6bdbcb472bdb9f1bc1bd0d45836b2cbf">criteriaList</a> </dd>
 <dd>
 <a class="el" href="classFilterSetupItem.html#aabe5397880f91e8fb8587e016e4bfb25">setCriteriaList</a> </dd>
@@ -321,8 +331,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the mailbox name of a move action if this action is selected. Otherwise it returns an empty string. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mailbox name </dd></dl>
+<p>Returns the mailbox name of a move action if this action is selected. Otherwise it returns an empty string. <dl class="return"><dt><b>Returns:</b></dt><dd>mailbox name </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a8b97e85703485c71fd374d7938cdf3f2">setMailBox</a> </dd>
 <dd>
 <a class="el" href="classFilterSetupItem.html#abcea8cc88e4c5f51a732c61b46308172">mailbox</a> </dd></dl>
@@ -345,8 +354,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the name of this filter. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>filter name </dd></dl>
+<p>Returns the name of this filter. <dl class="return"><dt><b>Returns:</b></dt><dd>filter name </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a44954c10512354340c8bc878414d4a54">name</a> </dd>
 <dd>
 <a class="el" href="classFilterSetupItem.html#a96a7ddb3233d77a63e8470cc3dbe1137">setName</a> </dd></dl>
@@ -369,8 +377,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the filter number. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>filter number </dd></dl>
+<p>Returns the filter number. <dl class="return"><dt><b>Returns:</b></dt><dd>filter number </dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a09a730b72395838d679ac848ba9cbd54">number</a> </dd>
 <dd>
 <a class="el" href="classFilterSetupItem.html#a27f7dc687959944c6197ec4d71ec95af">setNumber</a> </dd></dl>
@@ -399,21 +406,30 @@
 
 </div>
 </div>
-<a class="anchor" id="ad005e34c67d87cb65685a0220901cb61"></a><!-- doxytag: member="FilterSetupItem::load" ref="ad005e34c67d87cb65685a0220901cb61" args="()" -->
+<a class="anchor" id="a3f2407c1317358c27831bd01b853fd43"></a><!-- doxytag: member="FilterSetupItem::load" ref="a3f2407c1317358c27831bd01b853fd43" args="(KConfigGroup *configGroup=NULL)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void FilterSetupItem::load </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">KConfigGroup *&nbsp;</td>
+          <td class="paramname"> <em>configGroup</em> = <code>NULL</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Reads the settings from the config file. The group is named CONFIG_GROUP_FILTER + filter number, e.g. Filter12. </p>
+
+<p>Reads the settings from the config file. </p>
+<p>If you giving a valid config group object it will take this to load its settings. Otherwise it will create a config group from the application config.<br/>
+ A self created group is named CONFIG_GROUP_FILTER + filter number, e.g. Filter12. <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>configGroup</em>&nbsp;</td><td>a valif config group object if it shall get its settings from this </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="filtersetupitem_8cpp_source.html#l00282">282</a> of file <a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a>.</p>
 
@@ -454,16 +470,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the action. See <a class="el" href="constants_8h.html">constants.h</a> for valid values (CONFIG_VALUE_FILTER_ACTION...). </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the action. See <a class="el" href="constants_8h.html">constants.h</a> for valid values (CONFIG_VALUE_FILTER_ACTION...). <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td></td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td><dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a306e6ad4588cf2a8b8231d48c4b6dd2c">getAction</a> </dd>
+<dd>
+<a class="el" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a306e6ad4588cf2a8b8231d48c4b6dd2c">getAction</a> </dd>
-<dd>
-<a class="el" href="classFilterSetupItem.html#a546a1bdc65a76a246d7d1d5209942b38">action</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="filtersetupitem_8cpp_source.html#l00077">77</a> of file <a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a>.</p>
 
@@ -484,14 +499,13 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the criteria linkage. Valid values are CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL (all criterias have to satisy) or CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY (at least one criteria has to satisy ). </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the criteria linkage. Valid values are CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL (all criterias have to satisy) or CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY (at least one criteria has to satisy ). <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>linkage</em>&nbsp;</td><td>criteria linkage </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>linkage</em>&nbsp;</td><td>criteria linkage <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a2db8d7fafdb2a784b6e9d9bc62fba4bf">linkage</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="filtersetupitem_8cpp_source.html#l00184">184</a> of file <a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a>.</p>
 
@@ -512,18 +526,17 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the criteria list. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the criteria list. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>list</em>&nbsp;</td><td>criteria list </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a6bdbcb472bdb9f1bc1bd0d45836b2cbf">criteriaList</a> </dd>
+    <tr><td valign="top"></td><td valign="top"><em>list</em>&nbsp;</td><td>criteria list <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a6bdbcb472bdb9f1bc1bd0d45836b2cbf">criteriaList</a> </dd>
 <dd>
 <a class="el" href="classFilterSetupItem.html#a12731c7cbdd221900856887c737930a8">getCriteriaList</a> </dd>
 <dd>
 <a class="el" href="namespaceTypes.html#a2eaafd5612933c2e6ab8dd15593969a2">Types::FilterCriteriaList_Type</a> </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="filtersetupitem_8cpp_source.html#l00200">200</a> of file <a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a>.</p>
 
@@ -544,16 +557,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the mailbox of a move action. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the mailbox of a move action. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>name of the mailbox </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>name of the mailbox <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a8b97e85703485c71fd374d7938cdf3f2">setMailBox</a> </dd>
+<dd>
+<a class="el" href="classFilterSetupItem.html#abcea8cc88e4c5f51a732c61b46308172">mailbox</a> </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a8b97e85703485c71fd374d7938cdf3f2">setMailBox</a> </dd>
-<dd>
-<a class="el" href="classFilterSetupItem.html#abcea8cc88e4c5f51a732c61b46308172">mailbox</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="filtersetupitem_8cpp_source.html#l00205">205</a> of file <a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a>.</p>
 
@@ -574,16 +586,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the filter name. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the filter name. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>filter name </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>filter name <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a44954c10512354340c8bc878414d4a54">name</a> </dd>
+<dd>
+<a class="el" href="classFilterSetupItem.html#a4f310b0e2cd6bdde235706162c5e0490">getName</a> </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a44954c10512354340c8bc878414d4a54">name</a> </dd>
-<dd>
-<a class="el" href="classFilterSetupItem.html#a4f310b0e2cd6bdde235706162c5e0490">getName</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="filtersetupitem_8cpp_source.html#l00056">56</a> of file <a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a>.</p>
 
@@ -604,16 +615,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the filter number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the filter number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>filter number. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>filter number. <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a09a730b72395838d679ac848ba9cbd54">number</a> </dd>
+<dd>
+<a class="el" href="classFilterSetupItem.html#a6944be2a730423a6041c35041986955e">getNumber</a> </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFilterSetupItem.html#a09a730b72395838d679ac848ba9cbd54">number</a> </dd>
-<dd>
-<a class="el" href="classFilterSetupItem.html#a6944be2a730423a6041c35041986955e">getNumber</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="filtersetupitem_8cpp_source.html#l00069">69</a> of file <a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a>.</p>
 
@@ -652,7 +662,7 @@
 <div class="memdoc">
 <p>Filter Action See <a class="el" href="constants_8h.html">constants.h</a> for valid values (CONFIG_VALUE_FILTER_ACTION...). </p>
 
-<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00212">212</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
+<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00216">216</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
 
 </div>
 </div>
@@ -668,7 +678,7 @@
 <div class="memdoc">
 <p>Connector to the configuration file </p>
 
-<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00201">201</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
+<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00205">205</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
 
 </div>
 </div>
@@ -684,7 +694,7 @@
 <div class="memdoc">
 <p>List of filter criterias. </p>
 
-<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00206">206</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
+<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00210">210</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
 
 </div>
 </div>
@@ -700,7 +710,7 @@
 <div class="memdoc">
 <p>Criteria Linkage. Valid values are CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ALL (all criterias have to satisy) or CONFIG_VALUE_FILTER_CRITERIA_LINKAGE_MATCH_ANY (at least one criteria has to satisy ). </p>
 
-<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00229">229</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
+<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00233">233</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
 
 </div>
 </div>
@@ -716,7 +726,7 @@
 <div class="memdoc">
 <p>Contains the mailbox name if the move action is selected. </p>
 
-<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00217">217</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
+<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00221">221</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
 
 </div>
 </div>
@@ -732,7 +742,7 @@
 <div class="memdoc">
 <p>filter name </p>
 
-<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00196">196</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
+<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00200">200</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
 
 </div>
 </div>
@@ -748,7 +758,7 @@
 <div class="memdoc">
 <p>Filter Number. The filters will be showed and run through in ascending order. The first number is "0". </p>
 
-<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00223">223</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
+<p>Definition at line <a class="el" href="filtersetupitem_8h_source.html#l00227">227</a> of file <a class="el" href="filtersetupitem_8h_source.html">filtersetupitem.h</a>.</p>
 
 </div>
 </div>
@@ -757,7 +767,7 @@
 <li>src/<a class="el" href="filtersetupitem_8cpp_source.html">filtersetupitem.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

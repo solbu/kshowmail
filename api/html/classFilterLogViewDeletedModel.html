@@ -63,11 +63,13 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This list contains the items which represents the deleted mails.  <a href="#a417a3e71eb0696fe95efc09989bc45b5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Qt::SortOrder&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogViewDeletedModel.html#a87a9f5f102192b3968374d0d02508771">lastSortOrder</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogViewDeletedModel.html#a8c10ff49fc00ced9d8af47f03a52a7ea">lastSortColumn</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">KIcon&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogViewDeletedModel.html#acec6597b7d5e97cee4b727c62c16861b">picManualDeleted</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">KIcon&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilterLogViewDeletedModel.html#ae3339e795930aad14f16e1f6c4000a72">picFilterDeleted</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Model for the log view of deleted mails. </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00034">34</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00037">37</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeb51246071bdc6e8ec143e808b7a5acb"></a><!-- doxytag: member="FilterLogViewDeletedModel::FilterLogViewDeletedModel" ref="aeb51246071bdc6e8ec143e808b7a5acb" args="(QObject *parent=0, FilterLog *log=NULL)" -->
 <div class="memitem">
@@ -120,7 +122,7 @@
 <p>Overloaded from QAbstractItemModel. </p>
 <p>Doesn't give a parent item, because the model doesn't provide tree structured data. The column count is equal to the number of showed account data. Always returns 6. </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00066">66</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00117">117</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -150,16 +152,20 @@
 <div class="memdoc">
 
 <p>Overloaded from QAbstractItemModel. </p>
-<p>Returns the data of the given index. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the data of the given index. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>the index </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>the index <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>role</em>&nbsp;</td><td>the role </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00033">33</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00038">38</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -197,14 +203,24 @@
 <p>Returns the header text of the given section. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>section</em>&nbsp;</td><td>header section </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>orientation</em>&nbsp;</td><td>orientation of the header; just returns the horizontal orientation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>section</em>&nbsp;</td><td>header section <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>orientation</em>&nbsp;</td><td>orientation of the header; just returns the horizontal orientation <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>role</em>&nbsp;</td><td>display role </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00095">95</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00146">146</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -240,17 +256,26 @@
 <div class="memdoc">
 
 <p>Returns the index of the data in this model specified by the given row, column. </p>
-<p>The parent index is not used. Overloaded from QAbstractItemModel </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>The parent index is not used. Overloaded from QAbstractItemModel <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>Row </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>Column </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>Row <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>Column <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent index; not used </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00085">85</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00136">136</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -273,7 +298,7 @@
 <p>Overloaded from QAbstractItemModel. </p>
 <p>Because this model doesn't provide tree structured data this function just returns an invalid index. </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00080">80</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00131">131</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +319,7 @@
 
 <p>Reloads the data from the log. </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00195">195</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00248">248</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,15 +340,14 @@
 <div class="memdoc">
 
 <p>Overloaded from QAbstractItemModel. </p>
-<p>Doesn't give a parent item, because the model doesn't provide tree structured data The row count is equal to the number of accounts. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Doesn't give a parent item, because the model doesn't provide tree structured data The row count is equal to the number of accounts. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent index </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00071">71</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00122">122</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -343,7 +367,7 @@
 <div class="memdoc">
 <p>Saves the setup </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00203">203</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00256">256</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -364,7 +388,7 @@
 
 <p>Sorts the model by the last sort properties. </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00190">190</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00243">243</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -392,16 +416,20 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Sorts the model by column in the given order. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sorts the model by column in the given order. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>column to sort </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>column to sort <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>order</em>&nbsp;</td><td>sort order </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00111">111</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html#l00163">163</a> of file <a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,7 +446,7 @@
 <div class="memdoc">
 <p>last sort column </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00145">145</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00148">148</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
 
 </div>
 </div>
@@ -434,7 +462,7 @@
 <div class="memdoc">
 <p>Last sort order </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00140">140</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00143">143</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
 
 </div>
 </div>
@@ -452,7 +480,7 @@
 <p>This list contains the items which represents the deleted mails. </p>
 <p>Will be load from filter log by constructor. </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00135">135</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00138">138</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
 
 </div>
 </div>
@@ -469,7 +497,39 @@
 
 <p>Pointer to the log. </p>
 
-<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00128">128</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00131">131</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae3339e795930aad14f16e1f6c4000a72"></a><!-- doxytag: member="FilterLogViewDeletedModel::picFilterDeleted" ref="ae3339e795930aad14f16e1f6c4000a72" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">KIcon <a class="el" href="classFilterLogViewDeletedModel.html#ae3339e795930aad14f16e1f6c4000a72">FilterLogViewDeletedModel::picFilterDeleted</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Icon for a mail deleted by filter </p>
+
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00158">158</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acec6597b7d5e97cee4b727c62c16861b"></a><!-- doxytag: member="FilterLogViewDeletedModel::picManualDeleted" ref="acec6597b7d5e97cee4b727c62c16861b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">KIcon <a class="el" href="classFilterLogViewDeletedModel.html#acec6597b7d5e97cee4b727c62c16861b">FilterLogViewDeletedModel::picManualDeleted</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Icon for a manual deleted mail </p>
+
+<p>Definition at line <a class="el" href="filterlogviewdeletedmodel_8h_source.html#l00153">153</a> of file <a class="el" href="filterlogviewdeletedmodel_8h_source.html">filterlogviewdeletedmodel.h</a>.</p>
 
 </div>
 </div>
@@ -478,7 +538,7 @@
 <li>src/<a class="el" href="filterlogviewdeletedmodel_8cpp_source.html">filterlogviewdeletedmodel.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

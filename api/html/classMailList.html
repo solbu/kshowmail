@@ -55,12 +55,13 @@
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#abec88578abf6e426d5553162da01c636">saveMails</a> (QDomDocument &amp;doc, QDomElement &amp;parent)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#ac3bbb8fe67ae11ba51b063afc45d0548">getSenderOf</a> (int number) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a885bad01479e5f9c85a60ace07831d88">getDateOf</a> (int number) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">KDateTime&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#afaa2b70c7c22c1760ff3b47049a7715e">getDateTimeOf</a> (int number) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#afcbf8c09f6d5f17ed46f3b6ccaa181c5">getSizeOf</a> (int number) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#aef56178c593039eb2ed26fe426e58fc6">getSubjectOf</a> (int number) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#ac2b7faf31aa428f892f81543c9f7b054">getCharsetFromHeaderOf</a> (int number) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a9cb35c8e50c2d64350c40bf187a1c689">decodeMailBody</a> (const QStringList &amp;body, int number, bool preferHTML, bool &amp;isHTML) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a9868ac4cc9311eba11f326d8d1c1876e">writeToMoveLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, int number, QString account, QString mailbox)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a5843e955ca33b2c269a89153cc554db9">writeToDeleteLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, int number, QString account)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#aa54deed90cdde2a81c172022e64150f1">writeToDeleteLog</a> (<a class="el" href="classFilterLog.html">FilterLog</a> *log, int number, QString account, <a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a> kindDelete)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#aff18a93326b5361deb2a1cafbfc86f23">setMarkAtNextViewRefresh</a> (int number)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a7ccfa7d16852b8b02227e48aaee130f0">getNumberNewMails</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMailList.html#a9e83869411ab50e5a9076510bc308206">getTotalSize</a> ()</td></tr>
@@ -72,8 +73,7 @@
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>List of Mails. </p>
-<p>Used in class <a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a>. </p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </dd></dl>
+<p>Used in class <a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a>. <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classAccount.html" title="This class represents an POP3-Account.">Account</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8h_source.html#l00047">47</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
@@ -101,15 +101,19 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Constructor </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Constructor <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>pointer to the parent account </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent object </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>pointer to the parent account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent object <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMailList.html#a0e1c596828f137a33ad54deb3a4b9ab4">addMail</a> </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMailList.html#a0e1c596828f137a33ad54deb3a4b9ab4">addMail</a> </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00020">20</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -166,16 +170,25 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Creates a mail object and adds it to the list </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Creates a mail object and adds it to the list <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail on the server </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>Unique ID of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>isNew</em>&nbsp;</td><td>TRUE - mail is new; FALSE - mail is not new </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail on the server <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>Unique ID of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>isNew</em>&nbsp;</td><td>TRUE - mail is new; FALSE - mail is not new <dl class="return"><dt><b>Returns:</b></dt><dd>appended mail </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>appended mail </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00037">37</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -229,15 +242,39 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Apply the filters to the mails in this list. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Apply the filters to the mails in this list. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>pointer to the header filter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of this account </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>deleteList</em>&nbsp;</td><td>reference to a list in which this methode writes the numbers of mails to delete </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>downloadList</em>&nbsp;</td><td>reference to a list in which this methode writes the number of mails to download </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>nmbIgnoredMails</em>&nbsp;</td><td>reference to an integer in which it writes the number of ignored mails </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>filter</em>&nbsp;</td><td>pointer to the header filter <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of this account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>deleteList</em>&nbsp;</td><td>reference to a list in which this methode writes the numbers of mails to delete <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>downloadList</em>&nbsp;</td><td>reference to a list in which this methode writes the number of mails to download <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>nmbIgnoredMails</em>&nbsp;</td><td>reference to an integer in which it writes the number of ignored mails <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the filter log </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -282,19 +319,33 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Decodes the given mail body by the appropriate mail object. The mail object has to do this job, because it has stored the mail header and therefore it knows the content type and encoding of the mail. It decodes just the text or html part of the body. The rest of it will be rejected. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Decodes the given mail body by the appropriate mail object. The mail object has to do this job, because it has stored the mail header and therefore it knows the content type and encoding of the mail. It decodes just the text or html part of the body. The rest of it will be rejected. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>body</em>&nbsp;</td><td>the whole mail (including header) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the downloaded mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>preferHTML</em>&nbsp;</td><td>decode HTML part if present </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>isHTML</em>&nbsp;</td><td>will be set on true, if the returned body is HTML formatted; otherwise false </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>body</em>&nbsp;</td><td>the whole mail (including header) <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the downloaded mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>preferHTML</em>&nbsp;</td><td>decode HTML part if present <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>isHTML</em>&nbsp;</td><td>will be set on true, if the returned body is HTML formatted; otherwise false <dl class="return"><dt><b>Returns:</b></dt><dd>decoded mail body </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>decoded mail body </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00403">403</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00425">425</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,8 +363,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns a pointer to the account which this list holds. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>account </dd></dl>
+<p>Returns a pointer to the account which this list holds. <dl class="return"><dt><b>Returns:</b></dt><dd>account </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00221">221</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -333,10 +383,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns a list which contains the pointers to all mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>all mails </dd></dl>
+<p>Returns a list which contains the pointers to all mails. <dl class="return"><dt><b>Returns:</b></dt><dd>all mails </dd></dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00548">548</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00570">570</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -355,16 +404,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the charset of the mail with the given number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the charset of the mail with the given number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number <dl class="return"><dt><b>Returns:</b></dt><dd>charset </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>charset </dd></dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00381">381</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00403">403</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -383,16 +431,42 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the date of sent of the mail with the given number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the date of sent of the mail with the given number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number <dl class="return"><dt><b>Returns:</b></dt><dd>date </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>date </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00315">315</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afaa2b70c7c22c1760ff3b47049a7715e"></a><!-- doxytag: member="MailList::getDateTimeOf" ref="afaa2b70c7c22c1760ff3b47049a7715e" args="(int number) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">KDateTime MailList::getDateTimeOf </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>number</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the date of sent of the mail with the given number. <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number <dl class="return"><dt><b>Returns:</b></dt><dd>date </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00337">337</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -411,17 +485,16 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the header of the mail with the given UID. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the header of the mail with the given UID. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>UID </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mail header </dd></dl>
+    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>UID <dl class="return"><dt><b>Returns:</b></dt><dd>mail header </dd></dl>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em><a class="el" href="classCorruptDataException.html" title="Exception class for corrupt data in a data model.">CorruptDataException</a></em>&nbsp;</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -444,8 +517,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the numbers of mails which are marked as new. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>numbers of the new mails </dd></dl>
+<p>Returns the numbers of mails which are marked as new. <dl class="return"><dt><b>Returns:</b></dt><dd>numbers of the new mails </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00119">119</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -465,8 +537,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the number of mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>number of mails </dd></dl>
+<p>Returns the number of mails. <dl class="return"><dt><b>Returns:</b></dt><dd>number of mails </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00216">216</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -486,10 +557,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the number of new mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>number of new mails </dd></dl>
+<p>Returns the number of new mails. <dl class="return"><dt><b>Returns:</b></dt><dd>number of new mails </dd></dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00482">482</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00504">504</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -508,14 +578,13 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the sender of the mail with the given number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the sender of the mail with the given number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number <dl class="return"><dt><b>Returns:</b></dt><dd>sender </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>sender </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00294">294</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -536,16 +605,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the size of the mail with the given number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the size of the mail with the given number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number <dl class="return"><dt><b>Returns:</b></dt><dd>size </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>size </dd></dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00337">337</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00359">359</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -564,16 +632,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the subject of the mail with the given number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the subject of the mail with the given number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>mail number <dl class="return"><dt><b>Returns:</b></dt><dd>subject </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>subject </dd></dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00359">359</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00381">381</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -591,10 +658,9 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns the total size (bytes) of all mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>total size </dd></dl>
+<p>Returns the total size (bytes) of all mails. <dl class="return"><dt><b>Returns:</b></dt><dd>total size </dd></dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00499">499</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00521">521</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -612,8 +678,7 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns a list of the UIDs of all old mails. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>UIDs of all old mails </dd></dl>
+<p>Returns a list of the UIDs of all old mails. <dl class="return"><dt><b>Returns:</b></dt><dd>UIDs of all old mails </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00158">158</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -634,16 +699,15 @@
       </table>
 </div>
 <div class="memdoc">
-<p>Returns whether there is mail with the given uid in the list. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns whether there is mail with the given uid in the list. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>uid</em>&nbsp;</td><td>UID of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>uid</em>&nbsp;</td><td>UID of the mail <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - mail is in the list </dd>
+<dd>
+FALSE - mail is not in the list </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - mail is in the list </dd>
-<dd>
-FALSE - mail is not in the list </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00059">59</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -664,16 +728,15 @@ FALSE - mail is not in the list </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns whether the given mail is new. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns whether the given mail is new. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>uid</em>&nbsp;</td><td>UID of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>uid</em>&nbsp;</td><td>UID of the mail <dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - mail is new </dd>
+<dd>
+FALSE - mail is not new or mail doesn't exist </dd></dl>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>TRUE - mail is new </dd>
-<dd>
-FALSE - mail is not new or mail doesn't exist </dd></dl>
 
 <p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00078">78</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
@@ -714,15 +777,14 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Reads out all mails stored inside the given account element, creates objects from class <a class="el" href="classMail.html" title="This class represents a mail.">Mail</a> and stores them in this list. All old items will be removed. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Reads out all mails stored inside the given account element, creates objects from class <a class="el" href="classMail.html" title="This class represents a mail.">Mail</a> and stores them in this list. All old items will be removed. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>account element (DOM element) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00515">515</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00537">537</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -741,8 +803,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Removes the mail which has the given number. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Removes the mail which has the given number. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail which will be removed </td></tr>
   </table>
@@ -777,11 +838,15 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Saves all stored mails into the given DOM document inside the given account element. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Saves all stored mails into the given DOM document inside the given account element. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>DOM document in that all options are stored </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>DOM document in that all options are stored <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>account element </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -814,11 +879,15 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the header of the mail with the given UID. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the header of the mail with the given UID. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>UID </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>unid</em>&nbsp;</td><td>UID <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>mail header </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -851,11 +920,15 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the header of the given mail. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the header of the given mail. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>header</em>&nbsp;</td><td>the header </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -879,15 +952,14 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>The given mail will be marked at the next view refresh. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>The given mail will be marked at the next view refresh. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00444">444</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00466">466</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -915,11 +987,15 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the size of a mail. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Sets the size of a mail. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>mail size </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -928,7 +1004,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a5843e955ca33b2c269a89153cc554db9"></a><!-- doxytag: member="MailList::writeToDeleteLog" ref="a5843e955ca33b2c269a89153cc554db9" args="(FilterLog *log, int number, QString account)" -->
+<a class="anchor" id="aa54deed90cdde2a81c172022e64150f1"></a><!-- doxytag: member="MailList::writeToDeleteLog" ref="aa54deed90cdde2a81c172022e64150f1" args="(FilterLog *log, int number, QString account, KindOfMailDeleting kindDelete)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -948,7 +1024,13 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>account</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>account</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceTypes.html#a34395d5a7baaaa9a5eb96022c5c8ceb6">KindOfMailDeleting</a>&nbsp;</td>
+          <td class="paramname"> <em>kindDelete</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -958,17 +1040,32 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Writes the mail into the Delete Log. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Writes the mail into the Delete Log. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>kindDelete</em>&nbsp;</td><td>kind of mail deleting (by filter or manual) </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00463">463</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00485">485</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -1008,18 +1105,32 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Writes the mail into the Move Log. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Writes the mail into the Move Log. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>log</em>&nbsp;</td><td>pointer to the log <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>number</em>&nbsp;</td><td>number of the mail <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>account</em>&nbsp;</td><td>name of the account <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>mailbox</em>&nbsp;</td><td>name of the mailbox </td></tr>
   </table>
   </dd>
 </dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00425">425</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8cpp_source.html#l00447">447</a> of file <a class="el" href="maillist_8cpp_source.html">maillist.cpp</a>.</p>
 
 </div>
 </div>
@@ -1036,7 +1147,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
 <div class="memdoc">
 <p>Pointer to the parent account </p>
 
-<p>Definition at line <a class="el" href="maillist_8h_source.html#l00283">283</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8h_source.html#l00291">291</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
 
 </div>
 </div>
@@ -1052,7 +1163,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
 <div class="memdoc">
 <p>List of mails </p>
 
-<p>Definition at line <a class="el" href="maillist_8h_source.html#l00278">278</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
+<p>Definition at line <a class="el" href="maillist_8h_source.html#l00286">286</a> of file <a class="el" href="maillist_8h_source.html">maillist.h</a>.</p>
 
 </div>
 </div>
@@ -1061,7 +1172,7 @@ FALSE - mail is not new or mail doesn't exist </dd></dl>
 <li>src/<a class="el" href="maillist_8cpp_source.html">maillist.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -115,8 +115,13 @@
 <p>Constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>accounts</em>&nbsp;</td><td>pointer to the account list </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>accounts</em>&nbsp;</td><td>pointer to the account list <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent object </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -196,11 +201,15 @@
 <div class="memdoc">
 
 <p>Overloaded from QAbstractItemModel. </p>
-<p>Returns the data of the given index. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Returns the data of the given index. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>the index </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>the index <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>role</em>&nbsp;</td><td>the role </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -282,8 +291,7 @@
 <div class="memdoc">
 
 <p>Overloaded from QAbstractItemModel. </p>
-<p>It returns true if the given index is invalid because a invalid index is the root index. All content is a child of the root index. If the index is valid it always returns false because no data has a child. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>It returns true if the given index is invalid because a invalid index is the root index. All content is a child of the root index. If the index is valid it always returns false because no data has a child. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent index </td></tr>
   </table>
@@ -328,9 +336,19 @@
 <p>Returns the header text of the given section. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>section</em>&nbsp;</td><td>header section </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>orientation</em>&nbsp;</td><td>orientation of the header; just returns the horizontal orientation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>section</em>&nbsp;</td><td>header section <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>orientation</em>&nbsp;</td><td>orientation of the header; just returns the horizontal orientation <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>role</em>&nbsp;</td><td>display role </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -371,12 +389,21 @@
 <div class="memdoc">
 
 <p>Returns the index of the account data in this model specified by the given row, column. </p>
-<p>The parent index is not used. Overloaded from QAbstractItemModel </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>The parent index is not used. Overloaded from QAbstractItemModel <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>Row </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>Column </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>row</em>&nbsp;</td><td>Row <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>Column <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent index; not used </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -446,8 +473,7 @@
 <div class="memdoc">
 
 <p>Overloaded from QAbstractItemModel. </p>
-<p>Doesn't give a parent item, because the model doesn't provide tree structured data The row count is equal to the number of accounts. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
+<p>Doesn't give a parent item, because the model doesn't provide tree structured data The row count is equal to the number of accounts. <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent index </td></tr>
   </table>
@@ -513,9 +539,19 @@
 <p>Assign the given value to the account property described by the given index. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>index </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>value </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>index <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>value <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>role</em>&nbsp;</td><td>role </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -573,8 +609,13 @@
 <p>Sorts the model by column in the given order. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>column to sort </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>column</em>&nbsp;</td><td>column to sort <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>order</em>&nbsp;</td><td>sort order </td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -693,7 +734,7 @@
 <li>src/<a class="el" href="accountviewmodel_8cpp_source.html">accountviewmodel.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:08 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

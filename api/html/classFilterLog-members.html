@@ -28,16 +28,17 @@
 </div>
 <div class="contents">
 <h1>FilterLog Member List</h1>This is the complete list of members for <a class="el" href="classFilterLog.html">FilterLog</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="classFilterLog.html#ad2ffd04aba73853da7c3c4e84d64291b">addDeletedMail</a>(const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject)</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a8e332a583eba75f49e895f0cea42304c">addEntry</a>(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString())</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a4ebb0b6d2c9d1a83afacbd69c9fc5912">addDeletedMail</a>(const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, KindOfMailDeleting kindDelete, const QString &amp;filter=QString())</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#ab23d58c45420bb902947bfb7984ccc8c">addEntry</a>(FilterAction_Type action, const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox=QString(), KindOfMailDeleting kindDelete=DelFilter, const QString &amp;filter=QString())</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#af00b6ab0172a919fd92aa4f92d018f2f">addMovedMail</a>(const KDateTime &amp;dateTime, const QString &amp;sender, const QString &amp;account, const QString &amp;subject, const QString &amp;mailbox)</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#ace778330869163990b75091ff52eaaed">clearDeletedMailsLog</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#aada8a65c0ff35e777127dff2977644b4">clearMovedMailsLog</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#aafb4f521b50b870dc0b10ad0beafa25e">config</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a7a5dfed7513657cdac5537729ac2f14ba516fcb3bdc67d933b239de1eda23df9d">days</a> enum value</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700a516fcb3bdc67d933b239de1eda23df9d">days</a> enum value</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#ac2c77f4f69224d4128d538f6949a72e8">daysStoreDeletedMails</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a2a17bd37938071ec9e5fdb07ed21e1ee">deletedMailsStorageMode</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a7a5dfed7513657cdac5537729ac2f14ba417033d64ee8a4b460e74cf60c7e949b">exit</a> enum value</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a9372d8a3efa4b23f7e55cbb59571640b">daysStoreManualDeletedMails</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a34d1cda074ce7877e411edb797e2cf9d">deletedMailsStorageMode</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700a417033d64ee8a4b460e74cf60c7e949b">exit</a> enum value</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a5e4dc0320e613fa0884c20597e2f801d">FilterLog</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#aa3bfe9859901d08f26613fa92b1c92d7">getDeletedMails</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a4535da60ad21f8cf819bf1b293a930f4">getMovedMails</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
@@ -46,14 +47,18 @@
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a697346428446166f7fe4b5d387095d3a">load</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a38b93bd89be1c76c88bd33d3222bbe92">loadSetup</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a69bc71567187d7dc15fda6eb8f1d2979">logDeletedMails</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a2277eb1c34243e7bc0cf742765237700">LogEntryStorageMode</a> enum name</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#a0dd4d1e00ef0f73b1c5a368a8fd2dfef">logManualDeletedMails</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#ad9a377c3856846908684babf5cb6d9bd">logMovedMails</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#ad935744454cf03262977b0ab2d4b8c78">manualDeletedMailsStorageMode</a></td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a62b2d4b187928b34a97a8c2a8edae4bf">numberDeletedMails</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFilterLog.html#ae541c21fa90934a4c4fcf1b29bc90772">numberFilterDeletedMails</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#aae150f073ac6a47a00b56e88b71cbe5f">numberMovedMails</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a852b7d3cc47c7c6a2130dbd7765176c2">print</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#a4ae56edf247817d9a8adc0b64d7875d3">save</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFilterLog.html#ae33b0808ca97f0bc42f5d04d8b3352f7">~FilterLog</a>()</td><td><a class="el" href="classFilterLog.html">FilterLog</a></td><td></td></tr>
 </table></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Aug 26 20:30:03 2010 for KShowmail by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Mar 13 15:08:09 2011 for KShowmail by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
