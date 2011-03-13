@@ -121,7 +121,7 @@ class KShowmailView : public QSplitter
   protected slots:
 
     /**
-     * Connected with signal <em>doubleClicked<em> of <em>viewAccounts</em>
+     * Connected with signal <em>doubleClicked</em> of <em>viewAccounts</em>
      * Emits the signal <em>sigMailDoubleClicked</em>
      * @see sigMailDoubleClicked()
      */

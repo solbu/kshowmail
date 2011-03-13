@@ -144,7 +144,7 @@ class SenderListDialog : public KDialog
     /**
      * Overwritten method of KDialogBase.
      * Activated when the button <code>button</code> is clicked.
-     * If OK was clicked, it will stores the entered values into #list and #blackListAction.
+     * If OK was clicked, it will stores the entered values into #list and #blacklistAction.
      * After then it invokes <code>slotButtonClicked</code>of KDialogBase.
      * @param button clicked button; is the type KDialog::ButtonCode
      */
