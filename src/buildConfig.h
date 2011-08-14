@@ -17,11 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //This file is used to transfer settings done in the cmake config into the source code
 
-#ifndef BUILDCONFIG_H
-#define BUILDCONFIG_H
-
-
 //version number
 #define KSHOWMAIL_VERSION "4.1"
 
-#endif
