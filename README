@@ -12,11 +12,9 @@ The list of displayed mails can be refreshed via configurable timers.
 Filters can be assigned to mark known spam for deletion.
 Multiple accounts are supported.
 A sound can be played if new mail arrives.
-A command menu allows user configurable commands like fetchmail or sendmail.
-A special command can be defined to send complain mail against spam.
 
 The modifications I provided are mainly Qt/KDE stuff to generate a nice
-GUI interface. I am using the great development tool kDevelop V2.1.
+GUI interface. I am using the great development tool KDevelop.
 
 If you find the tool useful, tell me about it. If you find any bugs or
 want some additional features, just give me a hint. As time allows,
