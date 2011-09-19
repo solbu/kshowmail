@@ -9,7 +9,7 @@ Kshowmail is a KDE tool to watch mails on a POP3 server.
 Headers and complete mails can be viewed without loading them to the
 local mail client. Unpleasant mail can be deleted from the server.
 The list of displayed mails can be refreshed via configurable timers.
-Filters can be assigned to mark known spam for deletion.
+Filters can be assigned to mark known spam or ignore nonrelevant mails or mailing list mails.
 Multiple accounts are supported.
 A sound can be played if new mail arrives.
 
