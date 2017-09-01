@@ -34,9 +34,9 @@ set(kshowmail_SRCS
 #enable exceptions
 SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
 
-kde4_add_executable(kshowmail ${kshowmail_SRCS})
+add_executable(kshowmail ${kshowmail_SRCS})
 
-target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} ${KDEPIMLIBS_KMIME_LIBS} ${KDE4_KIO_LIBS} ${KDE4_PHONON_LIBS} )
+target_link_libraries(kshowmail ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS} ${KDEPIMLIBS_KMIME_LIBS} KF5::KIOWidgets ${KDE4_PHONON_LIBS} )
 
 install(TARGETS kshowmail ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
@@ -49,21 +49,21 @@ set( CONFIGACCOUNTS_SRCS
      accountsetupdialog.cpp
       )
 
-kde4_add_plugin(kcm_kshowmailconfigaccounts ${CONFIGACCOUNTS_SRCS} )
+add_library(kcm_kshowmailconfigaccounts MODULE ${CONFIGACCOUNTS_SRCS} )
 target_link_libraries(kcm_kshowmailconfigaccounts  ${KDE4_KDEUI_LIBS})
 
 set( CONFIGACTIONS_SRCS
      configactions.cpp
    )
 
-kde4_add_plugin( kcm_kshowmailconfigactions ${CONFIGACTIONS_SRCS} )
-target_link_libraries( kcm_kshowmailconfigactions ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${KDE4_KIO_LIBS} )
+add_library(kcm_kshowmailconfigactions MODULE ${CONFIGACTIONS_SRCS} )
+target_link_libraries( kcm_kshowmailconfigactions ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} KF5::KIOWidgets )
 
 set( CONFIGDISPLAY_SRCS
      configdisplay.cpp
    )
 
-kde4_add_plugin( kcm_kshowmailconfigdisplay ${CONFIGDISPLAY_SRCS} )
+add_library(kcm_kshowmailconfigdisplay MODULE ${CONFIGDISPLAY_SRCS} )
 target_link_libraries( kcm_kshowmailconfigdisplay ${KDE4_KDEUI_LIBS} )
 
 set( CONFIGFILTER_SRCS
@@ -77,19 +77,19 @@ set( CONFIGFILTER_SRCS
      regexcheckdialog.cpp
    )
 
-kde4_add_plugin( kcm_kshowmailconfigfilter ${CONFIGFILTER_SRCS} )
-target_link_libraries( kcm_kshowmailconfigfilter ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KUTILS_LIBS} )
+add_library(kcm_kshowmailconfigfilter MODULE ${CONFIGFILTER_SRCS} )
+target_link_libraries( kcm_kshowmailconfigfilter ${KDE4_KDEUI_LIBS} KF5::KIOWidgets ${KDE4_KUTILS_LIBS} )
 
 set( CONFIGLOG_SRCS
      configlog.cpp
    )
-kde4_add_plugin( kcm_kshowmailconfiglog ${CONFIGLOG_SRCS} )
+add_library(kcm_kshowmailconfiglog MODULE ${CONFIGLOG_SRCS} )
 target_link_libraries( kcm_kshowmailconfiglog ${KDE4_KDEUI_LIBS} )
 
 set( CONFIGGENERAL_SRCS
      configgeneral.cpp
    )
-kde4_add_plugin( kcm_kshowmailconfiggeneral ${CONFIGGENERAL_SRCS} )
+add_library(kcm_kshowmailconfiggeneral MODULE ${CONFIGGENERAL_SRCS} )
 target_link_libraries( kcm_kshowmailconfiggeneral ${KDE4_KDEUI_LIBS} )
 
 set( CONFIGSPAMCHECK_SRCS
@@ -97,8 +97,8 @@ set( CONFIGSPAMCHECK_SRCS
      mailboxwizard.cpp
      mailboxwizardlistitem.cpp
    )
-kde4_add_plugin( kcm_kshowmailconfigspamcheck ${CONFIGSPAMCHECK_SRCS} )
-target_link_libraries( kcm_kshowmailconfigspamcheck ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} )
+add_library(kcm_kshowmailconfigspamcheck MODULE ${CONFIGSPAMCHECK_SRCS} )
+target_link_libraries( kcm_kshowmailconfigspamcheck ${KDE4_KDEUI_LIBS} KF5::KIOWidgets )
 
 
 ########### install files ###############

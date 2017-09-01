@@ -3,15 +3,25 @@ project(kshowmail)
 cmake_minimum_required(VERSION 2.6)
 
 # version number
-set (KSHOWMAIL_VERSION 4.1)
+set (KSHOWMAIL_VERSION 5.0)
 
-find_package(KDE4 REQUIRED)
+find_package(ECM REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-include (KDE4Defaults)
-INCLUDE(MacroLibrary)
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+include(FeatureSummary)
+include(ECMInstallIcons)
+
+#INCLUDE(MacroLibrary)
 INCLUDE(FindPackageHandleStandardArgs)
 
-find_package(KdepimLibs REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Widgets)
+find_package(KF5 REQUIRED COMPONENTS DocTools CoreAddons Solid)
+find_package(KF5Libkdepim REQUIRED)
+
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 #configure a header file to pass some of the CMake settings to the source code
 configure_file(
@@ -21,7 +31,6 @@ configure_file(
 
 
 include_directories(
-  ${KDE4_INCLUDES}
   ${QT_INCLUDES}
 )
 
