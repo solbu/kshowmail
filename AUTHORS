@@ -1,0 +1,36 @@
+This program is started by Eggert Ehmke, eggert.ehmke@berlin.de and Ulrich Weigelt, ulrich.weigelt@gmx.de.
+Current maintainer is Johnny A. Solbu <johnny@solbu.net>.
+
+Acknowledgements of Ulrich Weigelt:
+ 
+Luca Pedrielli 				who did a lot of testing and provided the italian translation
+Elsa Andrés				who provided the spanish translation
+Heimen Stoffels				who provided the dutch translation
+Tor B. Løken				who provided the norwegian translation
+Otmar Mak				who provided the handbook
+
+Acknowledgements of Eggert Ehmke:
+
+Since I started the kshowmail development, I received lots of feedback and constructive
+critics from all over the world. I appreciate this very much and want to say "thank you"
+to all of you. In particular:
+
+Manfred Haertel <Manfred.Haertel@rz-online.de> who wrote the original command line version.
+Espen Sand <espen.sand@neo.no>                 who provided the timers and some keyboard shortcuts.
+Nicolas Vignal <nicolas.vignal@fnac.net>       who provided RPM's for RedHat,
+                                                 and the french translation.
+Serge Parmentier <gerapa@skynet.be>            who updated the french translation
+Edgardo Garc�a <edyx@mindless.com>             who provided the spanish translation
+Stephan Giesler <giesler@gmx.net>              who updated the spanish translation and
+                                                 did some testing.
+Mattias Newzella <newzella@swipnet.se>         who provided the swedish translation
+Aharon Schkolnik <aharon@health.gov.il>,       who did a lot of testing and created a lot of
+Matthias Doell <mail@MatthiasDoell.de>,          ideas that are now part of kshowmail.
+Thomas Watz <twatz@gmx.de>
+Maic Szotek <webmaster@dragontower.de>         who provided the nice new icons for the
+                                                 3.x.x version.
+Gustavo Zamorano S. <gzsuniq@cableonda.net>    who suggested the "Reply" feature and tested
+                                                 some scripts.
+Sandor Laza <slaza@xs4all.nl>                  who provided the hungarian translation.
+Gabriele Postorino <g.posto@tin.it>            who provided the italian translation.
+Robert Kratky <kratky@rob.cz>                  who provided the czech translation.
