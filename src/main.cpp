@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kapplication.h>
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
-#include <KDE/KLocale>
+#include <KLocale>
 #include <kuniqueapplication.h>
 #include <kdebug.h>
 

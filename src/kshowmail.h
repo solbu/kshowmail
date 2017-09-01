@@ -30,7 +30,7 @@ class MailViewModel;
 
 //KDE headers
 #include <kstatusbar.h>
-#include <KDE/KLocale>
+#include <KLocale>
 #include <kxmlguiwindow.h>
 #include <kaction.h>
 #include <KStandardAction>

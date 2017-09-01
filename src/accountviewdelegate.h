@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //KDE headers
 #include <KComboBox>
-#include <KDE/KLocale>
+#include <KLocale>
 #include <KIcon>
 #include <KStandardDirs>
 #include <KDebug>

@@ -18,5 +18,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //This file is used to transfer settings done in the cmake config into the source code
 
 //version number
-#define KSHOWMAIL_VERSION "4.1"
+#define KSHOWMAIL_VERSION "5.0"
 

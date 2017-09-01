@@ -25,7 +25,7 @@ class AccountList;
 #include <QItemSelectionModel>
 
 //KDE headers
-#include <KDE/KLocale>
+#include <KLocale>
 #include <KIcon>
 #include <KStandardDirs>
 #include <kdatetime.h>

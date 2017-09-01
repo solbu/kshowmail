@@ -27,7 +27,7 @@ class AccountList;
 
 //KDE headers
 #include <KDebug>
-#include <KDE/KLocale>
+#include <KLocale>
 #include <KIcon>
 #include <KStandardDirs>
 #include <KConfigGroup>

@@ -44,7 +44,7 @@ class Account;
 #include <kcodecs.h>
 #include <ktcpsocket.h>
 #include <KApplication>
-#include <KDE/KLocale>
+#include <KLocale>
 #include <KMessageBox>
 #include <kde_file.h>
 

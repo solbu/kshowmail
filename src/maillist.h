@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class MailList;
 
 //Qt headers
-#include <QtCore/QObject>
+#include <QObject>
 #include <QDomElement>
 #include <QPointer>
 
